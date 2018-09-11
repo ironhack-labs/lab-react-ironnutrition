@@ -3,7 +3,7 @@ import React from 'react'
 
 const FoodBox = (props) => {
         return (
-            <div className="box">
+          <div className="box">
             <article className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
@@ -22,13 +22,15 @@ const FoodBox = (props) => {
                 <div className="field has-addons">
                   <div className="control">
                     <input
+                      onChange={function(event){ props.updateQuantity(event, props.index)}}
                       className="input"
                       type="number" 
-                      value={props.quantity}
+                      defaultValue={props.quantity}
+                      min="0"
                     />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
+                    <button className="button is-info" onClick={() => props.addFood(props)}>
                       +
                     </button>
                   </div>

@@ -9,10 +9,17 @@ class Application extends React.Component {
 
     this.state = {
       search: "",
-      foods: foods
+      foods: foods,
+      todaysFood: [],
+      total: 0
     };
 
     this._updateSearchChange = this._updateSearchChange.bind(this);
+    this._updateQuantity = this._updateQuantity.bind(this);
+    this._addFood = this._addFood.bind(this);;
+
+
+
   }
 
   render() {
@@ -20,13 +27,25 @@ class Application extends React.Component {
       return (
         <FoodBox
           name={food.name}
+          index={index}
           calories={food.calories}
           image={food.image}
           quantity={food.quantity}
           key={"food_" + index}
+          updateQuantity={this._updateQuantity}
+          addFood={this._addFood}
         />
       );
     });
+
+    const todaysFoodList = this.state.todaysFood.map((food, index) => {
+      return (
+        <li
+        key={"food_" + index}
+        >{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>
+      )
+    })
+
     return (
       <div className="container">
         <h1>IronNutrition</h1>
@@ -35,9 +54,27 @@ class Application extends React.Component {
           className="input"
           type="text"
         />
-        {foodList}
+        <div className="columns">
+          <div className="column">{foodList}</div>
+          <div className="column">
+            <h2>Today's List</h2>
+            <ul>
+              {todaysFoodList}
+            </ul>
+            <p>Total: {this.state.total} cal</p>
+          </div>
+        </div>
       </div>
     );
+  }
+
+
+  _addFood({calories, name, quantity}) {
+    const newArr = [ ...this.state.todaysFood, {name,quantity,calories}]
+    this.setState({
+      todaysFood: newArr,
+      total: this.state.total + (quantity*calories)
+    })
   }
 
   _searchFood(filter) {
@@ -46,6 +83,15 @@ class Application extends React.Component {
         return el.name.match(new RegExp(`.*${filter}.*`, "i"));
       })
     });
+  }
+
+  _updateQuantity(event, index) {
+    this.setState({
+      foods: this.state.foods.map((el, i) => {
+        if (index !== i) return el;
+        return { ...el, quantity: Number(event.target.value) };
+      })
+    })
   }
 
   _updateSearchChange(event) {

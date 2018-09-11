@@ -6,18 +6,21 @@
 
 Since the beginning of the bootcamp, you just realized that your diet is not healthy and it may have an impact on your health (and productivity) and the long term. 
 
-To take care about the food you eat, you decided to create a nutrition app that will track everything you eat!
+To take care of the food you eat, you decided to create a nutrition app that will track everything you eat!
 
 
 ![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
 
 ## Installation 
 
-### Launch the starter-code
+### Create the starter-code
+
+You can create a new React app (`create-react-app`) and move the file `foods.json` in the `src` folder:
 
 ```
+$ create-react-app starter-code starter-code
 $ cd starter-code
-$ npm install
+$ mv ../foods.json src
 $ npm start
 ```
 
@@ -52,7 +55,7 @@ If you struggle with the design, you can find a static example of what is expect
 
 ### Iteration 1 | Create `FoodBox` component
 
-Create a `FoodBox` component that takes at least `food` as a prop and display a box with all information about an ingredient.
+Create a `FoodBox` component that takes at least `food` as a prop and displays a box with all the information about an ingredient.
 
 We recommand to use that HTML to display properly the `FoodBox`:
 
@@ -113,7 +116,7 @@ Create a `Search` component to perform a search that updates the list of all mea
 
 ### Iteration 4 | Create add buttons
 
-On your `FoodBox`, you have an input an "+" button. Use them so that when a user click on the button, it adds them on a list on the right called "*Today's foods*".
+On your `FoodBox`, you have an input an "+" button. Use them so that when a user clicks on the button, it adds them on a list on the right called "*Today's foods*".
 
 You will also need to display the total amount of calories at the bottom of the list as a recap.
 
@@ -129,10 +132,13 @@ You made an awesome application, but you have found a little problem in the UX. 
 
 ### Iteration 6 | Bonus | Allow the user to remove an ingredient
 
-On the "*Today's food*", add a trash icon to let users removing one of their item.
+On the "*Today's food*", add a trash icon to let users removing one of their items.
 
 
 
 ## Solution
 
 You will find the solution here: https://github.com/mc100s/training-labs-react/blob/master/src/lab-react-data-binding/solution.js 
+
+You can replace the content of your `src/index.js` by the [solution](https://github.com/mc100s/training-labs-react/blob/master/src/lab-react-data-binding/solution.js ).
+

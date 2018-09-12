@@ -28,27 +28,22 @@ class App extends Component {
   }
 
   handleClick(e, food, quantity) {
-    var foodWithQuantity = [];
-    for (let i = 0; i < quantity; i++) {
-      foodWithQuantity.push(food);
+    var newFoodArray = foods.slice();
+    for (let i = 0; i < newFoodArray.length; i++) {
+      if (food['name'] === newFoodArray[i]['name']) {
+        newFoodArray[i]['quantity'] += Number(quantity);
+        console.log('update: ', newFoodArray[i]);
+      }
     }
-    // var newObject = {
-    //   food: food,
-    //   quantity: quantity,
-    //   calories
-    // }
-    // var filteredArray = []
-    // filteredArray.push(food, )
-    console.log('food w quant: ', foodWithQuantity);
+    var result = newFoodArray.filter(food => food.quantity > 0);
     var newTotal = 0;
-    var newFood = [...this.state.todaysFoods, ...foodWithQuantity];
-    for (let i = 0; i < newFood.length; i++) {
-      newTotal += newFood[i]['calories'];
+
+    for (let i = 0; i < result.length; i++) {
+      newTotal = result[i]['calories'] * result[i]['quantity'] + newTotal;
     }
     this.setState({
-      todaysFoods: newFood,
+      todaysFoods: result,
       total: newTotal
-      // filteredArray: filteredArray
     });
   }
 
@@ -76,13 +71,15 @@ class App extends Component {
           <div className="column">
             <div className="columns">
               <div className="column is-5 border">
-                <h2>Today's Foods</h2>
+                <h2>
+                  <strong>Today's Foods</strong>
+                </h2>
                 {this.state.todaysFoods.map(food => (
-                  <li>
-                    {food.name} - {food.calories} cals
-                  </li>
+                  <div>
+                    {food.quantity} {food.name} at {food.calories} cals
+                  </div>
                 ))}
-                total = {this.state.total} cals
+                total = <strong>{this.state.total} cals</strong>
               </div>
               <div className="column is-7">
                 {this.state.foods

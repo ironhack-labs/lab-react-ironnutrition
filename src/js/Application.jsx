@@ -56,7 +56,7 @@ class Application extends React.Component {
         />
         <div className="columns">
           <div className="column">{foodList}</div>
-          <div className="column">
+          <div className="column is-one-third">
             <h2>Today's List</h2>
             <ul>
               {todaysFoodList}
@@ -69,8 +69,17 @@ class Application extends React.Component {
   }
 
 
-  _addFood({calories, name, quantity}) {
-    const newArr = [ ...this.state.todaysFood, {name,quantity,calories}]
+  _addFood({calories, name, quantity, index}) {
+    let sameFood = false;
+    let newArr = [];
+    this.state.todaysFood.map(el => {
+      if (el.index === index) {
+        el.quantity += quantity
+        sameFood = true;
+      }
+    })
+    if (!sameFood) {newArr = [ ...this.state.todaysFood, {name,quantity,calories, index}]}
+    else {newArr = this.state.todaysFood}
     this.setState({
       todaysFood: newArr,
       total: this.state.total + (quantity*calories)

@@ -16,8 +16,8 @@ class Application extends React.Component {
 
     this._updateSearchChange = this._updateSearchChange.bind(this);
     this._updateQuantity = this._updateQuantity.bind(this);
-    this._addFood = this._addFood.bind(this);;
-
+    this._addFood = this._addFood.bind(this);
+    this._deleteItem = this._deleteItem.bind(this);;
 
 
   }
@@ -39,10 +39,12 @@ class Application extends React.Component {
     });
 
     const todaysFoodList = this.state.todaysFood.map((food, index) => {
+      //can have the search filter in front of the map
       return (
         <li
         key={"food_" + index}
-        >{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>
+        >{food.quantity} {food.name} = {food.quantity * food.calories} cal
+        <button onClick={() => this._deleteItem(food)}>Delete</button></li>
       )
     })
 
@@ -68,8 +70,17 @@ class Application extends React.Component {
     );
   }
 
+  _deleteItem({name,quantity,calories}) {
+    this.setState({
+      todaysFood:  this.state.todaysFood.filter((el) =>
+      el.name !== name),
+      total: this.state.total - quantity*calories
+    })
+  }
+
 
   _addFood({calories, name, quantity, index}) {
+    if(quantity) {
     let sameFood = false;
     let newArr = [];
     this.state.todaysFood.map(el => {
@@ -83,18 +94,20 @@ class Application extends React.Component {
     this.setState({
       todaysFood: newArr,
       total: this.state.total + (quantity*calories)
-    })
+    })}
   }
 
   _searchFood(filter) {
     this.setState({
       foods: foods.filter(el => {
         return el.name.match(new RegExp(`.*${filter}.*`, "i"));
+        //creates a new regular Expression - with the i after it is case-insensitive
       })
     });
   }
 
   _updateQuantity(event, index) {
+    //can make sure here with an if statememnt to change any minus value to 0
     this.setState({
       foods: this.state.foods.map((el, i) => {
         if (index !== i) return el;

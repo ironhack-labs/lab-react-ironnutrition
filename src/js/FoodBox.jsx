@@ -25,7 +25,7 @@ const FoodBox = (props) => {
                       onChange={function(event){ props.updateQuantity(event, props.index)}}
                       className="input"
                       type="number" 
-                      defaultValue={props.quantity}
+                      value={props.quantity}
                       min="0"
                     />
                   </div>

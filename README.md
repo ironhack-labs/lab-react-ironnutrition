@@ -48,7 +48,7 @@ import foods from './foods.json'
 
 ## About the design
 
-If you struggle with the design, you can find a static example of what is expected inside [example.html](example.html)
+If you struggle with the design, you can find a static example of what is expected inside [example.html](https://github.com/mc100s/module-3-react/blob/master/labs/lab-react-data-binding/example.html)
 
 
 ## Instructions

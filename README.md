@@ -4,26 +4,32 @@
 
 ## Introduction
 
-Since the beginning of the bootcamp, you just realized that your diet is not healthy and it may have an impact on your health (and productivity) and the long term. 
+You just realized that since the beginning of the bootcamp, your diet is not healthy and it may have an impact on your health (and productivity), now and in the long term. 
 
 To take care of the food you eat, you decided to create a nutrition app that will track everything you eat!
 
 
 ![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
 
-## Installation 
 
-### Create the starter-code
+## Requirements
 
-You can create a new React app (`create-react-app`) and move the file `foods.json` in the `src` folder:
+- Fork this repo
+- Clone this repo
 
-```
-$ create-react-app starter-code starter-code
-$ cd starter-code
-$ mv ../foods.json src
-$ npm start
-```
+## Submission
 
+- Upon completion, run the following commands:
+
+  ```
+  git add .
+  git commit -m "done"
+  git push origin master
+  ```
+
+- Create Pull Request so your TAs can check up your work.
+
+## Instructions
 
 ### Bulma installation
 
@@ -34,13 +40,14 @@ $ npm install bulma --save
 ```
 
 ```javascript
-// src/index.js
 import 'bulma/css/bulma.css';
 ```
 
+
 ### Import a JSON
 
-You will need to save into the variable `foods` the result of `./foods.json`
+Import the foods from the `foods.json`.
+
 ```js
 import foods from './foods.json'
 ```
@@ -48,16 +55,15 @@ import foods from './foods.json'
 
 ## About the design
 
-If you struggle with the design, you can find a static example of what is expected inside [example.html](https://github.com/mc100s/module-3-react/blob/master/labs/lab-react-data-binding/example.html)
+If you struggle with the design, you can find a static example of what is expected inside file `style-guides.html` in the `starter-code` folder.
 
-
-## Instructions
+So let's start: 
 
 ### Iteration 1 | Create `FoodBox` component
 
 Create a `FoodBox` component that takes at least `food` as a prop and displays a box with all the information about an ingredient.
 
-We recommand to use that HTML to display properly the `FoodBox`:
+You can use this HTML snippet to display properly the `FoodBox`:
 
 ```html
 <div className="box">
@@ -106,7 +112,20 @@ In your `App` component (your main component), display as many `FoodBox` as elem
 ![](https://i.imgur.com/3TVQJDO.png)
 
 
-### Iteration 3 | Implement search bar
+
+### Iteration 3 | Add new food
+
+
+Create a button to add new foods.
+
+When a user clicks the button, a form will appear with fields for a name, number of calories, and an image.
+
+When the user clicks submit, the food will be added to the list.
+
+The form should disappear when the user clicks the submit button.
+
+
+### Iteration 4 | Implement search bar
 
 Create a `Search` component to perform a search that updates the list of all meal. 
 
@@ -114,7 +133,7 @@ Create a `Search` component to perform a search that updates the list of all mea
 
 
 
-### Iteration 4 | Create add buttons
+### Iteration 5 | Create add buttons
 
 On your `FoodBox`, you have an input an "+" button. Use them so that when a user clicks on the button, it adds them on a list on the right called "*Today's foods*".
 
@@ -135,10 +154,4 @@ You made an awesome application, but you have found a little problem in the UX. 
 On the "*Today's food*", add a trash icon to let users removing one of their items.
 
 
-
-## Solution
-
-You will find the solution here: https://github.com/mc100s/training-labs-react/blob/master/src/lab-react-data-binding/solution.js 
-
-You can replace the content of your `src/index.js` by the [solution](https://github.com/mc100s/training-labs-react/blob/master/src/lab-react-data-binding/solution.js ).
-
+Happy coding! :heart:

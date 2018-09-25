@@ -47,13 +47,33 @@ class App extends Component {
 
     addToday = (food) => {
         const newProducts = [...this.state.myProducts];
-        newProducts.push({...food});
+        const exFood = newProducts.find( p => p.name === food.name);
 
-        this.setState({
-            listIsEmpty: false,
-            myProducts: newProducts,
-            totalCalories: food.calories * food.quantity + this.state.totalCalories
-        });
+        if(!exFood) {
+            newProducts.push({...food});
+
+            this.setState({
+                listIsEmpty: false,
+                myProducts: newProducts,
+                totalCalories: food.calories * food.quantity + this.state.totalCalories
+            });
+        } else {
+
+            console.log(exFood.calories, food.calories);
+            exFood.calories += food.calories * food.quantity;
+
+            exFood.quantity += food.quantity;
+
+            const idx = newProducts.findIndex(p => p.name === exFood.name);
+            newProducts[idx] = exFood;
+
+            this.setState({
+                listIsEmpty: false,
+                myProducts: newProducts,
+                totalCalories: food.calories * food.quantity + this.state.totalCalories
+            });
+        }
+
     };
 
   render() {
@@ -82,7 +102,7 @@ class App extends Component {
                             <ul className="myFood">
                                 {
                                     this.state.myProducts.length ? (
-                                        this.state.myProducts.map((p, id) => <li key={ p.name + id }> - {p.name}</li>)
+                                        this.state.myProducts.map((p, id) => <li key={ p.name + id }> - {p.quantity} {p.name} = { p.calories } calories</li>)
                                     ) : null
                                 }
                             </ul>

@@ -14,8 +14,9 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.allFood);
     const eachFood = this.state.allFood.map((food, index)=>{
-      return <FoodBox name={food.name} />
+      return <FoodBox name={food.name} calories={food.calories} image={food.image} quantity={food.quantity} />
     });
 
     return (

@@ -6,20 +6,20 @@ class FoodBox extends Component {
 
   }
   render(){
-    console.log(this.props.name)
+    console.log(this.props)
     return(
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src="https://i.imgur.com/eTmWoAN.png" />
+              <img src={this.props.image} />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
                 <strong>{this.props.name}</strong> <br />
-                <small>400 cal</small>
+                <small>{this.props.calories} Calories</small>
               </p>
             </div>
           </div>

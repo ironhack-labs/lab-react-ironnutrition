@@ -6,7 +6,7 @@
 #addFoodBtn {
     display: block;
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .form-header {
@@ -24,4 +24,10 @@
 .main-content {
     display: flex;
     justify-content: center;
+}
+
+.main-header {
+    text-align: center;
+    font-size: 4rem;
+    margin-top: 30px;
 }

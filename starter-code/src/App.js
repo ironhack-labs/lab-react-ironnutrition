@@ -3,6 +3,7 @@ import './App.css';
 
 import FoodList from './components/FoodList/FoodList';
 import FoodForm from './containers/FoodForm/FoodForm';
+import SearchFood from './containers/SearchFood/SearchFood';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
 
@@ -36,7 +37,9 @@ class App extends Component {
   render() {
     return (
         <div>
+            <h1 className="main-header">IronNutrition</h1>
             <button id="addFoodBtn"  className="button is-success is-large" onClick={ this.showForm }>ADD NEW FOOD</button>
+            <SearchFood />
             <div className="main-content">
                 <div className="foods-wrapper">
                     <FoodList foods={this.state.foodList.slice()}/>

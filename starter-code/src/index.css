@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.trash {
+  color: red;
+  font-size: 1.4rem;
+  cursor: pointer;
+}

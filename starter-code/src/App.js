@@ -58,8 +58,6 @@ class App extends Component {
                 totalCalories: food.calories * food.quantity + this.state.totalCalories
             });
         } else {
-
-            console.log(exFood.calories, food.calories);
             exFood.calories += food.calories * food.quantity;
 
             exFood.quantity += food.quantity;
@@ -74,6 +72,19 @@ class App extends Component {
             });
         }
 
+    };
+
+    deleteProduct = (id) => {
+        const newProducts = [...this.state.myProducts];
+        newProducts.splice(id, 1);
+        const calories = newProducts.reduce((sum, p) => {
+            return sum += p.calories;
+        }, 0);
+
+        this.setState({
+            myProducts: newProducts,
+            totalCalories: calories
+        });
     };
 
   render() {
@@ -102,7 +113,7 @@ class App extends Component {
                             <ul className="myFood">
                                 {
                                     this.state.myProducts.length ? (
-                                        this.state.myProducts.map((p, id) => <li key={ p.name + id }> - {p.quantity} {p.name} = { p.calories } calories</li>)
+                                        this.state.myProducts.map((p, id) => <li key={ p.name + id }> - {p.quantity} {p.name} = { p.calories } calories   <i className="fa fa-trash trash" onClick={ () => this.deleteProduct(id) }></i></li>)
                                     ) : null
                                 }
                             </ul>

@@ -34,12 +34,20 @@ class App extends Component {
         });
     };
 
+    searchFoods = (searchStr) => {
+        let newList = foods.filter(f => f.name.toLowerCase().includes(searchStr.toLowerCase()));
+
+        this.setState({
+            foodList: newList
+        });
+    };
+
   render() {
     return (
         <div>
             <h1 className="main-header">IronNutrition</h1>
             <button id="addFoodBtn"  className="button is-success is-large" onClick={ this.showForm }>ADD NEW FOOD</button>
-            <SearchFood />
+            <SearchFood searchFoods={ this.searchFoods }/>
             <div className="main-content">
                 <div className="foods-wrapper">
                     <FoodList foods={this.state.foodList.slice()}/>

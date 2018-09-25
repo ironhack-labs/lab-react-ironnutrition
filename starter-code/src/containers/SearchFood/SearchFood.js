@@ -8,14 +8,16 @@ class SearchFood extends Component {
     };
 
 
-    handleChange(event) {
-        this.setState({ searchStr: event.target.value});
-    }
+    handleChange = (event) => {
+        const { value } = event.target;
+        this.setState({ searchStr: value});
+        this.props.searchFoods(value);
+    };
 
     render(){
         return (
             <div className="searchInput">
-                <input className="input" type="text" name="searchStr" value={this.state.searchStr} placeholder="Enter food's name" onChange={(e) => this.handleChange(e)} />
+                <input className="input" type="text" name="searchStr" value={this.state.searchStr} placeholder="Enter food's name" onChange={ this.handleChange } />
             </div>
         )
     }

@@ -1,59 +1,56 @@
 import React, { Component } from "react";
 
-class newFood extends Component {
-  state = {
-    name: "",
-    calories: "",
-    image: "",
-    quantity: 1
-  };
-  handleChange(event) {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
+class NewFood extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameField: "",
+      caloriesField: "",
+      imageField: "",
+    };
   }
+
+  nameFieldChange = theEventObject => {
+    this.setState({ nameField: theEventObject.target.value });
+  };
+
+  caloriesFieldChange = theEventObject => {
+    this.setState({ caloriesField: theEventObject.target.value });
+  };
+
+  imageFieldChange = theEventObject => {
+    this.setState({ imageField: theEventObject.target.value });
+  };
+
   render() {
     return (
-      <div>
-        <form onSubmit={e => this.props.addFood(e, { ...this.state })}>
-          <div className="field">
-            <label className="label">Name:</label>
-            <input
-              className="input"
-              type="text"
-              name="name"
-              value={this.state.name}
-              placeholder="Food"
-              onChange={e => this.handleChange(e)}
-            />
-          </div>
-          <div className="field">
-            <label className="label">Calories:</label>
-            <input
-              className="input"
-              type="text"
-              name="calories"
-              value={this.state.calories}
-              placeholder="calories"
-              onChange={e => this.handleChange(e)}
-            />
-          </div>
-          <div className="field">
-            <label className="label">Image:</label>
-            <input
-              className="input"
-              type="text"
-              name="image"
-              value={this.state.image}
-              placeholder="image"
-              onChange={e => this.handleChange(e)}
-            />
-          </div>
-          <button className="button" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
+      <form onSubmit={e => this.props.addNew(e, this.state)}>
+        <h2>Add A New Food</h2>
+        <label>Name</label>
+        <input
+          type="text"
+          onChange={e => this.nameFieldChange(e)}
+          value={this.state.nameField}
+        />
+
+        <label>Calories</label>
+        <input
+          type="text"
+          onChange={e => this.caloriesFieldChange(e)}
+          value={this.state.caloriesField}
+        />
+
+        <label>Image</label>
+        <input
+          type="text"
+          onChange={e => this.imageFieldChange(e)}
+          value={this.state.imageField}
+        />
+
+        <button>Submit</button>
+      </form>
     );
   }
 }
-export default newFood;
+
+export default NewFood;

@@ -5,7 +5,7 @@ import FoodBox from './Foodbox';
 
 const foodList = ({ foods }) => {
    return (
-     foods.map(( food, i) => (
+     foods.map((food, i) => (
          <FoodBox key={food.name + i} { ...food }/>
      ))
    );

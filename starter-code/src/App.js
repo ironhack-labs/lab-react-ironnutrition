@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     foodList: foods.slice(),
     showForm: false,
-    listIsEmpty: false,
+    listIsEmpty: true,
     myProducts: [],
     totalCalories: 0
   };
@@ -50,6 +50,7 @@ class App extends Component {
         newProducts.push({...food});
 
         this.setState({
+            listIsEmpty: false,
             myProducts: newProducts,
             totalCalories: food.calories * food.quantity + this.state.totalCalories
         });

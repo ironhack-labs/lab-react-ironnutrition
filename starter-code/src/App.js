@@ -11,7 +11,10 @@ class App extends Component {
 
   state = {
     foodList: foods.slice(),
-    showForm: false
+    showForm: false,
+    listIsEmpty: false,
+    myProducts: [],
+    totalCalories: 0
   };
 
     handleFormSubmit = (event, newFood) => {
@@ -42,6 +45,16 @@ class App extends Component {
         });
     };
 
+    addToday = (food) => {
+        const newProducts = [...this.state.myProducts];
+        newProducts.push({...food});
+
+        this.setState({
+            myProducts: newProducts,
+            totalCalories: food.calories * food.quantity + this.state.totalCalories
+        });
+    };
+
   render() {
     return (
         <div>
@@ -50,13 +63,29 @@ class App extends Component {
             <SearchFood searchFoods={ this.searchFoods }/>
             <div className="main-content">
                 <div className="foods-wrapper">
-                    <FoodList foods={this.state.foodList.slice()}/>
+                    <FoodList foods={this.state.foodList.slice()} addToFood={ this.addToday }/>
                 </div>
                 {
                     this.state.showForm ? (
                         <div className="form-wrapper">
                             <h2 className="form-header">ADD NEW PRODUCT:</h2>
                             <FoodForm addFood={this.handleFormSubmit}/>
+                        </div>
+                    ) : null
+                }
+
+                {
+                    (!this.state.listIsEmpty && !this.state.showForm) ? (
+                        <div className="form-wrapper">
+                            <h2 className="form-header">TODAY'S FOODS:</h2>
+                            <ul className="myFood">
+                                {
+                                    this.state.myProducts.length ? (
+                                        this.state.myProducts.map((p, id) => <li key={ p.name + id }> - {p.name}</li>)
+                                    ) : null
+                                }
+                            </ul>
+                            <p className="total">Total: { this.state.totalCalories } cal.</p>
                         </div>
                     ) : null
                 }

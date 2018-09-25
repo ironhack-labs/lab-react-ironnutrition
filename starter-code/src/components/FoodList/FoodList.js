@@ -4,8 +4,8 @@ import FoodBox from '../FoodBox/FoodBox';
 
 const foodList = ({ foods }) => {
     return (
-      foods.map( food => (
-          <FoodBox key={food.name} { ...food }/>
+      foods.map( (food, idx) => (
+          <FoodBox key={food.name + idx} { ...food }/>
       ))
     );
 };

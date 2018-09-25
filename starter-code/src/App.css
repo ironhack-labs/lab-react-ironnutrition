@@ -1,0 +1,27 @@
+.foods-wrapper, .form-wrapper {
+    min-width: 600px;
+    padding: 50px;
+}
+
+#addFoodBtn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.form-header {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background: lightgrey;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+}

@@ -31,7 +31,7 @@ class Form extends Component{
           <input placeholder="Quantity" value={this.state.quantity} onChange={e => this.setState({quantity: e.target.value})}  />
           <br/>
           <button onClick={e => this.onSubmit(e)} >Submit</button>
-          {/* <button onClick={this.addContact}>Add Random Contact</button> */}
+        
           <br/>
       </form>
 

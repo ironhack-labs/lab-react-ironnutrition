@@ -6,12 +6,14 @@ import food from './foods.json'
 import FoodBox from './FoodBox'
 import Form from './Form'
 import Search from './Search'
+import Checkout from './Checkout'
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      allFood: food
+      allFood: food,
+      formShowing: false
     }
   }
   onSubmit = (fields) =>{
@@ -23,9 +25,16 @@ class App extends Component {
     })
   }
 
+  toggleForm = () =>{
+    this.setState({
+      formShowing: !this.state.formShowing
+    })
+    console.log(this.state.formShowing)
+  }
+
   searchFood = (words) =>{
     console.log("test", words)
-    
+
     var modifiedList =food.filter(word => word.name.toLowerCase().includes(words.toLowerCase()))
     this.setState({
       allFood: modifiedList
@@ -42,8 +51,22 @@ class App extends Component {
       <div className="App">
         <h1>Nutri</h1>
         <Search searchFood={food => this.searchFood(food)}/>
-        <Form onSubmit={ fields => this.onSubmit(fields)}/>
+
+        <div className="add-new">
+
+          <button
+            onClick={()=> this.toggleForm()}
+            className="button is-info toggle-btn">
+            {this.state.formShowing? 'Hide The Form' : 'Show Me The Form'}
+          </button>
+          {this.state.formShowing &&   <Form onSubmit={ fields => this.onSubmit(fields)} /> }
+      
+        </div>
+
         {eachFood}
+        <Checkout/>
+
+
 
 
       </div>

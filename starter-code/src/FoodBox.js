@@ -5,6 +5,10 @@ class FoodBox extends Component {
     super(props)
 
   }
+
+  onAdding = (e) =>{
+    console.log(e);
+  }
   render(){
     // console.log(this.props)
     return(
@@ -33,7 +37,7 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={e => this.onAdding(e)} className="button is-info">
                   +
                 </button>
               </div>

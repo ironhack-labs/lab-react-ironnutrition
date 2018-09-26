@@ -45,14 +45,14 @@ class FoodList extends Component {
     const newTodaysFoods = [...this.state.todaysFoods];
     newTodaysFoods.push(this.state.foods[item]);
     newTodaysFoods[newTodaysFoods.length-1].quantity++
-    const newTotal = newTodaysFoods.reduce((subtotal, eachFood)=>{
-      return subtotal + eachFood.calories
-    },0) 
     const uniqueArray = newTodaysFoods.filter((item, pos) => {
-     if (newTodaysFoods.indexOf(item) == pos) {
-       return item
-     };
-  })
+      if (newTodaysFoods.indexOf(item) === pos) {
+        return item
+      };
+    })
+    const newTotal = uniqueArray.reduce((subtotal, eachFood)=>{
+      return subtotal + eachFood.calories*eachFood.quantity
+    },0) 
     console.log(this.state.todaysFoods)
         this.setState({
           todaysFoods: uniqueArray,

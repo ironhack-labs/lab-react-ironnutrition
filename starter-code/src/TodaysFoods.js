@@ -20,7 +20,7 @@ class TodaysFoods extends Component {
         <h2>Today's foods</h2>
         <ul>
         {this.props.todaysFoods.map((eachFood)=> {
-          return <li>{eachFood.quantity} {eachFood.name}  {eachFood.calories}</li> })}
+          return <li>{eachFood.quantity} {eachFood.name}  {eachFood.calories*eachFood.quantity}</li> })}
         </ul>
         <p>Total: {this.props.total}</p>
       </div>

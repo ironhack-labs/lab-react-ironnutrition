@@ -5,13 +5,20 @@ import React, { Component } from 'react';
     constructor(props){
         super(props)
         this.state = {
-          quantityField: 1,
+          quantityField: 0,
         }
     }
-
+  
   quantityFieldChange = (theEventObject) => {
     this.setState({quantityField: theEventObject.target.value})
   }
+
+  // updateQuantities () {
+  //   if (this.state.quantityField===0) {this.setState({quantityField: 1})}
+  //   for (let i=0; i>= this.state.quantityField; i++) {
+  //     {() => this.props.onClickFunc()}
+  //   }
+  // }
 
   render(){
     return (
@@ -36,7 +43,7 @@ import React, { Component } from 'react';
                   <input type="number" className="input" onChange={(e)=> this.quantityFieldChange(e)}  value={this.quantityField} />
                 </div>
                 <div className="control">
-                  <button className="button is-info" onClick = {()=> this.props.onClickFunc()}>+</button>
+                  <button className="button is-info" onClick = {() => this.props.onClickFunc()} >+</button>
                 </div>
               </div>
             </div>

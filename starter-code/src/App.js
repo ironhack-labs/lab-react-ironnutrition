@@ -1,33 +1,40 @@
 import React, { Component } from "react";
-
 import "./App.css";
-
 import FoodList from "./Foodlist";
 import "bulma/css/bulma.css";
-
 import foods from "./foods.json";
 import NewFood from "./NewFood";
+import FoodBox from './Foodbox';
 
 class App extends Component {
-  state = {
-    foodList: foods.slice(),
-    showForm: true
-  };
+  constructor(props){
+    super(props)
+    this.state = {
+      foodList: foods.slice(),
+      showForm: true
 
-  addNewFood = (e, newThingToAdd) => {
+  }
+  }
+
+  showFoods = () => {
+    return this.state.foodList.map((eachFood, index)=> {
+      return <FoodBox key={eachFood.name} { ...eachFood }/>
+    })
+  }
+
+  addNewFood = (e, theNewFood) => {
     e.preventDefault();
 
     const newFood = {
-     name: newThingToAdd.nameField,
-      calories: newThingToAdd.caloriesField,
-      image: newThingToAdd.imageField,
+     name: theNewFood.nameField,
+      calories: theNewFood.caloriesField,
+      image: theNewFood.imageField,
     };
 
-    const allTheFoods = [...this.state.foods];
-    // const allTheMovies = this.state.movies.slice()
-    // either of these works, they each simply make a duplicate of this.state.movies
+    const allTheFoods = [...this.state.foodList];
 
-    allTheFoods.push(newFood);
+
+    allTheFoods.unshift(newFood);
 
     this.setState({foodList: allTheFoods })
 
@@ -37,12 +44,20 @@ class App extends Component {
 
   render() {
     return(
-
       <div>
-
-    <FoodList foods={this.state.foodList.slice()} />
+      <div className="title">Add A New Food</div>
+      <form>
+      
     <NewFood addnew = {this.addNewFood} />
+      
+
+      </form>
+
+      <div className="list">
+
+    {this.showFoods()}
     </div> 
+      </div>
       )
   }
 }

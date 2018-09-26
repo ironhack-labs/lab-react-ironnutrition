@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
 
 
 class Foodbox extends Component {
+  constructor(props){
+    super(props)
+    this.state={}
+  }
   render() {
 return (
 
@@ -30,7 +33,7 @@ return (
           <input
             className="input"
             type="number" 
-            value={this.props.quantity}
+            value="1"
             />
         </div>
         <div className="control">

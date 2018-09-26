@@ -10,44 +10,54 @@ class NewFood extends Component {
     };
   }
 
-  nameFieldChange = theEventObject => {
-    this.setState({ nameField: theEventObject.target.value });
+  nameFieldChange = theEvent => {
+    this.setState({ nameField: theEvent.target.value });
   };
 
-  caloriesFieldChange = theEventObject => {
-    this.setState({ caloriesField: theEventObject.target.value });
+  caloriesFieldChange = theEvent => {
+    this.setState({ caloriesField: theEvent.target.value });
   };
 
-  imageFieldChange = theEventObject => {
-    this.setState({ imageField: theEventObject.target.value });
+  imageFieldChange = theEvent => {
+    this.setState({ imageField: theEvent.target.value });
   };
 
   render() {
     return (
-      <form onSubmit={e => this.props.addNew(e, this.state)}>
+      <form onSubmit={e => this.props.addnew(e, this.state)}>
         <h2>Add A New Food</h2>
-        <label>Name</label>
+        <div className="field">
+        <label className="label">Name</label>
+        <div className="control">
         <input
           type="text"
           onChange={e => this.nameFieldChange(e)}
           value={this.state.nameField}
-        />
-
-        <label>Calories</label>
+          />
+          </div>
+          </div>
+        <div className="field">
+        <label className="label">Calories</label>
+        <div className="control">
         <input
           type="text"
           onChange={e => this.caloriesFieldChange(e)}
           value={this.state.caloriesField}
-        />
-
-        <label>Image</label>
+          />
+          </div>
+          </div>
+        <div className="field">
+        <label className="label">Image</label>
+        <div className="control">
         <input
           type="text"
           onChange={e => this.imageFieldChange(e)}
           value={this.state.imageField}
-        />
+          />
+          </div>
+          </div>
 
-        <button>Submit</button>
+        <button className="button is-primary">Submit</button>
       </form>
     );
   }

@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   addFoodToList = (newFoodObject) =>{
+    console.log(newFoodObject)
     let newFood = {
       name: newFoodObject.name,
        calories: newFoodObject.calories,

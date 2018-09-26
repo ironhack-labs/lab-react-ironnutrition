@@ -8,9 +8,18 @@ class TodaysFoods extends Component {
     this.state={}
   }
 
+
+  showTodaysFoods = () => {
+    return this.props.todaysFoods.map((eachFood, index)=> {
+      return <li key={index}>{eachFood.name} = {eachFood.calories}</li>
+    })
+  }
+
   render(){
     return(
-      <h1>Today's Foods</h1>
+      <ul>
+        {this.showTodaysFoods()}
+      </ul>
     )
   }
 }

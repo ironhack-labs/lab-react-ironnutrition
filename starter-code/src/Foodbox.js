@@ -37,7 +37,7 @@ return (
             />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button onClick={()=>this.props.addToList(this.props)} className="button is-info">
             +
           </button>
         </div>

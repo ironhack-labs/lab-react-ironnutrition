@@ -6,6 +6,7 @@ import foods from "./foods.json";
 import NewFood from "./NewFood";
 import FoodBox from './Foodbox';
 import Search from './Search';
+import TodaysFoods from './TodaysFoods'
 
 class App extends Component {
   constructor(props){
@@ -13,14 +14,30 @@ class App extends Component {
     this.state = {
       allFoods: foods,
       foodList: foods.slice(),
-      showForm: false
+      showForm: false,
+      todaysFoods: []
 
   }
+  }
+
+  addFoodToList = (newFoodObject) =>{
+    let newFood = {
+      name: newFoodObject.name,
+       calories: newFoodObject.calories,
+       image: newFoodObject.image,
+      };
+      const copyOfTodaysFoods = [...this.state.todaysFoods];
+
+      copyOfTodaysFoods.unshift(newFood);
+
+
+      this.setState({todaysFoods: copyOfTodaysFoods })
+
   }
 
   showFoods = () => {
     return this.state.foodList.map((eachFood, index)=> {
-      return <FoodBox key={eachFood.name} { ...eachFood }/>
+      return <FoodBox key={eachFood.name} { ...eachFood } addToList={this.addFoodToList}/>
     })
   }
 
@@ -63,6 +80,9 @@ class App extends Component {
     return(
       <div>
         <h1 className="title">Welcome to IRONFOOD</h1>
+        <div className="todays">
+        <TodaysFoods todaysFoods = {this.state.todaysFoods}/>
+        </div>
       <div className="addNew">
       <button onClick={()=> this.toggleForm()} className="button is-info">
       {this.state.showForm? 'Hide The Form' : 'Show Form'} </button>

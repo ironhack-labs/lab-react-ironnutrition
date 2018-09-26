@@ -7,7 +7,7 @@ class Checkout extends Component {
   render(){
     return(
       <ul>
-        
+
       </ul>
     )
   }

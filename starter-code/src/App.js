@@ -59,8 +59,8 @@ class App extends Component {
             className="button is-info toggle-btn">
             {this.state.formShowing? 'Hide The Form' : 'Show Me The Form'}
           </button>
-          {this.state.formShowing &&   <Form onSubmit={ fields => this.onSubmit(fields)} /> }
-      
+          {this.state.formShowing && <Form onSubmit={ fields => this.onSubmit(fields)} /> }
+
         </div>
 
         {eachFood}

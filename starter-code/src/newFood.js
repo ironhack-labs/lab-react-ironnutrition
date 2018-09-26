@@ -24,12 +24,13 @@ class NewFood extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.props.addnew(e, this.state)}>
+      <form className="theForm" onSubmit={e => this.props.addnew(e, this.state)}>
         <h2>Add A New Food</h2>
         <div className="field">
         <label className="label">Name</label>
         <div className="control">
         <input
+        className="input"
           type="text"
           onChange={e => this.nameFieldChange(e)}
           value={this.state.nameField}
@@ -40,6 +41,7 @@ class NewFood extends Component {
         <label className="label">Calories</label>
         <div className="control">
         <input
+        className="input"
           type="text"
           onChange={e => this.caloriesFieldChange(e)}
           value={this.state.caloriesField}
@@ -50,6 +52,7 @@ class NewFood extends Component {
         <label className="label">Image</label>
         <div className="control">
         <input
+        className="input"
           type="text"
           onChange={e => this.imageFieldChange(e)}
           value={this.state.imageField}

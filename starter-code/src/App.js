@@ -5,13 +5,15 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import NewFood from "./NewFood";
 import FoodBox from './Foodbox';
+import Search from './Search';
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      allFoods: foods,
       foodList: foods.slice(),
-      showForm: true
+      showForm: false
 
   }
   }
@@ -36,8 +38,23 @@ class App extends Component {
 
     allTheFoods.unshift(newFood);
 
-    this.setState({foodList: allTheFoods })
+    this.setState({foodList: allTheFoods, allFoods: allTheFoods })
 
+  }
+
+  toggleForm = () => {
+    this.setState({showForm: !this.state.showForm})
+
+  }
+
+
+
+  searchFunction = (searchTerm) => {
+    let theList = [...this.state.allFoods];
+    theList = theList.filter((eachFood)=> {
+      return eachFood.name.includes(searchTerm)
+    })
+      this.setState({foodList: theList})
   }
 
 
@@ -45,13 +62,19 @@ class App extends Component {
   render() {
     return(
       <div>
-      <div className="title">Add A New Food</div>
-      <form>
+        <h1 className="title">Welcome to IRONFOOD</h1>
+      <div className="addNew">
+      <button onClick={()=> this.toggleForm()} className="button is-info">
+      {this.state.showForm? 'Hide The Form' : 'Show Form'} </button>
+   
       
-    <NewFood addnew = {this.addNewFood} />
+    {this.state.showForm && <NewFood addnew = {this.addNewFood} />}
       
 
-      </form>
+
+      </div>
+
+      <Search handleSearch={this.searchFunction}/>
 
       <div className="list">
 

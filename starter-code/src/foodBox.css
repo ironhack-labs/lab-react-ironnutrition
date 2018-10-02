@@ -5,6 +5,8 @@
 
 .search-bar {
 	margin-bottom: 30px;
+	width: 50%;
+	background-color: #efefef;
 }
 
 .box {

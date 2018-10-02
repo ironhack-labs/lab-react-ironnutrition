@@ -1,0 +1,17 @@
+.form-food {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 20px;
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+.form-food button {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.form-food label {
+	text-align: left;
+}

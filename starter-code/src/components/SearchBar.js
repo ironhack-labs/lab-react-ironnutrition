@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-// export const SearchBar = () => {
+export default class SearchBar extends Component {
+  constructor(){
+    super();
+    this.state = {
+      searchField: ''
+    }
+  }
 
-//   return (
 
-//   )
-// }
+
+
+
+  render() {
+    return (
+      <div>
+        <input type="text" className="input search-bar" name="search" placeholder="Search" onChange={(e) => this.setState({searchField: e.target.value})}/>
+      </div>
+    )
+  }
+}

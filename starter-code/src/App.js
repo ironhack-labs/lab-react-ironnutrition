@@ -3,7 +3,7 @@ import foods from './foods.json'
 import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
-import {SearchBar} from './components/SearchBar';
+import SearchBar from './components/SearchBar';
 import {FoodBox} from './components/FoodBox';
 import FoodForm from './components/FoodForm';
 
@@ -11,7 +11,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      foodsArray: foods
+      foodsArray: foods,
+      filteredArray: foods
     }
   }
   addFood = (food) => {
@@ -25,11 +26,11 @@ class App extends Component {
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        {/* <SearchBar /> */}
+        <SearchBar />
         <FoodForm foodToAdd={food => this.addFood(food)}/>
         <div className="columns">
           <div className="column">  
-            {this.state.foodsArray.map((e) => <FoodBox key={e.name} food={e}/>)}          
+            {this.state.filteredArray.map((e) => <FoodBox key={e.name} food={e}/>)}          
           </div>
         </div>
       </div>

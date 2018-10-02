@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json'
 
 class App extends Component {
   render() {

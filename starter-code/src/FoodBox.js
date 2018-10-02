@@ -5,6 +5,11 @@ export default class FoodBox extends Component {
     super(props);
   }
   render(){
+    const element={
+      name:this.props.name,
+      quantity:this.props.quantity,
+      calories:this.props.calories
+    }
     return(
       <div className="box">
         <article className="media">
@@ -31,7 +36,7 @@ export default class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={()=>this.props.onAddList(element)} className="button is-info">
                   +
                 </button>
               </div>

@@ -5,15 +5,19 @@ import "bulma/css/bulma.css"
 import foods from "./foods.json"
 import Form from "./Form"
 import Search from "./Search"
+import Today from "./Today"
 class App extends Component {
   constructor(){
     super()
-    this.state={foods:foods.map(e=>{
-      e.quantity=1
-      e.value=""
-      e.visible=true
-      return e
-    })}
+    this.state={
+      foods:foods.map(e=>{
+          e.quantity=1
+          e.value=""
+          e.visible=true
+          return e
+        }),
+      list:[]
+    }
   }
   filterFood=(search)=>{
     console.log(search)
@@ -27,6 +31,13 @@ class App extends Component {
     this.state.foods.unshift(food)
     this.setState({foods:this.state.foods})
   }
+  addList=(food)=>{
+    this.state.list.push(food)
+    this.setState({list:this.state.list})
+  }
+  addItem=(food)=>{
+    return food
+  }
   render() {
     return (
       <div className="container">
@@ -35,7 +46,10 @@ class App extends Component {
         <div className="columns">
           <div className="column">
           <Form onAddFood={food=>this.addFood(food)}></Form>
-          {this.state.foods.map((f)=>f.visible && <FoodBox key={f.name} {...f}/>)}
+          {this.state.foods.map((f)=>f.visible && <FoodBox onAddList={food=>this.addList(food)} key={f.name} {...f}/>)}
+          </div>
+          <div className="column">
+          <Today list={this.state.list}/>
           </div>
         </div>
       </div>

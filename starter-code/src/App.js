@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
 import {Food} from './foodBox.js'
+import {Form} from './form.js'
 
 class App extends Component {
   render() {

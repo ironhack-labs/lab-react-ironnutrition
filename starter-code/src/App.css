@@ -23,11 +23,31 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.box{
+.box {
   width: 33%;
   margin: auto;
+}
+
+.food {
+  margin: 2% 0% 2% 45%;
+  width: 10%;
+}
+
+h2 {
+  color: red;
+}
+
+.form {
+  margin-left: 39%;
+  display: grid;
+  width: 22%;
+  margin-bottom: 3%;
 }

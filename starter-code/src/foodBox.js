@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
+import {Form} from "./form.js";
 
 export class Food extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export class Food extends Component {
             <div className="content">
               <p>
                 <strong>{ele.name}</strong> <br />
-                <small>{ele.calories}}</small>
+                <small>{ele.calories}</small>
               </p>
             </div>
           </div>
@@ -35,7 +36,7 @@ export class Food extends Component {
                 <input
                   className="input"
                   type="number" 
-                  value="1"
+                  value={ele.quantity}
                 />
               </div>
               <div className="control">
@@ -53,6 +54,7 @@ export class Food extends Component {
    
     return (
       <div>
+        <Form formSubmit={food => this.addFood(food)}/>
        {myFood}
         </div>
     )

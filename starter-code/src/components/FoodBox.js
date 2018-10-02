@@ -23,7 +23,7 @@ export const FoodBox = ({food}) => {
               <input
                 className="input"
                 type="number" 
-                value="1"
+                value={food.quantity}
               />
             </div>
             <div className="control">

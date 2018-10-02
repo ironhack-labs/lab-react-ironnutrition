@@ -5,25 +5,35 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import {SearchBar} from './components/SearchBar';
 import {FoodBox} from './components/FoodBox';
+import FoodForm from './components/FoodForm';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      foodsArray: foods
+    }
+  }
+  addFood = (food) => {
+    this.state.foodsArray.push(food);
+    this.setState({
+      foodsArray: this.state.foodsArray
+    })
+  }
+    
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div class="container">
-          <h1 class="title">IronNutrition</h1>
-          {/* <SearchBar /> */}
-          <div class="columns">
-            <div class="column">  
-              {foods.map((e) => <FoodBox key={e.name} food={e}/>)}          
-            </div>
+      <div className="container">
+        <h1 className="title">IronNutrition</h1>
+        {/* <SearchBar /> */}
+        <FoodForm foodToAdd={food => this.addFood(food)}/>
+        <div className="columns">
+          <div className="column">  
+            {this.state.foodsArray.map((e) => <FoodBox key={e.name} food={e}/>)}          
           </div>
         </div>
       </div>
+  
     );
   }
 }

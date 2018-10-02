@@ -1,10 +1,20 @@
+.form-food-wrap {
+	width: 50%;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-bottom: 40px;
+}
+
+.toggle-form button {
+	width: 100%;
+	
+}
+
 .form-food {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 20px;
-	width: 50%;
-	margin: 0 auto;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .form-food button {

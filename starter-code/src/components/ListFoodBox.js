@@ -7,6 +7,7 @@ export class ListFoodBox extends Component {
 	constructor() {
 		super();
 		this.state = {
+			showForm: false,
 			foodBoxes: foods
 		}
 	}
@@ -17,10 +18,20 @@ export class ListFoodBox extends Component {
 		this.setState({foodBoxes:this.state.foodBoxes})
 	}
 
+	toggleForm() {
+		this.setState({showForm: !this.state.showForm});
+	}
+
 	render() {
 		return (
 			<div>
-				<FoodForm foodReady={food => this.addFood(food)}/>
+				<section className="form-food-wrap">
+					<div className="toggle-form">
+						<button className="button is-medium is-info is-outlined" onClick={() => this.toggleForm()}>Add Food +</button>
+					</div>
+					{this.state.showForm && <FoodForm foodReady={food => this.addFood(food)}/> }
+					
+				</section>
 				{this.state.foodBoxes.map((e,i) => <FoodBox key={i}  {...e}/>)}
 			</div>
 		)

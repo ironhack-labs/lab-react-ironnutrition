@@ -29,7 +29,7 @@ export class FoodForm extends Component {
 
 	render() {
 		let { error, calories, image, name, quantity } = this.state;
-
+		
 		return (
 			<form className="form-food">
 				<div className="field">

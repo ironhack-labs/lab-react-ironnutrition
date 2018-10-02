@@ -3,6 +3,7 @@ import { FoodBox } from "./foodbox";
 import foods from "../foods.json";
 //name, calories, image, quantity
 
+
 export class FoodMenu extends Component {
 
   constructor() {

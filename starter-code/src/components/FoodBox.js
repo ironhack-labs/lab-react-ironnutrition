@@ -26,7 +26,7 @@ export class FoodBox extends Component {
 					<div className="media-right">
 						<div className="field has-addons">
 							<div className="control">
-								<input className="input" type="number" value={quantity} />
+								<input className="input" type="number" />
 							</div>
 							<div className="control">
 								<button className="button is-info">+</button>

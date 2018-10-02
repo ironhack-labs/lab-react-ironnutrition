@@ -13,7 +13,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          < FoodBox />
+{/* // se hace un map de foods para mostrar todos los foodbox como elementos */}
+        {foods.map((e) => {
+          return <FoodBox class="column content" key={e.name} {...e}/>
+        })}
+
       </div>
     );
   }

@@ -10,14 +10,14 @@ const FoodBox = (props) => {
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src="https://i.imgur.com/eTmWoAN.png" />
+                        <img src={props.image} />
                     </figure>
                 </div>
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>Pizza</strong> <br />
-                            <small>400 cal</small>
+                            <strong>{props.name}</strong> <br />
+                            <small>{props.calories}</small>
                         </p>
                     </div>
                 </div>
@@ -44,12 +44,3 @@ const FoodBox = (props) => {
 }
 
 export default FoodBox
-
-/* export class FoodBox extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            
-        }
-    }
-} */

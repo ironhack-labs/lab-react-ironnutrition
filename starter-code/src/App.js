@@ -8,15 +8,11 @@ import {Foodbox} from './Components/Foodbox';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-        <Foodbox/>
-        </p>
-      </div>
+        foods.map((e) => {
+          return (
+            <Foodbox name={e.name} calories={e.calories} image={e.image} quantity={e.quantity}/>
+          )
+        })
     );
   }
 }

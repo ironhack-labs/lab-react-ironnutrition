@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import foods from './foods.json'
+import foods from './foods.json';
+import FoodBox from './FoodBox';
+
 
 class App extends Component {
   render() {
+    let foodList = foods;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="container">
+          <h1>Ironnutrition</h1>
+          <div className="columns">
+            <div className="column">
+              {foodList.map(e => <FoodBox name={e.name} calories={e.calories} image={e.image}></FoodBox>)}
+            </div>
+            <div className="column">
+              <h2>Today's foods</h2>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

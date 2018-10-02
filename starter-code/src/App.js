@@ -21,12 +21,19 @@ class App extends Component {
       foodsArray: this.state.foodsArray
     })
   }
+
+  filterFood = (stringForFilter) => {
+    let filtered = this.state.foodsArray.filter(food => food.name.includes(stringForFilter))
+    this.setState({
+      filteredArray: filtered
+    })
+  }
     
   render() {
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        <SearchBar />
+        <SearchBar stringForFilter={stringForFilter => this.filterFood(stringForFilter)}/>
         <FoodForm foodToAdd={food => this.addFood(food)}/>
         <div className="columns">
           <div className="column">  

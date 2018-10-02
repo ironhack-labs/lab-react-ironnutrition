@@ -8,14 +8,19 @@ export default class SearchBar extends Component {
     }
   }
 
-
+  search(string){
+    this.setState({searchField: string})
+    let searchField = this.state.searchField;
+    return this.props.stringForFilter(searchField)
+  }
 
 
 
   render() {
+    let {searchField} = this.state;
     return (
       <div>
-        <input type="text" className="input search-bar" name="search" placeholder="Search" onChange={(e) => this.setState({searchField: e.target.value})}/>
+        <input type="text" className="input search-bar" placeholder="Search" value={searchField} onChange={(string) => this.search(string.target.value)}/>
       </div>
     )
   }

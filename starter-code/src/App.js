@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {FoodBox} from './FoodBox';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+		<div className="App">
+			<div className="container">
+      			<h1 className="title">IronNutrition</h1>
+      			<div><input type="text" className="input search-bar" name="search" placeholder="Search" value=""/></div>
+      			<div class="columns">
+        			<div class="column">
+						<FoodBox/>
+					</div>
+						
+				</div>
+    		</div>
+		</div>
     );
   }
 }

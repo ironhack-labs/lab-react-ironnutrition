@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-
+import axios from "axios";
+import foods from '../foods.json';
 
 export class SearchBox extends Component {
 	constructor() {
 		super();
+		this.state = {
+			value : ''
+		}
 	}
 	
+	getData () {
+		//filter() + includes(). Lanzamos el filtro cuando tengamos al menos 3 letras.
+		//y guardamos el resultado en el estado
+	}
+
 	render () {
 		return (
 			<div>
-				<input type="text" className="input search-bar is-medium" name="search" placeholder="Search"/>
+				<input type="text" className="input search-bar is-medium" name="search" onChange={(e) => this.getData()} placeholder="Search"/>
 			</div>
 		)
 	}

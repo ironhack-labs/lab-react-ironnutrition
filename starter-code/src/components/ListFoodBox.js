@@ -38,8 +38,8 @@ export class ListFoodBox extends Component {
 							{this.state.foodBoxes.map((e,i) => <FoodBox key={i}  {...e}/>)}
 						</div>
 						<div className="column">
-							<div class="column content todays-food">
-								<h2 class="subtitle">Today's foods</h2>
+							<div className="content todays-food">
+								<h2 className="subtitle">Today's foods</h2>
 								<ul>
 									<li>1 Pizza = 400 cal</li>
 									<li>2 Salad = 300 cal</li>

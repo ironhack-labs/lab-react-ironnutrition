@@ -43,6 +43,7 @@ class App extends Component {
           <NewFoodForm foodReady={food => this.addNewFood(food)} />
         )}
 
+
         <div id="allFoods">
           {this.state.foods.map((e, i) => {
             return (

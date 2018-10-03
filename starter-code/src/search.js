@@ -12,6 +12,12 @@ class Search extends Component {
     this.props.searchFood(value);
   };
 
+  updateSearch = event => {
+    const { value } = event.target;
+    this.setState({search:event.target.value})
+    this.props.searchFood(value);
+  };
+
   render() {
     return (
       <div>
@@ -19,7 +25,7 @@ class Search extends Component {
           type="text"
           value={this.state.search}
           placeholder="Search Food Name"
-          onChange={(e) => this.setState({search:e.target.value})}
+          onChange={(e) => this.updateSearch(e)}
         />
       </div>
     );

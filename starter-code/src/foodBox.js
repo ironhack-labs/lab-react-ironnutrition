@@ -11,6 +11,11 @@ export class Food extends Component {
     };
   }
 
+  addFood(food){
+    this.state.foods.push(food);
+    this.setState({food:this.state.foods});
+}
+
   render() {
     
     let myFood = this.state.foods.map(ele => {

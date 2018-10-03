@@ -8,39 +8,28 @@ export class Form extends Component {
             name: "",
             calories: "",
             image: "",
-            message:""
+            message:"",
         }
     }
 
-    addFood = () => {
+    showFood = () => {
       this.setState({show: !this.state.show});
   }
 
-    // handleSubmit(){
-    //     let { title, director, error} = this.state;
-    //     if(title === '') return this.setState({error:'Empty title'});
-    //     if(director === '') return this.setState({error:'Empty director'});
 
-    //     if(title === "crepusculo") return this.setState({error:'Esta ni se te ocurra'});
-
-    //     console.log("FORM OK");
-    //     this.setState({error: '', title:'', director:''});
-    //     this.props.movieReady({title, director});
-    // <form formSubmit={food => this.addFood(food)}/>
-    // }
   submit(){
     let { name, calories,image, message} = this.state;
     if(name === '') return this.setState({message:'You have to set a name'});
     if(calories === '') return this.setState({message:'You have to set a calories number'});
     if(image === "")return this.setState({message:'You have to load an valid image url'});
-    this.setState({message: "",name:"",calories:"",director:""});
+    this.setState({message: "",name:"",calories:"",director:"", show:false});
     this.props.formSubmit({name,calories,image});
-   
   }
     render(){
+      const {show, message} = this.state
         return (
             <div>
-              <button className="food" onClick={this.addFood} >Add Food</button>
+              <button className="food" onClick={this.showFood} >Add Food</button>
               {this.state.show &&
                     <div className="form">
                         <h2>{this.state.message}</h2>

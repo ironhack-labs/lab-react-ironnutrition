@@ -46,3 +46,13 @@
 ul {
 	margin-bottom: 10px;
 }
+
+.todays-food {
+	text-align: left;
+	margin-left: 40px;
+}
+
+.todays-food ul {
+	list-style-type: none;
+	margin-left: 0;
+}

@@ -32,7 +32,24 @@ export class ListFoodBox extends Component {
 					{this.state.showForm && <FoodForm foodReady={food => this.addFood(food)}/> }
 					
 				</section>
-				{this.state.foodBoxes.map((e,i) => <FoodBox key={i}  {...e}/>)}
+				<section>
+					<div className="columns">
+						<div className="column">
+							{this.state.foodBoxes.map((e,i) => <FoodBox key={i}  {...e}/>)}
+						</div>
+						<div className="column">
+							<div class="column content todays-food">
+								<h2 class="subtitle">Today's foods</h2>
+								<ul>
+									<li>1 Pizza = 400 cal</li>
+									<li>2 Salad = 300 cal</li>
+								</ul>
+								<strong>Total: 700 cal</strong>
+							</div>
+						</div>
+					</div>
+				</section>
+				
 			</div>
 		)
 	}

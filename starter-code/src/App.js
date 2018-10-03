@@ -14,11 +14,11 @@ class App extends Component {
 					<div><input type="text" className="input search-bar is-medium" name="search" placeholder="Search"/></div>
 					<div className="columns">
 						<div className="column">
-		
 							<ListFoodBox/>
 						</div>
-							
+						
 					</div>
+
 				</div>
 			</div>
 		);

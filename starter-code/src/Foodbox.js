@@ -4,7 +4,8 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json'
 
 
-const Foodbox = props => {
+const Foodbox = (props) => {
+    //food como props
     return (
     <div className="box">
         <article className="media">

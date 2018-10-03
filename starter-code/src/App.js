@@ -26,13 +26,14 @@ class App extends Component {
 
   addFood = (food) => {
     this.state.FoodBox.unshift(food);
-    this.setState({Food: this.state.Food, showingForm: !this.state.showingForm
-    });
+    this.setState({Food: this.state.Food, showingForm: !this.state.showingForm});
   };
 
   render() {
     return (
       <div>
+        <h1>IronNutrition</h1>
+        <input type="text" placeholder="Search food"/>
         {foods.map((e) => {
           return <FoodBox class="column content" key={e.name} {...e} />
         })}

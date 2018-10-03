@@ -22,12 +22,16 @@ class Form extends Component {
             image: '',
         })
     }
+
 render() {
         let {name, calories, image, error} = this.state;
         return (
             <form>
+                <label>Name:</label>
                 <input value={name} type="text" placeholder="Name" onChange={e => this.setState({ name: e.target.value })} />
+                <label>Calories:</label>
                 <input value={calories} type="text" placeholder="Calories" onChange={e => this.setState({ calories: e.target.value })} />
+                <label>Image:</label>
                 <input value={image} type="text" placeholder="Image" onChange={e => this.setState({ image: e.target.value })} />
                 <button onClick={this.handleSubmit.bind(this)}>Submit Food</button>
             </form>

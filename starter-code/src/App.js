@@ -1,23 +1,106 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import 'bulma/css/bulma.css';
-import foods from './foods.json'
+import React from "react";
+import FoodBox from "./FoodBox";
+import foods from "./foods.json";
+import "bulma/css/bulma.css";
 
-import './App.css';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-class App extends Component {
+    this.state = {
+      search: "",
+      foods: foods,
+      todaysFood: [],
+      total: 0
+    };
+
+    this._updateSearchChange = this._updateSearchChange.bind(this);
+    this._updateQuantity = this._updateQuantity.bind(this);
+    this._addFood = this._addFood.bind(this);
+   }
+
   render() {
+    const foodList = this.state.foods.map((food, index) => {
+      return (
+        <FoodBox
+          name={food.name}
+          index={index}
+          calories={food.calories}
+          image={food.image}
+          quantity={food.quantity}
+          key={"food_" + index}
+          updateQuantity={this._updateQuantity}
+          addFood={this._addFood}
+        />
+      );
+    });
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container">
+        <h1>IronNutrition</h1>
+        <input
+          onChange={this._updateSearchChange}
+          className="input"
+          type="text"
+        />
+        <div className="columns">
+          <div className="column">{foodList}</div>
+          <div className="column is-one-third">
+            <h2>Today's foods</h2>
+            <p>Total: {this.state.total} cal</p>
+          </div>
+        </div>
       </div>
     );
+  }
+
+  _addFood({ calories, name, quantity, index }) {
+    if (quantity) {
+      let sameFood = false;
+      let newArr = [];
+      this.state.todaysFood.map(el => {
+        if (el.index === index) {
+          el.quantity += quantity;
+          sameFood = true;
+        }
+      });
+      if (!sameFood) {
+        newArr = [
+          ...this.state.todaysFood,
+          { name, quantity, calories, index }
+        ];
+      } else {
+        newArr = this.state.todaysFood;
+      }
+      this.setState({
+        todaysFood: newArr,
+        total: this.state.total + quantity * calories
+      });
+    }
+  }
+
+  _searchFood(filter) {
+    this.setState({
+      foods: foods.filter(el => {
+        return el.name.match(new RegExp(`.*${filter}.*`, "i"));
+      })
+    });
+  }
+
+  _updateQuantity(event, index) {
+    this.setState({
+      foods: this.state.foods.map((el, i) => {
+        if (index !== i) return el;
+        return { ...el, quantity: Number(event.target.value) };
+      })
+    });
+  }
+
+  _updateSearchChange(event) {
+    this.setState({
+      search: event.target.value
+    });
+    return this._searchFood(event.target.value);
   }
 }
 

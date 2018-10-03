@@ -24,7 +24,7 @@ export class Form extends Component {
     const calories = this.state.calories;
     const image = this.state.image;
     const NewFood = {name, calories, image};
-    foods.push(newFood);
+    //foods.push(newFood);
 
   }
 

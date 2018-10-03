@@ -20,12 +20,12 @@ class App extends Component {
     }
   }
   filterFood=(search)=>{
-    console.log(search)
-    this.state.foods=this.state.foods.map(food=>{
+
+    const foods=this.state.foods.map(food=>{
       food.visible=food.name.toLowerCase().includes(search.toLowerCase())
       return food
     })
-    this.setState({foods:this.state.foods})
+    this.setState({foods})
   }
   addFood=(food)=>{
     this.state.foods.unshift(food)
@@ -37,20 +37,17 @@ class App extends Component {
   }
   removeList=(name)=>{
     const elements=this.state.list
-    console.log(name,this.state.list)
     this.state.list.find((e,i)=>{
-      if(e.name==name){
+      if(e.name===name){
         if(e.quantity>1){
-          console.log("no borramos")
           elements[i].quantity--
         }else{
-          console.log("borramos")
           elements.splice(i,1)
         }
         return true
       }
+      return false
     })
-    console.log(elements)
     this.setState({list:elements})
   }
   addItem=(food)=>{

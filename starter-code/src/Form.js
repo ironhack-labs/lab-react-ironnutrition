@@ -12,9 +12,9 @@ export default class Form extends Component  {
     }
   }
   submit=({name,calories,image})=>{
-    if(!name||name=="")return this.setState({error:"El nombre es obligatorio"})
-    if(!calories||calories=="")return this.setState({error:"Las calorias son obligatorias"})
-    if(!image||image=="")return this.setState({error:"El imagen es obligatoria"})
+    if(!name||name==="")return this.setState({error:"El nombre es obligatorio"})
+    if(!calories||calories==="")return this.setState({error:"Las calorias son obligatorias"})
+    if(!image||image==="")return this.setState({error:"El imagen es obligatoria"})
     this.setState({expand:false})
     return this.props.onAddFood({name,calories,image})
   }

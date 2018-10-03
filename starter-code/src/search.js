@@ -21,7 +21,7 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <input
+        <input className="search"
           type="text"
           value={this.state.search}
           placeholder="Search Food Name"

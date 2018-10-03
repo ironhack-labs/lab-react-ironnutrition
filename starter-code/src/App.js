@@ -144,6 +144,43 @@ export class FoodBox extends Component {
 
 //LIST OF TODAY
 
+class FoodToday extends Component {
+  constructor(props){
+    super(props);
+    this.state= {}
+  }
+  render() {
+    return (
+      <li>
+        <p>{this.props.name}</p>
+      </li>
+    )
+  }
+}
+
+class TodayList extends Component {
+  constructor(props){
+    super(props);
+    this.state= {}
+    
+  }
+
+  render (){
+    console.log("PROPS", this.props)
+    return (
+      <div className="List">
+        <h1>Today's Food</h1>
+        <ul>
+        { this.props.today.map((e,i) => 
+        <FoodToday idx={i} image={e.image} name={e.name} calories={e.calories} addToday={this.addToday}/>)
+        }
+        </ul>
+        <h2>Total: </h2>
+      </div>
+    )
+  }
+}
+
 
 //COMPONENT APP
 
@@ -152,7 +189,8 @@ class App extends Component {
     super();
     
     this.state = {showForm:false,
-                  foods: foodCopy}
+                  foods: foodCopy,
+                  today: []}
     //this.showform = false;
   }
 
@@ -183,6 +221,10 @@ filterFoods = (list, search) =>{
 
 addToday = (food) => {
   console.log("ADD FOOD", food)
+  this.state.today.push(food);
+  console.log(this.state.today)
+
+  
 }
 
   
@@ -194,11 +236,11 @@ addToday = (food) => {
       { this.state.showForm && <FormComp addfood={this.addFood}/> }
       <div className="List">
       <SearchBar onSearch={this.filterFoods} list={list}/>
-      { }
       { this.state.foods.map((e,i) => 
       <FoodBox idx={i} image={e.image} name={e.name} calories={e.calories} addToday={this.addToday}/>)
       }
       </div>
+      <TodayList today={this.state.today}/>
       </div>
 
     );

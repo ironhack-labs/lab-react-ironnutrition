@@ -40,7 +40,7 @@ class App extends Component {
       <div>
         {!this.state.showingForm && (
         <button onClick={this.showForm}> Add food!! </button>)} 
-        </div>   
+      </div>   
         {this.state.showingForm && (
           <Form newFoods = {food =>this.addFood(food)}/>
         )}

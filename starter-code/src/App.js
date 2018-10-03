@@ -14,9 +14,11 @@ class App extends React.Component {
       total: 0
     };
 
-    this._updateSearchChange = this._updateSearchChange.bind(this);
-    this._updateQuantity = this._updateQuantity.bind(this);
-    this._addFood = this._addFood.bind(this);
+    this.updateSearchChange = this.updateSearchChange.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
+    this.addFood = this.addFood.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+
    }
 
   render() {
@@ -29,17 +31,27 @@ class App extends React.Component {
           image={food.image}
           quantity={food.quantity}
           key={"food_" + index}
-          updateQuantity={this._updateQuantity}
-          addFood={this._addFood}
+          updateQuantity={this.updateQuantity}
+          addFood={this.addFood}
         />
       );
     });
+
+    const todaysFoodList = this.state.todaysFood.map((food, index) => {
+      //can have the search filter in front of the map
+      return (
+        <li
+        key={"food_" + index}
+        >{food.quantity} {food.name} = {food.quantity * food.calories} cal
+        <button onClick={() => this.deleteItem(food)}>Delete</button></li>
+      )
+    })
 
     return (
       <div className="container">
         <h1>IronNutrition</h1>
         <input
-          onChange={this._updateSearchChange}
+          onChange={this.updateSearchChange}
           className="input"
           type="text"
         />
@@ -47,6 +59,9 @@ class App extends React.Component {
           <div className="column">{foodList}</div>
           <div className="column is-one-third">
             <h2>Today's foods</h2>
+            <ul>
+              {todaysFoodList}
+            </ul>
             <p>Total: {this.state.total} cal</p>
           </div>
         </div>
@@ -54,7 +69,15 @@ class App extends React.Component {
     );
   }
 
-  _addFood({ calories, name, quantity, index }) {
+  deleteItem({name,quantity,calories}) {
+    this.setState({
+      todaysFood:  this.state.todaysFood.filter((el) =>
+      el.name !== name),
+      total: this.state.total - quantity*calories
+    })
+  }
+
+  addFood({ calories, name, quantity, index }) {
     if (quantity) {
       let sameFood = false;
       let newArr = [];
@@ -79,7 +102,7 @@ class App extends React.Component {
     }
   }
 
-  _searchFood(filter) {
+  searchFood(filter) {
     this.setState({
       foods: foods.filter(el => {
         return el.name.match(new RegExp(`.*${filter}.*`, "i"));
@@ -87,7 +110,7 @@ class App extends React.Component {
     });
   }
 
-  _updateQuantity(event, index) {
+  updateQuantity(event, index) {
     this.setState({
       foods: this.state.foods.map((el, i) => {
         if (index !== i) return el;
@@ -96,11 +119,11 @@ class App extends React.Component {
     });
   }
 
-  _updateSearchChange(event) {
+  updateSearchChange(event) {
     this.setState({
       search: event.target.value
     });
-    return this._searchFood(event.target.value);
+    return this.searchFood(event.target.value);
   }
 }
 

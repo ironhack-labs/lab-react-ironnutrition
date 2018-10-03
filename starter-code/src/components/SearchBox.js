@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import foods from '../foods.json';
 
 export class SearchBox extends Component {
 	constructor() {
 		super();
 		this.state = {
-			value : ''
+			foodList : foods
 		}
 	}
 	

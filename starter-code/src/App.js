@@ -6,6 +6,16 @@ import foods from './foods.json';
 import {Foodbox} from './Foodbox.js'
 
 class App extends Component {
+  handleSubmit(){
+  // render() {
+  //   return (
+  //   <label>Item</label>
+  //   <input type='text' value='name'></input>
+  //   )
+  // }
+  console.log('button handleSubmit en App.js')
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,9 +23,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-       {/* {foods.map((e,i) => { */}
+        <button onClick={this.handleSubmit.bind(this)}>Add new food</button>   
          <Foodbox/>
-          {/* )} */}
       </div>
     );
   }

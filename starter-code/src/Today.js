@@ -5,10 +5,6 @@ export default class Today extends Component{
     super(props)
     this.state={list:{}}
   }
-  addElement(element){
-    this.props.list[element.name]=element
-    this.setState({list:this.state.list})
-  }
   render(){
     const list={}
     const total=this.props.list.reduce((t,l) => {
@@ -17,10 +13,10 @@ export default class Today extends Component{
       return t+l.calories
     },0);
     return(
-      <div class="column content">
-        <h2 class="subtitle">Today's foods</h2>
+      <div className="column content">
+        <h2 className="subtitle">Today's foods</h2>
         <ul>
-          {Object.values(list).map(l=><li>{l.items} {l.name} = {l.calories*l.items} cal</li>)}
+          {Object.values(list).map(l=><li key={l.name} >{l.items} {l.name} = {l.calories*l.items} cal <button name={l.name} onClick={e=>this.props.onRemoveList(e.target.name)} >Remove</button></li>)}
         </ul>
         <strong>Total: {total} cal</strong>
       </div>

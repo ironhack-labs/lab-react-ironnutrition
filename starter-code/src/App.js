@@ -35,6 +35,24 @@ class App extends Component {
     this.state.list.push(food)
     this.setState({list:this.state.list})
   }
+  removeList=(name)=>{
+    const elements=this.state.list
+    console.log(name,this.state.list)
+    this.state.list.find((e,i)=>{
+      if(e.name==name){
+        if(e.quantity>1){
+          console.log("no borramos")
+          elements[i].quantity--
+        }else{
+          console.log("borramos")
+          elements.splice(i,1)
+        }
+        return true
+      }
+    })
+    console.log(elements)
+    this.setState({list:elements})
+  }
   addItem=(food)=>{
     return food
   }
@@ -46,10 +64,10 @@ class App extends Component {
         <div className="columns">
           <div className="column">
           <Form onAddFood={food=>this.addFood(food)}></Form>
-          {this.state.foods.map((f)=>f.visible && <FoodBox onAddList={food=>this.addList(food)} key={f.name} {...f}/>)}
+          {this.state.foods.map((f)=>f.visible && <FoodBox  onAddList={food=>this.addList(food)} key={f.name} {...f}/>)}
           </div>
           <div className="column">
-          <Today list={this.state.list}/>
+          <Today onRemoveList={name=>this.removeList(name)} list={this.state.list}/>
           </div>
         </div>
       </div>

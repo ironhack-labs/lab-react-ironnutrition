@@ -39,7 +39,11 @@ export default class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button onClick={()=>this.props.onAddList({name,image,quantity,calories})} className="button is-info">
+                <button onClick={()=>{
+                    this.setState({quantity:1})
+                    this.props.onAddList({name,image,quantity,calories})
+                    }
+                  } className="button is-info">
                   +
                 </button>
               </div>

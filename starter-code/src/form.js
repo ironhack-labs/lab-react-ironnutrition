@@ -25,8 +25,8 @@ export class Form extends Component {
     this.setState({message: "",name:"",calories:"",director:"", show:false});
     this.props.formSubmit({name,calories,image});
   }
+
     render(){
-      const {show, message} = this.state
         return (
             <div>
               <button className="food" onClick={this.showFood} >Add Food</button>
@@ -39,11 +39,9 @@ export class Form extends Component {
                 <input type="number" value={this.state.calories} onChange={(e) => this.setState({calories:e.target.value})}/>
                 <label>Url of the Image</label>
                 <input type="text" value={this.state.image} onChange={(e) => this.setState({image:e.target.value})}/>
-                <button onClick={this.submit.bind(this)}>Add</button> 
-                        
+                <button onClick={this.submit.bind(this)}>Add</button>   
                     </div>
                 }
-           
             </div>
         )
     }

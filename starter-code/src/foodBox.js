@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
+import SearchBar from "./search.js"
 import {Form} from "./form.js";
 
 export class Food extends Component {
@@ -15,6 +16,13 @@ export class Food extends Component {
     this.state.foods.push(food);
     this.setState({food:this.state.foods});
 }
+
+searchFood = words => {
+  let newFoodList = foods.filter(word =>
+    word.name.toLowerCase().includes(words.toLowerCase())
+    );
+    this.setState({foods: newFoodList});
+  };
 
   render() {
     
@@ -46,7 +54,6 @@ export class Food extends Component {
               </div>
               <div className="control">
                 <button className="button is-info">
-                  +
                 </button>
               </div>
             </div>
@@ -59,6 +66,7 @@ export class Food extends Component {
    
     return (
       <div>
+        <SearchBar searchFood={food => this.searchFood(food)} />
         <Form formSubmit={food => this.addFood(food)}/>
        {myFood}
         </div>

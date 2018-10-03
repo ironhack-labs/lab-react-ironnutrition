@@ -4,22 +4,23 @@ import FoodBox from './components/FoodBox';
 import FoodItem from './components/FoodItem';
 import 'bulma/css/bulma.css';
 import './App.css'
+import Form from './components/Form';
 
 class App extends Component {
   state={
-    foods,
     foodsList: foods,
     selectedFood: [],
     amountOfCalories: 0,
-    inputSearch: ""
+    inputSearch: "",
+    formIsActive: true
   }
 
   handleChangeServes = (index, numOfServes) =>{
-    const clonedFoodList = this.state.foodsList
+    const clonedFoodsList = this.state.foodsList
 
-    clonedFoodList[index].quantity = parseInt(numOfServes)
+    clonedFoodsList[index].quantity = parseInt(numOfServes)
     this.setState({
-      foodlist : clonedFoodList
+      foodlist : clonedFoodsList
     })
   }
 
@@ -37,7 +38,7 @@ class App extends Component {
       selectedFoodForDay.push(selectedItem)-1
     }
 
-   selectedFoodForDay.forEach((element) => {
+    selectedFoodForDay.forEach((element) => {
       return sumOfCalories+= parseInt(element.calories)*parseInt(element.quantity)
     })
     this.setState({selectedFood: selectedFoodForDay})
@@ -52,10 +53,26 @@ class App extends Component {
     this.setState({amountOfCalories: this.state.amountOfCalories-deleted[0].calories*deleted[0].quantity})
   }
 
+  newFood = (element) => {
+    console.log(element)
+    console.log(element.name && element.calories && element.image);
+    if(element.name && element.calories && element.image) {
+      const clonedFoodsList = this.state.foodsList
+      clonedFoodsList.unshift(element)
+      this.setState({foodsList:clonedFoodsList})
+      console.log('ok');
+    }
+    this.handleActiveForm()
+  }
+
   handleInput = (e) => {
     this.setState({
       inputSearch: e.target.value,
     })
+  }
+
+  handleActiveForm = () => {
+    this.setState({formIsActive: !this.state.formIsActive})
   }
 
   render() {
@@ -64,15 +81,19 @@ class App extends Component {
       <h1 className="title">IronNutrition</h1>
       <div>
         <input type="text" className="input search-bar" name="search" placeholder="Search" value={this.state.search} onChange={this.handleInput}/>
+        <button className="button is-link is-outlined margin" onClick={this.handleActiveForm}>{ this.state.formIsActive? 'new food':'hide' }</button>
+        { !this.state.formIsActive? <Form onSubmit={(element)=>this.newFood(element)}/>:"" }
       </div>
       <div className="columns">
         <div className="column">
           {
             this.state.foodsList.map((element, index)=>{
               if(element.name.includes(this.state.inputSearch)){
-
-               return <FoodBox key={index} id={index} {...element}
-                      onSelectFood={(index, numOfServes, oldNumOfServes)=>{this.useThisFood(index, numOfServes, oldNumOfServes)}}/>
+                return <FoodBox key={index} id={index} {...element}
+                        onSelectFood={(index, numOfServes, oldNumOfServes)=>{
+                          this.useThisFood(index, numOfServes, oldNumOfServes)
+                        }
+                      }/>
               }
             })
           }

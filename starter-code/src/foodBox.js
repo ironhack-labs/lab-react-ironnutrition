@@ -54,6 +54,7 @@ searchFood = words => {
               </div>
               <div className="control">
                 <button className="button is-info">
+                +
                 </button>
               </div>
             </div>

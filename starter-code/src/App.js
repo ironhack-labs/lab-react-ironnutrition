@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
 import { FoodBox } from './components/FoodBox';
+import { ListComponent } from './components/ListComponent';
 //import foods from './foods.json'
 
 export class App extends Component {
@@ -17,7 +18,7 @@ export class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <br></br>
-        <FoodBox/>      
+        <ListComponent/>      
       </div>      
     );
   }

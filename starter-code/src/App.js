@@ -15,8 +15,13 @@ export class SearchBar extends Component {
 
   render () {
     let {name, calories, image, error} = this.state;
-    return <input type="text" value={name} onChange={(e) => this.props.onSearch(this.props.list, e.target.value)} />
-
+    return (
+      <div className="field">
+        <div className="control">
+          <input type="text" value={name} onChange={(e) => this.props.onSearch(this.props.list, e.target.value)} />
+        </div>
+      </div>
+    )
   }
 }
 
@@ -86,7 +91,13 @@ export class FormComp extends Component {
 export class FoodBox extends Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      name: this.props.name,
+      calories: this.props.calories,
+      image: this.props.image,
+      quantity: 1,
+      error: ''
+    }
   }
   render() {
     return(
@@ -111,11 +122,12 @@ export class FoodBox extends Component {
                 <input
                   className="input"
                   type="number"
-                  value="1"
+                  value={this.state.quantity}
+                  onChange={(e) => this.setState({ quantity: e.target.value })}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={()=> this.props.addToday(this.state)}>
                   +
           </button>
               </div>
@@ -129,6 +141,10 @@ export class FoodBox extends Component {
   }
 
 }
+
+//LIST OF TODAY
+
+
 //COMPONENT APP
 
 class App extends Component {
@@ -161,12 +177,17 @@ filterFoods = (list, search) =>{
   let filtered = list.filter(food => {
     return food.name.includes(search)
   })
+  this.setState({foods:filtered})
   console.log(filtered)
+}
+
+addToday = (food) => {
+  console.log("ADD FOOD", food)
 }
 
   
   render() {
-    let list= this.state.foods
+    let list=foods;
     return (
       <div className="Main">
       <button className="button is-success" onClick={()=> this.showForm()}>Add New Food</button>
@@ -175,7 +196,7 @@ filterFoods = (list, search) =>{
       <SearchBar onSearch={this.filterFoods} list={list}/>
       { }
       { this.state.foods.map((e,i) => 
-      <FoodBox idx={i} image={e.image} name={e.name} calories={e.calories} />)
+      <FoodBox idx={i} image={e.image} name={e.name} calories={e.calories} addToday={this.addToday}/>)
       }
       </div>
       </div>

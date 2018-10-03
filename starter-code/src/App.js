@@ -52,6 +52,7 @@ class App extends Component {
     return (
       <div class="father">
         <h1 class="title">IronNutrition</h1>
+        <input class="input" type="text" placeholder="Search"/><br/>
         <table>
           {this.createContent()}
         </table> <br/>

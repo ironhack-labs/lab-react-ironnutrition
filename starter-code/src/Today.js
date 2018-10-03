@@ -13,7 +13,7 @@ export default class Today extends Component{
     const list={}
     const total=this.props.list.reduce((t,l) => {
       if(!list[l.name])list[l.name]={...l,items:0}
-      list[l.name].items++
+      list[l.name].items+=+l.quantity
       return t+l.calories
     },0);
     return(

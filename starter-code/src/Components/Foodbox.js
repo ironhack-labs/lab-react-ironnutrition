@@ -39,7 +39,7 @@ export class Foodbox extends Component {
                             <div className="control">
                                 <button className="button is-info">
                                     +
-                                        </button>
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -1,19 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import 'bulma/css/bulma.css';
-import foods from './foods.json';
-import {Foodbox} from './Foodbox.js'
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "bulma/css/bulma.css";
+import Foodbox from "./Foodbox.js";
+import NewFood from "./NewFood.js";
 
 class App extends Component {
-  handleSubmit(){
-  // render() {
-  //   return (
-  //   <label>Item</label>
-  //   <input type='text' value='name'></input>
-  //   )
+  constructor(props) {
+    super(props);
+    this.state = {
+      // isAddingFood: false,
+      // foods: {}
+    };
+    // this.handleAddFood = this.handleAddFood.bind(this);
+  }
+
+  // handleAddFood() {
+  //   if (this.state.isAddingFood === false) {
+  //     this.setState ({ isAddingFood: true });
+  //   } else {
+  //     this.setState = { isAddingFood: false }
+  //   }
+
+  //   console.log(this.state)
+
   // }
-  console.log('button handleSubmit en App.js')
+
+  handleSubmit() {
+    let hidden = !this.state.hidden;
+    this.setState({
+      hidden
+    });
   }
 
   render() {
@@ -21,10 +38,20 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Ironnutrition</h1>
         </header>
-        <button onClick={this.handleSubmit.bind(this)}>Add new food</button>   
-         <Foodbox/>
+        <div hidden={this.state.hidden}>
+          <label>Item</label>
+          <input type="text" value="name" />
+        </div>
+        <button onClick={this.handleSubmit.bind(this)}>Add new food</button>
+        {" "}
+        {/* <div>
+          {this.state.isAddingFood === true ? (
+            <NewFood onSubmit={foods => this.setState.foods} />
+          ) : null}
+        </div> */}
+        <Foodbox />
       </div>
     );
   }

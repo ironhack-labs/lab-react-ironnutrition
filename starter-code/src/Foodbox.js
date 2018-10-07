@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import foods from "./foods.json";
 
-export class Foodbox extends Component {
+class Foodbox extends Component {
   constructor() {
     super();
     this.state = {
-      enableFoods: true,
-      foods: [],
+      //enableFoods: true,
+      //foods: [],
     };
   }
 
@@ -48,3 +47,5 @@ export class Foodbox extends Component {
     );
   }
 }
+
+export default Foodbox;

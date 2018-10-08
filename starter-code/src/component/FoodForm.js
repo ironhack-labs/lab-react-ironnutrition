@@ -31,7 +31,7 @@ class FoodForm extends Component {
                 <label>Plate</label>
                 <input type="text" value={name} onChange={(e) => this.setState({name:e.target.value})} />
                 <label>Calories</label>
-                <input type="text" value={calories} onChange={(e) => this.setState({calories:e.target.value})}/>
+                <input type="number" value={calories} onChange={(e) => this.setState({calories:e.target.value})}/>
                 <label>Image</label>
                 <input type="text" value={image} onChange={(e) => this.setState({image:e.target.value})}/>
                 <button onClick={this.handleSubmit.bind(this)}>Add dish</button>

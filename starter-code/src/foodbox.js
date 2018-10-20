@@ -6,6 +6,21 @@ import food from './foods.json'
 class FoodBox extends Component {
     constructor(props){
         super(props)
+
+        this.state = {
+          countItems : 1
+        }
+    }
+
+    AddCountItems = () => {
+      this.setState({
+        countItems : this.state.countItems + 1
+      })
+    }
+
+    AddFoodToCard = (number, name, calories) => {
+      var numberCalories = parseInt(calories) * parseInt(number)
+      this.props.AddFood(number,name, numberCalories)
     }
 
     render() {
@@ -36,11 +51,12 @@ class FoodBox extends Component {
           <input
             className="input"
             type="number" 
-            value="1"
+            value={this.state.countItems}
+            onClick={this.AddCountItems}
           />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button className="button is-info" onClick={() => this.AddFoodToCard(this.state.countItems, myfood, mycalories) }>
             +
           </button>
         </div>

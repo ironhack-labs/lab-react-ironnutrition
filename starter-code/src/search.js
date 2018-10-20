@@ -7,7 +7,7 @@ class Search extends Component {
         super(props)
 
         this.state = {
-            search : ''
+            search : '',
         }
     }
 
@@ -15,6 +15,7 @@ class Search extends Component {
         this.props.Searching(e.target.value);
         this.setState({search : e.target.value})
     }
+    
     render(){
         return(
             <div>

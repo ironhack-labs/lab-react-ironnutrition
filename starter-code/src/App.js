@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
@@ -15,16 +14,31 @@ class App extends Component {
     this.state = { listFood: foods.slice(0, foods.length) };
   }
 
+  addNewFood (food) {
+    this.state.listFood.push(food)
+    this.setState({listFood: this.state.listFood})
+  }
+
+  addQuantity (food) {
+    const name = food.name;
+    this.state.listFood.forEach(food => {
+      if (food.name === name)
+        food.quantity ++
+    })
+    this.setState({listFood: this.state.listFood})
+  }
+
   render() {
     return (
       <div className="App">
 
-        <FoodForm />
+        <FoodForm handleNewFoodInApp={(food) => this.addNewFood(food)}></FoodForm>
 
         {this.state.listFood.map((meal, index) => {
           return <FoodBox 
             meal={meal} 
             key={index} 
+            addQuantity={this.addQuantity.bind(this)}
             ></FoodBox>;
         })}
       </div>

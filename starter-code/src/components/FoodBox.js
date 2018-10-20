@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "bulma/css/bulma.css";
 
 class FoodBox extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
@@ -26,10 +23,13 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input className="input" type="number" value={this.props.meal.quantity}/>
               </div>
+
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" onClick={() => this.props.addQuantity(this.props.meal)}>
+                  +
+                </button>
               </div>
             </div>
           </div>

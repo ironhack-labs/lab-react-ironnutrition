@@ -6,83 +6,107 @@ class FoodForm extends Component {
     super(props);
 
     this.state = {
-      //displayForm:false
+      displayForm: false,
       name: "",
-      calories: "",
+      calories: 0,
       image: "",
       quantity: 0
     };
+  }
 
-    //handleChange(event){
-    //  let {name, value}=event.target;
-    //  if (name == calories || name ==quantity){
-    //    value = parseInt(value)
-    //  }
-    //  this.setState({[name]:value})
-    //}
+  newFood(e) {
+    e.preventDefault()
+    this.props.handleNewFoodInApp(this.state)
+    this.setState({displayForm: false})
+  }
+
+  handleChange(event) {
+    let { name, value } = event.target;
+    if (name === "calories" || name === "quantity") {
+      value = parseInt(value);
+    }
+    this.setState({ [name]: value });
   }
 
   render() {
-    return (
-      <form className="form" onSubmit={this.handleFormSubmit}>
-        <div className="box">
-          <div className="field">
-            <label className="label">Name</label>
+    if (this.state.displayForm) {
+      return (
+        <form className="form">
+          <div className="box">
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g lasagnes"
+                  name="name"
+                  onChange={e => {
+                    this.handleChange(e);
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Calories</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. 500"
+                  name="calories"
+                  onChange={e => {
+                    this.handleChange(e);
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Image URL</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. https://xxxx.png"
+                  name="image"
+                  onChange={e => {
+                    this.handleChange(e);
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Quantity</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. 1"
+                  name="quantity"
+                  onChange={e => {
+                    this.handleChange(e);
+                  }}
+                />
+              </div>
+            </div>
+
             <div className="control">
-              <input
-                className="input"
-                type="text"
-                value={this.state.name}
-                placeholder="e.g lasagnes"
-              />
+              <button className="button is-primary" onClick={(e) => this.newFood(e)}> Valider </button>
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Calories</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                placeholder="e.g. 500"
-                name="calories"
-                //onChange{()=> this.handleChange(e)}
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Image URL</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                value={this.state.image}
-                placeholder="e.g. https://xxxx.png"
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Quantity</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                value={this.state.quantity}
-                placeholder="e.g. 1"
-              />
-            </div>
-          </div>
-
-          <div className="control">
-            <button className="button is-primary" type="submit" value="Submit">
-              Submit
-            </button>
-          </div>
+        </form>
+      );
+    } else {
+      return (
+        <div className="control">
+         <button className="button is-primary" onClick={() => this.setState({ displayForm: true })}> Ajouter un plat </button>
         </div>
-      </form>
-    );
+      );
+    }
   }
 }
 

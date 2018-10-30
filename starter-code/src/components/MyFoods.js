@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FoodBox = (props) => {
+const MyFoods = (props) => {
     // let awardText;
     // if(props.hasOscars){
     //     if(props.IMDbRating >= 9){
@@ -23,36 +23,23 @@ const FoodBox = (props) => {
             <div className="content">
                 <p>
                 <strong>{props.name}</strong> <br />
-                <small>{props.calories}</small>
+                <small>Cal:{props.calories}</small>
                 </p>
             </div>
             </div>
             <div className="media-right">
             <div className="field has-addons">
                 <div className="control">
-                </div>
-                <div className="control">
-                <button className="button is-info" onClick={props.clickToAdd}>
-                    +
-                </button>
-                <button className="button is-info" onClick={props.clickToDelete}>Delete</button>
-                </div>
-               
+                    <p>Quantity: {props.quantity}</p>
+                    <p>Total Cal: {props.calories * props.quantity}</p>
+                </div>               
+                        
             </div>
+            <button className="button is-info" onClick={props.clickToDelete}>Delete</button>
             </div>
         </article>
     </div>
     )
 };
 
-export default FoodBox;
-
-{/* <div  className="movies-list-item">  <button onClick={props.clickToDelete}>Delete</button>
-<h2>{props.title}</h2>
-<p>Director: {props.director}</p>
-{awardText}
-{ props.hasOscars && <p>Got the Oscar Award! 😉 </p> }
-{ !props.hasOscars && <p>Great movie but no Oscars! 😔 </p> }
-
-<button onClick={props.clickToDelete}>Delete</button>
-</div> */}
+export default MyFoods;

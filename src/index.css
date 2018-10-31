@@ -37,10 +37,16 @@ code {
 
 .add-form input {
   margin: 5px 0px;
+  width: 20%;
+}
+
+#add-submit {
+  display: block;
+  width: 5%;
 }
 
 .trash-icon {
-  width: 15%;
+  width: 20%;
 }
 
 .food-item {

@@ -52,7 +52,7 @@ class Form extends Component {
         <input type="number" className="input" name="calories" min="0" onChange={this.handleEdit} required/>
         <label htmlFor="image" className="label">Image URL</label>
         <input type="text" className="input" name="image" onChange={this.handleEdit} required/>
-        <input type="submit" className="button is-info" value="Add"/>
+        <input type="submit" className="button is-info" id="add-submit" value="Add"/>
       </form>
     )
   }

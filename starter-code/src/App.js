@@ -12,8 +12,19 @@ class App extends Component {
     this.state = {
       menu : foods,
       myFoodList : [],
+      matchItems: ''
     }
     console.log(this.state.menu)
+  }
+
+  // eventHandler = (event) => {
+  //   const menuCopy = [...this.state.menu];
+  //   menuCopy.filter((foodItem)=>{foodItem.includes()})
+  // }
+
+  handleChange(event) {
+    let { name, value } = event.target;
+    this.setState({[name]: value});
   }
 
   addFoodHandler = (theFood) => {
@@ -32,20 +43,18 @@ class App extends Component {
     })
 }
 
+  filteredMenu;
+
   render() {
+
+    this.filteredMenu = this.state.menu.filter(theFood => theFood.name.toLowerCase().includes(this.state.matchItems.toLowerCase()))
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <input type="text" name="matchItems" value={this.state.matchItems} onChange={(e) => this.handleChange(e)}></input>
 
       <FoodForm addTheFood={this.addFoodHandler} />
       {
-        this.state.menu.map((foodItem, index) => {
+        this.filteredMenu.map((foodItem, index) => {
           return <FoodBox key={index} {...foodItem} clickToDelete={() => this.deleteFoodHandler(index)} />
         })
       }

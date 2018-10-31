@@ -4,7 +4,7 @@ class Search extends Component {
     constructor(){
         super();
         this.state = {
-            foods:
+            foods: 
         }
     }
 }

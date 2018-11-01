@@ -42,19 +42,28 @@ class App extends Component {
     food = Object.assign({}, food)
     if(food.quantity > 0) {
       let {todaysFood, foodArray} = this.state;
-      let index = foodArray.map(function(food) { return food.name; }).indexOf(food.name);
-      foodArray[index].quantity = 0;
-      index = todaysFood.map(function(food) { return food.name; }).indexOf(food.name);
-      if(index === -1) {
-        todaysFood.push(food);
-      } else {
-        todaysFood[index].quantity += food.quantity;
-      }
+      this.resetFoodQuantity(foodArray, food);
+      this.updateFoodList(todaysFood, food);
       this.setState({
         foodArray,
         todaysFood,
       })
     }
+  }
+
+  resetFoodQuantity = (foodArray, food) => {
+    const index = foodArray.map(function(food) { return food.name; }).indexOf(food.name);
+    foodArray[index].quantity = 0;
+  }
+
+  updateFoodList = (todaysFood, food) => {
+    const index = todaysFood.map(function(food) { return food.name; }).indexOf(food.name);
+      if(index === -1) {
+        todaysFood.push(food);
+      } else {
+        todaysFood[index].quantity += food.quantity;
+      }
+    return todaysFood
   }
 
   handleDelete = index => {
@@ -65,11 +74,23 @@ class App extends Component {
     });
   }
 
-  render() {
-    const {searchValue, todaysFood} = this.state;
-    const foodArray = this.state.foodArray.filter( food => {
+  renderList = (foodArray, searchValue) => {
+    const filteredArray = foodArray.filter( food => {
       return food.name.toLowerCase().includes(searchValue.toLowerCase())
     })
+    return filteredArray.map( food => {
+      return <FoodBox 
+                key={food.name}
+                index={food.name}
+                food={food}
+                handleArrows={this.handleArrows}
+                handleAddToList={this.handleAddToList}
+              />
+    })
+  }
+
+  render() {
+    const {searchValue, todaysFood, foodArray} = this.state;
     return (
       <div className="App">
         <h1 className="title is-1">Iron Nutrition</h1>
@@ -77,18 +98,12 @@ class App extends Component {
         <Search handleSearch={this.handleSearch}/>
         <div className="columns" id="columns">
           <div className="column">
-            { foodArray.map( food => {
-              return <FoodBox 
-                        key={food.name}
-                        index={food.name}
-                        food={food}
-                        handleArrows={this.handleArrows}
-                        handleAddToList={this.handleAddToList}
-                      />
-            })}
+            { this.renderList(foodArray, searchValue) }
           </div>
           <div className="column">
-            <FoodList todaysFood={todaysFood} handleDelete={this.handleDelete} />
+            <FoodList todaysFood={todaysFood} 
+                      handleDelete={this.handleDelete} 
+            />
           </div>
         </div>
       </div>

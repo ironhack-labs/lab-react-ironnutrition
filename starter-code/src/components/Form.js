@@ -45,10 +45,10 @@ class Form extends Component {
 
     return(
       <form onSubmit={this.handleSubmit}>
-       <input type="text" value={state.name} onChange={this.nameChangeInput}/>
-       <input type="text" value={state.numberOfCalories} onChange={this.caloriesChangeInput}/>
-       <input type="text" value={state.image} onChange={this.imageChangeInput}/>
-       <input type="submit" value="Add Item"/>
+       <input className="input is-success" placeholder="name" type="text" value={state.name} onChange={this.nameChangeInput}/>
+       <input className="input is-success" placeholder="calories" type="text" value={state.numberOfCalories} onChange={this.caloriesChangeInput}/>
+       <input className="input is-success" placeholder="image Url" type="text" value={state.image} onChange={this.imageChangeInput}/>
+       <input className="button is-success" type="submit" value="Add Item"/>
       </form>
     )
   }

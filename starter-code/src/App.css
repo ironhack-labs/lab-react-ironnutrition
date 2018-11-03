@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -26,6 +28,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App .foodlist {
+  margin-right: 30px;
+}
+
+.App  .main-content {
+  display: flex;
+  flex-direction: row;
+  padding-top: 40px;
+}
+
 
 /* ---------------- Bulma ------------------*/
 .container {
@@ -73,3 +86,9 @@
 ul {
   margin-bottom: 10px;
 }
+
+
+.form-container {
+  width:100%
+}
+

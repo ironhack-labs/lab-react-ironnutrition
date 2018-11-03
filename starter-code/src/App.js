@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     foodList: foods,
     formVisible: false,
+    searchTerm: '',
   }
 
   toggleForm = () => {
@@ -25,6 +26,7 @@ class App extends Component {
   handleSubmit = (newFood) => {
     const { foodList } = this.state;
     foodList.push(newFood);
+    this.toggleForm();
 
     this.setState({
       foodList,
@@ -32,29 +34,38 @@ class App extends Component {
   }
 
   handleSearch = (searchTerm) => {
-    const { foodList } = this.state;
     // el search bar debe estar en el render pues sino al actualizar el estado voy a quedar solo
     // con lo que haya sid filtrado.
-    foodList.filter(item => {
-      return item.toString().includes(searchTerm)
-    })
-    
     this.setState({
-      foodList,
+      searchTerm: searchTerm,
+    }) 
+  }
+
+  filterList = (searchTerm, foodList) => {
+    return foodList.filter(item => {
+      return item.name.toLowerCase().includes(searchTerm)
     })
   }
 
   render() {
-    const { formVisible } = this.state;
+    const { formVisible, foodList, searchTerm } = this.state;
+    const filteredFoodList = this.filterList(searchTerm, foodList);
+
 
     return (
-      <div className="App">
-        {this.state.foodList.map((foodItem, index) => {
-           return <FoodBox foodItem={foodItem} index={index} key={index}/>
-        })}
-        <Button onClick={this.toggleForm}/>
-        {formVisible ? <Form onSubmit={this.handleSubmit}/> : null}
+      <div className="App flex-container">
         <Search handleSearch={this.handleSearch}/>
+        <div className=" main-content ">
+          <div className=" foodlist ">
+            {filteredFoodList.map((foodItem, index) => {
+              return <FoodBox foodItem={foodItem} index={index} key={index}/>
+            })}
+          </div>
+          <div className="form-container">
+            <Button onClick={this.toggleForm}/>
+            {formVisible ? <Form className=" form " onSubmit={this.handleSubmit}/> : null}
+          </div>
+        </div>
       </div>
     );
   }

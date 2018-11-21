@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.box{
+  display: flex;
+  flex-direction: row;
+
+}
+.imagen{
+  width:64px;
+  height:64px;
+}
+.container{
+  display:flex;
+  flex-direction: row;
+}

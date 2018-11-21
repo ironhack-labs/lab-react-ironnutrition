@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Pizza",
+    "kcal": 400,
+    "img": "https://i.imgur.com/eTmWoAN.png",
+    "qty": 0
+  },
+  {
+    "name": "Salad",
+    "kcal": 150,
+    "img": "https://i.imgur.com/DupGBz5.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Sweet Potato",
+    "kcal": 120,
+    "img": "https://i.imgur.com/hGraGyR.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Gnocchi",
+    "kcal": 500,
+    "img": "https://i.imgur.com/93ekwW0.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Pot Roast",
+    "kcal": 350,
+    "img": "https://i.imgur.com/WCzJDWz.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Lasagna",
+    "kcal": 750,
+    "img": "https://i.imgur.com/ClxOafl.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Hamburger",
+    "kcal": 400,
+    "img": "https://i.imgur.com/LoG39wK.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Pad Thai",
+    "kcal": 475,
+    "img": "https://i.imgur.com/5ktcSzF.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Almonds",
+    "kcal": 75,
+    "img": "https://i.imgur.com/JRp4Ksx.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Bacon",
+    "kcal": 175,
+    "img": "https://i.imgur.com/7GlqDsG.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Hot Dog",
+    "kcal": 275,
+    "img": "https://i.imgur.com/QqVHdRu.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Chocolate Cake",
+    "kcal": 490,
+    "img": "https://i.imgur.com/yrgzA9x.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Wheat Bread",
+    "kcal": 175,
+    "img": "https://i.imgur.com/TsWzMfM.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Orange",
+    "kcal": 85,
+    "img": "https://i.imgur.com/abKGOcv.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Banana",
+    "kcal": 175,
+    "img": "https://i.imgur.com/BMdJhu5.jpg",
+    "qty": 0
+  },
+  {
+    "name": "Yogurt",
+    "kcal": 125,
+    "img": "https://i.imgur.com/URhdrAm.png",
+    "qty": 0
+  }
+]

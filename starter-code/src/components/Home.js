@@ -51,8 +51,8 @@ class Home extends Component {
         let index = foods.findIndex(f => f.name === foodName);
         if (todaysFoods.indexOf(index) === -1 && quant > 0){
             todaysFoods.push(index);
-            foods[index].quantity += quant;
         }
+        if (quant > 0) foods[index].quantity += quant;
        this.setState({foods, todaysFoods});
        this.calculateTotalCalories();
    };

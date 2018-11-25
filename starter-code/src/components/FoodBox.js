@@ -25,7 +25,9 @@ const FoodBox = (props) => (
                             <input
                                 className="input"
                                 type="number"
-                                value={props.food.quantity}
+                                placeholder='0'
+                                onChange={props.onChange}
+
                             />
                         </div>
                         <div className="control">

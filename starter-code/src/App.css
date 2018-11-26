@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 3% 0;
 }
 
 .App-logo {
@@ -23,6 +24,18 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+input.quantity {
+  border: 0 !important;
+  outline: none !important;
+  background-color: #fff !important;
+  width: 75px !important;
+  text-align: center;
 }

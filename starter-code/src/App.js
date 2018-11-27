@@ -5,6 +5,7 @@ import foods from "./foods.json";
 import FoodBox from "./Home/FoodBox";
 import Form from "./Form/Form";
 import Search from "./Search/Search";
+import List from "./List/List";
 
 class App extends Component {
   constructor() {
@@ -19,7 +20,9 @@ class App extends Component {
         image: ""
       },
       search: "",
-      quantity: ""
+      quantity: "",
+      todayFoods: [],
+      totalCalories: 0
     };
   }
 
@@ -67,13 +70,25 @@ class App extends Component {
     let { quantity } = this.state;
 
     quantity = e.target.value;
-    console.log(quantity);
 
     this.setState({ quantity });
   };
 
+  handleChangeToday = food => {
+    let { quantity, todayFoods, totalCalories } = this.state;
+
+    food.quantity = quantity;
+    todayFoods.push(food);
+
+    totalCalories = todayFoods.reduce((sum, calories) => {
+      return sum + calories.calories * calories.quantity;
+    }, 0);
+
+    this.setState({ quantity, todayFoods, totalCalories });
+  };
+
   render() {
-    let { food, showForm, form } = this.state;
+    let { food, showForm, form, todayFoods, totalCalories } = this.state;
 
     return (
       <div className="App container is-fluid">
@@ -81,10 +96,17 @@ class App extends Component {
         <div className="columns">
           <div className="column is-one-quarter">
             {food.map((food, i) => (
-              <FoodBox key={i} food={food} numberChange={this.numberChange} />
+              <FoodBox
+                key={i}
+                food={food}
+                numberChange={this.numberChange}
+                handleChangeToday={this.handleChangeToday}
+              />
             ))}
           </div>
-          <div className="column is-one-third">Nada</div>
+          <div className="column is-one-third">
+            <List todayFoods={todayFoods} totalCalories={totalCalories} />
+          </div>
           <div className="column is-two-fifths">
             <button className="button is-link" onClick={this.newFood}>
               New Food

@@ -1,6 +1,6 @@
 import React from "react";
 
-const FoodBox = ({ food, numberChange }) => (
+const FoodBox = ({ food, numberChange, handleChangeToday }) => (
   <div className="box">
     <article className="media">
       <div className="media-left">
@@ -12,7 +12,7 @@ const FoodBox = ({ food, numberChange }) => (
         <div className="content">
           <p>
             <strong>{food.name}</strong> <br />
-            <small>{food.calories}</small>
+            <small>{food.calories} cal</small>
           </p>
         </div>
       </div>
@@ -28,7 +28,12 @@ const FoodBox = ({ food, numberChange }) => (
             />
           </div>
           <div className="control">
-            <button className="button is-info">+</button>
+            <button
+              className="button is-info"
+              onClick={() => handleChangeToday(food)}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>

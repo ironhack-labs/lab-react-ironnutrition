@@ -22,6 +22,29 @@
   font-size: large;
 }
 
+.fooding{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.foodList{
+  width: 100%;
+}
+
+.todayFood{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.todayFood h3{
+  text-align: center;
+  font-weight: bold;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

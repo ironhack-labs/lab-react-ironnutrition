@@ -1,0 +1,13 @@
+li > img {
+  width: 200px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul > li {
+  margin: 10px;
+  border: 1px solid black;
+}

@@ -3,7 +3,7 @@ import './App.css';
 
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
-import { AddButton, StyledForm } from './App.styled';
+import { AddButton, StyledForm, SearchBar } from './App.styled';
 
 class App extends Component {
     state = {
@@ -20,6 +20,15 @@ class App extends Component {
          this.setState({
             ...this.state,
             isAdding: !this.state.isAdding
+        })
+    }
+
+    searchHandler = (e) => {
+        const myRegex = new RegExp(`(${e.target.value})+`, 'g')
+        const filteredFood = [...foods].filter(({name}) => name.match(myRegex));
+        this.setState({
+            ...this.state,
+            foods: filteredFood
         })
     }
 
@@ -61,6 +70,7 @@ class App extends Component {
                     <button type="submit">Submit</button>
                 </StyledForm>
                 }
+                <SearchBar placeholder="Search a Food" onChange={this.searchHandler}/>
                 <FoodBox foods={this.state.foods}/>
             </React.Fragment>
         );

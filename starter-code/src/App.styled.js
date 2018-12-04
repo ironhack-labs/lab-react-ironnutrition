@@ -24,3 +24,27 @@ export const StyledForm = styled.form`
     flex-direction: column;
     align-items: center;
 `;
+
+export const SearchBar = styled.input`
+    width: 80%;
+    outline: none;
+    border: 1px solid blue;
+    border-radius: 10px;
+    margin: 2rem;
+    padding: 0.5rem;
+    background: blue;
+    color: white;
+    transition: all 0.15s;
+
+    ::placeholder {
+        color: white;
+        opacity: 1; 
+    }
+
+    &:focus {
+        border: 1px solid blue;
+        background-color: white;
+        color: black;
+        transition: all 0.15s;
+    }
+`;

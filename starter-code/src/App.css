@@ -1,3 +1,7 @@
+* {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 #root {
   display: flex;
   flex-direction: column;

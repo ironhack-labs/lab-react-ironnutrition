@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import FoodBox from './Components/FoodBox/FoodBox.jsx'
 import Button from './Components/Button/Button.jsx'
 import Form from './Components/Form/Form.jsx'
+import Searchbar from './Components/Searchbar/Searchbar.jsx';
 import foods from "./foods.json"
 import './App.css';
 
@@ -16,6 +17,7 @@ export default class App extends React.Component {
     }
     this.toggleForm = this.toggleForm.bind(this)
     this.addFood = this.addFood.bind(this)
+    this.filter = this.filter.bind(this)
   }
 
   addFood(e, state) {
@@ -30,6 +32,16 @@ export default class App extends React.Component {
     this.setState({ formShow: !this.state.formShow })
   }
 
+  filter(filter) {
+    this.state.foods = foods
+    let newArray = [...this.state.foods].filter((food)=>{
+      if (food.name.includes(filter)){
+        return food.name
+      }
+    });
+    this.setState({ foods: newArray })
+  }
+
   render() {
     let displayStr
     if (this.state.formShow) {
@@ -40,6 +52,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <h1 className="title">IronNutrition</h1>
+        <Searchbar function={this.filter}></Searchbar>
         <Form style={{ display: displayStr }} addFood={this.addFood}></Form>
         <Button function={this.toggleForm}>Open/Close Form</Button>
         {this.state.foods.map((food, index) => {

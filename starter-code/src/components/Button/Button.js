@@ -16,9 +16,9 @@ export default class Button extends Component {
     if (this.state.form) {
       showForm = (
         <form>
-          <input type="text" name="namefood" value="Food" />
-          <input type="text" name="calories" value="calories" />
-          <input type="text" name="image" value="image" />
+          <input type="text" name="namefood" />
+          <input type="text" name="calories"/>
+          <input type="text" name="image"/>
           <input type="submit" value="submit" />
         </form>
       );
@@ -27,6 +27,8 @@ export default class Button extends Component {
       showForm = "";
       console.log("sale");
     }
+
+
 
     return (
       <div>

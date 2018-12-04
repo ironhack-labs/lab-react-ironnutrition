@@ -5,7 +5,7 @@ export default class FoodBox extends Component {
     return (
       <React.Fragment>
         {this.props.foods.map((elem, i) => (
-          <div className="box" key={i}>
+          <div className="box" key={i} title={elem.name}>
             <article className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
@@ -23,14 +23,15 @@ export default class FoodBox extends Component {
               <div className="media-right">
                 <div className="field has-addons">
                   <div className="control">
-                    <input
-                      className="input"
-                      type="number"
-                      defaultValue="1"
-                    />
+                    <input className="input" type="number" defaultValue="1" />
                   </div>
                   <div className="control">
-                    <button className="button is-info">+</button>
+                    <button
+                      onClick={this.props.addIngredient}
+                      className="button is-info"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-// import Foods from ;
-import Food from "../../foods.json"
 import 'bulma/css/bulma.css';
+
 
 export default class FoodBox extends Component {
   constructor(props) {
@@ -15,14 +14,14 @@ export default class FoodBox extends Component {
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
-                <img alt="food" src={this.props.image} />
+                <img alt="food" src={this.props.food.image} />
               </figure>
             </div>
             <div className="media-content">
               <div className="content">
                 <p>
-                  <strong>{this.props.name}</strong> <br/>
-                  <small>{this.props.calories}</small>
+                  <strong>{this.props.food.name}</strong> <br/>
+                  <small>{this.props.food.calories}</small>
                 </p>
               </div>
             </div>

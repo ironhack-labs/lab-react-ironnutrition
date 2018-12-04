@@ -4,6 +4,7 @@ import './App.css';
 import FoodBox from './components/FoodBox/FoodBox';
 import Food from "./foods.json";
 import FoodForm from "./components/FoodForm/FoodForm";
+import Search from "./components/Search/Search";
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+       <Search /> 
        <button onClick={this.addFood}>Add A Dish</button>
       {this.state.showForm && <FoodForm addFoodArray={this.addFoodArray}/> }
       {this.state.foods.map(x=><FoodBox food={x}/>)}

@@ -24,6 +24,7 @@ export default class App extends React.Component {
     e.preventDefault()
     let newArray = [...this.state.foods];
     newArray.push(state)
+    foods.push(state)
     this.setState({ foods: newArray })
     this.toggleForm()
   }

@@ -15,7 +15,7 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 4rem;
 }
 
 .App-intro {
@@ -26,3 +26,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+

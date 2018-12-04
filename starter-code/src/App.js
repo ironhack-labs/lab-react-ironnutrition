@@ -5,6 +5,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox/FoodBox";
 import Form from "./components/Form/Form";
+import Search from "./components/Search/Search";
 
 class App extends Component {
   constructor() {
@@ -15,6 +16,11 @@ class App extends Component {
     };
     this.toggleFormShow = this.toggleFormShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  searching(food){
+    let arr = [...this.state.foods]
+    arr.filter(food)
+    this.setState({... this.state, foods:arr})
   }
 
   handleSubmit(food){
@@ -28,8 +34,10 @@ class App extends Component {
   }
   render() {
     return (
+     
       <div className="App">
         <h1 className="App-title">IronNutrition</h1>
+      <Search searching={searching}/>
         <button className="button button is-primary" onClick={this.toggleFormShow}>Add New Food</button>
 
 {/* Si el open es true, muestrame el Form: */}

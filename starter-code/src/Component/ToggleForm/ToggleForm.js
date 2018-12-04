@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import './ToggleForm.css'
 class ToggleForm extends Component {
   constructor() {
     super();
@@ -11,7 +11,6 @@ class ToggleForm extends Component {
 
   handleChangeName(e) {
     this.setState({name:e.target.value})
-    console.log(e.target.value)
   }
 
   handleChangeCalories(e) {

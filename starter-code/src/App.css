@@ -2,3 +2,9 @@ button{
   padding: 1% 2%;
   
 }
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-contents: center;
+  align-items: center;
+}

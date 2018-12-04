@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Food from "./FoodBox/food.js"
+import FoodBox from "./FoodBox/food.js"
+import "./foods.json"
 
 class App extends Component {
   render() {
     return (
-      <Food></Food>
+      <FoodBox></FoodBox>
     );
   }
 }

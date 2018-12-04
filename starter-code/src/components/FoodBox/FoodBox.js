@@ -14,8 +14,8 @@ class FoodBox extends Component {
             <div className="media-content">
               <div className="content">
                 <p>
-                  <strong>Pizza</strong> <br />
-                  <small>400 cal</small>
+                  <strong>{this.props.name}</strong> <br />
+                  <small>{this.props.calories}</small>
                 </p>
               </div>
             </div>

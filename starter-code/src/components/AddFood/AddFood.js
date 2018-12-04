@@ -15,7 +15,7 @@ export default class AddFood extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+
     this.props.addFoodHandler(this.state);
     // this.props.addTheMovie(this.state);
     this.setState({

@@ -1,4 +1,5 @@
 .form-section {
    width: 30vw;
    margin-bottom: 50px;
+   transition: 2s linear;
 }

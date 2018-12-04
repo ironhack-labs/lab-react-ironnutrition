@@ -6,14 +6,20 @@ import foods from "./foods.json";
 
 import FoodBox from "./components/FoodBox";
 import AddFood from "./components/AddFood";
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       foods: foods,
+      foodsFiltered: [],
       formShowed: false
     };
+  }
+
+  componentWillMount =() =>{
+    this.setState({foodsFiltered: this.state.foods})
   }
 
   toggleForm = () => {
@@ -25,8 +31,19 @@ class App extends Component {
     const foodCopy = [...this.state.foods];
     foodCopy.push(theFood);
     this.setState({
-      foods: foodCopy
+      foods: foodCopy,
+      formShowed: false
     })
+  }
+
+  filterList = (event) => {
+    console.log(event.target.value.toLowerCase())
+    var updatedList = this.state.foods;
+    updatedList = updatedList.filter(function(food){
+      return food.name.toLowerCase().search(
+        event.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({foodsFiltered: updatedList});
   }
 
   render() {
@@ -36,15 +53,7 @@ class App extends Component {
       <React.Fragment>
         <div className="App">
           <h1 className="title">IronNutrition</h1>
-          <div>
-            <input
-              type="text"
-              className="input search-bar"
-              name="search"
-              placeholder="Search"
-              value=""
-            />
-          </div>
+          <SearchBar filterList={this.filterList}></SearchBar>
           <div className='buttonAdd'>
             <a onClick={this.toggleForm} className="button is-primary">
               Add new food
@@ -53,7 +62,7 @@ class App extends Component {
 
           {this.state.formShowed && <AddFood addFoodHandler={this.addFoodHandler} />}
 
-          {this.state.foods.map((food, i) => (
+          {this.state.foodsFiltered.map((food, i) => (
             <FoodBox
               key={i}
               name={food.name}

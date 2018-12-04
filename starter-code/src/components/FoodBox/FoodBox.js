@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import foods from '../../foods.json'
 class FoodBox extends Component {
   render() {
     return (

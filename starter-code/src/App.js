@@ -20,19 +20,17 @@ class App extends Component {
 
   submitHandler = (e,state) => {
     e.preventDefault();
-    console.log(state);
    
       const _food = [...this.state.food]
       _food.push(state);
-      this.setState({...this.state, food:_food})
-      console.log(this.state)
-    
+      this.setState({...this.state, food:_food})    
   }
 
   searchMeal = (e,state) => {
-    
-    
-    console.log(state);
+
+    const filterRegex = new RegExp(`(${e.target.value})+`, 'g')
+    const filteredFood = [...foods].filter(({name}) => name.match(filterRegex));    
+    this.setState({...this.state, food:filteredFood})    
 }
 
   render() {

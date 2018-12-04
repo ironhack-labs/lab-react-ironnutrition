@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-
+import foods from '../../foods.json'
 class FoodBox extends Component {
   render() {
     return (
@@ -9,7 +8,7 @@ class FoodBox extends Component {
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
-                <img src="https://i.imgur.com/eTmWoAN.png" />
+                <img src={this.props.image} />
               </figure>
             </div>
             <div className="media-content">

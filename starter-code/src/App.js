@@ -5,6 +5,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import FoodBox from './components/FoodBox/FoodBox.js'
 import Toggable from './components/toggable/Toggable'
+import Search from './components/Search/Search'
 import CheckoutBillingForm from './components/checkoutBillingForm/CheckoutBillingForm'
 
 
@@ -28,6 +29,12 @@ class App extends Component {
     
   }
 
+  searchMeal = (e,state) => {
+    
+    
+    console.log(state);
+}
+
   render() {
     return (
       <div className="App">
@@ -38,8 +45,8 @@ class App extends Component {
         <Toggable>
           <CheckoutBillingForm submitHandler={this.submitHandler}></CheckoutBillingForm>
         </Toggable>
+        <Search searchMeal={this.searchMeal}/>
         {this.state.food.map(food => <FoodBox {...food} />)}
-
       </div>
     );
   }

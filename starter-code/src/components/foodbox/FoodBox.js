@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 class FoodBox extends Component {
   render() {
-      console.log(this.props)
     return (
       
         <div className="box">

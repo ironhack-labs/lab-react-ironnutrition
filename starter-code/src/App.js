@@ -5,17 +5,15 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox/FoodBox";
 import Form from "./components/Form/Form"
+import Search from "./components/Search/Search"
 
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
       foods: foods,
       formShow: false
     };
-
-    
   }
   switchState = () => {
     let show = !this.state.formShow
@@ -23,15 +21,17 @@ class App extends Component {
   };
 
   addNewFood = (newFood) => {
-    // console.log(newFood)
     let newArray = [...this.state.foods]
     newArray.push(newFood)
-    console.log(newArray)
     this.setState({foods: newArray})
     this.switchState();
-    // console.log(this.state)
   };
 
+  filterFood = (searchFood) => {
+    this.state.foods = foods    
+    let newArray = this.state.foods.filter((element)=>element.name.includes(searchFood))
+    this.setState({foods: newArray})
+  }
   
 
   render() {
@@ -45,6 +45,7 @@ class App extends Component {
         
     return (
       <div className="App">
+        <Search filtering={this.filterFood}/>
         {this.state.foods.map(food => (
           <FoodBox {...food} />
         ))}

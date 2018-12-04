@@ -6,8 +6,6 @@ export default class FoodBox extends Component {
         super(props);
 
     }
-
-
   render() {
     return (  
       <div>

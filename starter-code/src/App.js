@@ -6,13 +6,24 @@ import foods from './foods.json'
 import FoodBox from './components/FoodBox/FoodBox'
 
 class App extends Component {
+  
+  constructor(){
+    super()
+    this.state = {
+      foods: foods
+  }
+  }
   render() {
+
     return (
       <div className="App">
         
         <h1 className="App-title">IronNutrition</h1>
-       <FoodBox/>
-     
+        
+        {this.state.foods.map((food,i) => (
+         <FoodBox {...food}/>
+        ))
+     }
       </div>
     );
   }

@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
+import 'bulma/css/bulma.css';
 
 export default class FoodBox extends Component {
 
     constructor(props){
         super(props)
-        this.state= {
-            image:" ",
-            name:" ",
-            calories:0,
-            quantity:1,
-            
-
-        }
+      
     }
   render() {
     return (
-      <div>
+        
+        
        <div className="box">
+
+        {this.props.foods.map((food,index)=>{
+
+      return(     
+          
+    <div key={index}>
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src="https://i.imgur.com/eTmWoAN.png" />
+        <img src={food.image} />
       </figure>
     </div>
     <div className="media-content">
       <div className="content">
         <p>
-          <strong></strong> <br />
-          <small>400 cal</small>
+          <strong>{food.name}</strong> <br />
+          <small>{food.calories}</small>
         </p>
       </div>
     </div>
@@ -37,7 +38,7 @@ export default class FoodBox extends Component {
           <input
             className="input"
             type="number" 
-            value="1"
+            value={food.quantity}
           />
         </div>
         <div className="control">
@@ -49,7 +50,11 @@ export default class FoodBox extends Component {
     </div>
   </article>
 </div>
-      </div>
-    )
-  }
+
+      )
+    
+      }
+        )
 }
+</div>  
+ )}}

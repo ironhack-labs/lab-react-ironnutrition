@@ -23,6 +23,22 @@
   font-size: large;
 }
 
+.mainSection {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 100px;
+}
+
+.foodSection {
+  width: 30vw;
+}
+
+.listSection {
+  text-align: left;
+  /* display: flex;
+  justify-content: center;
+  flex-flow: column; */
+}
 
 
 

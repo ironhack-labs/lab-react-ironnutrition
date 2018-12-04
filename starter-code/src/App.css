@@ -27,3 +27,8 @@
   to { transform: rotate(360deg); }
 }
 
+.button {
+  width: 20rem;
+  
+}
+

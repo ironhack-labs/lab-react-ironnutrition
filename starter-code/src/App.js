@@ -6,17 +6,20 @@ import foods from './foods.json'
 import Foodbox from './components/FoodBox/foodBox'
 
 class App extends Component {
+  constructor() {
+    super();
+  
+    this.state = {
+      food:foods
+    }
+  }
+  
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Foodbox/>
+        {this.state.food.map((food,index)=> <Foodbox key={index} foodData={food}/>)}
+       
       </div>
     );
   }

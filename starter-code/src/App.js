@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json'
+import Foodbox from './components/Foodbox/Foodbox'
+import './components/Foodbox/Foodbox.css';
+import Form from './components/Form/Form'
+
+let foodList= foods;
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {food:foodList}
+  }
+  addFood=() => {
+    // this.setState({
+    //   ...this.state,food
+    // })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+      <h1>IronNutrition</h1>
+      <input type="text"/>
+      {this.state.food.map(foods => {
+            
+            return (
+              <Foodbox {...foods} />
+              
+            )
+          })}
+      <button onclick={this.addFood}>Add Food</button>
+      <Form></Form>
       </div>
     );
   }

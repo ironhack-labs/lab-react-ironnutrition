@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       foods: foods, 
       isFormVisible: false, 
-      wordToSearch: ''
+      wordToSearch: '', 
+      list: []
     }
   }
 
@@ -35,7 +36,19 @@ class App extends Component {
     this.setState({...this.state, wordToSearch: e.target.value})
   }
 
-  showFoods = () => this.state.foods.map(food => (food.name.match(new RegExp(this.state.wordToSearch, "i"))) &&  <FoodBox {...food} />)
+  generateFoods = () => this.state.foods.map(food => 
+    (food.name.match(new RegExp(this.state.wordToSearch, "i"))) && <FoodBox {...food} addToCart={this.addToCart} />)
+
+  generateList = () => this.state.list.map(item => 
+    <li><span>{item.quantity}</span> <span>{item.name}</span> = <span>{item.calories}</span> cal</li>)
+
+  getTotalCalories = () =>  this.state.list.length ? this.state.list.reduce((acc, act) => acc + (act.quantity * act.calories), 0) : 0;
+
+  addToCart = (name, calories, quantity) => {
+    let listCopy = [...this.state.list];
+    listCopy.push({name, quantity, calories})
+    this.setState({...this.state, list: listCopy})
+  }
 
 
   render() {
@@ -47,11 +60,17 @@ class App extends Component {
 
         <div className="columns">
           <div className="column">
-            {this.showFoods()}
+            {this.generateFoods()}
           </div>
           <div className="column container">
             
             {this.state.isFormVisible ? <NewFoodForm closeForm={this.changeFormVisibility} addFood={this.addFood} /> : <button className="button is-primary"onClick={this.changeFormVisibility}>Add Food</button>}
+
+            <h2 class="subtitle">Today's foods</h2>
+
+            <ul>{this.generateList()}</ul>
+            <p>Total: {this.getTotalCalories()} cal</p>
+
           </div>
         </div>
       </div>

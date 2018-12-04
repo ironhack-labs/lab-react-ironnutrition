@@ -39,8 +39,37 @@ class App extends Component {
   generateFoods = () => this.state.foods.map(food => 
     (food.name.match(new RegExp(this.state.wordToSearch, "i"))) && <FoodBox {...food} addToCart={this.addToCart} />)
 
-  generateList = () => this.state.list.map(item => 
-    <li><span>{item.quantity}</span> <span>{item.name}</span> = <span>{item.calories}</span> cal</li>)
+  generateList = () => {
+    this.reduceList(this.state.list);
+    return this.reduceList(this.state.list).map(item => 
+    <li><span>{item.quantity}</span> <span>{item.name}</span> = <span>{item.quantity * item.calories}</span> cal</li>)
+  }
+
+  reduceList(list) {
+    let newList = {};
+
+    list.forEach(item => {
+      (newList[item.name]) ? newList[item.name].push(item) : newList[item.name] = [item]
+    })
+    
+    for (let food in newList) {
+      newList[food] = newList[food].reduce((acc, act) => {
+        return {
+          name: act.name,
+          quantity: acc.quantity + (+act.quantity),
+          calories: act.calories
+        }
+      })
+    }
+    
+    let arrayList = [];
+
+    for (let food in newList) {
+      arrayList.push(newList[food]);
+    }
+
+    return arrayList;
+  }
 
   getTotalCalories = () =>  this.state.list.length ? this.state.list.reduce((acc, act) => acc + (act.quantity * act.calories), 0) : 0;
 
@@ -49,6 +78,8 @@ class App extends Component {
     listCopy.push({name, quantity, calories})
     this.setState({...this.state, list: listCopy})
   }
+
+
 
 
   render() {

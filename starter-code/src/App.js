@@ -6,6 +6,7 @@ import foods from './foods.json'
 
 import FoodBox from './components/FoodBox/FoodBox'
 import NewFoodForm from './components/NewFoodForm/NewFoodForm'
+import InputForm from './components/InputForm/InputForm'
 
 class App extends Component {
   constructor() {
@@ -13,7 +14,8 @@ class App extends Component {
 
     this.state = {
       foods: foods, 
-      isFormVisible: false
+      isFormVisible: false, 
+      wordToSearch: ''
     }
   }
 
@@ -29,15 +31,23 @@ class App extends Component {
 
   }
 
-  render() {
-    const foodsHTML = this.state.foods.map(food => <FoodBox {...food} /> );
+  searchFoods = (e) => {
+    this.setState({...this.state, wordToSearch: e.target.value})
+  }
 
+  showFoods = () => this.state.foods.map(food => (food.name.match(new RegExp(this.state.wordToSearch, "i"))) &&  <FoodBox {...food} />)
+
+
+  render() {
     return (
       <div className="App container">
         <h1 className="title">IronNutrition</h1>
+
+        <InputForm name="search" type="text" placeholder="Search..." handleChange={this.searchFoods} />
+
         <div className="columns">
           <div className="column">
-            {foodsHTML}
+            {this.showFoods()}
           </div>
           <div className="column container">
             

@@ -35,8 +35,8 @@ export default class App extends React.Component {
 
   filter(filter) {
     this.state.foods = foods
-    let newArray = [...this.state.foods].filter((food)=>{
-      if (food.name.includes(filter)){
+    let newArray = [...this.state.foods].filter((food) => {
+      if (food.name.includes(filter)) {
         return food.name
       }
     });
@@ -56,9 +56,17 @@ export default class App extends React.Component {
         <Searchbar function={this.filter}></Searchbar>
         <Form style={{ display: displayStr }} addFood={this.addFood}></Form>
         <Button function={this.toggleForm}>Open/Close Form</Button>
-        {this.state.foods.map((food, index) => {
-          return <FoodBox {...food} ></FoodBox>
-        })}
+        <div className="columns">
+          <div className="column">
+            {this.state.foods.map((food, index) => {
+              return <FoodBox {...food} ></FoodBox>
+            })}
+          </div>
+          <div className="todaysfood column">
+            <h1 className="title">Todays form</h1>
+            <li></li>
+          </div>
+        </div>
       </div>
     );
   }

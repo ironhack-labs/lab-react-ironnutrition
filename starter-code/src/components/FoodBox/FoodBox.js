@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'bulma/css/bulma.css';
+import './styles.css'
 
 export default class FoodBox extends Component {
 

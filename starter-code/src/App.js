@@ -4,6 +4,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foodsJSON from './foods.json';
 import FoodBox from'./components/FoodBox/FoodBox';
+import Button from './components/Button/Button'
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
     return (
       <div className="App">
       <FoodBox foods={[...this.state.foods]} />
+      <Button />
       </div>
     );
   }

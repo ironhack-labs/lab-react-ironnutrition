@@ -6,10 +6,15 @@ import foods from './foods.json'
 import FoodBox from './components/FoodBox/FoodBox.js'
 
 class App extends React.Component {
+
+
   render() {
+
+    let foodsList = foods.map((foodElem, i)=>{return <FoodBox key={i} food={foodElem}></FoodBox>})
+
     return (
       <div className="App">
-        <FoodBox food={foods[0]} ></FoodBox>
+        {foodsList}
       </div>
     );
   }

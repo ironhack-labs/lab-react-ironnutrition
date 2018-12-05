@@ -25,19 +25,25 @@ class App extends Component {
     });
   };
 
+  listReducer = (arr) => {
+    arr.map((elem, i) => {
+      (arr[elem.name])  arr.splice(i, 1) 
+    })
+  }
+
   addIngredientHandler = e => {
     const myCart = this.state.cart;
     const myQuantity = e.target.parentNode.parentNode.firstChild.firstChild.value;
     const myIngredientFetch = e.target.parentNode.parentNode.parentNode.parentNode.parentNode;
     const myIngredient = [...this.state.foods].filter(elem => {
       if (elem.name.includes(myIngredientFetch.title)) {
-        elem.quantity = +myQuantity;
+        elem.quantity += +myQuantity;
         elem.calories *= +myQuantity;
         return elem;
       }
     });
-    myCart.push(...myIngredient);
-    console.log(myCart);
+    myCart.push(...myIngredient)
+    this.listReducer(myCart)
     this.setState({
       ...this.state,
       cart: myCart

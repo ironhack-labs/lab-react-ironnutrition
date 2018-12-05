@@ -2,6 +2,12 @@ import React from 'react';
 
 class FoodBox extends React.Component {
 
+    changeHandler = (e) => {
+        e.preventDefault();
+        let index = this.props.index
+        this.props.quantityHandler(index, e.target.value);
+    }
+
     render() {
         return (
             <div className="box">
@@ -26,6 +32,7 @@ class FoodBox extends React.Component {
                                     className="input"
                                     type="number"
                                     value={this.props.food.quantity}
+                                    onChange={(e) => {this.changeHandler(e)}}
                                 />
                             </div>
                             <div className="control">

@@ -4,6 +4,10 @@ export default class Button extends Component {
   constructor() {
     super();
     this.state = { form: false };
+    this.state= {
+        handler: function(e){this.props.callbackFunction(e)}.bind(this)
+     
+    }
   }
 
   activateForm = () => {
@@ -32,7 +36,7 @@ export default class Button extends Component {
 
     return (
       <div>
-        <button onClick={this.activateForm} className="button">
+        <button onClick={this.activateForm}  className="button">
           Add new food
         </button>
         <div style={{ display: showForm }} >

@@ -16,11 +16,20 @@ class App extends Component {
     }
   }
 
+  addFood =() =>{
+    let FoodCopia =[...this.state.foods]
+    FoodCopia.push();
+    this.setState({
+      ...this.state,
+      foods: FoodCopia
+    })
+}
+
   render() {
     return (
       <div className="App">
       <FoodBox foods={[...this.state.foods]} />
-      <Button />
+      <Button callbackFunction={this.addFood}/>
       </div>
     );
   }

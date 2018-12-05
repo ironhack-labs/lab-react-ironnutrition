@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import {Foodbox} from './Foodbox.js'
+import Toggable from './components/Toggable/Toggable'
+import CheckoutBillingForm from './components/CheckOutBillingForm/CheckOutBillingForm'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <Toggable>
+          <h1>Busca</h1>
+          <CheckoutBillingForm submitHandler={this.submitHandler}></CheckoutBillingForm>
+        </Toggable>
+       
+         <Foodbox/>
+        
+
+
       </div>
     );
   }

@@ -5,7 +5,7 @@ import foods from './foods.json'
 
 
 import FoodBox from './components/FoodBox/FoodBox.js'
-
+import Form from './components/Form/Form.js'
 
 
 
@@ -22,6 +22,8 @@ constructor () {
   render() {
     return (
       <div className="App">
+       
+       <Form/>
        
        {this.state.food.map(food => <FoodBox {...food}/>)}
 

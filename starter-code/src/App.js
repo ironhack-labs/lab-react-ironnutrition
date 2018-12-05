@@ -32,7 +32,7 @@ class App extends Component {
             )
           })}
       <button onclick={this.addFood}>Add Food</button>
-      <Form></Form>
+      <Form/>
       </div>
     );
   }

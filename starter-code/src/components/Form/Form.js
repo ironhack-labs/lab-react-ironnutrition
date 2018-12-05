@@ -32,7 +32,6 @@ export default class Form extends Component {
 
     updateDetailsHandler = (e) => {
         e.preventDefault();
-        console.log(e)
         this.setState({ ...this.state}, () => {
             this.props.submitHandler(this.state)
         })

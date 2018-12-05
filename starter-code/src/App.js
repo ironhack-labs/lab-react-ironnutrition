@@ -25,7 +25,6 @@ class App extends Component {
 
 handleSubmit(food){
   let arr = [...this.state.foods]
-  console.log(arr);
   arr.push(food)
   this.setState({... this.state, foods:arr})
 }
@@ -38,13 +37,14 @@ handleSubmit(food){
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <button class="button is-success" onClick={this.switchState} >Add New Food</button>
+        {this.state.formShow && <Form submitHandler={this.handleSubmit} /> }
         {//con map recorro foods y pinto el componente FoodBox tantas veces como elementos tenga y admés con spread operator le paso al compenete todas las propiedades.
         this.state.foods.map((food, i) => (
           <FoodBox {...food} />
         ))
         }
-        <button onClick={this.switchState} >Add New Food</button>
-        {this.state.formShow && <Form submitHandler={this.handleSubmit} /> }
+
       </div>
     );
   }

@@ -2,11 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json'
-import FoodBox from './components/FoodBox/FoodBox.js'
+import foods from './foods.json';
+import FoodBox from './components/FoodBox/FoodBox.js';
+import AddButton from './components/AddButton/AddButton.js';
 
 class App extends React.Component {
-
 
   render() {
 
@@ -14,6 +14,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <AddButton></AddButton> 
         {foodsList}
       </div>
     );

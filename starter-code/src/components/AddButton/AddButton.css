@@ -1,0 +1,11 @@
+.open{
+    display:block;
+}
+
+.closed{
+    display:none;
+}
+
+input{
+    margin: 0 10px 0 5px;
+}

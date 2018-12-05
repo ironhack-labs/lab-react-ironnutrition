@@ -3,6 +3,15 @@ import './App.css';
 import 'bulma/css/bulma.css';
 
 class FoodBox extends Component {
+  state = {
+    value: 1
+  }
+  valueChange = (e) => {
+    this.setState({
+        value: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="box">
@@ -26,11 +35,12 @@ class FoodBox extends Component {
                 <input
                   className="input"
                   type="number" 
-                  value="1"
+                  value={this.state.value}
+                  onChange={(e) => this.valueChange(e)}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={() => this.props.addItem(this.state.value)}>
                   +
                 </button>
               </div>

@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   addNewFood = function (name,cal,imgPath){
-      let foodsCopia={...this.state.foods}
+      let foodsCopia=[...this.state.foods]
       foodsCopia.push({
         "name": name,
         "calories": cal,
@@ -40,7 +40,7 @@ class App extends Component {
 
       <div className="App">
         <CustomButton clase="is-primary is-link" callbackFunction={this.toggleShowForm}>Add food</CustomButton>
-        {this.state.showForm && <AddForm />}
+        {this.state.showForm && <AddForm callbackFunction={this.addNewFood}/>}
         {foodboxs}
 
         <CustomButton clase="is-primary is-link">Add food</CustomButton>

@@ -23,7 +23,7 @@ constructor () {
     return (
       <div className="App">
        
-       {this.state.food.map(food => <div> <img src={food.pictureUrl}/> {food.name} <br></br> {food.calories}</div>)}
+       {this.state.food.map(food => <FoodBox {...food}/>)}
 
       </div>
     );

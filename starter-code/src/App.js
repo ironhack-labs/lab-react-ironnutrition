@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json'
+
 
 import FoodBox from './components/FoodBox/FoodBox.js'
 
 
 
+
 class App extends Component {
+
+constructor () {
+         super()
+      this.state = {
+        food: foods.map((food) => food)
+      }
+
+}
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
        
-       <FoodBox/>
+       {this.state.food.map(food => <div> <img src={food.pictureUrl}/> {food.name} <br></br> {food.calories}</div>)}
 
       </div>
     );

@@ -23,5 +23,6 @@ export default class Foodbox extends React.Component {
       </form>
     </div>
     );
+    // console.log(submit);
   }
 }

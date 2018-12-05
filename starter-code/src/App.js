@@ -25,12 +25,6 @@ class App extends Component {
     });
   };
 
-  listReducer = (arr) => {
-    arr.map((elem, i) => {
-      (arr[elem.name])  arr.splice(i, 1) 
-    })
-  }
-
   addIngredientHandler = e => {
     const myCart = this.state.cart;
     const myQuantity = e.target.parentNode.parentNode.firstChild.firstChild.value;
@@ -42,8 +36,11 @@ class App extends Component {
         return elem;
       }
     });
-    myCart.push(...myIngredient)
-    this.listReducer(myCart)
+  myCart.push(...myIngredient)
+    myCart.map((elem, i) => {
+      console.log(elem.name)
+      if (myCart[elem.name]) { return myCart.splice(i, 1) }
+  })
     this.setState({
       ...this.state,
       cart: myCart

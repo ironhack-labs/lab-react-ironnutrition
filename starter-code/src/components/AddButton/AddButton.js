@@ -14,6 +14,8 @@ class AddButton extends React.Component {
                 quantity: 0
             }
         }
+
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
     }
 
     showForm() {
@@ -26,24 +28,41 @@ class AddButton extends React.Component {
 
     changeHandler = (e) => {
         e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value });
+        let updatedNewFood = {...this.state.newFood};
+        updatedNewFood[e.target.name]=e.target.value;
+
+        this.setState({ ...this.state, newFood: updatedNewFood});
     }
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+    
+        this.props.addFoodHandler(this.state.newFood);
+        
+        let resetFood = {
+            name: "",
+            calories: 0,
+            image: "",
+            quantity: 0
+        }
+        this.setState({...this.state, newFood : resetFood });
+    };
 
 
     render() {
 
         return (
             <div className="AddButton">
-                <button id="switch" onClick={() => { this.showForm() }}>Add Food</button>
-                <div className={this.state.display} >
+                <button id="switch" onClick={() => {this.showForm() }}>Add Food</button>
+                <form className={this.state.display} onSubmit={this.handleFormSubmit} >
                     <label>Name:</label>
                     <input type="text" name="name" placeholder="name" onChange={(e) => { this.changeHandler(e) }} />
                     <label>Calories:</label>
                     <input type="number" name="calories" placeholder="100" onChange={(e) => { this.changeHandler(e) }} />
                     <label>Image:</label>
                     <input type="text" name="image" placeholder="" onChange={(e) => { this.changeHandler(e) }} />
-                    <button type="submit" onClick="">Add</button>
-                </div>
+                    <button type="submit">Add</button>
+                </form>
             </div>
         )
     }

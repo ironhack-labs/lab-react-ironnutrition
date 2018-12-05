@@ -10,8 +10,9 @@ import Search from "./components/Search/Search"
 class App extends Component {
   constructor() {
     super();
+    this.baseFoods = foods
     this.state = {
-      foods: foods,
+      foods: this.baseFoods,
       formShow: false
     };
   }
@@ -21,14 +22,14 @@ class App extends Component {
   };
 
   addNewFood = (newFood) => {
-    let newArray = [...this.state.foods]
-    newArray.push(newFood)
-    this.setState({foods: newArray})
+    // let newArray = [...this.state.foods]
+    this.baseFoods.push(newFood)
+    this.setState({foods: this.baseFoods})
     this.switchState();
   };
 
   filterFood = (searchFood) => {
-    this.state.foods = foods    
+    this.state.foods = this.baseFoods    
     let newArray = this.state.foods.filter((element)=>element.name.includes(searchFood))
     this.setState({foods: newArray})
   }

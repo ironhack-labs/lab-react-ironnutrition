@@ -10,22 +10,30 @@ class App extends Component {
     super()
     this.state = {
       show: false,
-      foods: Food.map(foods => {
-        return <FoodBox {...foods} />
-      })
+      foods: Food
     }
   }
   toggle = () => {
-    let show = !this.state.show 
+    let show = !this.state.show
     this.setState({ show: show })
   }
+
+  addFoodHandler = (oneFood) => {
+    const foodCopy = [...this.state.foods];
+    foodCopy.push(oneFood);
+    this.setState({
+      foods: foodCopy
+    })
+  }
+
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>IronNutrition</h1>
         <button onClick={this.toggle}>Add Food</button>
-        {this.state.show && <Form />}
-        {this.state.foods}
+        {this.state.show && <Form addTheFood={this.addFoodHandler} />}
+        {this.state.foods.map(x=><FoodBox food={x}/>)}
+        {/* {this.state} */}
       </div>
     );
   }

@@ -9,11 +9,15 @@ class Food extends Component {
         listofFoods : foods,
         foodCount: 3,
         style : { height : "4vw" },
-        showForm : false,
+
+
+
+        showForm : true,
+        values : { 
         nameVal : '',
         calVal : '',
         imgVal : '',
-
+        }
         
 
     }
@@ -64,15 +68,20 @@ class Food extends Component {
             return (
                 <form>
                 <label>Name</label>
-                <input type="text" placeholder="Name"  onChange={(e1) =>{    this.addName()     }}/>
+                <input type="text" placeholder="Name"  onChange={(e) =>{    this.addName(e)     }}/>
 
                 <label>NUMBER OF Calories</label>
-                <input type="number" placeholder="cal" onChange={(e2) =>{    this.AddCal     }}/>
+                <input type="number" placeholder="cal" onChange={(e) =>{    this.AddCal(e)     }}/>
 
                 <label>Image</label>
-                <input type="text" placeholder="image" onChange={(e3) =>{    this.addImg()     }}/>
-                
-                <button onClick={()=>{   this.submitButton()  }}>Done</button>
+                <input type="text" placeholder="image" onChange={(e) =>{    this.addImg(e)     }}/>
+
+
+
+                    
+
+
+                <button onClick={()=>{   this.props.AddProduct(this.state.values)  }}>Done</button>
 
             </form>
 
@@ -85,32 +94,24 @@ class Food extends Component {
 
     render(){
         return(
+            <div>   
 
-
-
-
-
-            <div>
-                    {this.state.listofFoods.map((eachFood, Index) =>{
-                        return (
-
-                            <div key={Index}>
-                                <div>
-                                    <img src = {eachFood.image} style ={this.state.style}/>
-                                </div>    
-                                <div>
-                                    <p>{eachFood.name}</p>
-                                    <p>{eachFood.calories}</p>
-                                </div>
-
-                            </div>
-                        )
-                    })}
-           
-
-
-
+                   
+                    <div>
+                        <img src = {this.props.imagePic} style = {this.state.style} />
+                    </div>
+                    <div>
+                        <p>{this.props.foodName}</p>
+                        <p>{this.props.numberOfCal}</p>
+                    </div>
+                    <div>
+                        {this.showForm()}
+                    </div>
+                    
             </div>
+
+
+
             // <div>   
                 
             //     <button onClick = {() =>{  this.addNewFood()     }}>Add new food</button>

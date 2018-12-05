@@ -10,8 +10,10 @@ class App extends Component {
     super();
     this.state = {
       food: foods,
-      showForm: false
+      showForm: false,
+      search: ""
     }
+    this.buff = "";
   }
   showCreateNewFood = () => {
     console.log('Pasa por aquii')
@@ -26,6 +28,27 @@ class App extends Component {
     })
   }
 
+  searchInput = (event) => {
+    console.log('Esta intentando buscar')
+    // if (event.target.value === ""){
+    //   this.buff.slice(0, -1);
+    //   console.log(this.buff)
+    // }
+    // else
+    this.buff += event.target.value;
+    console.log(this.buff);
+    let searchArray = foods.filter(word => 
+      {
+        if (word.name.toLowerCase().includes(this.buff))
+          return word.name
+      }
+      )
+    console.log(searchArray);
+    this.setState({
+      food: searchArray
+  })
+  }
+
   render() {
     return (
 
@@ -34,6 +57,14 @@ class App extends Component {
           <button onClick={this.showCreateNewFood} class="button is-primary">Add new food</button>
         </div>
         {this.state.showForm && <FoodForm createNewFood={this.createNewFood} />}
+
+        <div class="field">
+          <label class="label">Search</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Any food.."
+              value={this.state.search} onK onChange={this.searchInput}></input>
+          </div>
+        </div>
 
         {this.state.food.map(piece => {
           return (

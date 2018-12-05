@@ -29,7 +29,6 @@ class App extends Component {
     foodsCopy.push(food);
 
     this.setState({...this.state, foods: foodsCopy})
-
   }
 
   searchFoods = (e) => {
@@ -41,8 +40,17 @@ class App extends Component {
 
   generateList = () => {
     this.reduceList(this.state.list);
-    return this.reduceList(this.state.list).map(item => 
-    <li><span>{item.quantity}</span> <span>{item.name}</span> = <span>{item.quantity * item.calories}</span> cal</li>)
+    return this.reduceList(this.state.list).map((item, index) => 
+    <li><span>{item.quantity}</span> <span>{item.name}</span> = <span>{item.quantity * item.calories}</span> cal <button className="button is-small" onClick={(e) => this.deleteFromList(index)}>Delete</button></li>)
+  }
+
+  deleteFromList = (index) => {
+    const listCopy = [...this.state.list];
+    listCopy[index].quantity--;
+
+    if (listCopy[index].quantity === 0) listCopy.splice(index, 1)
+
+    this.setState({...this.state, list: listCopy});
   }
 
   reduceList(list) {
@@ -56,7 +64,7 @@ class App extends Component {
       newList[food] = newList[food].reduce((acc, act) => {
         return {
           name: act.name,
-          quantity: acc.quantity + (+act.quantity),
+          quantity: +acc.quantity + (+act.quantity),
           calories: act.calories
         }
       })
@@ -75,7 +83,10 @@ class App extends Component {
 
   addToCart = (name, calories, quantity) => {
     let listCopy = [...this.state.list];
-    listCopy.push({name, quantity, calories})
+    listCopy.push({name, quantity, calories});
+    
+    listCopy = this.reduceList(listCopy)
+
     this.setState({...this.state, list: listCopy})
   }
 

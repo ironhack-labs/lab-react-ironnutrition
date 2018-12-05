@@ -35,7 +35,7 @@ export default class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" name="quantity" type="number" value={this.state.quantity} onChange={e => this.handleChange(e)} />
+                <input className="input" name="quantity" type="number" min='1' value={this.state.quantity} onChange={e => this.handleChange(e)} />
               </div>
               <div className="control">
                 <button className="button is-info" onClick={(e) => this.props.addToCart(this.props.name, this.props.calories, this.state.quantity)}>+</button>

@@ -5,6 +5,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox/FoodBox.js";
 import Form from "./components/Form/Form.js";
+import SearchBar from "./components/SearchBar/SearchBar.js";
 
 class App extends Component {
   constructor() {
@@ -37,6 +38,7 @@ handleSubmit(food){
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        < SearchBar />
         <button class="button is-success" onClick={this.switchState} >Add New Food</button>
         {this.state.formShow && <Form submitHandler={this.handleSubmit} /> }
         {//con map recorro foods y pinto el componente FoodBox tantas veces como elementos tenga y admés con spread operator le paso al compenete todas las propiedades.

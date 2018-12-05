@@ -6,10 +6,19 @@ import foods from "./foods.json";
 import FoodBox from "./components/FoodBox/FoodBox";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      foods: foods
+    };
+  }
+
   render() {
-    return <div className="App">
-    <FoodBox></FoodBox>
-    </div>;
+    return (
+      <div className="App">
+        <FoodBox foods={this.state.foods}/>
+      </div>
+    );
   }
 }
 

@@ -8,13 +8,30 @@ class Home extends Component{
         super();
         this.state = {
             foods : foods,
-            show: false
+            show: false,
+            newFood:{
+                name: "",
+                calories: 0,
+                image: "https://i.imgur.com/eTmWoAN.png",
+                quantity: 0
+            }
         }
     }
 
+
+
     addFood = (e) => {
         e.preventDefault();
-        let {show} = this.state;
+        let {show,newFood,foods} = this.state;
+
+        if(show) {
+
+            let name = e.target.name.value, calories = e.target.calories.value;
+            newFood.name = name;
+            newFood.calories = calories;
+            foods.push(newFood);
+            this.setState({foods})
+        }
         show = !show;
         this.setState({show});
     }

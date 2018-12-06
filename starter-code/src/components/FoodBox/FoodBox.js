@@ -4,8 +4,13 @@ class FoodBox extends React.Component {
 
     changeHandler = (e) => {
         e.preventDefault();
-        let index = this.props.index
-        this.props.quantityHandler(index, e.target.value);
+        let food = this.props.food
+        this.props.quantityHandler(food, e.target.value);
+    }
+
+    addToListButtonHandler = () =>{
+        let food = this.props.food;
+        this.props.addToListHandler(food);
     }
 
     render() {
@@ -36,7 +41,7 @@ class FoodBox extends React.Component {
                                 />
                             </div>
                             <div className="control">
-                                <button className="button is-info">
+                                <button className="button is-info" onClick={this.addToListButtonHandler}>
                                     +
                                 </button>
                             </div>

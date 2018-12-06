@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     search: "",   
     foods: foods,
-
+    todaysFood: []
   }
 
   handleAdd = (event) =>{
@@ -33,29 +33,51 @@ class App extends Component {
     currentFoods.push(newFoodItem);
     this.setState({foods: currentFoods})
   }
-
+  
   handleChange = (event) => {
     this.setState({search: event.target.value}) 
   }
-  
+
+  addtodaysFood = (foodObject) => {
+    var currentFoods = this.state.todaysFood
+    currentFoods.push(foodObject)
+    this.setState({todaysFood: currentFoods}), function() {
+      debugger
+    };
+  }
+
   render() {
-    
+    var todaysFoodList = this.state.todaysFood.map((food)=> <li>{food.name}| Cal: {food.calories}| Qty: {food.quantity}</li>)
     var foodBoxes = this.state.foods
     .filter((food)=> 
       food.name.toLowerCase().includes(this.state.search.toLowerCase())
     )
-    .map((food)=> <Foodbox calories={food.calories} name={food.name} image={food.image}/>)
-
+    .map((food)=> <Foodbox addFood={this.addtodaysFood} calories={food.calories} name={food.name} image={food.image}/>)
+    
     return (
       <div className="App">
-        <input onChange={this.handleChange} name="search" placeholder={this.state.search} placeholder="search"/>
-        <div>
-          <input type="text" name="name" onChange={this.handleAdd} placeholder="name"/>
-          <input type="text" name="image" onChange={this.handleAdd} placeholder="image"/>
-          <input type="text" name="calories" onChange={this.handleAdd} placeholder="calories"/>
+          <div>
+            <input onChange={this.handleChange} name="search" placeholder={this.state.search} placeholder="search"/>
+            <br/>
+            <button onClick={this.addFoodItem}>Add Food</button>
+            <input type="text" name="name" onChange={this.handleAdd} placeholder="name"/>
+            <input type="text" name="image" onChange={this.handleAdd} placeholder="image"/>
+            <input type="text" name="calories" onChange={this.handleAdd} placeholder="calories"/>
+          </div>
+          <br/>
+          <div className="flex">
+            <div>
+              {foodBoxes}
+            </div>
+            <div>
+              <h2><b>Today's food</b></h2>
+              <ul>
+                {todaysFoodList}
+              </ul>
+            </div> 
         </div>
-        <button onClick={this.addFoodItem}>Add Food</button>
-        {foodBoxes}
+        
+        
       </div>
     );
   }

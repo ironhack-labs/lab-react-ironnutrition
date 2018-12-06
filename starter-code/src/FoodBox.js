@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 
 class Foodbox extends Component {
-    render() {
+
+    state = {
+        quantity: 0 
+    }
+    addFood = () =>{
+        var foodObject = {
+            name: this.props.name,
+            calories: this.props.calories,
+            image: this.props.image, 
+            quantity: this.state.quantity
+        }
+        this.props.addFood(foodObject)
+    }
+        render() {
         return (
         <div className="box">                
                 <article className="media">
@@ -24,11 +37,11 @@ class Foodbox extends Component {
                         <input
                             className="input"
                             type="number" 
-                            value="1"
+                            placeholder="1"
                         />
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button onClick={this.addFood} className="button is-info">
                             +
                         </button>
                         </div>
@@ -39,5 +52,6 @@ class Foodbox extends Component {
         );
     }
 }
+
 
 export default Foodbox;

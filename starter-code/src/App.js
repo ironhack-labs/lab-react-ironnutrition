@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+ import logo from './logo.svg';
+ import './App.css';
+ import foods from './foods.json';
+ 
+ class App extends Component {
+   constructor() {
+     super()
+     this.state = {
+       foods: foods,
+       showForm: false
+     }
+   }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+   addNewFood = function (name,cal,imgPath){
+       let foodsCopia=[...this.state.foods]
+       foodsCopia.push({
+         "name": name,
+         "calories": cal,
+         "image": imgPath,
+         "quantity": 0
+       })
+       this.setState({ ...this.state, foods: foodsCopia })
 
-export default App;
+   }.bind(this)
+
+  
+
+   
+ }
+ 
+ export default App;

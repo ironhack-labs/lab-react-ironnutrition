@@ -9,7 +9,7 @@ class Food extends Component {
   render() {
     const {foodList}=this.state
     return (
-      <div className="food">
+      <div className="container">
       {foodList.map(foodList=><Foodbox key ={foodList.name}{...foodList}/> )}
       </div>
     );

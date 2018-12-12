@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FoodBox = ({image,name,calories,quantity}) => {
+const FoodBox = ({image,name,calories,quantity=0,onAdd,indexMap}) => {
     return(
         <div className="box">
             <article className="media">
@@ -23,11 +23,11 @@ const FoodBox = ({image,name,calories,quantity}) => {
                             <input
                                 className="input"
                                 type="number"
-                                value="1"
+                                value={quantity}
                             />
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" name={indexMap} onClick={onAdd}>
                                 +
                             </button>
                         </div>

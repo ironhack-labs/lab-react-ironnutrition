@@ -1,5 +1,5 @@
 import React from 'react'
- const Comida = ({name, calories,image,quantity,mult})=>{
+ const Foods = ({name, calories,image,quantity,mult})=>{
     
     
     return(
@@ -9,4 +9,4 @@ import React from 'react'
       </li>
      )
 }
- export default Comida;
+ export default Foods;

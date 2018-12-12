@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import foods from '../foods.json'
 import Food from './Food'
 import Form from './Form'
-import Comida from './Comida'
+import Foods from './Foods'
+
 
 var valor = 0
 var multiplicacion = 0

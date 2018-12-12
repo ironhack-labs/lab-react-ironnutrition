@@ -1,0 +1,24 @@
+.box{
+  max-width: 400px;
+  height:74px;
+  display:flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  padding: 5px;
+    box-sizing: border-box;
+}
+.box input,button{
+  max-width: 3rem;
+  text-align: center;
+}
+.box button{
+
+  background-color:blue; 
+  color: white;
+  font-weight: 900;
+}
+.box img{
+  max-width: 64px;
+  height: auto;
+  padding:2%;
+}

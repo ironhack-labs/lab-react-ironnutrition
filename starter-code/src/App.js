@@ -1,68 +1,78 @@
-import React, { Component } from 'react';
- import logo from './logo.svg';
- import './App.css';
- import foods from './foods.json';
- import FoodBox from './components/FoodBox/FoodBox'
-
-
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox/FoodBox";
 
 class App extends Component {
-  
   state = {
-    foods
-   };
+    total: 0,
+    foods,
+    selected: []
+  };
 
-   searchFood= e =>  {
-     const text = e.target.value;
-     const regEx = RegExp(text, 'i');
-    //  let {foods} = this.state
-     const filtered = foods.filter(f=>regEx.test(f.name));
-     this.setState({foods:filtered});
-   }
-  
-// componentWillMount(){
-// let list = [];
-// for (var i = 0; i < 5; i++) {
-//   list.push(foods[i])
-// }
-// this.setState({foods: list})
-// }
+  searchFood = e => {
+    const text = e.target.value;
+    const regEx = RegExp(text, "i");
+    const filtered = foods.filter(f => regEx.test(f.name));
+    this.setState({ foods: filtered });
+  };
 
+  selectFood = (name, calories, quantity) => {
+    let { selected, total } = this.state;
+    const s = {
+      name,
+      calories: calories * Number(quantity),
+      quantity
+    };
+    //revisar que ya exista
+    const item = selected.find(f => f.name === name);
+    if (item) selected.splice(selected.indexOf(item), 1);
+    selected.unshift(s);
+    //sumo
+    total = selected.reduce((acc, item) => acc + item.calories, 0);
+    this.setState({ selected, total });
+  };
+
+  deleteFood = item => {
+    let { selected, total } = this.state;
+    selected = selected.filter(f => f.name !== item.name);
+    total = selected.reduce((acc, item) => acc + item.calories, 0);
+    this.setState({ selected, total });
+  };
 
   render() {
-    const {foods} = this.state
+    const { foods, selected, total } = this.state;
     return (
       <div className="container">
-        <input onChange={this.searchFood}
-        style={{
-
-          fontSize:"2rem"
-        }}
+        <input
+          onChange={this.searchFood}
+          style={{
+            margin: "20px",
+            width: "50%",
+            height: 60,
+            fontSize: "2rem"
+          }}
+          placeholder="Buscale"
         />
-       {foods.map((food,index) =>{
-         return <FoodBox key={index} {...food} />
-       })}
+        {foods.map((food, index) => {
+          return <FoodBox selectFood={this.selectFood} key={index} {...food} />;
+        })}
+
+        <div style={{ position: "absolute", right: 0, top: 100 }}>
+          {selected.map((item, index) => {
+            return (
+              <p className="selected-item" key={index}>
+                {item.quantity} - {item.name} = {item.calories} cal
+                <button onClick={() => this.deleteFood(item)}>X</button>
+              </p>
+            );
+          })}
+          {selected.length > 0 && `Total: ${total} cal`}
+        </div>
       </div>
     );
   }
 }
 
-
-  //  addNewFood = function (name,cal,imgPath){
-  //      let foodsCopia=[...this.state.foods]
-  //      foodsCopia.push({
-  //        "name": name,
-  //        "calories": cal,
-  //        "image": imgPath,
-  //        "quantity": 0
-  //      })
-  //      this.setState({ ...this.state, foods: foodsCopia })
-
-  //  }.bind(this)
-
-  
-
-   
- 
- 
- export default App;
+export default App;

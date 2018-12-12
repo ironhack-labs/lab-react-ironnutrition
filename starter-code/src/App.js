@@ -4,34 +4,29 @@ import React, { Component } from 'react';
  import foods from './foods.json';
 
 
+
 class App extends Component {
   
-  state = { }
+  state = {
+    foods
+   };
   
-componentWillMount(){
-let list = [];
-for (var i = 0; i < 5; i++) {
-  list.push(foods[i])
-}
-this.setState({foods: list})
-}
+// componentWillMount(){
+// let list = [];
+// for (var i = 0; i < 5; i++) {
+//   list.push(foods[i])
+// }
+// this.setState({foods: list})
+// }
 
 
   render() {
-    console.table(this.state.foods)
+    const {foods} = this.state
     return (
-      <div className="App">
-          <h1>Ironfood</h1>
-         <table>
-           <thead>
-             <tr>
-            
-             </tr>
-           </thead>
-           <tbody>
-   
-          </tbody>
-         </table>
+      <div>
+       {foods.map((food,index) =>{
+         return <FoodBox key={index} {...food} />
+       })}
       </div>
     );
   }

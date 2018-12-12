@@ -1,5 +1,14 @@
+@import "./components/comida.css";
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+#lista{
+  width:50%;
+  float:right;
+}
+#lis{
+  float:left;
+  width:50%
 }

@@ -54,6 +54,11 @@ class FoodBox extends Component{
        this.setState({items: this.state.food})
      }
 
+
+agregar = function (){
+  
+}
+
    render(){
        const { items, showForm } = this.state;
 
@@ -62,7 +67,8 @@ class FoodBox extends Component{
        <button onClick={this.toggleForm}>{showForm ? "Cancelar" : "Agrega una comida"}</button>
        <input type="text" onChange={this.buscar} placeholder="buscador"/>
        {showForm && <Form onChange={this.onChange} handleSubmit = {this.handleSubmit}/>}
-       {items.map((items,key)=><Food key={key} {...items}/>)}
+       {items.map((items,key)=>
+       <Food key={key} {...items} agregar={()=>this.agregar(key)}/>)}
 
        </div>
 

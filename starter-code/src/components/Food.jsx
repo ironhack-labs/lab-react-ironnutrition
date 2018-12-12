@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-const Food = ({name,calories,image,quantity})=>{
+const Food = ({name,calories,image,quantity,agregar})=>{
   return (
     <div className="box">
   <article className="media">
@@ -27,7 +27,7 @@ const Food = ({name,calories,image,quantity})=>{
           />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button onClick={this.agregar} className="button is-info">
             +
           </button>
         </div>

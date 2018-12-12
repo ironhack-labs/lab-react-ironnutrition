@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Comida = ({name, calories,image,quantity})=>{
+const Comida = ({name, calories,image,quantity,mult})=>{
     
     
     return(
         <li>
-        {quantity},{name}= {calories}*{quantity}
+        {quantity},{name}= {mult}
         
       </li>
 

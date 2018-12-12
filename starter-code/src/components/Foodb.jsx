@@ -5,6 +5,8 @@ import 'bulma/css/bulma.css';
 import Form from './Form'
 import Comida from './Comida'
 var valor = 0
+var multiplicacion = 0
+var suma = 0
 
 class Foodb extends Component{
 
@@ -69,13 +71,15 @@ class Foodb extends Component{
     agregar = function(index){
         const copy = this.state.food;
         copy[index].quantity = valor
-        
-        
+        multiplicacion = copy[index].quantity * copy[index].calories
+        copy[index].mult = multiplicacion
+        suma += copy[index].mult
         this.setState({
             food: copy
         })
         this.state.lista.push(copy[index])
-        console.log(this.state.food)
+        
+        
         valor = 0
 
     }
@@ -99,7 +103,7 @@ class Foodb extends Component{
             <ul>
             {lista.map((items,key)=> <Comida key={key} {...items}/>)}
             </ul>
-            <h4>Total:0cal</h4>
+            <h4>Total:{suma}</h4>
         </div>
         </div>
         

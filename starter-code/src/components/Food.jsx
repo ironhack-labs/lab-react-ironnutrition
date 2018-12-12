@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Food = ({name, calories, image, quantity})=>{
+const Food = ({name, calories, image, quantity, agregar})=>{
 
 return(
 <div className="box">

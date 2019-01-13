@@ -15,7 +15,7 @@ export default class FoodBox extends Component {
             <div className="content">
               <p>
                 <strong>{food.name}</strong> <br />
-                <small>{food.calories}</small>
+                <small>{food.calories} cal</small>
               </p>
             </div>
           </div>

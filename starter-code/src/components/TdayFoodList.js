@@ -5,8 +5,7 @@ export default class TdayFoodList extends Component {
     super();
     this.state = {
       foodList: [],
-      allCalories:[],
-      total: 0
+      totalCals : 0
     };
   }
 
@@ -24,7 +23,9 @@ export default class TdayFoodList extends Component {
 
   
   render() {
-    
+    let totalCals = this.state.foodList.reduce((a,b)=>{
+      return a + b["calories"]
+    },0)
     return (
       <div className="content">
         <ul>
@@ -34,9 +35,9 @@ export default class TdayFoodList extends Component {
             </li>
           ))}
         </ul>
-        
         <div className="content">
-          <p>Total:</p>
+        
+          <p>Total:{totalCals} cal</p>
         </div>
       </div>
     );

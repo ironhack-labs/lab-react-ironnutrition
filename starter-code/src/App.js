@@ -46,7 +46,6 @@ class App extends Component {
       this.setState({tDayList : todayList})
     }
 
-    console.log(this.state.tDayList)
   }
 
   render() {

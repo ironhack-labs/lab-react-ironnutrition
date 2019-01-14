@@ -29,6 +29,10 @@ export default class FoodList extends Component {
     });
   }
 
+  handleAddToList(todayListItem) {
+    this.props.foodDetail(todayListItem);
+  }
+
   render() {
     return (
       <div className="column">
@@ -38,7 +42,11 @@ export default class FoodList extends Component {
         />
 
         {this.state.newList.map(food => (
-          <FoodBox key={food.name} food={food} />
+          <FoodBox
+            key={food.name}
+            food={food}
+            todayList={todayListItem => this.handleAddToList(todayListItem)}
+          />
         ))}
       </div>
     );

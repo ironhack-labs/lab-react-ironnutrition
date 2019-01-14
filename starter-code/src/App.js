@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import foods from "./foods.json";
 import { Header } from "./components/Header";
-import FoodBox from "./components/FoodBox";
 import Modal  from "./components/Modal";
+import FoodList from './components/FoodList';
 
 class App extends Component {
   constructor() {
@@ -25,11 +25,7 @@ class App extends Component {
         <Modal add={(newFood)=>this.handleAdd(newFood)}/>
         <div className="section">
           <div className="columns">
-            <div className="column">
-            {this.state.foodArr.map(food => (
-          <FoodBox key={food.name} food={food} />
-        ))}
-        </div>
+            <FoodList foodArr={this.state.foodArr}/>
             <div className="column"></div>
           </div>
         </div>

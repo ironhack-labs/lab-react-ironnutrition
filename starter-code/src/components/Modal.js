@@ -25,6 +25,7 @@ export default class Modal extends Component {
   closeModal() {
     this.setState({ isActive: !this.state.isActive });
     this.setState({ modalClasses: "modal" });
+    this.setState({message:false})
   }
 
   handleChangeName(name) {

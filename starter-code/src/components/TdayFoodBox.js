@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TdayFoodBox = ({ key, food, index, onDelete }) => {
+export const TdayFoodBox = ({ food, index, onDelete }) => {
   return (
     <div className="box">
       <div className="columns">

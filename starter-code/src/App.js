@@ -52,6 +52,13 @@ class App extends Component {
   handleDelete(idx) {
     this.state.todayFoodData.splice(idx, 1);
     this.setState({ todayFoodData: this.state.todayFoodData });
+
+    //recalculate when deleting
+    this.state.todayTotalCals = this.state.todayFoodData.reduce((a, b) => {
+      return a + b["calories"];
+    }, 0);
+    this.setState({ todayTotalCals: this.state.todayTotalCals });
+
   }
 
   render() {

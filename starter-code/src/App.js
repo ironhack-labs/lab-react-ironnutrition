@@ -26,13 +26,23 @@ class App extends Component {
 
   }
 
+  totalCal(){
+    let sum=0
+    this.state.foods.forEach(e=>{
+      e.quantity>0 ? sum+=e.quantity*e.calories:null
+    })
+    return sum
+  }
+
   getData(newobj){
+    const {name,calories,image}=newobj
+    if(name,calories,image==""){return}
     this.state.foods.push(newobj)
     this.setState({foods:this.state.foods,newmeal:!this.state.newmeal})
   }
   render() {
     return (
-      <div>
+      <div className="container">
         <input
           className="input is-rounded"
           type="text"
@@ -58,12 +68,13 @@ class App extends Component {
               />
             ))}
           </div>
-          <div width="50%">
-            <h3>Today's foods</h3>
+          <div className="content"width="50%">
+            <h2 className="is-large" >Today's foods</h2>
             <ul>
               {this.state.foods.map((e, i) =>
                 e.quantity ? <List key={i} food={e} /> : null
               )}
+              <h3>Total: {this.totalCal()} Cal</h3>
             </ul>
           </div>
         </div>

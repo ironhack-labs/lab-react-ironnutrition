@@ -24,7 +24,7 @@ export const FoodBox = props => {
             </div>
             <div className="control">
               <button onClick={()=>props.action.sum()} className="button is-info">+</button>
-              <button onClick={()=>props.action.res()} className="button is-info">-</button>
+              <button onClick={()=>props.action.res()} className="button is-danger is-small">-</button>
             </div>
           </div>
         </div>

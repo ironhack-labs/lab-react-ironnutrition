@@ -22,7 +22,7 @@ class App extends Component {
   }
   
   filter(e){
-    this.setState({search:e.target.value,foods:foods.filter(el=>el.name.includes(e.target.value))})
+    this.setState({search:e.target.value,foods:foods.filter(el=>el.name.toLowerCase().includes(e.target.value.toLowerCase()))})
 
   }
 

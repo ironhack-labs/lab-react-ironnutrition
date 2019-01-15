@@ -9,20 +9,20 @@ export default class FoodBox extends Component {
     };
   }
 
-  handleClickAdd(e) {
+  handleQuantity(e) {
     this.setState({ quantity: e.target.value });
   }
 
-  handleAddToList() {
+  addItemToday() {
     if (this.state.quantity < 1) {
       this.setState({ message: !this.state.message });
     } else {
-      let todayListItem = {
+      let todayFood = {
         name: this.props.food.name,
         calories: this.props.food.calories * this.state.quantity,
         quantity: this.state.quantity
       };
-      this.props.todayList(todayListItem);
+      this.props.addItemToday(todayFood);
 
       this.setState({ quantity: 0 });
       this.setState({ message: false });
@@ -30,7 +30,7 @@ export default class FoodBox extends Component {
   }
 
   render() {
-    let { food } = this.props;
+    let { food,index } = this.props;
     return (
       <div className="content">
         <div className="box">
@@ -57,13 +57,13 @@ export default class FoodBox extends Component {
                     value={this.state.quantity}
                     min="0"
                     max="10"
-                    onChange={e => this.handleClickAdd(e)}
+                    onChange={e => this.handleQuantity(e)}
                   />
                 </div>
                 <div className="control">
                   <button
                     className="button is-info"
-                    onClick={() => this.handleAddToList()}
+                    onClick={() => this.addItemToday()}
                   >
                     +
                   </button>

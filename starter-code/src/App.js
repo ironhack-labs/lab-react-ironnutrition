@@ -2,71 +2,74 @@ import React, { Component } from "react";
 import "./App.css";
 import foods from "./foods.json";
 import { Header } from "./components/Header";
-import Modal from "./components/Modal";
 import FoodList from "./components/FoodList";
-import TdayFood from "./components/TdayFood";
+import { TdayFoodSection } from "./components/TdayFoodSection";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      foodArr: foods,
-      tDayList: []
+      foodData: foods,
+      todayFoodData: [],
+      todayTotalCals: 0
     };
   }
 
   handleAdd(newFood) {
-    this.state.foodArr.push(newFood);
-    this.setState({ foodArr: this.state.foodArr });
+    this.state.foodData.push(newFood);
+    this.setState({ foodData: this.state.foodData });
   }
 
-  handleAddToList(todayListItem) {
-    let index = this.state.tDayList.findIndex(
-      p => p.name === todayListItem.name
+  addItemToday(todayFood) {
+    let index = this.state.todayFoodData.findIndex(
+      p => p.name === todayFood.name
     );
-
+    //check if the food is already on the Today List
     if (index < 0) {
-      this.state.tDayList.push(todayListItem);
-      this.setState({ tDayList: this.state.tDayList });
+      this.state.todayFoodData.push(todayFood);
+      this.setState({ todayFoodData: this.state.todayFoodData });
     } else {
-      let todayList = this.state.tDayList;
-
-      let calPrev = todayList[index].calories;
-      let calNew = todayListItem.calories;
-      let qtyPrev = todayList[index].quantity;
-      let qtyNew = todayListItem.quantity;
-
-      todayList[index] = {
-        name: todayListItem.name,
-        calories: calPrev + calNew,
-        quantity: parseInt(qtyPrev) + parseInt(qtyNew)
+      this.state.todayFoodData[index] = {
+        name: todayFood.name,
+        calories:
+          parseInt(this.state.todayFoodData[index].calories) +
+          parseInt(todayFood.calories),
+        quantity:
+          parseInt(this.state.todayFoodData[index].quantity) +
+          parseInt(todayFood.quantity)
       };
 
-      this.setState({ tDayList: todayList });
+      this.setState({ todayFoodData: this.state.todayFoodData });
     }
+
+    //calculate total cals for the day
+    this.state.todayTotalCals = this.state.todayFoodData.reduce((a, b) => {
+      return a + b["calories"];
+    }, 0);
+    this.setState({ todayTotalCals: this.state.todayTotalCals });
   }
 
-  handleDelete(idx){
-    console.log("borrando" + this.state.tDayList[idx].name)
-    this.state.tDayList.splice(idx,1)
-    this.setState({tDayList:this.state.tDayList})
+  handleDelete(idx) {
+    this.state.todayFoodData.splice(idx, 1);
+    this.setState({ todayFoodData: this.state.todayFoodData });
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <Modal add={newFood => this.handleAdd(newFood)} />
-        <div className="section">
-          <div className="columns">
+        <Header addFood={(newFood)=>{this.handleAdd(newFood)}}/>
+          <div className="columns section">
             <FoodList
-              foodArr={this.state.foodArr}
-              foodDetail={todayListItem => this.handleAddToList(todayListItem)}
+              foodData={this.state.foodData}
+              addItemToday={todayFood => this.addItemToday(todayFood)}
             />
-            <TdayFood foodList={this.state.tDayList} onDelete={(idx)=>this.handleDelete(idx)}/>
+            <TdayFoodSection
+              foodList={this.state.todayFoodData}
+              totalCals={this.state.todayTotalCals}
+              onDelete={idx => this.handleDelete(idx)}
+            />
           </div>
         </div>
-      </div>
     );
   }
 }

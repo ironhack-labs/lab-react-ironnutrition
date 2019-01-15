@@ -6,48 +6,52 @@ export default class FoodList extends Component {
   constructor() {
     super();
     this.state = {
-      newList: [],
-      message: false
+      foodFilt: []
     };
   }
 
   componentDidMount() {
     this.setState({
-      newList: this.props.foodArr
+      foodFilt: this.props.foodData
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      newList: nextProps.foodArr
+      foodFilt: nextProps.foodData
     });
   }
 
-  handleFilter(filtered) {
+  handleFilter(foodFiltSB) {
     this.setState({
-      newList: filtered
+      foodFilt: foodFiltSB
     });
-  }
-
-  handleAddToList(todayListItem) {
-    this.props.foodDetail(todayListItem);
   }
 
   render() {
     return (
       <div className="column">
         <SearchBar
-          filteredList={filtered => this.handleFilter(filtered)}
-          foodData={this.props.foodArr}
+          foodDataFilt={foodFiltSB => this.handleFilter(foodFiltSB)}
+          foodData={this.props.foodData}
         />
-
-        {this.state.newList.map(food => (
-          <FoodBox
-            key={food.name}
-            food={food}
-            todayList={todayListItem => this.handleAddToList(todayListItem)}
-          />
-        ))}
+        {this.state.foodFilt.length < 1 ? (
+          <article className="message">
+            <div className="message-body">
+              We don't have this in our DB, search for other food or add your
+              own meal by Add Food button.
+            </div>
+          </article>
+        ) : (
+          this.state.foodFilt.map((food, index) => (
+            <FoodBox
+              key={food.name}
+              food={food}
+              index={index}
+              addItemToday={todayFood => this.props.addItemToday(todayFood)}
+            />
+          ))
+        )}
       </div>
     );
   }

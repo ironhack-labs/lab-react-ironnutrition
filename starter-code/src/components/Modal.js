@@ -7,13 +7,8 @@ export default class Modal extends Component {
     this.state = {
       isActive: false,
       modalClasses: "modal",
-      newFood: {
-        name: "",
-        calories: "",
-        image: "",
-        quantity: 0
-      },
-      message : false
+      newFood:{},
+      message: false
     };
   }
 
@@ -25,26 +20,14 @@ export default class Modal extends Component {
   closeModal() {
     this.setState({ isActive: !this.state.isActive });
     this.setState({ modalClasses: "modal" });
-    this.setState({message:false})
+    this.setState({ message: false });
   }
 
-  handleChangeName(name) {
-    this.state.message ? this.setState({message:!this.state.message}) : null;
-    let newObj = this.state.newFood;
-    newObj.name = name;
-    this.setState({ newFood: newObj });
-  }
-  handleChangeCalories(calories) {
-    this.state.message ? this.setState({message:!this.state.message}) : null;
-    let newObj = this.state.newFood;
-    newObj.calories = calories;
-    this.setState({ newFood: newObj });
-  }
-  handleChangeImage(image) {
-    this.state.message ? this.setState({message:!this.state.message}) : null;
-    let newObj = this.state.newFood;
-    newObj.image = image;
-    this.setState({ newFood: newObj });
+  handleChange(input,name) {
+    this.state.message ? this.setState({ message: !this.state.message }) : null;
+    
+    this.state.newFood[name] = input;
+    this.setState({ newFood: this.state.newFood });
   }
 
   handleAdd() {
@@ -53,10 +36,9 @@ export default class Modal extends Component {
       this.state.newFood.calories === "" ||
       this.state.newFood.image === ""
     ) {
-      this.setState({message:!this.state.message})
+      this.setState({ message: !this.state.message });
     } else {
-      console.log(this.state.newFood);
-      this.props.add(this.state.newFood);
+      this.props.addFood(this.state.newFood);
       this.closeModal();
     }
   }
@@ -64,8 +46,12 @@ export default class Modal extends Component {
   render() {
     return (
       <div className="container">
-        <a onClick={() => this.openModal()} className="button">
-          Add Food
+        <a
+          onClick={() => this.openModal()}
+          className="button is-rounded is-primary is-inverted is-large"
+        >
+          <span className="icon is-small"> 🍔 </span>
+          <span> Add Food</span>
         </a>
         {/********** modal ************/}
         <div className={this.state.modalClasses}>
@@ -73,20 +59,23 @@ export default class Modal extends Component {
           <div className="modal-content">
             {/********** modal content ************/}
             <InputField
-              changeItem={input => this.handleChangeName(input)}
+              onChange={(input,name) => this.handleChange(input,name)}
               key="name"
+              name="name"
               fasClass="fas fa-carrot"
               placeholder="Name"
             />
             <InputField
-              changeItem={input => this.handleChangeCalories(input)}
+              onChange={(input,name) => this.handleChange(input,name)}
               key="calories"
+              name="calories"
               fasClass="fas fa-dumbbell"
               placeholder="Calories"
             />
             <InputField
-              changeItem={input => this.handleChangeImage(input)}
+              onChange={(input,name) => this.handleChange(input,name)}
               key="image"
+              name="image"
               fasClass="fas fa-images"
               placeholder="Image URL"
             />
@@ -104,12 +93,12 @@ export default class Modal extends Component {
                 </a>
               </p>
             </div>
-            {this.state.message ? 
-            <div className="notification is-danger">
-              Please enter all data on fields
-            </div> : 
-            null}
-            
+            {this.state.message ? (
+              <div className="notification is-danger">
+                Please enter all data on fields
+              </div>
+            ) : null}
+
             {/********** END -- modal content ************/}
           </div>
           <button

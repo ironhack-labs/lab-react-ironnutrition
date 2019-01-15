@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import TdayFoodBox from "./TdayFoodBox";
 
 export default class TdayFoodList extends Component {
   constructor() {
     super();
     this.state = {
       foodList: [],
-      totalCals : 0
+      totalCals: 0
     };
   }
 
@@ -21,22 +22,21 @@ export default class TdayFoodList extends Component {
     });
   }
 
-  
   render() {
-    let totalCals = this.state.foodList.reduce((a,b)=>{
-      return a + b["calories"]
-    },0)
+    let totalCals = this.state.foodList.reduce((a, b) => {
+      return a + b["calories"];
+    }, 0);
     return (
       <div className="content">
-        <ul>
-          {this.state.foodList.map(food => (
-            <li key={food.name}>
-              {food.quantity} {food.name} = {food.calories} cal
-            </li>
-          ))}
-        </ul>
+        {this.state.foodList.map((food, index) => (
+          <TdayFoodBox
+            key={food.name}
+            food={food}
+            index={index}
+            onDelete={(idx)=>this.props.onDelete(idx)}
+          />
+        ))}
         <div className="content">
-        
           <p>Total:{totalCals} cal</p>
         </div>
       </div>

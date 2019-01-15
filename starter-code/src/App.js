@@ -24,14 +24,13 @@ class App extends Component {
     let index = this.state.tDayList.findIndex(
       p => p.name === todayListItem.name
     );
-  
+
     if (index < 0) {
       this.state.tDayList.push(todayListItem);
       this.setState({ tDayList: this.state.tDayList });
-
     } else {
       let todayList = this.state.tDayList;
-      
+
       let calPrev = todayList[index].calories;
       let calNew = todayListItem.calories;
       let qtyPrev = todayList[index].quantity;
@@ -39,13 +38,18 @@ class App extends Component {
 
       todayList[index] = {
         name: todayListItem.name,
-        calories : calPrev + calNew,
-        quantity : parseInt(qtyPrev) + parseInt(qtyNew)
-      }
+        calories: calPrev + calNew,
+        quantity: parseInt(qtyPrev) + parseInt(qtyNew)
+      };
 
-      this.setState({tDayList : todayList})
+      this.setState({ tDayList: todayList });
     }
+  }
 
+  handleDelete(idx){
+    console.log("borrando" + this.state.tDayList[idx].name)
+    this.state.tDayList.splice(idx,1)
+    this.setState({tDayList:this.state.tDayList})
   }
 
   render() {
@@ -59,7 +63,7 @@ class App extends Component {
               foodArr={this.state.foodArr}
               foodDetail={todayListItem => this.handleAddToList(todayListItem)}
             />
-            <TdayFood foodList={this.state.tDayList} />
+            <TdayFood foodList={this.state.tDayList} onDelete={(idx)=>this.handleDelete(idx)}/>
           </div>
         </div>
       </div>

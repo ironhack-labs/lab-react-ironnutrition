@@ -14,7 +14,7 @@ export default class TdayFood extends Component {
       <div className="column">
         <div className="section">
           <h1 className="title">Todays Food</h1>
-          <TdayFoodList foodList={this.props.foodList}/>
+          <TdayFoodList foodList={this.props.foodList} onDelete={(idx)=>this.props.onDelete(idx)}/>
         </div>
       </div>
     );

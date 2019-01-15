@@ -30,7 +30,7 @@ export default class FoodBox extends Component {
   }
 
   render() {
-    let { food,index } = this.props;
+    let { food } = this.props;
     return (
       <div className="content">
         <div className="box">

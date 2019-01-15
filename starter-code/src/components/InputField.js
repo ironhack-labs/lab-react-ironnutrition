@@ -9,7 +9,8 @@ export default class InputBar extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ text: e.target.value });
+    this.state.text= e.target.value
+    this.setState({ text: this.state.text });
     this.props.onChange(this.state.text,this.props.name);
   }
 
@@ -22,7 +23,7 @@ export default class InputBar extends React.Component {
             type="text"
             placeholder={this.props.placeholder}
             value={this.state.text}
-            onChange={this.handleChange.bind(this)}
+            onChange={(e)=>this.handleChange(e)}
           />
           <span className="icon is-small is-left">
             <i className={this.props.fasClass} />

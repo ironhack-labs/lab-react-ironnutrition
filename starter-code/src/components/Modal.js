@@ -28,6 +28,7 @@ export default class Modal extends Component {
     
     this.state.newFood[name] = input;
     this.setState({ newFood: this.state.newFood });
+    console.log(this.state.newFood)
   }
 
   handleAdd() {

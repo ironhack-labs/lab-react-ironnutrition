@@ -46,10 +46,10 @@ import 'bulma/css/bulma.css';
 
 ### Import a JSON
 
-Import the foods from the `foods.json`.
+Import the foods from the `foods.json` inside data folder.
 
 ```js
-import foods from './foods.json'
+import foods from './data/foods.json'
 ```
 
 

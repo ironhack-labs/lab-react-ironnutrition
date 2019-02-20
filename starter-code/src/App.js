@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showFoodForm: true,
+      showFoodForm: false,
       foodArray: foods,
       searchField: ""
     };
@@ -61,7 +61,15 @@ class App extends Component {
             />
           </div>
         </div>
-        {showFoodForm && (
+        {!showFoodForm ? (
+          <button
+            className="button is-primary"
+            onClick={this.toggleAddFoodForm.bind(this)}
+          >
+            {/* https://stackoverflow.com/a/33846747/3468846 */}
+            Add an item
+          </button>
+        ) : (
           <AddFoodForm
             foodSubmitContent={foodObject => this.addNewFood(foodObject)}
           />

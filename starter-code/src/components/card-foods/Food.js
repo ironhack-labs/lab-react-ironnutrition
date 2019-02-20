@@ -1,10 +1,7 @@
 import React from 'react';
 
 function Food({ foods }) {
-    // "name": "Sweet Potato",
-    // "calories": 120,
-    // "image": "https://i.imgur.com/hGraGyR.jpg",
-    // "quantity": 0
+
     const listFoods = foods.map((food) => {
         return (
 

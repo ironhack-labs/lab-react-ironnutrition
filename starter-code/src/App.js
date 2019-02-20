@@ -7,10 +7,6 @@ import Button from './components/Button';
 import FoodForm from './components/Form';
 import SearchBar from './components/SearchBar';
 
-
-
-
-
 class App extends Component {
   state = {
     list: foods,
@@ -48,11 +44,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Iron Nutrition</h1>
-       <SearchBar Prop={this.searchFunction}/>
-        <FoodBox foodsProp={this.state.list}/>
-        <FoodForm  functionProp={this.handleSubmit} style={ this.state.open ? "block" : "none"}></FoodForm> 
-        <Button functionForm={this.showForm}>Add new food</Button>
+        <h1>Iron Nutrition</h1>
+        <SearchBar Prop={this.searchFunction}/>
+        <div class="row">
+          <div class="col-5">
+            <FoodBox foodsProp={this.state.list}/>
+          </div>
+          <div class="col-5">
+            <FoodForm functionProp={this.handleSubmit} style={ this.state.open ? "block" : "none"}></FoodForm> 
+            <Button functionForm={this.showForm}>Add new food</Button>
+          </div>
+        </div>
       </div>
     );
   }

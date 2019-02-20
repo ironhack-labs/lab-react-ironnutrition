@@ -10,7 +10,7 @@ export default class FoodForm extends Component {
             image: "",
             quantity: ""
         }
-    }
+    } 
 
     handleNameState = (e) => {
         console.log(e.target.value)
@@ -40,6 +40,7 @@ export default class FoodForm extends Component {
         console.log()
         return (
             <form className={this.props.style} onSubmit={e=>this.props.functionProp(e, this.state)}>
+            <div class="form">
                 <label>Name</label>
                 <input type="text" value={this.state.name} onChange={this.handleNameState}></input>
                 <label>Calories</label>
@@ -48,6 +49,7 @@ export default class FoodForm extends Component {
                 <input type="text" value={this.state.image} onChange={this.handleImageState}></input>
 
                 <button type="submit">Submit</button>
+                </div>
             </form>
         )
     }

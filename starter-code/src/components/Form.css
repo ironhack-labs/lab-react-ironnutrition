@@ -1,5 +1,22 @@
 .form {
     display: flex;
     flex-direction: column;
-
+    max-width: 350px;
+    text-align: center;
+    color: black;
 }
+
+
+.form button {
+    margin-top: 20px;
+    background-color: rgb(32,156,237);
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form button:hover {
+    background-color: rgb(83, 178, 241);
+    color: white;
+}
+

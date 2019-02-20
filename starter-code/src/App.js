@@ -12,37 +12,28 @@ class App extends Component {
     foods
   }
 
-  addNew = () => {
-    this.setState({
-      ...this.state
-    })
+  addFoodHandler = (food) => {
+    const foodsCopy = [...this.state.foods]
+    foodsCopy.push(food)
+    this.setState(
+      { foods: foodsCopy }
+    )
   }
 
-  handleName = (e) => {
-    this.setState({
-      ...this.state,
-      name: e.target.value
-    })
+  showForm = () => {
+    document.querySelector(".show").style.display = "block";
   }
 
-  // handleCalories = (e) => {
-  //   this.setState({
-  //     ...this.state,
-  //     calories: e.target.value
-  //   })
-  // }
-
-  // handleImage = (e) => {
-  //   this.setState({
-  //     ...this.state,
-  //     image: e.target.value
-  //   })
+  // hideForm = () => {
+  //   console.log("hp")
   // }
 
   render() {
     return (
       <div className="App">
         <FoodBox foods={this.state.foods} />
+        <AddFood addFoodProps={this.addFoodHandler} />
+        <button onClick={this.showForm}>Add food</button>
       </div>
     );
   }

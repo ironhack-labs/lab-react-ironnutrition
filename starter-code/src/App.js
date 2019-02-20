@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import foods from './foods.json'
+import FoodBox from './components/FoodBox.js';
+import AddFood from './components/AddFood.js';
+import Search from './components/Search.js';
+import "bulma/css/bulma.css";
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      foods: foods.slice()
+    };
+  }
+
+  addFoodHandler = (theFood) => {
+    const foodsCopy = [...this.state.foods];
+    foodsCopy.push(theFood);
+    this.setState({
+      foods: foodsCopy
+    })
+  }
+
+  searchFoodHandler = (foodsSearch) => {
+    const foodsCopy = [...this.state.foods];
+    console.log('FoodsCopy ===>', foodsCopy);
+    foodsSearch.pop(foodsSearch);
+    // const filteredItems = foodsCopy.filter(item => item.includes(foodsSearch))
+    this.setState({
+      foods: foodsSearch
+    })
+  }
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <AddFood 
+          addTheFood={this.addFoodHandler}
+        />   
+        <Search 
+          searchTheFood={this.searchFoodHandler}  
+        />
+        <FoodBox 
+          foods={this.state.foods}
+        />
       </div>
     );
   }

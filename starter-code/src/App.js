@@ -68,8 +68,11 @@ class App extends Component {
         )}
         <p>Available meals:</p>
         {this.state.foodArray.map((oneFood, index) => {
-          // filters only matches TODO regex
-          let matches = oneFood.name.includes(searchField);
+          // filter, case insensitive
+          let matches = oneFood.name
+            .toLowerCase()
+            .includes(searchField.toLowerCase());
+
           //  REFACTOR INTO {condition && view} dont work with includes or indexOf
 
           if (matches) {

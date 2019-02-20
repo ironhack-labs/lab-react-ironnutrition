@@ -6,9 +6,9 @@ import AddFood from '../addFood/AddFood';
 class FoodBox extends Component {
   render() {
     const array = this.props.foodArray;
-    console.log('$$$$$', array);
+    const search = this.props.name;
     const foodList = array.map((element, idx) => {
-      return (
+      if (element.name.toLowerCase().includes(search)) return (
         <div>
           <div className="box">
             <article className="media">
@@ -35,9 +35,7 @@ class FoodBox extends Component {
                     />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
-                      +
-                    </button>
+                    <input className="button is-info" value='+' />
                   </div>
                 </div>
               </div>

@@ -11,15 +11,15 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      foods: foods
-    }
+      foods: foods,
+    };
     this.updateState = this.updateState.bind(this);
   }
 
   updateState(array) {
     this.setState({
       foods: array
-    })
+    });
   }
 
   render() {
@@ -27,7 +27,6 @@ class App extends Component {
       <div>
         <AddFood foodArray={this.state.foods} updateState={this.updateState}/>
         <Search  foodArray={this.state.foods} updateState={this.updateState}/>
-        <FoodBox foodArray={this.state.foods}/>
       </div>
     );
   }

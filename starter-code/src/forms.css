@@ -1,0 +1,7 @@
+.nodisplayForm {
+    display: none
+}
+
+.displayForm {
+    display: block
+}

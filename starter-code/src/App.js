@@ -45,18 +45,20 @@ class App extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
 
-    //also filter foods array
+    //also, filter foods array
     this.filterResults();
   }
 
   // reduce food array according to searchField
   filterResults() {
-    console.log("try to search");
     const { foodArray, searchField } = this.state;
 
     var result = foodArray.filter(food => {
-      return food.name === searchField;
+      let matches = food.name.includes(searchField);
+      return matches;
     });
+
+    this.setState({ foodArray: result });
 
     console.log(result);
   }

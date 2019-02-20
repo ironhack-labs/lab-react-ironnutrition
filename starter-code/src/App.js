@@ -44,27 +44,10 @@ class App extends Component {
   syncStateForm(event) {
     const { value, name } = event.target;
     this.setState({ [name]: value });
-
-    //also, filter foods array
-    this.filterResults();
-  }
-
-  // reduce food array according to searchField
-  filterResults() {
-    const { foodArray, searchField } = this.state;
-
-    var result = foodArray.filter(food => {
-      let matches = food.name.includes(searchField);
-      return matches;
-    });
-
-    this.setState({ foodArray: result });
-
-    console.log(result);
   }
 
   render() {
-    const { showFoodForm } = this.state;
+    const { showFoodForm, searchField } = this.state;
     return (
       <div className="App">
         <div className="field">
@@ -85,7 +68,13 @@ class App extends Component {
         )}
         <p>Available meals:</p>
         {this.state.foodArray.map((oneFood, index) => {
-          return <FoodBox food={oneFood} key={index} />;
+          // filters only matches TODO regex
+          let matches = oneFood.name.includes(searchField);
+          //  REFACTOR INTO {condition && view} dont work with includes or indexOf
+
+          if (matches) {
+            return <FoodBox food={oneFood} key={index} />;
+          }
         })}
       </div>
     );

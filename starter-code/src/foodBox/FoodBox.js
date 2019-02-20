@@ -1,7 +1,26 @@
 import React, { Component } from 'react'
 
 export default class FoodBox extends Component {
-  handleNameState = () => { }
+  constructor(props) {
+    super(props)
+    this.state = {
+      quantity: this.props.quantity
+    }
+  }
+  ren
+  handleNameState = (e) => {
+    let newState = {
+      quantity: e.target.value
+    }
+
+    this.setState(newState)
+
+  }
+
+  addComidIntermedia = () => {
+    this.props.evento(this.props.name, this.state.quantity)
+  }
+
 
   render() {
     return (
@@ -26,12 +45,12 @@ export default class FoodBox extends Component {
                 <input
                   className="input"
                   type="number"
-                  value={this.props.quantity}
+                  value={this.state.quantity}
                   onChange={this.handleNameState}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={this.addComidIntermedia} className="button is-info">
                   +
           </button>
               </div>

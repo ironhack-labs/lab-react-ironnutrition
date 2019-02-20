@@ -5,12 +5,19 @@ import foods from './foods.json'
 import FoodBox from './foodBox/FoodBox';
 import Button from './button/Button';
 import AddFoodForm from './AddFoodForm/AddFoodForm';
+import SearchForm from './SearchForm/SearchForm';
+import Papeo from './Papeo/Papeo'
 
 class App extends Component {
   state = {
     foods: [...foods],
-    addFoodButton: true
+    addFoodButton: true,
+    lista: []
   }
+
+  allFoods = [...foods]
+
+
 
   addForm = (e) => {
 
@@ -19,39 +26,71 @@ class App extends Component {
       addFoodButton: false
     }
 
-    console.log("Muestro formulario, madafaca")
     this.setState(NewState)
   }
 
 
+
+
   handleFormSubmit = (newfood) => {
-
-    console.log(newfood)
-
-    /* let NewState = {
+    let newState = {
       ...this.state,
-      addFoodButton: true
+      addFoodButton: true,
+      papeo: []
     }
 
-    this.setState(NewState) */
+    newState.foods.push(newfood)
+
+
+    this.allFoods.push(newfood)
+
+    this.setState(newState)
+
   }
+
+  updateSearch = (query) => {
+
+    let newState = {
+      ...this.state
+    }
+
+    newState.foods = this.allFoods.filter(comida => comida.name.toLowerCase().startsWith(query.toLowerCase())
+    )
+
+    this.setState(newState)
+  }
+
+  addComida = (nombre, cantidad) => {
+
+    let newState = {
+      ...this.state
+    }
+
+    newState.lista.push({ nombre, cantidad })
+
+    this.setState(newState)
+  }
+
 
   render() {
     return (
       <div className="App">
+        <h1>IronNutrion</h1>
+        <SearchForm
+          evento={this.updateSearch}
+        />
         <Button
           name="Insertar Comida"
           evento={() => this.state.addFoodButton ? this.addForm() : ""}
           displayed={this.state.addFoodButton ? "block" : "none"} />
 
         <AddFoodForm
-          evento={() => this.handleFormSubmit}
+          evento={this.handleFormSubmit}
           displayed={this.state.addFoodButton ? "none" : "block"} />
-
-
         {this.state.foods.map((food, index) =>
-          <FoodBox name={food.name} calories={food.calories} image={food.image} quantity={food.quantity} key={index} />
+          <FoodBox evento={this.addComida} name={food.name} calories={food.calories} image={food.image} quantity={food.quantity} key={index} />
         )}
+        <Papeo contenido={this.state.lista} />
       </div>
     );
   }

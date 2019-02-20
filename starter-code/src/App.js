@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    const { showFoodForm, searchField } = this.state;
+    const { showFoodForm, searchField, foodArray } = this.state;
     return (
       <div className="App">
         <div className="field">
@@ -67,17 +67,16 @@ class App extends Component {
           />
         )}
         <p>Available meals:</p>
-        {this.state.foodArray.map((oneFood, index) => {
+        {foodArray.map((oneFood, index) => {
           // filter, case insensitive
           let matches = oneFood.name
             .toLowerCase()
             .includes(searchField.toLowerCase());
 
-          //  REFACTOR INTO {condition && view} dont work with includes or indexOf
-
+          //  REFACTOR INTO {condition && view} (opposite way)
           if (matches) {
             return <FoodBox food={oneFood} key={index} />;
-          }
+          } else return "";
         })}
       </div>
     );

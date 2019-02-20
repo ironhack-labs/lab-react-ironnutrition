@@ -10,9 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       showFoodForm: true,
-      foodArray: foods
+      foodArray: foods,
+      searchField: ""
     };
   }
+
   // method called along AddFoodForm prop submitted content
   addNewFood(foodObject) {
     // add new item at top of array
@@ -38,10 +40,42 @@ class App extends Component {
     this.setState({ showFoodForm: !tempFoodFormIo });
   }
 
+  // form sync with current state
+  syncStateForm(event) {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+
+    //also filter foods array
+    this.filterResults();
+  }
+
+  // reduce food array according to searchField
+  filterResults() {
+    console.log("try to search");
+    const { foodArray, searchField } = this.state;
+
+    var result = foodArray.filter(food => {
+      return food.name === searchField;
+    });
+
+    console.log(result);
+  }
+
   render() {
     const { showFoodForm } = this.state;
     return (
       <div className="App">
+        <div className="field">
+          <div className="control is-medium is-loading">
+            <input
+              name="searchField"
+              className="input is-medium"
+              onChange={event => this.syncStateForm(event)}
+              type="text"
+              placeholder="Type a meal.."
+            />
+          </div>
+        </div>
         {showFoodForm && (
           <AddFoodForm
             foodSubmitContent={foodObject => this.addNewFood(foodObject)}

@@ -5,7 +5,10 @@ import foods from './foods.json'
 import FoodBox from './components/FoodBox';
 import Button from './components/Button';
 import FoodForm from './components/Form';
-// import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar';
+
+
+
 
 
 class App extends Component {
@@ -31,11 +34,22 @@ class App extends Component {
     this.setState(newState)
 }
 
+  searchFunction = (searchWord) => {
+    let newState = {
+      ...this.state
+    }
+    newState.list = foods.filter(food => {
+      return food.name.indexOf(searchWord) != -1;
+    })
+
+    this.setState(newState)
+  }
+
   render() {
     return (
       <div className="App">
       <h1>Iron Nutrition</h1>
-        {/* <SearchBar></SearchBar> */}
+       <SearchBar Prop={this.searchFunction}/>
         <FoodBox foodsProp={this.state.list}/>
         <FoodForm  functionProp={this.handleSubmit} style={ this.state.open ? "block" : "none"}></FoodForm> 
         <Button functionForm={this.showForm}>Add new food</Button>

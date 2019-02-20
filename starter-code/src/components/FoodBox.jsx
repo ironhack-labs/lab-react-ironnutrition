@@ -6,11 +6,11 @@ class FoodBox extends Component {
     return (
       <div>
       {this.props.foodsProp.map((e, idx)=> {
-        return  <div className="box">
+        return  <div key={idx} className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={e.image} />
+              <img src={e.image}/>
             </figure>
           </div>
           <div className="media-content">

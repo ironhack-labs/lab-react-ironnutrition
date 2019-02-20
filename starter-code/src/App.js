@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from './components/foodbox/FoodBox.js';
+import AddFood from './components/addFood/AddFood.js';
+import Search from './components/search/Search.js';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      foods: foods
+    }
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState(array) {
+    this.setState({
+      foods: array
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <AddFood foodArray={this.state.foods} updateState={this.updateState}/>
+        <Search  foodArray={this.state.foods} updateState={this.updateState}/>
+        <FoodBox foodArray={this.state.foods}/>
       </div>
     );
   }

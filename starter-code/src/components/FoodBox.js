@@ -10,7 +10,6 @@ class FoodBox extends Component {
 
   render() {
     const { food } = this.props;
-    console.log(food);
     return (
       <div className="box">
         <article className="media">

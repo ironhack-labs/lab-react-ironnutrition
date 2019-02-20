@@ -3,14 +3,50 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox.js";
+import AddFoodForm from "./components/AddFoodForm.js";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showFoodForm: true,
+      foodArray: foods
+    };
+  }
+  // method called along AddFoodForm prop submitted content
+  addNewFood(foodObject) {
+    // add new item at top of array
+    let tempFoodsArray = this.state.foodArray;
+    tempFoodsArray.unshift(foodObject);
+
+    // is Food Form visible or hidden ?
+    let tempFoodFormIo = this.state.showFoodForm;
+
+    // hide child component (add food form)
+    this.toggleAddFoodForm();
+
+    // change state
+    this.setState({ foodArray: foods, showFoodForm: !tempFoodFormIo });
+  }
+
+  toggleAddFoodForm() {
+    // is Food Form visible or hidden ?
+    let tempFoodFormIo = this.state.showFoodForm;
+
+    console.log(!tempFoodFormIo, "is the new state of my form");
+
+    this.setState({ showFoodForm: !tempFoodFormIo });
+  }
+
   render() {
     return (
       <div className="App">
-        <p>Get started</p>
-
-        {foods.map((oneFood, index) => {
+        <AddFoodForm
+          foodSubmitContent={foodObject => this.addNewFood(foodObject)}
+        />
+        <hr />
+        <p>Available meals:</p>
+        {this.state.foodArray.map((oneFood, index) => {
           return <FoodBox food={oneFood} key={index} />;
         })}
       </div>

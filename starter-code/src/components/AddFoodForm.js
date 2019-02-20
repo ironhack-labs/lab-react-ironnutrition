@@ -28,52 +28,48 @@ class AddFoodForm extends Component {
 
     // change component prop (which is linked to parent component and function)
     this.props.foodSubmitContent(this.state);
-
-    // reset form state and form fields
-    // this.setState({
-    //   name: "",
-    //   calories: "666",
-    //   image: ""
-    // });
   }
 
   render() {
     return (
-      <form
-        onSubmit={event => this.handleSubmit(event)}
-        className="has-background-white-ter box"
-      >
-        <p>Suggest a meal below</p>
+      <div>
+        <form
+          onSubmit={event => this.handleSubmit(event)}
+          className="has-background-white-ter box"
+        >
+          <p>Suggest a meal below</p>
 
-        <input
-          name="name"
-          onChange={event => this.syncStateForm(event)}
-          className="input"
-          type="text"
-          placeholder="Yummy meal nickname* "
-          required
-        />
-        <input
-          name="calories"
-          onChange={event => this.syncStateForm(event)}
-          className="input"
-          type="num"
-          min="1"
-          max="1"
-          placeholder="Calories* (cal)"
-          required
-        />
-        <input
-          name="image"
-          onChange={event => this.syncStateForm(event)}
-          className="input"
-          type="text"
-          placeholder="Image URL *"
-          required
-        />
+          <input
+            name="name"
+            onChange={event => this.syncStateForm(event)}
+            className="input"
+            type="text"
+            placeholder="Yummy meal nickname* "
+            required
+          />
+          <input
+            name="calories"
+            onChange={event => this.syncStateForm(event)}
+            className="input"
+            type="num"
+            min="1"
+            max="1"
+            placeholder="Calories* (cal)"
+            required
+          />
+          <input
+            name="image"
+            onChange={event => this.syncStateForm(event)}
+            className="input"
+            type="text"
+            placeholder="Image URL *"
+            required
+          />
 
-        <button className="button is-success">Add this meal</button>
-      </form>
+          <button className="button is-success">Add this meal</button>
+        </form>
+        <hr />
+      </div>
     );
   } // end of render
 }

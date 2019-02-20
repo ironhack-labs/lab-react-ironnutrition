@@ -39,12 +39,14 @@ class App extends Component {
   }
 
   render() {
+    const { showFoodForm } = this.state;
     return (
       <div className="App">
-        <AddFoodForm
-          foodSubmitContent={foodObject => this.addNewFood(foodObject)}
-        />
-        <hr />
+        {showFoodForm && (
+          <AddFoodForm
+            foodSubmitContent={foodObject => this.addNewFood(foodObject)}
+          />
+        )}
         <p>Available meals:</p>
         {this.state.foodArray.map((oneFood, index) => {
           return <FoodBox food={oneFood} key={index} />;

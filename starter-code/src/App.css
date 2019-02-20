@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.box {
+  margin-left: 50px;
+  max-width: 40vw;
+}
+
+.container {
+  display: flex;
+}

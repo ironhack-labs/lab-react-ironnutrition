@@ -19,6 +19,8 @@ class App extends Component {
     }
     this.updateState = this.updateState.bind(this);
     this.updateStateSearch = this.updateStateSearch.bind(this);
+    this.updateStateTodaysFoods = this.updateStateTodaysFoods.bind(this);
+
   }
 
   updateState(obj) {
@@ -33,15 +35,9 @@ class App extends Component {
     })
   }
 
-
   updateStateSearch(e) {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value }, () => {
-
-      const listFoods = this.state.foods;
-      const searchedFoods = foodsJson.filter((item) => item.name.toLowerCase().includes(this.state.search));
-      this.updateState(searchedFoods);
-      console.log(searchedFoods);
     })
   }
 
@@ -56,7 +52,8 @@ class App extends Component {
             <div className="columns is-mobile">
               <div className="column">
                 <p className="bd-notification is-info">First nested column</p>
-                <Food foods={this.state.foods} updateStateFoods={this.state.updateState}/>
+                {console.log('search ----------------', this.state.search.length)}
+                <Food foods={this.state.search.length === 0 ? this.state.foods : this.state.foods.filter((item) => item.name.toLowerCase().includes(this.state.search))} updateStateFoods={this.state.updateState} />
               </div>
               <div className="column">
                 <p className="bd-notification is-info">Second nested column</p>

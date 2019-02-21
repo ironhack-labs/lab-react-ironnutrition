@@ -1,0 +1,50 @@
+.FoodBox {
+  padding: 10px;
+}
+
+.FoodBox .box {
+  display: inline-block;
+  padding: 0;
+  width: 400px;
+}
+
+.FoodBox .media-left img {
+  height: 100%;
+}
+
+.FoodBox .media-content {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.FoodBox .media-right {
+  display: flex;
+  align-items: center;
+}
+
+.FoodBox .control:nth-child(1) {
+  height: 64px;
+  width: 100px;
+  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.FoodBox .span {
+  margin-right: 10px;
+}
+
+.FoodBox .control:nth-child(2) {
+  height: 64px;
+
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.FoodBox .button {
+  height: 64px;
+  width: 64px;
+}

@@ -1,0 +1,14 @@
+.Search {
+  padding: 10px;
+  width: 80vw;
+  margin: 10px auto;
+}
+
+.Search .control:nth-child(1) {
+  width: 80%;
+  padding-right: 0;
+}
+
+.Search .control:nth-child(2) {
+  width: 20%;
+}

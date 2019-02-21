@@ -1,0 +1,22 @@
+.Selection ul {
+  list-style-type: disc;
+  margin: 20px auto;
+}
+
+.Selection li {
+  margin-left: 50px;
+}
+
+.Selection h3 {
+  font-size: 2em;
+}
+
+.Selection p {
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.Selection h5 {
+  font-size: 1em;
+  font-weight: bold;
+}

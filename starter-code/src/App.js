@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   handlerSubmit = (e,newState) => {
-    
+    newState.quantity=0
     e.preventDefault()
 
     let cloneState = {...this.state};

@@ -1,0 +1,18 @@
+.button-form {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.box {
+  height: 84px;
+}
+
+button.delete-button {
+  background-color: darkmagenta;
+  color: white;
+}

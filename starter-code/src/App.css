@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App-logo {
@@ -23,6 +24,43 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h1 {
+  margin-top: 2%;
+  margin-left: 13%;
+  text-align: left;
+  font-weight: 700;
+  font-size: 2em;
+  color: rgba(36, 36, 36, 0.925);
+}
+
+.food {
+  margin-left: 13%;
+  margin-right: 44%;
+}
+
+.button-form {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.box {
+  height: 84px;
+}
+
+button.delete-button {
+  background-color: darkmagenta;
+  color: white;
 }

@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       showFoodForm: false,
       foodArray: foods,
+      dailyFoods: [],
       searchField: ""
     };
   }
@@ -30,6 +31,21 @@ class App extends Component {
 
     // change state
     this.setState({ foodArray: foods, showFoodForm: !tempFoodFormIo });
+  }
+
+  //
+  addNewFoodToDayList(foodArray) {
+    console.log(foodArray.length, "items has been received by App");
+
+    // get current state and add it user choices
+    let tempFoodsArray = this.state.dailyFoods;
+    tempFoodsArray.unshift(foodArray);
+
+    // update state
+    this.setState({ dailyFoods: tempFoodsArray });
+
+    //
+    console.log(this.state.dailyFoods);
   }
 
   toggleAddFoodForm() {
@@ -55,19 +71,19 @@ class App extends Component {
   }
 
   render() {
-    const { showFoodForm, searchField, foodArray } = this.state;
+    const { showFoodForm, searchField, foodArray, dailyFoods } = this.state;
 
     // add loading feedback
-    const classNameDivs = searchField
+    const searchFieldClasses = searchField
       ? "control is-medium is-loading"
       : "control is-medium";
 
     return (
       <div className="App container">
-        <h1 className="title">Shopping List</h1>
+        <h1 className="title">Bulma&#39;s Shopping List</h1>
         <h2 className="subtitle"> Because Vegeta is not vegan yet..</h2>
         <div className="field">
-          <div className={classNameDivs}>
+          <div className={searchFieldClasses}>
             <input
               name="searchField"
               className="input is-medium"
@@ -103,13 +119,21 @@ class App extends Component {
 
               //  REFACTOR INTO {condition && view} (opposite way)
               if (matches) {
-                return <FoodBox food={oneFood} key={index} />;
+                return (
+                  <FoodBox
+                    food={oneFood}
+                    key={index}
+                    addedFood={foodArray => this.addNewFoodToDayList(foodArray)}
+                  />
+                );
               } else return "";
             })}
           </div>
 
           <div className="column is-half">
-            <TodaysFood />
+            {dailyFoods.map((oneFoodArray, index) => {
+              return <TodaysFood item={oneFoodArray} key={index} />;
+            })}
           </div>
         </div>
       </div>

@@ -4,12 +4,37 @@ class FoodBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _id: ""
+      itemsToAdd: 1
     };
+  }
+
+  syncStateForm(event) {
+    const { value, name } = event.target;
+
+    this.setState({ [name]: value });
+  }
+
+  addToDayList(nTimes) {
+    const { food } = this.props;
+
+    // convert input value to number and create an array (i.e 10 pizzas)
+    nTimes = parseInt(nTimes, 10);
+    var foodToAdd = new Array(nTimes).fill(food);
+    console.log(
+      "adding",
+      nTimes,
+      food.name,
+      "like so",
+      foodToAdd,
+      "(sending from Foodbox)"
+    );
+
+    this.props.addedFood(foodToAdd);
   }
 
   render() {
     const { food } = this.props;
+    const { itemsToAdd } = this.state;
     return (
       <div className="box">
         <article className="media">
@@ -29,10 +54,22 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input
+                  name="itemsToAdd"
+                  className="input"
+                  type="number"
+                  value={itemsToAdd}
+                  onChange={event => this.syncStateForm(event)}
+                />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button
+                  className="button is-info"
+                  onClick={this.addToDayList.bind(this, itemsToAdd)}
+                >
+                  {/* NOT sure I got why.. bind the function to this specific foodbox key bind(thisFoodBox) ? */}
+                  +
+                </button>
               </div>
             </div>
           </div>

@@ -9,9 +9,13 @@ class TodaysFood extends Component {
   }
 
   render() {
+    const { item } = this.props;
+
     return (
       <div>
-        <h2 className="subtitle">Today's Foods</h2>
+        {item.map((oneFood, index) => {
+          return <li key={index}>{oneFood.name}</li>;
+        })}
       </div>
     );
   } // end of render

@@ -80,7 +80,7 @@ class App extends Component {
 
    let dailyMenuCopy = [...this.state.dailyMenu] // initially empty array
 
-   let selectedEl = food.filter(item => item.name === e.target.value)[0] // eg. Pizza Object {name: "pizza", calories: 3000}
+   let selectedEl = this.state.food.filter(item => item.name === e.target.value)[0] // eg. Pizza Object {name: "pizza", calories: 3000}
 
    let doesItemExist = dailyMenuCopy.filter(item => item.name === selectedEl.name) // is object inside array?
 
@@ -102,7 +102,7 @@ class App extends Component {
   deleteDailyItem = e => {
 
     let dailyMenuCopy = [...this.state.dailyMenu]
-    let selectedEl = food.filter(item => item.name === e.target.value)
+    let selectedEl = this.state.food.filter(item => item.name === e.target.value)
     let reduceCal = dailyMenuCopy[dailyMenuCopy.indexOf(selectedEl[0])].quantity--
 
     if (reduceCal - 1 === 0) {dailyMenuCopy.splice(dailyMenuCopy.indexOf(selectedEl[0]),1)}

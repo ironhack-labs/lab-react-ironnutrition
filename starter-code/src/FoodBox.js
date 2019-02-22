@@ -29,7 +29,7 @@ function FoodBox(props) {
           />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button value={props.name} className="button is-info" onClick={(e) => props.addToMenu(e)}>
             +
           </button>
         </div>

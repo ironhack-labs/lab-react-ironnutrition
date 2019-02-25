@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/misc/Header';
+import ProductBox from './components/misc/ProductBox';
+import food from './datasets/foods.json'
+import SearchBar from './components/misc/SearchBar'
 import './App.css';
 
+
 class App extends Component {
+
+
   render() {
+    const productList = food.map((food,index) => (
+      <ProductBox key={food.name} {...food }/>
+    ))
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header/>
+        <div style={{margin: '20px'}}>
+          <SearchBar/>
+        </div>
+        <div style={{margin: '20px'}} className="columns">
+          <div className="column">
+            {productList}
+          </div>
+          <div className="column">
+          </div>
+        </div>
       </div>
     );
   }

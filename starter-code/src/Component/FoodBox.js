@@ -6,7 +6,7 @@ const FoodBox= ({food,addQuanty,todayFood,quanty}) => (
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src={food.img} alt={food.name} />
+          <img src={food.image} alt={food.name} />
         </figure>
       </div>
       <div className="media-content">

@@ -19,7 +19,7 @@ const Form = ({handleChange,handleSubmit,form}) => (
         <label className="label">Calories </label>
         <div className="control">
         <input
-          name="kcal"
+          name="calories"
           value={form.kcal}
           onChange={handleChange}
           className="input"
@@ -33,7 +33,7 @@ const Form = ({handleChange,handleSubmit,form}) => (
         <label className="label">Image link</label>
         <div className="control">
           <input
-            name="img"
+            name="image"
             value={form.img}
             onChange={handleChange}
             className="input"

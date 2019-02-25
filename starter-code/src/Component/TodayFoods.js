@@ -9,8 +9,8 @@ const TodayFoods = ({totalCalories,arrtodayFoods}) => (
       arrtodayFoods.map((el,i) => (
        <Food
          name={el.name}
-         qty={el.qty}
-         kcal={el.kcal}
+         qty={el.quantity}
+         kcal={el.calories}
          key={i}
        />
       ))

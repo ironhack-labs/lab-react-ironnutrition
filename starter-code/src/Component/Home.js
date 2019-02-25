@@ -13,7 +13,7 @@ class Home extends Component {
       data:foods,
       form:
        { name:"",
-        kcal:"",
+        calories:"",
         img:""},
       quanty:"",
       showingForm:false,
@@ -54,7 +54,7 @@ class Home extends Component {
      let {form,data}= this.state;
     data.unshift(form)
     console.log(foods)
-    form = {name:"",kcal:"",img: ""};
+    form = {name:"",calories:"",image: ""};
      this.setState({form,data,showingForm: false})
   };
 
@@ -64,8 +64,8 @@ class Home extends Component {
     if(quanty===''){
      return console.log('no existe quan')
     }
-    food['qty']=quanty
-    totalCalories+=parseInt(food['kcal']*quanty)
+    food['quantity']=quanty
+    totalCalories+=parseInt(food['calories']*quanty)
     todayFoods.push(food)
     console.log(todayFoods,'todayFoods')
     quanty=0;

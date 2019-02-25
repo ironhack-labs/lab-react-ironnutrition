@@ -13,7 +13,7 @@ const FoodBox= ({food,addQuanty,todayFood,quanty}) => (
         <div className="content">
           <p>
             <strong>{food.name} </strong> <br />
-            <small>{food.kcal} Kg</small>
+            <small>{food.calories} Kg</small>
           </p>
         </div>
       </div>

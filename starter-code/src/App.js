@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import 'bulma/css/bulma.css';
 import './App.css';
+import Foods from './datasets/foods.json';
+import Header from './components/misc/header';
+import FoodBox from './components/FoodBox';
 
 class App extends Component {
   render() {
+
+    const FoodList = Foods.map((food,index) => {
+      return <FoodBox key={index} {...food} />;
+    })
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        {FoodList}
       </div>
     );
   }

@@ -1,5 +1,5 @@
-import foods from "../foods"
 import React, {Component} from "react";
+import foods from "../foods"
 import FoodBox from "./FoodBox";
 import AddFood from "./AddFood";
 import Form from "./Form";
@@ -14,12 +14,13 @@ class Home extends Component {
       form:
        { name:"",
         calories:"",
-        img:""},
+        image:""},
       quanty:"",
       showingForm:false,
       today:false,
       totalCalories:0,
-      todayFoods:[]
+      todayFoods:[],
+      word:""
     }
 
   newForm= (e) => {
@@ -37,11 +38,9 @@ class Home extends Component {
   };
 
   search= (e) => {
-    let {word,data} =this.state;
+    let {word} =this.state;
     word = e.target.value;
-    data=foods.filter(data => data.name.toLowerCase().includes(word.toLowerCase()));
-      console.log(data ,'resi')
-    this.setState({word,data})
+    this.setState({word})
   };
 
   addQuanty = (e) =>{
@@ -51,11 +50,12 @@ class Home extends Component {
   };
 
   handleSubmit = (e) => {
-     let {form,data}= this.state;
-    data.unshift(form)
+    let {form,data,showingForm}= this.state;
+    data.unshift(form);
     console.log(foods)
     form = {name:"",calories:"",image: ""};
-     this.setState({form,data,showingForm: false})
+    showingForm=!showingForm
+    this.setState({form,data,showingForm})
   };
 
   todayFood =(food) => {
@@ -76,7 +76,7 @@ class Home extends Component {
   }
 
   render() {
-    let {form,showingForm,today,totalCalories,todayFoods} = this.state;
+    let {form,data,word,showingForm,today,totalCalories,todayFoods} = this.state;
     return (
       <div className="App container is-fluid">
         <div className="columns">
@@ -91,7 +91,9 @@ class Home extends Component {
 
           <div className="column is-half">
           {
-            this.state.data.map((el, i ) =>
+            data
+              .filter(el => el.name.toLowerCase().includes(word.toLowerCase()))
+              .map((el, i ) =>
               < FoodBox
                 food={el}
                 key= {i}

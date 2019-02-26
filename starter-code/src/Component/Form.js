@@ -2,6 +2,7 @@ import React from 'react';
 
 const Form = ({handleChange,handleSubmit,form}) => (
   <div>
+    {console.log('form=>',form)}
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label className="label">Name</label>
@@ -9,8 +10,8 @@ const Form = ({handleChange,handleSubmit,form}) => (
           <input
             name="name"
             value={form.name}
-            onChange={handleChange}
             className="input"
+            onChange={handleChange}
             type="text"
             placeholder="Watermelon"/>
         </div>
@@ -20,9 +21,9 @@ const Form = ({handleChange,handleSubmit,form}) => (
         <div className="control">
         <input
           name="calories"
-          value={form.kcal}
-          onChange={handleChange}
+          value={form.calories}
           className="input"
+          onChange={handleChange}
           type="number"
           placeholder="Calories"
           step="1"
@@ -34,7 +35,7 @@ const Form = ({handleChange,handleSubmit,form}) => (
         <div className="control">
           <input
             name="image"
-            value={form.img}
+            value={form.image}
             onChange={handleChange}
             className="input"
             type="text"

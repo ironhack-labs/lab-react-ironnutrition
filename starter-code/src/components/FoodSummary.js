@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 class FoodSummary extends Component {
+
+  deleteItem = (index) => {
+    this.props.removeItem(index)
+  }
+
   render() {
     return (
       <div className="FoodSummary">
@@ -9,7 +14,10 @@ class FoodSummary extends Component {
           (this.props.consumedFoods.length > 0) &&
           <ul>
             {this.props.consumedFoods.map((el, i) => (
-              <li key={i}>{el.quantity} {el.name} = {el.calories*el.quantity} cal </li>
+              (el.quantity > 0) &&
+              <li key={i}>{el.quantity} {el.name} = {el.calories*el.quantity} cal 
+              <a onClick={() => this.deleteItem(i)}>🗑</a>
+              </li>
             ))}
           </ul>
         }

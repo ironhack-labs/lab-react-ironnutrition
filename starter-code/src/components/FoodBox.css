@@ -72,3 +72,7 @@ figure.is-64x64 img{
   width: 64px !important;
   height: 64px !important;
 }
+
+.negative {
+  background-color: #FF5014 !important;
+}

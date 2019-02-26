@@ -19,7 +19,8 @@ class FoodBox extends Component {
 
   submitConsumedFood = (e) => {
     e.preventDefault();
-    this.props.addConsumedFood(this.state)
+    this.props.addConsumedFood(this.state);
+    this.setState({quantity : 0});
   }
 
   render() {
@@ -45,7 +46,7 @@ class FoodBox extends Component {
                 className="input"
                 name="quant"
                 type="number"
-                defaultValue={this.state.quantity}
+                value={this.state.quantity}
                 onChange={e => this.updateQuantity(e)}
                 pattern={/^[0-9]{3}$/}
                 style={{width: '60%', border: "none", margin: 0, padding: 0, color: '#000'}}
@@ -53,9 +54,9 @@ class FoodBox extends Component {
             </div>
             <div className="control">
               <button 
-              className="button is-info"
+              className={(this.state.quantity >= 0) ? "button is-info" : "button is-info negative"}
               onClick={(e) => this.submitConsumedFood(e)}>
-                +
+                {(this.state.quantity >= 0) ? `+` : `-`}
                   </button>
             </div>
           </div>

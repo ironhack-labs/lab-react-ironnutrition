@@ -37,13 +37,21 @@ class App extends Component {
     updatedFoods.push(newFood);
     //Esta es una forma de impedir duplicados.
     let uniqueFoods = updatedFoods.filter((el, i, ar) => ar.map(ie => ie.name).indexOf(el.name) === i);
-    updatedFoods = uniqueFoods.map((el, i, ar) => {
-      let quantity = ar.filter(ie => ie.name === el.name).reduce((ac, cv) => ac + parseInt(cv.quantity, 10), 0);
-      return { ...el, quantity : quantity }
-    });
+    //Esto es para consolidar los registros
+    updatedFoods = uniqueFoods.map((el, i) => {
+      let quantity = updatedFoods.map((ie, j, ar) => ar.filter(iie => iie.name === ie.name)).map(ar => ar.map(ie => parseInt(ie.quantity, 10)).reduce((ac, cv) => ac + cv, 0));
+      return { ...el, quantity: Math.max(quantity[i], 0) }
+    }).filter(el => el.quantity > 0); //Y esto evita bugs al borrar
+
     this.setState({
       consumedFoods: updatedFoods
     });
+  }
+
+  deleteItemFromSummary = (index) => {
+    let updatedFoods = [...this.state.consumedFoods];
+    updatedFoods.splice(index, 1);
+    this.setState({ consumedFoods: updatedFoods });
   }
 
   filterFoods = (e) => {
@@ -89,7 +97,11 @@ class App extends Component {
               ))
             }
           </div>
-          <FoodSummary className="FoodSummary" consumedFoods={this.state.consumedFoods} />
+          <FoodSummary
+            className="FoodSummary"
+            consumedFoods={this.state.consumedFoods}
+            removeItem={this.deleteItemFromSummary}
+          />
         </div>
       </div>
     );

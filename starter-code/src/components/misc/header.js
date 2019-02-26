@@ -5,7 +5,7 @@ const Header = () => {
     <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <div className="navbar-item">
-          <p>Iron Nutrition</p>
+          <p className="is-size-4 has-text-weight-semibold">Iron Nutrition</p>
         </div>
       </div>
     </nav>

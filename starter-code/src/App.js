@@ -25,7 +25,13 @@ class App extends Component {
   }
 
   onModifyMenu = (food) => {
-    const oldMenu = this.state.menu;
+    let oldMenu = this.state.menu;
+
+    const itemModified = oldMenu.find((item) => item.name === food.name );
+    if ( itemModified ) { 
+      food.quantity = parseInt(food.quantity) + parseInt(itemModified.quantity); 
+      oldMenu = oldMenu.filter((item) => item.name != food.name );
+    };
     const newMenu = [...oldMenu, food];
     this.setState({menu: newMenu})
   }
@@ -56,18 +62,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*
-onModifyMenu = (food) => {
-  //quitamos la comida que vamos a meter para no meterla dos veces
-  const oldMenu = this.state.menu.filter(f=> {
-    return f.name != food.name
-  });
-  //nos creamos un  nuevo array con el anterior mas la nueva comida
-  const newMenu = [...oldMenu, food];
-  this.setState({
-    menu:newMenu
-  })
-}
-*/

@@ -3,7 +3,6 @@ import React from 'react';
 const Menu = (props) => {
 
   const plates = props.menu.map((plate, index) => {
-    console.log('plate =>', plate);
     return (
       <li key={index} className="is-size-6 has-margin-left-50-widescreen">{plate.quantity} {plate.name} = {plate.calories * plate.quantity} cal</li>
     );

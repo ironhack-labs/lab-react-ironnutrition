@@ -16,7 +16,7 @@ export default class Search extends Component {
 
   render() {
     return (
-      <input className="input is-info has-margin-top-30 has-margin-bottom-30" 
+      <input className="input is-info has-margin-bottom-30" 
               type="text" placeholder="Search" value={this.state.value} onChange={this.handleChange}/> 
     );
   }

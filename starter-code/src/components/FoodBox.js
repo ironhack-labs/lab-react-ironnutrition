@@ -17,6 +17,16 @@ class FoodBox extends React.Component {
     })
   }
 
+  onModify = () => {
+    this.props.onModifyMenu({
+      name: this.props.name,
+      calories: this.props.calories,
+      quantity: this.state.quantity
+    });
+  }
+
+
+
 
   handleChange = (event) => {
     if ( event.target.value >= 0) {

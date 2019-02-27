@@ -2,9 +2,18 @@ import React from 'react';
 
 const Menu = (props) => {
 
+  const deletePlate = () =>{
+    props.onDeleteMenu({
+      name: props.menu[0].name
+    })
+  }
+
+
   const plates = props.menu.map((plate, index) => {
     return (
-      <li key={index} className="is-size-6 has-margin-left-50-widescreen">{plate.quantity} {plate.name} = {plate.calories * plate.quantity} cal</li>
+      <li key={index} className="is-size-6 has-margin-left-50-widescreen">{plate.quantity} {plate.name} = {plate.calories * plate.quantity} cal
+        <a className="far fa-trash-alt has-margin-left-20-widescreen" onClick={deletePlate}></a>
+      </li>
     );
   });
   

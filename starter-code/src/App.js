@@ -36,6 +36,12 @@ class App extends Component {
     this.setState({menu: newMenu})
   }
 
+  onDeleteMenu = (food) => {
+    const newMenu = this.state.menu.filter((item) => item.name != food.name );;
+    this.setState({menu: newMenu})
+  }
+
+
   render() {
 
     const FoodList = this.state.foods.map((food,index) => {
@@ -52,7 +58,7 @@ class App extends Component {
               {FoodList}
             </div>
             <div className="column">
-              <Menu menu={this.state.menu}/>
+              <Menu menu={this.state.menu} onDeleteMenu={this.onDeleteMenu}/>
             </div>
           </div>
         </div>

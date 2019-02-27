@@ -28,6 +28,15 @@ class App extends Component {
   }
 
 
+  deleteFoodItem = (item) => {
+    let newMenuDeleted = this.state.menu.filter(f => f.name != item)
+    this.setState({
+      menu : [...newMenuDeleted]
+    })
+  }
+
+
+
   onFilter = (search) => {
     const newFoods = foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
     this.setState({
@@ -50,7 +59,7 @@ class App extends Component {
                   {productList}
               </div>
               <div class="column is-6">
-                  <Menu yourMenu={this.state.menu}/>
+                  <Menu yourMenu={this.state.menu} deleteFood={this.deleteFoodItem}/>
               </div>
             </div>
           </div>

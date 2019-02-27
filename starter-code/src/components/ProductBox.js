@@ -16,10 +16,10 @@ class ProductBox extends Component{
         quantity : event.target.value
       })
     }
+
+    console.log(event.target.name)
   }
   
-
-
 
   onChangeMenu = () => {
     this.props.onChangeMenu({
@@ -49,7 +49,7 @@ class ProductBox extends Component{
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input type="number" className="input" value={this.state.quantity} onChange={this.onChangeQuantity}/>
+                <input type="number" className="input" name='inputQuantity' value={this.state.quantity} onChange={this.onChangeQuantity}/>
               </div>
               <div className="control">
                 <button className="button is-info" onClick={this.onChangeMenu}>+</button>

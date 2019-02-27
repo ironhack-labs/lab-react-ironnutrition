@@ -1,18 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/misc/Header'
+import ProductBox from './components/ProductBox'
+import foods from './datasets/foods.json'
+import SearchBar from './components/SearchBar'
+import Menu from './components/Menu'
+
+
+
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      foods: [...foods],
+      menu: []
+    }
+  }
+
+  onChangeMenu = (food) => {
+    let oldMenu = this.state.menu.filter(f => f.name != food.name)
+    let newMenu = [...oldMenu, food]
+    
+    this.setState({
+      menu : newMenu
+    })
+  }
+
+
+  onFilter = (search) => {
+    const newFoods = foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+    this.setState({
+     foods : newFoods
+    })
+  }
+
   render() {
+    console.log(this.state.menu)
+    
+    const productList = this.state.foods.map(food => ( <ProductBox {...food} onChangeMenu={this.onChangeMenu}/>))
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+          <Header />
+            <div className="container margin-top">
+              <div class="columns">
+                <div class="column is-6">
+                  <SearchBar onFilter={this.onFilter} />
+                  {productList}
+              </div>
+              <div class="column is-6">
+                  <Menu yourMenu={this.state.menu}/>
+              </div>
+            </div>
+          </div>
       </div>
     );
   }

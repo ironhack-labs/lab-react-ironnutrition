@@ -15,21 +15,23 @@ class App extends Component {
   }
 
   drawFoodBox = (elem, index) => {
-    return <FoodBox key={index} image={elem.image} name={elem.name} calories={elem.calories} quantity={elem.quantity} />
+    return <FoodBox key={index} image={elem.image} name={elem.name} calories={elem.calories} addToday={this.addToday}/>
   }
 
-  addToday = (e) => {
+  addToday = (image,name,calories,quantity) => {
+      if(quantity<=0) return
       let {today} = this.state
-      // today.push({
-      //   name,calories,image,quantity
-      // })
-      // this.setState({today})
-      console.log(today)
-  
+      today.push({image,name,calories,quantity})
+      this.setState({today})
+      let total = 0
+      for (let tf in today) {
+        total += today[tf].calories
+      }
+      this.setState({total})
   }
 
   drawToday = (elem, index) => {
-    return <li>{elem.quantity} {elem.name} = {elem.calories} cal</li>
+    return <li key={index}>{elem.quantity} {elem.name} = {elem.calories} cal</li>
   }
 
   render() {
@@ -38,7 +40,7 @@ class App extends Component {
       <div className="container">
         <h1 className="title">IronNutrition</h1>
         <div>
-          <input type="text" className="input search-bar" name="search" placeholder="Search" value="" />
+          <input type="text" className="input search-bar" name="search" placeholder="Search" defaultValue="" />
         </div>
         <div className="columns">
           <div className="column">

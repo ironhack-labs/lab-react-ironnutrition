@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 
 export default class FoodBox extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {}
+  }
+
+  onChangeCount = (event) => {
+      this.setState({ count: event.target.value })
+  }
+
+  onAddToMenu = () => {
+    this.props.onAddToMenu({ ...this.props.food, quantity: this.state.count });
   }
 
   render() {
@@ -32,11 +40,12 @@ export default class FoodBox extends Component {
                 <input
                   className="input"
                   type="number"
-                  value="1"
+                  value={this.state.count}
+                  onChange={this.onChangeCount}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={this.onAddToMenu}>
                   +
                 </button>
               </div>

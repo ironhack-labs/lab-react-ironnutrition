@@ -8,6 +8,7 @@ class Foodbox extends Component {
       displayedFood: foods
     };
   }
+
   render() {
     const { name, calories, image, quantity } = this.props;
     return (

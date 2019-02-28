@@ -1,4 +1,6 @@
-class AddFoodForm extends React.Component {
+import React from 'react';
+
+export default class AddFoodForm extends React.Component {
     state = {
         foodName: '',
         url:'',
@@ -6,14 +8,20 @@ class AddFoodForm extends React.Component {
     }
   
     handleChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
         this.setState({
-          [name]: event.target.name,
+        [name]: value
         });
     }
   
     handleSubmit = (event) => {
-      alert('A name was submitted: ' + this.state.value);
       event.preventDefault();
+      const { onSubmit } = this.props;
+      const { foodName, url, calories } = this.state;
+      onSubmit(foodName, url, calories);
     }
   
     render() {

@@ -13,14 +13,14 @@ class FoodBox extends React.Component {
 
 
     render(){
-        const { food, cal } = this.props;
+        const { food, cal, image, handleTodayFood, handleDelete } = this.props;
         const { quantity } = this.state;
         return (
             <div className="box">
             <article className="media">
                 <div className="media-left">
                 <figure className="image is-64x64">
-                    <img src="https://i.imgur.com/eTmWoAN.png" />
+                    <img src={image} alt="" />
                 </figure>
                 </div>
                 <div className="media-content">
@@ -37,7 +37,8 @@ class FoodBox extends React.Component {
                     <input className="input" type="number" value={quantity} onChange={(e)=>this.handleChange(e)} />
                     </div>
                     <div className="control">
-                    <button className="button is-info">+</button>
+                    <button className="button is-info" onClick={()=>handleTodayFood({food, cal, quantity})}>+</button>
+                    <button className="button is-info" onClick={()=>handleDelete(food)}>-</button>
                     </div>
                 </div>
                 </div>

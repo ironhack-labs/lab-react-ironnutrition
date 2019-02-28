@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import foods from './datasets/foods';
 import FoodBox from './components/FoodBox';
@@ -33,21 +32,23 @@ class App extends Component {
   render() {
 
     const foodBoxes = this.state.foods
-    .filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    .map(food => (
-      <FoodBox food={food} key={food.name} onAddToMenu={this.onAddToMenu}/>
-    ));
+      .filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
+      .map(food => (
+        <FoodBox food={food} key={food.name} onAddToMenu={this.onAddToMenu} />
+      ));
 
     return (
       <div className="App">
         <Header />
-        <SearchBox onSearch={this.onSearch}/>
-        <div className="columns">
-          <div className="column">
-            {foodBoxes}
-          </div>
-          <div className="column">
-            <FoodMenu foods={this.state.menu} />
+        <div className="main-container">
+          <SearchBox onSearch={this.onSearch} />
+          <div className="columns">
+            <div className="column">
+              {foodBoxes}
+            </div>
+            <div className="column">
+              <FoodMenu foods={this.state.menu} />
+            </div>
           </div>
         </div>
       </div>

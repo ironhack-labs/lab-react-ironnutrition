@@ -10,7 +10,7 @@ export default ({ foods }) => {
   
   return (
     <div className='FoodMenu'>
-      <h1>Today's food</h1>
+      <h2 className="title">Today's food</h2>
       <ul>{menuList}</ul>
 
       Total: {calories} kcal

@@ -1,21 +1,67 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "bulma/css/bulma.css";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox.js";
+import AddFood from "./components/AddFood.js";
+import Search from './components/Search.js'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      foodTable: foods,
+      showForm: true,
+      searchText : ''
+    };
+  }
+
+  showForm = () => {
+    this.setState({
+      showForm: !this.state.showForm
+    });
+  };
+
+  addFoodHandler = theFood => {
+    const foodCopy = [...this.state.foodTable];
+    foodCopy.push(theFood);
+    this.setState({
+      foodTable: foodCopy
+    });
+  };
+
+  searchFoodHandler = theText => {
+    this.setState({
+      searchText: theText
+    });
+  }
+
   render() {
+
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <Search searchTheText={this.searchFoodHandler}/>
+
+        <button onClick={() => this.showForm()}>Add Food</button>
+
+        {this.state.showForm && <AddFood addtheFood={this.addFoodHandler} />}
+        
+        {this.state.foodTable.filter(food =>  food.name.includes(this.state.searchText)).map(item => {
+          return (
+            <FoodBox
+              name={item.name}
+              calories={item.calories}
+              image={item.image}
+            />
+          );
+        })
+
+        }
       </div>
     );
   }
 }
-
 export default App;

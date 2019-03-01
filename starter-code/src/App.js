@@ -4,7 +4,8 @@ import ProductBox from './components/ProductBox';
 
 import foods from './datasets/foods.json';
 import SearchBar from './components/SearchBar';
-import Menu from './components/Menu'
+import Menu from './components/Menu';
+import Form from './components/Form';
 
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
     super(props);
     this.state = {
       foods:[...foods],
-      menu: []
+      menu: [],
+      addFood: false
     }
   }
 
@@ -33,6 +35,16 @@ class App extends Component {
     })
   }
 
+  onClickAddFood = (event) => {
+    this.setState({
+      addFood : true
+    })
+  }
+
+  onAddFood = (f) => {
+    this.setState({ foods: [f, ...this.state.foods], addFood: false} )
+  }
+
   render() {
     const productList = this.state.foods.map(food => <ProductBox key={food.name} { ...food } onModifyMenu={this.onModifyMenu}/>);
 
@@ -49,6 +61,8 @@ class App extends Component {
             </div>
             <div className="column">
               <Menu menu={this.state.menu}/>
+              <button className="button" onClick={this.onClickAddFood}>Add new food.</button>
+              {this.state.addFood && <Form onSubmitForm={this.onAddFood}/>}
             </div>
           </div>
         </main>

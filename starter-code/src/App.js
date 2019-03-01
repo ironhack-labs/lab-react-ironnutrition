@@ -4,6 +4,8 @@ import ProductBox from './components/ProductBox'
 import foods from './datasets/foods.json'
 import SearchBar from './components/SearchBar'
 import Menu from './components/Menu'
+import Form from './components/Form'
+
 
 
 
@@ -19,7 +21,7 @@ class App extends Component {
   }
 
   onChangeMenu = (food) => {
-    let oldMenu = this.state.menu.filter(f => f.name != food.name)
+    let oldMenu = this.state.menu.filter(f => f.name !== food.name)
     let newMenu = [...oldMenu, food]
     
     this.setState({
@@ -29,12 +31,17 @@ class App extends Component {
 
 
   deleteFoodItem = (item) => {
-    let newMenuDeleted = this.state.menu.filter(f => f.name != item)
+    let newMenuDeleted = this.state.menu.filter(f => f.name !== item)
     this.setState({
       menu : [...newMenuDeleted]
     })
   }
 
+  addFoodHandler = (newFood) => {
+    this.setState({
+      foods : [...foods, newFood]
+    })
+  }
 
 
   onFilter = (search) => {
@@ -58,7 +65,10 @@ class App extends Component {
                   <SearchBar onFilter={this.onFilter} />
                   {productList}
               </div>
-              <div class="column is-6">
+              <div class="column is-3">
+                  <Form addFood={this.addFoodHandler}></Form>
+              </div>
+              <div class="column is-3">
                   <Menu yourMenu={this.state.menu} deleteFood={this.deleteFoodItem}/>
               </div>
             </div>

@@ -13,9 +13,7 @@ class Menu extends Component {
   deleteItem = (e) => {
     this.setState({
       actualItem : e.currentTarget.dataset.item
-    }, () =>  this.props.deleteFood(this.state.actualItem))
-   
-
+    }, () =>  this.props.deleteFood(this.state.actualItem)) 
   }
 
   printMenu  = () => {

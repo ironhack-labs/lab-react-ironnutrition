@@ -5,6 +5,7 @@ import Header from './components/misc/Header';
 import FoodBox from './components/FoodBox';
 import Search from './components/Search';
 import Menu from './components/Menu';
+import AddFoodForm from './components/AddFoodForm.js';
 
 class App extends Component {
 
@@ -41,6 +42,13 @@ class App extends Component {
     this.setState({menu: newMenu})
   }
 
+  onAddFood = (food) => {
+    const foodsCloned = [...this.state.foods];
+    foodsCloned.push(food);
+    this.setState({
+      foods: foodsCloned
+    });
+  }
 
   render() {
 
@@ -58,6 +66,7 @@ class App extends Component {
               {FoodList}
             </div>
             <div className="column">
+              <AddFoodForm addFood={this.onAddFood}></AddFoodForm>
               <Menu menu={this.state.menu} onDeleteMenu={this.onDeleteMenu}/>
             </div>
           </div>

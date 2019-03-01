@@ -23,15 +23,16 @@ const Menu = ({ menu, onDeleteMenu }) => {
   },0)
   
   return (
-    <div className="is-pulled-left has-padding-left-20-widescreen">
-      <h1 className="is-size-4">Today's Food: </h1>
-      <ul>
-        {plates}
-      </ul>
-      <p className="is-size-6">Total: {totalCal} cal</p>
+    <div className="box">
+      <div className="media-left">
+        <h1 className="is-size-4">Today's Food: </h1>
+        <ul>
+          {plates}
+        </ul>
+        <p className="is-size-6">Total: <span className="has-text-weight-semibold has-text-link">{totalCal}</span> cal</p>
+      </div>
     </div>
   );
 }
 
 export default Menu;
-

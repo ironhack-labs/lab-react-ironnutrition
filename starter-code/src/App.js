@@ -17,7 +17,7 @@ class App extends Component {
       menu: [],
     };
   }
-  addNewFoodHandle = nFood => {
+  addNewFoodHandler = nFood => {
     const newFoods = [...this.state.foods];
     newFoods.unshift(nFood);
     this.setState({ foods: newFoods });
@@ -52,17 +52,20 @@ class App extends Component {
       <div className="App">
        <Header />
        <main className="container">
-          <SearchBar  onSearch={this.onSearch}/>
-          
+          <SearchBar  onSearch={this.onSearch}/>         
             <div className="columns">
               <div className="column">
                 {products}
               </div>
               <div className="column">
-              <AddProduct  addNewFood={this.addNewFoodHandle}/>
-              </div>
-              <div className="column">
-                <FoodMenu foods={this.state.menu} clickDelete={this.onClickDelete}/>
+                <div className="columns">
+                  <div className="column">
+                    <AddProduct  addNewFood={this.addNewFoodHandler}/>  
+                  </div>   
+                  <div className="column">      
+                  <FoodMenu foods={this.state.menu} clickDelete={this.onClickDelete}/>
+                  </div>           
+                </div>           
               </div>
             </div>
         </main>

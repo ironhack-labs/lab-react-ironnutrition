@@ -21,18 +21,27 @@ class FoodMenu extends Component {
 
   render(){
     const list = this.props.foods.filter(f => f.quantity > 0).map(f => (
-      <li key={f.name}>{f.quantity} {f.name} = {f.quantity * f.calories} cal
+      <li key={f.name}>
       <button type="button" className="button is-small is-danger" data-item={f.name} onClick={this.deleteFood} >x</button>
+      {f.quantity} {f.name} = {f.quantity * f.calories} cal
       </li>
     ));
     const total= this.props.foods.reduce((acc, f) => f.quantity * f.calories + acc, 0);
 
   return (
-    <div>
-      <h1>Today's food</h1>
-      <ul>{list}</ul>
-      Total: {total} cal
-    </div>
+    <article className="media">
+      <div className="field is-horizontal">
+        <div className="box">
+          <div className="media-content">
+            <div className="content">
+                <h1>Today's food</h1>
+                <ul>{list}</ul>
+                Total: {total} cal
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
   )
 };
 }

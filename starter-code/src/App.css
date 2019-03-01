@@ -9,3 +9,14 @@
 .control {
   padding-top: 15px;
 }
+
+li {
+  list-style: none;
+  padding-top: 2px
+}
+.btn-li{
+  margin-right: 10px
+}
+.content ul{
+  margin-left: none;
+}

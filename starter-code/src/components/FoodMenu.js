@@ -22,7 +22,7 @@ class FoodMenu extends Component {
   render(){
     const list = this.props.foods.filter(f => f.quantity > 0).map(f => (
       <li key={f.name}>
-      <button type="button" className="button is-small is-danger" data-item={f.name} onClick={this.deleteFood} >x</button>
+      <button type="button" className="button btn-li is-small is-danger" data-item={f.name} onClick={this.deleteFood} >x</button>
       {f.quantity} {f.name} = {f.quantity * f.calories} cal
       </li>
     ));
@@ -34,9 +34,11 @@ class FoodMenu extends Component {
         <div className="box">
           <div className="media-content">
             <div className="content">
-                <h1>Today's food</h1>
-                <ul>{list}</ul>
-                Total: {total} cal
+              <h1>Today's food</h1>
+            </div>
+              <ul>{list}</ul>
+            <div className="content">
+              <h3>Total: {total} cal</h3>
             </div>
           </div>
         </div>

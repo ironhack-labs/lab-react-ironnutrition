@@ -8,7 +8,7 @@ export default class ProductBox extends Component {
       count: 1
     };
   }
-
+  
   onChangeCount = (e) => {
     this.setState({ count: e.target.value })
   }

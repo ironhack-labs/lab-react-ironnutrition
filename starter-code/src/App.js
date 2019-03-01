@@ -5,6 +5,7 @@ import foods from "./foods.json";
 import SearchBar from './components/SearchBar';
 import FoodMenu from './components/FoodMenu'
 import './App.css';
+import AddProduct from './components/AddProduct';
 
 class App extends Component {
   constructor(props){
@@ -15,6 +16,16 @@ class App extends Component {
       search: '',
       menu: [],
     };
+  }
+  addNewFoodHandle = nFood => {
+    const newFoods = [...this.state.foods];
+    newFoods.unshift(nFood);
+    this.setState({ foods: newFoods });
+  }
+
+  onClickDelete = (food) => {
+    let menuDelete = this.state.menu.filter(f => f.name !== food);
+    this.setState({ menu:[...menuDelete] });
   }
 
   onSearch = search => {
@@ -29,10 +40,11 @@ class App extends Component {
     });
   }
 
+ 
   render() {
     const products =  this.state.foods
     .filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    .map((food) => (
+    .map((food) => ( 
       <ProductBox food={food} key={food.name} onAddToMenu={this.onAddToMenu}/>
     ))
 
@@ -40,14 +52,17 @@ class App extends Component {
       <div className="App">
        <Header />
        <main className="container">
-
           <SearchBar  onSearch={this.onSearch}/>
+          
             <div className="columns">
               <div className="column">
-                {products} 
+                {products}
               </div>
               <div className="column">
-                <FoodMenu foods={this.state.menu}/>
+              <AddProduct  addNewFood={this.addNewFoodHandle}/>
+              </div>
+              <div className="column">
+                <FoodMenu foods={this.state.menu} clickDelete={this.onClickDelete}/>
               </div>
             </div>
         </main>

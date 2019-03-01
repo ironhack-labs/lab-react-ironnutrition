@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
 class FoodBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      foodArray: this.props.food,
-    };
+
+
+  state = {
+    foodArray: this.props.food
   }
 
   render() {

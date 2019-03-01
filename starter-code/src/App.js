@@ -29,15 +29,15 @@ class App extends Component {
 
     const itemModified = oldMenu.find((item) => item.name === food.name );
     if ( itemModified ) { 
-      food.quantity = parseInt(food.quantity) + parseInt(itemModified.quantity); 
-      oldMenu = oldMenu.filter((item) => item.name != food.name );
+      food.quantity = parseInt(food.quantity, 0) + parseInt(itemModified.quantity, 0); 
+      oldMenu = oldMenu.filter((item) => item.name !== food.name );
     };
     const newMenu = [...oldMenu, food];
     this.setState({menu: newMenu})
   }
 
   onDeleteMenu = (food) => {
-    const newMenu = this.state.menu.filter((item) => item.name != food.name );;
+    const newMenu = this.state.menu.filter((item) => item.name !== food.name );;
     this.setState({menu: newMenu})
   }
 

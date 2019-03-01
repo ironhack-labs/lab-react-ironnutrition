@@ -1,23 +1,23 @@
 import React from 'react';
 
-const Menu = (props) => {
+const Menu = ({ menu, onDeleteMenu }) => {
 
-  const deletePlate = () =>{
-    props.onDeleteMenu({
-      name: props.menu[0].name
+  const deletePlate = event => {
+    onDeleteMenu({
+      name: menu[event.target.value].name
     })
   }
 
 
-  const plates = props.menu.map((plate, index) => {
+  const plates = menu.map((plate, index) => {
     return (
       <li key={index} className="is-size-6 has-margin-left-50-widescreen">{plate.quantity} {plate.name} = {plate.calories * plate.quantity} cal
-        <a className="far fa-trash-alt has-margin-left-20-widescreen" onClick={deletePlate}></a>
+        <button className="far fa-trash-alt has-margin-left-20-widescreen" value={index} onClick={deletePlate} style={{ fontSize: "15px", border: "none" }}></button>
       </li>
     );
   });
   
-  const totalCal = props.menu.reduce((total, plate) => {
+  const totalCal = menu.reduce((total, plate) => {
     total += plate.quantity * plate.calories;
     return total;
   },0)

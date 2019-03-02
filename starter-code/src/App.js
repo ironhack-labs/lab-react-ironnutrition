@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import Header from './components/misc/Header'
 import './App.css';
+import Menu from './components/Menu';
+import FoodBox from './components/FoodBox';
+import foods from './dataSet/foods.json'
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foods: [...foods],
+      menu: []
+    }
+  }
+
+  onFilter = (search) => {
+    const newFoods = foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()));
+    this.setState({
+      foods: newFoods
+    })
+  }
+
+  onModifyMenu = (food) => {
+    const oldMenu = this.state.menu;
+    const newMenu = [...oldMenu, food];
+    this.setState({
+      menu: newMenu
+    })
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App ">
+        <Header />
+        <div className="column">
+          <SearchBar onFilter={this.onFilter}/>
+        </div>
+        {/* <div className="container"> */}
+           
+              {this.state.foods.map((food, index) => {
+                  return <FoodBox key={food.name} {...food}
+                  onModifyMenu={this.onModifyMenu} />
+              })}
+            
+              <Menu/>
+            
+        {/* </div> */}
+
       </div>
     );
   }

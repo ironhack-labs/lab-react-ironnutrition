@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import logo from './logo.svg';
 import Header from './components/misc/Header'
 import './App.css';
+import Form from './components/Form';
 import Menu from './components/Menu';
 import FoodBox from './components/FoodBox';
 import foods from './dataSet/foods.json'
@@ -57,7 +59,15 @@ class App extends Component {
               <div className = "column">
                 <Menu menu={this.state.menu} deleteFood={() => this.deleteFood()}/>
               </div>
+              <Router>
+              <div className="column is-pulled-right">
+                <Link to="/form" className="button is-link ">Add New Food</Link>
+                <Route path="/form" component={Form}/>
+                {/* <Form /> */}
+              </div>
+              </Router>
         </div>
+          
 
       </div>
     );

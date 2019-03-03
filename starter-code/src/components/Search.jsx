@@ -13,7 +13,7 @@ import React, { Component } from 'react'
   render() {
     return (
       <div>
-         <input  id="search-bar" className="input" type="text" placeholder="Text input" onChange={(e) => this.handleSearch (e)} />
+         <input  id="search-bar" className="input" type="text" placeholder="Search for foods!" onChange={(e) => this.handleSearch (e)} />
       </div>
     )
   }

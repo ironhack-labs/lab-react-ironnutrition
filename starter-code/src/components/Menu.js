@@ -8,7 +8,8 @@ const Menu = (props) => {
             <h1 className="is-size-4">Today's foods</h1>
             <ul>
             {props.menu.map((food, index) => {
-               return<li key={index} className="">{food.amount} {food.name} = {food.amount * food.calories} cal</li>
+               return<li key={index} className="">{food.amount} {food.name} = {food.amount * food.calories} cal  
+               <button className="delete has-background-danger has-margin-left-20-widescreen" onClick={props.deleteFood}></button></li>
             })}
             </ul>
             <p className=""> Total calories: {totalCalories} cal</p>

@@ -24,13 +24,21 @@ class App extends Component {
   }
 
   onModifyMenu = (food) => {
-    const oldMenu = this.state.menu;
+    const oldMenu = this.state.menu.filter(f => f.name !== food.name);
     const newMenu = [...oldMenu, food];
     this.setState({
       menu: newMenu
     })
   }
 
+  deleteFood = (index) => {
+    const newMenu = this.state.menu
+    newMenu.splice(index, 1)
+    this.setState({
+      menu: newMenu
+    })
+
+  }
 
   render() {
     return (
@@ -47,7 +55,7 @@ class App extends Component {
               })}
               </div>
               <div className = "column">
-                <Menu menu={this.state.menu}/>
+                <Menu menu={this.state.menu} deleteFood={() => this.deleteFood()}/>
               </div>
         </div>
 

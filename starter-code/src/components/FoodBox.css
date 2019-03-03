@@ -1,0 +1,38 @@
+.FoodBox {
+  padding: 10px;
+}
+
+.FoodBox .box {
+  display: inline-block;
+  padding: 0;
+  width: 500px;
+}
+
+.FoodBox .button {
+  height: 64px;
+  width: 64px;
+}
+
+.FoodBox .media-left img {
+  height: 64px;
+}
+
+.FoodBox .media-content {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.FoodBox .media-right {
+  display: flex;
+  align-items: center;
+}
+
+.FoodBox .control:nth-child(1) {
+  width: 100px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+}

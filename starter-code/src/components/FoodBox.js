@@ -14,7 +14,7 @@ export default class FoodBox extends Component {
     this.props.onModifyMenu({
       name: this.props.name,
       calories: this.props.calories,
-      amount: this.state.quantity
+      amount: this.state.amount
     })
   }
 
@@ -30,7 +30,7 @@ export default class FoodBox extends Component {
  
     return (
 
-      <div className="box column is-half ">
+      <div className="box column ">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
@@ -41,7 +41,7 @@ export default class FoodBox extends Component {
             <div className="content">
               <p>
                 <strong>{this.props.name}</strong> <br />
-                <small>{this.props.calories}</small>
+                <small>{this.props.calories} cal</small>
               </p>
             </div>
           </div>

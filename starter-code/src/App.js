@@ -39,16 +39,17 @@ class App extends Component {
         <div className="column">
           <SearchBar onFilter={this.onFilter}/>
         </div>
-        {/* <div className="container"> */}
-           
+        <div className="columns">
+              <div className= "column is-three-fifths">
               {this.state.foods.map((food, index) => {
                   return <FoodBox key={food.name} {...food}
                   onModifyMenu={this.onModifyMenu} />
               })}
-            
-              <Menu/>
-            
-        {/* </div> */}
+              </div>
+              <div className = "column">
+                <Menu menu={this.state.menu}/>
+              </div>
+        </div>
 
       </div>
     );

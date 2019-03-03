@@ -1,55 +1,53 @@
 import React, { Component } from "react";
 
 class AddFood extends Component{
-    constructor(props){
-        super(props)
-        this.state = ({
-            name : "",
-            calories: "",
-            image : ""
-        })
+
+  constructor(props){
+    super(props)
+    this.state = {
+      name: "",
+      calories: 0,
+      image: "",
     }
+  }
 
-    handleChange(event){
-        let {name, value } = event.target
-        this.setState({[name] : value})
-        console.log(this.state.name);
-    }
-
-
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        this.props.addTheFood(this.state);
-    
-        this.setState({     
-          name: '',
-          calories: "",
-          image: "",
-        })     
-      }
-    
-
-    render(){
-        return(
-            <div>
-                <form className="add-food" onSubmit={this.handleFormSubmit}>
-
-                    <label>Name</label>
-                    <input type="text" name="name" value={this.state.name}  onChange={ e => this.handleChange(e)}/>
-
-                    <label>Calories</label>
-                    <input type="text" name="calories" value={this.state.calories} onChange={ e => this.handleChange(e)}/>
-
-                    <label>Image</label>
-                    <input type="text" name="image" value={this.state.image} onChange={ e => this.handleChange(e)}/>
+  handleFormSubmit = (e) => {
+    e.preventDefault()
+    this.props.AddTheFood(this.state)
+    this.setState({
+      name: "",
+      calories: "",
+      image: ""
+    })
+  }
 
 
-                    <input type="submit" value="Submit"/>
+  handleChange = e => {
+    const {name, value} = e.target;
+    this.setState({
+      [name] : value
+    })
+  }
 
-                </form>
-            </div>
-        )
-    }
+  render(){
+    return(
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+
+          <label htmlFor="name">Name:</label>
+          <input type="text" value={this.state.value} name="name" onChange={e => this.handleChange(e)}/>
+
+          <label htmlFor="calories">Calories</label>
+          <input type="number" value={this.state.calories} name="calories" onChange={e => this.handleChange(e)}/>
+
+          <label htmlFor="image">Image</label>
+          <input type="text" value={this.state.image} name="image" onChange={e => this.handleChange(e)}/>
+
+          <input type="submit" value="Add new dish"/>
+        </form>
+      </div>
+    )
+  }
 }
 
-export default AddFood
+export default AddFood;

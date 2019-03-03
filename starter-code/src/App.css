@@ -26,3 +26,59 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.navbar img{
+  height: 400px;
+}
+
+.navbar{
+  display: flex;
+  justify-content: center;
+}
+
+.button-secondary {
+  background: rgb(66, 184, 221); 
+  color: white;
+  border-radius: 4px;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: rgb(66, 184, 221);
+}
+
+.searchButton {
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid rgb(66, 184, 221);
+  background: rgb(66, 184, 221);
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.wrap{
+  width: 30%;
+  display: flex;
+  margin: 20px;
+  position: relative;
+  left: 35%;
+}

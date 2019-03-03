@@ -1,62 +1,51 @@
 import React, { Component } from "react";
-import foods from "../foods.json"
-import FoodCard from './FoodCard'
-import AddFood from './AddFood'
-import SearchBar from './SearchBar'
+import foodsJson from "../foods.json"
+import FoodCard from "./FoodCard";
+import AddFood from "./AddFood"
+import Search from "./Search"
 
 class FoodBox extends Component{
-    constructor(){
-        super();
-        this.state = {
-            foodList: foods, 
-            showForm: false
+
+  state = {
+    foods: foodsJson,
+    clickCount: 0,
+    showForm: false
+  }
+
+  handleAddFood = (newFood) => {
+    const copyOfFoods = [...this.state.foods]
+    copyOfFoods.push(newFood)
+    this.setState({
+      foods: copyOfFoods
+    })
+  }
+   
+  toggleButton = () => {
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  }
+
+  render(){
+    return(
+      <div>
+        <button className="button-secondary" onClick={this.toggleButton}>
+          {
+            this.state.showForm ? "Hide Form" : "Add Food"
+          }
+        </button>
+        {
+          this.state.showForm && <AddFood AddTheFood={this.handleAddFood}/>
         }
-    }
-
-    toogleAddButton = () => {
-        this.setState({
-            showForm: !this.state.showForm
-        })
-    }
-
-    
-    addFoodHandler = (theFood) => {
-        const foodsCopy = [...this.state.foodList];
-        foodsCopy.push(theFood);
-        this.setState({
-          foodList: foodsCopy,
-          showForm: false
-        })
-      }
-
-      search = (searchName) => {
-        let foodDisplay = [...this.state.foodList]
-        foodDisplay = foodDisplay.filter(food => food.name.toLowerCase().includes(searchName.toUpperCase()))
-        this.setState({
-            foodList: foodDisplay
-        })
-      };
-
-    render(){
-        return(
-            <div>
-                <button onClick={() => this.toogleAddButton()}>
-                    Add new food
-                </button>
-                {
-                    this.state.showForm &&  <AddFood addTheFood={this.addFoodHandler}/>
-                }
-               
-                <SearchBar searchFood={this.search}/>
-
-                {
-                    this.state.foodList.map((oneFood, index) => {
-                        return <FoodCard key={index} {...oneFood}/>
-                    })
-                }
-            </div>
-        )
-    }
+        <Search />
+        {
+          this.state.foods.map((oneDish, index) => {
+            return <FoodCard key={index} {...oneDish} />
+          })
+        }
+      </div>
+    )
+  }
 }
 
 export default FoodBox;

@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  margin: 2em;
+}
+
+.display{
+  display: flex;
+  justify-content: space-between;
 }
 
 .App-logo {
@@ -25,4 +31,18 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.box{
+  width: 100%;
+}
+
+.form{
+  width: 40%;
+  float: right;
+}
+
+.search{
+  width: 50%;
+  margin-bottom: 3rem;
 }

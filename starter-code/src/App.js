@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    const { showForm, searchText } = this.state;
+    // const { showForm, searchText } = this.state;
     return (
       <div className="App">
         <div className="SearchBar">
@@ -60,7 +60,7 @@ class App extends Component {
         <br />
 
         <div className="ButtonSelection">
-          {!showForm && (
+          {!this.state.showForm && (
             <button
               className="button is-info"
               // onClick={this.buttonClick.bind(this)}
@@ -69,7 +69,9 @@ class App extends Component {
               Add Food
             </button>
           )}
-          {showForm && <AddFood addMyFood={this.addFoodHandler.bind(this)} />}
+          {this.state.showForm && (
+            <AddFood addMyFood={this.addFoodHandler.bind(this)} />
+          )}
           {/* {this.state.showForm ? (
             <AddFood addMyFood={this.addFoodHandler.bind(this)} />
           ) : null} */}

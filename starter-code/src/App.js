@@ -54,27 +54,25 @@ class App extends Component {
       <div className="App ">
         <Header />
         <div className="column">
-          <SearchBar onFilter={this.onFilter}/>
+          <SearchBar onFilter={this.onFilter} />
         </div>
         <div className="columns">
-              <div className= "column is-three-fifths">
-              {this.state.foods.map((food, index) => {
-                  return <FoodBox key={food.name} {...food}
-                  onModifyMenu={this.onModifyMenu} />
-              })}
-              </div>
-              <div className = "column">
-                <Menu menu={this.state.menu} deleteFood={() => this.deleteFood()}/>
-              </div>
-              <Router>
-              <div className="column is-pulled-right">
-                <Link to="/form" className="button is-link ">Add New Food</Link>
-                <Route path="/form" component={Form}/>
-                {/* <Form /> */}
-              </div>
-              </Router>
+          <div className="column is-three-fifths">
+            {this.state.foods.map((food, index) => {
+              return <FoodBox key={food.name} {...food}
+                onModifyMenu={this.onModifyMenu} />
+            })}
+          </div>
+          <div className="column">
+            <Menu menu={this.state.menu} deleteFood={() => this.deleteFood()} />
+          </div>
+
+          <div className="column ">
+            <Form addNewFood={this.addNewFood} />
+          </div>
+
         </div>
-          
+
 
       </div>
     );

@@ -4,7 +4,8 @@ const Menu = (props) => {
     const totalCalories = props.menu.reduce((total, food) => total += food.amount * food.calories,0)
     return (
 
-        <div className="is-half ">
+        <div className="">
+           
             <h1 className="is-size-4">Today's foods</h1>
             <ul>
             {props.menu.map((food, index) => {

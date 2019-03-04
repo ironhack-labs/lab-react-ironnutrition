@@ -2,26 +2,36 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Form extends Component {
-    state = {
-        newFood: {
-            name: '',
-            calories: '',
-            image: '',
-            amount: 0
+    constructor(props){
+        super(props);
+        this.state = {
+            newFood: {
+                name: '',
+                calories: '',
+                image: '',
+                amount: 0
+            }
         }
-    }
-
+    }    
+    
+  
     onChange = (e) => {
         const { newFood } = this.state
         newFood[e.target.name] = e.target.value
         this.setState({ 
             newFood })
-      } 
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        this.props.addNewFood(this.state)
+    }
+
     render () {
        
 
         return (
-            <form className="has-text-left">
+            <form className="has-text-left" onSubmit={this.onSubmit}>
                 <h1 className="is-size-4">Add a new food:</h1>
                 
                 <div>

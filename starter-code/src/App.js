@@ -18,6 +18,13 @@ class App extends Component {
     }
   }
 
+  addNewFood = (newFood) => {
+    const newFoods = [...foods, newFood];
+    this.setState({
+      foods: newFoods
+    })
+  }
+
   onFilter = (search) => {
     const newFoods = foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()));
     this.setState({

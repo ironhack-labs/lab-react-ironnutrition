@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Search.css";
 
 class Search extends Component {
   constructor(props) {
@@ -26,27 +27,26 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="panel-block">
-        <p className="control has-icons-left">
-          <input
-            className="input"
-            type="text"
-            name="searchString"
-            value={this.state.searchString}
-            onChange={e => this.handleChange(e)}
-            placeholder="search"
-          />
-          <span className="icon is-small is-left">
-            <i className="fas fa-search" aria-hidden="true" />
-          </span>
-        </p>
-        <div className="panel-block">
-          <button
-            className="button is-link is-outlined is-fullwidth"
-            onClick={event => this.handleClear(event)}
-          >
-            Reset
-          </button>
+      <div className="search">
+        <div className="control">
+          <p>
+            <input
+              className="input"
+              type="text"
+              name="searchString"
+              value={this.state.searchString}
+              onChange={e => this.handleChange(e)}
+              placeholder="search"
+            />
+          </p>
+          <div className="control">
+            <button
+              className="button is-link"
+              onClick={event => this.handleClear(event)}
+            >
+              Reset
+            </button>
+          </div>
         </div>
       </div>
     );

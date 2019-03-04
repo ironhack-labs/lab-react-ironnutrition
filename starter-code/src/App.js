@@ -34,28 +34,30 @@ class App extends Component {
     });
   };
 
-  clearFilter() {
-    this.setState({
-      searchText: ""
-    });
-  }
-
   updateList(searchString) {
     this.setState({
       searchText: searchString
     });
   }
 
+  clearFilter() {
+    this.setState({
+      searchText: ""
+    });
+  }
+
   render() {
-    const { showForm } = this.state;
+    const { showForm, searchText } = this.state;
     return (
       <div className="App">
         <div className="SearchBar">
           <Search
-            searchClear={() => this.clearFilter()}
             searchSubmit={() => this.updateList()}
+            searchClear={() => this.clearFilter()}
           />
         </div>
+
+        <br />
 
         <div className="ButtonSelection">
           {!showForm && (
@@ -74,16 +76,43 @@ class App extends Component {
         </div>
 
         <div className="List">
-          {this.state.foodsArray.map((foodItem, index) => {
-            return (
-              <Foodbox
-                name={foodItem.name}
-                calories={foodItem.calories}
-                image={foodItem.image}
-                quantity={foodItem.quantity}
-              />
-            );
-          })}
+          {/* {this.state.foodsArray.map((foodItem, index) => {
+            if (searchText === "") {
+              return (
+                // <key={index}>
+                <Foodbox
+                  name={foodItem.name}
+                  calories={foodItem.calories}
+                  image={foodItem.image}
+                  quantity={foodItem.quantity}
+                />
+              );
+            } else {
+              return (
+                foodItem.name.includes(searchText) && (
+                  // <key={index}>
+                  <Foodbox
+                    name={foodItem.name}
+                    calories={foodItem.calories}
+                    image={foodItem.image}
+                    quantity={foodItem.quantity}
+                  />
+                )
+              );
+            }
+          })} */}
+          {this.state.foodsArray
+            .filter(food => food.name.includes(this.state.searchText))
+            .map(foodItem => {
+              return (
+                <Foodbox
+                  name={foodItem.name}
+                  calories={foodItem.calories}
+                  image={foodItem.image}
+                  quantity={foodItem.quantity}
+                />
+              );
+            })}
         </div>
       </div>
     );

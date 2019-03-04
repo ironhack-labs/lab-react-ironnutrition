@@ -9,77 +9,78 @@ class AddFood extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.props.addTheFood(this.state);
-    this.setState({ name: "", calorie: 0, image: "" });
+    this.setState({ name: "", calorie: 0, image: "" }); // form reset
   };
 
   handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-      [event.target.calories]: event.target.value,
-      [event.target.image]: event.target.value
-    });
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <div class="field is-horizontal">
-            <div class="control">
-              <button class="button is-info">Add new food</button>
+        <div className="control">
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="field is-horizontal">
+              <div className="field-body">
+
+                <div className="field">
+                  <p className="control is-expanded has-icons-left">
+                    <input
+                      className="input"
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      onChange={e => this.handleChange(e)}
+                      placeholder="Name"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
+                  </p>
+                </div>
+
+                <div className="field">
+                  <p className="control is-expanded has-icons-left">
+                    <input
+                      className="input"
+                      type="number"
+                      name="calories"
+                      value={this.state.calories}
+                      onChange={e => this.handleChange(e)}
+                      placeholder="Number of calories"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
+                  </p>
+                </div>
+
+                <div className="field">
+                  <p className="control is-expanded has-icons-left">
+                    <input
+                      className="input"
+                      type="text"
+                      name="image"
+                      value={this.state.image}
+                      onChange={e => this.handleChange(e)}
+                      placeholder="Image URL"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
+                  </p>
+                </div>
+
+                <div className="control">
+                  <button className="button is-info">SUBMIT</button>
+                </div>
+                
+              </div>
             </div>
-
-            <div class="field-body">
-              <div class="field">
-                <p class="control is-expanded has-icons-left">
-                  <input
-                    class="input"
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    onChange={e => this.handleChange(e)}
-                    placeholder="Name"
-                  />
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-user" />
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control is-expanded has-icons-left">
-                  <input
-                    class="input"
-                    type="number"
-                    name="calories"
-                    value={this.state.calories}
-                    onChange={e => this.handleChange(e)}
-                    placeholder="Number of calories"
-                  />
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-user" />
-                  </span>
-                </p>
-              </div>
-
-              <div class="field">
-                <p class="control is-expanded has-icons-left">
-                  <input
-                    class="input"
-                    type="text"
-                    name="image"
-                    value={this.state.image}
-                    onChange={e => this.handleChange(e)}
-                    placeholder="Image URL"
-                  />
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-user" />
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

@@ -82,3 +82,11 @@
   position: relative;
   left: 35%;
 }
+
+.today-list{
+  position: sticky;
+  bottom: 520px;
+  left: 500px;
+  width: 400px;
+}
+

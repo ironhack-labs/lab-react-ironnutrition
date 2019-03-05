@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import foods from './foods.json'
+import AddFood from './AddFood.js';
 
 class FoodList extends Component {
   state = {
@@ -49,8 +50,11 @@ class FoodList extends Component {
 
   render() {
   return (
+    <div>
+          < AddFood />
     <div className="FoodList">
       {this.showFoods()}
+    </div>
     </div>
   )
 }

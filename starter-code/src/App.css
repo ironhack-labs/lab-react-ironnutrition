@@ -23,6 +23,34 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+input {
+  border: 1px solid #00000063;
+  margin: 0 1%;
+  border-radius: 3px;
+}
+
+.flexList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.foodLists {
+  width: 45%;
+}
+
+.todaysFoods {
+  text-align: left;
+  width: 50%;
+}
+
+.todaysFoods h2 {
+  font-size: 2rem;
 }

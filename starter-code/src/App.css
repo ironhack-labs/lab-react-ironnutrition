@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.food-list{
+  width: 50%;
+}
+
+input{
+  border-radius: 3px;
+  border: 1px solid #00000063;
+}

@@ -1,39 +1,47 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import foods from './foods.json';
 import 'bulma/css/bulma.css';
-import foods from './foods.json'
+import './App.css';
 import FoodBox from './components/FoodBox';
-
+import Search from './components/Search';
 
 class App extends Component {
-
+  
   constructor(props){
     super(props);
     this.state = {
       addFood: false,
-    };
+      foods: foods,
+      filteredFoods: foods
+
+    }
   }
 
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const calories = e.target.name.value;
+    const image = e.target.name.value;
+    this.setState({
+      foods: [...this.state.foods, {name, calories, image, quantity: 0}]
+    });
+  }
+  
   changeAddFoodState = () => {
     this.setState({
       addFood: !this.state.addFood
     });
   }
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const calories = e.target.calories.value;
-    const image = e.target.image.value;
-    console.log(name,' ', calories,' ', image);
-    foods.push({name, calories, image, quantity: 0});
-    this.changeAddFoodState();
+  setFilteredFoods = (filteredFoods) => {
+    this.setState({
+      filteredFoods: filteredFoods
+    });
   }
 
 
   render() {
-    console.log(foods);
     if(this.state.addFood){
       return (
         <div className="App">
@@ -41,22 +49,25 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            <input type="text" name="name"></input>
-            <input type="number" name="calories"></input>
-            <input type="file" name="image" accept="image/*"></input>
+            <label for="name">Food Name: </label>
+            <input type="text" name="name" id="name"></input>
+            <label for="calories">Food Calories: </label>
+            <input type="number" name="calories" id="calories"></input>
+            <label for="image">Food Image: </label>
+            <input type="text" name="image" id="image"></input>
             <input type="submit" value="Add New Food!"></input>
           </form>
-          {foods.map((food,index) => {
+          <br></br>
+          <Search foods={this.state.foods} filteredFoods={this.state.filteredFoods} setFilteredFoods={this.setFilteredFoods}/>
+          {this.state.filteredFoods.map((food,index) => {
             return (
-              <div key={index}>
+              <div  className='food-list' key={index}>
                 <FoodBox {...food}/>
               </div>
             );
           })}
+          <TodayFoodList />
         </div>
       );
     } else{
@@ -66,17 +77,17 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
           <button onClick={this.changeAddFoodState}>Add New Food</button>
-          {foods.map((food,index) => {
+          <br></br>
+          <Search foods={this.state.foods} filteredFoods={this.state.filteredFoods} setFilteredFoods={this.setFilteredFoods}/>
+          {this.state.filteredFoods.map((food,index) => {
             return (
-              <div key={index}>
+              <div className='food-list' key={index}>
                 <FoodBox {...food}/>
               </div>
             );
           })}
+          <TodayFoodList />
         </div>
       );
     }

@@ -10,10 +10,27 @@ class App extends Component {
 
   state = {
     foods: foods,
+    updatedFoods: [],
     name: '',
     calories:'',
     image: '',
-    clicked: false
+    clicked: false,
+    filter:''
+  }
+
+  filterFood = (event) => {
+    let { name, value } = event.target;
+    console.log(name, value)
+    this.setState({ [name]: value });
+
+      let updatedList = [...this.state.foods];
+      updatedList = updatedList.filter(function(item){
+        return item.name.toLowerCase().search(
+          event.target.value.toLowerCase()) !== -1;
+      });
+      this.setState({
+        foods: updatedList
+      });
   }
 
   handleChange = (event) => {
@@ -111,6 +128,9 @@ class App extends Component {
 
           <button onClick={this.toggleClick} className="button is-info">Add Food</button>
           {this.displayForm()}
+        </div>
+        <div>
+          <input type="text" className="" placeholder="Search" name="filter" value={this.state.filter} onChange={(e) => this.filterFood(e)}></input>
         </div>
        
 

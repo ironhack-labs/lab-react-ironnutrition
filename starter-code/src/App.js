@@ -52,7 +52,7 @@ class App extends Component {
       <div className="App">
         <div className="SearchBar">
           <Search
-            searchSubmit={() => this.updateList()}
+            searchSubmit={text => this.updateList(text)}
             searchClear={() => this.clearFilter()}
           />
         </div>

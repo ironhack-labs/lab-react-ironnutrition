@@ -29,8 +29,14 @@ class App extends Component {
           event.target.value.toLowerCase()) !== -1;
       });
       this.setState({
-        foods: updatedList
+        updatedFoods: updatedList
       });
+  }
+
+  componentWillMount = () => {
+    this.setState({
+      updatedFoods: this.state.foods
+    });
   }
 
   handleChange = (event) => {
@@ -81,7 +87,7 @@ class App extends Component {
 
 
   showFoods = () => {
-    let foodList = this.state.foods.map((food, i) => {
+    let foodList = this.state.updatedFoods.map((food, i) => {
       return (
       <div className="box" key={i}>
         <article className="media">

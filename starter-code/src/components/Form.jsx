@@ -4,29 +4,25 @@ class Form extends Component {
   state = {
     name: "",
     calories: "",
-    image: ""
+    image: "",
   };
 
   onChange = event => {
-    debugger;
     this.setState({ [event.currentTarget.name]: event.currentTarget.value });
     console.log(this.state);
   };
 
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
+    debugger;
     event.preventDefault();
-
     //Aqui se Agrega la comida
-    this.props.addFood(this.state);   
+    this.props.addFood(this.state);
     this.setState({
       name: "",
       image: "",
-      calories: ""
-    })  
-  }
-
-
-
+      calories: "",
+    });
+  };
 
   render() {
     return (

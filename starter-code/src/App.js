@@ -13,23 +13,19 @@ class App extends Component {
 
   state = {
     foodArray: food,
-    menu: []
+    menu: [],
+    showForm: false,
+    filteredFood: [],
   };
 
-
-  Holaa = saludo => {
-
-    debugger;
-      alert(saludo);
-
-  }
-
+  //SearchBar Methods
   onFilter = search => {
+    debugger;
     const newFoods = food.filter(food =>
-      food.name.toLowerCase().includes(search.toLowerCase())
+      food.name.toLowerCase().includes(search.toLowerCase()),
     );
     this.setState({
-      foodArray: newFoods
+      foodArray: newFoods,
     });
   };
 
@@ -37,21 +33,25 @@ class App extends Component {
     let oldMenu = this.state.menu.filter(f => f.name !== food.name);
     let newMenu = [...oldMenu, food];
     this.setState({
-      menu: newMenu
+      menu: newMenu,
     });
   };
 
+  //For methods
   addFoodHandler = newFood => {
-    debugger;
+    let newFoods = this.state.foodArray;
+    newFoods.push(newFood);
+
     this.setState({
-      foodArray: [...food, newFood]
+      foodArray: newFoods,
     });
   };
 
   deleteFoodItem = item => {
+    debugger;
     let newMenuDeleted = this.state.menu.filter(f => f.name !== item);
     this.setState({
-      menu: [...newMenuDeleted]
+      menu: [...newMenuDeleted],
     });
   };
 
@@ -62,12 +62,11 @@ class App extends Component {
 
     return (
       // pintamos la comida
-
       <div>
         <div className="container margin-top">
           <div className="columns">
             <div className="column is-6">
-              <SearchBar onFilter={this.onFilter} Holaa={this.Holaa} />
+              <SearchBar onFilter={this.onFilter} />
               {productList}
             </div>
             <div className="column is-3">

@@ -2,27 +2,25 @@ import React, { Component } from "react";
 
 class FoodBox extends Component {
   state = {
-    quantity: 1
+    quantity: 1,
   };
 
   //Handler para cambiar la cantidad
   quantityHandler = event => {
     if (event.target.value >= 0) {
       this.setState({
-        quantity: event.target.value
+        quantity: event.target.value,
       });
     }
   };
 
-
-  
   onChangeMenu = () => {
     this.props.onChangeMenu({
       name: this.props.name,
       calories: this.props.calories,
-      quantity: this.state.quantity
-    })
-  }
+      quantity: this.state.quantity,
+    });
+  };
 
   render() {
     return (

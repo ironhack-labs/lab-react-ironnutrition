@@ -2,16 +2,12 @@ import React, { Component } from "react";
 
 class SearchBar extends Component {
   state = {
-    search: ""
+    search: "",
   };
 
   searchHandler = event => {
-
     //Se pasa el metódo con props
-    
     this.props.onFilter(event.target.value);
-
-    this.props.Holaa("Hello");
     this.setState({ search: event.target.value });
   };
 

@@ -22,6 +22,7 @@ class AddFood extends Component {
       })
     }
   
+
   
   handleNameInput = (event) => {
     this.setState({
@@ -35,11 +36,6 @@ class AddFood extends Component {
     })
   }
 
-  // handleImage = (event) => {
-  //   this.setState({
-  //     image: event.target.type=== 'checkbox' ? event.target.checked : event.target.value
-  //   })
-  // }
 
   handleQuantity = (event) => {
     this.setState({

@@ -13,6 +13,7 @@ class App extends Component {
     updatedFoods: [],
     name: '',
     calories:'',
+    quantity:'',
     image: '',
     clicked: false,
     filter:''
@@ -59,6 +60,20 @@ class App extends Component {
 
   }
 
+  handleQuantityChange = (event) => {
+    const {name, value} = event.target;
+    const FoodsCopy = [...this.state.updatedFoods]
+    console.log(name, value)
+    this.setState({ [name]: value });
+
+    const updatedFood = FoodsCopy.find((oneFood) => {
+      console.log(oneFood, name)
+      return oneFood.name === name
+    });
+    updatedFood.quantity = this.state.quantity;
+    this.setState({updatedFoods: FoodsCopy})
+  }
+
   displayForm = () => {
     if (this.state.clicked) {
       return (
@@ -76,7 +91,7 @@ class App extends Component {
         </div>
       )
     }
-    return <h1>Not Clicked!</h1>
+    return //<h1>Not Clicked!</h1>
   };
 
   toggleClick = () => {
@@ -110,7 +125,9 @@ class App extends Component {
                 <input
                   className="input"
                   type="number" 
-                  value="1"
+                  name="quantity"
+                  value={food.quantity}
+                  onChange={(oneFood) => this.handleQuantityChange(oneFood)}
                 />
               </div>
               <div className="control">
@@ -139,9 +156,14 @@ class App extends Component {
           <input type="text" className="" placeholder="Search" name="filter" value={this.state.filter} onChange={(e) => this.filterFood(e)}></input>
         </div>
        
-
-        {this.showFoods()}
-
+        <div className="columns">
+          <div className="column">
+          {this.showFoods()}
+          </div>
+          <div className="column">
+          </div>
+          
+        </div>
       </div>
     );
   }

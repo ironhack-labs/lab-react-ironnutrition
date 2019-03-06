@@ -16,7 +16,9 @@ class App extends Component {
     quantity:'',
     image: '',
     clicked: false,
-    filter:''
+    filter:'',
+    order: [],
+    totalCalories:''
   }
 
   filterFood = (event) => {
@@ -46,6 +48,7 @@ class App extends Component {
     console.log(name, value)
     this.setState({ [name]: value });
   }
+
   addFoodHandler = (theFood) => {
     const foodsCopy = [...this.state.foods];
     foodsCopy.push(theFood);
@@ -59,19 +62,21 @@ class App extends Component {
     this.addFoodHandler(this.state)
 
   }
+  handleQuantityChange = (event,food) => {
+    food.quantity = event.target.value;
+     console.log(food.quantity);
+  }
 
-  handleQuantityChange = (event) => {
-    const {name, value} = event.target;
-    const FoodsCopy = [...this.state.updatedFoods]
-    console.log(name, value)
-    this.setState({ [name]: value });
-
-    const updatedFood = FoodsCopy.find((oneFood) => {
-      console.log(oneFood, name)
-      return oneFood.name === name
-    });
-    updatedFood.quantity = this.state.quantity;
-    this.setState({updatedFoods: FoodsCopy})
+  pushOrder = (food) => {
+    this.setState({
+      order:[...this.state.order, ...[food]]
+    })
+  }
+  showOrder = () => {
+    let yourOrder = this.state.order.map((o)=>{
+      return <li>{o.quantity} {o.name} = {o.calories * o.quantity} calories</li>
+    })
+    return yourOrder
   }
 
   displayForm = () => {
@@ -91,7 +96,7 @@ class App extends Component {
         </div>
       )
     }
-    return //<h1>Not Clicked!</h1>
+    return //s<h1>Not Clicked!</h1>
   };
 
   toggleClick = () => {
@@ -126,12 +131,12 @@ class App extends Component {
                   className="input"
                   type="number" 
                   name="quantity"
-                  value={food.quantity}
-                  onChange={(oneFood) => this.handleQuantityChange(oneFood)}
+                  //value={food.quantity}
+                  onChange= {(event) => this.handleQuantityChange(event,food)}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={() => this.pushOrder(food)} className="button is-info">
                   +
                 </button>
               </div>
@@ -161,6 +166,9 @@ class App extends Component {
           {this.showFoods()}
           </div>
           <div className="column">
+          <h1>Today's Foods</h1>
+          {this.showOrder()}
+          {this.showCalories()}
           </div>
           
         </div>
@@ -172,46 +180,3 @@ class App extends Component {
 export default App;
 
 
-// import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
-// import 'bulma/css/bulma.css';
-// import foods from './foods.json'
-// import FoodList from './FoodBox.js';
-
-// class App extends Component {
-
-//   state = {
-//     clicked: false
-//   }
-
-//   displayForm = () => {
-//     if (this.state.clicked) {
-//       return (
-//         <div>
-//           < FoodList />
-//         </div>
-//       )
-//     }
-//     return <h1>Not Clicked!</h1>
-//   };
-
-//   toggleClick = () => {
-//     this.setState({
-//       clicked: !this.state.clicked
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <div className="App">
-//          <button onClick={this.toggleClick} className="button is-info">Add Food</button>
-//           {this.displayForm()}
-//         <FoodList/>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;

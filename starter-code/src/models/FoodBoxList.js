@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import foods from '../foods.json'
 import FoodBox from './FoodBox';
 import AddFood from './AddFood';
+import SearchBar from './SearchBar';
 
 class FoodBoxList extends Component {
   constructor(props){
@@ -19,11 +20,20 @@ class FoodBoxList extends Component {
     })
   }
 
+  onFilter = (event) => {
+      const foodsCopy = foods;
+      const newFoods = foodsCopy.filter(food => food.name.toLowerCase().includes(event.toLowerCase()))
+      this.setState({
+       foods : newFoods
+      })
+  }
+
   render() {
     return (
 
       <div>
         <AddFood addFood={this.addFoodHandler} />
+        <SearchBar Filter={this.onFilter} inputValue={this.state.newFoods}/>
         {
           this.state.foods.map((oneFood, index) => {
             // return <ImprovedCard key={index} {...oneMovie} clickToDelete={this.deleteMovieHandler.bind(this, index)} />

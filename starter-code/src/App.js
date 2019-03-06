@@ -18,7 +18,7 @@ class App extends Component {
     clicked: false,
     filter:'',
     order: [],
-    totalCalories:''
+    totalCalories:0
   }
 
   filterFood = (event) => {
@@ -69,7 +69,9 @@ class App extends Component {
 
   pushOrder = (food) => {
     this.setState({
-      order:[...this.state.order, ...[food]]
+      order:[...this.state.order, ...[food]],
+      totalCalories: this.state.totalCalories + (food.quantity * food.calories)
+
     })
   }
   showOrder = () => {
@@ -168,7 +170,7 @@ class App extends Component {
           <div className="column">
           <h1>Today's Foods</h1>
           {this.showOrder()}
-          {this.showCalories()}
+          <p>Total Calories: {this.state.totalCalories}</p>
           </div>
           
         </div>

@@ -54,10 +54,53 @@ class FoodBox extends Component
     return listItems;
   }
 
+
+  addFood = (e) => {
+    e.preventDefault()
+
+    let newFood = {
+      name:       e.target.foodName.value,
+      calories:   e.target.foodCalories.value,
+      image:      e.target.foodImage.value,
+    }
+
+    let newFoodList = [...this.state.foods]
+    newFoodList.push(newFood)
+    this.setState({
+      foods: newFoodList
+    })
+
+    console.log("added food", e.target.foodName.value)
+    return 
+  }
+
+  // handleChange = (e) => {
+  //   e.preventDefault()
+  //   console.log(e.target.value)
+  // }
+
+  // toggleButton = () => {
+
+  // }
+
   render() {
-      return (
-          <ul>{this.showFoods()}</ul>
-      )
+    return (
+      <div>
+        <form className="new-food" onSubmit={this.addFood}>
+          <label>name:</label>
+          <input type="text" name="foodName" ></input>
+
+          <label>calories:</label>
+          <input type="text" name="foodCalories" ></input>
+
+          <label>image:</label>
+          <input type="text" name="foodImage" ></input>
+
+          <input type="submit" />
+        </form>
+        {this.showFoods()}
+      </div>
+    )
   }
 }
 

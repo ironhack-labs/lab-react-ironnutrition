@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import foods from '../foods.json'
+import AddFood from './AddFood'
 
 class FoodBox extends Component 
 {
@@ -37,11 +38,10 @@ class FoodBox extends Component
                   <input
                     className="input"
                     type="number" 
-                    value="1"
                   />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={this.addQuantity}>
                 +
                 </button>
               </div>
@@ -76,8 +76,6 @@ class FoodBox extends Component
     return 
   }
 
-  
-
   handleChange = (e) => {
     e.preventDefault()
     console.log(e.target.value)
@@ -108,6 +106,7 @@ class FoodBox extends Component
 
           <input type="submit" />
         </form>
+        <AddFood />
         
         {this.showFoods()}
       </div>

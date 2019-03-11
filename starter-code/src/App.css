@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.box {
+  width: 50%;
+}
+
+.todays-foods {
+  margin-left: 50%;
+  font-size: 24pt;
+}

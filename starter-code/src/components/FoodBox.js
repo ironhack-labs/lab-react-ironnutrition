@@ -5,12 +5,14 @@ import foods from '../foods.json'
 class FoodBox extends Component 
 {
   state = {
-    foods:foods
+    foods: foods,
+    filteredFoods: foods,
+    searchedItem: "",
   }
 
   showFoods = () => 
   {
-    let listItems = this.state.foods.map((item, i) => 
+    let listItems = this.state.filteredFoods.map((item, i) => 
     {
       return (
       <div className="box">
@@ -74,30 +76,39 @@ class FoodBox extends Component
     return 
   }
 
-  // handleChange = (e) => {
-  //   e.preventDefault()
-  //   console.log(e.target.value)
-  // }
+  
 
-  // toggleButton = () => {
+  handleChange = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    let searchedItem = e.target.value
 
-  // }
+    let filteredFoods = this.state.foods.filter(food => food.name.toLowerCase().includes(searchedItem.toLowerCase()))
+    this.setState({
+      filteredFoods: filteredFoods,
+      searchedItem
+    })
+  }
 
   render() {
     return (
       <div>
+        <label> Search: </label>
+        <input type="search" onChange={this.handleChange}></input>
+
         <form className="new-food" onSubmit={this.addFood}>
-          <label>name:</label>
+          <label>name: </label>
           <input type="text" name="foodName" ></input>
 
-          <label>calories:</label>
+          <label> calories: </label>
           <input type="text" name="foodCalories" ></input>
 
-          <label>image:</label>
+          <label> image: </label>
           <input type="text" name="foodImage" ></input>
 
           <input type="submit" />
         </form>
+        
         {this.showFoods()}
       </div>
     )

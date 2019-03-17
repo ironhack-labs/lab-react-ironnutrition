@@ -11,7 +11,8 @@ class App extends Component {
     search:'',
     filteredFoods:foods,
     isHidden:true,
-    order: []
+    order: [],
+    calories:1
   }
   handleChange = (e) => {
     let search = e.target.value
@@ -24,13 +25,16 @@ class App extends Component {
 
   pushOrder = (food) => {
     this.setState({
-      order:[...this.state.order, ...[food]]
+      order:[...this.state.order, ...[food]],
+      calories: this.state.calories + (food.quantity * food.calories)
     })
   }
 
   showOrder = () => {
     let yourOrder = this.state.order.map((o)=>{
-      return <li>{o.name}, {o.calories}, {o.quantity}</li>
+      return( 
+        <li>{o.name}, {o.calories}, {o.quantity}</li>
+      )
     })
     return yourOrder
   }
@@ -115,6 +119,7 @@ class App extends Component {
         <AddForm showForm={this.showForm} toggleHidden={this.toggleHidden} isHidden={this.state.isHidden}/>
 
           {this.showOrder()}
+          <h4>Total Calories: {this.state.calories}</h4>
         
 
         <input type="text" placeholder="search" name="search" value={this.state.search} onChange={(e) => this.handleChange(e)} />

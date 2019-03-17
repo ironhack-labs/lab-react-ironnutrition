@@ -43,7 +43,6 @@ class AddFood extends Component {
     })
   }
   
- 
 
   render(){
     return (

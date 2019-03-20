@@ -55,8 +55,7 @@ import foods from './data/foods.json'
 
 ## About the design
 
-If you struggle with the design, you can find a static example of what is expected inside file `style-guides.html` in the `starter-code` folder.
-
+If you struggle with the design, you can find a static example of what is expected inside file `style-guides.html`.
 So let's start: 
 
 ### Iteration 1 | Create `FoodBox` component

@@ -6,7 +6,7 @@ class FoodBox extends Component {
         super(props)
 
         this.state = {
-           quantity: 0
+           quantity: 1
         }
     }
     render () {
@@ -15,7 +15,7 @@ class FoodBox extends Component {
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
-                            <img src={this.props.image} />
+                            <img src={this.props.image} alt={this.props.name} />
                         </figure>
                     </div>
                     <div className="media-content">
@@ -34,7 +34,14 @@ class FoodBox extends Component {
                                     type="number"
                                     min="0"
                                     value={undefined}
-                                    onChange={(e) => this.state.quantity = parseInt(e.target.value) }
+                                    placeholder="1"
+                                    onChange={
+                                        (e) => {
+                                            this.setState({
+                                                quantity: e.target.value,
+                                            })
+                                        }
+                                    }
                                 />
                             </div>
                             <div className="control">

@@ -43,8 +43,22 @@ class App extends Component {
   }
 
   updateToday = (food,quantity,calories) => {
+
+    if (!quantity) quantity = 1
+
     const todayFoodsCopy = [...this.state.todayFoods]
-    todayFoodsCopy.push({food,quantity,calories})
+
+    if(todayFoodsCopy.some(elm => elm.food === food)){
+      todayFoodsCopy.forEach(elm => {
+        if (elm.food === food) {
+          elm.quantity = parseInt(elm.quantity,10) + parseInt(quantity,10)
+          elm.calories = elm.quantity * calories
+        }
+      })
+    } else {
+      todayFoodsCopy.push({food,quantity,calories: calories * quantity})
+    }
+
     this.getTotal(todayFoodsCopy)
     this.setState({
       todayFoods: todayFoodsCopy,
@@ -55,10 +69,24 @@ class App extends Component {
     let sum = 0
     if (arr.length > 0){
       for (let i = 0; i < arr.length; i++){
-        sum += parseInt(arr[i].calories)
+        sum += parseInt(arr[i].calories,10)
       }
     } 
-    this.state.total = sum
+    this.setState({
+      total: sum,
+    })
+  }
+
+  deleteFood = (food) => {
+
+    let todayFoodsCopy = [...this.state.todayFoods]
+
+    todayFoodsCopy = todayFoodsCopy.filter(elm => elm.food !== food)
+
+    this.getTotal(todayFoodsCopy)
+    this.setState({
+      todayFoods: todayFoodsCopy,
+    }) 
   }
 
   render() {
@@ -78,7 +106,7 @@ class App extends Component {
             <ul>      
               {
                 this.state.todayFoods.map((todayFood,idx) => {
-                  return <Today key={idx} {...todayFood}/>
+                  return <Today key={idx} {...todayFood} deleteFood={this.deleteFood}/>
                 })
               }
             </ul>

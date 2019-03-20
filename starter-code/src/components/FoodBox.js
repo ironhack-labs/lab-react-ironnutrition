@@ -9,7 +9,6 @@ class FoodBox extends Component {
            quantity: 0
         }
     }
-
     render () {
         return (
             <div className="box">
@@ -34,8 +33,8 @@ class FoodBox extends Component {
                                     className="input"
                                     type="number"
                                     min="0"
-                                    value={this.quantity}
-                                    onChange={(e) => this.state.quantity = e.target.value }
+                                    value={undefined}
+                                    onChange={(e) => this.state.quantity = parseInt(e.target.value) }
                                 />
                             </div>
                             <div className="control">

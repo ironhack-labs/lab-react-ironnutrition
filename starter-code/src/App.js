@@ -55,7 +55,7 @@ class App extends Component {
     let sum = 0
     if (arr.length > 0){
       for (let i = 0; i < arr.length; i++){
-        sum += arr[i].calories
+        sum += parseInt(arr[i].calories)
       }
     } 
     this.state.total = sum

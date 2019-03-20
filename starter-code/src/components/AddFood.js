@@ -8,7 +8,7 @@ class AddFood extends Component {
 
         this.state = {
            name: "",
-           calories: "",
+           calories: 0,
            image: "https://www.motorolasolutions.com/content/dam/msi/images/products/accessories/image_not_available_lg.jpg",
            quantity: 0
         }
@@ -24,7 +24,7 @@ class AddFood extends Component {
         this.props.addFood(this.state)
         this.setState({
             name: "nombre",
-            calories: "",
+            calories: 0,
             image: "https://www.motorolasolutions.com/content/dam/msi/images/products/accessories/image_not_available_lg.jpg",
             quantity: 0
         })

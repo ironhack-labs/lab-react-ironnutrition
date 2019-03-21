@@ -11,10 +11,7 @@ export default function FoodBox(props) {
     foodsCartCopy.push(theFoodCart)
           
     }
-
-  props.addFoodCar
   
-  }
 
   return (
     <div className="box">

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import FoodBox from './FoodBox'
 import AddFood from './AddFood'
 import Search from './Search'
-import Cartito from './Cartito'
+// import Cartito from './Cartito'
 
 import importedFoods from '../foods.json'
 
@@ -55,7 +55,7 @@ export default class FoodList extends Component {
 
           <div class="column">
             <h2>Today's foods</h2>
-            <Cartito />
+            {/* <Cartito /> */}
             
           </div>
         </div>

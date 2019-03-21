@@ -11,7 +11,7 @@ export default class Cartito extends Component {
     }
   }
   
-  addFoodCart = theFoodCart => {
+  addFoodCart = theFoodCart => { // EN CONSTRUCCIÓN
     
     const cartFoodCopy = [...this.state.cartfood]
     foodsCartCopy.push(theFoodCart)

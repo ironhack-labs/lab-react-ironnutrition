@@ -3,14 +3,14 @@ import React from 'react'
 
 export default function FoodBox(props) {
 
-  handleChange = theFoodCart => {
-      {props.name}
-      {props.quantity}
-      {props.name}
+  // handleChange = theFoodCart => {
+  //     {props.name}
+  //     {props.quantity}
+  //     {props.name}
     
-    foodsCartCopy.push(theFoodCart)
+  //   foodsCartCopy.push(theFoodCart)
           
-    }
+  //   }
   
 
   return (
@@ -39,8 +39,8 @@ export default function FoodBox(props) {
                 />
               </div>
               <div className="control">
-                <button className="button is-info" onClick={(e) => this.handleClick(e)}> + </button>
-                {/* <button className="button is-info" onClick={(e) => this.handleChange(e)}> + </button> */}
+                {/* <button className="button is-info" onClick={(e) => this.handleClick(e)}> + </button> */}
+                <button className="button is-info"> + </button>
                </div>
             </div>
           </div>

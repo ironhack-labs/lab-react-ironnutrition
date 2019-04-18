@@ -5,12 +5,17 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import FoodBox from './components/FoodBox';
 import FoodBoxAdd from './components/FoodBoxAdd'
+import FoodBoxSearch from './components/FoodBoxSearch';
 
 class App extends Component {
   
   constructor(props){
     super(props);
-    this.state = {showForm: false, foods}
+    this.state = {
+      showForm: false,
+      foods,
+      foodsAll: foods,
+    }
     this.handleToggleClick = this.handleToggleClick.bind(this);
   }
 
@@ -25,7 +30,22 @@ class App extends Component {
     foodsCopy.push(theFood);
     this.setState({
       foods: foodsCopy,
+      foodsAll: foodsCopy,
       showForm: false
+    })
+  }
+
+  searchFoodHandler = (theSearch) => {
+    let foodsCopy = [...this.state.foodsAll];
+    
+    foodsCopy = foodsCopy.filter(food => {
+
+      return food.name.toLowerCase().includes(theSearch.toLowerCase())
+
+})
+
+    this.setState({
+      foods: foodsCopy,
     })
   }
   
@@ -38,12 +58,18 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
+
 {/* Show Hide Button and Form */}
 
         <FoodBoxAdd warn={this.state.showForm} addTheFood={this.addFoodHandler} />
         <button onClick={this.handleToggleClick}>
           {this.state.showForm ? 'Hide Form' : 'Show Form'}
         </button>
+
+
+{/* Search Bar */}
+<FoodBoxSearch searchTheFood={this.searchFoodHandler} />
+
 
 {/* Show Foods */}
 

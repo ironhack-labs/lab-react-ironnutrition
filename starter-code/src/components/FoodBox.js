@@ -1,19 +1,48 @@
 import React, { Component } from 'react';
 
-const FoodBox = (props) => {
+class FoodBox extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+    name: '',
+    calories: '',
+    qtt: 0,
+  }
+};
+
+  handleQttInput = (event) => {
+    this.setState({
+      qtt: event.target.value
+    })
+  }
+
+  handleAdd = (event) => {  
+    this.setState({
+      name: this.props.name,
+      calories: Number(this.props.calories) * this.state.qtt,
+    }, 
+    () => this.props.addToMenu(this.state) )  
+  }
+
+
+
+  render() {
+
     return (
       <div className="box">
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={props.image} />
+        <img src={this.props.image} alt={this.props.name} />
       </figure>
     </div>
     <div className="media-content">
       <div className="content">
         <p>
-          <strong>{props.name}</strong> <br />
-          <small>{props.calories} cal</small>
+          <strong>{this.props.name}</strong> <br />
+          <small>{this.props.calories} cal</small>
         </p>
       </div>
     </div>
@@ -23,11 +52,12 @@ const FoodBox = (props) => {
           <input
             className="input"
             type="number" 
-            value="1"
+            value={this.state.qtt}
+            onChange={(e) => this.handleQttInput(e)} 
           />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button className="button is-info" onClick={this.handleAdd}>
             +
           </button>
         </div>
@@ -37,6 +67,6 @@ const FoodBox = (props) => {
 </div>
     )
   }
-
+}
 
 export default FoodBox;

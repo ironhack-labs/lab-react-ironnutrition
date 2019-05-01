@@ -1,21 +1,54 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json'
+import FoodBox from './FoodBox'
+import FoodForm from './FoodForm'
+import Search from './Search'
 
-class App extends Component {
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      foodList: foods,
+    }
+  }
+
+  addNewFood (newFoodDetails) {
+      let oneNewFood = [...this.state.foodList]
+      oneNewFood.push(newFoodDetails)
+  
+      this.setState({
+        ...this.state,
+        foodList: oneNewFood
+      })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+      <div>
+      <h1>IronNutrition</h1>
+      <Search></Search>
+      <FoodForm newFood={(newFood) => this.addNewFood(newFood)}></FoodForm>
       </div>
-    );
+      <React.Fragment>
+        {this.state.foodList.map((food, index) => {
+          return (
+            <FoodBox
+              key = {index}
+              image = {food.image}
+              name = {food.name}
+              calories = {food.calories}
+              quantity = {food.quantity} />
+          );
+        })
+      }
+      </React.Fragment>
+    )
+    </div>
+    )
   }
 }
-
-export default App;
+  
+  export default App;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
-import OFoods from './foods.json'
+import OFoods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
 import MyForm from './components/MyForm/MyForm';
 
@@ -31,6 +31,7 @@ class App extends Component {
     this.setState({formDispay:display})
   }
   render() {
+    
     return (
       <div className="App">
         <div className="BoxContainer">

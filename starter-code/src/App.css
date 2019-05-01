@@ -1,28 +1,25 @@
-.App {
-  text-align: center;
+.foodControls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.add-food-form {
+  width: 100%;
+  padding: 1rem 2rem;
+  flex-grow: 4;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.foodContainer {
+  display:flex;
+  flex-direction: row;
 }
 
-.App-title {
-  font-size: 1.5em;
+.foodSummary {
+  padding: 2rem;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.foodSummary h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
 }

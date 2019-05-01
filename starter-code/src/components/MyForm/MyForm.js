@@ -32,10 +32,10 @@ export default class MyForm extends Component {
     return (
       <div>
         <form action="submit" onSubmit={(e) => this.handlerBotton(e)}>
-        <input type="text" name="name" id="" onChange={e => this.handlerState(e)}/>
-        <input type="number" name="calories" id="" onChange={e => this.handlerState(e)}/>
-        <input type="text" name="image" id="" onChange={e => this.handlerState(e)}/>
-        <input type="submit" value="ADD"/>
+          <input type="text" name="name" id="" onChange={e => this.handlerState(e)}/>
+          <input type="number" name="calories" id="" onChange={e => this.handlerState(e)}/>
+          <input type="text" name="image" id="" onChange={e => this.handlerState(e)}/>
+          <input type="submit" value="ADD"/>
         </form>
       </div>
     )

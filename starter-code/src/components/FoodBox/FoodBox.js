@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class FoodBox extends Component {
+  addToList = ()=>{
+    this.props.list(this.props.data.name)
+  }
   render() {
     return (
       <div className="box">
@@ -24,7 +27,7 @@ export default class FoodBox extends Component {
                 <input className="input" type="number" defaultValue="1" />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" onClick={this.addToList}>+</button>
               </div>
             </div>
           </div>

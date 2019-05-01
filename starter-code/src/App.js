@@ -11,7 +11,10 @@ class App extends Component {
     super();
     this.state =  {
       foods : this.filterUniques(foods),
-      toggleButtonForm: true}
+      toggleButtonForm: true,
+      filterFood : "",
+      foodList: []
+    }
   }
 
   changeToggleState = ()=>{
@@ -47,9 +50,26 @@ class App extends Component {
     
   }
 
+  changeFormData(e, key) {
+    const newState = {...this.state}
+    newState[key] = e.target.value
+
+    this.setState(newState , ()=>{console.log(this.state.filterFood)});
+  }
+
   render(){
     
-    let mappedFoods = this.state.foods.map(food => {
+    // let foodsFiltradas = this.state.foods;
+
+    let foodsFiltradas = this.state.foods.filter((item)=>{
+      return item.name.toLowerCase().search(
+        this.state.filterFood.toLowerCase()) !== -1;
+    }); 
+    
+    
+
+
+      let mappedFoods = foodsFiltradas.map(food => {
       food["key"] = Math.round(Math.random() * 10000000);
       //console.log(food)
       return (
@@ -59,9 +79,19 @@ class App extends Component {
       );
       })
 
+
+
     return(
       
       <React.Fragment>        
+        <input className="input is-primary" 
+            type="text" 
+            name="filterFood" 
+            placeholder="filter food"
+            value={this.state.filterFood} 
+            onChange={(e) => this.changeFormData(e, 'filterFood')} />
+
+
         <div className="columns">
           <div className="column">
             {mappedFoods}
@@ -73,6 +103,8 @@ class App extends Component {
               : <NewFoodForm newFood={(newFood) => this.addNewFood(newFood)}/> 
             } 
 
+        <h2>Today's food</h2>
+        
           </div>
         </div>
       </React.Fragment>

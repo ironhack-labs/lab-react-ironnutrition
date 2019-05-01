@@ -1,28 +1,50 @@
-.App {
-  text-align: center;
+.sectionApp {
+  display: flex;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.sectionApp > div {
+  width: 40vw;
+  margin: 5vh 5vw; 
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.formSearch {
+  width: 90vw;
+  margin: 5vh 5vw 0 5vw;
+  display: flex;
+  justify-content: center;
 }
 
-.App-title {
-  font-size: 1.5em;
+.formSearch input{
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
 }
 
-.App-intro {
-  font-size: large;
+.formDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.formDisplay button{
+  padding: 2vh 0;
+  font-size: 1.1rem;
+  width: 40vw;
+  border-radius: 10px;
+  cursor: pointer; 
+}
+
+.formDisplay button:hover {
+  background-color: #209cee;
+  color: #ffffff;
+}
+
+.foodDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foodDisplay > * {
+  width: 100%;
 }

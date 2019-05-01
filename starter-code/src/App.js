@@ -13,14 +13,19 @@ class App extends React.Component {
     }
   }
 
-  addNewFood() {
-    
+  addNewFood = (newFood) => {
+    let allFood = [...this.state.foodInfo];
+    allFood.push(newFood);
+    this.setState({
+      ...this.state,
+      foodInfo: allFood
+    })
   }
 
   render() {
     return (
       <React.Fragment>
-        <FormFood></FormFood>
+        <FormFood addNewFood={this.addNewFood} />
         {
           this.state.foodInfo.map((food, idx) => {
             return(

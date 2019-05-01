@@ -1,0 +1,14 @@
+.divForm{
+    width: 30%;
+    margin: 2% auto;
+    padding: 3%;
+    border:1px solid gray;
+    border-radius: 10px;
+    background-color:rgba(0, 0, 218, 0.185);
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

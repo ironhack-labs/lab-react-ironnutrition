@@ -3,6 +3,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './FoodBox';
+import FormFood from './FormFood';
 
 class App extends React.Component {
   constructor() {
@@ -11,9 +12,15 @@ class App extends React.Component {
       foodInfo: foods
     }
   }
+
+  addNewFood() {
+    
+  }
+
   render() {
     return (
       <React.Fragment>
+        <FormFood></FormFood>
         {
           this.state.foodInfo.map((food, idx) => {
             return(

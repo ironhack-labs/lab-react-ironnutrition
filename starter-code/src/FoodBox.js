@@ -1,6 +1,34 @@
 import React from 'react';
+import foods from './foods.json';
 
 class FoodBox extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: foods[0].name,
+      calories: foods[0].calories,
+      image: foods[0].image,
+      quantity: foods[0].quantity
+    }
+  }
+
+  changeQuantity(e) {
+    const theQuantity = e.target.value;
+
+    this.setState({
+      ...this.state,
+      quantity: theQuantity
+    })
+    console.log(theQuantity)
+  }
+
+  // increaseQuantityFood(e) {
+  //   e.preventDefault();
+
+  //   console.log("hola")
+
+  // }
+
   render() {
     return (
       <div className="box">
@@ -24,12 +52,13 @@ class FoodBox extends React.Component {
                 <input
                   className="input"
                   type="number"
-                  value={this.props.quantity}
+                  value={this.state.quantity}
                   onChange={(e) => this.changeQuantity(e)}
+                  min="0"
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={(e) => this.increaseQuantityFood(e)}>
                   +
                 </button>
               </div>

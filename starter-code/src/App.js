@@ -18,7 +18,7 @@ class App extends Component {
     const newState = { ...this.state };
     var input = e.target.value;
     newState.cFoods = foods.filter(function(hero) {
-      return hero.name == input;
+      return hero.name.includes(input)  ;
     });
 
     this.setState(newState);

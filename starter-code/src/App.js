@@ -45,7 +45,7 @@ class App extends Component {
     let filteredFood = [...foods]
     this.setState({
       ...this.state,
-      foods: filteredFood.filter(food => food.name.toLowerCase().includes(searchFood))
+      foods: filteredFood.filter(food => food.name.toLowerCase().includes(searchFood.toLowerCase()))
     })
   }
 

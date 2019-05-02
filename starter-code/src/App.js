@@ -13,7 +13,7 @@ class App extends Component {
       foods : this.filterUniques(foods),
       toggleButtonForm: true,
       filterFood : "",
-      foodList: []
+      foodList: [],
     }
   }
 
@@ -57,6 +57,10 @@ class App extends Component {
     this.setState(newState , ()=>{console.log(this.state.filterFood)});
   }
 
+  addItemToList(foodInfo){
+    console.log(foodInfo);
+  }
+
   render(){
     
     // let foodsFiltradas = this.state.foods;
@@ -71,6 +75,7 @@ class App extends Component {
 
       let mappedFoods = foodsFiltradas.map(food => {
       food["key"] = Math.round(Math.random() * 10000000);
+      food["funcAddItem"] = this.addItemToList;
       //console.log(food)
       return (
         <React.Fragment>

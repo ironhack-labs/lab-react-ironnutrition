@@ -1,7 +1,18 @@
+.app-master{
+  width:900px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .App {
   text-align: center;
 }
 
+.form{
+  width:550px;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

@@ -7,7 +7,6 @@ class FormFood extends Component {
       name: '',
       calories: 0,
       image: '',
-      quantity: 0,
     }
     this.inputChange = this.inputChange.bind(this);
     this.addForm = this.addForm.bind(this)
@@ -18,34 +17,31 @@ class FormFood extends Component {
     this.setState({ [name]: value })
   }
 
-  addForm() {
+  addForm(event) {
     event.preventDefault();
-    this.props.addOneFood(this.state);   
+    this.props.fn(this.state);   
     this.setState({
       name: '',
       calories: 0,
       image: '',
-      quantity: 0 
     })
   }
 
   render() {
     return(
       <div className = "add-food">
-      <form onSubmit={}>
-          <label>Name:</label>
-          <input type="text" name="name" value={this.state.name} onChange={(e) => inputChange(e) } />
+      <form className="field" onSubmit={this.addForm}>
+          <label className="label">Name:</label>
+          <div className="control">
+            <input className="input" type="text" name="name" value={this.state.name} onChange={(e) => this.inputChange(e) } />
+          </div>
+          <label className="label">Calories:</label>
+          <input className="input" type="number" name="calories" value={this.state.calories} onChange={(e) => this.inputChange(e) } />
 
-          <label>Calories:</label>
-          <input type="number" name="calories" value={this.state.calories} onChange={(e) => inputChange(e) } />
-
-          <label>Image (URL):</label>
-          <input type="text" name="image" checked={this.state.image} onChange={(e) => inputChange(e) } />
+          <label className="label">Image (URL):</label>
+          <input className="input" type="text" name="image" value={this.state.image} onChange={(e) => this.inputChange(e) } />
           
-          <label>Quantity:</label>
-          <input type="number" name="quantity" value={this.state.quantity} onChange={(e) => inputChange(e) } />
-          
-          <input type="submit" value="Submit" />
+          <button className="button is-dark is-large" type="submit" value="Submit">Add</button>
       </form>
     </div>
     )

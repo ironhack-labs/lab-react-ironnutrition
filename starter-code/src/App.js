@@ -1,18 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox";
 
 class App extends Component {
+  state = {
+    FoodMeal: foods,
+    food: {
+      name: "",
+      calories: "",
+      image: "",
+      quantity: 0
+    }
+  };
+
   render() {
+    const { FoodMeal } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="column is-half">
+          {FoodMeal.map((e, i) => {
+            return <FoodBox food={e} key={i} />;
+          })}
+        </div>
       </div>
     );
   }

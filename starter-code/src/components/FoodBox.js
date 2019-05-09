@@ -1,7 +1,7 @@
 import React from "react";
 import "bulma/css/bulma.css";
 
-function FoodBox(food) {
+function FoodBox({ food }) {
   return (
     <div className="box">
       <article className="media">

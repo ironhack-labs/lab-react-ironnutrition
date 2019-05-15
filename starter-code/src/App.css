@@ -1,3 +1,18 @@
+* {
+  margin: 10px 10px;
+}
+
+.bigdiv {
+  display: flex;
+}
+
+.boughtFood {
+  width: 40%
+}
+
+
+
+
 .App {
   text-align: center;
 }
@@ -25,4 +40,12 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.title {
+  text-align: center;
+}
+
+.middle {
+  text-align: center;
 }

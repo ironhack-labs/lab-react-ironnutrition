@@ -28,12 +28,4 @@ class AddForm extends React.Component {
 export default AddForm;
 
 {
-  /* <div>
-<div>Add Movie</div>
-<form onSubmit={this.props.addAMovie}>
-    <input name="movie" type="text" onChange={this.props.setMovieAndDirector} />
-    <input name="director" type="text" onChange={this.props.setMovieAndDirector }/> 
-    <button>Add Movie</button>
-</form>
-</div> */
-}
+

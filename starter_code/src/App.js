@@ -10,14 +10,31 @@ class App extends Component {
     name: '',
     calories: '',
     image: '',
-    quantity: 0
+    quantity: 0,
+    boughtFood: {}
   };
 
   createFoodRow = _ => {
     const getFoodRow = this.state.foods.map((food, i) => {
-      return <FoodBox key={i} name={food.name} calories={food.calories} image={food.image} />;
+      return (
+        <FoodBox
+          addQuantityAbove={this.addQuantityAbove}
+          key={i}
+          name={food.name}
+          calories={food.calories}
+          image={food.image}
+        />
+      );
     });
     return getFoodRow;
+  };
+
+  addQuantityAbove = food => {
+    let boughtFoodCopy = { ...this.state.boughtFood };
+    boughtFoodCopy[food.name] = food;
+    this.setState({
+      boughtFood: boughtFoodCopy
+    });
   };
 
   addItems = e => {
@@ -59,8 +76,12 @@ class App extends Component {
     }
   };
 
-  addMenuItem = i => {
-    return <li>{this.state.foods[i].name}</li>;
+  renderFood = e => {
+    // console.log('this is the quantity', this.state.boughtFood.quantity);
+
+    this.state.boughtItems &&
+      Object.keys(this.state.boughtItems).map(key => <li>{this.state.boughtItems[key].name}</li>);
+    console.log('this is the quantity', this.state.boughtFood.quantity);
   };
 
   render() {
@@ -71,12 +92,9 @@ class App extends Component {
         <input name="food" onChange={this.searchFood} type="text" />
         <div>
           <h1>Today's Menu</h1>
+          <ul>{this.renderFood()}</ul>
         </div>
         <div>{this.createFoodRow()}</div>
-        <div>
-          <h1>Today's Menu</h1>
-          <ul />
-        </div>
       </div>
     );
   }

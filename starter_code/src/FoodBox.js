@@ -2,18 +2,29 @@ import React, { Component } from 'react';
 
 export default class FoodBox extends Component {
   state = {
+    name: this.props.name,
     quantity: 0,
-    calories: this.props.calories
+    calories: 0
   };
 
   addQuantity = e => {
-    this.setState({
+    console.log(e.target.value);
+    let q = {
       quantity: e.target.value,
-      calories: this.state.calories * e.target.value
-    });
-    console.log(e.target.value, 'this is working please');
-    console.log('The quanitity for', this.props.name, 'is', e.target.value);
-    console.log('The calories for', this.props.name, 'is', this.state.calories);
+      calories: this.props.calories * e.target.value
+    };
+    this.setState(q);
+    // this.setState(q, function() {
+    //   this.props.addQuantityAbove(this.state);
+    // });
+
+    // console.log(e.target.value, 'this is working please');
+    // console.log('The quanitity for', this.props.name, 'is', e.target.value);
+    // console.log('The calories for', this.props.name, 'is', this.state.calories);
+  };
+
+  updateQuantity = () => {
+    this.props.addQuantityAbove(this.state);
   };
 
   // caloriesSubtotal = _ => {
@@ -42,10 +53,12 @@ export default class FoodBox extends Component {
               <div className="media-right">
                 <div className="field has-addons">
                   <div className="control">
-                    <input className="input" type="number" value={this.props.quantity} onChange={this.addQuantity} />
+                    <input className="input" type="number" onChange={this.addQuantity} />
                   </div>
                   <div className="control">
-                    <button className="button is-info">+</button>
+                    <button onClick={this.updateQuantity} className="button is-info">
+                      +
+                    </button>
                   </div>
                 </div>
               </div>

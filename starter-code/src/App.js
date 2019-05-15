@@ -18,6 +18,7 @@ class App extends Component {
     quantity: 0
   };
 
+  // Adds A new food item
   addFood = e => {
     e.preventDefault();
 
@@ -33,18 +34,21 @@ class App extends Component {
       foodsMain: newFoods
     });
   };
-
+  // Receives input data from AppForm
   setNameandCalories = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  // Search Function
+
   searchFoods = e => {
     this.setState({
       searchname: e.target.value
     });
   };
-
+  // Adds item from list to new TodaysFood Component list (On click)
   addTodaysFood = e => {
     e.preventDefault();
 
@@ -53,13 +57,13 @@ class App extends Component {
       if (item.name === e.target.id) {
         this.state.addedFoodsObj.push(item);
         this.setState({
-          // addedFood: e.target.id
           addedFoodsObj: this.state.addedFoodsObj
         });
       }
     });
   };
 
+  // Quantity addition
   addQuantity = e => {
     e.preventDefault();
 
@@ -87,6 +91,7 @@ class App extends Component {
 
         <hr />
         <TodaysFood addedFoodsObj={this.state.addedFoodsObj} />
+
         {this.state.foodsMain.map((item, i) => {
           if (
             item.name

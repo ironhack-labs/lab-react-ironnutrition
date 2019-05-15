@@ -31,9 +31,30 @@
   }
 }
 
+.displayForm {
+  display: none;
+}
+
 .FoodContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 50%;
+}
+
+.searchbox {
+  border: solid green 1px;
+  margin: 70px 0px;
+  width: 50%;
+}
+
+.formbox {
+  border: solid red 1px;
+}
+
+.todaysContainer {
+  float: right;
+  margin-right: 20%;
+  display: flex;
+  justify-content: column;
 }

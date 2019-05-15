@@ -4,8 +4,8 @@ class FoodBox extends React.Component {
   state = {};
   render() {
     return (
-      <div className="box">
-        <div className="FoodContainer">
+      <div key={this.props.foods.key} className="box FoodContainer">
+        <div className="">
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
@@ -26,7 +26,14 @@ class FoodBox extends React.Component {
                   <input className="input" type="number" value="1" />
                 </div>
                 <div className="control">
-                  <button className="button is-info">+</button>
+                  <button
+                    className="button is-info"
+                    addName={this.props.foods.name}
+                    testname="testing"
+                    onClick={this.props.addTodaysFood}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>

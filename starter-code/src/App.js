@@ -45,7 +45,7 @@ class App extends Component {
     e.preventDefault();
     let foodsCopy = [...this.state.foods];
 
-    foodsCopy.push({
+    foodsCopy.unshift({
       name: e.target.elements.name.value,
       calories: e.target.elements.calories.value,
       image: e.target.elements.image.value
@@ -77,9 +77,7 @@ class App extends Component {
     if (arrayString.includes(foodItem.name)) {
       console.log("duplicate");
       /*Duplicate code handler*/
-      console.log(arrayString.indexOf(foodItem.name));
       let newFoodList = [...this.state.boughtFoods];
-      console.log(newFoodList[arrayString.indexOf(foodItem.name)]);
       newFoodList[arrayString.indexOf(foodItem.name)].calories +=
         foodItem.calories * quantity;
       newFoodList[arrayString.indexOf(foodItem.name)].quantity =
@@ -139,20 +137,33 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <div className="forms">
-          <button onClick={this.changeAddingState}>Add food item</button>
-          <br />
-          Search!
-          <input name="searchQuery" onChange={this.searchFood} type="text" />
-          {this.renderTheForm()}
-        </div>
-        <div className="foods">{this.loopThruFoods()}</div>
-        <div className="listOfFoods">
-          FOODS:{this.renderListItems()}
-          <br />
-          <hr />
-          <strong>Total calories: {this.state.totalCalories}</strong>
+      <div>
+        <h1 id="title">
+          <center>IronNutrition</center>
+        </h1>
+        <div className="App">
+          <div className="forms">
+            <button onClick={this.changeAddingState}>Add food item</button>
+            <br />
+
+            {this.renderTheForm()}
+          </div>
+          <div className="foods">
+            Search!
+            <input
+              id="searching"
+              name="searchQuery"
+              onChange={this.searchFood}
+              type="text"
+            />
+            {this.loopThruFoods()}
+          </div>
+          <div className="listOfFoods">
+            FOODS:{this.renderListItems()}
+            <br />
+            <hr />
+            <strong>Total calories: {this.state.totalCalories}kcal</strong>
+          </div>
         </div>
       </div>
     );

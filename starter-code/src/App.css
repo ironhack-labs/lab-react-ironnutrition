@@ -1,6 +1,9 @@
 .App {
   text-align: center;
   display: flex;
+  justify-content: space-around;
+  background-image: url("https://image.freepik.com/free-vector/food-pattern-seamless-background_1284-3550.jpg");
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -21,6 +24,38 @@
 
 .App-intro {
   font-size: large;
+}
+
+.forms,
+.foods,
+.listOfFoods {
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 5px dashed black;
+}
+
+.forms {
+  width: 200px;
+}
+#title {
+  font-size: 3em;
+  width: 100%;
+  background: black;
+  color: white;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 2.5px solid black;
+  text-align: center;
+}
+#searching {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 2.5px solid black;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {

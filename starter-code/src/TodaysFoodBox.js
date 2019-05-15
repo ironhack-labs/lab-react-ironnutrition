@@ -1,6 +1,6 @@
 import React from "react";
 
-class FoodBox extends React.Component {
+class TodaysFoodBox extends React.Component {
   state = {};
   render() {
     return (
@@ -21,27 +21,7 @@ class FoodBox extends React.Component {
               </div>
             </div>
             <div className="media-right">
-              <div className="field has-addons">
-                <div className="control">
-                  <input
-                    className="input"
-                    type="number"
-                    value={this.props.quantity}
-                    onChange={this.props.addQuantity}
-                    min="0"
-                  />
-                </div>
-                <div className="control">
-                  <button
-                    className="button is-info"
-                    id={this.props.foods.name}
-                    testname="testing"
-                    onClick={this.props.addTodaysFood}
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
+              <div className="field has-addons" />
             </div>
           </article>
         </div>
@@ -50,4 +30,4 @@ class FoodBox extends React.Component {
   }
 }
 
-export default FoodBox;
+export default TodaysFoodBox;

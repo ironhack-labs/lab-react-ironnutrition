@@ -15,7 +15,7 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .App-intro {
@@ -39,22 +39,26 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 50%;
+  width: 40%;
+  margin-left: 8%;
 }
 
 .searchbox {
-  border: solid green 1px;
+  border: solid grey 1px;
   margin: 70px 0px;
   width: 50%;
 }
 
 .formbox {
-  border: solid red 1px;
+  /* border: solid red 1px; */
 }
 
 .todaysContainer {
   float: right;
   margin-right: 20%;
   display: flex;
-  justify-content: column;
+  width: 30%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -13,7 +13,9 @@ class App extends Component {
     searchname: "",
     name: "",
     calories: "",
-    addedFood: ""
+    addedFood: "",
+    addedFoodsObj: [],
+    quantity: 0
   };
 
   addFood = e => {
@@ -46,20 +48,35 @@ class App extends Component {
   addTodaysFood = e => {
     e.preventDefault();
 
-    console.log(
-      "=============================",
-      e.target.addname,
-      "from",
-      e.target
-    );
-    this.setState({
-      addedFood: e.target.addname
+    console.log("=============================", e.target.id, "from", e.target);
+    this.state.foodsMain.forEach(item => {
+      if (item.name === e.target.id) {
+        this.state.addedFoodsObj.push(item);
+        this.setState({
+          // addedFood: e.target.id
+          addedFoodsObj: this.state.addedFoodsObj
+        });
+      }
     });
+  };
+
+  addQuantity = e => {
+    e.preventDefault();
+
+    console.log(e.target.value);
+    if (this.state.quantity > -1) {
+      this.setState({ quantity: 0 });
+    } else {
+      this.setState({
+        quantity: Number(e.target.value)
+      });
+    }
   };
 
   render() {
     return (
       <div className="App">
+        <h1 className="App-title">IronNutrition</h1>
         <SearchBar searchFoods={this.searchFoods} />
         <hr />
 
@@ -69,7 +86,7 @@ class App extends Component {
         />
 
         <hr />
-        <TodaysFood />
+        <TodaysFood addedFoodsObj={this.state.addedFoodsObj} />
         {this.state.foodsMain.map((item, i) => {
           if (
             item.name
@@ -81,6 +98,7 @@ class App extends Component {
                 foods={item}
                 key={i}
                 addTodaysFood={this.addTodaysFood}
+                addQuantity={this.addQuantity}
               />
             );
         })}

@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-.media {
+/* .media {
+  width: 50%;
+} */
+
+.box {
   width: 50%;
 }
 
@@ -13,6 +17,11 @@
 
 .new-food-form {
   width: 50%;
+}
+
+.foodLists {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 

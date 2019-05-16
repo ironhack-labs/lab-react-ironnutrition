@@ -3,6 +3,7 @@ import "./App.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
 import NewFoodForm from "./components/NewFoodForm";
+import TodaysFoods from "./components/TodaysFoods";
 
 class App extends Component {
   state = {
@@ -56,7 +57,10 @@ class App extends Component {
     return (
       <div className="App">
       <input className="input" onChange={this.handleSearch} type="text" placeholder="Search..."/>
+        <div className="foodLists">
         <FoodBox foods={foods} />
+        <TodaysFoods foodList={foodList}/>
+        </div>
         {newFoodForm ? (
           <NewFoodForm
             {...foodItem}

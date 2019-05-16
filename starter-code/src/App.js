@@ -45,7 +45,15 @@ class App extends Component {
 		let {foods} = this.state;
 		let word = e.target.value
 		console.log(word)
+
+		
 		foods =  foods.filter(food => food.name.startsWith(word)  )
+		if(foods.length) {
+			this.setState({foods})
+		}else{
+			foods = foods2.slice(0,5)
+			this.setState({foods})
+		}
 		console.log(foods)
 		
 		

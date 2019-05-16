@@ -19,7 +19,7 @@ const FoodBox = ({ name, calories, image, quantity }) => (
 			<div className="media-right">
 				<div className="field has-addons">
 					<div className="control">
-						<input type="number" className="input" value={quantity} />
+						<input type="number" className="input" defaultValue={quantity} min="0" max="50" />
 					</div>
 					<div className="control">
 						<button className="button is-info">+</button>

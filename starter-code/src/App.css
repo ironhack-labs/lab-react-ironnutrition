@@ -5,3 +5,14 @@
 .media {
   width: 50%;
 }
+
+.new-food-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.new-food-form {
+  width: 50%;
+}
+
+

@@ -32,9 +32,9 @@ class App extends Component {
 
   handleSearch = e => {
     const {foods} = this.state;
-    foods.filter(food => food.name === e.target.value);
-    console.log(foods);
-    this.setState({foods})
+    let {value} = e.target
+    foods.filter(food => food.name.includes(value));
+    this.setState({foods});
   }
 
   handleSubmit = e => {

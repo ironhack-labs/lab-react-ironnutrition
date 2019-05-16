@@ -30,3 +30,19 @@
 .marginBottom{
   margin-bottom: 1.5rem;
 }
+
+.box img{
+  height: 100%;
+}
+
+.box input, .button{
+  height: 64px;
+}
+
+.box input {
+  width: 100px;
+  text-align: center;
+  border: 0px white;
+  -webkit-box-shadow: inset 0 1px 2px white;
+  box-shadow: inset 0 1px 2px white;
+}

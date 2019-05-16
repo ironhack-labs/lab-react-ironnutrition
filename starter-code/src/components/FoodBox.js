@@ -1,7 +1,7 @@
 import React from "react";
 
 const FoodBox = ({image,name,calories}) => (
-  <div className="box">
+  <div className="box is-paddingless">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">

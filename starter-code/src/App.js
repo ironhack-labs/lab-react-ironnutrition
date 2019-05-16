@@ -6,6 +6,7 @@ import NewFoodForm from "./components/NewFoodForm";
 
 class App extends Component {
   state = {
+    foods: foods,
     newFoodForm: false,
     foodItem: {
       name: "",
@@ -25,7 +26,15 @@ class App extends Component {
     const {foodItem} = this.state;
     let field = e.target.name;
     foodItem[field] = e.target.value;
+    console.log('Este es el field: ', e.target.value)
     this.setState({foodItem})
+  }
+
+  handleSearch = e => {
+    const {foods} = this.state;
+    foods.filter(food => food.name === e.target.value);
+    console.log(foods);
+    this.setState({foods})
   }
 
   handleSubmit = e => {
@@ -46,6 +55,7 @@ class App extends Component {
     const { newFoodForm, foodItem, foodList } = this.state;
     return (
       <div className="App">
+      <input className="input" onChange={this.handleSearch} type="text" placeholder="Search..."/>
         <FoodBox foods={foods} />
         {newFoodForm ? (
           <NewFoodForm

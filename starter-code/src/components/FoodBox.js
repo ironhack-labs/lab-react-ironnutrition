@@ -33,7 +33,7 @@ const FoodBox = ({ image, name, calories, handleAdd, id }) => {
             </div>
             <div className="control">
               <button
-                className="button is-info"
+                className="button is-info is-64"
                 onClick={() => handleAdd(id, name, qty, calories)}
               >
                 +

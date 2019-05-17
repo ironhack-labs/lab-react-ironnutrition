@@ -35,7 +35,7 @@
   height: 100%;
 }
 
-.box input, .button{
+.box input, .is-64{
   height: 64px;
 }
 

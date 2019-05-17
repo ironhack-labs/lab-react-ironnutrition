@@ -7,15 +7,16 @@ import Meal from "./components/Meal";
 class App extends Component {
   state = {
     totalCalories: 0,
-    search:"",
+    search: "",
     meals: []
   };
 
-  handleChange=e=>{
-    let {search} = this.state;
+  handleChange = e => {
+    let { search } = this.state;
     search = e.target.value;
-    this.setState({search});
-  }
+    this.setState({ search });
+    console.log(search);
+  };
 
   handleAdd = (id, name, qty, cals) => {
     const quantity = Number.parseInt(qty, 10);
@@ -36,10 +37,9 @@ class App extends Component {
 
   handleDelete = id => {
     let { meals } = this.state;
-    meals.forEach((meal,index)=>{
-      if (meal.id === id)
-        meals.splice(index,1)
-    })
+    meals.forEach((meal, index) => {
+      if (meal.id === id) meals.splice(index, 1);
+    });
     this.setState({ meals });
   };
 
@@ -50,19 +50,32 @@ class App extends Component {
         <div className="container">
           <h1 className="title has-text-left marginBottom">IronNutrition</h1>
           <div>
-            <input className="input search-bar marginBottom" type="text" />
+            <input
+              onChange={this.handleChange}
+              className="input search-bar marginBottom"
+              type="text"
+            />
           </div>
           <div className="columns">
             <div className="column">
-              {foods.map((food, index) => (
-                <FoodBox
-                  key={index}
-                  id={index}
-                  {...food}
-                  handleChange={this.handleChange}
-                  handleAdd={this.handleAdd}
-                />
-              ))}
+              {foods
+                .filter(meal => {
+                  const { search } = this.state;
+                  if (search.length === 0) return true;
+                  else
+                    return meal.name
+                      .toLowerCase()
+                      .includes(search.toLowerCase());
+                })
+                .map((food, index) => (
+                  <FoodBox
+                    key={index}
+                    id={index}
+                    {...food}
+                    handleChange={this.handleChange}
+                    handleAdd={this.handleAdd}
+                  />
+                ))}
             </div>
             <div className="column content has-text-left">
               <h2 className="title has-text-left">Today's foods</h2>

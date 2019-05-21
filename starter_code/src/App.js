@@ -1,100 +1,66 @@
 import React, { Component } from 'react';
 import foods from './foods.json';
-import './App.css';
-import FoodBox from './FoodBox';
-import AddFood from './AddFood';
+import { FoodList, FoodForm, Search } from './components';
 
 class App extends Component {
-  state = {
-    foods: foods,
-    name: '',
-    calories: '',
-    image: '',
-    quantity: 0,
-    boughtFood: {}
+  state = { foods, filteredFoods: foods, formActive: false, selection: [] };
+
+  createFood = formData => {
+    const { foods } = this.state;
+    const newFoodList = [...foods, formData];
+    this.setState({ foods: newFoodList, filteredFoods: newFoodList });
   };
 
-  createFoodRow = _ => {
-    const getFoodRow = this.state.foods.map((food, i) => {
-      return (
-        <FoodBox
-          addQuantityAbove={this.addQuantityAbove}
-          key={i}
-          name={food.name}
-          calories={food.calories}
-          image={food.image}
-        />
-      );
-    });
-    return getFoodRow;
+  toggleFoodForm = _ => this.setState({ formActive: !this.state.formActive });
+
+  handleSearch = e => {
+    const { foods } = this.state;
+    const searchInput = e.target.value;
+    if (!searchInput) return this.setState({ filteredFoods: foods });
+    const filteredFoods = foods.filter(food => food.name.toLowerCase().includes(searchInput.toLowerCase()));
+    this.setState({ filteredFoods });
   };
 
-  addQuantityAbove = food => {
-    let boughtFoodCopy = { ...this.state.boughtFood };
-    boughtFoodCopy[food.name] = food;
-    this.setState({
-      boughtFood: boughtFoodCopy
-    });
+  increaseQuantity = (name = String()) => e => {
+    const { filteredFoods } = this.state;
+    const newFoodList = filteredFoods.map(food =>
+      name.toLowerCase() === food.name.toLowerCase() ? { ...food, quantity: e.target.value } : food
+    );
+    this.setState({ filteredFoods: newFoodList });
   };
 
-  addItems = e => {
-    e.preventDefault();
-    const foodItems = {
-      name: this.state.name,
-      calories: this.state.calories,
-      image: this.state.image
-    };
-    const newFood = [...this.state.foods];
-    newFood.push(foodItems);
-    console.log(foodItems);
-    this.setState({
-      foods: newFood
-    });
+  addFood = (name = String()) => _ => {
+    const { filteredFoods, selection } = this.state;
+    const selectedFood = filteredFoods.find(food => food.name.toLowerCase() === name.toLowerCase());
+    const validation = selection.find(food => selectedFood.name.toLowerCase() === food.name.toLowerCase());
+    const newSelection = validation
+      ? selection.map(food => (food.name.toLowerCase() === selectedFood.name.toLowerCase() ? selectedFood : food))
+      : [...selection, selectedFood];
+    // const newSelection = [...selection, selectedFood];
+    this.setState({ selection: newSelection });
   };
 
-  addNewFood = e => {
-    e.preventDefault();
-    console.log(e.target.name, ' ', e.target.value);
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  removeFood = name => _ => {
+    const { selection } = this.state;
+    const newSelection = selection.filter(food => name.toLowerCase() === food.name.toLowerCase());
+    this.setState({ selection: newSelection });
   };
-
-  searchFood = e => {
-    let filteredFood = this.state.foods.filter(food => {
-      console.log('this is the value', e.target.value);
-      return food.name.includes(e.target.value);
-    });
-
-    this.setState({
-      foods: filteredFood
-    });
-    if (!e.target.value) {
-      this.setState({
-        foods: foods
-      });
-    }
-  };
-
-  renderFood = e => {
-    // console.log('this is the quantity', this.state.boughtFood.quantity);
-
-    this.state.boughtItems &&
-      Object.keys(this.state.boughtItems).map(key => <li>{this.state.boughtItems[key].name}</li>);
-    console.log('this is the quantity', this.state.boughtFood.quantity);
-  };
-
   render() {
+    const { filteredFoods, formActive, selection } = this.state;
+    console.log('selected', selection);
     return (
       <div className="App">
-        <AddFood addItems={this.addItems} addNewFood={this.addNewFood} />
-        <br />
-        <input name="food" onChange={this.searchFood} type="text" />
-        <div>
-          <h1>Today's Menu</h1>
-          <ul>{this.renderFood()}</ul>
-        </div>
-        <div>{this.createFoodRow()}</div>
+        <h1>FOOD LIST</h1>
+        <Search handleSearch={this.handleSearch} />
+        <button onClick={this.toggleFoodForm}>Add More</button>
+        {formActive && <FoodForm createFood={this.createFood} />}
+        <FoodList
+          foods={filteredFoods}
+          increaseQuantity={this.increaseQuantity}
+          selection={selection}
+          addFood={this.addFood}
+          removeFood={this.removeFood}
+        />
       </div>
     );
   }

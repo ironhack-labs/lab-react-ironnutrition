@@ -3,10 +3,11 @@ import './App.css';
 import foods from './foods.json'
 import FoodList from './components/FoodList'
 import AddForm from './components/AddForm'
+import SearchBar from './components/SearchBar'
 
 class App extends Component {
   state = {
-    foods: foods.map(item => item)
+    foods: [...foods]
   }
 
   addFood = food => {
@@ -15,9 +16,16 @@ class App extends Component {
     })
   }
 
+  searchFood = (text) => {
+    this.setState({
+      foods: foods.filter(e => e.name.toLowerCase().includes(text.toLowerCase()))
+    })
+  }
+
   render() {
     return (
       <div className="App container">
+        <SearchBar searchFood={this.searchFood}/>
         <FoodList foods={this.state.foods}/>
         <AddForm addFood={this.addFood}/>
       </div>

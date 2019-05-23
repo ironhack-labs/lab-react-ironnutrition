@@ -40,12 +40,12 @@ class AddForm extends React.Component {
 
   render() {
     return (
-      <div className="add-form mt-5">
-        <button className='button is-primary m-2 is-large'  onClick={this.handleAddClick} disabled={this.state.active}>Add food</button>
+      <div className="add-form mt-5 container">
+        {!this.state.active && <button className='button is-primary m-2 is-large'  onClick={this.handleAddClick}>Add food</button>}
         {this.state.active && <form onSubmit={this.handleSubmit}>
-          <input name="foodText" className="input" type="text" value={this.state.foodText} onChange={this.handleChange}></input>
-          <input name="imgURL" className="input" type="text" value={this.state.imgURL} onChange={this.handleChange}></input>
-          <input name="calories" className="input" type="number" Value={this.state.calories} onChange={this.handleChange}></input>
+          <input name="foodText" className="input mb-2" placeholder="Insert food name" type="text" value={this.state.foodText} onChange={this.handleChange}></input>
+          <input name="imgURL" className="input mb-2" placeholder="Insert food image URL" type="text" value={this.state.imgURL} onChange={this.handleChange}></input>
+          <input name="calories" className="input mb-2" placeholder="Insert food calories" type="number" Value={this.state.calories} onChange={this.handleChange}></input>
           <button type='submit' className="button is-success m-2 is-large">Submit!</button>
         </form>}
       </div>

@@ -5,7 +5,7 @@ export default ({food}) => (
 		<article className="media">
 			<div className="media-left">
 				<figure className="image is-64x64">
-					<img src={food.image} />
+					<img src={food.image} alt="..."/>
 				</figure>
 			</div>
 			<div className="media-content">

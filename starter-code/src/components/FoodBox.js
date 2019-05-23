@@ -1,41 +1,66 @@
 import React from 'react'
 
-const FoodBox = ({food}) => {
-  return (
-    <div className="box container">
-      <article className="media">
-        <div className="media-left">
-          <figure className="image is-64x64">
-            <img alt="" src={food.image} />
-          </figure>
-        </div>
-        <div className="media-content">
-          <div className="content">
-            <p>
-              <strong>{food.name}</strong> <br />
-              <small>{food.calories}</small>
-            </p>
+class FoodBox extends React.Component {
+  state = {
+    foodNumber: 0
+  }
+
+  handleChange = (e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  })
+
+  handleClick = (e) => {
+    this.props.addTodaysFood(e.target.name, this.state.foodNumber)
+  }
+
+
+  render () {
+
+    const {food, num} = this.props
+
+    return (
+      <div className="box container">
+        <article className="media">
+          <div className="media-left">
+            <figure className="image is-64x64">
+              <img alt="" src={food.image} />
+            </figure>
           </div>
-        </div>
-        <div className="media-right">
-          <div className="field has-addons">
-            <div className="control">
-              <input
-                className="input"
-                type="number" 
-                value="1"
-              />
-            </div>
-            <div className="control">
-              <button className="button is-info">
-                +
-              </button>
+          <div className="media-content">
+            <div className="content">
+              <p>
+                <strong>{food.name}</strong> <br />
+                <small>{food.calories}</small>
+              </p>
             </div>
           </div>
-        </div>
-      </article>
-    </div>
-  )
+          <div className="media-right">
+            <div className="field has-addons">
+              <div className="control">
+                <input
+                  name='foodNumber'
+                  className="input"
+                  type="number" 
+                  value={this.state.foodNumber}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="control">
+                <button 
+                  className="button is-info"
+                  onClick={this.handleClick}
+                  name={num}>
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    )
+  }
 }
 
 export default FoodBox

@@ -1,10 +1,10 @@
 import React from 'react'
 import FoodBox from './FoodBox'
 
-const FoodList = ({foods}) => {
+const FoodList = ({foods, addTodaysFood}) => {
 
   const list = foods.map( (item, i) => {
-    return <FoodBox food={item} key={i}/>
+    return <FoodBox addTodaysFood={addTodaysFood} food={item} key={i} num={i}/>
   })
 
   return (

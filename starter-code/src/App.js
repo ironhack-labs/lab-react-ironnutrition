@@ -4,15 +4,28 @@ import foods from './foods.json'
 import FoodList from './components/FoodList'
 import AddForm from './components/AddForm'
 import SearchBar from './components/SearchBar'
+import SummaryList from './components/SummaryList'
 
 class App extends Component {
   state = {
-    foods: [...foods]
+    foods: [...foods],
+    todaysFood: []
   }
 
   addFood = food => {
     this.setState({
       foods: [...this.state.foods, food]
+    })
+  }
+
+  addTodaysFood = (index, amount) => {
+    const obj = {
+      name: foods[index].name,
+      amount: amount,
+      calories: foods[index].calories * amount
+    }
+    this.setState({
+      todaysFood: [...this.state.todaysFood, obj]
     })
   }
 
@@ -23,10 +36,20 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App container">
         <SearchBar searchFood={this.searchFood}/>
-        <FoodList foods={this.state.foods}/>
+        <div className="food-section mt-5">
+          <div className="food-section-wrapper">
+            <FoodList foods={this.state.foods} addTodaysFood={this.addTodaysFood}/>
+          </div>
+          <div className="food-section-summary">
+            <h2>Today's foods</h2>
+            <SummaryList foods={this.state.todaysFood} />
+            <p>Total cal</p>
+          </div>
+        </div>
         <AddForm addFood={this.addFood}/>
       </div>
     );

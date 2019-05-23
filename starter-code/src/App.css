@@ -7,3 +7,25 @@
   color: black;
   font-weight: 700
 }
+
+.food-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.food-section-wrapper {
+  width: 50%;
+  text-align: left;
+}
+
+.food-section-summary {
+  width: 50%;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.food-section-summary p {
+  font-size: 1.5rem;
+}

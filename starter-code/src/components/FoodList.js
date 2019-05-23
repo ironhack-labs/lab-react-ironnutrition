@@ -4,11 +4,7 @@ import FoodBox from './FoodBox'
 const FoodList = ({foods}) => {
 
   const list = foods.map( (item, i) => {
-    return (
-      <div> 
-        <FoodBox food={item} key={i}/>
-      </div>
-    )
+    return <FoodBox food={item} key={i}/>
   })
 
   return (

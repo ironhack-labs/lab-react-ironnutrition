@@ -1,6 +1,20 @@
 .App {
-  text-align: center;
+  padding: 15px;
 }
+#Header {
+  padding: 15px;
+}
+#container {
+  padding: 15px;
+}
+#columns {
+  padding: 15px;
+}
+#search-bar{
+  margin-bottom: 30px;
+
+}
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -20,6 +34,7 @@
 
 .App-intro {
   font-size: large;
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {

@@ -8,15 +8,18 @@ class App extends Component {
 	state = {
 		foods: [...foods]
 	}
-	handleSearch = query => this.state({
-		foods : foods.filter(food => food.name.toLowerCase().includes(query.toLowerCase()))
-	}) 
+	handleSearch = query => {
+		console.log(query)
+		this.setState({
+			foods : foods.filter(food => food.name.toLowerCase().includes(query.toLowerCase()))
+		}) 
+	}
 	render() {
     return (
       <div className="App">
-				<SearchFood />
+				<SearchFood search = {this.handleSearch}/>
         {this.state.foods.map((e, i) => (
-					<FoodBox key={i} food={e} search = {this.handleSearch}/>	
+					<FoodBox key={i} food={e}/>	
 				))}
       </div>
     );

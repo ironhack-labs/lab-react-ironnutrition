@@ -6,8 +6,7 @@ class SearchFood extends Component {
 	}
 	
 	handleInput = e => {
-		this.setState({[e.target.name] : e.target.value})
-		
+		this.setState({[e.target.name] : e.target.value})		
 		this.props.search(this.state.name)
 	}
 

@@ -25,8 +25,18 @@ class App extends Component {
       amount: amount,
       calories: foods[index].calories * amount
     }
+    const newObj = [...this.state.todaysFood, obj]
+
     this.setState({
-      todaysFood: [...this.state.todaysFood, obj]
+      todaysFood: Object.values(newObj.reduce((acc, item) => {
+        if(acc[item.name]) {
+          acc[item.name] = {...acc[item.name], amount:acc[item.name].amount+item.amount}
+        }
+        else {
+          acc[item.name] = {...item}
+        }
+        return acc
+      }, {}))
     })
   }
 

@@ -7,6 +7,7 @@ class AddForm extends React.Component {
     foodText: '',
     imgURL: '',
     calories: ''
+    //(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)  //** para checkear url **/
   }
 
   handleAddClick = ( () => {

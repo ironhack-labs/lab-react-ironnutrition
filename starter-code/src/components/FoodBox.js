@@ -13,27 +13,27 @@ class FoodBox extends React.Component {
 
   handleClick = (e) => {
     this.props.addTodaysFood(e.target.name, this.state.foodNumber)
-    this.props.addCal(this.props.food.calories)
+    this.props.addCal(this.props.calories)
   }
 
 
   render () {
 
-    const {food, num} = this.props
+    const {name, calories, image, num} = this.props
 
     return (
       <div className="box container">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img alt="" src={food.image} />
+              <img alt="" src={image} />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>{food.name}</strong> <br />
-                <small>{food.calories}</small>
+                <strong>{name}</strong> <br />
+                <small>{calories}</small>
               </p>
             </div>
           </div>

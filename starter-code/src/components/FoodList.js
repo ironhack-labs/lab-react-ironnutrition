@@ -4,7 +4,7 @@ import FoodBox from './FoodBox'
 const FoodList = ({foods, addTodaysFood, addCal}) => {
 
   const list = foods.map( (item, i) => {
-    return <FoodBox addTodaysFood={addTodaysFood} addCal={addCal} food={item} key={i} num={i}/>
+    return <FoodBox addTodaysFood={addTodaysFood} addCal={addCal} {...item} key={i} num={i}/>
   })
 
   return (

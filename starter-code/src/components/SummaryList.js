@@ -1,11 +1,16 @@
 import React from 'react'
 
-const SummaryList = ({foods}) => {
+const SummaryList = ({foods, removeTodaysFood}) => {
 
-  console.log(foods)
+  const handleClick = e => {
+    removeTodaysFood(e.target.name)
+  }
 
   const list = foods.map( (item, i) => {
-    return <li key={i}>{item.amount} {item.name} = {item.calories*item.amount} cal</li>
+    return (
+    <li className="mt-3 mb-3" key={i}>{item.amount} {item.name} = {item.calories*item.amount} cal <button className="button is-danger" name={i} onClick={handleClick}>X</button></li>
+    )
+
   })
   
   return (

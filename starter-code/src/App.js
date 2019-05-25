@@ -40,6 +40,15 @@ class App extends Component {
     })
   }
 
+  removeTodaysFood = num => {
+
+    const obj = [...this.state.todaysFood]
+    obj.splice(num, 1)
+    this.setState({
+      todaysFood: [...obj]
+    })
+  }
+
   searchFood = (text) => {
     this.setState({
       foods: foods.filter(e => e.name.toLowerCase().includes(text.toLowerCase()))
@@ -63,7 +72,7 @@ class App extends Component {
           </div>
           <div className="food-section-summary">
             <h2>Today's foods</h2>
-            <SummaryList foods={this.state.todaysFood} />
+            <SummaryList foods={this.state.todaysFood} removeTodaysFood={this.removeTodaysFood} />
             <p>Total {this.state.totalCal} cal</p>
           </div>
         </div>

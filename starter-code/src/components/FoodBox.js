@@ -2,7 +2,7 @@ import React from 'react'
 
 class FoodBox extends React.Component {
   state = {
-    foodNumber: 0
+    foodNumber: 1
   }
 
   handleChange = (e => {
@@ -13,6 +13,7 @@ class FoodBox extends React.Component {
 
   handleClick = (e) => {
     this.props.addTodaysFood(e.target.name, this.state.foodNumber)
+    this.props.addCal(this.props.food.calories)
   }
 
 
@@ -41,6 +42,7 @@ class FoodBox extends React.Component {
               <div className="control">
                 <input
                   name='foodNumber'
+                  min="1"
                   className="input"
                   type="number" 
                   value={this.state.foodNumber}

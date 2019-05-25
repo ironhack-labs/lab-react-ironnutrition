@@ -17,9 +17,9 @@ const AddFood = ({foods}) => {
                 </div>
                 <div className="form-group">
                     <label for="image">Image</label>
-                    <input type="text" className="form-control" id="NumberOfCalories" placeholder="Image URL" />
+                    <input type="file" className="form-control-file" id="NumberOfCalories"  />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Add Food</button>
             </form>
         </div>
     );

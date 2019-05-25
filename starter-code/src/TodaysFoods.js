@@ -5,12 +5,12 @@ const TodaysFoods = ({foods}) => {
         return (
         <div className="todays-foods" >
             <div className="row">
-                <h1>Today's foods</h1>
+                <h1>Today's Foods</h1>
                 <ul>
-                    <li>hamburger</li>
-                    <li>pizza</li>
+                    <li>Hamburger</li>
+                    <li>Pizza</li>
                 </ul>
-                <p>Total: cal</p>
+                <p>Total: 800 cal</p>
             </div>
         </div>
     

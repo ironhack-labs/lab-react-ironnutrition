@@ -10,6 +10,12 @@ class AddFood extends Component {
     quantity:''
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
+
   handleClickAdd = () => {
     this.setState({
       active: !this.state.active,
@@ -17,10 +23,10 @@ class AddFood extends Component {
   }
 
   handleClickSubmit =(e) => {
+    e.preventDefault()
     this.setState({
-      [e.target.name] : e.target.value,
       active: !this.state.active
-    })
+    }, () => this.props.onNewFood(this.state.name,this.state.calories,this.state.image))
   }
 
   render() {
@@ -34,19 +40,19 @@ class AddFood extends Component {
             <div className="form-group row">
               <label className ="col-sm-2 col-form-label">Name</label>
               <div className="col-sm-10">
-                <input type="text" name='name' className="form-control" placeholder="Enter name"/>
+                <input type="text" name='name' className="form-control" autoComplete='off' onChange={this.handleChange} placeholder="Enter name"/>
               </div>
             </div>
             <div className="form-group row">
               <label className = "col-sm-2 col-form-label">Calories</label>
               <div className="col-sm-10">
-                <input type="text" name='calories' className="form-control" placeholder="Enter calories"/>
+                <input type="text" name='calories' className="form-control" onChange={this.handleChange} placeholder="Enter calories"/>
               </div>
             </div>
             <div className="form-group row">
               <label className = "col-sm-2 col-form-label">Image</label>
               <div className="col-sm-10">
-                <input type="text" name='image' className="form-control" placeholder="Upload an image"/>
+                <input type="text" name='image' className="form-control" onChange={this.handleChange} placeholder="Upload an image"/>
               </div> 
             </div>
             <button type="submit" className="btn btn-primary" onClick = {this.handleClickSubmit}>Submit</button>

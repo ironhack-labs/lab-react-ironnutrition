@@ -1,28 +1,65 @@
 import React from  'react'
-// import foods from './foods.json'
 
 
-const AddFood = ({foods}) => {
- 
-        return (
-        <div className="/">
-            <form>
-                <div className="form-group">
-                    <label for="FoodName">Food Name</label>
-                    <input type="text" className="form-control" id="FoodName" placeholder="Name" />
+class AddFood extends React.Component {
+    state = {
+        foodText: '',
+        imgURL: '',
+        calories: '',
+        touch: false
+    }
+
+    handleChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+    }
+    
+    handleBlur = (e) => {
+        this.setState({
+          touch: true
+        })
+    }
+   
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const obj = {
+          name: this.state.foodText,
+          image: this.state.imgURL,
+          calories: this.state.calories
+        }
+        this.props.addFood(obj) 
+
+        this.setState({
+          touch: false,
+          foodText: '',
+          imgURL: '',
+          calories: ''
+        })
+    }
+
+        render(){
+            return (
+                <div className="AddFood" style={{'margin-bottom': '5%'}}>
+                    <button className="btn btn-primary btn-small" onClick={this.handleBlur} disabled={this.state.touch}>Add Food</button>
+                    {this.state.touch && (
+                    <form onSubmit={this.handleSubmit} style={{'margin-top': '2%'}}>
+                        <div className="form-group" style={{width: '50%'}}>
+                            <input type="text" className="input " id="FoodName" name="name" value={this.state.foodText} onChange={this.handleChange} placeholder="Name" />
+                        </div>
+                        <div className="form-group" style={{width: '50%'}}>
+                            <input type="number" className="input" id="NumberOfCalories" name="calories" value={this.state.calories} onChange={this.handleChange} onBlur={this.handleBlur}placeholder="Calories" />
+                        </div>
+                        <div className="form-group" >
+                            <input type="file" className="form-control-file" id="image" name="imgURL" value={this.state.imgURL} onChange={this.handleChange} onBlur={this.handleBlur} />
+                        </div>
+                        <button type="submit" className="btn btn-success" style={{'margin-top': '2%', 'margin-left': '50%'}}>Submit</button>
+                    </form>)}
                 </div>
-                <div className="form-group">
-                    <label for="NumberOfCalories">Number of Calories</label>
-                    <input type="text" className="form-control" id="NumberOfCalories" placeholder="Calories" />
-                </div>
-                <div className="form-group">
-                    <label for="image">Image</label>
-                    <input type="file" className="form-control-file" id="NumberOfCalories"  />
-                </div>
-                <button type="submit" className="btn btn-primary">Add Food</button>
-            </form>
-        </div>
-    );
+            )
+        }
+        
   }
   
   export default AddFood

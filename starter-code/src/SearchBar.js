@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-        <div className="SearchBar row mb-4">
+        <div className="SearchBar row mb-4" >
             <div className="col-8">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
                         )}
 
                     </div>
-                    {/* <button type="submit" className="btn btn-primary" disabled={this.state.error}>Search</button> */}
+                    <button type="submit" className="btn btn-primary" disabled={this.state.error}>Search</button>
                 </form>
             </div>
         </div>

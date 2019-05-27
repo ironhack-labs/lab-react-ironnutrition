@@ -6,7 +6,8 @@ import foods from './foods.json'
 import FoodBox from './FoodBox'
 import SearchBar from './SearchBar';
 import TodaysFoods from './TodaysFoods';
-// import AddFood from './AddFood';
+import AddFood from './AddFood';
+import Header from './Header';
 
 
 class App extends Component {
@@ -20,12 +21,19 @@ class App extends Component {
     })
   }
 
+  addFood = food => {
+    this.setState({
+      foods: [...this.state.foods, food]
+    })
+  }
+
   render() {
     return (
       <main className="container">
-        {/* <AddFood /> */}
+        <Header />
         <SearchBar onSearch={this.handleSearchFoods} />
-      <FoodBox foods={this.state.foods} />
+        <AddFood addFood={this.addFood} />
+        <FoodBox foods={this.state.foods} />
 
       <div className="col-3 p-4">
               <TodaysFoods />

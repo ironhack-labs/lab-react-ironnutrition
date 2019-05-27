@@ -2,8 +2,8 @@ import React from  'react'
 
 const FoodBox = ({foods}) => {
     const display = foods.map(food => (
-        <div className="">
-            <article className="media">
+        <div className="box container" >
+            <article className="media" >
             <div className="media-left">
                 <figure className="image is-64x64">
                     <img src={food.image} alt={food.name} />
@@ -37,8 +37,8 @@ const FoodBox = ({foods}) => {
         </div>
     ))
         return (
-        <div className="col-4">
-            <div className="box" style={{width:'60%'}}>
+        <div className="">
+            <div className="box">
                 {display}
             </div>
         </div>

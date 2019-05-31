@@ -32,10 +32,11 @@ class App extends Component {
       foods:copyFoods.filter(eachElement => eachElement.name.toLowerCase().includes(text.toLowerCase())),
       text:text
     })
-    console.log(this.state.foods)
   }
 
   render() {
+    console.log(this.state.foods)
+
     const {showForm} = this.state
     return (
       <div className="App">

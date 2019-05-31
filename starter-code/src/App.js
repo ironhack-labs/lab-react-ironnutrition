@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import foods from './foods.json';
-import FoodBox from './components/FoodBox';
 import FormFood from './components/FormFood';
 import Search from './components/Search.js';
+import ListFoodBox from './components/ListFoodBox.js';
 import './App.css';
-
 
 class App extends Component {
   state = {
     foods: foods,
-    showForm:false
+    showForm:false,
+    text:''
   }
   showForm = () => {
     this.setState({
@@ -26,10 +26,13 @@ class App extends Component {
     this.showForm()
   }
 
-  searchText = (textSearch) => {
+  searchText = (text) => {
+    const copyFoods = foods;
     this.setState({
-      foods:this.state.foods.filter(filterElement => filterElement.name.includes(textSearch))
+      foods:copyFoods.filter(eachElement => eachElement.name.toLowerCase().includes(text.toLowerCase())),
+      text:text
     })
+    console.log(this.state.foods)
   }
 
   render() {
@@ -37,25 +40,23 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-        <Search searchText ={this.searchText}/>
-        {
-          this.state.foods.map((element,index) => {
-          return  <FoodBox key={index} {...element}/>
-          }) 
-        }
-       <a href="#edge"><button className="button is-link" onClick={this.showForm} >
-        {
+          <Search searchText ={this.searchText} textState = {this.state.text}/>
+          <ListFoodBox foods = {this.state.foods} />
+          <button className="button is-link" onClick={this.showForm} >
+          {
           showForm ? 'Close button' : 'Add new food'
-        }
-        </button></a>
-        {showForm ? <FormFood addFood = {this.addFood} />: null}
-        </div>
+          }
+          </button>
+          {showForm ? <FormFood addFood = {this.addFood} />: null}
+          <a href="#bottom"><span id="bottom"></span></a>
+        </div> 
       </div>
     );
   }
 }
 
 export default App;
+
 //no entiendo porqué copiar el array funciona y el otro no...
 
 // showForm = () => {
@@ -63,3 +64,14 @@ export default App;
 //     showForm:!this.state.showForm
 //   })
 // }
+
+
+// FILTRADO:
+/*
+Tiene que filtrarse un objeto que cuando se guarde mantenga sus propiedades:
+- ya sean props que vengan de otro archivo
+- ya sea una copia del estado
+
+de lo contrario, al guardar el estado directamente del estado, sobreescribe a 0 o a un numero X
+de elementos que no se recuperan
+*/

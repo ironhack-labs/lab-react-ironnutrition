@@ -1,21 +1,66 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import FormFood from './components/FormFood';
+import Search from './components/Search.js';
 import './App.css';
 
+
 class App extends Component {
+  state = {
+    foods: foods,
+    showForm:false
+  }
+  showForm = () => {
+    this.setState({
+      showForm:!this.state.showForm
+    })
+  }
+
+  addFood = (newFood) => {
+    const copyFoods = this.state.foods
+    copyFoods.push(newFood);
+    this.setState({
+      foods:copyFoods
+    })
+    this.showForm()
+  }
+
+  searchText = (textSearch) => {
+    this.setState({
+      foods:this.state.foods.filter(filterElement => filterElement.name.includes(textSearch))
+    })
+  }
+
   render() {
+    const {showForm} = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="container">
+        <Search searchText ={this.searchText}/>
+        {
+          this.state.foods.map((element,index) => {
+          return  <FoodBox key={index} {...element}/>
+          }) 
+        }
+       <a href="#edge"><button className="button is-link" onClick={this.showForm} >
+        {
+          showForm ? 'Close button' : 'Add new food'
+        }
+        </button></a>
+        {showForm ? <FormFood addFood = {this.addFood} />: null}
+        </div>
       </div>
     );
   }
 }
 
 export default App;
+//no entiendo porqué copiar el array funciona y el otro no...
+
+// showForm = () => {
+//   this.setState({
+//     showForm:!this.state.showForm
+//   })
+// }
+

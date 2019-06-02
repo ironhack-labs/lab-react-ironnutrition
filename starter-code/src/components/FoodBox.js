@@ -1,23 +1,16 @@
 import React from 'react';
 
 class FoodBox extends React.Component{
-      
-  state={
-    quantity:this.props.element.quantity
-  }
-
+  
   handleCounter = () => {
-    this.setState({
-      quantity:this.state.quantity + 1
-    })
-    this.props.selection(this.props.element, this.state.quantity)
+    this.props.element.quantity = this.props.element.quantity + 1
+    this.props.selection(this.props.element)
+    this.props.sumCal(this.props.element.calories)
   }
 
   render() {
     return (
-      <div className="columns">
-        <div className="column">
-            <div className="box">
+          <div className="box">
               <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
@@ -38,7 +31,8 @@ class FoodBox extends React.Component{
                   <input
                     className="input"
                     type="number" 
-                    value={this.state.quantity}
+                    value={this.props.element.quantity}
+                    onChange= {event => this.handleCounter(event)} 
                   />
                 </div>
                 <div className="control">
@@ -52,8 +46,6 @@ class FoodBox extends React.Component{
             </div>
           </article>
         </div>
-        </div>
-      </div>
     )
   }
   

@@ -35,8 +35,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.foods)
-
     const {showForm} = this.state
     return (
       <div className="App">
@@ -48,7 +46,7 @@ class App extends Component {
           showForm ? 'Close button' : 'Add new food'
           }
           </button>
-          {showForm ? <FormFood addFood = {this.addFood} />: null}
+          {showForm ? <FormFood addFood = {this.addFood} />: ''}
           <a href="#bottom"><span id="bottom"></span></a>
         </div> 
       </div>

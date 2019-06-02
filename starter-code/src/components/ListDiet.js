@@ -1,13 +1,16 @@
 import React from 'react';
 
 const ListDiet = (props) => {
+    const handleDelete = () => {
+      props.delete(props.index)
+  }
   return (
-    <div className="columns">
-      <div class="column">
-      {props.element.name}
-      </div>
-    </div>
+    <li>
+      {props.element.quantity} {props.element.name} = {props.element.calories} 
+      <button onClick={() => handleDelete()}>Delete</button>
+    </li>
 
+    
   )
 }
 

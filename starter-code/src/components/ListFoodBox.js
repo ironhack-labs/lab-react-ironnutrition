@@ -5,37 +5,51 @@ import ListDiet from './ListDiet';
 class ListFoodBox extends React.Component {
 
   state={
-    foods:this.props.foods,
-    selectedFood:[]
+    selectedFood:[],
+    sumCal: 0
   }
 
-  selectedFood = (a,i) => {
+  selectedFood = (a) => {
     const copy = this.state.selectedFood
-    copy.push(a)
+    copy.includes(a) === false ? copy.push(a) : '' 
     this.setState({
       selectedFood:copy
     })
-    this.countQuantiy(i)
   }
 
-  countQuantiy = (i) => {
-    return i;
+  sumCal = (sumTotal) => {
+    this.setState({
+      sumCal: this.state.sumCal + sumTotal 
+    })
+  }
+
+  deleteFood = (index) => {
+    const elementDeleted = this.state.selectedFood.splice(index,1)
+    this.setState({
+      selectedFood:this.state.selectedFood
+    })
+    this.sumCal(- elementDeleted[0].calories)
   }
 
   render(){
     return (
-      <div>
-        {
-          this.props.foods.map((element,index) => {
-            return <FoodBox key={index} i={index} element={element} select={this.state.selectedFood} selection={this.selectedFood}/>
-          }) 
-        }
-        {
-          this.state.selectedFood.map((element,index) => {
-            return <ListDiet key={index} element={element}/>
-          }) 
-        }
-        </div>
+      <div className="columns">
+        <div className="column">
+          {
+            this.props.foods.map((element,index) => {
+              return <FoodBox sumCal={this.sumCal} key={index} i={index} element={element} select={this.state.selectedFood} selection={this.selectedFood}/>
+            }) 
+          }
+          </div>
+          <div className="column">
+          {
+            this.state.selectedFood.map((element,index) => {
+              return <ListDiet delete={this.deleteFood} key={index} element={element} index={index}/>
+            }) 
+          }
+            <span>Total Cal:{this.state.sumCal}</span>
+          </div> 
+      </div>
     )
   }
 }

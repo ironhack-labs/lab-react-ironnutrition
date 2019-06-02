@@ -5,14 +5,21 @@ class FormFood extends React.Component {
   state = {
     name: '',
     calories: '',
-    image:''
+    image:'',
+    quantity:0
   }
 
   handleInput = (e) => {
+    if(e.target.name === 'calories') {
+      this.setState({
+        calories: Number(e.target.value)
+      })
+    } else {
     const {name, value} = e.target
     this.setState({
       [name]:value
     })
+  }
   }
 
   handleSubmit = (e) => {
@@ -21,7 +28,8 @@ class FormFood extends React.Component {
     this.setState({
       name: '',
       calories: '',
-      image:''
+      image:'',
+      quantity:0
     })
   }
 

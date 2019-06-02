@@ -1,41 +1,40 @@
 import React from 'react';
 
-const FoodBox = () => (
-  <div className="columns is-centered">
+const FoodBox = ({data}) => (
 
-    <div className="box">
-      <article className="media">
-        <div className="media-left">
-          <figure className="image is-64x64">
-            <img src="https://i.imgur.com/eTmWoAN.png" />
-          </figure>
+
+  <div className="box container">
+    <article className="media">
+      <div className="media-left">
+        <figure className="image is-64x64">
+          <img src={data.image} />
+        </figure>
+      </div>
+      <div className="media-content">
+        <div className="content">
+          <p>
+            <strong>{data.name}</strong> <br />
+            <small>{data.calories} cal</small>
+          </p>
         </div>
-        <div className="media-content">
-          <div className="content">
-            <p>
-              <strong>Pizza</strong> <br />
-              <small>400 cal</small>
-            </p>
+      </div>
+      <div className="media-right">
+        <div className="field has-addons">
+          <div className="control">
+            <input
+              className="input"
+              type="number"
+              placeholder={data.quantity}
+            />
+          </div>
+          <div className="control">
+            <button className="button is-info">
+              +
+      </button>
           </div>
         </div>
-        <div className="media-right">
-          <div className="field has-addons">
-            <div className="control">
-              <input
-                className="input"
-                type="number"
-                value="1"
-              />
-            </div>
-            <div className="control">
-              <button className="button is-info">
-                +
-          </button>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
+      </div>
+    </article>
   </div>
 
 );

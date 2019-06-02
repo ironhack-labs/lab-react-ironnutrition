@@ -3,11 +3,11 @@ import React from 'react';
 const FoodBox = ({data}) => (
 
 
-  <div className="box container">
+  <div className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src={data.image} />
+          <img alt="" src={data.image} />
         </figure>
       </div>
       <div className="media-content">

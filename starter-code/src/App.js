@@ -5,18 +5,57 @@ import './App.css';
 import Header from './components/Header';
 import FoodBox from './components/FoodBox';
 import foods from './foods.json'
+import CardForm from './components/CardForm';
 
 class App extends Component {
+
+  state = {
+    allFoods: foods,
+    filterFoods: foods,
+    buttonAddFood: true,
+    formAddFood: false,
+  }
+
+  addNewFood = (newFood) => {
+    this.setState({
+      allFoods: [...this.state.allFoods, newFood],
+    }, ()=> this.setState({
+      filterFoods: this.state.allFoods,
+      buttonAddFood:true, 
+      formAddFood: false
+    }))
+  }
+
+  drawForm = (e) => {
+    this.setState({
+      buttonAddFood:false,
+      formAddFood:true, 
+    })
+  }
+
   render() {
-    console.log(foods)
     return (
       <div>
         <Header />
-        <div class="control container has-margin-top-20">
-          <input class="input" type="text" placeholder="Search it..." />
+        <div className="container">
+        <div className="control has-margin-top-20 columns">
+          <input className="input column" type="text" placeholder="Search it..." />
+          <button 
+            type="button" 
+            className="button is-info has-margin-left-10"
+            disabled={!this.state.buttonAddFood}
+            onClick={this.drawForm}>
+                Add food 
+            </button>
         </div>
-        <div className="is-centered has-margin-top-20">
-            {foods.map(food => <FoodBox data={food} />)}
+        <div className="columns has-margin-top-20">
+          <div className="column">
+            {this.state.filterFoods.map((food, i) => <FoodBox data={food} key={i}/>)}
+          </div>
+          <div className="column">
+          {this.state.formAddFood && <CardForm addNewFood={this.addNewFood}/>}
+          </div>
+        </div>
         </div>
       </div>
     );

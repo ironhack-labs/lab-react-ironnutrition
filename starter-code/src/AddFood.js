@@ -3,10 +3,10 @@ import React from  'react'
 
 class AddFood extends React.Component {
     state = {
+        touch: false,
         foodText: '',
         imgURL: '',
         calories: '',
-        touch: false
     }
 
     handleChange = (e) => {
@@ -24,12 +24,7 @@ class AddFood extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const obj = {
-          name: this.state.foodText,
-          image: this.state.imgURL,
-          calories: this.state.calories
-        }
-        this.props.addFood(obj) 
+        this.props.addFood(this.state) 
 
         this.setState({
           touch: false,
@@ -43,7 +38,8 @@ class AddFood extends React.Component {
             return (
                 <div className="AddFood" style={{'margin-bottom': '5%'}}>
                     <button className="btn btn-primary btn-small" onClick={this.handleBlur} disabled={this.state.touch}>Add Food</button>
-                    {this.state.touch && (
+                    
+                    {this.state.touch && 
                     <form onSubmit={this.handleSubmit} style={{'margin-top': '2%'}}>
                         <div className="form-group" style={{width: '50%'}}>
                             <input type="text" className="input " id="FoodName" name="name" value={this.state.foodText} onChange={this.handleChange} placeholder="Name" />
@@ -55,7 +51,7 @@ class AddFood extends React.Component {
                             <input type="file" className="form-control-file" id="image" name="imgURL" value={this.state.imgURL} onChange={this.handleChange} onBlur={this.handleBlur} />
                         </div>
                         <button type="submit" className="btn btn-success" style={{'margin-top': '2%', 'margin-left': '50%'}}>Submit</button>
-                    </form>)}
+                    </form>}
                 </div>
             )
         }

@@ -4,7 +4,7 @@ import React from  'react'
 class AddFood extends React.Component {
     state = {
         touch: false,
-        foodText: '',
+        name: '',
         imgURL: '',
         calories: '',
     }
@@ -28,7 +28,7 @@ class AddFood extends React.Component {
 
         this.setState({
           touch: false,
-          foodText: '',
+          name: '',
           imgURL: '',
           calories: ''
         })
@@ -42,7 +42,8 @@ class AddFood extends React.Component {
                     {this.state.touch && 
                     <form onSubmit={this.handleSubmit} style={{'margin-top': '2%'}}>
                         <div className="form-group" style={{width: '50%'}}>
-                            <input type="text" className="input " id="FoodName" name="name" value={this.state.foodText} onChange={this.handleChange} placeholder="Name" />
+                            <input type="text" className="input " id="FoodName" name="name" value={this.state.name} onChange={this.handleChange} 
+                            placeholder="Name" />
                         </div>
                         <div className="form-group" style={{width: '50%'}}>
                             <input type="number" className="input" id="NumberOfCalories" name="calories" value={this.state.calories} onChange={this.handleChange} onBlur={this.handleBlur}placeholder="Calories" />

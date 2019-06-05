@@ -18,7 +18,15 @@ class Search extends Component {
 	};
 
 	render() {
-		return <input type="text" name="search" value={this.state.search} onChange={this.handleChange} />;
+		return (
+			<input
+				className="search-bar"
+				type="text"
+				name="search"
+				value={this.state.search}
+				onChange={this.handleChange}
+			/>
+		);
 	}
 }
 

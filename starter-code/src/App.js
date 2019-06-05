@@ -5,6 +5,7 @@ import FoodBox from './components/FoodBox';
 import foods from './foods.json';
 import AddNewFood from './components/AddNewFood';
 import Search from './components/Search';
+import FoodList from './components/FoodList';
 
 class App extends Component {
 	constructor() {
@@ -12,13 +13,17 @@ class App extends Component {
 		this.state = {
 			foods,
 			foodForm: false,
-			filterFoods: foods
+			filterFoods: foods,
+			foodList: {
+				foods: [],
+				totalCalories: 0
+			}
 		};
 	}
 
 	addFood = (food) => {
 		const foods = [ ...this.state.foods ];
-		console.log(foods);
+		//console.log(foods);
 		foods.push(food);
 		this.setState({ foods });
 	};
@@ -32,6 +37,15 @@ class App extends Component {
 		this.setState({ foodForm: !this.state.foodForm });
 	};
 
+	addToList = (food) => {
+		const foods = [ ...this.state.foodList.foods ];
+
+		foods.push(food);
+		this.setState({
+			foodList: { foods, totalCalories: this.state.foodList.totalCalories + food.calories }
+		});
+	};
+
 	render() {
 		return (
 			<div className="App">
@@ -42,17 +56,13 @@ class App extends Component {
 				</button>
 				<div className="columns">
 					<div className="column">
-						{this.state.filterFoods.map((food, i) => <FoodBox key={i} food={food} />)}
+						{this.state.filterFoods.map((food, i) => <FoodBox key={i} food={food} add={this.addToList} />)}
 					</div>
 					<div className="column">
 						{this.state.foodForm ? <AddNewFood addFood={this.addFood} showForm={this.showForm} /> : null}
-
 						<h2 className="subtitle">Today's foods</h2>
-						<ul>
-							<li>1 Pizza = 400 cal</li>
-							<li>2 Salad = 300 cal</li>
-						</ul>
-						<strong>Total: 700 cal</strong>
+						<ul>{this.state.foodList.foods.map((food, i) => <FoodList key={i} food={food} />)}</ul>
+						<strong>Total: {this.state.foodList.totalCalories}</strong>
 					</div>
 				</div>
 			</div>

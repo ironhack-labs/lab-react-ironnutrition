@@ -4,13 +4,15 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import foods from './foods.json';
 import AddNewFood from './components/AddNewFood';
+import Search from './components/Search';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
 			foods,
-			foodForm: false
+			foodForm: false,
+			filterFoods: foods
 		};
 	}
 
@@ -21,6 +23,11 @@ class App extends Component {
 		this.setState({ foods });
 	};
 
+	findFood = (search) => {
+		let filterFoods = [ ...this.state.foods ];
+		filterFoods = filterFoods.filter((food) => food.name.toLowerCase().includes(search.toLowerCase()));
+		this.setState({ filterFoods });
+	};
 	showForm = () => {
 		this.setState({ foodForm: !this.state.foodForm });
 	};
@@ -28,11 +35,15 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<h1>IronNutrition</h1>
+				<Search search={this.findFood} />
 				<button className="add-food" onClick={this.showForm}>
 					Añadir comida
 				</button>
 				<div className="columns">
-					<div className="column">{this.state.foods.map((food, i) => <FoodBox key={i} food={food} />)}</div>
+					<div className="column">
+						{this.state.filterFoods.map((food, i) => <FoodBox key={i} food={food} />)}
+					</div>
 					<div className="column">
 						{this.state.foodForm ? <AddNewFood addFood={this.addFood} showForm={this.showForm} /> : null}
 

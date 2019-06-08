@@ -16,6 +16,7 @@ class App extends Component {
       allFoods: foods,
       addFood: true,
       todaysFoods: '',
+      searchText: '',
     }
 
     this.addFoodHandler = this.addFoodHandler.bind(this);
@@ -46,9 +47,11 @@ class App extends Component {
   }
 
   handleSearch (text) {
-    const foods = this.state.foods;
+    const oldText = this.state.searchText;
+    let foods;
 
-    if (text !== '') {
+    if (text !== oldText) {
+      foods = this.state.allFoods;
       const filteredFoods = foods.filter(e => {
         return e.name.toUpperCase().indexOf(text.toUpperCase()) > -1;
       })
@@ -56,6 +59,8 @@ class App extends Component {
     } else {
       this.setState({ foods: this.state.allFoods });
     }
+
+    this.setState({ searchText: text });
   }
 
   render() {

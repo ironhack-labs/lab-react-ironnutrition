@@ -3,6 +3,7 @@ import React from 'react';
 const Search = (props) => {
 
     const handleChange = (event) => {
+        console.log(event.target);
         let { value } = event.target;
         props.search(value);
     }

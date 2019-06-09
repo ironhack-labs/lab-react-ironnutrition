@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css';
 import AddFood from './components/AddFood';
 import AddFoodButton from './components/AddFoodButton';
 import Search from './components/Search';
+import TodaysFoods from './components/TodaysFoods';
 
 class App extends Component {
   constructor (props) {
@@ -15,13 +16,14 @@ class App extends Component {
       foods: foods,
       allFoods: foods,
       addFood: true,
-      todaysFoods: '',
+      todaysFoods: [],
       searchText: '',
     }
 
     this.addFoodHandler = this.addFoodHandler.bind(this);
     this.addButtonHandler = this.addButtonHandler.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.addTodaysFoods = this.addTodaysFoods.bind(this);
   }
 
   addButtonHandler () {
@@ -63,6 +65,12 @@ class App extends Component {
     this.setState({ searchText: text });
   }
 
+  addTodaysFoods (food) {
+    const todaysFoods = this.state.todaysFoods;
+    todaysFoods.push(food);
+    this.setState({ todaysFoods: todaysFoods });
+  }
+
   render() {
     const foods = this.state.foods;
     return (
@@ -79,10 +87,12 @@ class App extends Component {
             image={food.image} 
             name={food.name} 
             calories={food.calories} 
+            todaysFood={this.addTodaysFoods}
             key={index}
             />
           })
         }
+        <TodaysFoods foods={this.state.todaysFoods}/>
       </React.Fragment>
     )
   }

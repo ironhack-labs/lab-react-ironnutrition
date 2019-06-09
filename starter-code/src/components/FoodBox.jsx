@@ -6,24 +6,35 @@ class FoodBox extends Component {
         super(props);
 
         this.state = {
-            quantity: '',
+            quantity: 0,
+            name: '',
+            calories: '',
         }
+
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     handleChange (event) {
         let { value } = event.target;
-        this.props.search(value);
+        this.setState({ 
+            quantity: value,
+            name: this.props.name,
+            calories: this.props.calories,
+        });
     }
 
-    handleFormSubmit (event) {
-        event.preventDefault();
-        this.props.addTheFood(this.state);
+    handleFormSubmit () {
+        // event.preventDefault();
+        if (this.state.quantity === 0) {
+            alert('You need to add at least one item');
+            return;
+        }
+        this.props.todaysFood(this.state);
         this.setState({
-            name: '',
-            calories: '',
-            image: '',
-            addFood: false,
-        })  
+            quantity: 0,
+            name: 'alguma coisa',
+            calories: 'alguma coisa',
+        })
     }
 
 
@@ -50,12 +61,12 @@ class FoodBox extends Component {
                         <input
                         className="input"
                         type="number" 
-                        value="1"
+                        value={this.state.quantity}
                         onChange={(e) => this.handleChange(e)}
                         />
                     </div>
                     <div className="control">
-                        <button className="button is-info" onClick={(e) => this.handleChange(e)}>
+                        <button className="button is-info" onClick={this.handleFormSubmit}>
                         +
                         </button>
                     </div>

@@ -29,7 +29,7 @@ class AddFood extends Component {
         })  
     }
 
-    changeAddFood = (event) => {
+    changeAddFood = () => {
         this.setState({ addFood: true });
     }
 

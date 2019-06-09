@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import AddButton from './AddButton';
 
 class FoodBox extends Component {
+
     render() {
+        console.log()
         return (
             <div className="box">
                 <article className="media">
@@ -28,7 +31,7 @@ class FoodBox extends Component {
                                 />
                             </div>
                             <div className="control">
-                                <button className="button is-info">+</button>
+                                <AddButton onClick={this.props.addItem} idx={this.props.idx} />
                             </div>
                         </div>
                     </div>

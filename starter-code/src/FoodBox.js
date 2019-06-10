@@ -31,7 +31,7 @@ class FoodBox extends Component {
                                 />
                             </div>
                             <div className="control">
-                                <AddButton onClick={this.props.addItem} idx={this.props.idx} />
+                                <AddButton onClick={this.props.addItem} idx={this.props.idx} item={this.props.item} />
                             </div>
                         </div>
                     </div>

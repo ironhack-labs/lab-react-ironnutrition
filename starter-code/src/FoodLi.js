@@ -4,7 +4,7 @@ class FoodLi extends Component {
     render(){
         return(
             <li>
-                <p>{this.props.item.name} - {this.props.item.quantity}</p>
+                <p>{this.props.item.quantity}: {this.props.item.name} - {this.props.item.calories} </p>
             </li>
         )
     }

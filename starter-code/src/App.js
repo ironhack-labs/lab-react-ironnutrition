@@ -23,7 +23,9 @@ class App extends Component {
   }
 
   addItem(idx){
-    console.log('adicionou!', idx)
+    let newFood = this.state.foodList;
+    newFood.push(this.state.foods[idx]);
+    this.setState({foodList: newFood})
   }
 
   render() {

@@ -3,6 +3,7 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './FoodBox';
 import FoodLi from './FoodLi';
+import Search from './Search';
 
 class App extends Component {
 
@@ -11,12 +12,8 @@ class App extends Component {
 
     this.state = {
       foods: foods,
-      foodList: [{
-        "name": "Pizza",
-        "calories": 400,
-        "image": "https://i.imgur.com/eTmWoAN.png",
-        "quantity": 0
-      }]
+      foodList: [],
+      search: ''
     }
 
     this.addItem = this.addItem.bind(this);
@@ -28,14 +25,18 @@ class App extends Component {
     this.setState({foodList: newFood})
   }
 
+  searchItem = e => {
+    
+    this.setState({foods: this.state.foods.fiter(e.target.value)})
+
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <h1 className="title">IronNutrition</h1>
-          <div>
-            <input type="text" className="input search-bar" name="search" placeholder="Search" />
-          </div>
+            <Search onChange={this.searchItem}/>
           <div className="columns">
             <div className="column">
               {

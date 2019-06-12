@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import foods from './foods.json';
+import Search from './Search'
 
 class Foodbox extends Component {
+
     render() {
         return (
             <div>
-                <div className="box">
-                    {foods.map((food) => {
-                        return
+                {this.props.foods.map((food) => {
+                    return (
+                    <div key={food.name} className="box">
                         <article className="media">
                             <div className="media-left">
                                 <figure className="image is-64x64">
@@ -39,10 +40,11 @@ class Foodbox extends Component {
                                 </div>
                             </div>
                         </article>
-                    })}
-                </div>
+                    </div>
+                )})}
             </div>
-            )}
+        )
     }
-    
+}
+
 export default Foodbox;

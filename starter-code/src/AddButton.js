@@ -8,7 +8,7 @@ class AddButton extends Component {
     }
     
     handleAddFunction = () => {
-        this.props.onClick(this.props.idx)
+        this.props.onClick(this.props.idx, this.props.quantity)
     }
     
     render() {

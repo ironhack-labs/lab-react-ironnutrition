@@ -3,6 +3,18 @@ import AddButton from './AddButton';
 
 class FoodBox extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            quantity: 0
+        }
+    }
+
+    handleQuatity = (e) => {
+        this.setState({quantity: e.target.value})
+    }
+
     render() {
         console.log()
         return (
@@ -27,11 +39,11 @@ class FoodBox extends Component {
                                 <input
                                     className="input"
                                     type="number"
-                                    value={this.props.item.quantity}
+                                    onChange={(e) => this.handleQuatity(e)}
                                 />
                             </div>
                             <div className="control">
-                                <AddButton onClick={this.props.addItem} idx={this.props.idx} item={this.props.item} />
+                                <AddButton onClick={this.props.addItem} idx={this.props.idx} item={this.props.item} quantity={this.state.quantity} />
                             </div>
                         </div>
                     </div>

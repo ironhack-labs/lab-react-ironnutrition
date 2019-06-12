@@ -7,15 +7,16 @@ class Search extends Component {
         this.handleOnChange = this.handleOnChange.bind(this)
     }
 
-    handleOnChange() {
-        this.props.onChange()
+    handleOnChange(e) {
+        console.log(e.target.value)
+        this.props.onChange(e.target.value)
     }
 
     
     render(){
         return(
             <div>
-                <input onChange={this.handleOnChange} type="text" className="input search-bar" name="search" placeholder="Search" />
+                <input onChange={(e) => this.handleOnChange(e)} type="text" className="input search-bar" name="search" placeholder="Search" />
             </div>
         )
     }

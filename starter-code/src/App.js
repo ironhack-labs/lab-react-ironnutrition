@@ -11,17 +11,20 @@ class App extends Component {
 
     this.state = {
       allFood: foods,
-      button: false
+      button: false,
+      searchBarValue: ""
     };
   }
 
-  filteredFood = research => {
-    const search = research.searchBarValue.toLowerCase();
-    const copiedFood = [...foods];
-    var newRes = copiedFood.filter(food =>
-      food.name.toLowerCase().includes(search)
-    );
-    this.setState({ allFood: newRes });
+  filteredFood = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value.toLowerCase() }, () => {
+      const copiedFood = [...foods];
+      var newRes = copiedFood.filter(food =>
+        food.name.toLowerCase().includes(this.state.searchBarValue)
+      );
+      this.setState({ allFood: newRes });
+    });
   };
 
   setButton = event => {
@@ -61,7 +64,10 @@ class App extends Component {
           <button onClick={this.setButton}>Add food</button>
           {this.state.button && <AddFood addFood={this.addedFood} />}
         </div>
-        <Searchbar filteringFood={this.filteredFood} />
+        <Searchbar
+          filteringFood={this.filteredFood}
+          value={this.state.searchBarValue}
+        />
         <div className="columns">
           <div className="column">
             {this.state.allFood.map((food, index) => {

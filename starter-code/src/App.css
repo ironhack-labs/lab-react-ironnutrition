@@ -22,6 +22,25 @@
   font-size: large;
 }
 
+.pizza-card{
+  width: 50vw;  
+  margin: 2% 1vw; 
+
+}
+
+.image{
+  height: 5vh;
+}
+
+
+h1{
+  font-size:2rem; 
+  font-weight: bold; 
+}
+
+
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

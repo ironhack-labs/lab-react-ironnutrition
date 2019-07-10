@@ -22,15 +22,22 @@ function FoodBox(props) {
             <div className="control">
               <input className="input" type="number" value={props.quantity} />
             </div>
-            <div className="control">
+            <div className="control" id={props.numero}>
               <button
                 className="button is-info"
-                id={props.numero}
                 onClick={event => {
-                  props.addQuantity(event.target.id);
+                  props.addQuantity(event.target.parentElement.id);
                 }}
               >
                 +
+              </button>
+              <button
+                className="button is-info"
+                onClick={event => {
+                  props.removeQuantity(event.target.parentElement.id);
+                }}
+              >
+                -
               </button>
             </div>
           </div>

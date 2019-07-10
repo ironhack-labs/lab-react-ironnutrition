@@ -52,6 +52,17 @@ class App extends Component {
     });
   };
 
+  quantityRemoved = index => {
+    const copiedFood = [...this.state.allFood];
+    if (copiedFood[index].quantity) {
+      copiedFood[index].quantity -= 1;
+      this.setState({
+        allFood: copiedFood
+      });
+      return;
+    }
+  };
+
   render() {
     const todayFood = this.state.allFood.filter(food => food.quantity);
     const todayCal = todayFood.map(food => {
@@ -76,6 +87,7 @@ class App extends Component {
                   numero={index}
                   {...food}
                   addQuantity={this.quantityAdded}
+                  removeQuantity={this.quantityRemoved}
                 />
               );
             })}

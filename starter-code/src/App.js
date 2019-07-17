@@ -25,9 +25,29 @@ class App extends Component {
     this.setState(newState);
   }
 
+  SearchFood(e) {
+    let searchtext = e.target.value;
+    let clonedArray = [...foods];
+    let filteredArray = clonedArray.filter(namefood => {
+      return namefood.name.toLowerCase().indexOf(searchtext.toLowerCase()) >= 0;
+    });
+
+    this.setState({
+      ...this.state,
+      foodlist: filteredArray
+    });
+  }
+
   render() {
     return (
       <div className="App">
+        <input
+          className="search-food"
+          type="text"
+          placeholder="Search food"
+          defaultValue=""
+          onChange={e => this.SearchFood(e)}
+        />
         <FormFood
           className="formfood"
           addNewFoodHandler={food => this.addNewFood(food)}

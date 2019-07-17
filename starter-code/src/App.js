@@ -1,18 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import "bulma/css/bulma.css";
+import foods from "./foods.json";
+import FoodBox from "./FoodBox";
+import FormFood from "./formFood";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      foodElement: [...foods],
+      
+      food: {
+        name:"",
+        calories:undefined,
+        img:""
+      }
+    };
+  }
+
+  addFood(e) {
+    e.preventDefault()
+
+    console.log("jave");
+    // this.setState({...this.state})
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <FormFood addFood={(e)=>this.addFood(e)} />
+
+        {this.state.foodElement.map((food, idx) => {
+          return (
+            <FoodBox
+              name={food.name}
+              photo={food.image}
+              calories={food.calories}
+              key={idx}
+            />
+          );
+        })}
       </div>
     );
   }

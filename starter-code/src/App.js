@@ -22,6 +22,7 @@ class App extends Component {
     foodsCopy.unshift(food);
     this.setState({
       foods: foodsCopy,
+      filtered: foodsCopy,
       formOpen: false
     });
   };
@@ -73,10 +74,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        {!this.state.formOpen && (
+        {!this.state.formOpen ? (
           <button onClick={this.toggleForm}>Add food</button>
+        ) : (
+          <AddFoodForm pushFood={this.addFoodHandler} />
         )}
-        {this.state.formOpen && <AddFoodForm pushFood={this.addFoodHandler} />}
         <SearchBar searchFoods={this.handleSearch} />
         <div className="columns">
           <div className="column">

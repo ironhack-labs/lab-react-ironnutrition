@@ -10,7 +10,13 @@ export default class Input extends Component {
   }
   render() {
     return (
-     <input className="input" type={this.props.type} placeholder={this.props.placeholder}></input>
+      <input className="input"
+        type={this.props.type}
+        placeholder={this.props.placeholder}
+        value={this.props.value}
+        onChange={this.props.onChange}
+      >
+      </input>
     )
   }
 }

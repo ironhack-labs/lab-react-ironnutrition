@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.search{
+  width: 1200px;
+  padding:10px;
+  margin:20px 0px;
+  font-size:15px;
+}
+
+h1{
+  font-size: 50px;
+}

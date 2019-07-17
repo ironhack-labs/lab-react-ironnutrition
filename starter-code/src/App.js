@@ -27,16 +27,38 @@ class App extends Component {
 
   SearchFood(e) {
     let searchtext = e.target.value;
-    let clonedArray = [...foods];
-    let filteredArray = clonedArray.filter(namefood => {
+    let clonedArray = { ...this.state };
+    let filteredArray = clonedArray.foodlist.filter(namefood => {
       return namefood.name.toLowerCase().indexOf(searchtext.toLowerCase()) >= 0;
     });
 
-    this.setState({
-      ...this.state,
-      foodlist: filteredArray
-    });
+    this.setState(
+      {
+        ...this.state,
+        foodlist: filteredArray
+      },
+      () => {
+        this.state.foodlist = [...clonedArray.foodlist];
+      }
+    );
   }
+
+  // searchFood(e) {
+  //   e =
+  //     e.target.value.slice(0, 1).toUpperCase() +
+  //     e.target.value.slice(1, e.length);
+  //   let newState = { ...this.state };
+  //   let findFood = newState.foodCopy.filter(ele => ele.name.indexOf(e) === 0);
+  //   this.setState(
+  //     {
+  //       ...this.state,
+  //       foodCopy: findFood
+  //     },
+  //     () => {
+  //       this.state.foodCopy = [...newState.foodCopy];
+  //     }
+  //   );
+  // }
 
   render() {
     return (

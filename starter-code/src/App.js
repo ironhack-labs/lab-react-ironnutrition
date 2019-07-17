@@ -1,19 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import foods from "./foods.json";
+import FoodBox from "./FoodBox";
+import AddForm from "./AddForm";
 
+// https://www.orientalmarket.es/wp-content/uploads/2019/02/dim-sum-1.jpg
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      list: foods
+    };
+  }
+
+  addNewFoodHandler(newFood) {
+    let newState = {...this.state};
+   
+    newState.list.push({
+      name: newFood.name,
+      calories: newFood.calories,
+      image: newFood.image,
+      quantity: newFood.quantity
+    })
+    this.setState(newState)
+  };
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <section>
+       <AddForm addNewFoodHandler={(food)=>this.addNewFoodHandler(food)}></AddForm>
+
+         {this.state.list.map((food, idx) => (
+            <FoodBox
+              name={food.name}
+              image={food.image}
+              calories={food.calories}
+              quantity={food.quantity}
+            />
+          ))}
+      </section>
     );
   }
 }

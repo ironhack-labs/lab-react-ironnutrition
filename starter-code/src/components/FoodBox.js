@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import foods from "../foods.json";
+import CreateNewFood from "./CreateNewFood.js";
 
 export default class FoodBox extends Component {
   state = {
     foods
   };
+
+  createNewFood = (food) => {
+    this.setState(prevState => {
+      return {
+        foods: [...prevState.foods, food]
+      }
+    })
+  }
   render() {
     return (
       <div className="box">
+        <button onClick={<CreateNewFood createNewFood={this.createNewFood}/>}>CREATE</button>        
         {this.state.foods.map((food, index) => {
           return (
             <article className="media" key={index}>

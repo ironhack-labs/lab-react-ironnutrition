@@ -8,7 +8,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FoodBox />
+        {foods.map((food, idx) => (
+          <FoodBox key={idx} food={food} />
+        ))}
       </div>
     );
   }

@@ -1,0 +1,25 @@
+.form-food h1 {
+  font-size: 40px;
+}
+
+.form-food input {
+  font-size: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+.form-food button {
+  font-size: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-menu {
+  font-size: 20px;
+  margin: 10px;
+  width: 300px;
+}

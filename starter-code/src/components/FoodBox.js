@@ -1,58 +1,56 @@
-import React from 'react'
+import React from "react";
 
-class FoodBox extends React.Component { 
+class FoodBox extends React.Component {
+	state = {
+		quantity: this.props.food.quantity
+	};
 
-  state = {
-    quantity: 0
-  }
+	handleChange = e => {
+		const {
+			target: { name, value }
+		} = e;
+		this.setState({ [name]: value });
+	};
 
-  handleChange = e => {
-    const {target:{name, value}} = e
-    this.setState({[name]: value})
-  }
+	addTodayFood = () => {
+		if (this.state.quantity <= 0) return;
+		this.props.addToday({ ...this.props.food, quantity: parseInt(this.state.quantity, 10) });
+	};
 
-
-render() {
-  return (
-    
-      <div className="box">
-        <article className="media">
-          <div className="media-left">
-            <figure className="image is-64x64">
-              <img src={this.props.food.image} width="200" alt={this.props.food.name}/>
-            </figure>
-          </div>
-          <div className="media-content">
-            <div className="content">
-              <p>
-                <strong>{this.props.food.name}</strong> <br />
-                <small>{this.props.food.calories}cal</small>
-              </p>
-            </div>
-          </div>
-          <div className="media-right">
-            <div className="field has-addons">
-              <div className="control">
-                <input
-                  onChange={this.handleChange}
-                  className="input"
-                  type="number" 
-                  name="quantity"
-                  value={this.state.quantity}
-                />
-              </div>
-              <div className="control">
-                <button onClick={this.props.addToday} className="button is-info">
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-  )
+	render() {
+		const { name, calories, image } = this.props.food;
+		return (
+			<div className="box">
+				<article className="media">
+					<div className="media-left">
+						<figure className="image is-64x64">
+							<img src={image} width="200" alt={name} />
+						</figure>
+					</div>
+					<div className="media-content">
+						<div className="content">
+							<p>
+								<strong>{name}</strong> <br />
+								<small>{calories}cal</small>
+							</p>
+						</div>
+					</div>
+					<div className="media-right">
+						<div className="field has-addons">
+							<div className="control">
+								<input onChange={this.handleChange} className="input" type="number" name="quantity" min="0" value={this.state.quantity} />
+							</div>
+							<div className="control">
+								<button onClick={this.addTodayFood} className="button is-info">
+									+
+								</button>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		);
+	}
 }
 
-}
-
-export default FoodBox
+export default FoodBox;

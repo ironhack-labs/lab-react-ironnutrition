@@ -3,9 +3,7 @@ import React from 'react'
 const TodaysFood = (props) => {
   return (
     <div>
-      <li>{props.name} = {props.calories}cal</li>
-      
-      
+      <li>{props.quantity} {props.name} = {props.quantity*props.calories} cal</li>     
     </div>
   )
 }

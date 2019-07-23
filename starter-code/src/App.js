@@ -40,7 +40,7 @@ class App extends Component {
       console.log("===");
       return (
         <li>
-          {e.quantity} {e.name} = {e.quantity * e.calories}
+          {e.quantity} {e.name} = {e.quantity * e.calories} <a id={e.name} onClick={this.deleteIng} class="delete"></a>
         </li>
       );
     });
@@ -58,17 +58,30 @@ class App extends Component {
       total: cloned
     });
   };
+  deleteIng = (ev) => {
+    let id = ev.target.id;
+    let clone = [...this.state.food]
+    clone.forEach((e)=>{
+      if(e.name === id){
+        e.quantity = 0;
+      }
+    })
+    this.setState({
+      food: clone
+    })
+    this.totalCalc();
+  }
   showFoods = () => {
     if (this.state.search === "") {
       return this.state.food.map(eachFood => {
-        return <FoodBox {...eachFood} add={this.addQuantity} />;
+        return <FoodBox {...eachFood} add={this.addQuantity} delete={this.deleteItem} />;
       });
     } else {
       let filtered = this.state.food.filter(eachFood => {
         return eachFood.name.includes(this.state.search);
       });
       return filtered.map(eachFood => {
-        return <FoodBox {...eachFood} add={this.addQuantity} />;
+        return <FoodBox {...eachFood} add={this.addQuantity} delete={this.deleteItem} />;
       });
     }
   };
@@ -83,6 +96,18 @@ class App extends Component {
       newCalories: e.target.value
     });
   };
+  deleteItem = (name,calories)=>{
+    let clone = [...this.state.food];
+    clone.forEach((e,i)=>{
+      if(e.name === name && e.calories === calories){
+        clone.splice(i,1);
+      }
+    })
+    this.setState({
+      food: clone
+    })
+    this.totalCalc();
+  }
   addQuantity = (name, input) => {
     console.log(name);
     let copy = [...this.state.food];

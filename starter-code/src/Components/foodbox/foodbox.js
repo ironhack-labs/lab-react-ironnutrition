@@ -13,6 +13,9 @@ changeInput = (e)=>{
   })
   
 }
+sendDelete = () =>{
+  this.props.delete(this.props.name,this.props.calories)
+}
   render(){
   return (
     <div className="box">
@@ -27,6 +30,7 @@ changeInput = (e)=>{
             <p>
               <strong>{this.props.name}</strong> <br />
               <small>{this.props.calories} cal</small>
+              <button onClick={this.sendDelete}>delete</button>
             </p>
           </div>
         </div>

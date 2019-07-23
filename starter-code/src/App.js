@@ -3,6 +3,7 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./Components/foodbox/foodbox.js";
+import Form from "./Components/form/form.js"
 
 class App extends Component {
   state = {
@@ -145,7 +146,7 @@ class App extends Component {
       <div className="App">
         <h1>IRON NUTRITION</h1>
         <input onChange={this.changeText} />
-        <button onClick={this.modalTrigger}>ADD FOOD +</button>
+      <Form onclick={this.modalTrigger} addFood = {this.addFood} currClass={this.state.class} chFood={this.changeFood} chCal={this.changeCalories}/>
         <div class="columns">
           <div class="column">{this.showFoods()}</div>
           <div class="column">
@@ -155,40 +156,7 @@ class App extends Component {
           </div>
         </div>
 
-        <div class={`modal ${this.state.class}`}>
-          <div class="modal-background" />
-          <div class="modal-content">
-            <form onSubmit={this.addFood}>
-              <div>
-                <label>Name of Food</label>
-                <input
-                  type="text"
-                  onChange={this.changeFood}
-                  placeholder="pizza"
-                />
-              </div>
-              <div>
-                <label>Calories</label>
-                <input
-                  type="number"
-                  onChange={this.changeCalories}
-                  placeholder="150"
-                />
-              </div>
-              <div>
-                {/* <label>Image of Food</label>
-        <input type="file" placeholder="picture.jpg/.png"></input> */}
-              </div>
-              <button onClick={this.modalTrigger}>Submit</button>
-            </form>
-          </div>
-          <button
-            class="modal-close is-large"
-            onClick={this.modalTrigger}
-            aria-label="close"
-          />
-        </div>
-      </div>
+       </div>
     );
   }
 }

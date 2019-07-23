@@ -1,0 +1,4 @@
+figure.image.is-64x64 > img {
+    width: 64px;
+    height: 64px;
+}

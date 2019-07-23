@@ -6,6 +6,21 @@
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
+.modal-content{
+  background-color: white;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+}
+.modal-content *{
+  size: 40px;
+  margin: 20px 0;
+}
+.modal-content label{
+  size: 60px;
+  padding: 0px 5px;
+}
 
 .App-header {
   background-color: #222;

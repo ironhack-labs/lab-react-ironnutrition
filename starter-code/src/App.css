@@ -1,5 +1,8 @@
 .App {
+  margin: 0 auto;
+  margin-top: 30px;
   text-align: center;
+  width: 80%;
 }
 
 .App-logo {
@@ -25,4 +28,9 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.h1 {
+  font-size: 3em;
+  font-weight: 900;
 }

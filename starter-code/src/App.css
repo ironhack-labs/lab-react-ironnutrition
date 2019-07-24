@@ -26,3 +26,73 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.page-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.main-content {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  /* background: #e1e1e1; */
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.foods-list {
+  margin-right: 30px;
+  width: 50%;
+}
+
+header {
+  width: 70%;
+  margin: 50px auto;
+}
+
+form {
+  background: #2A9CEE;
+  padding: 15px;
+}
+
+.field .input {
+  background: rgba(255, 255, 255, .8); 
+}
+
+.field {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.button {
+  margin: 15px 0;
+}
+
+.add-button {
+  margin: 0;
+}
+
+.button:focus {
+  outline: none !important;
+}
+
+.todays-container {
+  width: 45%;
+}
+
+.todays-items {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.todays-items li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e1e1e1;
+  margin: 5px 0;
+  padding: 5px;
+}

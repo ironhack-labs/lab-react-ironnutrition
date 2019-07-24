@@ -6,7 +6,23 @@ class TodaysFoods extends Component {
   }
 
   render() {
-    return ('asdf')
+    let arr = this.props.foods;
+    let retorno = '';
+    let totalCalories = 0;
+    let arrPrint = [];
+
+    arr.map(food => {
+      totalCalories += food.calories;
+      retorno += <li>Name: food.name</li>;
+    })
+    return (
+      <div>
+        <ul>
+          {arr.map(food => <li>{food.name}, {food.calories} calories</li>)}
+        </ul>
+        Total Calories: {totalCalories}
+      </div>
+    )
   }
 }
 

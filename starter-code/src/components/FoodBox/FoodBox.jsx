@@ -9,6 +9,13 @@ class FoodBox extends Component {
 
   render() {
 
+    let food = {
+      name: this.props.name,
+      image: this.props.image,
+      calories: this.props.calories,
+      quantity: this.props.quantity
+    }
+
     return (
       <div className="box">
         <article className="media">
@@ -35,7 +42,7 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={this.props.onClick}>
                   +
                 </button>
               </div>

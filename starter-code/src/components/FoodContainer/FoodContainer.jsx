@@ -10,24 +10,35 @@ class FoodContainer extends Component {
     super(props);
     this.state = {
       foods: [...foods],
-      search: ''
+      search: '',
+      todayFoods: []
     }
 
     this.newFood = this.newFood.bind(this);
     this.search = this.search.bind(this);
+    this.addTodayFood = this.addTodayFood.bind(this);
   }
 
   newFood(food) {
     let newFoods = [...this.state.foods];
     newFoods.unshift(food);
     this.setState({
-      foods: newFoods
+      foods: newFoods,
+      todayFoods: []
     })
   }
 
   search(word) {
     this.setState({
       search: word
+    })
+  }
+
+  addTodayFood(food) {
+    let newTodayFoods = [...this.state.todayFoods]
+    newTodayFoods.push(food);
+    this.setState({
+      todayFoods: newTodayFoods
     })
   }
 
@@ -39,15 +50,16 @@ class FoodContainer extends Component {
         <div className="columns">
           <div className="column">
             {this.state.foods.filter(word => {
-              console.log(word.name.includes(this.state.search))
               return (word.name.includes(this.state.search))
               })
               .map((food, index) => {
-              return <FoodBox key={index} name={food.name} image={food.image} calories={food.calories} quantity={food.quantity} />
+              return <FoodBox onClick={() => this.addTodayFood(food)} key={index} name={food.name} image={food.image} calories={food.calories} quantity={food.quantity} />
             })}
           </div>
           <div className="column">
-            <TodaysFoods />
+            <ul>
+              <TodaysFoods foods={this.state.todayFoods} />
+            </ul>
           </div>
         </div>
       </div>

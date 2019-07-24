@@ -34,7 +34,6 @@ class App extends Component {
   addFood(food) {
     let newFood = [...this.state.foods];
     newFood.unshift(food);
-    console.log(food)
 		this.setState({
 			foods: newFood
 		})
@@ -57,9 +56,6 @@ class App extends Component {
           :
           null
          }
-
-        {/* if (this.button <Form />) */}
-
         <Search {...this.state}/>
       </div>
     );

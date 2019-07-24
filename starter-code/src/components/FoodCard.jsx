@@ -10,10 +10,19 @@ class FoodCard extends Component {
         }
     }
 
-    // addCalories(event) {
-    //     let newNumber = parseInt(this.state.quantity) + 1
-    //     this.props.addQuantity(newNumber);
-    // }
+    addCalories(event) {
+        let newNumber = {
+            name: this.props.name,
+             quantity: parseInt(this.state.quantity)}
+        this.props.dailyCalories(newNumber);
+    }
+
+    inputHandler(event) {
+        let { name, value } = event.target;
+        this.setState({
+            [name]: parseInt(value),
+        })
+    }
 
     render() {
         return(
@@ -37,8 +46,10 @@ class FoodCard extends Component {
                     <div className="control">
                     <input
                         className="input"
-                        type="number" 
-                        value={this.props.quantity}
+                        type="number"
+                        name="quantity"
+                        value={this.state.quantity}
+                        onChange={(e) => this.inputHandler(e)} 
                     />
                     </div>
                     <div className="control">

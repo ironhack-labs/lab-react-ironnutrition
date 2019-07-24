@@ -42,9 +42,6 @@ class App extends Component {
 
   filterFoods(value) {
     const foods = this.state.food;
-    this.setState({
-      filteredFoods: foods,
-    })
     const filterFoods = foods.filter(el => el.name.toLowerCase().includes(value.toLowerCase()));
     this.setState({
       filteredFoods: filterFoods,

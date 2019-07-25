@@ -33,6 +33,7 @@ class App extends Component {
 
   addHandler(newFood) {
     let myNewFood = [...this.state.foods]
+    console.log(newFood)
     myNewFood.unshift(newFood)
     this.setState({
       foods: myNewFood
@@ -53,7 +54,15 @@ class App extends Component {
       image: elem.image,
       quantity: elem.quantity + 1
     }
-    copyToday.unshift(item)
+    let keys = copyToday.map(food => food.name)
+
+    if (keys.includes(item.name)) {
+      let key = keys.indexOf(item.name)
+      copyToday[key].calories += item.calories
+      copyToday[key].quantity += item.quantity
+    } else {
+      copyToday.unshift(item)
+    }
     this.setState({
       today: copyToday
     })
@@ -81,8 +90,8 @@ class App extends Component {
               })
               }
               <li>Total:  {this.state.today.map(food => food.calories).reduce((acc, cur) => {
-                  return acc + cur
-                }, 0)}
+                return acc + cur
+              }, 0)}
               </li>
 
             </ul>

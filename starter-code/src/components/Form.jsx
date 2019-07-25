@@ -6,8 +6,9 @@ class Form extends Component {
 
     this.state={
       name: '',
-      calories: '',
-      image:''
+      calories: 0,
+      image:'',
+      quantity: 0
     }
   }
 
@@ -25,8 +26,9 @@ class Form extends Component {
     this.props.ShowForm();
     this.setState({
       name: '',
-      calories: '',
-      image:''
+      calories: 0,
+      image:'',
+      quantity: 0
     })
   }
 
@@ -39,10 +41,12 @@ class Form extends Component {
           <input type="text" name="name" value={this.state.name} onChange={(e) => this.handleInput(e)}/>
 
           <label>Calories:</label>
-          <input type="text" name="calories"  value={this.state.calories} onChange={(e) => this.handleInput(e)} />
+          <input type="number" name="calories"  value={this.state.calories} onChange={(e) => this.handleInput(e)} />
 
           <label>Image:</label>
           <input type="text" name="image"  value={this.state.image} onChange={(e) => this.handleInput(e)}/>
+
+          <input type="hidden" name="quantity"  value={this.state.quantity} onChange={(e) => this.handleInput(e)}/>
 
           <input type="submit" value="Submit" />
         </form>

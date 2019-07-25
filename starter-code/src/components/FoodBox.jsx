@@ -33,7 +33,7 @@ class FoodBox extends Component {
               <div className="control">
                 <input
                   className="input"
-                  type="number"
+                  type="number" 
                 />
               </div>
               <div className="control">

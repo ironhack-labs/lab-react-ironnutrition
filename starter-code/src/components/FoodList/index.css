@@ -1,0 +1,18 @@
+.add-new-food-form {
+	margin: 20px;
+	padding: 20px;
+}
+
+.btn {
+	margin: 20px;
+}
+
+.container {
+	padding: 30px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.right-side {
+	padding-top: 100px;
+}

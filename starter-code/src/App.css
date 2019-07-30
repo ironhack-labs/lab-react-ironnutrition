@@ -1,5 +1,15 @@
 .App {
+  display: flex;
+  flex-flow: column wrap;
+
   text-align: center;
+}
+
+#info-container {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
 }
 
 .App-logo {

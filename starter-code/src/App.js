@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
+import FoodBox from './food-products'
+import form from './form'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className = "App">
+        <h3>Hola</h3>
+        <Switch>
+           <Route exact path="/" component = {FoodBox}/>
+          <Route exact path="/form" component = {form}/>
+        </Switch>
+        {/* <FoodBox name="pizza"/> */}
       </div>
-    );
+    )
   }
 }
 

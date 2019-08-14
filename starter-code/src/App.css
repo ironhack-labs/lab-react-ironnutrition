@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+.react{
+  margin: 100px;
+  padding: 40px
 }
 
 .App-logo {
@@ -20,6 +21,12 @@
 
 .App-intro {
   font-size: large;
+}
+button {
+  width: 60px;
+  height: 40px;
+  margin-left: 40p;
+  margin-top: 20px
 }
 
 @keyframes App-logo-spin {

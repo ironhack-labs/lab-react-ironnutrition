@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import foods from './foods.json'
 import { Link } from 'react-router-dom';
 import AddFood from './form'
+import SearchFood from './search-food'
 
 class FoodBox extends Component {
     constructor() {
@@ -16,12 +17,17 @@ class FoodBox extends Component {
             allFoods: foodCopy
         })
     }
+    searchOneFood = food => {
+       this.setState({
+           allFoods: [this.state.allFoods.find(elm => elm.name === food)]
+       })
+    }
     render() {
         return (
             <div>
                 <p>asdas</p>
             <AddFood addFood={this.addOneFood} />
-           
+            <SearchFood searchFood = {this.searchOneFood}/>
                 {this.state.allFoods.map((elm)=>
                 <div className="box">
                     <article className="media">
@@ -57,6 +63,7 @@ class FoodBox extends Component {
             </article>
         </div>
                 )}
+       
         </div>
     
         )

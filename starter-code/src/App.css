@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.container{
+  width: 40%;
+  margin:2%;
+}
+
+.box{
+  margin: 2%;
+}
+
+.FormFood{
+ width: 40%;
+ margin: 2%;
+}

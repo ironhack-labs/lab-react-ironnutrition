@@ -1,21 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
+import 'bulma/css/bulma.css';
 import './App.css';
+import FoodBox from './Components/FoodBox'
+import Form from './Components/Form';
 
-class App extends Component {
-  render() {
+
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+  }
+
+  updateTheValue = (e) => {
+    console.log(e)
+}
+
+addTheFood = () => {
+    let newFoodList = [...]
+}
+
+  render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <FoodBox />
+      <Form />
       </div>
     );
   }
+  
 }
 
 export default App;

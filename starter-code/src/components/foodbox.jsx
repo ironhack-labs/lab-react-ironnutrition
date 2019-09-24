@@ -42,31 +42,6 @@ class FoodBox extends Component {
                         </div>
                     </article>
                 </div>
-
-
-                {/* END OF FOOD COMPONENT */}
-
-                {/* <Link
-                    to={'/create'}
-                    className="button"> Add Food
-                </Link>
-
-                <div>
-                    <Route
-                        path="/create"
-                        render={(props) =>
-                            <Form
-                                onChange={this.props.onChange}
-                                name={this.props.name}
-                                calories={this.props.calories}
-                                image={this.props.image}
-                                onSubmit={this.props.onSubmit}
-                                {...props} />}
-                    />
-                </div> */}
-
-
-
             </div>
         );
     }

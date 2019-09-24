@@ -15,7 +15,7 @@ class SearchBar extends Component {
                         className="input"
                         type="text"
                         name="query"
-                        value={this.props.value}
+                        // value={this.props.value}
                         onChange={e => this.props.onSearch(e.currentTarget.value)}
                         placeholder="Search For Food" />
 

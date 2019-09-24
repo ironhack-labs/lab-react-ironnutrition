@@ -10,6 +10,7 @@ import { Link, Route } from "react-router-dom"
 class App extends Component {
   state = {
     foods: [],
+    allFood: [],
     name: "",
     calories: "",
     image: "",
@@ -18,9 +19,9 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.state.foods)
     await this.setState({
-      foods: food
+      foods: food,
+      allFood: food
     })
   }
 
@@ -33,14 +34,19 @@ class App extends Component {
   }
 
   handleQuery = query => {
-    const foods = [...this.state.foods]
-    const searchQuery = this.state.searchQuery
-    foods.filter(food => food.name.toLowerCase().startsWith(searchQuery.toLowerCase()))
+    const { allFood } = this.state
+    let filteredFoods = [...allFood].filter(food => {
+      return food.name.toLowerCase().startsWith(query.toLowerCase())
+    })
+
     this.setState({
       searchQuery: query,
-      foods: foods
+      foods: filteredFoods
     })
+
   }
+
+
 
 
   handleSubmit = (e) => {
@@ -59,6 +65,7 @@ class App extends Component {
   }
 
   renderPages = () => {
+
     return this.state.foods.map(food => {
       return <FoodBox
         key={food.name}

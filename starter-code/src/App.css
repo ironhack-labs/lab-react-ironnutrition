@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+.App > h1{
+  text-align: left;
+  font-size: 40px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -26,6 +31,16 @@
   visibility: hidden;
 }
 
+.box{
+  width: 600px;
+}
+
+.FoodBoxList{
+  float: left;
+}
+.todayFoodList {
+  float: left;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

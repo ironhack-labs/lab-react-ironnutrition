@@ -5,16 +5,21 @@ class Form extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            newName: "",
-            newCalories: "",
             visibility: "hidden"
         }
     }
 
         showForm = () => {
+            if(this.state.visibility === "visible"){
+                this.setState({
+                    visibility: "hidden"
+                })
+            }else{
+
       this.setState({
           visibility: "visible"
       })
+    }
         }
 
 
@@ -26,16 +31,16 @@ class Form extends React.Component {
            
                 <div className="theForm" style={{ visibility: this.state.visibility }}>
                      
-                     <form onSubmit = {this.addTheFood}>
-                        <h5>New Animal</h5>
+                     <form onSubmit={this.props.addFood}>
+                        <h5>New Food</h5>
     
                         <legend> Name </legend>
-                        <input value={this.state.newName} onChange={this.updateTheValue} name="newName" type="text" />
+                        <input value={this.state.newName} onChange={this.props.update} name="newName" type="text" />
     
                         <legend> Calories </legend>
-                        <input value={this.state.newCalories} onChange={this.updateTheValue} name="newWeight" type="number" />
+                        <input value={this.state.newCalories} onChange={this.props.update} name="newCalories" type="number" />
     
-                        <button>Save</button>
+                        <button onClick={this.showForm}>Save</button>
     
                     </form>
     

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from "react-router-dom"
-import Form from './form';
+
 
 class FoodBox extends Component {
 
@@ -28,13 +27,17 @@ class FoodBox extends Component {
                             <div className="field has-addons">
                                 <div className="control">
                                     <input
+                                        name="quantity"
                                         className="input"
                                         type="number"
-                                        value="1"
+                                        onChange={(e) => this.props.handleChange(e, this.props.name, this.props.quantity)}
+                                        value={this.props.quantity}
                                     />
                                 </div>
                                 <div className="control">
-                                    <button className="button is-info">
+                                    <button
+                                        onClick={(e) => this.props.handleClick(e, this.props)}
+                                        className="button is-info">
                                         +
                 </button>
                                 </div>

@@ -1,0 +1,10 @@
+
+
+
+{foods.map((food) => {
+          return(
+          <div key={food.id}>
+          <FoodBox data={food}/>
+          </div>
+          )
+        })}

@@ -7,3 +7,14 @@ body {
 .main-content {
   display: flex;
 }
+
+.ant-card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

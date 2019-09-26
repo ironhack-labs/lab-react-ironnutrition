@@ -23,6 +23,23 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.image {
+  width: 100px;
+}
+
+.food {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+.busca h1 {
+  text-align: center;
 }

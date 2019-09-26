@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import foods from './foods.json'
 import FoodContainer from './components/FoodContainer'
 import AddFoodForm from './components/AddFoodForm'
+import TodayList from './components/TodayList'
 
 export default class App extends Component {
   state = {
     foods: foods,
     food: {},
     isOpen: false,
-    filteredFoods: []
+    filteredFoods: [],
+    todayFoods: []
   }
 
   openModal = () => {
@@ -47,7 +49,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { isOpen, foods, filteredFoods } = this.state
+    const { isOpen, foods, filteredFoods, todayFoods } = this.state
 
     return (
       <div>
@@ -123,7 +125,9 @@ export default class App extends Component {
                 justifyContent: 'space-around',
                 alignItems: 'center'
               }}
-            ></div>
+            >
+              <TodayList todayFoods={todayFoods} />
+            </div>
           </div>
         </section>
       </div>

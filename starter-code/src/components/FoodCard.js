@@ -6,9 +6,8 @@ class FoodCard extends React.Component {
     }
 
     getQty = (e) => {
-        const qty = e.target.value;
-        console.log(qty)
-        this.setState({qty})
+        const quantity = e.target.value;
+        this.setState({quantity})
     }
     render(){
     

@@ -18,6 +18,7 @@ class App extends React.Component {
       todayFood: [],
       newName: "",
       newCalories: "",
+      newImage: "",
       foodToSearch: "",
       found: false
     }
@@ -58,9 +59,12 @@ displayTheFood = () => {
       return(
       <FoodBox
       key={index}
+      image={eachFood.image}
+      name={eachFood.name}
+      calories={eachFood.calories}
       sendToday={this.addToday}
       calculator={this.calculateQty}
-      {...eachFood}
+      // {...eachFood}
       />
       )
     })
@@ -69,9 +73,12 @@ displayTheFood = () => {
       return(
       <FoodBox
       key={index}
+      image={eachFood.image}
+      name={eachFood.name}
+      calories={eachFood.calories}
       sendToday={this.addToday}
       calculator={this.calculateQty}
-      {...eachFood}
+      // {...eachFood}
       />
       )
     })
@@ -89,7 +96,7 @@ addTheFood = (e) => {
   e.preventDefault();
    let newList = [...this.state.foodList];
 
-   let newAnimal = {name: this.state.newName, calories: this.state.newCalories}
+   let newAnimal = {name: this.state.newName, calories: this.state.newCalories, image: this.state.newImage}
 
    newList.push(newAnimal);
 
@@ -97,6 +104,7 @@ addTheFood = (e) => {
      foodList: newList,
      newName: "",
      newCalories: "",
+     newImage: ""
    })
 
 

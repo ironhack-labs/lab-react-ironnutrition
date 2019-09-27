@@ -110,7 +110,8 @@ class App extends Component {
     this.setState({ searchTerm: e.target.value }, () => {
 
 
-
+      // TODO How does empty search bar string return EVERYTHING if its empty?
+      
       // Filters the allFoods state(doesn't manipulate it), and returns a new filtered array from user input 
       // Ex/ "sa" will return salad ,sandy ,salsa
       let filteredFoods = this.state.allFoods.filter((eachfood) => {
@@ -124,8 +125,8 @@ class App extends Component {
       // But the allfoods list always stays the same unless we add a new food then change the state
       this.setState({ visibleFoods: filteredFoods});
 
-      // Without visible foods, if user backspaced, they wouldn't be able 
-      // to see the foods they previously had before filtering because we changed 
+      // Without visible foods, if user backspaced, they wouldn't be able to see the foods they previously
+      //  had before filtering because we can't get back what was filtered out, only continue filtering whats left
       
     })
 

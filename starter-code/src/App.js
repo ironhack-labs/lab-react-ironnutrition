@@ -15,7 +15,7 @@ class App extends Component {
       nameInput: "",
       calorieInput: "",
       imageInput: "",
-      formShowing: false,
+      formShowing: false
     }
   }
 
@@ -81,15 +81,38 @@ class App extends Component {
       imageInput: ""
     })
 
+    // When user submits form, toggle formshowing back to false, which in turn brings back add food buttton
+    this.toggleForm();
+
+  }
+
+  toggleForm = () => {
+    
+    this.setState({
+
+      // "Toggle" the state by making it true if its false, or making false if its true.
+      formShowing : !this.state.formShowing
+
+    })
 
   }
 
   render() {
 
     return (
+
       <div className="App">
 
         <h2 className="title"> Foods </h2>
+
+        {/* If form is not showing, then show this button */}
+        {!(this.state.formShowing) && 
+        <button 
+        className = "button is-success"
+        onClick = {this.toggleForm}
+        > 
+        Add New Food 
+        </button>}
 
         {/* The float left allows us to float the form on the right */}
         <div style={{ width: '40%', float: 'left' }}>
@@ -101,7 +124,9 @@ class App extends Component {
         <div style={{ width: '40%', float: 'right' }}>
 
           {/* TODO : React forms require a value, name, and onChange  */}
-          <form onSubmit={this.addNewFood}>
+
+          {/* An if statement so form will only show when the state is true */}
+          { this.state.formShowing && <form onSubmit={this.addNewFood}>
 
             <h2 className="title"> Add New Food </h2>
 
@@ -123,9 +148,9 @@ class App extends Component {
               value={this.state.imageInput}
               onChange={this.updateInput} />
 
-            <button> Submit </button>
+            <button className = "button"> Submit </button>
 
-          </form>
+          </form>}
 
         </div>
 

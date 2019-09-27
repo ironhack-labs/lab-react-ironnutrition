@@ -1,20 +1,80 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import FoodBox from './components/foodbox'
+import foods from './foods.json'
+
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      allFoods: foods,
+      visibleFoods: foods,
+      nameInput: "",
+      calInput: "",
+      imgInput: "",
+      formShowing: false,
+    }
+  }
+
+
+  showAllTheFoods = () => {
+
+    return this.state.visibleFoods.map((eachfood, i) => {
+
+      return (
+        <FoodBox key={i}
+          theName={eachfood.name}
+          theCalories={eachfood.calories}
+          theImage={eachfood.image}
+        />
+      )
+
+    })
+
+  }
+
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <h2 className="title"> Foods </h2>
+
+        {/* The float left allows us to float the form on the right */}
+        <div style={{ width: '40%', float: 'left' }}>
+
+          {this.showAllTheFoods()}
+
+        </div>
+
+        <div style={{ width: '40%', float:'right' }}>
+
+          <form onSubmit={this.addNewFood}>
+
+            <h2 className = "title"> Add New Food </h2>
+
+            <legend> Name </legend>
+            <input type="text" />
+
+            <legend> Calories </legend>
+            <input type="number" />
+
+            <legend> Image </legend>
+            <input type="text" />
+
+            <button> Submit </button>
+
+          </form>
+
+        </div>
+
+
       </div>
     );
+
   }
 }
 

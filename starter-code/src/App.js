@@ -13,8 +13,8 @@ class App extends Component {
       allFoods: foods,
       visibleFoods: foods,
       nameInput: "",
-      calInput: "",
-      imgInput: "",
+      calorieInput: "",
+      imageInput: "",
       formShowing: false,
     }
   }
@@ -22,7 +22,7 @@ class App extends Component {
 
   showAllTheFoods = () => {
 
-    return this.state.visibleFoods.map((eachfood, i) => {
+    return this.state.allFoods.map((eachfood, i) => {
 
       return (
         <FoodBox key={i}
@@ -33,6 +33,54 @@ class App extends Component {
       )
 
     })
+
+  }
+
+  updateInput = (e) => {
+
+    this.setState({
+
+      // Each form input has a name atttribute equal to our states
+      // So when user is typing, we set our state to the input value
+      // target.name for example could be nameInput, and we set it to whatver user has in that input
+      [e.target.name]: e.target.value
+
+    })
+
+  }
+
+  addNewFood = (e) => {
+
+    // Prevents form from refreshing the page
+    e.preventDefault();
+
+    let listUpdated, newFood;
+
+    listUpdated = [...this.state.allFoods];
+
+    // This function is called after updateInput, so the information we need
+    // Is already in the state for us after submitting the form
+    newFood = {
+
+      name: this.state.nameInput,
+      calories: this.state.calorieInput,
+      image: this.state.imageInput,
+
+    }
+
+    console.log('About to add food')
+    listUpdated.unshift(newFood);
+
+    console.log('About to set state')
+    // Update state with new list , will re render page showing the new food
+    this.setState({
+
+      allFoods: listUpdated,
+      nameInput: "",
+      calorieInput: "",
+      imageInput: ""
+    })
+
 
   }
 
@@ -50,20 +98,30 @@ class App extends Component {
 
         </div>
 
-        <div style={{ width: '40%', float:'right' }}>
+        <div style={{ width: '40%', float: 'right' }}>
 
+          {/* TODO : React forms require a value, name, and onChange  */}
           <form onSubmit={this.addNewFood}>
 
-            <h2 className = "title"> Add New Food </h2>
+            <h2 className="title"> Add New Food </h2>
 
             <legend> Name </legend>
-            <input type="text" />
+            <input name="nameInput"
+              type="text"
+              value={this.state.nameInput}
+              onChange={this.updateInput} />
 
             <legend> Calories </legend>
-            <input type="number" />
+            <input name="calorieInput"
+              type="number"
+              value={this.state.calorieInput}
+              onChange={this.updateInput} />
 
             <legend> Image </legend>
-            <input type="text" />
+            <input name="imageInput"
+              type="text"
+              value={this.state.imageInput}
+              onChange={this.updateInput} />
 
             <button> Submit </button>
 

@@ -15,14 +15,15 @@ class App extends Component {
       nameInput: "",
       calorieInput: "",
       imageInput: "",
-      formShowing: false
+      formShowing: false,
+      searchTerm: ""
     }
   }
 
 
   showAllTheFoods = () => {
 
-    return this.state.allFoods.map((eachfood, i) => {
+    return this.state.visibleFoods.map((eachfood, i) => {
 
       return (
         <FoodBox key={i}
@@ -54,9 +55,10 @@ class App extends Component {
     // Prevents form from refreshing the page
     e.preventDefault();
 
-    let listUpdated, newFood;
+    let listUpdated, newFood, newVisibleFoods;
 
     listUpdated = [...this.state.allFoods];
+    newVisibleFoods = [...this.state.visibleFoods];
 
     // This function is called after updateInput, so the information we need
     // Is already in the state for us after submitting the form
@@ -71,11 +73,14 @@ class App extends Component {
     console.log('About to add food')
     listUpdated.unshift(newFood);
 
+    newVisibleFoods.unshift(newFood);
+
     console.log('About to set state')
     // Update state with new list , will re render page showing the new food
     this.setState({
 
       allFoods: listUpdated,
+      visibleFoods: newVisibleFoods,
       nameInput: "",
       calorieInput: "",
       imageInput: ""
@@ -87,13 +92,45 @@ class App extends Component {
   }
 
   toggleForm = () => {
-    
+
     this.setState({
 
       // "Toggle" the state by making it true if its false, or making false if its true.
-      formShowing : !this.state.formShowing
+      formShowing: !this.state.formShowing
 
     })
+
+  }
+
+  search = (e) => {
+
+    // Like in updateValue, state will change for every keystroke by user in the input
+    // The callback function is used for asynchronous (set state happens AND THEN does our callback function)
+    // This is setStates built in promise functionality ?
+    this.setState({ searchTerm: e.target.value }, () => {
+
+
+
+      // Filters the allFoods state(doesn't manipulate it), and returns a new filtered array from user input 
+      // Ex/ "sa" will return salad ,sandy ,salsa
+      let filteredFoods = this.state.allFoods.filter((eachfood) => {
+
+        // Upper case everyhting so it won't be case sensative for the user 
+        return eachfood.name.toUpperCase().includes(this.state.searchTerm.toUpperCase())
+
+      })
+
+      // Set visible state to filtered foods, the visible foods list is able to be manipulated,
+      // But the allfoods list always stays the same unless we add a new food then change the state
+      this.setState({ visibleFoods: filteredFoods});
+
+      // Without visible foods, if user backspaced, they wouldn't be able 
+      // to see the foods they previously had before filtering because we changed 
+      
+    })
+
+
+
 
   }
 
@@ -103,15 +140,23 @@ class App extends Component {
 
       <div className="App">
 
+        <h2 className="title"> Search </h2>
+
+        {/* search function will keep track of keystrokes */}
+        <input
+          onChange={this.search}
+          value={this.state.searchTerm}
+        />
+
         <h2 className="title"> Foods </h2>
 
         {/* If form is not showing, then show this button */}
-        {!(this.state.formShowing) && 
-        <button 
-        className = "button is-success"
-        onClick = {this.toggleForm}
-        > 
-        Add New Food 
+        {!(this.state.formShowing) &&
+          <button
+            className="button is-success"
+            onClick={this.toggleForm}
+          >
+            Add New Food
         </button>}
 
         {/* The float left allows us to float the form on the right */}
@@ -126,7 +171,7 @@ class App extends Component {
           {/* TODO : React forms require a value, name, and onChange  */}
 
           {/* An if statement so form will only show when the state is true */}
-          { this.state.formShowing && <form onSubmit={this.addNewFood}>
+          {this.state.formShowing && <form onSubmit={this.addNewFood}>
 
             <h2 className="title"> Add New Food </h2>
 
@@ -148,7 +193,7 @@ class App extends Component {
               value={this.state.imageInput}
               onChange={this.updateInput} />
 
-            <button className = "button"> Submit </button>
+            <button className="button"> Submit </button>
 
           </form>}
 

@@ -17,10 +17,25 @@ constructor(props){
               imageUrl:'',
               show:true,
               search:'',
+              foodList:[],
     }
   
   }
 
+  totalCalories=(qty, calories)=>{
+    return qty * calories;
+  }
+
+  grandtotal=()=>{
+  let total = 0;
+    if(this.state.foodList.length > 0){
+        total = this.state.foodList.reduce((total,item)=>{
+        return total+(item.food.calories * item.qty);
+      },0)
+    }
+
+  return total;
+  }
 
 createFood =(e)=>{
     this.setState({
@@ -50,13 +65,36 @@ addFood =(e)=>{
     calories:'',
     imageUrl:'',
     show: !this.state.show,
+    list:[],
   })
 }
+
+addToList=(food,number)=>{
+  let foodListCopy = [...this.state.foodList]
+  foodListCopy.push({food:this.state.vFoods[food],
+                      qty: number,  
+  })
+
+  this.setState({
+    foodList:foodListCopy,
+  })
+}
+
+printFoodList =()=>{
+  return this.state.foodList.map((eachFood ,index)=>{
+    return(
+        <li key={index}>
+          {eachFood.qty} {eachFood.food.name} = {this.totalCalories(eachFood.qty,eachFood.food.calories)} calories
+        </li>
+    )
+  })
+}
+
 
 printFood =()=>{
   return this.state.vFoods.map((food , index)=>{
     return(
-        < FoodBox key={index} food={food}/>
+        < FoodBox  addToList={this.addToList}  id={index} key={index} food={food}/>
     )
   })
 }
@@ -67,9 +105,7 @@ toggle=()=>{
   })
 }
 
-
 search=(e)=>{
-
   this.setState(
     {search: e.target.value},()=>{
       let vFoodsCopy= [...this.state.foods]
@@ -80,17 +116,17 @@ search=(e)=>{
       this.setState({
         vFoods: filteredFoods,
       })
-
   })
-
 }
 
   render() {
+
+    console.log(this.grandtotal())
     return (
       <div style={{width:'70%', margin:'0 auto'}}className="App">
-      <h1 className='title'>IronNutrition</h1>
+      <h1 className='title is-size-1'>IronNutrition</h1>
       <div>
-      <h6 style={{textAlign:'left'}}className='title'>Search</h6>
+      <h6 style={{textAlign:'left'}}className='title is-size-3'>Search</h6>
     <input style={{marginBottom:'20px'}} className="input is-info"onChange={this.search} name="search"  value={this.state.search} type="text"/>
     </div>
         <div style={{float:'left', width:'50%'}}>
@@ -98,7 +134,17 @@ search=(e)=>{
         </div>
         <div style={{float:'right', width:'40%'}}>
         {this.state.show && 
-        <button className="button is-info"onClick={this.toggle}>Add Food</button>
+          <div>
+            <button className="button is-info"onClick={this.toggle}>Add Food</button>
+            <h6 className="title is-size-4">Todays's foods</h6>
+              <ul>
+              {this.printFoodList()}
+              </ul>
+              <p>
+              Total: {this.grandtotal()} calories
+              </p>
+          
+        </div>
         }
         {!this.state.show && 
         <form onSubmit={this.addFood}>

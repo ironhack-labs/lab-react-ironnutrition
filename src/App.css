@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 200px;
   padding: 20px;
   color: white;
 }
@@ -21,6 +21,20 @@
 .App-intro {
   font-size: large;
 }
+
+.flexy {
+  display: flex;
+}
+
+.foodOptions {
+  width: 50vw;
+  margin: 50px;
+}
+
+.todaysFoods {
+  padding: 50px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

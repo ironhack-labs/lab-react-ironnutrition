@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Form from "./Form";
 
 class AddNew extends Component {
   state = {
-    name: "",
     calories: 0,
     image: "",
+    name: "",
     quantity: 0,
     open: false
   };
@@ -18,10 +19,11 @@ class AddNew extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     this.props.addTheMeal(this.state);
+    console.log(this.state);
     this.setState({
-      name: "",
       calories: 0,
       image: "",
+      name: "",
       quantity: 0,
       open: false
     });
@@ -36,44 +38,10 @@ class AddNew extends Component {
   showForm = () => {
     if (this.state.open) {
       return (
-        <form onSubmit={this.handleFormSubmit} className="column is-half">
-          <div className="field">
-            <label className="label">Name:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="name"
-                onChange={this.setForm}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Calories:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="number"
-                name="calories"
-                onChange={this.setForm}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Image URL:</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="image"
-                onChange={this.setForm}
-              />
-            </div>
-          </div>
-          <div className="control">
-            <button className="button is-primary">Submit</button>
-          </div>
-        </form>
+        <Form
+          submitHandle={this.handleFormSubmit}
+          changeHandle={this.setForm}
+        />
       );
     } else {
       return (

@@ -9,10 +9,16 @@ import Header from "./components/Header";
 import AddNew from "./components/AddNew";
 import Search from "./components/Search";
 // import { thisTypeAnnotation } from "@babel/types";
+import TodayFoods from "./components/TodayFoods";
 
 class App extends Component {
   state = {
-    allFoods: foods
+    allFoods: foods,
+    pickedFoods: [
+      { name: "pizza", calories: 300, quantity: 1 },
+      { name: "salad", calories: 100, quantity: 1 },
+      { name: "pizza", calories: 300, quantity: 1 },
+    ]
   };
 
   pushFood = food => {
@@ -25,23 +31,32 @@ class App extends Component {
   };
 
   compare = e => {
-    // let foodsCopy = [...this.state.allFoods];
     let searchResults = foods.filter(food =>
       food.name.toUpperCase().includes(e.target.value.toUpperCase())
     );
     this.setState({
       allFoods: searchResults
     });
-    console.log(this.state.allFoods)
+    console.log(this.state.allFoods);
+  };
+
+  addTodayMeal = () => {
+    this.setState({ something: Math.random() });
   };
 
   render() {
     return (
       <div className="container">
         <Header title="IronNutrition" />
-        <AddNew addTheMeal={() => this.pushFood} />
+        <AddNew addTheMeal={this.pushFood} />
         <Search filter={() => this.compare} />
-        <Food allFoods={this.state.allFoods}></Food>
+        <div className="columns">
+          <Food
+            allFoods={this.state.allFoods}
+            addTodayMeal={this.addTodayMeal}
+          ></Food>
+          <TodayFoods something={this.state.something} />
+        </div>
       </div>
     );
   }

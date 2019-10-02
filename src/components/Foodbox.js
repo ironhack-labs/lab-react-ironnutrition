@@ -1,13 +1,19 @@
 import React, { Component } from "react";
+import AddButton from "./AddButton";
 
 class Foodbox extends Component {
-  render() {
+  
+    addItem = () => {
+        this.props.addItemFunction();
+    }
+  
+    render() {
     return (
-      <div className="box" >
+      <div className="box">
         <article className="media" key={this.key}>
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={this.props.food.image} alt=""/>
+              <img src={this.props.food.image} alt="" />
             </figure>
           </div>
           <div className="media-content">
@@ -21,10 +27,10 @@ class Foodbox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input className="input" type="number" placeholder="0" />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <AddButton addItem={this.addItem} />
               </div>
             </div>
           </div>

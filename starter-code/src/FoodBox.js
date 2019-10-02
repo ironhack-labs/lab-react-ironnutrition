@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import foods from "./foods.json";
 
 export default class FoodBox extends Component {
-  state = {
-    foodList: foods
-  };
 
-  newerFoodArray = this.state.foodList.map((eachFood, i) => {
+  showFoods = () => {
+  var newerFoodArray = this.props.foodList.map((eachFood, i) => {
+    //console.log("NEWER FOOD ARRAY", this.state.foodList)
     return (<div key={i} className="box">
     <article className="media">
       <div className="media-left">
@@ -35,11 +34,12 @@ export default class FoodBox extends Component {
     </article>
   </div>);
   });
-
+  return newerFoodArray;
+  }
   render() {
     return (
       <div>
-       {this.newerFoodArray}
+       {this.showFoods()}
       </div>
     );
   }

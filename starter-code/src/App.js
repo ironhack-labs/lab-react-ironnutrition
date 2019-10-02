@@ -5,15 +5,16 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import FoodBox from './FoodBox'
 import Input from './Input'
+import Search from './Search'
 
 class App extends Component {
 
   state = {
     foodList: foods,
-    showForm:false  
+    foodListCopy: foods
   }
 
-
+  
   showListOfFoods=()=>{
     return this.state.foodList.map(eachFood=> {
       return(
@@ -21,18 +22,7 @@ class App extends Component {
       )
     })
   }
-  
-  
-      
- 
-onChange = updatedValue =>{
-  this.setState({
-    fields:{
-      ...this.state.fields,
-      ...updatedValue
-    }
-  })
-}
+
 handleSubmit = ()=>{
   let copy = [...this.state.foodList];
   copy.push({
@@ -44,7 +34,15 @@ handleSubmit = ()=>{
   this.setState({
     foodList:copy
   })
-
+}
+search = () => {
+  let search = document.querySelector("#search").value.toLowerCase()
+  let filterFood = this.state.foodListCopy.filter(a => {
+   return a.name.toLowerCase().includes(search)
+  });
+  this.setState({
+    foodList: filterFood
+  });
 }
   render() {
     return (
@@ -52,15 +50,20 @@ handleSubmit = ()=>{
         <h1>IronNutrition</h1>
 
         <button>ADD A NEW FOOD</button>
-        {/* <Form onChange={fields=>this.onChange(fields)}/> */}
-        <form>
+        <input
+          onChange={this.search}
+          id="search"
+          placeholder="Search"
+          type="text"
+        />
+        <form >
           <Input id="name" type="text" placeholder="name" name="name" />
           <Input id="calories" type="text" placeholder="calories" name="calories"  />
           <Input  id="image"  type="text" placeholder="image" name="image" />
           <button type="reset"onClick={this.handleSubmit}></button>
         </form>
      
-        {this.showListOfFoods()}
+        <div>{this.showListOfFoods()}</div>
 
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FoodBox from './foodbox'
+import FoodBox from './FoodBox'
 
 class Search extends Component {
 

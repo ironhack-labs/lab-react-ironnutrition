@@ -1,21 +1,13 @@
 import React, { Component } from 'react'
-import foods from "./foods.json"
-import { throws } from 'assert'
+// import foods from "./foods.json"
+// import { throws } from 'assert'
+
 
 class FoodBox extends Component {
 
-  state = {
-    foodsList: foods,
-    name: foods.name,
-    calories: foods.calories,
-    images: foods.images,
-    quantity: foods.quantity
-  }
-
-
   showListOfFoods = () => {
-    console.log(this.state.foodsList)
-    let listOfFoods = this.state.foodsList.map((eachFood,i)=> {
+    console.log(this.props.foodList)
+    let listOfFoods = this.props.foodList.map((eachFood,i)=> {
     let list =
       <div className="box">
       <article className="media">
@@ -38,7 +30,7 @@ class FoodBox extends Component {
               <input
                 className="input"
                 type="number" 
-                value="1"
+                value={eachFood.quantity}
               />
             </div>
             <div className="control">
@@ -55,22 +47,22 @@ class FoodBox extends Component {
     return listOfFoods;
   }
 
-  setForm = (event) => {
-    this.setState({
-        [event.target.value]:event.target.value
-    });
-  }
+  // setForm = (event) => {
+  //   this.setprops({
+  //       [event.target.value]:event.target.value
+  //   });
+  // }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-  }
+  // handleFormSubmit = (event) => {
+  //   event.preventDefault();
+  // }
   
 
 render () {
   return (
       <div>
         <table>{this.showListOfFoods()}</table>
-        <form onSubmit={this.handleFormSubmit}>
+        {/* <form onSubmit={this.handleFormSubmit}>
             <label>Name:</label>
             <input type="text" name="name" onChange={this.setForm} />
             <label>Calories:</label>
@@ -78,7 +70,7 @@ render () {
             <label>Image:</label>
             <input type="text" name="images" onChange={this.setForm} />
             <input type="submit" value="Submit" />
-        </form>
+        </form> */}
         {/* <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
           <input type="text" name="name" onChange={this.handleFormSubmit}/>

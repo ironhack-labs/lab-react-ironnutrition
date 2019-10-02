@@ -67,6 +67,27 @@
 ul {
   margin-bottom: 10px;
 }
+
+.App h1 {
+  font-size: 30pt;
+  margin: 30px;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 300px;
+}
+
+.control button {
+  margin-right: 20px;
+}
+/* 
+.input {
+  width: 79vw;
+  margin-left: 100px;
+} */
 /* 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

@@ -11,8 +11,7 @@ class App extends Component {
     super()
     this.state = {
       foods: foods,
-      showFoodForm: false,
-      search: ""
+      showFoodForm: false
     }
   }
   showFoodForm() {
@@ -24,7 +23,6 @@ class App extends Component {
   updateState(newFood) {
     let newState = { ...this.state };
     newState.foods.push(newFood)
-    console.log(newState)
     this.setState({
       ...this.state,
       foods: newState.foods,
@@ -33,7 +31,18 @@ class App extends Component {
   }
 
   search(e) {
-    console.log(e)
+
+    let newState = { ...this.state };
+
+    // RegExp test in input form: in: 'po' - out: {Pot Roast,Sweet Potato}
+    let newRegEx = new RegExp(`^${e.target.value}|\\s${e.target.value}`, 'i');
+
+    let newFoods = newState.foods.filter(food => newRegEx.test(food.name))
+
+    this.setState({
+      ...this.state,
+      foods: newFoods
+    })
   }
 
   render() {
@@ -42,14 +51,14 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">IronNutrition</h1>
           <form>
-            <input type="text" name="search" placeholder="search" value={this.state.search} onChange={e => this.search(e)}></input>
+            <input type="text" name="search" placeholder="search"  onChange={e => this.search(e)}></input>
             
           </form>
           <button onClick={() => this.showFoodForm()}>New food</button>
         </header>
         {this.state.showFoodForm && (<Form sendStateFromApp={state => this.updateState(state)}></Form>)}
 
-        {foods.map((value, idx) => <FoodBox key={idx} {...value} />)}
+        {this.state.foods.map((value, idx) => <FoodBox key={idx} {...value} />)}
       </div>
     );
   }

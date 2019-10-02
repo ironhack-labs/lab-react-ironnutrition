@@ -17,6 +17,17 @@ class Information extends Component {
     return mappedMeals;
   };
 
+  newMealsShow = () => {
+    let foods = this.props.something.pickedFoods;
+    
+    for(let key in foods){
+      return (
+
+        <li>{Number(foods[key].quantity) * Number(foods[key].calories)}</li>
+      )
+    }
+  }
+
   render() {
     return (
       <React.Fragment>

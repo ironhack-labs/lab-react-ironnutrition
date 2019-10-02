@@ -48,6 +48,14 @@ class App extends Component {
     });
   };
 
+  addTodayMealUpdates = food => {
+    let cart = {...this.state.pickedFoods};
+    cart[food.name] = food;
+    this.setState({
+      pickedFoods: cart,
+    })
+  }
+
   render() {
     return (
       <div className="container">

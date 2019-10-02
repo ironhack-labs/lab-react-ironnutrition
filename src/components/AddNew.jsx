@@ -35,16 +35,25 @@ class AddNew extends Component {
   };
 
   showForm = () => {
+    let style = {
+      marginBottom: "10px"
+    };
     if (this.state.open) {
       return (
-        <Form
-          submitHandle={this.handleFormSubmit}
-          changeHandle={this.setForm}
-        />
+        
+          <Form
+            submitHandle={this.handleFormSubmit}
+            changeHandle={this.setForm}
+          />
+        
       );
     } else {
       return (
-        <button className="button is-primary" onClick={this.toggleOpen}>
+        <button
+          className="button is-primary"
+          style={style}
+          onClick={this.toggleOpen}
+        >
           Add New Meal
         </button>
       );

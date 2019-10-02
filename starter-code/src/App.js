@@ -11,6 +11,7 @@ class App extends Component {
     super();
     this.state = {
       foods: foods,
+      searchFoods: foods,
       formActive: false,
       search: undefined
     };
@@ -32,9 +33,8 @@ class App extends Component {
   }
   updateSearch(e) {
     let search = e.target.value;
-    console.log(typeof(search))
-    let newFoods = this.state.foods.filter(food => {console.log(food.name);food.name.includes(search)})
-    console.log(newFoods)
+    let objectFoods = [...this.state.searchFoods];
+    let newFoods = objectFoods.filter(food => food.name.includes(search))
     let newState = {
       ...this.state,
       foods: newFoods

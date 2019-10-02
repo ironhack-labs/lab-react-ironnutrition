@@ -9,14 +9,43 @@ import './App.css';
 class App extends Component {
   state = {
     myFoods : [...foods],
-    open: false
+    open: false,
+    todaysFoods: [],
+    calTotal: 0
+  }
+
+
+  deleteThis = (i) => {
+    let newFoods = [...this.state.todaysFoods]
+
+    let removed = newFoods.splice(i, 1)
+
+    let newCals = this.state.calTotal - (removed[0].calories * removed[0].quantity)
+
+
+    this.setState({
+      todaysFoods: newFoods,
+      calTotal: newCals
+    })
   }
 
   addFood = (e) => {
+    console.log(e)
+      let updateToday = [...this.state.todaysFoods]
 
-    console.log(e.target.getAttribute('calories'))
-    console.log(e.target.name)
+      updateToday.push({
+        quantity: e.quantity,
+        name: e.food.name,
+        calories: e.food.calories
+      })
 
+      let newCalories =  this.state.calTotal + (Number(e.quantity) * Number(e.food.calories))
+
+
+      this.setState({
+        todaysFoods: updateToday,
+        calTotal: newCalories
+      })
   }
 
   searchInput = (e) => {
@@ -43,7 +72,6 @@ class App extends Component {
     }
 
     updatedFoods.push(newFood)
-
 
     this.setState({
       myFoods: updatedFoods,
@@ -111,13 +139,16 @@ class App extends Component {
         <div className="flexy">
           <div className="foodOptions">
             {this.state.myFoods.map((food, index) => {
-                return <FoodBox food={food} key={index} addFood={()=> this.addFood} />
+                return <FoodBox food={food} key={index} addFood={this.addFood}  />
               })}
           </div>
           <div className="todaysFoods">
               <ul>
                 <li>Today's foods</li>
-                <li>total: <span>0</span> cals</li>
+                {this.state.todaysFoods.map((food, i) => {
+                  return <li>{food.quantity} {food.name} = {food.calories * food.quantity}<button onClick={()=> this.deleteThis(i)}>Delete</button></li>
+                })}
+                <li id="calTotal">total: <span>{this.state.calTotal}</span> cals</li>
               </ul>
               
 

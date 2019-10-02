@@ -59,11 +59,24 @@ class App extends Component {
 
   addFoodChart(state) {
     let newFoodChart = [...this.state.foodChart]
-    newFoodChart.push({
-      numUnits: +state.numUnits,
-      name: state.name,
-      totalCal: +state.calories * state.numUnits
+
+    let repeatedFood = newFoodChart.findIndex(el => {
+      return el.name === state.name
     })
+
+    if (repeatedFood < 0) {  
+      newFoodChart.push({
+        numUnits: +state.numUnits,
+        name: state.name,
+        totalCal: +state.calories * state.numUnits
+      })
+    } else { 
+      newFoodChart[repeatedFood].numUnits = newFoodChart[repeatedFood].numUnits + state.numUnits
+      newFoodChart[repeatedFood].totalCal = state.calories * newFoodChart[repeatedFood].numUnits
+    }
+
+    console.log(newFoodChart)
+
     this.setState({
       ...this.state,
       foodChart: newFoodChart

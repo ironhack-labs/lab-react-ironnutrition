@@ -7,7 +7,7 @@ export default class FoodBox extends Component {
   };
 
   newerFoodArray = this.state.foodList.map((eachFood, i) => {
-    return (<div className="box">
+    return (<div key={i} className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">

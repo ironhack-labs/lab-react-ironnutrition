@@ -2,12 +2,22 @@ import React, { Component } from "react";
 import AddButton from "./AddButton";
 
 class Foodbox extends Component {
-  
-    addItem = () => {
-        this.props.addItemFunction();
-    }
-  
-    render() {
+  state = {
+    quantity: 1,
+    food: this.props.food
+  };
+
+  handleInputChange = e => {
+    this.setState({
+      quantity: e.target.value
+    });
+  };
+
+  addItem = () => {
+    this.props.addItemFunction(this.state);
+  };
+
+  render() {
     return (
       <div className="box">
         <article className="media" key={this.key}>
@@ -27,7 +37,14 @@ class Foodbox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" placeholder="0" />
+                <input
+                  name="quantity"
+                  className="input"
+                  type="number"
+                  defaultValue="1"
+                  min="0"
+                  onChange={this.handleInputChange}
+                />
               </div>
               <div className="control">
                 <AddButton addItem={this.addItem} />

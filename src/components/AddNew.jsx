@@ -19,7 +19,6 @@ class AddNew extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     this.props.addTheMeal(this.state);
-    console.log(this.state);
     this.setState({
       calories: 0,
       image: "",

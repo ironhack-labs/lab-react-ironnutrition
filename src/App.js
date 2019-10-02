@@ -1,28 +1,21 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
 import "./App.css";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
-// import Foodbox from "./components/Foodbox";
 import Food from "./components/Food";
 import Header from "./components/Header";
 import AddNew from "./components/AddNew";
 import Search from "./components/Search";
-// import { thisTypeAnnotation } from "@babel/types";
 import TodayFoods from "./components/TodayFoods";
 
 class App extends Component {
   state = {
     allFoods: foods,
-    pickedFoods: [
-      { name: "pizza", calories: 300, quantity: 1 },
-      { name: "salad", calories: 100, quantity: 1 },
-      { name: "pizza", calories: 300, quantity: 1 },
-    ]
+    pickedFoods: [],
+    caloricTotal: 0
   };
 
   pushFood = food => {
-    console.log(this.state.allFoods, food);
     let foodsCopy = [...this.state.allFoods];
     foodsCopy.unshift(food);
     this.setState({
@@ -37,11 +30,22 @@ class App extends Component {
     this.setState({
       allFoods: searchResults
     });
-    console.log(this.state.allFoods);
   };
 
-  addTodayMeal = () => {
-    this.setState({ something: Math.random() });
+  addTodayMeal = a => {
+    let cart = [...this.state.pickedFoods];
+    cart.push({
+      quantity: Number(a.quantity),
+      name: a.food.name,
+      calories: a.food.calories
+    });
+    let newCalories =
+      this.state.caloricTotal + Number(a.quantity) * Number(a.food.calories);
+    console.log(newCalories, this.state.caloricTotal);
+    this.setState({
+      pickedFoods: cart,
+      caloricTotal: newCalories
+    });
   };
 
   render() {
@@ -55,7 +59,7 @@ class App extends Component {
             allFoods={this.state.allFoods}
             addTodayMeal={this.addTodayMeal}
           ></Food>
-          <TodayFoods something={this.state.something} />
+          <TodayFoods something={this.state} />
         </div>
       </div>
     );

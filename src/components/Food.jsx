@@ -3,8 +3,8 @@ import Foodbox from "./Foodbox";
 // import foods from "../foods.json"
 
 class Food extends Component {
-  addItemFunction = () => {
-    this.props.addTodayMeal();
+  addItemFunction = (a) => {
+    this.props.addTodayMeal(a);
   };
 
   populateAll = () => {

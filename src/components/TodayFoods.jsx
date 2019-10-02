@@ -5,8 +5,8 @@ class TodayFoods extends Component {
   render() {
     return (
       <div className="column content">
-        <h2 className="subtitle">Today's foods</h2>
-        <Information something={this.props.something} food={this.props.theFood} amount={this.props.theAmount}/>
+        <h2 className="subtitle">Today's Foods</h2>
+        <Information something={this.props.something}/>
       </div>
     );
   }

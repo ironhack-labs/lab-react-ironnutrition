@@ -1,6 +1,29 @@
 import React, { Component } from 'react'
 
 export default class FoodBox extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      calories: this.props.calories,
+      numUnits: 1,
+      name: this.props.name
+    }
+  }
+
+  returnInfo(e) {
+    e.preventDefault()
+    this.props.addFoodChart(this.state)
+  }
+
+  addUnits(e) {
+    let numUnits = e.target.value
+
+    this.setState({
+      ...this.state,
+      numUnits
+    })
+  }
+
   render() {
     return (
       <div className="box">
@@ -24,11 +47,12 @@ export default class FoodBox extends Component {
                 <input
                   className="input"
                   type="number" 
-                  defaultValue="1"
+                  value={this.state.numUnits}
+                  onChange={e => this.addUnits(e)}
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={e => this.returnInfo(e)}>
                   +
                 </button>
               </div>

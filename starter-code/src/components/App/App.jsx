@@ -5,6 +5,7 @@ import foods from '../../utils/foods.json'
 import FoodBox from '../FoodBox';
 import FoodForm from '../FoodForm';
 import SearchBar from '../SearchBar';
+import FoodList from '../FoodList';
 
 class App extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class App extends Component {
     this.state = {
       foodList: foods,
       filteredFood: foods,
+      foodChart: [],
       showForm: false
     }
   }
@@ -53,8 +55,31 @@ class App extends Component {
       ...this.state,
       filteredFood: filterFood
     })
-    
-  
+  }
+
+  addFoodChart(state) {
+    let newFoodChart = [...this.state.foodChart]
+    newFoodChart.push({
+      numUnits: +state.numUnits,
+      name: state.name,
+      totalCal: +state.calories * state.numUnits
+    })
+    this.setState({
+      ...this.state,
+      foodChart: newFoodChart
+    })
+  }
+
+  deleteFood(idx) {
+    let removedFoodChart = [...this.state.foodChart]
+    removedFoodChart.splice(idx,1)
+
+    console.log(removedFoodChart)
+
+    this.setState({
+      ...this.state,
+      foodChart: removedFoodChart
+    })
   }
 
 
@@ -66,8 +91,18 @@ class App extends Component {
         {this.state.showForm && <FoodForm sendStateFromApp={ state => this.updateState(state) }>Add</FoodForm>}
         {this.state.filteredFood.map( (food, i) => {
           return <FoodBox key={i}
-          {...food} ></FoodBox>
+          {...food}
+          addFoodChart={(state) => this.addFoodChart(state)}
+          ></FoodBox>
         })}
+        <FoodList
+        addFoodChart={(state) => this.addFoodChart(state)}
+        totalCal={this.state.foodChart.reduce((a, b) => a + b.totalCal, 0)}
+        >
+          {this.state.foodChart.map((food, idx) => {
+            return <li key={idx}>{food.numUnits} x {food.name} <button onClick={() => this.deleteFood(idx)}>X</button></li>
+          })}
+        </FoodList>
       </div>
     );
   }

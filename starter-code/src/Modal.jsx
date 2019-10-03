@@ -33,21 +33,21 @@ class Modal extends Component {
                        <div className="field">
                            <label className="label">Name</label>
                            <div className="control">
-                               <input className="input" type="text" placeholder="Food Name" name="name" onChange={this.inputUpdate} />
+                               <input className="input" type="text" placeholder="Ex. Krabby Patty" name="name" onChange={this.inputUpdate} />
                            </div>
                            <label className="label">Calories</label>
                            <div className="control">
-                               <input className="input" type="text" placeholder="Food Calories" name="calories" onChange={this.inputUpdate} />
+                               <input className="input" type="text" placeholder="Ex. 715.3 cal" name="calories" onChange={this.inputUpdate} />
                            </div>
                            <label className="label">Image</label>
                            <div className="control">
-                               <input className="input" type="text" placeholder="Image URL" name="image" onChange={this.inputUpdate} />
+                               <input className="input" type="text" placeholder="Ex. http://someImageURL" name="image" onChange={this.inputUpdate} />
                            </div>
                        </div>
                    </div>
                </section>
                <footer className="modal-card-foot">
-                   <button onClick={this.addFoodItem}>Submit</button>
+                   <a className="button" onClick={this.addFoodItem}>Submit</a>
                </footer>
                </div>
            </div>

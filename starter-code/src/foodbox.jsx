@@ -5,6 +5,9 @@ import React, { Component } from 'react'
 
 class FoodBox extends Component {
 
+  state = {
+    quantity: 0
+  }
   showListOfFoods = () => {
     console.log(this.props.foodList)
     let listOfFoods = this.props.foodList.map((eachFood,i)=> {
@@ -27,14 +30,10 @@ class FoodBox extends Component {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input
-                className="input"
-                type="number" 
-                value={eachFood.quantity}
-              />
+            <input className="input" type="number" onChange={(e) => {this.setState({quantity:e.target.value})}} />
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button onClick={() => {this.props.addToList({ ... this.props, ... this.state,})}} className="button is-info">
                 +
               </button>
             </div>
@@ -47,35 +46,10 @@ class FoodBox extends Component {
     return listOfFoods;
   }
 
-  // setForm = (event) => {
-  //   this.setprops({
-  //       [event.target.value]:event.target.value
-  //   });
-  // }
-
-  // handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  // }
-  
-
 render () {
   return (
       <div>
         <table>{this.showListOfFoods()}</table>
-        {/* <form onSubmit={this.handleFormSubmit}>
-            <label>Name:</label>
-            <input type="text" name="name" onChange={this.setForm} />
-            <label>Calories:</label>
-            <input type="text" name="calories" onChange={this.setForm} />
-            <label>Image:</label>
-            <input type="text" name="images" onChange={this.setForm} />
-            <input type="submit" value="Submit" />
-        </form> */}
-        {/* <form onSubmit={this.handleFormSubmit}>
-          <label>Name:</label>
-          <input type="text" name="name" onChange={this.handleFormSubmit}/>
-          <input type="submit" value="Submit"/>
-          </form> */}
       </div>
     )
   }

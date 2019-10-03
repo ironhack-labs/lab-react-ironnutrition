@@ -11,6 +11,7 @@ import TodayFoods from "./components/TodayFoods";
 class App extends Component {
   state = {
     allFoods: foods,
+    displayFoods: foods,
     pickedFoods: [],
     caloricTotal: 0
   };
@@ -19,7 +20,8 @@ class App extends Component {
     let foodsCopy = [...this.state.allFoods];
     foodsCopy.unshift(food);
     this.setState({
-      allFoods: foodsCopy
+      allFoods: foodsCopy,
+      displayFoods: foodsCopy,
     });
   };
 

@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.a{
+  background-color: red
+}
+.b{
+  color: white;
+  background-color: blue
+}
+
+.App{
+  margin-left: -18vw;
+}

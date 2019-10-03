@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./FoodBox";
 import AddFood from "./AddFood.js";
+import OmegaComponent from "./OmegaComponent.js"
 
 class App extends Component {
   state = {
@@ -12,9 +13,8 @@ class App extends Component {
     name: "",
     calories: "",
     image: "",
-    searchThis: foods
-
-    
+    searchThis: foods,
+    quantity: ""
   };
 
   // newerFoodArray = () =>
@@ -31,7 +31,7 @@ class App extends Component {
 
   addFoodHandler = theFood => {
     const foodCopy = [...this.state.foodList];
-    foodCopy.push(theFood);
+    foodCopy.unshift(theFood);
     this.setState({
       foodList: foodCopy
     });
@@ -68,7 +68,9 @@ class App extends Component {
     });
   };
 
-  searchFunction = (e) => {
+   
+
+  searchFunction = e => {
     console.log(e.target.value);
     console.log("searching..................");
 
@@ -77,9 +79,8 @@ class App extends Component {
     console.log(copy);
 
     let searchThis = copy.filter(eachItem => {
-
       console.log(eachItem);
-      
+
       return eachItem.name.toLowerCase().includes(e.target.value);
     });
 
@@ -103,16 +104,29 @@ class App extends Component {
           {" "}
           Add Food{" "}
         </button>
-        <div className="foodList">
-          {this.state.showForm && (
-            <AddFood
-              // addTheFood={this.addFoodHandler}
-              parentState={this.state}
-              handleInput={this.handleInput}
-              handleFormSubmit={this.handleFormSubmit}
+        <div className="columns">
+          <div className="foodList column is-one-sixth a">
+            {this.state.showForm && (
+              <AddFood
+                parentState={this.state}
+                handleInput={this.handleInput}
+                handleFormSubmit={this.handleFormSubmit}
+              />
+            )}
+            <FoodBox
+              foodList={this.state.searchThis}
+              addButton={this.addToRight}
+             
             />
-          )}
-          <FoodBox foodList={this.state.searchThis} />
+
+          </div>
+          <div className="foodList column is-one-sixth b">
+
+              <OmegaComponent 
+              
+              />
+          </div>
+
         </div>
       </div>
     );

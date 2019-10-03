@@ -3,6 +3,7 @@ import foods from "./foods.json";
 
 export default class FoodBox extends Component {
 
+
   showFoods = () => {
   var newerFoodArray = this.props.foodList.map((eachFood, i) => {
     //console.log("NEWER FOOD ARRAY", this.state.foodList)
@@ -27,7 +28,7 @@ export default class FoodBox extends Component {
             <input className="input" type="number" defaultValue="1" />
           </div>
           <div className="control">
-            <button className="button is-info">+</button>
+            <button className="button is-info" onClick={()=> {this.props.addButton}}> + </button>
           </div>
         </div>
       </div>

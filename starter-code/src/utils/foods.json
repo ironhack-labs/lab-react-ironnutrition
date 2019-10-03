@@ -1,4 +1,10 @@
-[
+[  
+  {
+    "name": "Galicia Star",
+    "calories": 40,
+    "image": "https://www.encopadebalon.com/4278-large_default/cerveza-estrella-galicia-pack-24-unidades-25cl.jpg",
+    "quantity": 0
+  },
   {
     "name": "Pizza",
     "calories": 400,

@@ -1,0 +1,27 @@
+.foodListCard {
+  min-width: 250px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: rgba(214, 214, 102, 0.582);
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.404);
+}
+
+.foodListCard h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.foodListCard button {
+  padding: 5px 10px;
+  background-color: rgb(207, 41, 41);
+  border: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.foodListCard ul {
+  margin: 20px 0;
+}

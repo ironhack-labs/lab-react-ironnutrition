@@ -1,0 +1,27 @@
+.foodFormCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.404);
+  padding: 20px;
+}
+
+.foodFormCard input {
+  min-width: 250px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: rgba(214, 214, 102, 0.582);
+}
+
+.foodForm button {
+  padding: 10px 20px;
+  background-color: rgb(76, 185, 76);
+  border: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  font-weight: bold;
+  margin: 20px 0;
+}

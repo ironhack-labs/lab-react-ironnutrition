@@ -1,0 +1,8 @@
+.box {
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.control input {
+  width: 50px;
+}

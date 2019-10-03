@@ -15,3 +15,22 @@
 .searchBar input {
   border: 1px solid black;
 }
+
+.bodyContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.foodBoxes {
+  height: 85vh;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.section-right {
+  display: flex;
+  flex-direction: column;
+}
+

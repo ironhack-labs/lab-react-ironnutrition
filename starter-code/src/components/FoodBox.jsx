@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './FoodBox.css'
 
 export default class FoodBox extends Component {
   constructor(props) {

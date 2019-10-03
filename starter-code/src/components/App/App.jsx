@@ -71,8 +71,8 @@ class App extends Component {
         totalCal: +state.calories * state.numUnits
       })
     } else { 
-      newFoodChart[repeatedFood].numUnits = newFoodChart[repeatedFood].numUnits + state.numUnits
-      newFoodChart[repeatedFood].totalCal = state.calories * newFoodChart[repeatedFood].numUnits
+      newFoodChart[repeatedFood].numUnits = +newFoodChart[repeatedFood].numUnits + +state.numUnits
+      newFoodChart[repeatedFood].totalCal = +state.calories * +newFoodChart[repeatedFood].numUnits
     }
 
     console.log(newFoodChart)
@@ -100,22 +100,32 @@ class App extends Component {
     return (
       <div>
         <SearchBar updateSearch={e => this.updateSearch(e)}></SearchBar>
-        <button onClick={() => this.switchFoodFormVisibility()}>Add Food</button>
-        {this.state.showForm && <FoodForm sendStateFromApp={ state => this.updateState(state) }>Add</FoodForm>}
-        {this.state.filteredFood.map( (food, i) => {
-          return <FoodBox key={i}
-          {...food}
-          addFoodChart={(state) => this.addFoodChart(state)}
-          ></FoodBox>
-        })}
-        <FoodList
-        addFoodChart={(state) => this.addFoodChart(state)}
-        totalCal={this.state.foodChart.reduce((a, b) => a + b.totalCal, 0)}
-        >
-          {this.state.foodChart.map((food, idx) => {
-            return <li key={idx}>{food.numUnits} x {food.name} <button onClick={() => this.deleteFood(idx)}>X</button></li>
-          })}
-        </FoodList>
+        <div className="bodyContainer">
+            <div className="foodBoxes">
+              {this.state.filteredFood.map( (food, i) => {
+                return <FoodBox key={i}
+                {...food}
+                addFoodChart={(state) => this.addFoodChart(state)}
+                ></FoodBox>
+              })}
+          </div>
+          <div className="section-right">
+            <div className="foodForm">
+              <button onClick={() => this.switchFoodFormVisibility()}>Add Food</button>
+              {this.state.showForm && <FoodForm sendStateFromApp={ state => this.updateState(state) }>Add</FoodForm>}
+              </div>
+              <div className="foodChart">
+                <FoodList
+                addFoodChart={(state) => this.addFoodChart(state)}
+                totalCal={this.state.foodChart.reduce((a, b) => a + b.totalCal, 0)}
+                >
+                  {this.state.foodChart.map((food, idx) => {
+                    return <li key={idx}><button onClick={() => this.deleteFood(idx)}>X</button> {food.numUnits} x {food.name} </li>
+                  })}
+                </FoodList>
+              </div>
+            </div>
+          </div>
       </div>
     );
   }

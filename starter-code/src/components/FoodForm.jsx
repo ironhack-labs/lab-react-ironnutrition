@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './FoodForm.css'
 
 export default class FoodForm extends Component {
   constructor() {
@@ -23,7 +24,7 @@ export default class FoodForm extends Component {
 
   render() {
     return (
-      <form className='foodForm'>
+      <form className='foodFormCard'>
         <label>Image URL</label>
         <input type="text" name="image" placeholder="http://..." value={this.state.image} onChange={e => this.updateValue(e, 'image')} />
         <label>Name</label>

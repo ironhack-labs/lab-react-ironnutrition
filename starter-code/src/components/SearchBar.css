@@ -1,0 +1,6 @@
+.searchBar input {
+  display: block;
+  width: 60vw;
+  margin: 20px auto;
+  padding: 10px 20px;
+}

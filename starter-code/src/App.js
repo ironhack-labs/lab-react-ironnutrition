@@ -15,7 +15,9 @@ class App extends Component {
   state = {
     foods: foods,
     allFoods: foods,
-    formopen: false
+    formopen: false,
+    selFood:[]
+    
     
   }
 
@@ -36,14 +38,23 @@ class App extends Component {
     })
     // carefull setstate is asyn. is now doing its thing updating view. so the below will not work
     //alert('add cnt2: '+this.state.allFoods.length);
-    
+    this.toggleForm();
 
   }
 
   
-  appAddItem=()=>{
+  appAddItem=(index)=>{
   
-    
+   let temp=[...this.state.selFood];
+   if (!temp.includes(this.state.allFoods[index]))
+      temp.push(this.state.allFoods[index]);
+   this.setState(
+    {selFood:temp}
+   )
+
+
+  
+  
   }
 
   appSearch=(e)=>{
@@ -67,42 +78,27 @@ class App extends Component {
   }
 
   appUpdateItem=(e)=>{
-    let updated={...this.state.foods[e.target.name]}
+    // trick to handle index using the e.targetsending.name aMethodUpdate={this.appUpdateItem} 
+    // another way was implement in appAddItem  sending body function to child aMethodAdd={ ()=>this.appAddItem(index)
+    let temp=[...this.state.foods];
     let qty=Number(e.target.value);
     if (-1==qty) qty=0;
-
-    updated.quantity=qty;
-    this.state.foods[e.target.name]=updated;
+    temp[e.target.name].quantity=qty;
     this.setState(
-      {foods:foods}
+      {foods:temp}
     )
     
     
   }
 
-  addItemToParent= (food) => {
   
-    let foodlist = {...this.state.todayFoods}
-    foodlist.push(food);
- 
-    this.setState({
-      todayFoods: foodlist
-    })
-  }
   
-  showList = () => {
-   return this.state.todayFoods.map( (item, i) => {
-    return  <ul key={i}>
-      <li>item.name}</li>
-      <li>{item.calories}</li>
-      <li>{item.quantity}</li>
-    </ul>
-   });
-  }
+  
 
   countCal = () => {
-    const calories = this.state.todayFoods.reduce((sum, food) => {
-      return sum + food.calories;
+   
+    const calories = this.state.selFood.reduce((sum, food) => {
+      return sum + food.calories*food.quantity;
     }, 0);
     return calories
 
@@ -110,10 +106,20 @@ class App extends Component {
 
 
   render() {
+      
+       //two ways to do the same here. i want to know the index of food when calling function
+      // 1) in .appUpdateItem i use the trick of the id={index} to assign to name in child and then back here use e.target.name
+      // 2) in addItem we will use a better approach: send the method call with index => this.appUpdateItem(index)
 
     let foodItems=this.state.foods.map((item, index) => {
-      return <FoodBox key={index} id={index} {...item} aMethodUpdate={this.appUpdateItem} aMethodAdd={this.appAddItem}/>
+      return <FoodBox key={index} id={index} {...item} aMethodUpdate={this.appUpdateItem} aMethodAdd={ ()=>this.appAddItem(index) }/>
     })
+    
+    let selItems=this.state.selFood.map((item, index) => {
+      return <li key={index}>{item.quantity} {item.name} = {item.calories} cal</li>
+    })
+
+    let totalCal=this.countCal();
 
 
     return (
@@ -133,19 +139,15 @@ class App extends Component {
       <div class="columns">
          <div class="column">
          {foodItems}
-
-      )} 
-         
-          
          </div>
 
         <div class="column content">
           <h2 class="subtitle">Today's foods</h2>
           <ul>
-            <li>1 Pizza = 400 cal</li>
-            <li>2 Salad = 300 cal</li>
+            {selItems}
+            
           </ul>
-          <strong>Total: 700 cal</strong>
+          <strong>Total: {totalCal} cal</strong>
         </div>
       </div>
     </div>

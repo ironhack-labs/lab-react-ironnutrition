@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       foods: foods,
       showForm: false,
-      value: ''
+      value: '',
+      foodFilter: foods
     };
     this.FoodForm = this.FoodForm.bind(this)
     this.addFood = this.addFood.bind(this)
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   searchFood(event) {
-    const foodCopy = [...this.state.foods];
+    const foodCopy = [...this.state.foodFilter];
     let { value } = event.target;
     console.log(value);
     

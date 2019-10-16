@@ -14,30 +14,53 @@ class App extends Component {
       showForm: false
     };
     this.FoodForm = this.FoodForm.bind(this)
+    this.addFood = this.addFood.bind(this)
   }
 
-  FoodForm(){
-    this.setState({ showForm: !this.state.showForm})
+  FoodForm() {
+    this.setState({ showForm: !this.state.showForm })
     // console.log(this.state.showForm)
   }
 
+  addFood = (thefood) => {
+    const foodCopy = [...this.state.foods];
+    foodCopy.unshift(thefood);
+    // console.log(foodCopy)
+    this.setState({
+      foods: foodCopy,
+      showForm: !this.state.showForm
+    })
+  }
+
   render() {
-    const {showForm} = this.state;
+    const { showForm } = this.state;
     return (
       <div>
         <button onClick={this.FoodForm}>
           SHOW FORM
         </button>
         <div>
-        {showForm && <FormNewFood/>}
+          {showForm && <FormNewFood addTheFood={this.addFood} />}
         </div>
-        {this.state.foods.map((elem , idx)=> {
-          return <FoodBox key={idx} name={elem.name} calories={elem.calories} image={elem.image} quantity={elem.quantity}/>
-         })}
-         
+        <div className="field has-addons">
+          <div className="control">
+            <input name='serch' className="input" type="text" placeholder="Find a repository" />
+          </div>
+          <div className="control">
+            <a className="button is-info">
+              Search
+            </a>
+          </div>
+        </div>
+        {this.state.foods.map((elem, idx) => {
+          return <FoodBox key={idx} name={elem.name} calories={elem.calories} image={elem.image} quantity={elem.quantity} />
+        })}
+
       </div>
     );
   }
 }
 
 export default App;
+
+

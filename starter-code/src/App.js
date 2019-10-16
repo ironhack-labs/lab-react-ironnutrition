@@ -11,10 +11,12 @@ class App extends Component {
     super(props);
     this.state = {
       foods: foods,
-      showForm: false
+      showForm: false,
+      value: ''
     };
     this.FoodForm = this.FoodForm.bind(this)
     this.addFood = this.addFood.bind(this)
+    this.searchFood = this.searchFood.bind(this)
   }
 
   FoodForm() {
@@ -22,13 +24,28 @@ class App extends Component {
     // console.log(this.state.showForm)
   }
 
-  addFood = (thefood) => {
+  addFood(thefood)  {
     const foodCopy = [...this.state.foods];
     foodCopy.unshift(thefood);
     // console.log(foodCopy)
     this.setState({
       foods: foodCopy,
       showForm: !this.state.showForm
+    })
+  }
+
+  searchFood(event) {
+    const foodCopy = [...this.state.foods];
+    let { value } = event.target;
+    console.log(value);
+    
+    let result = foodCopy.filter((e)=> {
+      let low = e.name.toLowerCase()
+      return low.includes(value)
+    });
+    this.setState({
+      foods: result,
+      value: value
     })
   }
 
@@ -44,7 +61,7 @@ class App extends Component {
         </div>
         <div className="field has-addons">
           <div className="control">
-            <input name='serch' className="input" type="text" placeholder="Find a repository" />
+            <input name='serch' value={this.state.value} className="input" type="text" placeholder="Find a repository" onChange={(e) => this.searchFood(e)}/>
           </div>
           <div className="control">
             <a className="button is-info">

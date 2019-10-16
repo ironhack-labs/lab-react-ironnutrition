@@ -12,11 +12,14 @@ class App extends Component {
     super(props),
       this.state = {
         foods: foods,
+        allFoods: foods,
         showForm: false,
+        search: '',
       }
       // this.displayElements = this.displayElements.bind(this)
       this.callFoodForm = this.callFoodForm.bind(this)
       this.addFood = this.addFood.bind(this)
+      this.handleSearch =  this.handleSearch.bind(this)
   }
   callFoodForm() {
     console.log('eai monica, blz?');
@@ -31,12 +34,29 @@ class App extends Component {
     foodCopy.unshift(newFood)
     this.setState({
       foods: foodCopy,
+      showForm: !this.state.showForm,
     })
+  }
+
+  handleSearch(event){
+    let foodCopy = [...this.state.allFoods];
+    let {value} = event.target;
+    let result = foodCopy.filter(e => {
+      let nameLower = e.name.toLowerCase()
+      return nameLower.includes(value) 
+    })
+    this.setState({
+      search: value,
+      foods: result,
+    })
+    
   }
   
   render() {
     return (
       <div>
+        <h1>Iron Nutrition</h1>
+        <input type="text" name="search" value={this.state.search} onChange= {(e) => this.handleSearch(e)} />
         <button onClick={this.callFoodForm}>Add new food</button>
     {this.state.showForm && <FoodForm addFood={this.addFood}/> }
         {this.state.foods.map(e =>{ 

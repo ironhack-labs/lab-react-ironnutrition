@@ -15,7 +15,7 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 
 .App-intro {
@@ -25,4 +25,10 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.foods-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 500px;
 }

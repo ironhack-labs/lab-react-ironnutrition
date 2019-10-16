@@ -3,7 +3,9 @@ import  React, { Component} from 'react'
 class FoodBox extends Component {
   constructor(props){
     super(props)
+    this.addQuantity = this.addQuantity.bind(this)
   }
+
   render(){
     return(
       <div className="box">
@@ -31,7 +33,7 @@ class FoodBox extends Component {
           />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button className="button is-info" onClick={this.props.addQuantity}>
             +
           </button>
         </div>

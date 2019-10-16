@@ -21,6 +21,10 @@ class App extends Component {
       this.addFood = this.addFood.bind(this)
       this.handleSearch =  this.handleSearch.bind(this)
   }
+  addQuantity(){
+    let foodCopy = [...this.state.foods];
+    foodCopy
+  }
   callFoodForm() {
     console.log('eai monica, blz?');
     

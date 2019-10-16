@@ -16,6 +16,7 @@ class App extends Component {
       }
       // this.displayElements = this.displayElements.bind(this)
       this.callFoodForm = this.callFoodForm.bind(this)
+      this.addFood = this.addFood.bind(this)
   }
   callFoodForm() {
     console.log('eai monica, blz?');
@@ -24,11 +25,20 @@ class App extends Component {
     showForm: !this.state.showForm,
   }) 
   }
+
+  addFood(newFood){
+    let foodCopy = [...this.state.foods];
+    foodCopy.unshift(newFood)
+    this.setState({
+      foods: foodCopy,
+    })
+  }
   
   render() {
     return (
       <div>
         <button onClick={this.callFoodForm}>Add new food</button>
+    {this.state.showForm && <FoodForm addFood={this.addFood}/> }
         {this.state.foods.map(e =>{ 
           let { name, calories, image, quantity} = e;
           return (
@@ -37,7 +47,6 @@ class App extends Component {
         }
         )}{
 
-        this.state.showForm && <FoodForm/> 
          
         }
       </div>

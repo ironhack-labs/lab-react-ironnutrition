@@ -3,7 +3,18 @@ import  React, { Component} from 'react'
 class FoodBox extends Component {
   constructor(props){
     super(props)
-    this.addQuantity = this.addQuantity.bind(this)
+    this.state = {
+      quantity: this.props.quantity
+    }
+  }
+
+  addQuantity(e){
+    const { value } = e.target;
+    let newValue = value;
+    let numValue = parseInt(newValue, 10)
+    this.setState({
+      quantity: this.props.quantity + numValue,
+    })
   }
 
   render(){
@@ -29,7 +40,8 @@ class FoodBox extends Component {
           <input
             className="input"
             type="number" 
-            value={this.props.quantity}
+            value={this.state.quantity}
+            onChange= {(e) => this.addQuantity(e)}
           />
         </div>
         <div className="control">

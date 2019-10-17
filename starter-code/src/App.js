@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       foods: foods,
       showForm: false,
-      value: '',
+      valueAll: '',
       foodFilter: foods
     };
     this.FoodForm = this.FoodForm.bind(this)
@@ -46,14 +46,14 @@ class App extends Component {
     });
     this.setState({
       foods: result,
-      value: value
+      valueAll: value
     })
   }
 
   render() {
     const { showForm } = this.state;
     return (
-      <div>
+      <div className='form'>
         <button onClick={this.FoodForm}>
           SHOW FORM
         </button>

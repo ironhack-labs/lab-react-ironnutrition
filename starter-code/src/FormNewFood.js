@@ -13,7 +13,9 @@ class FormNewFood extends Component {
   }
 
   handleFoodInput(event) {
+
     let { name, value } = event.target;
+    
     this.setState({
       [name]: value
     })
@@ -31,7 +33,7 @@ class FormNewFood extends Component {
 
   render(){
     return(
-    <div>
+    <div >
       <form onSubmit={this.handleFormSubmit}>
           <label>Name:</label>
           <input type="text" name="name" value={this.props.name} onChange={(e) => this.handleFoodInput(e)}/>

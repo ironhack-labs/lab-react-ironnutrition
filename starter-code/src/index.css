@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.theForm {
+  float: right;
+  margin-top: 50px;
+  margin-right: 50px;
+}
+
+
+.food-list {
+  float: left;
+  width: 40%;
+}
+
+.App {
+  padding: 10px;
+}

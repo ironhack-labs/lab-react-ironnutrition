@@ -1,19 +1,55 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json'
+import FoodBox from './FoodBox';
+import SearchBar from './SearchBar'
+import AddFoodForm from './AddFoodForm'
+
 
 class App extends Component {
+
+  state = {
+    foods: foods,
+    addFoodFormVisible: false,
+    stringToFilterFor: ""
+  }
+
+  addFood = (food) => {
+    const newArr = [food, ...this.state.foods]
+    this.setState({
+      foods: newArr
+    })
+  }
+
+  toggleFoodForm = () => {
+    this.setState(state => ({
+      addFoodFormVisible: !state.addFoodFormVisible
+    }))
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <div >
+        <button onClick={this.toggleFoodForm}>
+          {this.state.addFoodFormVisible && <div>Hide form to Add Food</div>}
+          {!this.state.addFoodFormVisible && <div>Show form to Add Food</div>}
+        </button>
+        {this.state.addFoodFormVisible ?
+          <AddFoodForm onNewFood={this.addFood}></AddFoodForm>
+          : ""}
+        <SearchBar stateLocation={this.state}>
+
+        </SearchBar>
+        {this.state.foods.map((oneFood, idx) => {
+          return <div>
+            < FoodBox key={idx} {...oneFood} >
+            </FoodBox>
+          </div>
+        })
+        }
+      </div >
     );
   }
 }

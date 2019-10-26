@@ -41,6 +41,7 @@ class FoodBox extends React.Component {
                     className="input"
                     name="quantity"
                     type="number"
+                    min="1"
                     onChange={this.handleChangeQuantity}
                     value={this.state.quantity}
                   />

@@ -1,15 +1,13 @@
 import React from "react";
 
-class TodaysFood extends React.Component {
-
-  render() {
-    return (
-      <ul>
-        {this.props.quantity} {this.props.name}
-      </ul>
-
-    )
-  }
+const TodaysFood = (props) => {
+  return (
+    <ul>
+      {props.quantity > 0 && <span>{props.quantity} {props.name}</span>}
+      {props.quantity > 0 && <button onClick={props.deleteOneMethod}>Delete</button>}
+    </ul>
+  )
 }
+
 
 export default TodaysFood;

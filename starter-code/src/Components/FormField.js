@@ -5,11 +5,11 @@ const FormField = props => {
     <div className="field">
       <label className="label">{props.label}</label>
       <div className="control">
-        <input onChange={props.onChange} 
-        className="input" type={props.type} 
-        name={props.name} 
-        value={props.value} 
-        placeholder={props.placeholder} />
+        <input onChange={props.onChange}
+          className="input" type={props.type}
+          name={props.name}
+          value={props.value}
+          placeholder={props.placeholder} />
       </div>
     </div>
   )

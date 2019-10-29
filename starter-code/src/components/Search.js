@@ -1,43 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Search extends Component {
   constructor() {
     super();
     this.state = {
-      search: ''
-    }
+      search: ""
+    };
   }
 
-  changeHandler = (e) => {
+  changeHandler = e => {
     let { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
-  }
-
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    this.props.search(this.state)
-    this.props.food(this.state)
-    this.setState({
-      search: e
-    })
-  }
+    this.setState({ [name]: value });
+    this.props.searchFood(this.state.search);
+  };
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <div className="field is-grouped">
-          <p className="control is-expanded">
-            <input class="input" type="text" name="search" placeholder="search" value={this.state.search} onChange={(e) => this.changeHandler(e)} />
-          </p>
-          <p className="control">
-            <a class="button is-info" type="button" value="submit">
-              Search</a>
-          </p>
-        </div>
-      </form>
-    )
+      // <form onSubmit={this.handleFormSubmit}>
+
+      <div className="field is-grouped">
+        <p className="control is-expanded">
+          <input
+            className="input"
+            type="text"
+            name="search"
+            placeholder="search here"
+            onChange={this.changeHandler}
+          />
+        </p>
+      </div>
+
+      // </form>
+    );
   }
 }
 

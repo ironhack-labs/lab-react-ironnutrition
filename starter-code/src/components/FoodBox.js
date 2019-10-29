@@ -27,18 +27,6 @@ class FoodBox extends Component {
     );
   };
 
-  show = () => {
-    this.setState({
-      displayTodayFoods: true
-    });
-  };
-
-  hide = () => {
-    this.setState({
-      displayTodayFoods: false
-    });
-  };
-
   render() {
     return (
       <div className="column is-half">

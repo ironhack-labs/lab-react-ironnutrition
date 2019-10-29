@@ -38,13 +38,14 @@ class App extends Component {
   };
 
   searchFood = input => {
-    const toSearch = input;
-    // const foodList = [...this.state.foodData];
-    this.setState({
-      foodData: this.state.foodData.filter(() =>
-        this.state.foodData.toLowerCase().includes(toSearch)
-      )
-    });
+    const results = [];
+    const foodList = [...this.state.foodData];
+    foodList.map(f =>
+      f.name.toLowerCase().includes(input.toLowerCase()) ? results.push(f) : " "
+    );
+    results.length > 1
+      ? this.setState({ foodData: input })
+      : this.setState({ foodData: this.state.foodData });
   };
 
   addToToday = (name, calories, quantity) => {
@@ -59,7 +60,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">IronNutrition</h1>
         </header>
-        <Search search={this.searchFood} food={this.state.foodData} />
+        <Search searchFood={this.searchFood} />
         <FoodList myfoods={this.state.foodData} addToToday={this.addToToday} />
         <button className="button is-info" onClick={this.visibleForm}>
           {" "}

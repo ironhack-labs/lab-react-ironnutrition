@@ -25,26 +25,21 @@ class App extends Component {
     });
   };
 
-  visibleForm = () => {
+  formVisibility = () =>
     this.setState({
-      showForm: true
+      showForm: !this.state.showForm
     });
-  };
 
-  hideForm = () => {
-    this.setState({
-      showForm: false
-    });
-  };
-
-  searchFood = input => {
+  searchFood = search => {
     const results = [];
     const foodList = [...this.state.foodData];
-    foodList.map(f =>
-      f.name.toLowerCase().includes(input.toLowerCase()) ? results.push(f) : " "
-    );
+    foodList.map(f => {
+      return f.name.toLowerCase().includes(search.toLowerCase())
+        ? results.push(f)
+        : " ";
+    });
     results.length > 1
-      ? this.setState({ foodData: input })
+      ? this.setState({ foodData: results })
       : this.setState({ foodData: this.state.foodData });
   };
 
@@ -62,12 +57,12 @@ class App extends Component {
         </header>
         <Search searchFood={this.searchFood} />
         <FoodList myfoods={this.state.foodData} addToToday={this.addToToday} />
-        <button className="button is-info" onClick={this.visibleForm}>
+        <button className="button is-info" onClick={this.formVisibility}>
           {" "}
           Add new food{" "}
         </button>
         {this.state.showForm ? (
-          <AddFood addTheFood={this.addFood} showForm={this.hideForm} />
+          <AddFood addTheFood={this.addFood} showForm={this.formVisibility} />
         ) : null}
         <TodayFoods foods={this.state.todayFood} />
       </div>

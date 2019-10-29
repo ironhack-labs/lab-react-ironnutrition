@@ -11,7 +11,7 @@ class Search extends Component {
   changeHandler = e => {
     let { name, value } = e.target;
     this.setState({ [name]: value });
-    this.props.searchFood(this.state.search);
+    this.props.searchFood(this.state.search); /* this is lifting the state */
   };
 
   render() {

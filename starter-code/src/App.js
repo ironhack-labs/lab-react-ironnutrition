@@ -12,28 +12,31 @@ class App extends Component {
     super(props)
     this.state = {
       foods: foods,
+      displayFoods: foods,
       todaysFood: [],
       formVisible: false
     }
   }
 
   handleFormVisibility = () => {
-    this.state.formVisible ? this.setState({ formVisible: false }) : this.setState({ formVisible: true })
+    this.setState({
+      formVisible: !this.state.formVisible
+    })
   }
 
   addNewFood = food => {
-    this.state.foods.unshift(food);
+    this.state.displayFoods.unshift(food);
     this.setState({
-      foods: foods,
+      displayFoods: this.state.displayFoods,
     });
   }
 
-  showSearchResults = searchTerm => {
-    const searchResults = []
-    this.state.foods.map((f) => {
-      return f.name.toLowerCase().includes(searchTerm.toLowerCase()) ? searchResults.push(f) : ''
-    })
-    searchTerm.length > 1 ? this.setState({ foods: searchResults }) : this.setState({ foods: foods })
+  handleInputChange = e => {
+    this.showSearchResult(e.target.value)
+  }
+
+  showSearchResult = searchTerm => {
+    this.setState({ displayFoods: this.state.foods.filter(f => f.name.toLowerCase().includes(searchTerm.toLowerCase())) })
   }
 
   addTodaysFood = (foodItem, quantity) => {
@@ -67,10 +70,10 @@ class App extends Component {
       <div className="App">
         {this.state.formVisible && <Form addNewMethod={this.addNewFood} handleFormVisibility={this.handleFormVisibility} />}
         {!this.state.formVisible && <button onClick={this.handleFormVisibility} className="button is-primary">Add new food</button>}
-        <Search showSearchResultsMethod={this.showSearchResults} />
+        <Search handleInputChange={this.handleInputChange} />
         <div className="columns">
           <div className="column">
-            {this.state.foods.map((f, i) => {
+            {this.state.displayFoods.map((f, i) => {
               return <FoodBox addTodaysFoodMethod={this.addTodaysFood} name={f.name} calories={f.calories} image={f.image} quantity={f.quantity} key={'food_' + i} />
             })}
           </div>

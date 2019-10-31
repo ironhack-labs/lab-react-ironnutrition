@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormField = props => {
+const InputField = props => {
   return (
     <div className="field">
       <label className="label">{props.label}</label>
@@ -15,5 +15,5 @@ const FormField = props => {
   )
 }
 
-export default FormField;
+export default InputField;
 

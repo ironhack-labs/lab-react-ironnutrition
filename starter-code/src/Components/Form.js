@@ -1,5 +1,5 @@
 import React from 'react';
-import FormField from './FormField'
+import InputField from './InputField'
 
 class Form extends React.Component {
   constructor(props) {
@@ -28,9 +28,9 @@ class Form extends React.Component {
 
     return (
       <form onSubmit={this.handleFormSubmit} >
-        <FormField onChange={this.handleChangeInput} label="Name" type="text" name="name" />
-        <FormField onChange={this.handleChangeInput} label="Number of calories" type="number" name="calories" value={this.state.calories} />
-        <FormField onChange={this.handleChangeInput} label="Image Link" type="text" name="name" value={this.state.image} />
+        <InputField onChange={this.handleChangeInput} label="Name" type="text" name="name" />
+        <InputField onChange={this.handleChangeInput} label="Number of calories" type="number" name="calories" value={this.state.calories} />
+        <InputField onChange={this.handleChangeInput} label="Image Link" type="text" name="image" value={this.state.image} />
         <button type="submit" className="button is-primary" >Submit</button>
       </form>
 

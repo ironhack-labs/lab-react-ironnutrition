@@ -39,7 +39,7 @@ class FoodBox extends Component {
               />
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button onClick={() => this.props.addToTodayFoods({name, calories, image, quantity: this.state.quantity})} className="button is-info">
                 + 
               </button>
             </div>

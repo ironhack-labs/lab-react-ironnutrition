@@ -4,6 +4,7 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import FoodForm from './components/FoodForm';
 import Search from './components/Search';
+import TodayFoods from './components/TodayFoods';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     foods : [],
     filteredFoods : [],
     showForm: false,
+    todayFoods: [],
   }
 
   componentDidMount() {
@@ -47,19 +49,41 @@ class App extends Component {
     })
   }
 
+  addTodayFood = (food) => {
+    const foodsCopy = [...this.state.todayFoods];
+    if (foodsCopy.length === 0 && food.quantity > 0 ) {  
+      foodsCopy.push(food)
+    } else {
+      const sameFoodIndex = foodsCopy.findIndex((el) => el.name === food.name);
+      if ( sameFoodIndex === -1 && food.quantity > 0 ){
+        foodsCopy.push(food);
+      } else {
+        foodsCopy[sameFoodIndex] = food;
+      }
+    }
+    this.setState({
+      todayFoods: foodsCopy,
+    })
+  }
+
 
   render() {
-    const { filteredFoods } = this.state;
+    const { filteredFoods, todayFoods } = this.state;
     return (
       <div className="App">
-        <button onClick={this.showForm}>Add New Food</button>
-        { this.state.showForm && <FoodForm hideForm={this.hideForm} addFood={this.addFood} /> }
-        <Search filterFunc={this.searchFood}/>
-        {
-          filteredFoods.map((food,i) => (
-            <FoodBox key={i} food={food} />
-          ))
-        }
+        <div style={{width: '50%'}}>
+          <button onClick={this.showForm}>Add New Food</button>
+          { this.state.showForm && <FoodForm hideForm={this.hideForm} addFood={this.addFood} /> }
+          <Search filterFunc={this.searchFood}/>
+          {
+            filteredFoods.map((food,i) => (
+              <FoodBox key={i} food={food} addToTodayFoods={this.addTodayFood} />
+            ))
+          }
+        </div>
+          { todayFoods.length > 0 &&
+            <TodayFoods foods={this.state.todayFoods} />  
+          }    
       </div>
     );
   }

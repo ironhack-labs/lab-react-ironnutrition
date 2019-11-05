@@ -3,12 +3,14 @@ import "./App.css";
 import foods from "./foods.json";
 import Box from "./components/Box";
 import Form from "./components/Form";
+import Search from "./components/Search";
 import "bulma/css/bulma.css";
 
 class App extends Component {
   state = {
     foods_list: foods,
-    form_showed: false
+    form_showed: false,
+    filtered_foods: foods
   };
 
   showForm = () => {
@@ -21,6 +23,17 @@ class App extends Component {
     this.setState({ form_showed: stateCopy.form_showed });
   };
 
+  searchChange = e => {
+    let stateCopyFilteredFoods = [...this.state.filtered_foods];
+    let search = e.target.value;
+    console.log("se esta guardando", search);
+    const filteredFoods = stateCopyFilteredFoods.filter(food =>
+      food.name.toLowerCase().includes(search.toLowerCase())
+    );
+    console.log(filteredFoods);
+    this.setState({ foods_list: filteredFoods });
+  };
+
   addFoodHandler = newFood => {
     let stateCopy = { ...this.state };
     stateCopy.foods_list.unshift(newFood);
@@ -29,23 +42,13 @@ class App extends Component {
   };
 
   render() {
-    console.log("food", this.state.foods_list);
-
     return (
       <div className="App">
         {!this.state.form_showed ? (
           <div className="container">
             <h1 className="title">IronNutrition</h1>
             <button onClick={this.showForm}>Add New Food</button>
-            <div>
-              <input
-                type="text"
-                className="input search-bar"
-                name="search"
-                placeholder="Search"
-                defaultValue=""
-              />
-            </div>
+            <Search onChange={this.searchChange} />
             <div className="columns">
               <div className="column">
                 {this.state.foods_list.map((food, index) => {

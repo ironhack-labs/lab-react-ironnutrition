@@ -11,30 +11,52 @@ class App extends Component {
     form_showed: false
   };
 
+  showForm = () => {
+    let stateCopy = { ...this.state };
+    if (stateCopy.form_showed === false) {
+      stateCopy.form_showed = true;
+    } else {
+      stateCopy.form_showed = false;
+    }
+    this.setState({ form_showed: stateCopy.form_showed });
+  };
+
+  addFoodHandler = newFood => {
+    let stateCopy = { ...this.state };
+    stateCopy.foods_list.unshift(newFood);
+    this.setState({ foods_list: stateCopy.foods_list });
+    this.showForm();
+  };
+
   render() {
     console.log("food", this.state.foods_list);
+
     return (
       <div className="App">
-        <div className="container">
-          <h1 className="title">IronNutrition</h1>
-          <button>Add New Food</button>
-          <div>
-            <input
-              type="text"
-              className="input search-bar"
-              name="search"
-              placeholder="Search"
-              defaultValue=""
-            />
-          </div>
-          <div className="columns">
-            <div className="column">
-              {this.state.foods_list.map((food, index) => {
-                return <Box key={index} {...food} />;
-              })}
+        {!this.state.form_showed ? (
+          <div className="container">
+            <h1 className="title">IronNutrition</h1>
+            <button onClick={this.showForm}>Add New Food</button>
+            <div>
+              <input
+                type="text"
+                className="input search-bar"
+                name="search"
+                placeholder="Search"
+                defaultValue=""
+              />
+            </div>
+            <div className="columns">
+              <div className="column">
+                {this.state.foods_list.map((food, index) => {
+                  return <Box key={index} {...food} />;
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <Form buttonAbility={this.addFoodHandler} />
+        )}
       </div>
     );
   }

@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -16,6 +12,8 @@
 
 .App-title {
   font-size: 1.5em;
+  margin-bottom: 50px;
+  font-weight: 700;
 }
 
 .App-intro {
@@ -23,6 +21,104 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.add-button {
+  margin-right: 850px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.add-food-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 800px;
+  margin-bottom: 20px;
+}
+
+.add-form-button {
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.search-bar {
+  margin-bottom: 50px;
+}
+
+.search-bar-adjust {
+  margin-left: -15px;
+  margin-top: 10px;
+}
+
+.box {
+  padding: 0;
+  max-width: 400px;
+}
+
+.box .media {
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.box img {
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.box input {
+  width: 100px;
+  text-align: center;
+  border: 0px white;
+  -webkit-box-shadow: inset 0 1px 2px white;
+  box-shadow: inset 0 1px 2px white
+}
+
+.box .button {
+  width: 64px;
+  font-size: 1.3em;
+}
+
+.box input,
+.box .button {
+  height: 64px;
+}
+
+ul {
+  margin-bottom: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+li {
+  color: black;
+  font-weight: 700;
+  margin-bottom: 35px;
+  margin-right: 35px;
+}
+
+.my-foods-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-button {
+  font-weight: 600;
 }

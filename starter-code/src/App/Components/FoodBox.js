@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ( { food } = this.props ) {
+export default function ( { index, food, quantity, handleChange } = this.props ) {
   return (
     <div className="box">
       <article className="media">
@@ -23,11 +23,14 @@ export default function ( { food } = this.props ) {
               <input
                 className="input"
                 type="number" 
-                value="1"
+                value={food.quantity}
+                name="food-quantity"
+                index={index}
+                onChange={ event => handleChange(event, index) }
               />
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button className="button is-info" type="submit" name="add-food-btn" index={index} onClick={ event => handleChange(event, index) } >
                 +
               </button>
             </div>

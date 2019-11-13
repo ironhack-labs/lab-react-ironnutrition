@@ -1,6 +1,6 @@
 body {
-  margin: 3px;
-  padding: 3px;
+  margin: 8px !important;
+  padding: 8px !important;
   font-family: sans-serif;
 }
 .foodimg {
@@ -28,8 +28,10 @@ body {
 .input {
   border: none !important;
   background: transparent !important;
-  width: 80px !important;
 }
 .input2 {
   width: 180px !important;
+}
+.searchbar {
+  padding: 3px;
 }

@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import foods from "./foods.json";
+import allFoods from "./foods.json";
 import FoodBox from "./Comps/FoodBox";
 
 export default class App extends Component {
   state = {
-    foods: foods,
+    foods: allFoods,
+    //allFoods: foods,
     showForm: false,
     newFoodName: "",
     newFoodCal: 0,
     newFoodImg: "",
+    searchbar: "",
   };
   showFood = () => {
     return this.state.foods.map((eachFood, i) => {
@@ -32,8 +34,11 @@ export default class App extends Component {
     this.setState({ foods: clone });
     this.toggleForm();
   };
-  updateInput = e =>
-    this.setState({ [e.target.name]: e.target.value }, () => this.showFood);
+  updateInput = e => this.setState({ [e.target.name]: e.target.value });
+  updateSearch = e => {
+    let new_clone = allFoods.filter(obj => obj.name.includes(e.target.value));
+    this.setState({ foods: new_clone, [e.target.name]: e.target.value });
+  };
   render() {
     return (
       <div className="App">
@@ -70,6 +75,14 @@ export default class App extends Component {
           </form>
         )}
         <br />
+        <input
+          type="text"
+          placeholder="Search for food..."
+          className="input searchbar"
+          value={this.state.searchbar}
+          name="searchbar"
+          onChange={this.updateSearch}
+        />
         <br />
         <br />
         {this.showFood()}

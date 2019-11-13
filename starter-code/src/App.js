@@ -149,9 +149,17 @@ class App extends Component {
     console.log('helo')
     return this.state.todaysList.map((eachFood)=>{
       return(
-        <li>{eachFood.quantity} {eachFood.name} = {eachFood.quantity * eachFood.calories} cals <button onClick={()=>{this.deleteIt(eachFood)}}>x</button></li>
+        <li>{eachFood.quantity} {eachFood.name} = {eachFood.quantity * eachFood.calories} cals <button className="xButton" onClick={()=>{this.deleteIt(eachFood)}}>x</button></li>
       )
     })
+  }
+
+  calcTotal = () =>{
+    let total = 0;
+    for(let i = 0; i < this.state.todaysList.length; i++){
+      total+= this.state.todaysList[i].calories*this.state.todaysList[i].quantity
+    }
+    return total
   }
 
   deleteIt = (eachFood) =>{
@@ -174,15 +182,14 @@ class App extends Component {
       <div className="right foodDiv">
       <button onClick={this.toggleForm} className="formButton">Add Food</button>
         {this.drawForm()}
+        <h1 className="todaysFoods">Today's Foods</h1>
+        <ul>
+          {this.todaysFood()}
+          <li className="total">Total: {this.calcTotal()}</li>
+        </ul>
       </div>
       <div className="left">
         <input type="text" value={this.state.search} className="searchFood" name="search" onChange = {this.searchBar} placeholder="Search Foods" />
-        <div>
-        <h1>Today's Foods</h1>
-        <ul>
-          {this.todaysFood()}
-        </ul>
-        </div>
         {this.allFood()}
       </div>
       </div>

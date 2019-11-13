@@ -90,3 +90,36 @@
 .nutr{
   font-size: 3em;
 }
+
+.todaysFoods{
+  margin-top: 20px;
+}
+
+li{
+  border: 1px solid lightpink;
+  background-color: lightpink;
+  color: white;
+  border-radius: 10px;
+  padding: 10px !important;
+  margin: 10px !important;
+}
+
+.xButton{
+  float: right;
+}
+
+.total{
+  margin-top: 10px;
+  padding: 2px !important;
+  background-color: lightgreen;
+  border-color: lightgreen
+}
+
+.todaysFoods{
+  padding: 5px;
+  background-color: lightgreen;
+  border: 1px solid lightgreen;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}

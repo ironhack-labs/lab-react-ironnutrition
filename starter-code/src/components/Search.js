@@ -23,11 +23,11 @@ class Search extends Component {
     });
   }
   
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      filteredFoods: nextProps.foods,
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     filteredFoods: nextProps.foods,
+  //   });
+  // }
 
   handleChange(e) {
             // Variable to hold the original version of the list

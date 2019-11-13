@@ -26,3 +26,67 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.single{
+  display: flex;
+  height: 70px;
+  width: 30%;
+  margin: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.foodDiv{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foodForm{
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex-direction: column;
+  width: 200px;
+}
+
+.right{
+  width: 50%;
+  float: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.left{
+  width: 50%;
+  float: left;
+}
+
+.searchFood{
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.foodBox{
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.formButton{
+  background-color: lightseagreen;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.box{
+  margin-left: 10px;
+}
+
+.nutr{
+  font-size: 3em;
+}

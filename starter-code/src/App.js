@@ -8,9 +8,9 @@ import FoodBox from './FoodBox.js'
 class App extends Component {
   displayFood(){
     let foodList=[...foods]
-    newFoodList=foodList.splice(0,5);
+    let newFoodList=foodList.splice(0,5);
     return(
-      NewFoodList.map((eachFood,i)=>{
+      newFoodList.map((eachFood,i)=>{
         return(
           <FoodBox name={eachFood.name} cal={eachFood.calories} quantity={eachFood.quantity} image={eachFood.image}/>
         )

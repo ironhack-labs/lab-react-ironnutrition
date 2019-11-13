@@ -28,7 +28,8 @@ class App extends Component {
     let { name, value } = event.target;
     let filtered = [...data.filtered];
 
-    console.log('handling change')
+    console.log('handling change');
+    console.log(data.foods);
 
     switch (name) {
       case 'search':
@@ -36,22 +37,26 @@ class App extends Component {
         filtered = data.foods.filter( food => food.name.toLowerCase().includes(data.search.toLowerCase()) );
         break;
       case 'food-quantity':
-        filtered[index].quantity = value;
+        filtered[index].quantity = parseInt(value, 10);
         console.log(filtered[index].quantity)
         break;
       case 'add-food-btn':
         event.preventDefault();
-        console.log('filtered'+filtered[index].quantity)
-        data.foods[index].quantity = filtered[index].quantity;
-        console.log('foods'+data.foods[index].quantity)
-        console.log(`${filtered[index].name} has been added: ${data.foods[index].quantity}`);
+        data.foods[index].quantity += filtered[index].quantity;
+        console.log(filtered[index].quantity)
+        console.log(data.foods[index]);
         filtered[index].quantity = 0;
+        console.log(data.foods[index]);
         break;
       default:
+        console.log('aqui solo para la comida wey')
         data.newFood[name] = value;
     }
 
     data.filtered = filtered;
+
+    console.log(filtered);
+    
 
     this.setState({ data });
   }
@@ -92,7 +97,7 @@ class App extends Component {
           <Searchbar handleChange={handleChange} search={data.search} />
           <div className="columns">
             <div className="column">
-              {data.filtered.map( (food, index) => <FoodBox key={index} index={index} food={food} quantity={data.quantity} handleChange={handleChange} /> )}
+              {data.filtered.map( (food, index) => <FoodBox key={index} index={index} food={food} quantity={data.quantity} isList={false} handleChange={handleChange} /> )}
             </div>
             <div className="column">
               <div className="container">
@@ -100,7 +105,13 @@ class App extends Component {
                 {showFoodForm ? <FoodForm handleChange={handleChange} onPress={onPress} newFood={data.newFood}/> : <p> </p>}
               </div>
               <div className="container">
-                {data.foods.map( (food, index) => <FoodBox key={index} index={index} food={food} quantity={data.quantity} handleChange={handleChange} /> )}
+                { data.foods.map( (food, index) => {
+                  if ( food.quantity > 0 ) {
+                    return ( <FoodBox key={index} index={index} food={food} isList={true} handleChange={handleChange} /> );
+                    }
+                    else return null
+                  } 
+                )}
               </div>
             </div>
           </div>

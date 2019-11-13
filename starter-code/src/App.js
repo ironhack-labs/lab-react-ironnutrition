@@ -1,20 +1,27 @@
 import React, { Component } from "react";
-import allFoods from "./foods.json";
+import foods from "./foods.json";
 import FoodBox from "./Comps/FoodBox";
 
 export default class App extends Component {
   state = {
-    foods: allFoods,
-    //allFoods: foods,
+    foods: foods,
     showForm: false,
     newFoodName: "",
     newFoodCal: 0,
     newFoodImg: "",
     searchbar: "",
+    amount: 1,
   };
   showFood = () => {
     return this.state.foods.map((eachFood, i) => {
-      return <FoodBox key={i} theFood={eachFood} />;
+      return (
+        <FoodBox
+          key={i}
+          theFood={eachFood}
+          default={this.state.amount}
+          addToday={() => this.todayFoods(eachFood)}
+        />
+      );
     });
   };
   toggleForm = () => {
@@ -36,8 +43,12 @@ export default class App extends Component {
   };
   updateInput = e => this.setState({ [e.target.name]: e.target.value });
   updateSearch = e => {
-    let new_clone = allFoods.filter(obj => obj.name.includes(e.target.value));
+    let new_clone = foods.filter(obj => obj.name.includes(e.target.value));
     this.setState({ foods: new_clone, [e.target.name]: e.target.value });
+  };
+  todayFoods = (food, i) => {
+    console.log(food.name);
+    return food.name;
   };
   render() {
     return (
@@ -74,18 +85,24 @@ export default class App extends Component {
             <button className="button is-info">Add to list</button>
           </form>
         )}
-        <br />
         <input
           type="text"
           placeholder="Search for food..."
-          className="input searchbar"
+          className="input input2"
           value={this.state.searchbar}
           name="searchbar"
           onChange={this.updateSearch}
         />
         <br />
         <br />
-        {this.showFood()}
+        <div class="flexy">
+          <div className="left">{this.showFood()}</div>
+          <div className="right">
+            Today's food:
+            <br />
+            {this.todayFoods}
+          </div>
+        </div>
       </div>
     );
   }

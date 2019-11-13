@@ -6,7 +6,7 @@ export default function FoodBox(props) {
       <div className="box">
         <article className="media">
           <div className="media-left">
-            <figure className="image is-64x64">
+            <figure className="image is-128x128">
               <img
                 src={props.theFood.image}
                 className="foodimg"
@@ -25,10 +25,12 @@ export default function FoodBox(props) {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input className="input" type="number" defaultValue={props.default} />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" onClick={props.addToday}>
+                  +
+                </button>
               </div>
             </div>
           </div>

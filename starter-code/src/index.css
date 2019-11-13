@@ -3,3 +3,28 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.add-search {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.foods-eaten h1 {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
+}
+
+.foods-eaten ul li {
+  text-align: left;
+  margin-left: 210px;
+}
+
+.foods-eaten h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
+}

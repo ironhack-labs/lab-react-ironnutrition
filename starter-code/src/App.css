@@ -26,3 +26,28 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.new-food {
+  background-color: blue;
+  color: white;
+  width: 300px;
+  height:300px;
+  border: 1px solid Black;
+  text-align: center;
+  position: fixed;
+  left: 40%;
+  top: 10%;
+}
+
+.new-food h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.main-wrapper h1 {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
+}

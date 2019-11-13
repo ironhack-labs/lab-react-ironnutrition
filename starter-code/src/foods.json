@@ -54,12 +54,6 @@
     "quantity": 0
   },
   {
-    "name": "Bacon",
-    "calories": 175,
-    "image": "https://i.imgur.com/7GlqDsG.jpg",
-    "quantity": 0
-  },
-  {
     "name": "Hot Dog",
     "calories": 275,
     "image": "https://i.imgur.com/QqVHdRu.jpg",

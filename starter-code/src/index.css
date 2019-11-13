@@ -1,5 +1,35 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 3px;
+  padding: 3px;
   font-family: sans-serif;
+}
+.foodimg {
+  width: 100vh;
+  height: 100vh;
+}
+.box {
+  /* display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center; */
+  width: 35%;
+}
+.media {
+  /* display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 450px;
+  height: 100px;
+  border: 1px solid gainsboro;
+  box-shadow: 10in;
+  box-sizing: border-box; */
+}
+.input {
+  border: none !important;
+  background: transparent !important;
+  width: 80px !important;
+}
+.input2 {
+  width: 180px !important;
 }

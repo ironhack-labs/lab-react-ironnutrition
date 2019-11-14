@@ -18,35 +18,33 @@ class App extends Component {
       newEntry: { name: "", image: "", calories: "", quantity: "" }
     };
   }
-  showFoods = () => {
-    return this.state.availableFoods.map((eachFood, i) => {
-      return (
-        <Foodbox
-          key={i}
-          name={eachFood.name}
-          image={eachFood.image}
-          calories={eachFood.calories}
-          quantity={eachFood.quantity}
-          theAddFunction={this.updateValues}
-        />
-      );
-    });
-  };
 
-  addNewFood = () => {
-    this.setState({ hide: "show" });
-  };
+  showFoods = () =>
+    this.state.availableFoods.map((eachFood, i) => (
+      <Foodbox
+        key={i}
+        name={eachFood.name}
+        image={eachFood.image}
+        calories={eachFood.calories}
+        quantity={eachFood.quantity}
+        theAddFunction={this.updateValues}
+      />
+    ));
+
+  addNewFood = () => this.setState({ hide: "show" });
 
   handleFormSubmit = e => {
     e.preventDefault();
+
+    const { newEntry } = this.state;
     if (
-      this.state.newEntry.name !== "" &&
-      this.state.newEntry.calories !== "" &&
-      this.state.newEntry.image !== "" &&
-      this.state.newEntry.quantity !== ""
+      newEntry.name !== "" &&
+      newEntry.calories !== "" &&
+      newEntry.image !== "" &&
+      newEntry.quantity !== ""
     ) {
-      let foods = this.state.foods;
-      foods.push(this.state.newEntry);
+      const foods = this.state.foods;
+      foods.push(newEntry);
       this.setState({
         foods: foods,
         availableFoods: foods,
@@ -56,34 +54,37 @@ class App extends Component {
     }
   };
 
-  handleInput = e => {
+  handleInput = e =>
     this.setState({
       newEntry: { ...this.state.newEntry, [e.target.name]: e.target.value }
     });
-  };
 
   search = () => {
-    let foodList = this.state.availableFoods;
+    const { availableFoods, search, foods } = this.state;
     let filteredList = [];
-    let searchValue = this.state.search;
-    if (searchValue !== "") {
-      foodList.forEach(item => {
-        if (item.name.toLowerCase().includes(searchValue)) {
+
+    if (search !== "") {
+      availableFoods.forEach(item => {
+        if (item.name.toLowerCase().includes(search)) {
           filteredList.push(item);
         }
       });
     } else {
-      filteredList = this.state.foods;
+      filteredList = foods;
     }
-    this.setState({ availableFoods: filteredList });
+
+    // TODO: test destructuring setState
+    this.state.setState({ availableFoods: filteredList });
   };
 
+  // TODO: implicit return
   searchHandler = e => {
     this.setState({ search: e.target.value }, () => {
       this.search();
     });
   };
 
+  // TODO: implicit return
   updateValues = (e, theQuantity, theCalories, theName) => {
     this.setState({
       foodsToday: [
@@ -96,10 +97,18 @@ class App extends Component {
       ]
     });
   };
+
   render() {
     return (
       <div className="App">
         <h1>IronNutrition</h1>
+
+        {/* <ul>
+          {[1, 2, 3].map(num => (
+            <li>CurrentNum is {num}</li>
+          ))}
+        </ul> */}
+
         <input
           type="text"
           name="search"
@@ -136,7 +145,7 @@ class App extends Component {
               value={this.state.newEntry.quantity}
               onChange={this.handleInput}
             />
-            <button onSubmit="this.handleFormSubmit">Submit</button>
+            <button onSubmit={this.handleFormSubmit}>Submit</button>
           </form>
         </div>
         <button className="button" onClick={this.addNewFood}>

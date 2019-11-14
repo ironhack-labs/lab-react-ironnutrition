@@ -110,12 +110,33 @@ class App extends Component {
   };
   generateToday = () => {
     return this.state.foodsToday.map((item, i) => (
-      <li key={Number(i)}>
+      <li key={i}>
         {item.quantity} {item.name} = {item.calories} cal
+        <button
+          onClick={() => {
+            this.removeThis(item);
+          }}
+        >
+          X
+        </button>
       </li>
     ));
   };
 
+  removeThis = item => {
+    let foodsToday = [...this.state.foodsToday];
+    let index;
+    let totalCalories = [this.state.totalCalories];
+    foodsToday.forEach((food, i) => {
+      if (food.name === item.name) {
+        index = i;
+        console.log(totalCalories);
+        totalCalories -= food.calories;
+      }
+    });
+    foodsToday.splice(index, 1);
+    this.setState({ foodsToday: foodsToday, totalCalories: totalCalories });
+  };
   render() {
     return (
       <div className="App">

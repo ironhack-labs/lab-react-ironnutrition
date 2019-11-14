@@ -7,7 +7,7 @@ class Foodbox extends Component {
     this.state = {
       quantity: this.props.quantity
     };
-    console.log(JSON.stringify(this.props));
+    console.log(JSON.stringify(props));
   }
 
   handleQuantities = e => {
@@ -17,8 +17,7 @@ class Foodbox extends Component {
   render() {
     return (
       // TODO: key is undefined here.
-      <div key={this.props.i} className="box">
-        {console.log(this.props.i)}
+      <div key={this.props.key} className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">

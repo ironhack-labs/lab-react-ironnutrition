@@ -1,5 +1,11 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: coral;
   text-align: center;
+  padding: 50px;
+  
 }
 
 .App-logo {
@@ -25,4 +31,93 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+body {
+  background-color: coral;
+  height: 100vh;
+}
+
+.displayFormBttn {
+  margin: 20px;
+  border: 2px solid black;
+  width: 100px;
+  height: 40px;
+}
+
+
+
+.absolute {
+  position: fixed;
+  top: 16vh;
+  right: 10vw;
+  width: 500px;
+}
+.theForm {
+  background-color: lightblue;
+  border: 2px solid black;
+  padding: 30px;
+  width: 500px;
+  height: 150px;
+}
+
+
+.theForm1 {
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+}
+
+.theForm2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formLabel {
+  color: black;
+  font-size: 20px;
+}
+
+.formInput {
+  border: 2px solid grey;
+  height: 30px;
+  width: 200px;
+  margin: 10px;
+}
+
+.submit{
+  width: 130px;
+  height: 40px;
+  border: 2px solid black;
+  position: relative;
+  right: 10px;
+}
+
+.searchBar {
+  border: 2px solid black;
+  font-size: 15px;
+  position: fixed;
+  top: 10vh;
+  right: 10vw;
+  width: 500px;
+  height: 40px;
+  
+}
+
+.foodList {
+  position: fixed;
+  top: 50vh; 
+  right: 10vw;
+  background-color: lightblue;
+  padding: 30px;
+  width: 500px;
+  height: 300px;
+  border: 2px solid black;
+}
+
+.foodListH1 {
+  font-size: 20px;
+  font-weight: 900;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
 }

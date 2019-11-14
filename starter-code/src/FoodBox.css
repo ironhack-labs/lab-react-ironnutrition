@@ -1,0 +1,12 @@
+.box {
+    position: relative;
+    right: 300px;
+    margin: 0;
+    width: 35vw;
+    height: 100px;
+    margin: 10px;
+}
+
+.control {
+    width: 50px;
+}

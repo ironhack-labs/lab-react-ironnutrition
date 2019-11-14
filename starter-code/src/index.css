@@ -85,3 +85,12 @@ form{
   margin: auto;
   padding: 10px;
 }
+
+.today-food-container{
+float:right;
+widows: 200px;
+position:absolute;
+right:40%;
+top:30%;
+}
+

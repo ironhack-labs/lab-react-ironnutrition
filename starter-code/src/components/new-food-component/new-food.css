@@ -1,0 +1,64 @@
+h3 {
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-align: center;
+}
+.form-section {
+    height: 65vh;
+    width: 40vw;
+    position: absolute;
+    right: 30%;
+    top: 20%;
+    z-index: 3;
+    background-color: white;
+    border: solid 2px black;
+}
+form {
+    width: 40vw;
+    padding: 5px;
+}
+.field-group {
+    width: 40vw;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+input {
+    width: 18vw;
+    height: 5vh;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: rgba(165, 198, 236, 0.815);
+    font-weight: bold;
+}
+input[type=submit]{
+border: solid 2px rgba(7, 56, 112, 0.815);
+background-color: rgba(17, 110, 216, 0.815);
+color: white;
+font-weight: bold;
+width: 10vw;
+}
+input[type=submit]:hover, input[type=submit]:active {
+    background-color: rgba(99, 165, 240, 0.815);
+    color: black;
+    }
+label {
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    right:10px;
+}
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -21,8 +21,165 @@
 .App-intro {
   font-size: large;
 }
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
+header {
+  height: 18vh;
+  background-image: url('./chopping-board1.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+.heading {
+  height: 5vh;
+  
+}
+.heading h1 {
+  text-align: center;
+  font-size: 40px ;
+  font-weight:bold ;
+  color: white;
+}
+.rest-content {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.food-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 90%;
+}
+.today-list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  width: 40%;
+  height: 20%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.list-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.today-list h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+.food-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  padding: 5px;
+}
+.add-food {
+  height: 5vh;
+  width: 15vw;
+  border-radius: 12px;
+  background-color: rgba(12, 143, 231, 0.822);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 2px rgba(5, 87, 141, 0.822);
+}
+.add-food:hover, .add-food:active {
+  background-color: rgba(154, 205, 240, 0.822);
+  color:black;
+  border: solid 2px rgba(5, 87, 141, 0.822);
+}
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+.search {
+  width: 18vw;
+  height: 5vh;
+  border-radius: 10px;
+  font-size: 13px;
+  background-color: white;
+  font-weight: bold;
+}
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+.cal-disp {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+ 
+}
+.total-cal-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.selected-list {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+@media only screen and (max-width : 1200px) {
+
+  .rest-content {
+    margin-top: 15%;
+  }
+}
+@media only screen and (max-width : 900px) {
+
+  .rest-content {
+    margin-top: 18%;
+  }
+}
+@media only screen and (max-width : 768px) {
+  header {
+    flex-direction: row;
+  }
+  .rest-content {
+    margin-top: 22%;
+  }
 }

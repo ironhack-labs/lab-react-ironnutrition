@@ -11,7 +11,6 @@ class Foodbox extends Component {
   }
 
   handleQuantities = e => {
-    console.log("handling those quantities", this.props);
     this.setState({ quantity: e.target.value });
   };
 

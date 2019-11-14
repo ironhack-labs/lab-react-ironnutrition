@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bulma/css/bulma.css";
-import foods from "./foods.json";
+import foodsJSON from "./foods.json";
 
 import Foodbox from "./Components/Foodbox/Foodbox";
 
@@ -10,11 +10,12 @@ class App extends Component {
     super(props);
     this.state = {
       // TODO: Address multiple uses of calls to foods.
-      foods: foods,
-      availableFoods: foods,
+      foods: foodsJSON,
+      availableFoods: foodsJSON,
       hide: "hide",
       search: "",
       foodsToday: [],
+      totalCalories: 0,
       newEntry: { name: "", image: "", calories: "", quantity: "" }
     };
   }
@@ -77,38 +78,48 @@ class App extends Component {
     this.state.setState({ availableFoods: filteredList });
   };
 
-  // TODO: implicit return
-  searchHandler = e => {
+  searchHandler = e =>
     this.setState({ search: e.target.value }, () => {
       this.search();
     });
-  };
 
-  // TODO: implicit return
   updateValues = (e, theQuantity, theCalories, theName) => {
-    this.setState({
-      foodsToday: [
-        ...this.state.foodsToday,
-        {
-          name: theName,
-          calories: theCalories * theQuantity,
-          quantity: theQuantity
-        }
-      ]
+    let updateToday = [...this.state.foodsToday];
+    let alreadyIn = false;
+    updateToday.forEach(item => {
+      if (item.name === theName) {
+        item.calories =
+          Number(item.calories) + Number(theCalories * theQuantity);
+        item.quantity = Number(item.quantity) + Number(theQuantity);
+        alreadyIn = true;
+      }
     });
+
+    if (alreadyIn === false) {
+      updateToday.push({
+        name: theName,
+        calories: theCalories * theQuantity,
+        quantity: theQuantity
+      });
+    }
+
+    this.setState({
+      foodsToday: updateToday,
+      totalCalories: this.state.totalCalories + theCalories * theQuantity
+    });
+  };
+  generateToday = () => {
+    return this.state.foodsToday.map((item, i) => (
+      <li key={Number(i)}>
+        {item.quantity} {item.name} = {item.calories} cal
+      </li>
+    ));
   };
 
   render() {
     return (
       <div className="App">
         <h1>IronNutrition</h1>
-
-        {/* <ul>
-          {[1, 2, 3].map(num => (
-            <li>CurrentNum is {num}</li>
-          ))}
-        </ul> */}
-
         <input
           type="text"
           name="search"
@@ -151,12 +162,12 @@ class App extends Component {
         <button className="button" onClick={this.addNewFood}>
           Add New Food
         </button>
-        <div className="foodContainer">{this.showFoods()}</div>
         <div className="today">
           <h2>Today's Foods</h2>
-          <ul name="foodsToday"></ul>
+          <ul name="foodsToday">{this.generateToday()}</ul>
           <p>Total: {this.state.totalCalories} cal</p>
         </div>
+        <div className="foodContainer">{this.showFoods()}</div>
       </div>
     );
   }

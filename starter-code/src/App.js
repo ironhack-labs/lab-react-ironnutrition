@@ -131,7 +131,7 @@ class App extends Component {
     
     return (
       <li> 
-        {arrSum(theListOfFoodsArray)} Total calories today
+       <strong> {arrSum(theListOfFoodsArray)} Total calories today</strong>
         </li>
       )
   }    
@@ -217,7 +217,7 @@ class App extends Component {
           <ul>
             {this.generateList()}
             <br/>
-            <br/>
+           
             {this.calculateTotalCalories()}
           </ul>
           </div>

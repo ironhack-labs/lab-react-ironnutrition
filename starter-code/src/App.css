@@ -26,3 +26,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.p-title {
+  font-size: 5vh;
+  font-weight: bold;
+}

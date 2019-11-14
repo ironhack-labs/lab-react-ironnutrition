@@ -11,8 +11,14 @@ class FoodBox extends Component {
     newImage: "",
     searchTerm: ""
   };
-  logFood = () => {
-    console.log(foods.name);
+  logFood = () => {};
+
+  todayFood = () => {
+    return (
+      <div style={{ float: "right" }}>
+        <p>Today's food</p>
+      </div>
+    );
   };
 
   searchBar = e => {
@@ -58,9 +64,7 @@ class FoodBox extends Component {
       image: this.state.newImage
     };
     const copyFoodList = [...this.state.foods];
-    console.log(copyFoodList);
     copyFoodList.push(newFood);
-    console.log(copyFoodList);
     this.setState({ foods: copyFoodList });
   };
 
@@ -139,7 +143,10 @@ class FoodBox extends Component {
             <button onClick={this.addFood}> Submit</button>
           </form>
         )}
-        {this.showFoods()}
+        <div>
+          <div style={{ float: "right" }}>{this.todayFood()}</div>
+          <div style={{ float: "left" }}>{this.showFoods()}</div>
+        </div>
       </div>
     );
   }

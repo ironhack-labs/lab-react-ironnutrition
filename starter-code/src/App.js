@@ -8,7 +8,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FoodBox />
+        <div>
+          <FoodBox />
+        </div>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Search, FoodList, FoodForm } from "./components";
 import foods from "./foods.json";
+import "bulma/css/bulma.css";
 
 class App extends Component {
   state = { foods, filteredFoods: foods, selectedFoods: [], formOpen: false };

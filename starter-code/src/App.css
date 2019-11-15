@@ -1,28 +1,95 @@
 .App {
+}
+
+.container {
+  max-width: 900px;
+  margin-top: 30px;
+}
+.popup {  
+  position: fixed;  
+  width: 100%;  
+  height: 100%;  
+  top: 0;  
+  left: 0;  
+  right: 0;  
+  bottom: 0;  
+  margin: auto;  
+  background-color: rgba(0,0,0, 0.5);  
+  z-index: 10;
+}  
+.popup-inner {  
+  position: absolute;  
+  left: 25%;  
+  right: 25%;  
+  top: 25%;  
+  bottom: 25%;  
+  margin: auto;  
+  border-radius: 20px;  
+  background: white; 
+  padding: 20px 30px;
+  z-index: 20; 
+}
+.popupbtn {
+  margin: 15px 0;
+}
+.closebtn {
+  cursor: pointer;
+  padding: 10px 12px;
+  margin: 15px 0;
+}
+.box {
+  padding: 0;
+  max-width: 400px;
+}
+.box .media {
+  -ms-flex-align: center;
+  align-items: center;
+}
+.image {
+  display: flex;
+  position: relative;
+}
+.box img {
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.box input, .box .button {
+  height: 64px;
+}
+.box input {
+  width: 100px;
   text-align: center;
+  border: 0px white;
+  -webkit-box-shadow: inset 0 1px 2px white;
+  box-shadow: inset 0 1px 2px white;
+}
+.field.has-addons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.control {
+  font-size: 1rem;
+  position: relative;
+  text-align: left;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.todayFooditem {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.todayFooditem::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: -10px;
+  width: 5px;
+  height: 5px;
+  background-color: #000;
+  border-radius: 50%;
 }

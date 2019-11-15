@@ -9,16 +9,59 @@ class FoodBox extends Component {
     newFoodName: "",
     newCalories: 0,
     newImage: "",
-    searchTerm: ""
+    searchTerm: "",
+    todayList: [],
+    addedFood: [],
+    todayTot: 0
   };
-  logFood = () => {};
+  deleteRow = i => {
+    const clonedArr = [...this.state.filteredFoods];
+    clonedArr.splice(i, 1);
+    console.log(clonedArr);
+    this.setState({
+      filteredFoods: clonedArr
+    });
+  };
 
-  todayFood = () => {
-    return (
-      <div style={{ float: "right" }}>
-        <p>Today's food</p>
-      </div>
-    );
+  showToday = () => {
+    let theCalories = 0;
+    return this.state.todayList.map((food, i) => {
+      theCalories += food.calories;
+      console.log(theCalories);
+      // this.setState({
+      //   todayTot: theCalories
+      // });
+      return (
+        <div>
+          <li>
+            <h3 key={i}>
+              <div className="content">
+                <p>
+                  <strong>{food.name}</strong> <br />
+                  <small>{food.calories}</small>
+                </p>
+              </div>
+            </h3>
+          </li>
+          <p>Total calories: {theCalories}</p>
+        </div>
+      );
+    });
+  };
+
+  todayFood = theIndex => {
+    const clonedArr = [...this.state.filteredFoods];
+    const thisFood = clonedArr[theIndex];
+    this.state.addedFood.push(thisFood);
+    console.log(this.state.addedFood);
+    let allCalories = this.state.addedFood.reduce((a, b) => {
+      return a.calories + b.calories;
+    });
+    console.log(allCalories);
+    this.setState({
+      // todayTot: allCalories,
+      todayList: this.state.addedFood
+    });
   };
 
   searchBar = e => {
@@ -34,12 +77,10 @@ class FoodBox extends Component {
         );
         this.setState({
           filteredFoods: filtered
-          // foods : filtered
         });
       }
     );
   };
-  // clonedArr.filter(this.state.searchTerm);
 
   updateInput = e => {
     this.setState(
@@ -65,7 +106,7 @@ class FoodBox extends Component {
     };
     const copyFoodList = [...this.state.foods];
     copyFoodList.push(newFood);
-    this.setState({ foods: copyFoodList });
+    this.setState({ filteredFoods: copyFoodList });
   };
 
   showFoods = () => {
@@ -92,8 +133,23 @@ class FoodBox extends Component {
                   <input className="input" type="number" value="1" />
                 </div>
                 <div className="control">
-                  <button onClick={this.logFood} className="button is-info">
+                  <button
+                    onClick={() => {
+                      this.todayFood(i);
+                    }}
+                    className="button is-info"
+                  >
                     +
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      this.deleteRow(i);
+                    }}
+                    className="button is-info"
+                  >
+                    X
                   </button>
                 </div>
               </div>
@@ -115,6 +171,8 @@ class FoodBox extends Component {
             value={this.state.searchTerm}
           />
         </form>
+
+        <h1>Total calories: {this.state.todayTot}</h1>
 
         <button onClick={this.toggleForm}>Add your own food!</button>
         {this.state.form && (
@@ -144,8 +202,12 @@ class FoodBox extends Component {
           </form>
         )}
         <div>
-          <div style={{ float: "right" }}>{this.todayFood()}</div>
           <div style={{ float: "left" }}>{this.showFoods()}</div>
+          <div style={{ float: "right" }}>
+            <h1> Today's food </h1>
+            {this.showToday()}
+            <p></p>
+          </div>
         </div>
       </div>
     );

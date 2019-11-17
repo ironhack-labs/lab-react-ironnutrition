@@ -2,9 +2,7 @@ import React from 'react';
 
 const FoodBox = props => {
     console.log(props);
-    const { name, calories, image } = props;
-    console.log(`name: ${name} calores: ${calories} image: ${image}`);
-    
+    const { name, calories, image } = props;    
 
     return(
         <div className="FoodBox">

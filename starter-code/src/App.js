@@ -1,26 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json';
-import FoodBox from './components/FoodBox';
-class App extends Component {
-  state = {
-    foods
-  }
-  
-  render() {
-    return (
-      <div className="App">
-        {
-          this.state.foods.map((food, idx) => {
-            return (
-              <FoodBox key={idx} {...food} />
-            )            
-          })          
-        }        
-      </div>
-    );
-  }
+import DynamicFoodList from './components/DynamicFoodList';
+
+const App = () => {
+  return (
+    <div className='App'>
+      <h1>IronNutrition</h1>
+      <DynamicFoodList />
+    </div>
+  )
 }
 
 export default App;

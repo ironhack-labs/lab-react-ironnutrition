@@ -8,7 +8,7 @@ class FoodBox extends React.Component {
 
   updateTheQuantity = e => {
     this.setState({
-      quantity: e.target.value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -35,6 +35,7 @@ class FoodBox extends React.Component {
                 <input
                   className="input"
                   type="number"
+                  name="quantity"
                   defaultValue={this.props.quantity}
                   onChange={this.updateTheQuantity}
                 />
@@ -42,7 +43,13 @@ class FoodBox extends React.Component {
               <div className="control">
                 <button
                   className="button is-info"
-                  onClick={e => this.props.updateFoodList(this.state)}
+                  onClick={e => {
+                    this.props.addFoodTodayFunction(
+                      this.state.name,
+                      this.state.calories,
+                      this.state.quantity
+                    );
+                  }}
                 >
                   +
                 </button>

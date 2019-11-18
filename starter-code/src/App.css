@@ -62,3 +62,14 @@
 .food-form {
   display: none;
 }
+
+.todayfoods {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.todayfoods h1 {
+  font-size: 2em;
+}

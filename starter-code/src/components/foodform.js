@@ -87,7 +87,7 @@ class FoodForm extends React.Component {
             <div className="media-right">
               <div className="field has-addons">
                 <div className="control">
-                  <button className="button is-info" onClick={this.submitFood}>
+                  <button className="button is-info" onSubmit={this.submitFood}>
                     +
                   </button>
                 </div>

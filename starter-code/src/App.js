@@ -14,7 +14,8 @@ class App extends Component {
       formShowing: false,
       search: "",
       filterFoods: foods,
-      listOfFoods: []
+      listOfFoods: [],
+      listOfFoodsCalories: []
     };
   }
 
@@ -23,7 +24,7 @@ class App extends Component {
       // console.log(eachFood)
       return (
         <li key={index}>
-          <FoodBox updateFoodList={this.updateFoodList} {...eachFood} />
+          <FoodBox addFoodTodayFunction={this.addFoodToday} {...eachFood} />
         </li>
       );
     });
@@ -63,38 +64,58 @@ class App extends Component {
     });
   };
 
-  updateFoodList = foodBoxState => {
-    let newListOfFoods = [...this.state.listOfFoods];
-
-    newListOfFoods[foodBoxState.name] = foodBoxState;
-
+  addFoodToday = (name, calories, quantity) => {
+    let listOfFoodsCopy = [...this.state.listOfFoods];
+    listOfFoodsCopy.unshift({
+      name: name,
+      calories: calories,
+      quantity: quantity
+    });
     this.setState({
-      listOfFoods: newListOfFoods
+      listOfFoods: listOfFoodsCopy
     });
   };
 
-  showTodaysFood = () => {
-    let foods = this.state.listOfFoods;
-    let array = [];
-    let total = 0;
-    for (let key in foods) {
-      console.log(Number(foods[key].calories));
-      total += Number(foods[key].quantity) * Number(foods[key].calories);
-      array.push(
-        <li key={key}>
-          name: {key}- calories:{" "}
-          {Number(foods[key].quantity) * Number(foods[key].calories)}
-        </li>
-      );
+  deleteItem = i => {
+    // console.log('delete'+ i)
+    let listOfFoodsCopy = [...this.state.listOfFoods];
+    listOfFoodsCopy.splice(i, 1);
+    this.setState({
+      listOfFoods: listOfFoodsCopy
+    });
+  };
+
+  sumOfCalories = () => {
+    function getSum(total, num) {
+      return total + Math.round(num);
     }
-    return (
-      <ul>
-        TOTAL is {total}!!!!<br></br> {array}
-      </ul>
-    );
+    let calorieList = [];
+    this.state.listOfFoods.map(eachFood => {
+      return calorieList.push(eachFood.calories * eachFood.quantity);
+    });
+    return calorieList.reduce(getSum, 0);
+  };
+
+  todaysFood = () => {
+    return this.state.listOfFoods.map((eachItem, i) => {
+      return (
+        <tr key={i}>
+          <td>{eachItem.quantity}</td>
+          <td>{eachItem.name}</td>
+          <td>{eachItem.calories * eachItem.quantity}</td>
+          <td>
+            <button className="button" onClick={() => this.deleteItem(i)}>
+              X
+            </button>
+          </td>
+        </tr>
+      );
+    });
   };
 
   render() {
+    // console.log(this.state.listOfFoods);
+    // console.log(this.state.listOfFoods[0]);
     return (
       <div className="App">
         <div className="container">
@@ -119,7 +140,24 @@ class App extends Component {
         </div>
         <div className="todayfoods">
           <h1>Foods Today</h1>
-          {this.showTodaysFood}
+          <table className="table">
+            <thead>
+              <tr>
+                <td>Quantity</td>
+                <td>Name of Food</td>
+                <td>Calories</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.todaysFood()}
+              <tr>
+                <td>
+                  <h3>Total: {this.sumOfCalories()}</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     );

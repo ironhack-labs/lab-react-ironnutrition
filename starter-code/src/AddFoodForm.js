@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './index.css'
 import 'bulma/css/bulma.css';
-export class Form extends Component {
+export class AddFoodForm extends Component {
 
 constructor(props){
         super(props);
@@ -14,25 +14,14 @@ constructor(props){
         }
     }
 
-submitForm = (e) =>{
-        e.preventDefault(); 
-    
-        this.setState({
-          user: null,
-          username: this.state.name,
-          usercalories: this.state.calories,
-          userimage: this.state.image,
-          userQuantity: this.state.quantity
-        })
-      }
 
 updateInput = (e) =>{
        this.setState({
         [e.target.name]: e.target.value
         }, ()=>{
-          console.log(this.state)
         })
     }
+
 
 closePopupSubmit = (e) => {
 e.preventDefault()
@@ -44,6 +33,8 @@ quantity: this.state.quantity
 } 
 this.props.closePopup(food);
 } ;
+
+
 
 
 
@@ -65,13 +56,6 @@ render() {
           <input type="text" name="calories" value={this.state.calories} onChange = {this.updateInput} />
       </div>
       </div>
-      <div className="control">
-      <label>Quantity:</label>
-          <input
-            className="input"
-            type="number" dvalue={this.state.quantity}
-          />
-        </div>
       <div className="field">
       <label>Image:</label>
       <div className="control">
@@ -89,7 +73,7 @@ render() {
     }
 }
 
-export default Form
+export default AddFoodForm
 
 
  

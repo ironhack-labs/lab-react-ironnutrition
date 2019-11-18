@@ -62,7 +62,7 @@ ul {
   bottom: 0;  
   margin: auto;  
   background-color: rgba(0,0,0, 0.5);  
-  z-index:10;
+  z-index:20;
 }  
 .popup-inner {  
   position: absolute;  
@@ -73,7 +73,9 @@ ul {
   margin: auto;  
   border-radius: 20px;  
   background: white;  
-  z-index:20;
+  padding:30px;
+  width:500px;
+  height:300px;
 }
 .search-bar{
   margin-bottom: 30px;
@@ -81,9 +83,13 @@ ul {
 }
 
 form{
-  width:50%;
+  width:80%;
   margin: auto;
   padding: 10px;
+}
+
+form input{
+  width:100%;
 }
 
 .today-food-container{
@@ -93,4 +99,11 @@ position:absolute;
 right:40%;
 top:30%;
 }
+.today-title{
+  font-size: 30px;
+}
 
+.app button{
+  margin-bottom:15px;
+  margin-left:10px;
+}

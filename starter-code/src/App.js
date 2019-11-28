@@ -5,6 +5,7 @@ import foods from './foods.json';
 import FoodBox from './FoodBox';
 import FormFood from './FormFood';
 import SearchBar from './SearchBar';
+import TodaysFoods from './TodaysFoods';
 
 
 class App extends Component {
@@ -28,14 +29,14 @@ class App extends Component {
 
   //search bar marche mais pas quand on revient en arrière...notre liste n'est reloadée
   handleSearch = (value) => {
-    let filteredFood = this.state.allFoods.filter(food => food.name.toUpperCase().includes(value.toUpperCase()));
+    let filteredFood = foods.filter(food => food.name.toUpperCase().includes(value.toUpperCase()));
     this.setState({ allFoods: filteredFood });
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Track your food</h1>
+        <h1>IronNutrition</h1>
 
         <button
           className="add-food"
@@ -48,17 +49,22 @@ class App extends Component {
         {/* affiche la searchBar et filtre */}
         <SearchBar clbk={this.handleSearch} />
 
-        {/* affiche tous les foods */}
-        {
-          this.state.allFoods.map((food, index) =>
-            <FoodBox
-              key={index}
-              image={food.image}
-              name={food.name}
-              calories={food.calories}
-              quantity={food.quantity} />
-          )
-        }
+        <div class="all-foods-list">
+          {/* affiche tous les foods */}
+          {
+            this.state.allFoods.map((food, index) =>
+              <FoodBox
+                key={index}
+                image={food.image}
+                name={food.name}
+                calories={food.calories}
+                quantity={food.quantity} />
+            )
+          }
+        </div>
+
+        {/* affiche la list "Today's foods" à droite */}
+        <TodaysFoods />
       </div >
     );
   }

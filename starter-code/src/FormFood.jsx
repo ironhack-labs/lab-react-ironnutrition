@@ -23,7 +23,7 @@ export class FormFood extends Component {
     }
 
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         if (!this.props.isVisible) return null;
         return (
             <form

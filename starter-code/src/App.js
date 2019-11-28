@@ -8,6 +8,7 @@ import FormFood from './FormFood';
 class App extends Component {
   state = {
     allFoods: foods,
+    showForm: false,
   }
 
   addFood = newFood => {
@@ -18,6 +19,9 @@ class App extends Component {
     this.setState({ allFoods: copyFoods });
 
   }
+  displayForm = () => {
+    this.setState({ showForm: !this.state.showForm })
+  }
 
   render() {
     return (
@@ -26,8 +30,10 @@ class App extends Component {
 
         <button
           className="add-food"
-          onChange="">Add a new food</button>
-        <FormFood clbk={this.addFood} />
+          onClick={this.displayForm}
+        >add food</button>
+
+        <FormFood isVisible={this.state.showForm} clbk={this.addFood} handleDisplayForm={this.displayForm} />
         {
           this.state.allFoods.map((food, index) =>
             <FoodBox

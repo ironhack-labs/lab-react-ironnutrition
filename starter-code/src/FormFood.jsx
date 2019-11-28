@@ -24,6 +24,7 @@ export class FormFood extends Component {
 
     render() {
         console.log(this.state);
+        if (!this.props.isVisible) return null;
         return (
             <form
                 className="form-food"
@@ -39,7 +40,7 @@ export class FormFood extends Component {
                 <label htmlFor="">Image</label>
                 <input className="input" name="image" id="image" type="text" />
 
-                <button className="btn">Submit</button>
+                <button onClick={this.props.handleDisplayForm} className="btn">Submit</button>
             </form>
         )
     }

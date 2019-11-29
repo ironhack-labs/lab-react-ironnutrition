@@ -43,7 +43,7 @@
 
 .media {
   display: flex;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   margin: 0px 10px 10px;
   justify-content: space-between;
   padding-right: 10px;

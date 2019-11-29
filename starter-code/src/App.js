@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "bulma/css/bulma.css";
 import "./App.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
@@ -10,7 +11,8 @@ class App extends Component {
   state = {
     isActive: false,
     foods: foods,
-    todaysFoods: []
+    todaysFoods: [],
+    totalCal: 0
   };
 
   handleClick = e => {
@@ -18,7 +20,12 @@ class App extends Component {
   };
 
   addMyFood = v => {
-    this.setState({ todaysFoods: [...this.state.todaysFoods, v] });
+    const copy = [...this.state.todaysFoods];
+    copy.push(v);
+    const total = copy
+      .map(item => item.calories * item.quantity)
+      .reduce((prev, next) => prev + next);
+    this.setState({ todaysFoods: copy, totalCal: total });
   };
 
   addProduct = info => {
@@ -47,6 +54,13 @@ class App extends Component {
           {this.state.isActive && <FormAddFoodBox clbk={this.addProduct} />}
         </div>
         <div className="columns">
+          <div className="column">
+            {this.state.foods.map((f, i) => (
+              <div key={i}>
+                <FoodBox clbk={this.addMyFood} f={f} />
+              </div>
+            ))}
+          </div>
           <div class="column content">
             <h2 class="subtitle">Today's foods</h2>
             <ul>
@@ -56,12 +70,8 @@ class App extends Component {
                 </div>
               ))}
             </ul>
+            <strong>Total: {this.state.totalCal}</strong>
           </div>
-          {this.state.foods.map((f, i) => (
-            <div className="column" key={i}>
-              <FoodBox clbk={this.addMyFood} f={f} />
-            </div>
-          ))}
         </div>
       </div>
     );

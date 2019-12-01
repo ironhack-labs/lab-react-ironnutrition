@@ -11,12 +11,12 @@ import TodaysFoods from './TodaysFoods';
 class App extends Component {
   state = {
     allFoods: foods,
+    // todaysFoods pour pouvoir avoir un tableau avec nos datas à afficher
+    todaysFoods: [],
     showForm: false,
   }
 
   addFood = newFood => {
-    console.log(newFood)
-    console.log(foods)
     const copyFoods = [...this.state.allFoods];
     copyFoods.push(newFood)
     this.setState({ allFoods: copyFoods });
@@ -27,11 +27,23 @@ class App extends Component {
     this.setState({ showForm: !this.state.showForm });
   }
 
-  //search bar marche mais pas quand on revient en arrière...notre liste n'est reloadée
   handleSearch = (value) => {
     let filteredFood = foods.filter(food => food.name.toUpperCase().includes(value.toUpperCase()));
     this.setState({ allFoods: filteredFood });
   }
+
+  // 4) fonction handleAddFood déclarée ici avec ses paramètres (qu'elle recoit de onAdd dans composant Foodbox via addToday)
+  handleAddFood = (name, quantity, calories) => {
+    const todaysFoodsState = this.state.todaysFoods;
+    const food = { name, quantity, calories };
+
+    todaysFoodsState.push(food);
+
+    this.setState({
+      todaysFoods: todaysFoodsState
+    });
+  }
+
 
   render() {
     return (
@@ -49,22 +61,31 @@ class App extends Component {
         {/* affiche la searchBar et filtre */}
         <SearchBar clbk={this.handleSearch} />
 
-        <div class="all-foods-list">
-          {/* affiche tous les foods */}
-          {
-            this.state.allFoods.map((food, index) =>
-              <FoodBox
-                key={index}
-                image={food.image}
-                name={food.name}
-                calories={food.calories}
-                quantity={food.quantity} />
-            )
-          }
+
+        <div className="foods-and-todays">
+          <div className="all-foods-list">
+            {/* affiche tous les foods */}
+            {
+              this.state.allFoods.map((food, index) =>
+                <FoodBox
+                  key={index}
+                  image={food.image}
+                  name={food.name}
+                  calories={food.calories}
+                  quantity={food.quantity}
+                  // 3) fonction onAdd déclarée ici fait appel à fonction handleAddFood (déclarée plus haut) avec paramètres implicites
+                  // même syntaxe que onAdd={(a, b, c) => this.handleAddFood(a, b, c)} :
+                  onAdd={this.handleAddFood}
+                />
+              )
+            }
+          </div>
+
+          {/* affiche la list "Today's foods" à droite */}
+          {/* add isVisible={this.state.showToday} */}
+          <TodaysFoods foods={this.state.todaysFoods} />
         </div>
 
-        {/* affiche la list "Today's foods" à droite */}
-        <TodaysFoods />
       </div >
     );
   }

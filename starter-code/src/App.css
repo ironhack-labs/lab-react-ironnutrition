@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.foods-and-todays {
+  display : flex;
+  margin-top: 20px;
+}
+
+.foods-and-todays > div {
+  margin-left: 30px;
+}
+
+.total-todays-foods {
+  margin : 10px 0 0 10px;
+  list-style: disc;
+  text-align: left;
+}
+
+.total-calories {
+  margin-top: 20px;
+}

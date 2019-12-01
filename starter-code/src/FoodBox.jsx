@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
 
 export default class FoodBox extends Component {
+    state = {
+        quantity: this.props.quantity,
+    }
+
+    // 2) fonction addToday fait elle-meme appel à fonction onAdd du parent(car props) avec ces paramètres
+    addToday = () => {
+        this.props.onAdd(this.props.name, this.state.quantity, this.props.calories);
+    }
+
+    handleChange = (event) => {
+        this.setState({ quantity: event.target.value });
+    }
+
     render() {
         return (
 
@@ -25,11 +38,14 @@ export default class FoodBox extends Component {
                                 <input
                                     className="input"
                                     type="number"
-                                    value={this.props.quantity}
+                                    value={this.state.quantity}
+                                    onChange={this.handleChange}
+                                // metre defaultValue au lieu de value sinon la value reste fixée par React..
                                 />
                             </div>
                             <div className="control">
-                                <button className="button is-info">
+                                {/* 1) click sur bouton  et appelle fonction addToday plus haut*/}
+                                <button className="button is-info" onClick={(e) => this.addToday()}>
                                     +
                                 </button>
                             </div>

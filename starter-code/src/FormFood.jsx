@@ -23,7 +23,7 @@ export class FormFood extends Component {
     }
 
     render() {
-        // console.log(this.state);
+        console.log(this.state);
         if (!this.props.isVisible) return null;
         return (
             <form
@@ -40,7 +40,8 @@ export class FormFood extends Component {
                 <label htmlFor="">Image</label>
                 <input className="input" name="image" id="image" type="text" />
 
-                <button onClick={this.props.handleDisplayForm} className="btn">Submit</button>
+                <button className="btn">Submit</button>
+                {/* supprimer cette ligne sinon erreur : je submite 2 fois le formulaire via onSubmit ligne 32 et via le bouton<button onClick={this.props.handleDisplayForm} className="btn">Submit</button> */}
             </form>
         )
     }

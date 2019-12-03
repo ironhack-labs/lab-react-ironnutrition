@@ -1,8 +1,0 @@
-.food-box {
-  flex-direction: row;
-  align-items: center;
-}
-
-.food-box img {
-  max-width: 6em;
-}

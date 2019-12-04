@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 export default class FoodBox extends Component {
 
-    addToList (e) {
-        console.log(e.target.id);
+    addToFoodList = (e) =>  {
+        this.props.addToList(e.target.id);
         
     }
     updateQuantity =(e) => {
@@ -41,7 +41,7 @@ export default class FoodBox extends Component {
                     />
                     </div>
                     <div className="control">
-                    <button className="button is-info"  onClick={this.addToList} id={'btn-'+this.props.id}>
+                    <button className="button is-info"  onClick={this.addToFoodList} id={'btn-'+this.props.id}>
                         +
                     </button>
                     </div>

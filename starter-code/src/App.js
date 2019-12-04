@@ -5,6 +5,7 @@ import foods from './foods.json';
 import AddFood from './components/AddFood';
 import SearchBar from './components/SearchBar';
 import shortid from 'shortid';
+import TodayFoods from './components/TodayFoods';
 
 class App extends Component {
   state = {foods:foods,
@@ -12,15 +13,19 @@ class App extends Component {
           searchContent:'',
           todayFoods :[] };
   
-  addToTodayFoods = (food) => {
-    const todayFoods = [...this.state.todayFoods,food];
-    this.setState({todayFoods});
+  addToTodayFoods = (id) => {
+    const foodName = id.slice(7);
+    const foodToAdd = this.state.foods.find(food => food.name===foodName);
+    if (foodToAdd.quantity) {
+      const todayFoods = [...this.state.todayFoods,foodToAdd];
+      this.setState({todayFoods});
+    }
+    
   }
   updateQuantity = (id,quantity) => {
     const foods = [...this.state.foods];
-    console.log(id,quantity);
-    foods.forEach(food => food.id === id?food.quantity=quantity:null);
-    console.log(foods);
+    const foodName = id.slice(9);
+    foods.forEach(food => food.name === foodName?food.quantity=quantity:null);
   }
 
   addFood = this.addFood.bind(this);
@@ -39,7 +44,7 @@ class App extends Component {
   }
 
   render() {
-    
+    console.log(this.state.todayFoods);
     return (
       <div className="App">
       <SearchBar updateBar={this.updateSearchBar} />
@@ -47,16 +52,19 @@ class App extends Component {
         {
           (this.state.formOn ? (<AddFood addOneFood={this.addFood}/>) : null)
         }
-      
+        <TodayFoods todayFoods={this.state.todayFoods} />
         {
           
          this.state.foods.filter(food =>food.name.toLowerCase().includes(this.state.searchContent.toLowerCase())).map((food,index) => {
            return (
+           
+           
            <FoodBox {...food} 
               key={shortid.generate()} 
-              id={shortid.generate()} 
+              id={'id-'+food.name} 
               addToList={this.addToTodayFoods}
               updateQuantityOne={this.updateQuantity} />
+              
            )
          })
         }

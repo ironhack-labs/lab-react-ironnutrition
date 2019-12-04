@@ -18,14 +18,15 @@ class App extends Component {
 
   showForm = () => {
     this.setState({formOn:!this.state.formOn});
-    console.log(this.state.formOn);
   }
 
   render() {
     return (
       <div className="App">
       <button onClick={this.showForm}>Add New Food</button>
-      
+        {
+          (this.state.formOn ? (<AddFood addOneFood={this.addFood}/>) : null)
+        }
       
         {
          this.state.foods.map((food,index) => {

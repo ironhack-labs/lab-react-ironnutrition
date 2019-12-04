@@ -8,13 +8,13 @@ export default class AddFood extends Component {
             }
 
     handleInput = (e) => {
+        e.preventDefault();
         let {value,name} = e.target;
         this.setState({[name]:value});
     }
     handleSubmit = e => {
         e.preventDefault();
         this.props.addOneFood(this.state);
-
         this.setState(
       { name:"",
         calories:0,

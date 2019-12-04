@@ -1,20 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default function FoodBox(props) {
+
+export default class FoodBox extends Component {
+
+    addToList (e) {
+        console.log(e.target.id);
+        
+    }
+    updateQuantity =(e) => {
+        const {id,value} = e.target;
+        this.props.updateQuantityOne(id, value);
+    }
+    render() {
     return (
         <div className="box">
             <article className="media">
                 <div className="media-left">
-                <figure className="image is-64x64">
-              
-                    <img src={props.image} alt="food"/>
+                <figure className="image is-64x64">             
+                    <img src={this.props.image} alt="food"/>
                 </figure>
                 </div>
                 <div className="media-content">
                 <div className="content">
                     <p>
-                    <strong>{props.name}</strong> <br />
-                    <small>{props.calories} cal</small>
+                    <strong>{this.props.name}</strong> <br />
+                    <small>{this.props.calories} cal</small>
                     </p>
                 </div>
                 </div>
@@ -24,11 +34,14 @@ export default function FoodBox(props) {
                     <input
                         className="input"
                         type="number" 
-                        value="1"
+                        placeholder={this.props.quantity}
+                        onChange={this.updateQuantity}
+                        id={'input-'+this.props.id}
+                        
                     />
                     </div>
                     <div className="control">
-                    <button className="button is-info">
+                    <button className="button is-info"  onClick={this.addToList} id={'btn-'+this.props.id}>
                         +
                     </button>
                     </div>
@@ -37,6 +50,5 @@ export default function FoodBox(props) {
             </article>
         </div>            
     )
+    }
 }
-
-

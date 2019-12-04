@@ -1,30 +1,45 @@
-import React from 'react'
+import React,{Component} from 'react'
 
-export default function TodayFoods(props) {
+export default class TodayFoods extends Component {
     
-    const todayFoods = props.todayFoods;
-    let caloriesCounter = 0;
-    const deleteFood = (e) => {
-        const foodIndex = todayFoods.indexOf(todayFoods.find(food => food.name===e.target.id));
-        todayFoods.splice(foodIndex,1);
+    constructor(props) {
+        super(props);
+        this.state = {todayFoods : this.props.todayFoods}
     }
+    foodList = this.props.todayFoods;
+
+    caloriesCounter = 0;
+    
+    deleteFood = (e) => {
+
+        const foodIndex = this.foodList.indexOf(this.foodList.find(food => food.name===e.target.id));
+        const todayFoods = this.foodList.splice(foodIndex,1);        
+        
+        this.setState({todayFoods});
+    }
+    render() {
+        console.log('Props',this.props.todayFoods);
+        console.log('State',this.state);
+        this.caloriesCounter = 0;
+        this.foodList = this.props.todayFoods;
     return (
         <div>
             <ul>
-            {
-                todayFoods.map((food,index) => {
-                    caloriesCounter += food.calories * food.quantity;
-                    console.log(caloriesCounter);
+            {   
+                
+                this.foodList.map((food,index) => {
+                    this.caloriesCounter += food.calories * food.quantity;
+                    console.log('hola');
                     return (
                         <li 
                         key={index}>{food.quantity} {food.name} = {food.calories*food.quantity} cals
-                        <button id={food.name} onClick={deleteFood}>Delete</button>
+                        <button id={food.name} onClick={this.deleteFood}>Delete</button>
                         </li>
                     )
                 })
             }
             </ul>
-            <h2>Total: {caloriesCounter}</h2>
+            <h2>Total: {this.caloriesCounter}</h2>
         </div>
-    );
+    )}
 }

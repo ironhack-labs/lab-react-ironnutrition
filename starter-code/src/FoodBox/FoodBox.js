@@ -7,7 +7,7 @@ export default class FoodBox extends Component {
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={this.props.food.image} />
+        <img src={this.props.food.image} alt="foodimage"/>
       </figure>
     </div>
     <div className="media-content">

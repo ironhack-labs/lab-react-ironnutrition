@@ -15,8 +15,9 @@ class App extends Component {
         calories: 0,
         quantity: 1
       },
-      foods: foods,
-      showForm: false
+      foods: [...foods],
+      showForm: false,
+      searchInput: ""
     };
   }
 
@@ -32,7 +33,6 @@ class App extends Component {
   updateFood(e, key) {
     let updatedFood = { ...this.state.currentFood };
     updatedFood[key] = e.target.value;
-    console.log("Hola")
     this.setState({
       ...this.state,
       currentFood: updatedFood
@@ -41,9 +41,10 @@ class App extends Component {
 
   addFood(e) {
     e.preventDefault();
-    let foodsUpdated = [this.state.foods];
+    let foodsUpdated = [...this.state.foods];
 
     foodsUpdated.push({
+      
       name: this.state.currentFood.name,
       image: this.state.currentFood.image,
       calories: this.state.currentFood.calories,
@@ -62,12 +63,32 @@ class App extends Component {
     });
   }
 
+  searchFood(e) {
+    let updatedFood =  [...this.state.foods];
+    let searchInput = e.target.value;
+    updatedFood = updatedFood.filter((food) => {
+      let foodName = food.name.toLowerCase()
+      return foodName.indexOf(
+        searchInput.toLowerCase()) !== -1
+    })
+    
+    this.setState({
+      ...this.state,
+      foods: updatedFood,
+      searchInput: searchInput,
+    });
+  }
+  
+
+
+
+
   render() {
     return (
       <div className="App">
         <nav className="main-nav">
           <div>
-            <input type="search" value="" placeholder="Search food! :)"></input>
+            <input onChange={e => this.searchFood(e)} type="text" value={this.state.searchInput} placeholder="Search food! :)"></input>
             <button onClick={e => this.displayForm(e)}>Add new food!</button>
           </div>
           {this.state.showForm && (

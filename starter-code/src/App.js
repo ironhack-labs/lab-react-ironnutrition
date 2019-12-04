@@ -19,23 +19,25 @@ class App extends Component {
 
       form: false,
 
-      displayFoods: this.foodsClone
+      displayFoods: this.foodsClone,
+      permanentFoods: this.foodsClone
     };
-  }
-
-  updateFood(e, key) {
-    console.log(e.target);
-    let foodsUpdated = { ...this.state };
-    foodsUpdated.currentFood[key] = e.target.value;
-    this.setState(foodsUpdated);
   }
 
   addFood(e) {
     e.preventDefault();
 
     let foodsUpdate = [...this.state.displayFoods];
+    let foodsUpdate2 = [...this.state.permanentFoods];
 
     foodsUpdate.push({
+      name: this.state.currentFood.name,
+      calories: this.state.currentFood.calories,
+      image: this.state.currentFood.image,
+      quantity: 0
+    });
+
+    foodsUpdate2.push({
       name: this.state.currentFood.name,
       calories: this.state.currentFood.calories,
       image: this.state.currentFood.image,
@@ -53,7 +55,8 @@ class App extends Component {
 
       form: false,
 
-      displayFoods: foodsUpdate
+      displayFoods: foodsUpdate,
+      permanentFoods: foodsUpdate2
     });
 
     return;
@@ -66,10 +69,36 @@ class App extends Component {
     });
   }
 
+  updateFood(e, key) {
+    // console.log(e.target);
+    let foodsUpdated = { ...this.state };
+    foodsUpdated.currentFood[key] = e.target.value;
+    this.setState(foodsUpdated);
+  }
+
+  searchFood(e, key) {
+    let choosenFood = [...this.state.permanentFoods];
+    let newFoods = choosenFood.filter((element, idx) => {
+      return element.name.includes(e.target.value);
+    });
+
+    this.setState({
+      ...this.state,
+      displayFoods: newFoods
+    });
+    // choosenFood.currentFood[key] = e.target.value;
+    // console.log(e.target.value);
+  }
+
   render() {
     return (
       <div className="App">
-        <button onClick={() => this.showForm()}>Add new Food</button>
+        <input
+          type="text"
+          name="name"
+          placeholder="Search food"
+          onChange={e => this.searchFood(e, "name")}
+        />
         {this.state.displayFoods.map((element, idx) => {
           return (
             <FoodBox
@@ -80,6 +109,7 @@ class App extends Component {
             ></FoodBox>
           );
         })}
+        <button onClick={() => this.showForm()}>Add new Food</button>
         {this.state.form && (
           <form>
             <input

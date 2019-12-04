@@ -19,7 +19,6 @@ class App extends Component {
     if (foodToAdd.quantity) {
       const todayFoods = [...this.state.todayFoods];
       const foodIndex = todayFoods.indexOf(foodToAdd);
-      console.log(foodIndex);
       if (foodIndex < 0 ) todayFoods.push(foodToAdd);
       else todayFoods[foodIndex].quantity = foodToAdd.quantity;
 
@@ -50,7 +49,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.todayFoods);
     return (
       <div className="App">
       <SearchBar updateBar={this.updateSearchBar} />

@@ -4,7 +4,10 @@ export default function TodayFoods(props) {
     
     const todayFoods = props.todayFoods;
     let caloriesCounter = 0;
-    
+    const deleteFood = (e) => {
+        const foodIndex = todayFoods.indexOf(todayFoods.find(food => food.name===e.target.id));
+        todayFoods.splice(foodIndex,1);
+    }
     return (
         <div>
             <ul>
@@ -13,7 +16,10 @@ export default function TodayFoods(props) {
                     caloriesCounter += food.calories * food.quantity;
                     console.log(caloriesCounter);
                     return (
-                        <li key={index}>{food.quantity} {food.name} = {food.calories*food.quantity} cals</li>
+                        <li 
+                        key={index}>{food.quantity} {food.name} = {food.calories*food.quantity} cals
+                        <button id={food.name} onClick={deleteFood}>Delete</button>
+                        </li>
                     )
                 })
             }

@@ -15,13 +15,13 @@ class App extends Component {
         image: "",
         calories: 0,
       },
+      isFormDisplayed: false
     };
   }
 
   updateFood(e, key) {
     let foodUpdated = { ...this.state.currentFood };
     foodUpdated[key] = e.target.value;
-    // console.log(this.state.currentFood)
     this.setState({
       ...this.state,
       currentFood: foodUpdated,
@@ -30,21 +30,33 @@ class App extends Component {
 
   saveFood(e){
     e.preventDefault()
-    let copyFood = [...this.state.foodsArray]
-    let copyCurrent = {...this.state.currentFood}
-    copyFood.push(copyCurrent)
-    this.setState({
-      ...this.state,
-      foodsArray: copyFood
-    })
+    if(this.state.isFormDisplayed){
+      let copyFood = [...this.state.foodsArray]
+      let copyCurrent = {...this.state.currentFood}
+      copyFood.push(copyCurrent)
+      this.setState({
+        ...this.state,
+        foodsArray: copyFood,
+        isFormDisplayed: false
+      }) 
+      return;
+    } else {
+      this.setState({
+        ...this.state,
+        isFormDisplayed: true
+      })
+      return;
+    }
 
   }
+
+
   render() {
     return (
       <div className="App">
         <button onClick={e => this.saveFood(e)}>Add New Food</button>
         <div>
-          <form>
+          {this.state.isFormDisplayed && <form>
             <input
               type="text"
               placeholder="Enter Food Name"
@@ -63,7 +75,7 @@ class App extends Component {
               onChange={e => this.updateFood(e, "calories")}
               value={this.state.currentFood.calories}
             />
-          </form>
+          </form>}
         </div>
         {this.state.foodsArray.map((food, i) => (<Foodbox key={i} payload={{ ...food }}></Foodbox>))}
       </div>

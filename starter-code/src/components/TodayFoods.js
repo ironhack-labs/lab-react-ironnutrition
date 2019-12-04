@@ -7,15 +7,18 @@ export default function TodayFoods(props) {
     
     return (
         <div>
+            <ul>
             {
                 todayFoods.map((food,index) => {
                     caloriesCounter += food.calories * food.quantity;
                     console.log(caloriesCounter);
                     return (
-                        <h3 key={index}>{food.name}</h3>
+                        <li key={index}>{food.quantity} {food.name} = {food.calories*food.quantity} cals</li>
                     )
                 })
             }
+            </ul>
+            <h2>Total: {caloriesCounter}</h2>
         </div>
     );
 }

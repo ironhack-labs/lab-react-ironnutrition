@@ -17,8 +17,14 @@ class App extends Component {
     const foodName = id.slice(7);
     const foodToAdd = this.state.foods.find(food => food.name===foodName);
     if (foodToAdd.quantity) {
-      const todayFoods = [...this.state.todayFoods,foodToAdd];
-      this.setState({todayFoods});
+      const todayFoods = [...this.state.todayFoods];
+      const foodIndex = todayFoods.indexOf(foodToAdd);
+      console.log(foodIndex);
+      if (foodIndex < 0 ) todayFoods.push(foodToAdd);
+      else todayFoods[foodIndex].quantity = foodToAdd.quantity;
+
+      this.setState({todayFoods});  
+      
     }
     
   }

@@ -69,12 +69,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <input type="text" placeholder="Search food" onChange={(e) => this.searchFood(e)}/>
+      <div className="container App">
+        <h1 className="title">IronNutrition</h1>
+        <input className="input search-bar" type="text" placeholder="Search food" onChange={(e) => this.searchFood(e)}/>
         <button onClick={() => this.showForm()}>Add New Food</button>
         {this.state.showForm === true && (
           <form>
             <input
+            
               type="text"
               placeholder="name"
               onChange={e => this.updateFood(e, "name")}

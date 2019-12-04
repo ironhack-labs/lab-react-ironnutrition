@@ -8,10 +8,11 @@ import Food from './components/Food';
 class App extends Component {
   constructor() {
     super()
-    this.foods = [...foods]
+    
     this.state = {
       open: false,
-      foods: [...this.foods],
+      foods: [...foods],
+      foodsToFilter: [...foods],
       currentFood: {
         name: "",
         calories: 0,
@@ -56,7 +57,8 @@ class App extends Component {
         image: "",
         quantity: 0
       },
-      foods: updatedFoods
+      foods: updatedFoods,
+      foodsToFilter: updatedFoods
     })
   }
 
@@ -66,7 +68,7 @@ class App extends Component {
       food.name.toLowerCase().includes(e.target.value.toLowerCase()))
     this.setState({
       ...this.state,
-      foods: searchedFood
+      foodsToFilter: searchedFood
     })
   }
 
@@ -110,7 +112,7 @@ class App extends Component {
         </div>
         <div className="columns">
           <div className="column">
-            {this.state.foods.map((food, idx) => (<Food key={idx} payLoad={food} />))}
+            {this.state.foodsToFilter.map((food, idx) => (<Food key={idx} payLoad={food} />))}
           </div>
         </div>
       </div>

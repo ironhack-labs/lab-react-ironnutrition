@@ -19,6 +19,21 @@ class App extends Component {
       }
     }
   
+  searchFood(e) {
+    let newArr = [...this.foods];
+    let searchWord = e.target.value;
+    let filteredFood = newArr.filter(food =>
+    food.name.toLowerCase().includes(searchWord.toLowerCase())
+    )
+    console.log(filteredFood)
+    this.setState({
+      ...this.state,
+      initialFood: filteredFood
+      
+    })
+  }
+
+
 
   toggleForm=()=> {
     this.setState({
@@ -65,7 +80,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input onChange={(e) => {
+              this.searchFood(e)}}></input>
         {this.state.toggleForm === true && <div>
+          
           <form>
             <label>Name:</label>
             <input type="text" name="name" onChange={e => {

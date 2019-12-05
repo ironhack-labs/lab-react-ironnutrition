@@ -46,7 +46,9 @@ class App extends Component {
     const newfood = {
       name: this.state.data[e.target.name].name,
       quantity: this.state.data[e.target.name].quantity,
-      calories: this.state.data[e.target.name].calories
+      calories:
+        this.state.data[e.target.name].calories *
+        this.state.data[e.target.name].quantity
     };
     newfoodsarray.push(newfood);
     let cals = this.state.totalCalories;

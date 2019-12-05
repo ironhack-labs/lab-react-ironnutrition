@@ -26,3 +26,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.container-global {
+  display:flex;
+  margin-top: 3vh;
+  margin-left: 3vw;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content:  center;
+  margin-left: 17vw;
+  margin-top: 8vh;
+}

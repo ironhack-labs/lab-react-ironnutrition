@@ -10,15 +10,16 @@ class App extends Component {
     data: foods, 
     form : {
       name: '',
-      calories: '',
+      calories: 0,
       image: '',
+      quantity:0,
     },
     showForm: false,
     filterFood:[],
-    name:"",
     search:"",
-    // caloryFood:[],
-    // totalCalories:0,
+    totalCalories: 0,
+    caloryFood:[],
+    
 }
 
 handleInput = e => {  
@@ -52,37 +53,41 @@ filterFood =  ({ target: { name, value } }) => {
   })
 }
 
-// newfoodsarray = (e) =>{
-//     const newfoodsarray = [...this.state.calor];
-//     const newfood = {
-//       name: this.state.data[e.target.name].name,
-//       quantity: this.state.data[e.target.name].quantity,
-//       calories:
-//         this.state.data[e.target.name].calories *
-//         this.state.data[e.target.name].quantity
-//     }
-//   newfoodsarray.push(newfood);
-//     let cals = this.state.totalCalories;
-//     cals += caloryFood.calories;
-//     this.setState({ caloryFood: newfoodsarray, totalCalories: caloryFood });
-//     };
+addCalories = e => {
+  const newfoodsarray = [...this.state.caloryFood];
+  const newfood = {
+    name: this.state.data[e.target.name].name,
+    quantity: this.state.data[e.target.name].quantity,
+    calories:
+      this.state.data[e.target.name].calories * this.quantity
+      
+  };
+    newfoodsarray.push(newfood);
+    let cals = this.state.totalCalories;
+    cals += newfood.calories;
+    this.setState({ caloryFood: newfoodsarray, totalCalories: cals });
+};
 
-// quantity = e => {
-//    const foodsArray = [...this.state.data];
-//    foodsArray[e.target.name].quantity = e.target.value;
-//    this.setState({ data: foodsArray });
-//   };
+quantity = e => {
+  const foodsArray = [...this.state.data];
+  foodsArray[e.target.name].quantity = e.target.value;
+  this.setState({ data: foodsArray });
+}
+
 
 
   render() {
-    let {showForm, filterFood, data} = this.state
+    let {showForm, filterFood, data,} = this.state
     let form
     if (showForm) {
       form = (
         <div>
-          <input name="name" onChange={this.handleInput} value={this.state.name} />
+          <input name="name" onChange={this.handleInput} value={this.state.name}/>
+          <br/>
           <input name="calories" onChange={this.handleInput} value={this.state.calories}/>
+          <br/>
           <input name="image" onChange={this.handleInput} value={this.state.image}/>
+          <br/>
           <button onClick={this.handleSubmit}>Add</button>
         </div>
       )
@@ -91,6 +96,7 @@ filterFood =  ({ target: { name, value } }) => {
     
     return (
       <div>
+      <br/>
         <input
           type="text"
           name="search"
@@ -99,40 +105,40 @@ filterFood =  ({ target: { name, value } }) => {
           placeholder="🔍 search"
         />
 
-
         {
           this.state.search.length === 0 ?
           (data.map((food, index) => 
-            <FoodBox id={index} image={food.image} name={food.name} calories={food.calories}
+            <FoodBox onClick={this.addCalories} onChange={this.quantity} key={index} id={index} image={food.image} name={food.name} calories={food.calories} 
             />
           ))
          :
          (filterFood.map((food, index ) => 
-          <FoodBox id={index} image={food.image} name={food.name} calories={food.calories}
+          <FoodBox onClick={this.addCalories} onChange={this.quantity} key={index} id={index} image={food.image} name={food.name} calories={food.calories} 
             />
          ))
 
         }
-        
+       
         <button onClick={this.handleClick}>Add new food</button>
         {form}
 
-{/* sumar calorias */}
 
-        {/* <h2>Today's foods!</h2>
-          <br />
+        <br/>
+
+
+        <h2>🍫Today's foods🍩</h2>
+  
           <ul>
-            {this.state.todaysFoods.map((item, index) => (
+            {this.state.caloryFood.map((food, index) => (
               <li>
-                {item.quantity} {item.name} = {item.calories * item.quantity}
+                {food.quantity} {food.name} = {food.calories * food.quantity}
               </li>
             ))}
           </ul>
-          <p>Total: {this.state.totalCalories}</p> */}
+          <p>Total: {this.state.totalCalories}</p>
         
       </div>
-    )
-  } 
+)}
 }
 
 

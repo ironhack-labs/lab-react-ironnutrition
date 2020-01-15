@@ -5,3 +5,7 @@ body {
 .page-view {
     width: 35%;
 }
+
+input.input {
+    margin: 0 0 20px 0;
+}

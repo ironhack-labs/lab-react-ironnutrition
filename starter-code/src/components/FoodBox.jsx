@@ -22,7 +22,7 @@ const FoodBox = (props) => {
           <input
             className="input"
             type="number" 
-            value={props.quantity}
+            value={props.quantity+1}
           />
         </div>
         <div className="control">

@@ -4,6 +4,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import FoodBox from "./components/FoodBox"
+import Form from "./components/Form"
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class App extends Component {
             search:"",
             foods: foods,
             showfoods: foods,
-            formStyle: {display: "none"},
+            formStyle: {
+              display: "none"
+            },
             pickedFood: [],
             counter: [],
             sumCalories: [],
@@ -20,6 +23,29 @@ class App extends Component {
         }
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
+
+    addHandler = () => {
+    if(this.state.formStyle.display === "none"){
+      this.setState({
+        formStyle: {
+        display: "block"
+      }}
+      )}
+  }
+
+  submitHandler = (e, state) => {
+    e.preventDefault();
+
+    this.state.showfoods.push(state);
+
+    this.setState({
+      showfoods: this.state.showfoods,
+      formStyle: {
+        display: "none"
+      }
+    })
+}
+
     handleSearchChange(event) {
         let inputValue= event.target.value;
         this.setState({
@@ -62,6 +88,8 @@ calculateCalories = (cal, amount) =>{
     })
 }
 
+
+
     render() {
     let sum = 0;
 
@@ -73,7 +101,10 @@ calculateCalories = (cal, amount) =>{
             <div className="page-view">
             <div>
             <h2 className="is-size-2 has-text-weight-bold">IronNutrition</h2>
+            <button onClick={this.addHandler}>Add New Food</button>
+        <Form style={this.state.formStyle} submitHandler={this.submitHandler} />
             <input className="input" type="text" name="search" value={this.state.search} onChange={this.handleSearchChange} placeholder="Search"/>
+
             
             {this.state.showfoods
                 .filter(food =>

@@ -3,7 +3,8 @@ body {
 }
 
 .page-view {
-    width: 35%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 input.input {

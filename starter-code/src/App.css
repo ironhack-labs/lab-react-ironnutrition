@@ -26,3 +26,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App-form{
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+}
+
+.App h1{
+  font-size:2rem;
+}
+
+.App-todaysfoods{
+  display:flex;
+  flex-direction: column;
+  border:1px green solid;
+  background-color:lightgreen;
+}

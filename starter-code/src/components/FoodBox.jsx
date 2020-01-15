@@ -1,3 +1,4 @@
+//Monika Swidzinska
 import React, { Component } from "react";
 
 class FoodBox extends Component {
@@ -42,7 +43,7 @@ class FoodBox extends Component {
         />
         </div>
         <div className="control">
-          <button className="button is-info" onClick={()=>{this.props.sendInfo(this.props, this.state)}}>
+          <button className="button is-info" onClick={()=>this.props.addFoodHandler(this.props, this.state)}>
             +
           </button>
         </div>

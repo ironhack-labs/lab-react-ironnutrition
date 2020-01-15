@@ -1,9 +1,9 @@
-
+//Monika Swidzinska
 import React, { Component } from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
-import Food from "./components/FoodBox"
+import FoodBox from "./components/FoodBox"
 
 class App extends Component {
     constructor(props) {
@@ -11,6 +11,12 @@ class App extends Component {
         this.state = {
             search:"",
             foods: foods,
+            showfoods: foods,
+            formStyle: {display: "none"},
+            pickedFood: [],
+            counter: [],
+            sumCalories: [],
+            
         }
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
@@ -20,60 +26,83 @@ class App extends Component {
             search:inputValue
         })
     }
-    sendInfo(food, state) {
-        this.setState({
-      name: this.name,
-      quantity:this.quantity,
-      calories: this.calories
-
-    })
-    }
-
     addFoodHandler = (food, state) => {
+    var pickedFoodCopy = [...this.state.pickedFood]
+    var counterCopy = [...this.state.counter]
+    pickedFoodCopy.push(food)
+    counterCopy.push(state.quantity)
+        this.setState({
+     pickedFood: pickedFoodCopy,
+     counter: counterCopy
+  })
+
+  this.calculateCalories(food.calories, state.quantity)
+}
+
+addFoodHandler = (food, state) => {
   var pickedFoodCopy = [...this.state.pickedFood]
   var counterCopy = [...this.state.counter]
 
   pickedFoodCopy.push(food)
-  counterCopy.push(state.count)
+  counterCopy.push(state.quantity)
   
   this.setState({
     pickedFood: pickedFoodCopy,
     counter: counterCopy
   })
 
-  this.calculateCalories(food.calories, state.count)
+  this.calculateCalories(food.calories, state.quantity)
+}
+calculateCalories = (cal, amount) =>{
+    var sumCaloriesCopy = [...this.state.sumCalories]
+    var calories = cal*amount
+    sumCaloriesCopy.push(calories)
+    this.setState({
+      sumCalories: sumCaloriesCopy
+    })
 }
 
-//     increment = ()=>{
-//     this.setState({
-//         quantity: this.state.quantity+1,
-//     })
-//   }
     render() {
+    let sum = 0;
+
+    for (let i = 0; i < this.state.sumCalories.length; i++) {
+      sum += this.state.sumCalories[i];
+    }
+
          return (
             <div className="page-view">
             <div>
             <h2 className="is-size-2 has-text-weight-bold">IronNutrition</h2>
             <input className="input" type="text" name="search" value={this.state.search} onChange={this.handleSearchChange} placeholder="Search"/>
             
-            {this.state.foods
+            {this.state.showfoods
                 .filter(food =>
                 food.name.toLowerCase().includes(this.state.search.toLowerCase())
                 )
-                .map(food=>
-                <Food
+                .map((food, index) => (
+                <FoodBox
                     key={food.name}
                     name={food.name} 
+                    addFoodHandler={this.addFoodHandler}
                     calories={food.calories}
                     image={food.image}
                     quantity={food.quantity}
                 />
+            ))}
+            </div>
+      
+            <div className="d-flex">
+  
+        <div className="column content">
+          <h2 className="subtitle">Today's foods</h2>
+          <ul>
+          {this.state.pickedFood.map((food, index)=> 
+            <li>{this.state.counter[index]} {food.name} = {food.calories * this.state.counter[index]}</li>
             )}
-            </div>
-            <div>
-                <h2 className="is-size-2 has-text-weight-bold">Today's foods</h2>
-                
-            </div>
+          </ul>
+          <strong>Total: {sum} cal</strong>
+        </div>
+        </div>
             </div>
          );
   }

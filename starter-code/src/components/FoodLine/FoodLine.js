@@ -24,7 +24,7 @@ class FoodLine extends Component {
               <input
                 className="input"
                 type="number"
-                // value={this.props.f.quantity}
+                value={this.props.qntValue}
                 onChange={(e) => { this.props.updateQnt(e, this.props.f.name) }}
               />
             </div>

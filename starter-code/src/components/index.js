@@ -1,4 +1,5 @@
 import FoodBox from './FoodBox'
 import FoodLine from './FoodLine'
 import NewForm from './NewForm'
-export {FoodBox, FoodLine, NewForm}
+import SearchBar from './SearchBar'
+export {FoodBox, FoodLine, SearchBar, NewForm}

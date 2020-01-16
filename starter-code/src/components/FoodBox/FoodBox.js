@@ -51,7 +51,10 @@ class FoodBox extends Component {
     foodQnt[this.state.newItemName] = 0
 
     this.setState(
-      {foodQnt: foodQnt}
+      {
+        foodQnt: foodQnt,
+        add: false
+      }
     )
   }
 

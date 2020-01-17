@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import './App.css';
-import { FoodBox } from './components/index.js';
+import { FoodBox, SearchBar } from './components/index.js';
 
 class App extends Component {
   constructor(props) {
@@ -22,10 +22,23 @@ class App extends Component {
     state.foods.push(newItem)
     this.setState(state)
   }
+
+  updateSearch = (event) => {
+    let query = event.target.value
+    let state = foods.filter(food => food.name.startsWith(query))
+    console.log('here');
+    
+    this.setState(
+      {foods: state}
+    )
+    
+  }
+
   render() {
     return (
       <div className="App">
-        <FoodBox food={foods} addFood={this.addFood} />
+        <SearchBar updateSearch={this.updateSearch}/>
+        <FoodBox food={this.state.foods} addFood={this.addFood} />
       </div>
     );
   }

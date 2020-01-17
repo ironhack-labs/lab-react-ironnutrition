@@ -5,11 +5,11 @@ class NewForm extends Component {
     return (
       <form>
         <label>name</label>
-        <input autoComplete='off' type='text' name='newItemName' value={this.props.newItemName} onChange={this.props.updateNewItem}></input>
+        <input className='input' autoComplete='off' type='text' name='newItemName' value={this.props.newItemName} onChange={this.props.updateNewItem}></input>
         <label>number of calories</label>
-        <input autoComplete='off' type='text' name='newItemCal' value={this.props.newItemCal} onChange={this.props.updateNewItem}></input>
+        <input className='input' autoComplete='off' type='text' name='newItemCal' value={this.props.newItemCal} onChange={this.props.updateNewItem}></input>
         <label>image url</label>
-        <input autoComplete='off' type='text' name='newItemUrl' value={this.props.newItemUrl} onChange={this.props.updateNewItem}></input>
+        <input className='input' autoComplete='off' type='text' name='newItemUrl' value={this.props.newItemUrl} onChange={this.props.updateNewItem}></input>
         <button type='submit' onClick={this.props.addNewItemToList }>Add to list</button>
       </form>
     )

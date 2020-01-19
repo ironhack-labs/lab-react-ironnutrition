@@ -2,12 +2,14 @@
 import React, { Component } from "react";
 
 class FoodBox extends Component {
-  constructor(props) {
-    super(props);
+  constructor({quantity, ...props}){
+    super({quantity, ...props})
     this.state = {
-      quantity: 1
-    };
-  }
+        quantity: quantity
+    }
+    
+}
+
   handleQuantityChange = function(e) {
     this.setState({quantity: e.target.value});
   };
@@ -43,9 +45,10 @@ class FoodBox extends Component {
         />
         </div>
         <div className="control">
-          <button className="button is-info" onClick={()=>this.props.addFoodHandler(this.props, this.state)}>
+          <button className="button is-info" onClick={()=>{this.props.updateFood(this.props.name, this.state.quantity)}}>
             +
           </button>
+         
         </div>
       </div>
     </div>

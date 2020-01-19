@@ -22,6 +22,18 @@ class App extends Component {
             
         }
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.updateFood = this.updateFood.bind(this);
+
+    }
+    updateFood(name, quantity) {
+
+      let foods = this.state.foods.map((food)=> {
+        if(food.name === name) food.quantity = parseInt(food.quantity) + parseInt(quantity);
+        return food;
+      })
+  
+      this.setState(foods);
+  
     }
 
     addHandler = () => {
@@ -89,7 +101,6 @@ calculateCalories = (cal, amount) =>{
 }
 
 
-
     render() {
     let sum = 0;
 
@@ -112,6 +123,8 @@ calculateCalories = (cal, amount) =>{
                 )
                 .map((food, index) => (
                 <FoodBox
+                    {...food} 
+                    updateFood={this.updateFood} 
                     key={food.name}
                     name={food.name} 
                     addFoodHandler={this.addFoodHandler}
@@ -126,12 +139,15 @@ calculateCalories = (cal, amount) =>{
   
         <div className="column content">
           <h2 className="subtitle">Today's foods</h2>
+
           <ul>
-          {this.state.pickedFood.map((food, index)=> 
-            <li>{this.state.counter[index]} {food.name} = {food.calories * this.state.counter[index]}</li>
-            )}
-          </ul>
-          <strong>Total: {sum} cal</strong>
+                {foods && foods.map((food)=> 
+                    food.quantity > 0 && <li>{food.quantity} {food.name}(s) = {food.quantity * food.calories}</li>
+                )}
+            </ul>
+
+
+          {/* <strong>Total: {sum} cal</strong> */}
         </div>
         </div>
             </div>
@@ -140,9 +156,3 @@ calculateCalories = (cal, amount) =>{
 }
 
 export default App;
-
-// Hints about he ironutrition exercise:
-// do not put an onChange event handler on the input field. Put an onClick eventHandler on the button. Ignore the step mini icons in the input field
-// use the name of the food as an identifier. Do not use the index
-// use map to modify the foods array. Map doesn’t modify the original array.
-// you do not have to make it possible to file in any number in the input field. You only have to make the increment button work.

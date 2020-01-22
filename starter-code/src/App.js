@@ -1,18 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foodsArray from './foods.json';
+import FoodBox from './components/FoodBox.js';
+import AddFood from './components/AddFood.js';
+import Search from './components/Search.js';
+
 
 class App extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      foodsOriginal: foodsArray,
+      foods: foodsArray,
+      showForm: false,
+    }
+
+   this.getNewFood = this.getNewFood.bind(this);
+  this.toggleForm = this.toggleForm.bind(this);
+
+  }
+
+  getNewFood(food) {
+    const foodsCopy = [...foodsArray];
+    foodsCopy.push(food)
+    this.setState({
+      foods: foodsCopy,
+    })
+  }
+
+  toggleForm() {
+    this.setState({
+      showForm: !this.state.showForm,
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Search />
+      {
+        this.state.foods.map((eachFood, idx) =>{
+          return <FoodBox foodsProps={eachFood} idx={idx}/>
+        })
+      }
+      <button onClick={this.toggleForm}> Add Food</button>
+      {this.state.showForm ? <AddFood newFood={this.getNewFood} toggleSubmit={this.toggleForm}/> : <p> No form! </p>}
+
       </div>
     );
   }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
-import FoodBox from './components/FoodBox'
 import AddFood from './components/AddFood'
+import FoodBoxContainer from './components/FoodBoxContainer.js';
 
 
 class App extends Component {
@@ -10,42 +10,35 @@ class App extends Component {
     super(props);
     this.state = {
       foods: foods,
+      allFoods: foods,
       addFoodForm: false,
-      searchString: "",
       todaysFoods: {
         foods: [],
         calTotal: 0
       }
     }
-    this.handleChangeEvent = this.handleChangeEvent.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.addFood = this.addFood.bind(this);
     this.showForm = this.showForm.bind(this);
   }
 
-  handleChangeEvent(event) {
-    let newString = event.target.value
-    this.setState({
-      searchString: newString
-    }, this.handleSearch);
-    // this.handleSearch();
+  handleSearch(event) {
+    let searchString = event.target.value;
+    let currentList = [];
+    let newList = [];
 
-    // estava chamando a função aqui ao invés de passar como cb em setState
-    // até descobrir que setState é assíncrona
-  }
-
-  handleSearch() {
-    if (this.state.searchString !== "") {
-      let foodsArrayCopy = [...this.state.foods];
-      let foodsArrayFilter = foodsArrayCopy.filter(food => food.name.toUpperCase().includes(this.state.searchString.toUpperCase()));
-      console.log(foodsArrayFilter)
+    if (searchString !== "") {
+      currentList = [...this.state.foods];
+      newList = currentList.filter(food => food.name.toUpperCase().includes(searchString.toUpperCase()));
       this.setState({
-        foods: foodsArrayFilter
-      });
+        foods: newList
+      }, function(){console.log(this.state.foods)});
     } else {
+      newList = this.state.allFoods;
       this.setState({
-        foods: foods
-      })
+        foods: newList
+      }, function(){console.log(this.state.foods)}
+    )
       // como é a melhor forma de resetar a busca e manter os itens adicionados pelo usuário?
     }
   }
@@ -57,12 +50,14 @@ class App extends Component {
       image: object.image,
       quantity: 1
     }
-    let foodsArrayCopy = [...this.state.foods];
-    foodsArrayCopy.push(newFood);
+
+    let copyAllFoods = [...this.state.allFoods];
+    copyAllFoods.push(newFood);
     // console.log(foodsArrayCopy)
     // console.log(this.state.foods)
     this.setState({
-      foods: foodsArrayCopy,
+      foods: copyAllFoods,
+      allFoods: copyAllFoods,
       addFoodForm: !this.state.addFoodForm
     })
     // console.log(this.state.foods)
@@ -82,17 +77,16 @@ class App extends Component {
   }
 
   render() {
+    let foodsArray = this.state.foods;
     return (
       <div className="container">
         <div className="columns">
           <div className="column">
             <h1 className="title">IronNutrition</h1>
-            <input type="text" name="search" onChange={this.handleChangeEvent} value={this.state.searchString}/>
+            <input type="text" name="search" onChange={this.handleSearch}/>
             <button onClick={this.showForm}>Add Food</button>
             {this.state.addFoodForm && <AddFood addFoodMethod={this.addFood}/>}
-            {
-              this.state.foods.map((food, idx) => <FoodBox key={idx} {...food}/> )
-            }
+            <FoodBoxContainer foods={this.state.foods} />
           </div>
           <div className="column">
 

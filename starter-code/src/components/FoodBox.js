@@ -23,6 +23,7 @@ const FoodBox = (props) => (
                             className="input"
                             type="number" 
                             value={props.quantity}
+                            placeholder="0"
                         />
                     </div>
                     <div className="control">

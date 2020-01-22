@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
 import AddFood from "./components/AddFood";
+import SearchFood from "./components/SearchFood";
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +18,11 @@ class App extends Component {
     this.toggleFoods = this.toggleFoods.bind(this);
   }
 
+ /*  searchTheFood() {
+    filter
+    includes 
+  }
+ */
   toggleFoods () {
     this.setState({
         showFormFood: !this.state.showFormFood
@@ -36,7 +42,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        
+        <SearchFood />
 
         <button onClick={() => this.toggleFoods() } hidden={this.state.showFormFood}>Add Food!</button>
         {showFormFood ? <AddFood addTheFood={this.addFoodHandler} /> : null }

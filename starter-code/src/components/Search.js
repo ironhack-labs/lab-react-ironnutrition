@@ -11,12 +11,16 @@ class Search extends Component {
   }
 
   handleChange(event){
-    console.log(this.state.searchWord)
     const { name, value } = event.target;
+    // console.log(value)
     this.setState({
       [name]: value,
     })
+    this.props.search(value)
+    this.props.toggleFilter(value)
   }
+
+  
 
   render(){
     return(

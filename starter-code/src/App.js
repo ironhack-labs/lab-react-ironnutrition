@@ -14,11 +14,16 @@ class App extends Component {
     this.state = {
       foodsOriginal: foodsArray,
       foods: foodsArray,
+      foodsFilter: [],
       showForm: false,
+      showAllFoods: true,
     }
 
    this.getNewFood = this.getNewFood.bind(this);
   this.toggleForm = this.toggleForm.bind(this);
+  this.searchFood = this.searchFood.bind(this);
+  this.toggleSearch = this.toggleSearch.bind(this)
+
 
   }
 
@@ -36,15 +41,43 @@ class App extends Component {
     })
   }
 
+  searchFood(userInput){
+    const filteredArray = this.state.foods.filter(element => {
+       return element.name.toLowerCase().includes(userInput.toLowerCase())
+    })
+    this.setState({
+      foodsFilter: filteredArray,
+    })
+  }
+
+  toggleSearch(userInput){
+    console.log(userInput)
+    if(userInput){
+      this.setState({
+        showAllFoods: false,
+      })
+    } else {
+      this.setState({
+        showAllFoods: true,
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-      <Search />
-      {
+      <Search toggleFilter={this.toggleSearch} search={this.searchFood}/>
+      
+      {this.state.showAllFoods ?
         this.state.foods.map((eachFood, idx) =>{
-          return <FoodBox foodsProps={eachFood} idx={idx}/>
+        return <FoodBox foodsProps={eachFood} key={idx}/>
+        })
+      :
+        this.state.foodsFilter.map((eachFood, idx) =>{
+        return <FoodBox foodsProps={eachFood} key={idx}/>
         })
       }
+
       <button onClick={this.toggleForm}> Add Food</button>
       {this.state.showForm ? <AddFood newFood={this.getNewFood} toggleSubmit={this.toggleForm}/> : <p> No form! </p>}
 

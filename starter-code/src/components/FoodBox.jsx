@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FoodBox = ({
-  name, calories, image, quantify }) => {
+  name, calories, image, quantity, onAddItem }) => {
   return (<div className="App">
     <div className="box">
       <article className="media">
@@ -21,10 +21,10 @@ const FoodBox = ({
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value="1" />
+              <input className="input" type="number" value={quantity} readOnly />  {/* readOnly apenas leitura */}
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button onClick={onAddItem} className="button is-info">
                 +
               </button>
             </div>

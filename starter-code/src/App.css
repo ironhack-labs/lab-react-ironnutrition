@@ -97,3 +97,24 @@ ul {
 ul {
   margin-bottom: 10px;
 }
+
+body {
+  font-size: 16px;
+}
+
+.page-view {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input.input {
+  margin: 0 0 20px 0;
+}
+
+.todaysfood{
+  margin: 200px 100px 0 0;
+}
+.todaysfood h2{
+  font-size: larger;
+  font-weight: bolder;
+}

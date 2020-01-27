@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import foods from '../foods.json';
+import AddFood from './AddFood';
+import mongoose from "mongoose";
 
 export default class FoodBox extends Component {
   constructor (props) {
     super(props)
     this.state = {foods}
   }
+
+  addFoodHandler = (theFood) => {
+    theFood._id = new mongoose.Types.ObjectId();
+    const foodsCopy = [...this.state.foods];
+    foodsCopy.push(theFood);
+    this.setState({
+      foods: foodsCopy
+    })
+  }
+
   render () {
     return (
+      <div>
+      <AddFood addFood={this.addFoodHandler}/>
       <div className='App'>
         {this.state.foods.map(food => (
           <div className='box'>
@@ -37,8 +51,9 @@ export default class FoodBox extends Component {
               </div>
             </article>
           </div>
-        ))}
-      </div>
-    )
+        )
+      )}</div>
+    </div>
+    );
   }
 }

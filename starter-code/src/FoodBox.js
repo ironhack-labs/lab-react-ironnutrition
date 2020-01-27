@@ -11,6 +11,7 @@ export default class FoodBox extends Component {
             image: '',
             quantity: 0,
             formHidden: true,
+            term: ''
         }
     }
 
@@ -38,9 +39,16 @@ export default class FoodBox extends Component {
         this.setState({ [name]: value });
     }
 
+    searchForm = (event) => {
+        let value  = event.target.value;
+        this.setState({
+            term: value}) 
+    }
+
 
 
     render() {
+       const filteredList = this.state.foods.filter(food => food.name.toLowerCase().includes(this.state.term.toLowerCase()))
         return (
 
 
@@ -61,13 +69,15 @@ export default class FoodBox extends Component {
 
                     </form>}
                 </div>
-
-                {this.state.foods.map((oneFood, index) => {
+                        <div>
+                            <input type="text" name="term" value={this.state.term} onChange={this.searchForm}/>
+                        </div>
+                {filteredList.map((oneFood, index) => {
                     return (
 
 
 
-                        <div className="container box">
+                        <div className="container box" key={index}>
                             <article className="media">
                                 <div className="media-left">
                                     <figure className="image is-64x64">
@@ -89,7 +99,7 @@ export default class FoodBox extends Component {
                                                 className="input"
                                                 type="number"
                                                 value="1"
-                                            />
+                                                onChange={this.handleChange} />
                                         </div>
                                         <div className="control">
                                             <button className="button is-info">

@@ -20,7 +20,8 @@ class AddFood extends Component {
             calories: '',
             image: '',
             quantity: ''
-        })
+        });
+        this.props.toggleForm(this.state);
     }
 
     handleChange = (event) => {

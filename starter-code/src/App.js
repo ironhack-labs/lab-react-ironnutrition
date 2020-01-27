@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import FoodBox from './components/FoodBox'
 
 
+
 class App extends Component {
  
   render () {

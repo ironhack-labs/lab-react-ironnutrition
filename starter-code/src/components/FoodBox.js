@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import foods from '../foods.json';
 import AddFood from './AddFood';
 import mongoose from "mongoose";
+import SearchFood from './SearchFood';
 
 export default class FoodBox extends Component {
   constructor (props) {
@@ -21,6 +22,7 @@ export default class FoodBox extends Component {
   render () {
     return (
       <div>
+      <SearchFood />
       <AddFood addFood={this.addFoodHandler}/>
       <div className='App'>
         {this.state.foods.map(food => (

@@ -23,12 +23,12 @@ export default class FoodForm extends Component {
     handleChange=(event)=>{
         let{name, value}=event.target;
         this.setState({[name]: value})
-        console.log(this.state)
+        
     }
 
     render() {
         return (
-            <div>
+           
                 <form onSubmit={this.handleFormSubmit}>
                     <label>Name: </label>
                     <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
@@ -41,7 +41,7 @@ export default class FoodForm extends Component {
 
                     <input type="submit" value="Submit" />
                 </form>
-            </div>
+            
         )
     }
 }

@@ -28,7 +28,7 @@ export default class FoodBox extends Component {
           <input
             className="input"
             type="number" 
-            value="1"
+            //value="1"
           />
         </div>
         <div className="control">

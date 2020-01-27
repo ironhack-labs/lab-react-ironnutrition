@@ -4,12 +4,7 @@ import foods from '../foods.json'
 export default class SearchFood extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      name: '',
-      calories: '',
-      image: '',
-      find: '',
-    }
+    this.state = {foods}
   }
 
   handleChange = event => {
@@ -17,18 +12,15 @@ export default class SearchFood extends Component {
     this.setState({ [name]: value })
   }
 
-  searchFood = data => {
-    const find = data;
+  searchFoodHandler = (data) => {
     data.preventDefault()
     this.setState({
       foods: foods.filter(foods =>
-        foods.name.toLowerCase().includes(find)
-      )
+        foods.name.toLowerCase().includes(data))
     })
   }
 
   render () {
-      {this.state.data}
     return (
       <div>
         search:

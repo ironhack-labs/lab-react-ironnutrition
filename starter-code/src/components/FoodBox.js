@@ -22,7 +22,7 @@ export default class FoodBox extends Component {
   render () {
     return (
       <div>
-      <SearchFood />
+      <SearchFood filter={this.searchFoodHandler}/>
       <AddFood addFood={this.addFoodHandler}/>
       <div className='App'>
         {this.state.foods.map(food => (

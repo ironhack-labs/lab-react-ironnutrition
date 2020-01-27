@@ -26,3 +26,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.mainBody {
+  display: flex;
+}
+
+.todaysFoods {
+  margin: 20px;
+  text-align: left;
+}
+
+.App-intro {
+  margin: 20px;
+}

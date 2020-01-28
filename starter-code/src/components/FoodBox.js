@@ -7,7 +7,10 @@ import SearchFood from './SearchFood';
 export default class FoodBox extends Component {
   constructor (props) {
     super(props)
-    this.state = {foods}
+    this.state = {
+      foods: foods,
+      searchData: ''
+    }
   }
 
   addFoodHandler = (theFood) => {
@@ -19,10 +22,23 @@ export default class FoodBox extends Component {
     })
   }
 
+  handleChange = event => {
+    let { name, value } = event.target
+    this.setState({ [name]: value })
+  }
+
+  searchDataChangeHandler = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      foods: foods.filter(food =>
+        food.name.toLowerCase().includes(event.target.value.toLowerCase()))
+    })
+  }
+
   render () {
     return (
       <div>
-      <SearchFood filter={this.searchFoodHandler}/>
+      <SearchFood searchDataCHandler={this.searchDataChangeHandler}/>
       <AddFood addFood={this.addFoodHandler}/>
       <div className='App'>
         {this.state.foods.map(food => (

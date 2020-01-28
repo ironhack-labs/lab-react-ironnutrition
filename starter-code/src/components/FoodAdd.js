@@ -22,16 +22,16 @@ export default class FoodAdd extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log("STATE", this.state );
         this.props.addNewFoodToListHandler(this.state);
     }
 
     handleInputChange = (event) => {
         const target = event.target;
         const type = event.target.type;
-        const value = target.value;
+        let value = target.value;
         const name = target.name;
 
+        if( type === "number") value = Math.floor( value ).toString();
         this.setState({ [name]: value });
     }
 
@@ -44,8 +44,8 @@ export default class FoodAdd extends Component {
                     <label>Calories:</label><br/>
                     <input type = "number" name="calories" value={this.state.calories} onChange={this.handleInputChange}/><br />
                     <label>Image:</label><br/>
-                    <input type = "text" name="image" value={this.state.image} onChange={this.handleInputChange}/><br />
-                    <input type="submit" value="Submit" />
+                    <input type = "text" name="image" value={this.state.image} onChange={this.handleInputChange}/><br /><br />
+                    <button className="button is-success" type="submit">Submit</button>
                 </form>
             </div>
         )

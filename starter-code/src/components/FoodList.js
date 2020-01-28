@@ -9,9 +9,12 @@ export default class FoodList extends Component {
     }    
 
     render() {
-        //console.log( "PROPS", this.props.foodList );
-        let output = this.props.foodList.map( (oneFood, id) => {
-            return( <FoodBox key={id} food={oneFood} /> );
+        const foodsMatchFilter = this.props.foodList.filter( elem => {
+            return elem.name.includes( this.props.filter );
+        })
+
+        let output = foodsMatchFilter.map( (oneFood) => {
+            return( <FoodBox key={"FL"+oneFood.ind} food={oneFood} addNewFoodTodayToListHandler={this.props.addNewFoodTodayToListHandler}/> );
             });
 
         return (

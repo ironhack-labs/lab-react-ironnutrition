@@ -20,7 +20,7 @@ export default class FoodSearch extends Component {
         return (
             <div className="box">
                 <article className="media">
-                    <input style={{width:"100%"}} type = "text" name="filter" value={this.props.filterValue} onChange={this.handleInputChange}/><br />
+                    <input style={{width:"100%"}} className="input" type = "text" name="filter" value={this.props.filterValue} onChange={this.handleInputChange}/><br />
                 </article>
             </div>
         )

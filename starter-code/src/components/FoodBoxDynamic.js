@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import foods from '../foods.json';
 import FoodBox from './FoodBox';
 import AddFood from './AddFood';
+//import SearchFood from './SearchFood';
 
 class FoodBoxDynamic extends Component {
     constructor() {
@@ -32,9 +33,9 @@ class FoodBoxDynamic extends Component {
 
     render() {                               
         const filteredFood = this.state.foods.filter(food => food.name.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-        /* const filteredFoodJSX = filteredFood.map((oneFood, index) => {
+        const filteredFoodJSX = filteredFood.map((oneFood, index) => {
             return <FoodBox key = {index} {...oneFood}/>;
-        }) */
+        })
         
 
         return(
@@ -45,14 +46,15 @@ class FoodBoxDynamic extends Component {
                     {/* {this.state.displayForm ? 'Hide Add Food Form' : 'Display Add Food Form'} */}
                     Add Food
                     </button>
-                    {this.state.displayForm ? <AddFood addSomeFood = {this.addFoodHandler} toggleForm = {this.toggleForm}/> : null}
 
+                    {this.state.displayForm ? <AddFood addSomeFood = {this.addFoodHandler} toggleForm = {this.toggleForm}/> : null}
                 </div>
-                <div>
-                    {/* {filteredFoodJSX} */}
-                    {filteredFood.map((oneFood, index) => {
+
+                <div>                    
+                    {filteredFoodJSX}
+                    {/* {filteredFood.map((oneFood, index) => {
                         return <FoodBox key = {index} {...oneFood}/>;
-        })}
+                    })} */}
                 </div>
             </div>
         )        

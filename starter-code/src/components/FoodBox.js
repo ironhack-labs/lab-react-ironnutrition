@@ -14,7 +14,7 @@ const foodBox = (props) => {
                     <div className="content">
                         <p>
                         <strong>{props.name}</strong> <br />
-                        <small>{props.calories}</small>
+                        <small>{props.calories} cal</small>
                         </p>                        
                     </div>
                     </div>
@@ -23,8 +23,9 @@ const foodBox = (props) => {
                         <div className="control">
                         <input
                             className="input"
-                            type="number" 
-                            value={props.quantity}
+                            type="number"
+                            defaultValue="1"
+                            value={props.value}                            
                         />
                         </div>
                         <div className="control">

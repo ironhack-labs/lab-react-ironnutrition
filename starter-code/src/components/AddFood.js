@@ -23,7 +23,7 @@ export default class AddFood extends Component {
             name: '',
             calories: '',
             image: '',
-            addNewFood: false,
+            addNewFood: true,
         })
     }
     handleChange = (event) => {

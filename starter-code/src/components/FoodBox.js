@@ -1,66 +1,48 @@
 import React, { Component } from 'react';
-import foods from '../foods.json';
-import AddFood from './AddFood';
-import mongoose from "mongoose";
-import SearchFood from './SearchFood';
 
 export default class FoodBox extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      foods: foods,
-      searchData: ''
+      quantity: 1
     }
   }
 
-  addFoodHandler = (theFood) => {
-    theFood._id = new mongoose.Types.ObjectId();
-    const foodsCopy = [...this.state.foods];
-    foodsCopy.push(theFood);
+
+  handleQuantityChange = (event) => {
     this.setState({
-      foods: foodsCopy
+      quantity: event.currentTarget.value
     })
   }
 
-  handleChange = event => {
-    let { name, value } = event.target
-    this.setState({ [name]: value })
-  }
-
-  searchDataChangeHandler = (event) => {
-    console.log(event.target.value)
-    this.setState({
-      foods: foods.filter(food =>
-        food.name.toLowerCase().includes(event.target.value.toLowerCase()))
-    })
-  }
 
   render () {
     return (
       <div>
-      <SearchFood searchDataCHandler={this.searchDataChangeHandler}/>
-      <AddFood addFood={this.addFoodHandler}/>
-      <div className='App'>
-        {this.state.foods.map(food => (
           <div className='box'>
             <article className='media'>
               <div className='media-left'>
                 <figure className='image is-64x64'>
-                  <img src={food.image} />
+                  <img src={this.props.food.image} />
                 </figure>
               </div>
               <div className='media-content'>
                 <div className='content'>
                   <p>
-                    <strong>{food.name}</strong> <br />
-                    <small>{food.calories} cal</small>
+                    <strong>{this.props.food.name}</strong> <br />
+                    <small>{this.props.food.calories} cal</small>
                   </p>
                 </div>
               </div>
               <div className='media-right'>
                 <div className='field has-addons'>
                   <div className='control'>
-                    <input className='input' type='number' value='1' />
+                    <input 
+                      className='input' 
+                      type='number' 
+                      onChange={(event) => this.handleQuantityChange(event)} 
+                      value={this.state.quantity}
+                    />
                   </div>
                   <div className='control'>
                     <button className='button is-info'>+</button>
@@ -69,9 +51,7 @@ export default class FoodBox extends Component {
               </div>
             </article>
           </div>
-        )
-      )}</div>
-    </div>
+        </div>
     );
   }
 }

@@ -4,6 +4,7 @@ import "./App.css"
 import foods from './foods.json';
 import FoodBox from "./FoodBox"
 import Search from "./Search"
+import TodaysFood from './TodaysFood';
 
 
 const allFoods = foods
@@ -43,24 +44,47 @@ class App extends Component {
     
   } // sets the state to the food in the state of Search.js
 
+  addToList = foodIndex => {
+    let newStateFood = [...this.state.food]
+    newStateFood[foodIndex].listed=true
+    this.setState({
+      food:newStateFood,
+      allFoods: allFoods
+    })
+  } // Gets the food index from FoodBox.js
+  // Sets the state to the changed quantity
+
 
   render() {
-    console.log("render App.js", this.state.food)
+    console.log("render App.js",this.state.food[0].name,this.state.food[0].listed)
     return (
       <div className="App container">
-        <h1>IronNutrition</h1>
 
-        <div className="column is-half">
-          <Search
-            foodsProp     = {this.state.allFoods} // Using all foods so that we do not change the full array of objs
-            searchBoxFood = {this.searchBoxFood}
-          />
-          <br></br>
-          <FoodBox
-            foodsProp     = {this.state.food}
-            handleSubmit  = {this.handleSubmit}
-          
-          />
+        <h1>IronNutrition</h1>
+        <br></br>
+
+        <div className="columns">
+          <div className="column is-half">
+
+            <Search
+              foodsProp       = {this.state.allFoods} // Using all foods so that we do not change the full array of objs
+              searchBoxFood   = {this.searchBoxFood}
+            />
+            <br></br>
+
+            <FoodBox
+              foodsProp       = {this.state.food}
+              handleSubmit    = {this.handleSubmit}
+              addToList       = {this.addToList}
+            />
+            
+          </div>
+
+          <div className="column is-half">
+            <TodaysFood
+              currentState    = {this.state.food}
+            />
+          </div>
         </div>
         
       </div>

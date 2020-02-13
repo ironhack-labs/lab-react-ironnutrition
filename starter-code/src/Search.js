@@ -22,7 +22,7 @@ class Search extends Component {
     // returns whatever the input is on the search box, it's called onChange
 
     render() {
-        console.log("render search.js", this.state)
+        // console.log("render search.js", this.state)
         return (
             <div>
                 <input className= "input is-success" type="text" placeholder="Search..." name="search" onChange={this.searchFood}></input>

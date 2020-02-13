@@ -27,7 +27,7 @@ class FoodBox extends Component {
                 
                 <form onSubmit={(e) => this.props.handleSubmit(this.state,e)}>
                     <input className= "input is-info" onChange={this.addFoodProperty} name="name" type="text" placeholder="food name"/>
-                    <input className= "input is-info" onChange={this.addFoodProperty} name="calories" type="text" placeholder="calories"/>
+                    <input className= "input is-info" onChange={this.addFoodProperty} name="calories" type="number" placeholder="calories"/>
                     <input className= "input is-info" onChange={this.addFoodProperty} name="img" type="text" placeholder="image url"/>
                     <input className="button is-info" type="submit"/>
                 </form>
@@ -38,7 +38,6 @@ class FoodBox extends Component {
         
     } // onClick creates the fields to properly add food to the state/ or button to do so
     
-
     addFood = (foodIndex) => {
         return (
             
@@ -63,11 +62,11 @@ class FoodBox extends Component {
                         <input
                             className="input"
                             type="number" 
-                            value="1"
+                            value={this.props.foodsProp[foodIndex].quantity}
                             />
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button className="button is-info" onClick={() => this.props.addToList(foodIndex)}>
                             +
                         </button>
                         </div>
@@ -88,7 +87,8 @@ class FoodBox extends Component {
     } // Creates an array, loops through from i=0 to allFood, which will be foodsProp.length
     // which in this case is the length of all the current objs in the App.js state.food 
     // If allFoods isn't used then we won't go back to the full list of the food, because the result was set to the state of App.js
-    
+    // Uses changeQuanity props to add an onclick event
+
     render() {
         return (
             <div>

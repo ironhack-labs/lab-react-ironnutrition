@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from "./FoodBox"
 
+
+const allFoods = foods
+
+// console.log(allFoods[0])
 class App extends Component {
+
+
+  state = {
+    food: allFoods
+  }
+
+  handleSubmit = (state,e) => {
+    e.preventDefault()
+    state.foodForm = false;
+    // console.log(state) // This is the Child's state
+    let x = {name:state.name,calories:state.calories,image:state.img,quantity:0}
+    // console.log(x)
+    let newStateFood = [...this.state.food] // This is a copy of the App js state
+    newStateFood.push(x)
+    // console.log(newStateFood)
+    this.setState({  // Sets the state to current file
+      food: newStateFood
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <FoodBox
+          foodsProp     = {this.state.food}
+          handleSubmit  = {this.handleSubmit}
+        />
       </div>
     );
   }

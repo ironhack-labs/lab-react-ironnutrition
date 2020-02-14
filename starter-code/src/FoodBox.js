@@ -27,7 +27,7 @@ foodItemBar = () => {
                     <input className="input" type="number" placeholder="1"/>
                   </div>
                   <div className="control">
-                    <button className="button is-info" onClick={this.props.addToList}>+</button>
+                    <button className="button is-info" onClick={()=>this.props.addToList([i])} key={i}>+</button>
                   </div>
                 </div>
               </div>

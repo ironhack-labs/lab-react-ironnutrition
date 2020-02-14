@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from './FoodBox';
 import Buttons from './Buttons';
@@ -10,7 +9,8 @@ class App extends Component {
     foods,
     allFoods: foods,
     foodForm: false,
-    totalCalories: 0
+    totalCalories: 0,
+    todaysList: []
   };
 
   toggleFoodForm = () => {
@@ -90,31 +90,61 @@ class App extends Component {
     }
   };
 
-
-  handleSearchChange = (e) => {
+  handleSearchChange = e => {
     let searchList = [...this.state.allFoods];
     let searchListSelection = searchList.filter(eachItem => {
-      return eachItem.name.toLowerCase().includes(e.target.value.toLowerCase())
+      return eachItem.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     this.setState({
       foods: searchListSelection
     });
   };
 
-  addToList = (i) => {
-    // console.log(foods)
-    return (
-      <div className="column is-offset-1">
-        <h2>Today's List</h2>
-        <br />
+  addToList = i => {
+    let searchList = this.state.foods;
+    this.state.todaysList.push(searchList[i]);
+    console.log(this.state.todaysList);
+    let todaysListCopy = [...this.state.todaysList];
+    this.setState({
+      todaysList: todaysListCopy
+    });
+    // console.log('i is = to >>> ', i)
+    // return (
+    //   this.showTodaysList()
+    // );
+  };
+
+  showTodaysList = () => {
+    return this.state.todaysList.map((eachFood,i) => {
+      return (
         <ul>
-          <li>{}</li>
+          <li key={i}>
+            {eachFood.name} = {eachFood.calories} cal
+          </li>
         </ul>
-        <br />
-        <h4>Total Calories = {this.state.totalCalories}</h4>
-      </div>
-    );
-  }
+        // <h3>Total Calories = {...eachFood.calories}</h3>
+      );
+      }
+      )
+    
+  };
+
+  // showFiveContacts = () => {
+  //   return this.state.fiveContacts.map((eachContact, i) => {
+  //     return (
+  //       <tr key={i}>
+  //         <th>
+  //           <img src={eachContact.pictureUrl} alt={eachContact.name} />
+  //         </th>
+  //         <th>{eachContact.name}</th>
+  //         <th>{eachContact.popularity.toFixed(2)}</th>
+  //         <th>
+  //           <button onClick={() => this.deleteActor(i)}>Delete</button>
+  //         </th>
+  //       </tr>
+  //     );
+  //   });
+  // };
 
   render() {
     // console.log(this.state.foods)
@@ -122,16 +152,24 @@ class App extends Component {
     return (
       <div className="App container">
         <h1>IronNutrition</h1>
-          {this.showFoodForm()}
-          <br/>
-          <input onChange={this.handleSearchChange} name="search" placeholder="Search for food..." />
-          <br/>
-          <br/>
-          <div className="columns is-half">
-            <FoodBox data={this.state.foods} />
-            {this.addToList()}
-          </div>
+        {this.showFoodForm()}
+        <br />
+        <input
+          onChange={this.handleSearchChange}
+          name="search"
+          placeholder="Search for food..."
+        />
+        <br />
+        <br />
+        <div className="columns is-half">
+          <FoodBox addToList={this.addToList} data={this.state.foods} />
+          <div className="column is-offset-1">
+          <h2>Today's List</h2><br/>
           
+            {this.showTodaysList()}
+          
+          </div>
+        </div>
       </div>
     );
   }

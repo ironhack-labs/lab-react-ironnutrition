@@ -10,3 +10,7 @@
   font-weight: bold;
   font-size: 28px;
 }
+
+.App ul {
+  list-style: inside;
+}

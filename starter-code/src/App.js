@@ -47,6 +47,8 @@ class App extends Component {
   addToList = foodIndex => {
     let newStateFood = [...this.state.food]
     newStateFood[foodIndex].listed=true
+    newStateFood[foodIndex].quantity+=1
+    console.log(newStateFood[foodIndex])
     this.setState({
       food:newStateFood,
       allFoods: allFoods
@@ -56,7 +58,7 @@ class App extends Component {
 
 
   render() {
-    console.log("render App.js",this.state.food[0].name,this.state.food[0].listed)
+    // console.log("render App.js",this.state.food[0].name,this.state.food[0].listed)
     return (
       <div className="App container">
 

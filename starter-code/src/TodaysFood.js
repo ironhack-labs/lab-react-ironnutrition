@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 
-let totalCals = 0
-
 class TodaysFood extends Component {
-
-    // state = {this.props.stateProp}
 
     todayList = () => {
             let currentState = this.props.currentState
             let filteredFood = currentState.map(eachFood => {
                 
                 if (eachFood.listed === true){
-                    totalCals+= eachFood.calories
-
                     return (
-                    <div className="has-text-left is-family-monospace">{eachFood.quantity} {eachFood.name} = {eachFood.calories} cals </div>
+                    <li className="has-text-left is-family-primary"> {eachFood.quantity} {eachFood.name} = {eachFood.calories} cals </li>
                     )
                 }
             })
+
+            
+
             return filteredFood
     }
 
 
     render() {
+        let trackCals = this.props.currentState.reduce((acc,value) => {
+            
+            if(value.quantity>0){
+                acc+= value.quantity*value.calories
+            }
+            return acc 
+        },0); // Starts accumulator with 0
+
         return (
             <div>
                 <h2 className="title 1">Today's Food</h2>
-                <h4 className="has-text-left is-family-monospace">Total cals = {totalCals}</h4>
                 <div>
                     {this.todayList()}
                 </div>
+                <h4 className="has-text-right is-family-primary">Total cals = {trackCals}</h4>
             </div>
         );
     }

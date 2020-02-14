@@ -10,17 +10,17 @@ console.log(foods)
 class App extends Component {
 
   state = {
-    foods,
+    foods: foods,
     foodForm:false,
     searchText: "",
     showForm:false,
-    allFoods: foods
-
+    allFoods: foods,
+    count: 1
   }
 
   showFoods = () => {
     let foodList = this.state.foods.map((eachFood,i)=>{
-      return <FoodBox key = {i} {...eachFood} />
+      return <FoodBox key = {i} {...eachFood}  addItem ={this.addItem} index={i} />
     })
     return foodList;
   }
@@ -37,10 +37,9 @@ class App extends Component {
     console.log('submit ', this.state)
     let newFoods = [...this.state.foods]
     newFoods.unshift({
-      name:this.state.food,
-      calories:null,
-      quantity:1,
-      image:null
+      name    :this.state.name,
+      image   :this.state.image,
+      calories:this.state.calories
     })
 
     this.setState({
@@ -50,7 +49,7 @@ class App extends Component {
 
   handleInputChange = (e) => {
     console.log('change', e.target.name, e.target.value)
-    this.setState( { [e.target.name] : e.target.value } ) //food : 'lasagn'
+    this.setState({[e.target.name] : e.target.value }) //food : 'lasagn'
   }
 
   handleSearch(e) {
@@ -106,11 +105,11 @@ class App extends Component {
       name: this.state.name,
       image: this.state.image,
       calories: this.state.calories
-      
     })
 
     this.setState({
-      foods: copyFoods
+      foods: copyFoods,
+      allFoods:copyFoods
     })
   }
 
@@ -125,11 +124,23 @@ class App extends Component {
     })
 
   }
+
+  addItem = (index) => {
+    console.log(index)
+    // this.state.quantity
+    this.setState(prevState => {
+      return {count: prevState.count + 1}
+   })
+   console.log(this.state.count)
+  }
+  
   
 
   render() {
     return (
       <div className="App">
+      
+      <div className="column">
          <input onChange = {this.searchFood} type="text" placeholder="Search .... " name="search" />
          {this.showSearchBars()}
         <br></br>
@@ -137,10 +148,14 @@ class App extends Component {
         <br></br>
         <button onClick={this.toggleAddFoodBars}>Add New Food</button>
         
-
         {this.showFoods()}
-
-      </div>
+        <br></br>
+        </div>
+        <div className="column"><h1>Today's Menu</h1>
+          <h2>{this.addItem}</h2>
+        </div>
+        </div>
+      
     );
   }
 }

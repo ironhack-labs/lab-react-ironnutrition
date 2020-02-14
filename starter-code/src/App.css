@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+.column {
+  width: 50%;
+}
+
+.column:nth-child(2) {
+position: absolute;
+top: 0;
+right: 0;
 }
 
 .App-logo {

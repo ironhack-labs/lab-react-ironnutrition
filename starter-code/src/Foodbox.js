@@ -7,12 +7,13 @@ class Foodbox extends Component {
     }
 
     render() {
+        //console.log(this.props)
         return (
             <div className="box">
             <article className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
-                  <img src={this.props.image} alt='hi' />
+                  <img src={this.props.image} alt='hi'/>
                 </figure>
               </div>
               <div className="media-content">
@@ -30,17 +31,19 @@ class Foodbox extends Component {
                       className="input"
                       type="number" 
                       value={this.props.quantity}
+                    //   
                     />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
+                    <button value={this.state.quantity} calories = {console.log(this.props.calories)} onClick = {()=> this.props.addItem(this.props.index)} className="button is-info">
                       +
                     </button>
                   </div>
                 </div>
               </div>
             </article>
-          </div>
+        </div>
+        
         );
     }
 }

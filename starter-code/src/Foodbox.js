@@ -3,11 +3,18 @@ import React, { Component } from 'react';
 class Foodbox extends Component {
 
     state = {
+        quantity: 0
+    }
 
+    handleQuantityChange = (e) => {
+        // console.log(e.target.value)
+        this.setState({
+            quantity: e.target.value
+        })
     }
 
     render() {
-        //console.log(this.props)
+        //console.log(this.state)
         return (
             <div className="box">
             <article className="media">
@@ -29,13 +36,12 @@ class Foodbox extends Component {
                   <div className="control">
                     <input
                       className="input"
-                      type="number" 
-                      value={this.props.quantity}
-                    //   
+                      type="number"
+                      onChange ={this.handleQuantityChange}
                     />
                   </div>
                   <div className="control">
-                    <button value={this.state.quantity} calories = {console.log(this.props.calories)} onClick = {()=> this.props.addItem(this.props.index)} className="button is-info">
+                    <button onClick = {() => this.props.addToList(this.props.name, this.props.calories,this.state.quantity)} className="button is-info">
                       +
                     </button>
                   </div>

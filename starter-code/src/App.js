@@ -4,7 +4,8 @@ import foods from './foods.json'
 import FoodBox from './Foodbox'
 import 'bulma/css/bulma.css'
 
-console.log(foods)
+// const allFoods = foods
+// console.log(foods)
 
 
 class App extends Component {
@@ -15,12 +16,14 @@ class App extends Component {
     searchText: "",
     showForm:false,
     allFoods: foods,
+    todaysFoods: [],
+    totalCalores: 0,
     count: 1
   }
 
   showFoods = () => {
     let foodList = this.state.foods.map((eachFood,i)=>{
-      return <FoodBox key = {i} {...eachFood}  addItem ={this.addItem} index={i} />
+      return <FoodBox key = {i} {...eachFood}  addToList ={this.addToList} index={i} />
     })
     return foodList;
   }
@@ -39,7 +42,8 @@ class App extends Component {
     newFoods.unshift({
       name    :this.state.name,
       image   :this.state.image,
-      calories:this.state.calories
+      calories:this.state.calories,
+      quantity: this.state.quantity
     })
 
     this.setState({
@@ -97,6 +101,8 @@ class App extends Component {
     })
   }
 
+
+
   // what happens when user hits submit after entering in food, calories, and image in search
   onSubmitClick = (e) => {
     e.preventDefault() // prevents the page from refreshing
@@ -114,7 +120,7 @@ class App extends Component {
   }
 
   searchFood = (e) => {
-    console.log(e.target.value, )
+    console.log(e.target.value, e.target.name)
     let newFoods = [...this.state.allFoods] //made a copy 
     let filteredFoods = newFoods.filter(eachFood=>{ //filtered teh copy 
       return eachFood.name.toLowerCase().includes(e.target.value.toLowerCase())  //piz {name:Pizza} what u type is equal to the name of the food return it 
@@ -125,15 +131,35 @@ class App extends Component {
 
   }
 
-  addItem = (index) => {
-    console.log(index)
-    // this.state.quantity
-    this.setState(prevState => {
-      return {count: prevState.count + 1}
-   })
-   console.log(this.state.count)
-  }
+    addToList = (name, calories, quantity) => {
+      console.log(name, calories, quantity)
+      let foodObj = {
+        nameKey: name,
+        caloriesKey: calories,
+        quantityKey: Number(quantity)
+      }
+      let todaysFoodsCopy = [...this.state.todaysFoods]
+      todaysFoodsCopy.push(foodObj);
+      //console.log(todaysFoods)
+      this.setState({
+        todaysFoods: todaysFoodsCopy
+      })
+    }
   
+    displayTodaysFood = () => {
+      let todaysFoodsCopy = this.state.todaysFoods.map((eachFood,i)=>{
+        return <li>{eachFood.quantityKey} {eachFood.nameKey} = {eachFood.caloriesKey * eachFood.quantityKey} calories</li>
+      })
+      return todaysFoodsCopy;
+    }
+
+    calcuTotalCalories = () => {
+      let total = this.state.todaysFoods.reduce((acc, eachFood) => {
+        return acc + (eachFood.quantityKey * eachFood.caloriesKey)},0);
+        return total
+      
+    }
+
   
 
   render() {
@@ -152,7 +178,11 @@ class App extends Component {
         <br></br>
         </div>
         <div className="column"><h1>Today's Menu</h1>
-          <h2>{this.addItem}</h2>
+        <div>
+        {this.displayTodaysFood()}
+        
+                </div>
+                <div> Total: {this.calcuTotalCalories()}</div>
         </div>
         </div>
       

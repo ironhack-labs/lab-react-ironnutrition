@@ -10,7 +10,8 @@ class App extends Component {
     allFoods: foods,
     foodForm: false,
     totalCalories: 0,
-    todaysList: []
+    //todaysList: [],
+    todaysList: {}
   };
 
   toggleFoodForm = () => {
@@ -100,14 +101,24 @@ class App extends Component {
     });
   };
 
-  addToList = i => {
-    let searchList = this.state.foods;
-    this.state.todaysList.push(searchList[i]);
-    console.log(this.state.todaysList);
-    let todaysListCopy = [...this.state.todaysList];
+  addToList = (i) => e => {
+    //console.log(i, e, e.target.name, e.target.value, e.target.calories);
+    let todaysList = { ...this.state.todaysList }
+    todaysList[e.target.name] = { value: e.target.value, name: e.target.name, calories: i};
     this.setState({
-      todaysList: todaysListCopy
+      todaysList
     });
+    //console.log(todaysList)
+    // let searchList = [...this.state.foods];
+    // searchList[i].quantity++
+    // this.state.todaysList.push(searchList[i]);
+    // // console.log(this.state.todaysList);
+    // // console.log(searchList[i].quantity);
+    // let todaysListCopy = [...this.state.todaysList];
+    // this.setState({
+    //   todaysList: todaysListCopy,
+    //   foods: searchList
+    // });
     // console.log('i is = to >>> ', i)
     // return (
     //   this.showTodaysList()
@@ -115,36 +126,36 @@ class App extends Component {
   };
 
   showTodaysList = () => {
-    return this.state.todaysList.map((eachFood,i) => {
-      return (
-        <ul>
-          <li key={i}>
-            {eachFood.name} = {eachFood.calories} cal
-          </li>
-        </ul>
-        // <h3>Total Calories = {...eachFood.calories}</h3>
-      );
-      }
-      )
-    
-  };
+    let todaysList = {...this.state.todaysList}
+    let list = []
+    let totCalories = 0
+    for(let i in todaysList){
+      console.log(i, todaysList[i])
+      list.push(<li>{todaysList[i].value} qty. - {todaysList[i].name} @ {todaysList[i].calories} cals</li>);
+    }
+    for(let i in todaysList){
+      totCalories += (todaysList[i].calories * todaysList[i].value);
+    }
 
-  // showFiveContacts = () => {
-  //   return this.state.fiveContacts.map((eachContact, i) => {
-  //     return (
-  //       <tr key={i}>
-  //         <th>
-  //           <img src={eachContact.pictureUrl} alt={eachContact.name} />
-  //         </th>
-  //         <th>{eachContact.name}</th>
-  //         <th>{eachContact.popularity.toFixed(2)}</th>
-  //         <th>
-  //           <button onClick={() => this.deleteActor(i)}>Delete</button>
-  //         </th>
-  //       </tr>
-  //     );
-  //   });
-  // };
+    return (
+      <div> <h2>Today's List</h2> <br/>
+    <ul>{list}</ul>
+    <br/>
+    <h3>Total Calories = {totCalories}</h3>
+    </div>)
+
+    // return this.state.todaysList.map((eachFood, i) => {
+    //   return (
+    //     <ul key={i}>
+    //       <li>
+    //         {eachFood.quantity} - {eachFood.name} @ {eachFood.calories}cal/each
+    //         <br />
+    //         <i>Tot CALs @ {eachFood.quantity * eachFood.calories}</i>
+    //       </li>
+    //     </ul>
+    //   );
+    // });
+  };
 
   render() {
     // console.log(this.state.foods)
@@ -162,12 +173,16 @@ class App extends Component {
         <br />
         <br />
         <div className="columns is-half">
-          <FoodBox addToList={this.addToList} data={this.state.foods} />
+          <FoodBox addToList={this.addToList} foods={this.state.foods} />
           <div className="column is-offset-1">
-          <h2>Today's List</h2><br/>
-          
             {this.showTodaysList()}
-          
+            {/* {this.state.todaysList.length !== 0 && <h2>Today's List</h2>}
+            <br />
+            {this.state.todaysList.length !== 0 && this.showTodaysList()}
+            <br />
+            {this.state.todaysList.length !== 0 && (
+              <h6>Total Calories = {this.state.totalCalories}</h6>
+            )} */}
           </div>
         </div>
       </div>

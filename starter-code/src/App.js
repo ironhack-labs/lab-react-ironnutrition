@@ -2,17 +2,49 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import foodsAll from './foods.json'
+
 class App extends Component {
+  state={
+    foods:[...foodsAll]
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+      {this.state.foods.map((food,indx)=>
+       <div className="box" key={indx}>
+  <article className="media">
+    <div className="media-left">
+      <figure className="image is-64x64">
+        <img src={food.image} />
+      </figure>
+    </div>
+    <div className="media-content">
+      <div className="content">
+        <p>
+          <strong>{food.name}</strong> <br />
+          <small>{food.calories}</small>
         </p>
+      </div>
+    </div>
+    <div className="media-right">
+      <div className="field has-addons">
+        <div className="control">
+          <input
+            className="input"
+            type="number" 
+            value={food.quantity}
+          />
+        </div>
+        <div className="control">
+          <button className="button is-info">
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>)}
       </div>
     );
   }

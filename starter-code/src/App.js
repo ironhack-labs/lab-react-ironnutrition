@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 
 import foodsAll from './foods.json'
+import FoodBox from './components/FoodBox';
 
 class App extends Component {
   state={
     foods:[...foodsAll],
+    foodsFilter:[...foodsAll],
     name:"",
     calories:'',
     image:'',
-    new:false
+    new:false,
+    busqueda:''
   }
   agrega=()=>{
     this.setState({new:true})
@@ -17,6 +20,7 @@ class App extends Component {
   agregaPlato=(name,image,calories)=>{
     let food={name,image,calories,quantity:0}
     this.setState({foods:[...this.state.foods,food],
+      foodsFilter:[...this.state.foodsFilter,food],
     name:"",calories:"",image:"",new:false})
   }
 
@@ -24,7 +28,16 @@ class App extends Component {
     const {name,value}=e.target
     this.setState({[name]:value})
   }
-  
+  handleCounter=(e)=>{
+    const {value,id}=e.target
+    this.setState({foodsFilter:this.state.foodsFilter.map((food,i)=> (id.toString()===i.toString()) ? {...food,quantity:value}:food )})
+    
+  }
+  busca=(e)=>{
+    const {name,value}=e.target
+    this.setState({[name]:value})
+    this.setState({foodsFilter:[...this.state.foods.filter(food=>food.name.toLowerCase().startsWith(value.toLowerCase()))]})
+  }
   render() {
     return (
       <div className="App">
@@ -37,40 +50,19 @@ class App extends Component {
       <br></br>
       <button onClick={()=>this.agregaPlato(this.state.name,this.state.image,this.state.calories)}>Add</button>
       </section> : <button onClick={this.agrega}>Add new food</button>}
-      {this.state.foods.map((food,indx)=>
-       <div className="box" key={indx}>
-  <article className="media">
-    <div className="media-left">
-      <figure className="image is-64x64">
-        <img src={food.image} alt={food.name}/>
-      </figure>
-    </div>
-    <div className="media-content">
-      <div className="content">
-        <p>
-          <strong>{food.name}</strong> <br />
-          <small>{food.calories}</small>
-        </p>
-      </div>
-    </div>
-    <div className="media-right">
-      <div className="field has-addons">
-        <div className="control">
-          <input
-            className="input"
-            type="number" 
-            value={food.quantity}
-          />
-        </div>
-        <div className="control">
-          <button className="button is-info">
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-  </article>
-</div>)}
+      <br></br>
+      <br></br>
+      <label>Search: </label>
+      <input onChange={this.busca} type="search" name="busqueda" value={this.state.busqueda} /> 
+      {this.state.foodsFilter.map((food,indx)=>
+       <FoodBox key={indx}
+       id={indx}
+      name={food.name}
+      calories={food.calories}
+      image={food.image}
+      quantity={food.quantity}
+      handleCounter={this.handleCounter}
+    />)}
       </div>
     );
   }

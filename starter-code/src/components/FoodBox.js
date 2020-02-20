@@ -13,7 +13,7 @@ function FoodBox(props) {
                   <div className="content">
                     <p>
                       <strong>{props.name}</strong> <br />
-                      <small>{props.calories}</small>
+                      <small>{props.calories} cal</small>
                     </p>
                   </div>
                 </div>
@@ -30,7 +30,7 @@ function FoodBox(props) {
                       />
                     </div>
                     <div className="control">
-                      <button className="button is-info">
+                      <button onClick={()=>props.agregaToday(props.name,props.image,props.calories,props.quantity,props.id)} className="button is-info">
                         +
                       </button>
                     </div>

@@ -12,7 +12,9 @@ class App extends Component {
     calories:'',
     image:'',
     new:false,
-    busqueda:''
+    busqueda:'',
+    today:[],
+    total:0
   }
   agrega=()=>{
     this.setState({new:true})
@@ -38,6 +40,14 @@ class App extends Component {
     this.setState({[name]:value})
     this.setState({foodsFilter:[...this.state.foods.filter(food=>food.name.toLowerCase().startsWith(value.toLowerCase()))]})
   }
+  agregaToday=(name,image,calories,quantity,id)=>{
+    let food={name,image,calories,quantity}
+    if (quantity>0){
+    this.setState({...this.state,total:this.state.total+(quantity*calories),today:[...this.state.today,food],
+      foodsFilter:this.state.foodsFilter.map((food,i)=> (id.toString()===i.toString()) ? {...food,quantity:0}:food )
+    })
+  }
+  }
   render() {
     return (
       <div className="App">
@@ -54,6 +64,8 @@ class App extends Component {
       <br></br>
       <label>Search: </label>
       <input onChange={this.busca} type="search" name="busqueda" value={this.state.busqueda} /> 
+      <div id="todo">
+      <div id="lista">
       {this.state.foodsFilter.map((food,indx)=>
        <FoodBox key={indx}
        id={indx}
@@ -62,7 +74,17 @@ class App extends Component {
       image={food.image}
       quantity={food.quantity}
       handleCounter={this.handleCounter}
+      agregaToday={this.agregaToday}
     />)}
+    </div>
+    <div id="total">
+        <h2>Today's foods</h2>
+      <ul>
+        {this.state.today.map((food,i)=><li key={i}>{food.quantity} {food.name} = {food.quantity*food.calories}</li>)}
+      </ul>
+      Total: {this.state.total} cal
+    </div>
+    </div>
       </div>
     );
   }

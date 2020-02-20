@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 
 const Form = (props) => {
     return(
-<div className="form">
+<form className="form" onSubmit={props.addFood}>
   
 <div class="field">
   <div class="control">
@@ -24,9 +24,9 @@ const Form = (props) => {
   </div>
 </div>
 
-<button onClick={props.addFood}>Add food</button>
+<button type='submit'>Add food</button>
 
-</div>
+</form>
     )
 }
 

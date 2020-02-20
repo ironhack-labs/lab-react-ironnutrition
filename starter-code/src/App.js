@@ -17,10 +17,8 @@ class App extends Component {
     },
     todayFood:[],
     search:'',
-    showSearch: false,
-    searchArr: []
-
-
+    showSearch: 'false',
+    searchArr: {}
   }
 
   handleInputs = e => {
@@ -41,21 +39,23 @@ class App extends Component {
   }
 
   AddNew=()=>{
-    
     this.setState({food:[...this.state.food, this.state.inputs]})
   }
 
+//Busqueda---------------------------------------------------------------
 handleSearch=(e)=>{
-  let {search, value} = e.target
+  let find='false'
+  let {_, value} = e.target
   this.setState({search:value})
   this.state.food.map(el => {
-    if(el.name === this.state.search) {
-     this.setState({searchArr: [...this.state.searchArr, el]})
-     this.setState({showSearch: true})
-  }
-  })
+    if(el.name === value) {
+     this.setState({searchArr: el})
+     find='true'
+    }})
+  this.setState({showSearch: find})
 }
 
+//Add food-----------------------------------------------------------------
 addToList = (name, cal, quantity) => {
   let selected = {name, cal, quantity}
   this.setState({todayFood: [...this.state.todayFood, selected]})
@@ -68,7 +68,7 @@ addToList = (name, cal, quantity) => {
     let totCal = 0
     return (
       <div className="App">
-      <div style={{width:'50%'}}>
+      <div style={{width:'75%'}}>
 
       <input onChange={this.handleSearch}
                 type="text"
@@ -81,11 +81,11 @@ addToList = (name, cal, quantity) => {
 {console.log(this.state.search)}
 {console.log(this.state.searchArr)}
 {console.log(this.state.showSearch)}
-      {this.state.showSearch ? (this.state.searchArr.map((el, index) => (
-        <FoodBox name={el.name} calories={el.calories} image={el.image} key={index} handle={this.handleInputs} addToList={this.addList}/>
-        
+      {this.state.showSearch==='true' ? (
+        <FoodBox name={this.state.searchArr.name} calories={this.state.searchArr.calories} image={this.state.searchArr.image} key={this.state.searchArr.index} handle={this.handleInputs} addToList={this.addList}/>
+      )
 
-      ))) : (this.state.food.map((el, index) => (
+      : (this.state.food.map((el, index) => (
         <FoodBox name={el.name} calories={el.calories} image={el.image} quantity={el.quantity} key={index} handle={this.handleInputs} addToList={this.addList}/>
       )))}
       
@@ -93,7 +93,7 @@ addToList = (name, cal, quantity) => {
       <button onClick={this.NewFood}>Pushhh me pls</button>
       </div>
 
-      <div style={{width:'50%'}}></div>
+      <div style={{width:'25%'}}></div>
       <h1 style={{width:'100%',textAlign:'center'}}
       >Today's Food</h1>
       <ul>

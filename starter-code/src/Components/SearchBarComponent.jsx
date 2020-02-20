@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SearchBarComponent = ({searchInput, handleInputs, arrayFilter}) => {
+const SearchBarComponent = ({search}) => {
     return (
-        <input type="text" name="searchBar"  value={searchInput} placeholder="search Bar"  onChange={handleInputs}></input>
+        <input type="text" name="searchBar" placeholder="search Bar" onChange={search}></input>
     )
 }
 

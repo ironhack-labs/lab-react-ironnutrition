@@ -15,7 +15,7 @@ class App extends Component {
     },
     searchInput: '',
     food,
-    filteredArray:[],
+    filteredArray:[...food],
     counter: '0',
   }
 
@@ -26,20 +26,20 @@ class App extends Component {
         ...prevState, 
        form:{
          ...prevState.form,
-         [name]: value
+         [name]: value 
        }
       }
      })
-
-     console.log(name,value)
   }
 
   addElement = e =>{
     console.log(e);
   }
 
-  arrayFilter = e =>{
-    
+  search = e =>{
+    const {name, value} = e.target;
+    this.setState({[name]: value});
+    this.setState({filteredArray:[...this.state.food.filter(food => food.name.toLowerCase().startsWith(value.toLowerCase()))]})
   }
 
   addFood = (e) => {
@@ -54,13 +54,11 @@ class App extends Component {
   }
 
   render() {
-    const {form: {name, calories, image,counter, addElement, searchInput}} = this.state;
+    const {form: {name, calories, image,counter, addElement}} = this.state;
     return (
       <div className="App">
         <SearchBarComponent
-          searchInput={searchInput}
-          arrayFilter = {this.arrayFilter}
-          handleInputs = {this.handleInputs}
+          search = {this.search}
         />
 
         <InputComponent
@@ -72,7 +70,7 @@ class App extends Component {
         />
 
         {
-          this.state.food.map((food, index) => (
+          this.state.filteredArray.map((food, index) => (
             <FoodBox
               name= {food.name}
               calories = {food.calories}

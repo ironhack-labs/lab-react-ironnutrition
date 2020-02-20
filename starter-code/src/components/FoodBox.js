@@ -26,6 +26,9 @@ export const FoodBox = ({name,calories,image, quantity,handle,addToList}) => {
                   type="number" 
                   onChange={handle}
                   name="quantity"
+                  value={quantity}
+                  min={0}
+
                 />
               </div>
               <div className="control">

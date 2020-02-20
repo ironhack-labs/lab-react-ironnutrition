@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Form = ({name, cal, img, handle, AddFood}) => {
+export const Form = ({name, cal, img, quantity, handle, AddFood}) => {
     return (
         <div>
     <h1>Add new food here</h1>
@@ -10,6 +10,7 @@ export const Form = ({name, cal, img, handle, AddFood}) => {
                 name="name"
                 placeholder="name"
                 value={name}
+                required
             />
             <input 
                 onChange={handle}
@@ -17,6 +18,8 @@ export const Form = ({name, cal, img, handle, AddFood}) => {
                 name="calories"
                 placeholder="calories"
                 value={cal}
+                required
+                min={0}
             />
             <input 
                 onChange={handle}
@@ -24,8 +27,9 @@ export const Form = ({name, cal, img, handle, AddFood}) => {
                 name="image"
                 placeholder="url img"
                 value={img}
+                required
             />
-            <button onClick={AddFood}>Add</button>
+           <button onClick={AddFood}>Add</button>
             
         </div>
     )

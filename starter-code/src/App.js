@@ -9,6 +9,7 @@ class App extends Component {
   state={
     food:foods,
     nF:false,
+    total:0,
     inputs: {
       name: '',
       calories: 0,
@@ -50,59 +51,71 @@ handleSearch=(e)=>{
   this.state.food.map(el => {
     if(el.name === value) {
      this.setState({searchArr: el})
+
      find='true'
     }})
   this.setState({showSearch: find})
 }
 
 //Add food-----------------------------------------------------------------
-addToList = (name, cal, quantity) => {
-  let selected = {name, cal, quantity}
-  this.setState({todayFood: [...this.state.todayFood, selected]})
+addList = (name, calories, quantity) => {
+//console.log('Se ejecuta'+name+calories+quantity)
+
+const obj={
+  name:name,
+  calories:calories,
+  quantity:quantity
+}
+  //let selected = {name, cal, quantity}
+this.setState({todayFood: [...this.state.todayFood, obj]})
+
+//sacamos el total
+let totCal=obj.calories*obj.quantity;
+this.state.todayFood.map(el => (totCal += el.calories*el.quantity))
+this.setState({total:totCal})
+console.log(this.state.todayFood)
 }
 
 
-
   render() {
-    let {name, calories, image} = this.state.inputs
-    let totCal = 0
+    let {name, calories, image,quantity} = this.state.inputs
+    
     return (
+      
       <div className="App">
       <div style={{width:'75%'}}>
-
-      <input onChange={this.handleSearch}
+<h2>Buscar Platillo</h2>
+      <input    onChange={this.handleSearch}
                 type="text"
                 name="search"
                 placeholder="type here..."
                 value={this.state.search}
-                
+                style={{margin:'25px'}}
       ></input>
 
-{console.log(this.state.search)}
-{console.log(this.state.searchArr)}
-{console.log(this.state.showSearch)}
       {this.state.showSearch==='true' ? (
-        <FoodBox name={this.state.searchArr.name} calories={this.state.searchArr.calories} image={this.state.searchArr.image} key={this.state.searchArr.index} handle={this.handleInputs} addToList={this.addList}/>
+        <FoodBox name={this.state.searchArr.name} calories={this.state.searchArr.calories} quantity={quantity} image={this.state.searchArr.image} key={this.state.searchArr.index} handle={this.handleInputs} addToList={this.addList}/>
       )
 
       : (this.state.food.map((el, index) => (
-        <FoodBox name={el.name} calories={el.calories} image={el.image} quantity={el.quantity} key={index} handle={this.handleInputs} addToList={this.addList}/>
+        <FoodBox name={el.name} calories={el.calories} image={el.image} quantity={quantity} key={index} handle={this.handleInputs} addToList={this.addList}/>
       )))}
-      
-      {this.state.nF?<Form name={name} cal={calories} img={image}  handle={this.handleInputs} AddFood={this.AddNew}/>:null}
-      <button onClick={this.NewFood}>Pushhh me pls</button>
+      <button className="addNewDish" onClick={this.NewFood}>Add new Dish</button>
+      {this.state.nF?<Form name={name} cal={calories} img={image} handle={this.handleInputs} AddFood={this.AddNew}/>:null}
+     
       </div>
 
-      <div style={{width:'25%'}}></div>
+      <div style={{width:'25%',display:'flex',flexDirection:'column'}}>
       <h1 style={{width:'100%',textAlign:'center'}}
       >Today's Food</h1>
       <ul>
         {this.state.todayFood.map(el => (
-          <li>{el.quantity} {el.name} = {Number(el.quantity)*Number(el.calories)}</li>
+          <li>{el.quantity} {el.name} = {Number(el.quantity)*Number(el.calories)} calories</li>
         ))}
       </ul>
-      <p>Total:{this.state.todayFood.map(el => {totCal += el.calories*el.quantity})}</p>
-
+      <br></br>
+       <p>Total= {this.state.total} calories</p>
+      </div>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import Food from './components/FoodBox';
 
 class App extends Component {
   state = {
-    listOfContacts: foods.slice(0, 5)
+    listOfContacts: foods.slice(0, 20)
   }
 
   render() {

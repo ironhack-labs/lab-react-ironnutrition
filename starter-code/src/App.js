@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json'
+import Food from './components/FoodBox';
 
 class App extends Component {
   render() {
@@ -11,7 +14,7 @@ class App extends Component {
           <h1 className="App-title">IronNutrition</h1>
         </header>
         <p className="App-intro">
-          
+          <Food/>
         </p>
       </div>
     );

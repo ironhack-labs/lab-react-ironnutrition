@@ -6,6 +6,10 @@ import foods from './foods.json'
 import Food from './components/FoodBox';
 
 class App extends Component {
+  state = {
+    listOfContacts: foods.slice(0, 5)
+  }
+
   render() {
     return (
       <div className="App">
@@ -14,7 +18,13 @@ class App extends Component {
           <h1 className="App-title">IronNutrition</h1>
         </header>
         <p className="App-intro">
-          <Food/>
+
+        {
+            this.state.listOfContacts.map(contact=> {
+              return <Food picture={foods.image} name={foods.name} popularity={foods.calories}/>
+            })
+          } 
+
         </p>
       </div>
     );

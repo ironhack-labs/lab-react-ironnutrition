@@ -20,8 +20,8 @@ class App extends Component {
         <p className="App-intro">
 
         {
-            this.state.listOfContacts.map(contact=> {
-              return <Food picture={foods.image} name={foods.name} popularity={foods.calories}/>
+            this.state.listOfContacts.map(foods=> {
+              return <Food picture={foods.image} name={foods.name} calories={foods.calories}/>
             })
           } 
 

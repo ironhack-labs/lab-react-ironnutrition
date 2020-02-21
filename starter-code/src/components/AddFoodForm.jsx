@@ -34,10 +34,29 @@ export default class AddFoodForm extends Component {
     return (
       <div>
         <form onSubmit={this.submitForm} onChange={this.handleInput}>
-          <input type="text" name="name" />
-          <input type="text" name="calories" />
-          <input type="file" name="image" />
-          <button>Submit</button>
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control">
+              <input className="input" type="text" name="name" placeholder="Type ingredient name" />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control">
+              <input className="input" type="number" name="calories" placeholder="Type calories" />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control">
+              <input className="input" type="file" name="image" />
+            </div>
+          </div>
+          <div className="field">
+            <div className="control">
+              <button className="button is-link">Submit</button>
+            </div>
+          </div>
         </form>
       </div>
     );

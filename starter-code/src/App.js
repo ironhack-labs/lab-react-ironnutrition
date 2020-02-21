@@ -5,6 +5,9 @@ import FoodList from "./components/FoodList";
 import AddFoodForm from "./components/AddFoodForm";
 import SearchBar from "./components/SearchBar";
 import TodaysFood from "./components/TodaysFood";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+library.add(faTrash, faTrashAlt);
 
 class App extends Component {
   state = {
@@ -41,31 +44,32 @@ class App extends Component {
   };
 
   addToTodaysHandler = food => {
-    // const cleanArr = [];
-    // [...this.state.todaysFood, food].forEach((e, i, arr) => {
-    //   if (i > 0 && e.name === arr[i - 1]["name"])
-    //     cleanArr.push({
-    //       name: e.name,
-    //       calories: e.calories,
-    //       quantity: e.quantity + arr[i]["quantity"]
-    //     });
-    //   else cleanArr.push(e);
-    // });
     const dedupArr = [];
-    // const sortTodaysFood = [...this.state.todaysFood, food].sort((a, b) => a.name.localeCompare(b.name));
     [...this.state.todaysFood, food].reduce((acc, el) => {
       if (acc.findIndex(item => el.name === item.name) === -1) {
         dedupArr.push(el);
         acc.push(el);
       } else {
         const index = acc.findIndex(item => el.name === item.name);
-        acc[index].quantity += el.quantity;
+        acc[index].quantity = Number(acc[index].quantity) + Number(el.quantity);
       }
       return acc;
     }, []);
 
     this.setState({
       todaysFood: dedupArr
+    });
+  };
+
+  deleteHandler = item => {
+    this.deleteTodaysFoodItem(item);
+  };
+
+  deleteTodaysFoodItem = name => {
+    const index = this.state.todaysFood.findIndex(el => el.name === name);
+    if (index >= 0) this.state.todaysFood.splice(index, 1);
+    this.setState({
+      todaysFood: [...this.state.todaysFood]
     });
   };
 
@@ -91,15 +95,19 @@ class App extends Component {
               </div>
             </nav>
 
-            {this.state.addFoodFormIsVisible && <AddFoodForm addFood={this.addFood} />}
-
             <div className="columns">
               <div className="column">
                 <FoodList foods={this.listFoods()} addToTodaysHandler={this.addToTodaysHandler} />
               </div>
+
               <div className="column">
-                <TodaysFood todaysFood={this.state.todaysFood} />
+                <TodaysFood todaysFood={this.state.todaysFood} deleteHandler={this.deleteHandler} />
               </div>
+              {this.state.addFoodFormIsVisible && (
+                <div className="column">
+                  <AddFoodForm addFood={this.addFood} />
+                </div>
+              )}
             </div>
           </div>
         </section>

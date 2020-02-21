@@ -41,13 +41,13 @@ export default class AddFoodForm extends Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label">Calories</label>
             <div className="control">
               <input className="input" type="number" name="calories" placeholder="Type calories" />
             </div>
           </div>
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label">Picture</label>
             <div className="control">
               <input className="input" type="file" name="image" />
             </div>

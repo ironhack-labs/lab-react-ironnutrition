@@ -4,11 +4,24 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import Food from './components/FoodBox';
+import FoodForm from '.components/FoodForm';
+
+
 
 class App extends Component {
   state = {
-    listOfContacts: foods.slice(0, 20)
+    listOfContacts: foods.slice(0, 20),
+    formVisible: false
   }
+
+
+ showForm = () => {
+  this.setState({formVisible: !this.state.formVisible})
+ }
+
+ createFood = (newFood) => {
+    this.setState({listOfContacts: [...this.state.listOfContacts, newFood], formVisible : false})
+}
 
   render() {
     return (
@@ -18,7 +31,12 @@ class App extends Component {
           <h1 className="App-title">IronNutrition</h1>
         </header>
         <p className="App-intro">
-
+        <div>
+          <button onClick={this.toogleForm}>{this.state.formVisible ? 'CLose' : 'Nuevo Alimento'}</button>
+          {
+            this.state.formVisible && <FoodForm creatreFood={this.createFood}/>
+          }
+        </div>
         {
             this.state.listOfContacts.map(foods=> {
               return <Food picture={foods.image} name={foods.name} calories={foods.calories}/>
@@ -26,6 +44,8 @@ class App extends Component {
           } 
 
         </p>
+               
+
       </div>
     );
   }

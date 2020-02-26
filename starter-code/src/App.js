@@ -5,10 +5,13 @@ import foods from './foods.json'
 import './App.css';
 import FoodBox from "./components/FoodBox";
 import FoodForm from "./components/FoodForm";
+import SearchBar from "./components/SearchBar";
+
 class App extends Component {
   state ={
     foodsList: foods,
-    showForm: false
+    showForm: false,
+    filterFoodList: foods
   }
 
   toogleForm = () => {
@@ -23,15 +26,25 @@ class App extends Component {
     this.setState({ foodsList: FoodCopy });
   };
 
+  searchFood = searchValue =>{
+    const filterFoodList = this.state.foodsList.filter(element =>{
+      const lowerFood = element.name.toLowerCase();
+      return lowerFood.includes(searchValue.toLowerCase());
+    });
+    console.log("filterfoodlist", filterFoodList);
+    this.setState({filterFoodList: filterFoodList});
+  }
+
   render() {
     return (
       <div className="App">
+        <SearchBar searchFood={this.searchFood} />
         <button onClick={this.toogleForm}>Add the food</button>
           {this.state.showForm
             ? <FoodForm toggle={this.toogleForm} addFood={this.addNewFood}/>
             : null}
         {
-          this.state.foodsList.map((foodObj,index)=>{
+          this.state.filterFoodList.map((foodObj,index)=>{
             return(
               <div className ="foodName" key= {index} >
                 <FoodBox

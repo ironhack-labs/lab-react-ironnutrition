@@ -45,7 +45,7 @@ class AddFoods extends Component {
                 <div className={this.props.className}>
                     <div className="modal-background"></div>
                     <div className="modal-content">
-                        <p>
+                        <div>
                             <div className="field">
                                 <label className="label">Name</label>
                                 <div className="control">
@@ -71,7 +71,7 @@ class AddFoods extends Component {
 
                             </div>
 
-                        </p>
+                        </div>
                     </div>
                     <button onClick={this.props.closeModal} className="modal-close is-large" aria-label="close"></button>
                 </div>

@@ -2,28 +2,35 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json'
+import foodsJSON from './foods.json'
 import FoodBox from './components/FoodBox';
 import TodayFoodBox from './components/TodayFoodBox';
 import AddFood from './components/AddFood';
 import Search from './components/Search';
 import shortid from "shortid";
 
+function importFoods(foodArray) {
+  let updatedArray = []
+  foodArray.forEach(food => {
+    food.id = shortid.generate()
+    updatedArray.push(food)
+  });
+  return updatedArray
+}
+
+const updatedFoods = importFoods(foodsJSON);
+console.log(updatedFoods)
+
 class App extends Component {
-  importFoods = (foodArray) => {
-    let updatedFoods = []
-    foodArray.forEach(food => {
-      food.id = shortid.generate()
-      updatedFoods.push(food)
-    });
-    return updatedFoods
-  }
+   
   state = {
-    foods : this.importFoods(foods),
-    foodsDisplay: this.state.foods,
+    foods : updatedFoods,
+    foodsDisplay: updatedFoods,
     todaysFoods: [],
-    showAddForm: false
+    showAddForm: false,
+    calAmount: 0
   }
+
   addFood = (foodObj) => {
     const foodsCopy =  [...this.state.foods];
     foodsCopy.push(foodObj)
@@ -37,12 +44,13 @@ class App extends Component {
 
   addTodayFood = (foodObj) => {
     const todaysFoodsCopy =  [...this.state.todaysFoods];
-    console.log('foodObj', foodObj)
-    console.log('todaysFoodsCopy', todaysFoodsCopy)
     todaysFoodsCopy.push(foodObj)
-    console.log('todaysFoodsCopy after PUSH', todaysFoodsCopy)
-    this.setState( {todaysFoods: todaysFoodsCopy})
-    console.log("from the state ", this.state.todaysFoods)
+    let calAmount = 0
+    todaysFoodsCopy.map((oneFood) => {
+      calAmount += oneFood.calories * oneFood.quantity;
+      })
+    this.setState( {todaysFoods: todaysFoodsCopy, calAmount})
+    
   }
 
 
@@ -55,6 +63,8 @@ class App extends Component {
   toggleAddForm = () => {
     this.setState({ showAddForm: !this.state.showAddForm });
   };
+
+ 
     
   render() {
     return (
@@ -72,6 +82,7 @@ class App extends Component {
           </div>
 
           <div className="todayFoodBox list">
+            <h2>Todays amout of calories: <span id="totalCalField">{this.state.calAmount}</span></h2>
             {this.state.todaysFoods.map((oneFood) => {
               return <TodayFoodBox food={oneFood} />
             })}

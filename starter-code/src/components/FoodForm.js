@@ -10,7 +10,6 @@ export default class FoodForm extends Component {
 
     handleChange = e =>{
         let {value, name} = e.target;
-        console.log("kfjdlsjdf");
         this.setState({[name]: value});
     }
 
@@ -52,6 +51,13 @@ export default class FoodForm extends Component {
                         type="text"
                         name = "image"
                         value = {this.state.image}
+                        onChange={this.handleChange}
+                    />
+                    <label>quantity</label>
+                    <input
+                        type="number"
+                        name = "quantity"
+                        value = {this.state.quantity}
                         onChange={this.handleChange}
                     />
                     <button type="submit"> Submit</button>

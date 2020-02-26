@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import shortid from "shortid";
 import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import './App.css';
@@ -23,7 +23,8 @@ class App extends Component {
 
     FoodCopy.unshift(newFoodObj);
 
-    this.setState({ foodsList: FoodCopy });
+    this.setState({ foodsList: FoodCopy, filterFoodList: FoodCopy});
+
   };
 
   searchFood = searchValue =>{
@@ -45,6 +46,7 @@ class App extends Component {
             : null}
         {
           this.state.filterFoodList.map((foodObj,index)=>{
+            foodObj.id = shortid.generate();
             return(
               <div className ="foodName" key= {index} >
                 <FoodBox

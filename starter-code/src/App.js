@@ -5,10 +5,13 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./FoodBox";
 import Form from "./Form";
+import Input from "./Input";
 class App extends Component {
   state = {
+    allFoods: foods,
     foods,
-    open: true
+    open: true,
+    selectedFood: []
   };
 
   switchMenu() {
@@ -18,8 +21,35 @@ class App extends Component {
   }
 
   addFood(newFood) {
-    console.log(newFood);
+    let clonedFoods = [...this.state.foods];
+    clonedFoods.push(newFood);
+    this.setState({ ...this.state, foods: clonedFoods, allFoods: clonedFoods });
     // food.push(newFood);
+  }
+
+  searchFood(e) {
+    let search = e.target.value;
+    let currentList = [];
+    let newList = [];
+    if (search !== "") {
+      currentList = this.state.allFoods;
+      newList = currentList.filter(item => {
+        const lc = item.name.toLowerCase();
+        const filter = search.toLowerCase();
+        return lc.includes(filter);
+      });
+    } else {
+      newList = this.state.allFoods;
+    }
+    this.setState({
+      foods: newList
+    });
+  }
+
+  addToSelectedFood(food) {
+    let clonedFoods = [...this.state.selectedFood];
+    clonedFoods.push(food);
+    this.setState({ ...this.state, selectedFood: clonedFoods });
   }
 
   render() {
@@ -28,13 +58,7 @@ class App extends Component {
         <div className="container">
           <h1 className="title">IronNutrition</h1>
           <div>
-            <input
-              type="text"
-              className="input search-bar"
-              name="search"
-              placeholder="Search"
-              value=""
-            />
+            <Input function={search => this.searchFood(search)}> </Input>
           </div>
           <div>
             <button onClick={() => this.switchMenu()}>
@@ -42,7 +66,7 @@ class App extends Component {
             </button>
             {this.state.open && (
               <div className="contents">
-                <Form function={(newFood) => this.addFood(newFood)}></Form>
+                <Form function={newFood => this.addFood(newFood)}></Form>
               </div>
             )}
           </div>
@@ -51,7 +75,7 @@ class App extends Component {
               <div className="App">
                 {this.state.foods.map(food => (
                   <FoodBox
-                    // clickToAdd={() => this.clickToAdd(food.quantity)}
+                    addSelectedFood={() => this.addToSelectedFood(food)}
                     calories={food.calories}
                     name={food.name}
                     image={food.image}
@@ -63,8 +87,11 @@ class App extends Component {
           <div className="column content">
             <h2 className="subtitle">Today's foods</h2>
             <ul>
-              <li>1 Pizza = 400 cal</li>
-              <li>2 Salad = 300 cal</li>
+              {this.state.selectedFood.map(food => (
+                <li>
+                  {food.quantity} {food.name} = {food.calories} cal
+                </li>
+              ))}
             </ul>
             <strong>Total: 700 cal</strong>
           </div>

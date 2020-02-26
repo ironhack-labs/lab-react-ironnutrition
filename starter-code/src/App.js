@@ -1,55 +1,66 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json';
-import FoodBox from './components/FoodBox';
-import FoodForm from './components/FoodForm';
-
+import foods from './foods.json'
+import './App.css';
+import FoodBox from "./components/FoodBox";
+import FoodForm from "./components/FoodForm";
+import SearchBar from "./components/SearchBar";
 
 class App extends Component {
-  state = {
+  state ={
     foodsList: foods,
-    showForm: false
+    showForm: false,
+    filterFoodList: foods
+  }
+
+  toogleForm = () => {
+    this.setState({ showForm: !this.state.showForm })
   };
 
   addNewFood = newFoodObj => {
-    const foodsListCopy = [...this.state.foodsList];
+    const FoodCopy = [...this.state.foodsList];
 
-    foodsListCopy.unshift(newFoodObj);
+    FoodCopy.unshift(newFoodObj);
 
-    this.setState({ foodsList:foodsListCopy  });
+    this.setState({ foodsList: FoodCopy });
   };
 
-  toggleForm = () => {
-    this.setState( {showForm: !this.state.showForm} )  
+  searchFood = searchValue =>{
+    const filterFoodList = this.state.foodsList.filter(element =>{
+      const lowerFood = element.name.toLowerCase();
+      return lowerFood.includes(searchValue.toLowerCase());
+    });
+    console.log("filterfoodlist", filterFoodList);
+    this.setState({filterFoodList: filterFoodList});
   }
 
   render() {
     return (
       <div className="App">
-        {/* BUTTON FOR ADDING FOOD */}
-        <button onClick={this.toggleForm} >Add a food </button>
-          { this.state.showForm ? 
-          <FoodForm toggle={this.toggleForm} addFood={this.addNewFood}/> 
-          : null }
-
-        {this.state.foodsList.map( (foodObj, index) => {
-          return (
-            <div className="food-card" key={index}>
-              <FoodBox 
-                // key={foodObj}
-                {...foodObj}
-
-              />
-            </div>
-          )
-        })}
-
+        <SearchBar searchFood={this.searchFood} />
+        <button onClick={this.toogleForm}>Add the food</button>
+          {this.state.showForm
+            ? <FoodForm toggle={this.toogleForm} addFood={this.addNewFood}/>
+            : null}
+        {
+          this.state.filterFoodList.map((foodObj,index)=>{
+            return(
+              <div className ="foodName" key= {index} >
+                <FoodBox
+                  {...foodObj}
+                />
+              </div>
+            );
+          })
+        }
+        
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
       </div>
     );
   }
 }
-
 
 export default App;

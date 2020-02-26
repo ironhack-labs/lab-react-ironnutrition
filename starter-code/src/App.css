@@ -22,6 +22,16 @@
   font-size: large;
 }
 
+.box{
+  width: 60%;
+  margin: 20px auto;
+}
+.label{
+  color: white!important;
+}
+.button{
+  margin: 30px 45%
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

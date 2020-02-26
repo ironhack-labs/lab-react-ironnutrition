@@ -10,8 +10,6 @@ export default class Search extends Component {
         let { value, name  } = e.target;
         this.props.filterList(value);
         this.setState({ [name]: value });
-        
-
     };
 
     render() {

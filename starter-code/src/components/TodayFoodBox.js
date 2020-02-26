@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import shortid from "shortid";
 
-export default class FoodBox extends Component {
+export default class TodayFoodBox extends Component {
   state = {
     id: this.props.food.id,
     name: this.props.food.name,
@@ -60,14 +60,14 @@ export default class FoodBox extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="control">
+                {/* <div className="control">
                   <button
                     className="button is-info"
                     onClick={this.handleSubmit}
                   >
                     +
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </article>

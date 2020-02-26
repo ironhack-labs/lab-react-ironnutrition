@@ -21,7 +21,7 @@ export default class AddFood extends Component {
         newFood.id = shortid.generate();
     
         this.props.addFood(newFood);
-    
+        this.props.toggleAddForm();
         this.setState({
             id:"",
             name: "",

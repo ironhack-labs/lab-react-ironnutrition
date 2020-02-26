@@ -12,7 +12,7 @@ export default class AddFood extends Component {
     handleChange = e => {
         let { value, name  } = e.target;
         this.setState({ [name]: value });
-      };
+    };
     
     handleSubmit = e => {
         e.preventDefault();

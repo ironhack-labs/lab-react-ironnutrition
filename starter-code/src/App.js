@@ -6,6 +6,7 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import CalcCalories from './components/CalcCalories';
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
   state = {
@@ -49,6 +50,10 @@ class App extends Component {
     this.setState({todayFood: todayFoodCopy, totalCalories: counter});
   }
 
+  findWord = (word) => {
+    this.setState({searchName: word});
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,7 +64,7 @@ class App extends Component {
 
         <br></br>
         
-        <input type="text" name="searchName" placeholder="Search by name" value={this.state.searchName} onChange={this.searchFunction}/>
+        <SearchBar searchWord={this.findWord} />
 
         {this.state.foods.map((food) => {
           if (food.name.toLowerCase().includes(this.state.searchName)) {

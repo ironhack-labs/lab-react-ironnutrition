@@ -6,7 +6,8 @@ export default class SearchBar extends Component {
   }
 
   searchFunction = (e) => {
-    let {value} = e.target;
+    let {name, value} = e.target;
+    this.setState({[name]: value})
     let word = value;
 
     this.props.searchWord(word);

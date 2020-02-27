@@ -9,10 +9,15 @@ export default class TodayFoodBox extends Component {
     image: this.props.food.image,
     quantity: this.props.food.quantity
   };
+
   handleChange = e => {
     let { value, name } = e.target;
     this.setState({ [name]: value });
   };
+
+  handleDelete = (id) => {
+    this.props.deleteTodaysFood(id)
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -22,7 +27,7 @@ export default class TodayFoodBox extends Component {
     //newTodayFood.id = shortid.generate();
 
     this.props.addTodayFood(newTodayFood);
-    
+
     this.setState({
       id: this.props.food.id,
       name: this.props.food.name,
@@ -34,45 +39,29 @@ export default class TodayFoodBox extends Component {
 
   render() {
     return (
-        <div className="box" key={this.state.id}>
-          <article className="media">
-            <div className="media-left">
-              <figure className="image is-64x64">
-                <img src={this.state.image} />
-              </figure>
+      <div className="box" key={this.state.id}>
+        <article className="media">
+          <div className="media-content">
+            <div className="content">
+              <p>
+                <strong>
+                  {this.state.quantity} unit(s) of {this.state.name}
+                </strong>
+                ,{" "}
+                <small>
+                  {this.state.calories}cal each - Total:{" "}
+                  {this.state.quantity * this.state.calories}cal
+                </small>
+              </p>
             </div>
-            <div className="media-content">
-              <div className="content">
-                <p>
-                  <strong>{this.state.name}</strong> <br />
-                  <small>{this.state.calories}</small>
-                </p>
-              </div>
+            <div className="control">
+              <button className="button is-info" onClick={() => this.handleDelete(this.state.id)}>
+                DELETE
+              </button>
             </div>
-            <div className="media-right">
-              <div className="field has-addons">
-                <div className="control">
-                  <input
-                    className="input"
-                    name="quantity"
-                    type="number"
-                    value={this.state.quantity}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                {/* <div className="control">
-                  <button
-                    className="button is-info"
-                    onClick={this.handleSubmit}
-                  >
-                    +
-                  </button>
-                </div> */}
-              </div>
-            </div>
-          </article>
-        </div>
-      
+          </div>
+        </article>
+      </div>
     );
   }
 }

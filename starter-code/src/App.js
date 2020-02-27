@@ -13,6 +13,7 @@ function importFoods(foodArray) {
   let updatedArray = []
   foodArray.forEach(food => {
     food.id = shortid.generate()
+    food.quantity = 1;
     updatedArray.push(food)
   });
   return updatedArray
@@ -43,16 +44,30 @@ class App extends Component {
   }
 
   addTodayFood = (foodObj) => {
-    const todaysFoodsCopy =  [...this.state.todaysFoods];
-    todaysFoodsCopy.push(foodObj)
-    let calAmount = 0
-    todaysFoodsCopy.map((oneFood) => {
-      calAmount += oneFood.calories * oneFood.quantity;
-      })
-    this.setState( {todaysFoods: todaysFoodsCopy, calAmount})
+    const todaysFoodsCopy = [...this.state.todaysFoods];
+    let foodIndex = -1
+
+    // determine, if food is already on the list, if yes just updated qty
+    if (todaysFoodsCopy && todaysFoodsCopy.length >0) {
+      foodIndex = todaysFoodsCopy.findIndex(food => food.id === foodObj.id)
+    }
+    if (foodIndex === -1) todaysFoodsCopy.push(foodObj)
+    else todaysFoodsCopy[foodIndex].quantity += foodObj.quantity
     
+    //calculate total amount of all items on list
+    let calAmount = this.calcCal(todaysFoodsCopy);
+
+    this.setState( {todaysFoods: todaysFoodsCopy, calAmount})
+    //TodayFoodBox.forceUpdate()
   }
 
+  calcCal = (array) => {
+    let calAmount = 0
+    array.map((oneFood) => {
+      calAmount += oneFood.calories * oneFood.quantity;
+      })
+    return calAmount
+  }
 
   filterList = (query) => {
     let foodsCopy =  [...this.state.foods]
@@ -64,7 +79,12 @@ class App extends Component {
     this.setState({ showAddForm: !this.state.showAddForm });
   };
 
- 
+  deleteTodaysFood = id => {
+    const todaysFoodsCopy = this.state.todaysFoods.filter(food => food.id !== id);
+    let calAmount = this.calcCal(todaysFoodsCopy);
+
+    this.setState( {todaysFoods: todaysFoodsCopy, calAmount})
+  }
     
   render() {
     return (
@@ -84,7 +104,7 @@ class App extends Component {
           <div className="todayFoodBox list">
             <h2>Todays amout of calories: <span id="totalCalField">{this.state.calAmount}</span></h2>
             {this.state.todaysFoods.map((oneFood) => {
-              return <TodayFoodBox food={oneFood} />
+              return <TodayFoodBox food={oneFood} deleteTodaysFood={this.deleteTodaysFood} />
             })}
           </div>
         </div>

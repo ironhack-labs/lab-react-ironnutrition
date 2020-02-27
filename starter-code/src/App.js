@@ -15,11 +15,12 @@ class App extends Component {
     searchName: "",
     todayFood: [],
     totalCalories: 0,
+    showTodaysFood: false,
   }
 
   showForm = (e) => {
     e.preventDefault();
-    this.setState({onForm: true});
+    this.setState({onForm: !this.state.onForm});
   }
 
   addFood = (newFood) => {
@@ -46,7 +47,7 @@ class App extends Component {
       counter += food.totalCal;
     });
 
-    this.setState({todayFood: todayFoodCopy, totalCalories: counter});
+    this.setState({todayFood: todayFoodCopy, totalCalories: counter, showTodaysFood: true});
   }
 
   findWord = (word) => {
@@ -56,8 +57,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CalcCalories foodList={this.state.todayFood} totalCalc={this.state.totalCalories}/>
-        <button onClick={this.showForm}>Add new food</button>
+
+        {this.state.showTodaysFood && <CalcCalories foodList={this.state.todayFood} totalCalc={this.state.totalCalories}/>}
+
+        <br></br>
+
+        {this.state.onForm && <button onClick={this.showForm}>Hide form</button>}
+        {!this.state.onForm && <button onClick={this.showForm}>Add new food</button>}
         
         {this.state.onForm && <AddFoodForm addNewFood={this.addFood}/>}
 

@@ -52,7 +52,9 @@ class App extends Component {
       foodIndex = todaysFoodsCopy.findIndex(food => food.id === foodObj.id)
     }
     if (foodIndex === -1) todaysFoodsCopy.push(foodObj)
-    else todaysFoodsCopy[foodIndex].quantity += foodObj.quantity
+    else {
+      todaysFoodsCopy[foodIndex].quantity = parseInt(todaysFoodsCopy[foodIndex].quantity) + parseInt(foodObj.quantity)
+    }
     
     //calculate total amount of all items on list
     let calAmount = this.calcCal(todaysFoodsCopy);
@@ -64,7 +66,7 @@ class App extends Component {
   calcCal = (array) => {
     let calAmount = 0
     array.map((oneFood) => {
-      calAmount += oneFood.calories * oneFood.quantity;
+      calAmount = parseInt(calAmount) + parseInt(oneFood.calories) * parseInt(oneFood.quantity);
       })
     return calAmount
   }
@@ -103,8 +105,8 @@ class App extends Component {
 
           <div className="todayFoodBox list">
             <h2>Todays amout of calories: <span id="totalCalField">{this.state.calAmount}</span></h2>
-            {this.state.todaysFoods.map((oneFood) => {
-              return <TodayFoodBox food={oneFood} deleteTodaysFood={this.deleteTodaysFood} />
+            {this.state.todaysFoods.map((oneFood, index) => {
+              return <TodayFoodBox key={index} food={oneFood} deleteTodaysFood={this.deleteTodaysFood} />
             })}
           </div>
         </div>

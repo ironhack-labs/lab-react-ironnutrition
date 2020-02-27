@@ -7,7 +7,7 @@ export default class CalcCalories extends Component {
         <h1>Today's foods</h1>
         <ul>
           {this.props.foodList.map((food) => {
-            return <li>{food.quantity} {food.name} = {food.calories} cal</li>
+            return <li>{food.quantity} {food.name} = {food.totalCal} cal</li>
           })}
         </ul>
 

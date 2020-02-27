@@ -9,16 +9,19 @@ export default class FoodBox extends Component {
   
   modifyQuantity = (e) => {
     let {name, value} = e.target;
-    let currentCalories = this.state.calories * value;
-
-    this.setState({[name]: value, calories: currentCalories});
+    this.setState({[name]: value});
   }
 
   addToList = (e) => {
     e.preventDefault();
-
-    let food = this.state;
-    this.props.addInCaloriesCounter(food);
+    if (this.state.quantity !== 0) {
+      let totalCalories = this.state.calories * this.state.quantity;
+      let food = this.state;
+      food.totalCal = totalCalories;
+  
+      this.props.addInCaloriesCounter(food);
+      this.setState({quantity: 0})
+    }
 
   }
   render() {

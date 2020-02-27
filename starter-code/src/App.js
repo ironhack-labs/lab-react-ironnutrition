@@ -40,12 +40,11 @@ class App extends Component {
     let todayFoodCopy = [...this.state.todayFood];
     todayFoodCopy.push(newFood);
 
-    let counter = this.state.totalCalories;
+    let counter = 0;
 
     todayFoodCopy.forEach((food) => {
-      counter += food.calories;
+      counter += food.totalCal;
     });
-    console.log(counter)
 
     this.setState({todayFood: todayFoodCopy, totalCalories: counter});
   }

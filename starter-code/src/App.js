@@ -111,7 +111,9 @@ class App extends Component {
   }
   //-=-==-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-==-=
   removeIngredient = e =>{
-    const {id} = e.target
+    let {id} = e.target.closest('span')
+
+    console.log("Output for: App -> e.target", e.target.parentElement.parentElement)
     const { itemsList , totalCalories} = this.state
     console.log("Output for: App -> id", id)
 

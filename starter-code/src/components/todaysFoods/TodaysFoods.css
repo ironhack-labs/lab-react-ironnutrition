@@ -10,6 +10,9 @@
   li span {
       cursor: pointer;
       padding: 2px 5px;
-      background-color: red;
-      z-index: 10;
+      color: red;
+  }
+  li i {
+      color :green;
+      background-color: #000;
   }

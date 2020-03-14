@@ -6,6 +6,8 @@ const Navbar = ({searchItems, clearBlur}) => {
    function displayForm(){
         document.querySelector('#main-form').classList.toggle('show')
         document.querySelector('#main-form').classList.toggle('hide')
+        document.getElementsByClassName('todays-list')[0].classList.toggle('blur')
+        document.getElementsByClassName('todays-list')[0].classList.toggle('clear-blur')
         document.querySelectorAll('.media').forEach(elem=> {
         elem.classList.toggle('blur')
         elem.classList.toggle('clear-blur')

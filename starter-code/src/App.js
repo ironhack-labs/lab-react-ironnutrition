@@ -166,7 +166,7 @@ class App extends Component {
                 addToItemList={this.addToIngredientList.bind(this)}
               />)}
           </div>
-          <div className='todays-list'>
+          <div className='todays-list clear-blur'>
             <h2 className='todays-title'>Today's Foods</h2>
             <div className='todays-foods'>
                 <ul>

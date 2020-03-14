@@ -158,7 +158,7 @@ class App extends Component {
         <AddFoodForm handleSubmit={this.addNewItem.bind(this)}
          handleChange={this.updateStateNewItem.bind(this)}
          />
-        <div className='food'>
+        <div className='food' onClick={this.clearBlur.bind(this)}>
           <div>
             {foods.map((food, i) => 
               <FoodBox key={i+1} {...food} 

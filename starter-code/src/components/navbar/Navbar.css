@@ -3,3 +3,12 @@
 #search-items{
     width: 100%;
 }
+.main-nav {
+    position: relative;
+}
+#add-button {
+    z-index: 1000;
+    position: absolute;
+    left:  10vw;
+    top: 10px;
+}

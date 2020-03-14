@@ -82,6 +82,8 @@ class App extends Component {
     if (form.contains('show') ){
       form.remove('show')
       form.add('hide')
+      document.getElementsByClassName('todays-list')[0].classList.toggle('blur')
+      document.getElementsByClassName('todays-list')[0].classList.toggle('clear-blur')
       document.querySelectorAll('.media').forEach(elem=> {
         elem.classList.toggle('blur')
         elem.classList.toggle('clear-blur')

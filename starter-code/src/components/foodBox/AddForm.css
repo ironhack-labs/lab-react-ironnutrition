@@ -1,0 +1,85 @@
+.main-form {
+    justify-content: center;
+}
+.form-control {
+    position: fixed;
+    display: none;
+    z-index: 1000;
+    width: 500px;
+    padding: 20px;
+    background-color: black;
+    left: 15vw;
+    border-radius: 10px;
+}
+.form-control label {
+    color: #fff;
+}
+.show{
+    top: -500px;
+    display: block;
+    animation-name: form-in;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    
+}
+@keyframes form-in {
+    0%{top: -500px;}
+    100%{top: 10vw;}
+}
+.hide{
+    top: 10vw;
+    display: none;
+    animation-name: form-out;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    
+}
+@keyframes form-out {
+    0%{opacity:1;}
+    100%{opacity: 0;}
+}
+.blur {
+    opacity: 1;
+    animation-name: blur;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+@keyframes blur {
+    0%{opacity: 1;}
+    100%{opacity: 0.5;}
+}
+.clear-blur {
+    opacity: 0.5;
+    animation-name: clear-blur;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+@keyframes clear-blur {
+    0%{opacity: 0.5;}
+    100%{opacity: 1;}
+}
+
+input.input-color {
+    border-color: red;
+}
+
+input.input-color::placeholder {
+    color: red;
+}
+
+/* FoodBox */
+#foodBox {
+    width: 70vw;
+}
+.media {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.input {
+    width: 40vw;
+}

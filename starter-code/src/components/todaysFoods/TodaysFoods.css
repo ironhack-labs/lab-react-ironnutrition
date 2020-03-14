@@ -1,0 +1,15 @@
+.todays-foods {
+    width: 100%;
+  }
+  li {
+      display: flex;
+      justify-content: space-around;
+      background-color: yellow;
+      margin: 2px;
+  }
+  li span {
+      cursor: pointer;
+      padding: 2px 5px;
+      background-color: red;
+      z-index: 10;
+  }

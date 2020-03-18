@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import "./FoodBox.css";
 
 class FoodBox extends Component {
-
   render() {
     return (
       <div className="box">
@@ -22,7 +22,11 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={this.props.food.quantity} />
+                <input
+                  className="input"
+                  type="number"
+                  value={this.props.food.quantity}
+                />
               </div>
               <div className="control">
                 <button className="button is-info">+</button>

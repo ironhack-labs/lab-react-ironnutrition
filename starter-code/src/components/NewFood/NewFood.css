@@ -1,0 +1,27 @@
+.new-food-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px auto;
+    padding: 20px;
+    box-shadow: 6px 4px 4px gray;
+}
+
+.new-food-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.new-food-container button {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+}
+
+

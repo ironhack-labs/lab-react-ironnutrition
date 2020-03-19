@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import foods from './foods.json'
+import FoodBox from './component/FoodBox'
+import AddForm from './component/addForm'
 import './App.css';
 
+console.log(foods)
+
+
 class App extends Component {
+  state = {
+    foods,
+    copyFoods: [...foods]
+  }
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log(e)
+  }
   render() {
+    const {copyFoods} = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AddForm handleSubmit={this.handleSubmit} />
+        <div className="box">
+        {/* {copyFoods.map(eachFood => <FoodBox {...eachFood}/>)} */}
+        {copyFoods.map((eachFood, index) => <FoodBox key={index} eachFood = {eachFood}/>)}
+</div>
       </div>
     );
   }

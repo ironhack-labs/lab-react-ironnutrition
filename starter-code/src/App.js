@@ -1,3 +1,4 @@
 import React from 'react';
+import { FoodsList } from './components/Foods';
 
-export const App = () => <h1>Welcome!</h1>;
+export const App = () => <FoodsList />;

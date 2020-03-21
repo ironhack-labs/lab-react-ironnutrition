@@ -4,6 +4,7 @@ import { FoodBox } from "./Components/Foodbox";
 
 import "bulma/css/bulma.css";
 import { FoodList } from "./Components/FoodList";
+
 // import styled from "styled-components";
 
 // const Beer = styled.div`

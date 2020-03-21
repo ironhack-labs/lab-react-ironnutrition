@@ -1,8 +1,13 @@
 import React from "react";
+import Food from "./pages/Food";
 import "bulma/css/bulma.css";
-import FoodBox from "./components/FoodBox";
+import { Root } from "./styles/Root";
 
 const App = () => {
-  return <FoodBox />;
+  return (
+    <Root>
+      <Food />
+    </Root>
+  );
 };
 export default App;

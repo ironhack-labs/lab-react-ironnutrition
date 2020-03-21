@@ -1,35 +1,35 @@
 import React from "react";
-import { FBox } from "../styles/Boxes";
 
 const FoodBox = food => {
+  console.log(food);
   return (
-    <FBox>
-      <article className="media">
-        <div className="media-left">
-          <figure className="image is-64x64">
-            <img src="https://i.imgur.com/eTmWoAN.png" />
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src={food.image} />
           </figure>
         </div>
-        <div className="media-content">
-          <div className="content">
+        <div class="media-content">
+          <div class="content">
             <p>
-              <strong>{food.name}</strong> <br />
-              <small>{food.cal}</small>
+              <strong>{food.name}</strong>
+              <small>{food.calories}</small>
             </p>
           </div>
         </div>
-        <div className="media-right">
-          <div className="field has-addons">
-            <div className="control">
-              <input className="input" type="number" value="1" />
+        <div class="media-right">
+          <div class="field has-addons">
+            <div class="control">
+              <input type="number" class="input" value="1" />
             </div>
-            <div className="control">
-              <button className="button is-info">+</button>
+            <div class="control">
+              <button class="button is-info">+</button>
             </div>
           </div>
         </div>
       </article>
-    </FBox>
+    </div>
   );
 };
 

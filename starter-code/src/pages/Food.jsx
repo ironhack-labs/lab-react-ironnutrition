@@ -4,7 +4,7 @@ import SearchBox from "../components/SearchBox";
 import { FoodContext } from "../api/food.api";
 import FoodContainer from "../styles/FoodContainer";
 import TodayBox from "../components/TodayBox";
-import NavItem from "../components/NavItem";
+import NavBar from "../components/NavBar";
 
 const Food = () => {
   const { food } = useContext(FoodContext);
@@ -17,9 +17,6 @@ const Food = () => {
 
   return (
     <>
-      <div className="column">
-        <NavItem {...{ setSearchFilter, searchFilter }} />
-      </div>
       <FoodContainer>
         <div className="column">
           {filtered.map((food, i) => {

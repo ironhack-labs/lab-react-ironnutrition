@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "./SearchBox";
 
-const NavItem = ({ setSearchFilter, searchFilter }) => {
+const NavBar = ({ setSearchFilter, searchFilter }) => {
   return (
     <div class="field is-grouped">
       <p class="control">
@@ -20,4 +20,4 @@ const NavItem = ({ setSearchFilter, searchFilter }) => {
   );
 };
 
-export default NavItem;
+export default NavBar;

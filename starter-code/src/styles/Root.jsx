@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Root = styled.div`
+  margin: 50px;
   .container {
     max-width: 900px;
     margin-top: 30px;

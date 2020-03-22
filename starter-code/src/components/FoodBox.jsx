@@ -9,12 +9,10 @@ const FoodBox = ({ today, setToday, ...rest }) => {
     if (inList) {
       return today.map(item => {
         if (item.name === food.name) {
-          console.log("AMOUNTS", item.amount, foodAmount);
           return { ...item, amount: Number(item.amount) + Number(foodAmount) };
         } else return item;
       });
     } else {
-      console.log("ELSE IN ADD");
       return [...today, { ...food, amount: foodAmount }];
     }
   };
@@ -34,9 +32,9 @@ const FoodBox = ({ today, setToday, ...rest }) => {
         </div>
         <div className="media-content">
           <div className="content">
-            <p>
+            <p className="level">
               <strong>{food.name}</strong>
-              <small>{food.calories}</small>
+              <small className="level-right">{food.calories}</small>
             </p>
           </div>
         </div>

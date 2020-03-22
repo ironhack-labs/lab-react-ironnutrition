@@ -2,6 +2,16 @@ import React from "react";
 
 import "./App.css";
 
-import foods from "../public/data/foods.json";
+import { Header } from "./layout/Header";
+import { Main } from "./layout/Main";
 
-export const App = () => <>IRON NUTRITION</>;
+export const App = () => {
+  return (
+    <>
+      <Header></Header>
+      <main>
+        <Main></Main>
+      </main>
+    </>
+  );
+};

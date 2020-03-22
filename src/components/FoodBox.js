@@ -1,18 +1,18 @@
 import React from "react";
 
-export const FoodBox = ({ food }) => {
+export const FoodBox = ({ children }) => (
   <div className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src={food.image} />
+          <img src={children.image} />
         </figure>
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{food.name}</strong> <br />
-            <small>{food.calories}</small>
+            <strong>{children.name}</strong> <br />
+            <small>{children.calories}</small>
           </p>
         </div>
       </div>
@@ -27,5 +27,5 @@ export const FoodBox = ({ food }) => {
         </div>
       </div>
     </article>
-  </div>;
-};
+  </div>
+);

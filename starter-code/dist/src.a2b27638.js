@@ -28357,7 +28357,172 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/App.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/bulma/css/bulma.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/foods.json":[function(require,module,exports) {
+module.exports = [{
+  "name": "Pizza",
+  "calories": 400,
+  "image": "https://i.imgur.com/eTmWoAN.png",
+  "quantity": 0
+}, {
+  "name": "Salad",
+  "calories": 150,
+  "image": "https://i.imgur.com/DupGBz5.jpg",
+  "quantity": 0
+}, {
+  "name": "Sweet Potato",
+  "calories": 120,
+  "image": "https://i.imgur.com/hGraGyR.jpg",
+  "quantity": 0
+}, {
+  "name": "Gnocchi",
+  "calories": 500,
+  "image": "https://i.imgur.com/93ekwW0.jpg",
+  "quantity": 0
+}, {
+  "name": "Pot Roast",
+  "calories": 350,
+  "image": "https://i.imgur.com/WCzJDWz.jpg",
+  "quantity": 0
+}, {
+  "name": "Lasagna",
+  "calories": 750,
+  "image": "https://i.imgur.com/ClxOafl.jpg",
+  "quantity": 0
+}, {
+  "name": "Hamburger",
+  "calories": 400,
+  "image": "https://i.imgur.com/LoG39wK.jpg",
+  "quantity": 0
+}, {
+  "name": "Pad Thai",
+  "calories": 475,
+  "image": "https://i.imgur.com/5ktcSzF.jpg",
+  "quantity": 0
+}, {
+  "name": "Almonds",
+  "calories": 75,
+  "image": "https://i.imgur.com/JRp4Ksx.jpg",
+  "quantity": 0
+}, {
+  "name": "Bacon",
+  "calories": 175,
+  "image": "https://i.imgur.com/7GlqDsG.jpg",
+  "quantity": 0
+}, {
+  "name": "Hot Dog",
+  "calories": 275,
+  "image": "https://i.imgur.com/QqVHdRu.jpg",
+  "quantity": 0
+}, {
+  "name": "Chocolate Cake",
+  "calories": 490,
+  "image": "https://i.imgur.com/yrgzA9x.jpg",
+  "quantity": 0
+}, {
+  "name": "Wheat Bread",
+  "calories": 175,
+  "image": "https://i.imgur.com/TsWzMfM.jpg",
+  "quantity": 0
+}, {
+  "name": "Orange",
+  "calories": 85,
+  "image": "https://i.imgur.com/abKGOcv.jpg",
+  "quantity": 0
+}, {
+  "name": "Banana",
+  "calories": 175,
+  "image": "https://i.imgur.com/BMdJhu5.jpg",
+  "quantity": 0
+}, {
+  "name": "Yogurt",
+  "calories": 125,
+  "image": "https://i.imgur.com/URhdrAm.png",
+  "quantity": 0
+}];
+},{}],"src/components/Layout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Footer = function Footer() {
+  return _react.default.createElement("footer", null, _react.default.createElement("p", null, "\xA9 2020 Webdev Part time by Francisco Molleda"));
+};
+
+var _default = Footer;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/FoodBox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _foods = _interopRequireDefault(require("../foods.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var FoodBox = function FoodBox(food) {
+  var state = {
+    food: _foods.default
+  };
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, "IronNutrition"), _react.default.createElement("div", {
+    className: "box"
+  }, _foods.default.map(function (food) {
+    return _react.default.createElement("article", {
+      key: food.name,
+      className: "media"
+    }, _react.default.createElement("div", {
+      className: "media-left"
+    }, _react.default.createElement("figure", {
+      className: "image is-64x64"
+    }, _react.default.createElement("img", {
+      src: food.image
+    }))), _react.default.createElement("div", {
+      className: "media-content"
+    }, _react.default.createElement("div", {
+      className: "content"
+    }, _react.default.createElement("p", null, _react.default.createElement("strong", null, food.name), " ", _react.default.createElement("br", null), _react.default.createElement("small", null, food.calories, " cal")))), _react.default.createElement("div", {
+      className: "media-right"
+    }, _react.default.createElement("div", {
+      className: "field has-addons"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input",
+      type: "number",
+      value: "1",
+      onChange: _react.useState
+    })), _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("button", {
+      className: "button is-info"
+    }, "+")))));
+  })));
+};
+
+var _default = FoodBox;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../foods.json":"src/foods.json"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28369,16 +28534,24 @@ var _react = _interopRequireDefault(require("react"));
 
 require("../public/styles/App.css");
 
+require("bulma/css/bulma.css");
+
+var _foods = _interopRequireDefault(require("./foods.json"));
+
+var _Layout = _interopRequireDefault(require("./components/Layout"));
+
+var _FoodBox = _interopRequireDefault(require("./components/FoodBox"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react.default.createElement("div", {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "App"
-  }, _react.default.createElement("h1", null, "Hola Mundo"));
+  }), _react.default.createElement(_FoodBox.default, null), _react.default.createElement(_Layout.default, null));
 };
 
 exports.App = App;
-},{"react":"node_modules/react/index.js","../public/styles/App.css":"public/styles/App.css"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../public/styles/App.css":"public/styles/App.css","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css","./foods.json":"src/foods.json","./components/Layout":"src/components/Layout.js","./components/FoodBox":"src/components/FoodBox.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28422,7 +28595,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51593" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50661" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

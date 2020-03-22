@@ -4,6 +4,12 @@ import "./index.css";
 import "bulma/css/bulma.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
+import FoodContextProvider from "./FoodContext";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <FoodContextProvider>
+    <App />
+  </FoodContextProvider>,
+  document.getElementById("root")
+);
 registerServiceWorker();

@@ -5,8 +5,13 @@ export const FoodContext = createContext();
 
 const FoodContextProvider = ({ children }) => {
   const [food, setFood] = useState(foodList);
+  const [searchFilter, setSearchFilter] = useState("");
 
-  return <FoodContext.Provider value={{ food, setFood }}>{children}</FoodContext.Provider>;
+  const filtered = food.filter(item => {
+    return item.name.toLowerCase().indexOf(searchFilter) !== -1;
+  });
+
+  return <FoodContext.Provider value={{ food, setFood, searchFilter, setSearchFilter, filtered }}>{children}</FoodContext.Provider>;
 };
 
 export default FoodContextProvider;

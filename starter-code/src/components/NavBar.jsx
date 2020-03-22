@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "./SearchBox";
 
-const NavBar = ({ setSearchFilter, searchFilter }) => {
+const NavBar = () => {
   return (
-    <div class="field is-grouped">
-      <p class="control">
-        <Link to="/" class="button is-info">
+    <div className="field is-grouped">
+      <p className="control">
+        <Link to="/" className="button is-info">
           Home
         </Link>
       </p>
-      <SearchBox {...{ setSearchFilter, searchFilter }} />
-      <p class="control">
-        <Link to="/new" class="button is-info">
+      <SearchBox />
+      <p className="control">
+        <Link to="/new" className="button is-info">
           Add Food
         </Link>
       </p>

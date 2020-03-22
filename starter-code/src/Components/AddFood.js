@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FoodsData from "../foods.json";
 
 export const AddFood = props => {
   const [name, setName] = useState("");

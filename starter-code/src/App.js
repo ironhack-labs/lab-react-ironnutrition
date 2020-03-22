@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { FoodBox } from "./Components/Foodbox";
 
 import "bulma/css/bulma.css";
 import { FoodList } from "./Components/FoodList";

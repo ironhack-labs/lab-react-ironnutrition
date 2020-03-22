@@ -1,12 +1,11 @@
 import React from "react";
+import SearchContainer from "../styles/SearchContrainer";
 
 const SearchBox = ({ setSearchFilter, searchFilter }) => {
   return (
-    <div className="field has-addons">
-      <div className="control">
-        <input className="input" type="text" placeholder="Find food" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} />
-      </div>
-    </div>
+    <p class="control is-expanded">
+      <input className="input" type="text" placeholder="Find food" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} />
+    </p>
   );
 };
 

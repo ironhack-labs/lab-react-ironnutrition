@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Root = styled.div`
+const Root = styled.div`
+  margin: 50px;
   .container {
     max-width: 900px;
     margin-top: 30px;
@@ -51,3 +52,5 @@ export const Root = styled.div`
     user-select: none;
   }
 `;
+
+export default Root;

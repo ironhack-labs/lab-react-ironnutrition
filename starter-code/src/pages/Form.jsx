@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import FormItem from "../components/FormItem";
-import foodList from "../../public/data/foods.json";
 import { FoodContext } from "../api/food.api";
 import { withRouter } from "react-router-dom";
 

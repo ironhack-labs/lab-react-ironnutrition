@@ -9,6 +9,12 @@ export const FoodsList = () => {
 
   const handleClick = () => setModal(!isOpen);
 
+  const addFood = newFood => {
+    console.log('food added', newFood);
+
+    setFoods([...foods, newFood]);
+  };
+
   return (
     <>
       <div>
@@ -18,7 +24,7 @@ export const FoodsList = () => {
         </button>
       </div>
 
-      <FormModal isOpen={isOpen} closeModal={handleClick} />
+      <FormModal isOpen={isOpen} closeModal={handleClick} addFood={addFood} />
 
       <div className="columns">
         <div className="column">

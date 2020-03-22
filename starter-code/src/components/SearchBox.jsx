@@ -1,9 +1,10 @@
-import React from "react";
-import SearchContainer from "../styles/SearchContrainer";
+import React, { useContext } from "react";
+import { FoodContext } from "../api/food.api";
 
-const SearchBox = ({ setSearchFilter, searchFilter }) => {
+const SearchBox = () => {
+  const { setSearchFilter, searchFilter } = useContext(FoodContext);
   return (
-    <p class="control is-expanded">
+    <p className="control is-expanded">
       <input className="input" type="text" placeholder="Find food" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} />
     </p>
   );

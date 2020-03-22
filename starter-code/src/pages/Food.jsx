@@ -1,19 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import FoodBox from "../components/FoodBox";
-import SearchBox from "../components/SearchBox";
 import { FoodContext } from "../api/food.api";
 import FoodContainer from "../styles/FoodContainer";
 import TodayBox from "../components/TodayBox";
-import NavBar from "../components/NavBar";
 
 const Food = () => {
-  const { food } = useContext(FoodContext);
-  const [searchFilter, setSearchFilter] = useState("");
+  const { filtered } = useContext(FoodContext);
   const [today, setToday] = useState([]);
-
-  const filtered = food.filter(item => {
-    return item.name.toLowerCase().indexOf(searchFilter) !== -1;
-  });
 
   return (
     <>

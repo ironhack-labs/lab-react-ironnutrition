@@ -13,6 +13,14 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
 
     closeModal();
     addFood(newFood);
+
+    // clear inputs after submitting form
+    setNewFood({
+      ...newFood,
+      name: '',
+      calories: '',
+      image: ''
+    });
   };
   return (
     <div className={`modal is-clipped ${isOpen ? 'is-active' : ''}`}>

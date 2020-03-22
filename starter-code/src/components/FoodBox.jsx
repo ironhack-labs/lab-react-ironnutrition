@@ -20,7 +20,7 @@ const FoodBox = ({ today, setToday, ...rest }) => {
   };
 
   const handleAdd = () => {
-    addToday();
+    setToday(addToday);
     setFoodAmount(1);
   };
 
@@ -43,10 +43,10 @@ const FoodBox = ({ today, setToday, ...rest }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input type="number" className="input" value={foodAmount} onChange={e => setFoodAmount(e.target.value)} />
+              <input type="number" className="input amount-input" value={foodAmount} onChange={e => setFoodAmount(e.target.value)} />
             </div>
             <div className="control">
-              <button className="button is-info" onClick={e => setToday(addToday)}>
+              <button className="button is-info" onClick={handleAdd}>
                 +
               </button>
             </div>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ArticlesItem } from "../../public/styles/FoodBoox.syles";
+import { ArticlesItem } from "../../public/styles/FoodBoox.styles";
 import { FoodsContext } from "../context/Context";
 
 export const FoodBox = () => {
@@ -18,7 +18,7 @@ export const FoodBox = () => {
             <div className="content">
               <p>
                 <strong>{food.name}</strong>
-                <small>{food.calories}</small>
+                <small>{food.calories} cal</small>
               </p>
             </div>
           </div>

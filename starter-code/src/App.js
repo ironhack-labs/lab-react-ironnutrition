@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Contain } from "../public/styles/Common.styles";
 import { FoodBox } from "./components/FoodBox";
 import { FoodsContextProvider } from "./context/Context";
+import { FormAddBox } from "./components/FormBox";
 
 export const App = () => (
   <FoodsContextProvider>
@@ -15,6 +16,7 @@ export const App = () => (
           <p>Aqui iria la otra cosa</p>
         </div>
       </Contain>
+      <FormAddBox />
     </Container>
   </FoodsContextProvider>
 );

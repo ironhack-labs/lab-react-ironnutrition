@@ -1,13 +1,18 @@
 import React, { state, useState } from "react";
-import foodsArray from "../foods.json";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import FoodsArray from "../foods.json";
+import "bulma/css/bulma.css";
+import NewFoodForm from "./FormFood";
+import FormButton from "../components/Button";
 
 const FoodBox = food => {
-  const state = { food: foodsArray };
+  food = [...FoodsArray];
   return (
     <>
       <h1>IronNutrition</h1>
-      <div className="box">
-        {foodsArray.map(food => (
+
+      <div className="box" style={{ width: "40rem" }}>
+        {food.map(food => (
           <article key={food.name} className="media">
             <div className="media-left">
               <figure className="image is-64x64">
@@ -28,7 +33,7 @@ const FoodBox = food => {
                   <input
                     className="input"
                     type="number"
-                    value="1"
+                    value="0"
                     onChange={useState}
                   />
                 </div>
@@ -40,6 +45,7 @@ const FoodBox = food => {
           </article>
         ))}
       </div>
+      <NewFoodForm />
     </>
   );
 };

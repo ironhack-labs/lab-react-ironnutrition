@@ -26,9 +26,9 @@ const Food = () => {
       <div className="column">
         <h1>Today's Foods</h1>
         <ul>
-          {today.map((food, i) => {
-            console.log("FOOD IN TODAY MAP", food);
-            return <TodayBox key={i} {...{ food }} />;
+          {today.map((item, i) => {
+            console.log("FOOD IN TODAY MAP", item);
+            return <TodayBox key={i} {...{ ...item, today, setToday }} />;
           })}
         </ul>
         <div>

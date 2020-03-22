@@ -16,11 +16,7 @@ export const AddFood = props => {
     };
 
     props.includeFood(foodInfo);
-
-    // const CreateFood = async data => {
-    //   FoodsData.push(data);
-    // };
-    // CreateFood(foodInfo);
+    props.closeForm();
   }
 
   function handleName(event) {

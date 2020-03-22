@@ -6,6 +6,7 @@ import { AddFood } from "./AddFood";
 
 export const FoodList = () => {
   const [foods, setFood] = useState(FoodsData);
+  const [addFood, setAddFood] = useState(false);
 
   function addNewFood(food) {
     console.log(food);
@@ -15,14 +16,28 @@ export const FoodList = () => {
     setFood(copyFoodsData);
   }
 
+  const showForm = () => {
+    const { show } = addFood;
+    setAddFood(!show);
+  };
+
+  const closeForm = () => {
+    setAddFood(false);
+  };
+
   //   console.log(FoodsData);
 
   return (
     <div>
+      <button className="button is-info" onClick={showForm}>
+        Add Food
+      </button>
+      {addFood && (
+        <AddFood closeForm={closeForm} includeFood={addNewFood}></AddFood>
+      )}
       {foods.map((food, idx) => (
         <FoodBox key={idx} {...food}></FoodBox>
       ))}
-      <AddFood includeFood={addNewFood}></AddFood>;
     </div>
   );
 };

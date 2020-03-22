@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import _ from "lodash";
 
 import "./App.css";
@@ -17,9 +18,13 @@ export const App = () => {
   return (
     <>
       <Header setSearch={query => handleSearch(query)} />
-      <main>
-        <Main list={list}></Main>
-      </main>
+      <Router>
+        <Switch>
+          <main>
+            <Main list={list}></Main>
+          </main>
+        </Switch>
+      </Router>
     </>
   );
 };

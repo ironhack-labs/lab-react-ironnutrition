@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-const FoodBox = food => {
-  console.log(food);
+const FoodBox = ({ today, setToday, ...rest }) => {
+  const [foodAmount, setFoodAmount] = useState(1);
+  const food = { ...rest };
+
+  const addToday = () => {
+    const inList = today.find(item => item.name === food.name);
+    if (inList) {
+      return today.map(item => {
+        if (item.name === food.name) {
+          console.log("AMOUNTS", item.amount, foodAmount);
+          return { ...item, amount: Number(item.amount) + Number(foodAmount) };
+        } else return item;
+      });
+    } else {
+      console.log("ELSE IN ADD");
+      return [...today, { ...food, amount: foodAmount }];
+    }
+  };
+
+  const handleAdd = () => {
+    setToday(addToday);
+    setFoodAmount(1);
+  };
+
   return (
     <div className="box">
       <article className="media">
@@ -21,10 +43,12 @@ const FoodBox = food => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input type="number" className="input" value="1" />
+              <input type="number" className="input amount-input" value={foodAmount} onChange={e => setFoodAmount(e.target.value)} />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={handleAdd}>
+                +
+              </button>
             </div>
           </div>
         </div>

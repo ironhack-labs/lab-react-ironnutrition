@@ -47,4 +47,7 @@ export const Root = styled.div`
   ul {
     margin-bottom: 10px;
   }
+  .amount-input {
+    user-select: none;
+  }
 `;

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 export const FoodBox = ({ name, calories, image, quantity }) => {
   const handleChange = e => {
-    let { name, value } = e.target;
-    // console.log("nombre:", name, "value:", value);
-    // quantity.setState({ [name]: value });
+    e.preventDefault();
+    console.log(e.target.value);
   };
+
   return (
     <div className="box">
       <article className="media">
@@ -30,6 +30,7 @@ export const FoodBox = ({ name, calories, image, quantity }) => {
                 type="number"
                 value={quantity}
                 onChange={handleChange}
+                // onChange={handleChange(e => setCantidad(e.target.value))}
               />
             </div>
             <div className="control">

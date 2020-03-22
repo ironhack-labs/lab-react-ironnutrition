@@ -28,12 +28,9 @@ export const FoodList = () => {
 
   //busqueda de comidas
   const filtered_food = foods.filter(food => {
-    console.log(food.name);
-    console.log("este es el campo", filterStart);
     const re = new RegExp(filterStart);
     return re.test(food.name);
   });
-  console.log(filtered_food);
 
   return (
     <div>

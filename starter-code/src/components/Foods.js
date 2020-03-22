@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import foodsArray from '../foods.json';
 import { FoodBox } from './FoodBox';
 import { FormModal } from './Modal';
+import { SearchBar } from './SearchFood';
 
 export const FoodsList = () => {
   const [foods, setFoods] = useState(foodsArray);
@@ -15,8 +16,18 @@ export const FoodsList = () => {
     setFoods([...foods, newFood]);
   };
 
+  const handleSearch = e => {
+    console.log(e.target.value);
+    const foundFoods = foods.filter(food =>
+      food.name.toLowerCase().includes(e.target.value)
+    );
+    console.log(foundFoods);
+    setFoods(foundFoods);
+  };
+
   return (
     <>
+      <SearchBar searchFood={handleSearch} />
       <div>
         <span>Add new food</span>
         <button className="button is-small" onClick={handleClick}>

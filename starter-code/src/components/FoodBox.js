@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const FoodBox = ({ name, calories, image, quantity }) => {
+export const FoodBox = ({ name, calories, image, id, quantity }) => {
   return (
     <div className="box">
       <article className="media">
@@ -20,7 +20,7 @@ export const FoodBox = ({ name, calories, image, quantity }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value="1" />
+              <input className="input" type="number" value={quantity} />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

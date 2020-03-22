@@ -1,10 +1,9 @@
 import React from "react";
 import "../App.css";
 export const FoodBox = ({ name, calories, image, quantity }) => {
-  console.log(name);
   const handleChange = e => {
     let { name, value } = e.target;
-    console.log("nombre:", name, "value:", value);
+    // console.log("nombre:", name, "value:", value);
     // quantity.setState({ [name]: value });
   };
   return (

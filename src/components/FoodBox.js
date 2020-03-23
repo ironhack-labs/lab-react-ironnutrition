@@ -3,8 +3,10 @@ import React, { useState } from "react";
 export const FoodBox = ({ children, setClick }) => {
   const [info, setInfo] = useState(children);
 
-  const handleChange = ({ target }) =>
-    setInfo({ ...info, quantity: target.value });
+  const handleChange = ({ target }) => {
+    const quantity = Number(target.value);
+    setInfo({ ...info, quantity });
+  };
 
   const handleClick = () => setClick({ ...info });
 

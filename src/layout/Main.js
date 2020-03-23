@@ -11,6 +11,7 @@ import { FoodInfo } from "../components/FoodInfo";
 
 export const Main = ({ list, addFood }) => {
   console.log(list);
+
   const [infoFood, setInfoFood] = useState({
     list: [],
     calories: 0
@@ -20,7 +21,24 @@ export const Main = ({ list, addFood }) => {
     const newInfoFood = { ...infoFood };
     newInfoFood.calories += data.calories * data.quantity;
 
-    newInfoFood.list.unshift(data);
+    if (
+      _.filter(newInfoFood.list, () => {
+        data.name;
+      }).length !== 0
+    ) {
+      newInfoFood.list.map(e => {
+        if (e.name === data.name) e.quantity += data.quantity;
+      });
+    } else newInfoFood.list.unshift(data);
+
+    setInfoFood(newInfoFood);
+  };
+
+  const handleRemoveInfoFood = index => {
+    const newInfoFood = { ...infoFood };
+    newInfoFood.calories -=
+      newInfoFood.list[index].calories * newInfoFood.list[index].quantity;
+    newInfoFood.list.splice(index, 1);
 
     setInfoFood(newInfoFood);
   };
@@ -29,19 +47,22 @@ export const Main = ({ list, addFood }) => {
     <main>
       <Grid container spacing={3} style={{ padding: 20 }}>
         <Grid item xs={6}>
-          {list.map((e, i) => {
-            return (
-              <FoodBox key={i} setClick={handleChangeInfoFood}>
-                {e}
-              </FoodBox>
-            );
-          })}
+          {list.map((e, i) => (
+            <FoodBox key={i} setClick={handleChangeInfoFood}>
+              {e}
+            </FoodBox>
+          ))}
         </Grid>
         <Grid item xs={6}>
           <Route
             path="/"
             exact
-            component={() => <FoodInfo info={infoFood} />}
+            component={() => (
+              <FoodInfo
+                info={infoFood}
+                removeFood={index => handleRemoveInfoFood(index)}
+              />
+            )}
           />
           <Route
             path="/addFood"

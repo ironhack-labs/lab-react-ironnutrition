@@ -1,30 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import 'bulma/css/bulma.css';
 import './App.css';
-import foods from "./foods.json";
 
 //Components
 import { Layout } from "./components/Layout"
-import { FoodBox } from "./components/FoodBox"
-import { SearchBar } from './components/SearchBar';
+import { MainPage } from './pages/Main.page';
+import { AddNewFoodPage } from './pages/AddNewFood.page'
 
 const App = () => (
-  <Layout>
-    <SearchBar />
-    <div className="columns">
-      <div className="column">
-        {foods.map((e, i) => <FoodBox key={i} food={e} />)}
-      </div>
-      <div className="column content">
-        <h2 className="subtitle">Today's foods</h2>
-        <ul>
-          <li>1 Pizza = 400 cal</li>
-          <li>2 Salad = 300 cal</li>
-        </ul>
-        <strong>Total: 700 cal</strong>
-      </div>
-    </div>
-  </Layout>
+  <Router>
+    <Layout>
+      <Switch>
+        <Route path="/" exact component={MainPage} />
+        <Route path="/add" component={AddNewFoodPage} />
+      </Switch>
+    </Layout >
+  </Router>
 
 );
 

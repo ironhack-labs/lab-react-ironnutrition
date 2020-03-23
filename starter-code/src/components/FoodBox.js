@@ -34,7 +34,7 @@ export const FoodBox = ({ name, calories, image, addFood }) => {
               <button
                 className="button is-info"
                 onClick={() => {
-                  addFood(name, quantity);
+                  addFood(name, Number(quantity));
                 }}
               >
                 +

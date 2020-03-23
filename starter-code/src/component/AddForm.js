@@ -1,24 +1,13 @@
 import React from "react"
 
-export default function AddForm() {
+export default function AddForm({handleChange, handleSubmit}) {
   return (
-    <div className='addFormBox'>
-        <div className="field">
-          <label className="label">Image</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text" 
-              name="image"
-              placeholder="Load image"
-            />
-          </div>
-        </div>
+    <form className="addFormBox" onSubmit={handleSubmit}>
         <div className="field">
           <label className="label">Name</label>
           <div className="control">
-            <input
-              className="input"
+            <input onChange={handleChange}
+              className="input .input-form"
               type="text"
               name="name"
               placeholder="Tag Name"
@@ -29,15 +18,28 @@ export default function AddForm() {
         <div className="field">
           <label className="label">Calories</label>
           <div className="control">
-            <input
-              className="input"
+            <input onChange={handleChange}
+              className="input .input-form"
               type="number"
               name="calories"
+              placeholder="100"
             />
           </div>
         </div>
-        <button>Add Food</button>
+        <div className="field">
+          <label className="label">Image</label>
+          <div className="control">
+            <input onChange={handleChange}
+              id="image-file"
+              className="input .input-form"
+              type="file" 
+              name="image"
+              placeholder="Load image"
+            />
+          </div>
+        </div>
+        <button type="submit">Add Food</button>
 
-    </div>
+    </form>
   );
 }

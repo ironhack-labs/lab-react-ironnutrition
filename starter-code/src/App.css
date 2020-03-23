@@ -26,3 +26,26 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.main-div {
+  padding: 20px;
+  background-color: green;
+}
+
+.box {
+  width: 50%;
+}
+
+.add-food-box {
+  padding: 20px;
+  width: 20%;
+}
+
+.todays-foods {
+  width: 40%;
+  color: #FFFFFF;
+  float: right;
+  position: absolute;
+  top: 10%;
+  right: 15%;
+}

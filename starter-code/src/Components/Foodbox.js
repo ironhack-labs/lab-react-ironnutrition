@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
-export const FoodBox = ({ name, calories, image, quantity }) => {
+//Aqui es por donde vienen los props del padre
+export const FoodBox = ({
+  name,
+  calories,
+  image,
+  quantity,
+  changeSelectFoodFunction
+}) => {
+  const [addQuantity, setAddQuantity] = useState(quantity);
+
   const handleChange = e => {
-    let { name, value } = e.target;
-    // console.log("nombre:", name, "value:", value);
-    // quantity.setState({ [name]: value });
+    e.preventDefault();
+    setAddQuantity(e.target.value);
   };
+
   return (
     <div className="box">
       <article className="media">
@@ -28,12 +37,20 @@ export const FoodBox = ({ name, calories, image, quantity }) => {
               <input
                 className="input"
                 type="number"
-                value={quantity}
+                value={addQuantity}
                 onChange={handleChange}
               />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button
+                className="button is-info"
+                //Forma de llamar a la funcion declarada en el padre(FoodList)
+                onClick={() =>
+                  changeSelectFoodFunction(addQuantity, name, calories)
+                }
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

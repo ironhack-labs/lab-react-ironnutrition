@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import 'bulma/css/bulma.css';
 import './App.css';
+import foods from "./foods.json";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+//Components
+import { Layout } from "./components/Layout"
+import { FoodBox } from "./components/FoodBox"
+import { SearchBar } from './components/SearchBar';
+
+const App = () => (
+  <Layout>
+    <SearchBar />
+    <div className="columns">
+      <div className="column">
+        {foods.map((e, i) => <FoodBox key={i} food={e} />)}
       </div>
-    );
-  }
-}
+      <div className="column content">
+        <h2 className="subtitle">Today's foods</h2>
+        <ul>
+          <li>1 Pizza = 400 cal</li>
+          <li>2 Salad = 300 cal</li>
+        </ul>
+        <strong>Total: 700 cal</strong>
+      </div>
+    </div>
+  </Layout>
+
+);
 
 export default App;

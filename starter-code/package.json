@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "body-scroll-lock": "^3.0.1",
     "bulma": "^0.7.1",
     "parcel": "^1.12.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "1.1.5"
+    "react-is": "^16.13.1",
+    "react-scripts": "1.1.5",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "parcel ./public/index.html",

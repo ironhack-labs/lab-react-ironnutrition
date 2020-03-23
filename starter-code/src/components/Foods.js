@@ -34,8 +34,22 @@ export const FoodsList = () => {
   };
 
   const addTodayFood = (id, quantity) => {
-    const foodToAdd = foods.find(food => food.name === id);
-    setTodayFoods([...todayFoods, { ...foodToAdd, quantity }]);
+    // retrieve food if is already in today's list
+    const foodIncluded = todayFoods.find(food => food.name === id);
+    if (foodIncluded) {
+      const newList = todayFoods.filter(food => food.name !== id); // remove food from today's list
+      console.log(typeof foodIncluded.quantity, 'input');
+
+      // set new list updating total quantity
+      setTodayFoods([
+        ...newList,
+        { ...foodIncluded, quantity: quantity + foodIncluded.quantity }
+      ]);
+    } else {
+      // retrieve food from full list to add it to today's list for the first time
+      const foodToAdd = foods.find(food => food.name === id);
+      setTodayFoods([...todayFoods, { ...foodToAdd, quantity }]);
+    }
   };
 
   useEffect(() => {

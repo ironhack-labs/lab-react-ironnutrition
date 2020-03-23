@@ -7,6 +7,7 @@ import { SearchBar } from './SearchFood';
 export const FoodsList = () => {
   const [foods, setFoods] = useState(foodsArray);
   const [isOpen, setModal] = useState(false);
+  const [filteredFoods, setFilteredFoods] = useState([]);
 
   const handleClick = () => setModal(!isOpen);
 
@@ -14,15 +15,16 @@ export const FoodsList = () => {
     console.log('food added', newFood);
 
     setFoods([...foods, newFood]);
+    setFilteredFoods([]); //clean filtered array if user's adding new foods
   };
 
   const handleSearch = e => {
-    console.log(e.target.value);
     const foundFoods = foods.filter(food =>
       food.name.toLowerCase().includes(e.target.value)
     );
+
     console.log(foundFoods);
-    setFoods(foundFoods);
+    setFilteredFoods(foundFoods);
   };
 
   return (
@@ -39,16 +41,27 @@ export const FoodsList = () => {
 
       <div className="columns">
         <div className="column">
-          {foods.map((foodItem, i) => (
-            <FoodBox
-              key={i}
-              id={i}
-              name={foodItem.name}
-              calories={foodItem.calories}
-              image={foodItem.image}
-              quantity={1 || foodItem.quantity}
-            />
-          ))}
+          {filteredFoods.length !== 0
+            ? filteredFoods.map((foodItem, i) => (
+                <FoodBox
+                  key={i}
+                  id={i}
+                  name={foodItem.name}
+                  calories={foodItem.calories}
+                  image={foodItem.image}
+                  quantity={1 || foodItem.quantity}
+                />
+              ))
+            : foods.map((foodItem, i) => (
+                <FoodBox
+                  key={i}
+                  id={i}
+                  name={foodItem.name}
+                  calories={foodItem.calories}
+                  image={foodItem.image}
+                  quantity={1 || foodItem.quantity}
+                />
+              ))}
         </div>
         <div className="column">Today's foods</div>
       </div>

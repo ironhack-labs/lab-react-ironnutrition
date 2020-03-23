@@ -25,19 +25,10 @@ const useStyles = makeStyles(theme => ({
 export const AddButton = () => {
   const classes = useStyles();
 
-  const handleClick = e => {
-    console.log(e);
-  };
-
   return (
     <div className={classes.root}>
       <Link to="/addFood">
-        <Fab
-          onClick={e => handleClick(e)}
-          color="primary"
-          className={classes.fab}
-          aria-label="add"
-        >
+        <Fab color="primary" className={classes.fab} aria-label="add">
           <AddIcon />
         </Fab>
       </Link>

@@ -4,6 +4,7 @@ import { FoodBox } from "./components/FoodBox";
 import { FoodsContextProvider } from "./context/Context";
 import { FormAddBox } from "./components/FormBox";
 import { Search } from "./components/Search";
+import { TodayFood } from "./components/TodayBox";
 
 export const App = () => (
   <FoodsContextProvider>
@@ -11,11 +12,11 @@ export const App = () => (
       <h1>IronNutritions</h1>
       <Search />
       <Contain>
-        <div className="box">
+        <div className="box box-item-list">
           <FoodBox />
         </div>
         <div className="box">
-          <p>Aqui iria la otra cosa</p>
+          <TodayFood />
         </div>
       </Contain>
       <FormAddBox />

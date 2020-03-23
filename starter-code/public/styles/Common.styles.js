@@ -15,6 +15,9 @@ export const Contain = styled.div`
   display: flex;
   justify-content: space-between;
   .box {
-    width: 49%;
+    width: 30%;
+    &.box-item-list {
+      width: 60%;
+    }
   }
 `;

@@ -46,21 +46,24 @@ export const FormAddBox = () => {
             type="text"
             name="Name"
             label="Name"
-            {...{ formState, setFormState }}
+            formState={formState}
+            setFormState={setFormState}
           />
           <FormItem
             id="calories"
             name="Calories"
             type="number"
             label="Number of Calories"
-            {...{ formState, setFormState }}
+            formState={formState}
+            setFormState={setFormState}
           />
           <FormItem
             id="image"
             name="image"
             type="text"
             label="Food Image"
-            {...{ formState, setFormState }}
+            formState={formState}
+            setFormState={setFormState}
           />
           <button
             type="submit"

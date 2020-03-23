@@ -10,7 +10,7 @@ export const SearchBox = styled.div`
     margin-bottom: 20px;
     padding: 7px 10px;
     transition: all ease 1000ms;
-    width: 48%;
+    width: 57%;
     &:focus {
       transition: all ease 1000ms;
       color: #000;

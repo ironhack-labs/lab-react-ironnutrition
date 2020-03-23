@@ -3,8 +3,20 @@ import { ArticlesItem } from "../../public/styles/FoodBoox.styles";
 import { FoodsContext } from "../context/Context";
 
 export const FoodBox = () => {
-  const { foods, filteredFood } = useContext(FoodsContext);
-  //console.log(foods, "foods", filteredFood, "filteredFood");
+  const { getTodayFood, filteredFood, setfilteredFood } = useContext(
+    FoodsContext
+  );
+
+  const getTodayQuantity = (name, e) => {
+    e.preventDefault();
+    setfilteredFood(
+      filteredFood.map(food => {
+        if (food.name === name) food.quantity += 1;
+        return food;
+      })
+    );
+  };
+
   return (
     <>
       {filteredFood.map((food, i) => (
@@ -24,10 +36,21 @@ export const FoodBox = () => {
           </div>
           <div className="media-right">
             <div className="control">
-              <input className="input" type="number" value={food.quantity} />
+              <input
+                className="input"
+                type="number"
+                placeholder={food.quantity}
+                value={food.quantity}
+                onChange={e => getTodayQuantity(food.name, e)}
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button
+                className="button is-info"
+                onClick={e => getTodayFood(e, food.name)}
+              >
+                +
+              </button>
             </div>
           </div>
         </ArticlesItem>

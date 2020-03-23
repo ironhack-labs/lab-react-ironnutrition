@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ArticlesItem } from "../../public/styles/FoodBoox.styles";
 import { FoodsContext } from "../context/Context";
 
 export const FoodBox = () => {
-  const { foods } = useContext(FoodsContext);
-  console.log(foods, "foods");
+  const { foods, filteredFood } = useContext(FoodsContext);
+  //console.log(foods, "foods", filteredFood, "filteredFood");
   return (
     <>
-      {foods.map((food, i) => (
+      {filteredFood.map((food, i) => (
         <ArticlesItem key={i}>
           <div className="media-left">
             <figure className="image is-64x64">

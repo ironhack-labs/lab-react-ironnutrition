@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 
 const Form = withRouter(({ history }) => {
   const { food, setFood } = useContext(FoodContext);
-  const [formState, setFormState] = useState({ name: "", calories: "" });
+  const [formState, setFormState] = useState({ name: "", calories: "", image: "" });
   const handleSubmit = e => {
     e.preventDefault();
     setFood([...food, formState]);
@@ -15,6 +15,7 @@ const Form = withRouter(({ history }) => {
     <form onSubmit={e => handleSubmit(e)}>
       <FormItem id="name" name="Name" type="text" {...{ formState, setFormState }} />
       <FormItem id="calories" name="Calories" type="number" {...{ formState, setFormState }} />
+      <FormItem id="image" name="Image URL" type="text" {...{ formState, setFormState }} />
       <div className="field">
         <p className="control">
           <button className="button is-success">Add</button>

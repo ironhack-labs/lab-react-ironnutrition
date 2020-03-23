@@ -19,7 +19,7 @@ const FormDiv = styled.div`
   }
 `;
 
-export const Form = props => {
+export const Form = ({ show, setShow, showForm }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -54,15 +54,17 @@ export const Form = props => {
               placeholder={'Image url'}
               onChange={e => setImage(e.target.value)}
             />
+            <div class='field is-grouped'>
+              <div class='control'>
+                <button class='button is-link'>Submit</button>
+              </div>
+              <div class='control'>
+                <button class='button is-light' onClick={e => setShow(!show)}>
+                  Cancel
+                </button>
+              </div>
+            </div>
           </FormDiv>
-        </div>
-      </div>
-      <div className='media-right'>
-        <div className='field has-addons'>
-          <div className='control'></div>
-          <div className='control'>
-            <button className='button is-info'>+</button>
-          </div>
         </div>
       </div>
     </article>

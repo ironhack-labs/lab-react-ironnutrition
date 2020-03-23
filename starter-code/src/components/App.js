@@ -21,9 +21,7 @@ const ButtonContainer = styled.div`
 
 export const App = () => {
   const [show, setShow] = useState(false);
-  const showForm = () => {
-    setShow(true);
-  };
+
   return (
     <div className='container'>
       <h1 className='title'>IronNutrition</h1>
@@ -36,7 +34,7 @@ export const App = () => {
           value=''
         />
       </div>
-      {show && <Form />}
+      {show && <Form show={show} setShow={setShow} />}
       <div className='columns'>
         <div className='column'>
           {foods.map((e, i) => {
@@ -46,8 +44,8 @@ export const App = () => {
           <ButtonContainer>
             <FontAwesomeIcon
               icon={faPlusCircle}
-              color='#3f3'
-              onClick={e => showForm()}
+              color='#1296EC'
+              onClick={e => setShow(!show)}
               size='4x'
             />
           </ButtonContainer>

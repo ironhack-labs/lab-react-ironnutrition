@@ -20,8 +20,17 @@ const ButtonContainer = styled.div`
 `;
 
 export const App = () => {
+  const [error, setError] = useState();
   const [show, setShow] = useState(false);
-
+  const handleSubmit = (name, cals, image) => {
+    if (name === '' || cals <= 0 || image === '') {
+      setError('Hey, fill all the camps');
+    } else {
+      foods.push({ name: name, calories: cals, image: image });
+      setShow(false);
+      setError();
+    }
+  };
   return (
     <div className='container'>
       <h1 className='title'>IronNutrition</h1>
@@ -34,7 +43,15 @@ export const App = () => {
           value=''
         />
       </div>
-      {show && <Form show={show} setShow={setShow} />}
+      {show && (
+        <Form
+          show={show}
+          setShow={setShow}
+          error={error}
+          handleSubmit={handleSubmit}
+          setError={setError}
+        />
+      )}
       <div className='columns'>
         <div className='column'>
           {foods.map((e, i) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const FormDiv = styled.div`
+const FormDiv = styled.form`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -19,7 +19,7 @@ const FormDiv = styled.div`
   }
 `;
 
-export const Form = ({ show, setShow, showForm }) => {
+export const Form = ({ show, setShow, handleSubmit, error, setError }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -32,7 +32,13 @@ export const Form = ({ show, setShow, showForm }) => {
     <article className='media'>
       <div className='media-content'>
         <div className='content'>
-          <FormDiv>
+          <FormDiv
+            onSubmit={e => {
+              e.preventDefault();
+              handleSubmit(name, cals, image);
+            }}
+          >
+            {error && <div>{error}</div>}
             <input
               className='input'
               type='text'
@@ -56,10 +62,18 @@ export const Form = ({ show, setShow, showForm }) => {
             />
             <div class='field is-grouped'>
               <div class='control'>
-                <button class='button is-link'>Submit</button>
+                <button class='button is-link' type='submit'>
+                  Submit
+                </button>
               </div>
               <div class='control'>
-                <button class='button is-light' onClick={e => setShow(!show)}>
+                <button
+                  class='button is-light'
+                  onClick={e => {
+                    setShow(!show);
+                    setError();
+                  }}
+                >
                   Cancel
                 </button>
               </div>

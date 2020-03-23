@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <>
       <div className="App"></div>
-      <FoodBox className="is-half" />
+      <FoodBox />
       <Footer />
     </>
   );

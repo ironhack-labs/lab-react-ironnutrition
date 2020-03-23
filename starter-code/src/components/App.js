@@ -20,17 +20,37 @@ const ButtonContainer = styled.div`
 `;
 
 export const App = () => {
+  const [search, setSearch] = useState('');
   const [error, setError] = useState();
   const [show, setShow] = useState(false);
+  const [displayedFoods, setFoods] = useState(foods);
+
   const handleSubmit = (name, cals, image) => {
     if (name === '' || cals <= 0 || image === '') {
       setError('Hey, fill all the camps');
     } else {
-      foods.push({ name: name, calories: cals, image: image });
+      setFoods([
+        ...displayedFoods,
+        { name: name, calories: cals, image: image }
+      ]);
       setShow(false);
       setError();
     }
   };
+
+  const handleSearch = q => {
+    if (q) {
+      setSearch(q);
+      const replace = q;
+      const regex = new RegExp(replace, 'gi');
+      const newFoods = foods.filter(e => regex.test(e.name));
+      setFoods(newFoods);
+    } else {
+      setFoods(foods);
+      setSearch('');
+    }
+  };
+
   return (
     <div className='container'>
       <h1 className='title'>IronNutrition</h1>
@@ -40,7 +60,8 @@ export const App = () => {
           className='input search-bar'
           name='search'
           placeholder='Search'
-          value=''
+          value={search}
+          onChange={e => handleSearch(e.target.value)}
         />
       </div>
       {show && (
@@ -54,7 +75,7 @@ export const App = () => {
       )}
       <div className='columns'>
         <div className='column'>
-          {foods.map((e, i) => {
+          {displayedFoods.map((e, i) => {
             return <FoodBox key={i} {...e} />;
           })}
 

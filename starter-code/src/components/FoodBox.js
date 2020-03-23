@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const FoodBox = ({ name, calories, image, id, quantity, addFood }) => {
+export const FoodBox = ({ name, calories, image, addFood }) => {
+  const [quantity, setQuantity] = useState(1);
+  const handleChange = e => setQuantity(e.target.value);
+
   return (
     <div className="box">
       <article className="media">
@@ -20,7 +23,12 @@ export const FoodBox = ({ name, calories, image, id, quantity, addFood }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value={quantity} />
+              <input
+                className="input"
+                type="number"
+                value={quantity}
+                onChange={handleChange}
+              />
             </div>
             <div className="control">
               <button

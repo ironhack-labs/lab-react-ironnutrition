@@ -29,7 +29,6 @@ export const FoodsList = () => {
       food.name.toLowerCase().includes(e.target.value)
     );
 
-    // console.log(foundFoods);
     setFilteredFoods(foundFoods);
     setSearch(true);
   };
@@ -39,11 +38,9 @@ export const FoodsList = () => {
     setTodayFoods([...todayFoods, { ...foodToAdd, quantity }]);
   };
 
-  const updateQuantity = (id, quantity) => {};
-
   useEffect(() => {
     const calculateCalories = () =>
-      todayFoods.reduce((acc, cur) => acc + cur.calories, 0);
+      todayFoods.reduce((acc, cur) => acc + cur.calories * cur.quantity, 0);
 
     let total = calculateCalories();
     setTotalCalories(total);
@@ -75,7 +72,6 @@ export const FoodsList = () => {
                 name={foodItem.name}
                 calories={foodItem.calories}
                 image={foodItem.image}
-                quantity={1 || foodItem.quantity}
                 addFood={addTodayFood}
               />
             ))
@@ -89,7 +85,6 @@ export const FoodsList = () => {
                 name={foodItem.name}
                 calories={foodItem.calories}
                 image={foodItem.image}
-                quantity={1 || foodItem.quantity}
                 addFood={addTodayFood}
               />
             ))

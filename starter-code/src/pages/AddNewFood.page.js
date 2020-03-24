@@ -1,34 +1,52 @@
-import React from "react";
-import foods from "../foods.json"
-import _ from "lodash"
+import React, { useState, useContext } from "react";
+import { FoodContext } from "../App";
+import { withRouter } from "react-router-dom";
 
-const example = _.sample(foods);
 
-export const AddNewFoodPage = () => (
-    <form onSubmit={e => { e.preventDefault(); }}>
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input" type="text" placeholder={`e.g ${example.name}`} />
+
+export const AddNewFoodPage = withRouter(({ history }) => {
+    //load context
+    const { foods, setFoods } = useContext(FoodContext);
+    const example = foods[0];
+
+    //form states
+    const [name, setName] = useState("");
+    const [calories, setCalories] = useState("");
+    const [image, setImage] = useState("");
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        setFoods([...foods, { name, calories, image, quantity: 1 }]);
+        history.push("/");
+    }
+
+
+    return (
+        <form onSubmit={e => handleSubmit(e)}>
+            <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                    <input className="input" type="text" placeholder={`e.g ${example.name}`} onChange={e => setName(e.target.value)} value={name} />
+                </div>
             </div>
-        </div>
 
-        <div class="field">
-            <label class="label">Calories</label>
-            <div class="control">
-                <input class="input" type="number" placeholder={example.calories} />
+            <div className="field">
+                <label className="label">Calories</label>
+                <div className="control">
+                    <input className="input" type="number" placeholder={`e.g ${example.calories}`} onChange={e => setCalories(e.target.value)} value={calories} />
+                </div>
             </div>
-        </div>
 
-        <div class="field">
-            <label class="label">Image link</label>
-            <div class="control">
-                <input class="input" type="text" placeholder={`e.g ${example.image}`} />
+            <div className="field">
+                <label className="label">Image link</label>
+                <div className="control">
+                    <input className="input" type="text" placeholder={`e.g ${example.image}`} onChange={e => setImage(e.target.value)} value={image} />
+                </div>
             </div>
-        </div>
 
-        <div class="control">
-            <button class="button is-info">Submit</button>
-        </div>
+            <div className="control">
+                <button className="button is-info">Submit</button>
+            </div>
 
-    </form>)
+        </form >)
+});

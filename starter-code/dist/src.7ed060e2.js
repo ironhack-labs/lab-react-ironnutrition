@@ -28363,7 +28363,52 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../src/App.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../src/components/FoodBox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FoodBox = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FoodBox = function FoodBox() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "box"
+  }, /*#__PURE__*/_react.default.createElement("article", {
+    className: "media"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "media-left"
+  }, /*#__PURE__*/_react.default.createElement("figure", {
+    className: "image is-64x64"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: "https://i.imgur.com/eTmWoAN.png"
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "media-content"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "content"
+  }, /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("strong", null, "Pizza"), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "400 cal")))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "media-right"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "field has-addons"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "control"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "input",
+    type: "number",
+    value: "1"
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "control"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "button is-info"
+  }, "+"))))));
+};
+
+exports.FoodBox = FoodBox;
+},{"react":"../node_modules/react/index.js"}],"../src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28375,14 +28420,16 @@ var _react = _interopRequireDefault(require("react"));
 
 require("./App.css");
 
+var _FoodBox = require("./components/FoodBox");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, "ironNutritions");
+  return /*#__PURE__*/_react.default.createElement(_FoodBox.FoodBox, null);
 };
 
 exports.App = App;
-},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28426,7 +28473,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

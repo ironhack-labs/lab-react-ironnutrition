@@ -11,7 +11,13 @@ import { AddNewFoodBtn } from '../components/AddNewFood.button';
 
 
 export const MainPage = withRouter(({ history }) => {
-    const { foods, } = useContext(FoodContext);
+    const { foods, filtered } = useContext(FoodContext);
+
+    const filteredFoods = foods.filter(food => {
+        const re = new RegExp(filtered.toLowerCase());
+        return re.test(food.name.toLowerCase());
+    });
+
     return (
         <div>
             <div className="columns">
@@ -24,8 +30,10 @@ export const MainPage = withRouter(({ history }) => {
                 </div>
             </div>
             <div className="columns">
+
+
                 <div className="column">
-                    {foods.map((e, i) => <FoodBox key={i} food={e} />)}
+                    {filteredFoods.map((e, i) => <FoodBox key={i} food={e} />)}
                 </div>
                 <div className="column content">
                     <h2 className="subtitle">Today's foods</h2>

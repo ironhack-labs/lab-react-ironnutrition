@@ -3,10 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import "bulma/css/bulma.css";
 import foods from "./foods.json";
-import FoodBox from "./components/UI/FoodBox";
+import Home from "./components/pages/Home";
 
 const App = () => {
-  return <FoodBox></FoodBox>;
+  return <Home></Home>;
 };
 
 export default App;

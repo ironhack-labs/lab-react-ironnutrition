@@ -12,6 +12,7 @@ import "./App.css";
 /* --- Components --- */
 
 import { Home } from "./pages/Home";
+import { Newfood } from "./pages/Newfood";
 
 /* --- Context --- */
 
@@ -22,6 +23,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/new-food" component={Newfood} />
       </Switch>
     </Router>
   </DataContextProvider>

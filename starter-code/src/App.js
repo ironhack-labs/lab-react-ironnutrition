@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import foods from "./foods.json";
 import FoodBox from "./component/FoodBox";
 import AddFood from "./component/AddForm";
+import Search from "./component/Search";
 
 import "./App.css";
 
 class App extends Component {
   state = {
-    foods,
+    constFoods: [...foods],
     copyFoods: [...foods],
     showForm: false,
     newFood: {
@@ -40,6 +41,7 @@ class App extends Component {
     newFood[name] = value;
     this.setState({ newFood });
   };
+
   //Creating two function to submit button, one for submit the form and other to toggle inverse (close) the form
   handleSubmit = e => {
     e.preventDefault();
@@ -56,6 +58,18 @@ class App extends Component {
       }
     });
   };
+
+  handleSearch = e => {
+    const { constFoods } = this.state;
+    const { value } = e.target; //we want to "see" what are searching on our input search / the imput is my value
+    const searchItems = [...constFoods].filter(eachFood => {
+      return eachFood.name.toLowerCase().includes(value.toLowerCase())
+    })
+    this.setState({
+      copyFoods: searchItems
+    })  
+  };
+
   render() {
     const { copyFoods } = this.state;
     return (
@@ -68,6 +82,7 @@ class App extends Component {
             newFood={this.state.newFood}
           />
         ) : null}
+        <Search handleSearch={this.handleSearch} />
         <div className="box">
           {/* {copyFoods.map(eachFood => <FoodBox {...eachFood}/>)} */}
           {copyFoods.map((eachFood, index) => (

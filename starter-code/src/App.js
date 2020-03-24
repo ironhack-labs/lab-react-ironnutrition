@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { FoodBox } from "./components/FoodBox";
 import { FoodContextProvider } from "./components/context/FoodContext";
+import { NewFood } from "./components/NewFood";
 
 export const App = () => (
   <FoodContextProvider>
@@ -19,6 +20,7 @@ export const App = () => (
       <div className="columns">
         <div className="column">
           <FoodBox />
+          <NewFood />
         </div>
         <div className="column content">
           <h2 className="subtitle">Today's foods</h2>

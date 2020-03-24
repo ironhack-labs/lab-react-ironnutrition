@@ -28443,7 +28443,41 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"data/foods.json":[function(require,module,exports) {
+},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+},{"./arrayLikeToArray":"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+},{}],"../node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+},{}],"../node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
+var arrayWithoutHoles = require("./arrayWithoutHoles");
+
+var iterableToArray = require("./iterableToArray");
+
+var unsupportedIterableToArray = require("./unsupportedIterableToArray");
+
+var nonIterableSpread = require("./nonIterableSpread");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+},{"./arrayWithoutHoles":"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"../node_modules/@babel/runtime/helpers/iterableToArray.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableSpread":"../node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"data/foods.json":[function(require,module,exports) {
 module.exports = [{
   "name": "Pizza",
   "calories": 400,
@@ -28533,6 +28567,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FoodContextProvider = exports.FoodContext = void 0;
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
@@ -28555,19 +28591,33 @@ var FoodContextProvider = function FoodContextProvider(props) {
   var _useState = (0, _react.useState)(_foods.default),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       allFood = _useState2[0],
-      setAllFood = _useState2[1]; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
+      setAllFood = _useState2[1]; //añadir un nuevo alimento a la lista
+
+
+  var newFood = function newFood(food) {
+    var name = food.name,
+        calories = food.calories,
+        images = food.images; //objetos que voy a recuperar de la prop food
+
+    setAllFood([].concat((0, _toConsumableArray2.default)(allFood), [{
+      name: name,
+      calories: calories,
+      images: images
+    }])); //copia mi array de objetos(...allfood) y le añado un objeto mas a mi array de objetos con las siguientes prop(name, calories, images )
+  }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
   return /*#__PURE__*/_react.default.createElement(FoodContext.Provider, {
     value: {
       allFood: allFood,
-      setAllFood: setAllFood
+      setAllFood: setAllFood,
+      newFood: newFood
     }
   }, props.children);
 };
 
 exports.FoodContextProvider = FoodContextProvider;
-},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","../../../public/data/foods.json":"data/foods.json"}],"../src/components/FoodBox.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/toConsumableArray":"../node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","../../../public/data/foods.json":"data/foods.json"}],"../src/components/FoodBox.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28640,6 +28690,156 @@ var FoodBox = function FoodBox() {
 exports.FoodBox = FoodBox;
 var _default = FoodBox;
 exports.default = _default;
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/components/NewFood.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NewFood = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _FoodContext = require("./context/FoodContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NewFood = function NewFood() {
+  //añado el contexto para poder utilizar las props
+  var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
+      newFood = _useContext.newFood; //añado los cambios de estado
+
+
+  var _useState = (0, _react.useState)(""),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+      calories = _useState4[0],
+      setCalories = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(""),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+      image = _useState6[0],
+      setImage = _useState6[1]; //añado un estado para que se muestre el botón
+
+
+  var _useState7 = (0, _react.useState)(false),
+      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
+      showButton = _useState8[0],
+      setShowButton = _useState8[1]; //creo una variable para limpiar los input
+
+
+  var cleanInput = function cleanInput() {
+    setName("");
+    setCalories("");
+    setImage("");
+  }; //variable para que cuando este el formulario no activo lo limpie
+
+
+  var showForm = function showForm() {
+    setShowButton(!showButton);
+    cleanInput();
+  }; //variable para que me añada el objeto
+
+
+  var handleSubmit = function handleSubmit() {
+    newFood({
+      name: name,
+      calories: calories,
+      image: image
+    });
+    setShowButton(false);
+    cleanInput();
+  };
+
+  if (!showButton) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "button is-link",
+      onClick: function onClick() {
+        return showForm();
+      }
+    }, "Add Food")));
+  } else {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "button is-danger",
+      onClick: function onClick() {
+        return showForm();
+      }
+    }, "Cancel"))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "label"
+    }, "Name"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      className: "input",
+      type: "text",
+      placeholder: "Food name",
+      value: name,
+      onChange: function onChange(e) {
+        return setName(e.target.value);
+      }
+    }))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "label"
+    }, "Calories"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      className: "input",
+      type: "text",
+      placeholder: "Calories",
+      value: calories,
+      onChange: function onChange(e) {
+        return setCalories(e.target.value);
+      }
+    }))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "label"
+    }, "Image Url"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      className: "input",
+      type: "text",
+      placeholder: "Image",
+      value: image,
+      onChange: function onChange(e) {
+        return setImage(e.target.value);
+      }
+    }))), /*#__PURE__*/_react.default.createElement("div", {
+      className: "field"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "label"
+    }, "Label"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "control"
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "button is-primary",
+      onClick: function onClick() {
+        return handleSubmit();
+      }
+    }, "Submit"))));
+  }
+};
+
+exports.NewFood = NewFood;
 },{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/App.js":[function(require,module,exports) {
 "use strict";
 
@@ -28655,6 +28855,8 @@ require("./App.css");
 var _FoodBox = require("./components/FoodBox");
 
 var _FoodContext = require("./components/context/FoodContext");
+
+var _NewFood = require("./components/NewFood");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28673,7 +28875,7 @@ var App = function App() {
     className: "columns"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "column"
-  }, /*#__PURE__*/_react.default.createElement(_FoodBox.FoodBox, null)), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_FoodBox.FoodBox, null), /*#__PURE__*/_react.default.createElement(_NewFood.NewFood, null)), /*#__PURE__*/_react.default.createElement("div", {
     className: "column content"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "subtitle"
@@ -28681,7 +28883,7 @@ var App = function App() {
 };
 
 exports.App = App;
-},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js","./components/NewFood":"../src/components/NewFood.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28725,7 +28927,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63748" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50214" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

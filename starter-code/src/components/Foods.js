@@ -38,12 +38,18 @@ export const FoodsList = () => {
     const foodIncluded = todayFoods.find(food => food.name === id);
     if (foodIncluded) {
       const newList = todayFoods.filter(food => food.name !== id); // remove food from today's list
-      console.log(typeof foodIncluded.quantity, 'input');
 
-      // set new list updating total quantity
+      const totalQuantity = quantity + foodIncluded.quantity;
+      const foodCalories = foodIncluded.calories * totalQuantity;
+
+      // set new list updating total quantity and total calories
       setTodayFoods([
         ...newList,
-        { ...foodIncluded, quantity: quantity + foodIncluded.quantity }
+        {
+          ...foodIncluded,
+          quantity: totalQuantity,
+          calories: foodCalories
+        }
       ]);
     } else {
       // retrieve food from full list to add it to today's list for the first time
@@ -54,7 +60,7 @@ export const FoodsList = () => {
 
   useEffect(() => {
     const calculateCalories = () =>
-      todayFoods.reduce((acc, cur) => acc + cur.calories * cur.quantity, 0);
+      todayFoods.reduce((acc, cur) => acc + cur.calories, 0);
 
     let total = calculateCalories();
     setTotalCalories(total);

@@ -3,19 +3,21 @@ import "./App.css";
 import { FoodBox } from "./components/FoodBox";
 import { FoodContextProvider } from "./components/context/FoodContext";
 import { NewFood } from "./components/NewFood";
+import { SearchFood } from "./components/SearchFood";
 
 export const App = () => (
   <FoodContextProvider>
     <div className="container">
       <h1 className="title">IronNutrition</h1>
       <div>
-        <input
+        {/* <input
           type="text"
           className="input search-bar"
           name="search"
           placeholder="Search"
           value=""
-        />
+        /> */}
+        <SearchFood />
       </div>
       <div className="columns">
         <div className="column">

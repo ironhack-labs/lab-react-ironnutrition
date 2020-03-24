@@ -28591,7 +28591,13 @@ var FoodContextProvider = function FoodContextProvider(props) {
   var _useState = (0, _react.useState)(_foods.default),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       allFood = _useState2[0],
-      setAllFood = _useState2[1]; //añadir un nuevo alimento a la lista
+      setAllFood = _useState2[1]; //recojo los datos de la comida para realizar la busqueda
+
+
+  var _useState3 = (0, _react.useState)(_foods.default),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+      search = _useState4[0],
+      setAllSearch = _useState4[1]; //añadir un nuevo alimento a la lista
 
 
   var newFood = function newFood(food) {
@@ -28604,6 +28610,13 @@ var FoodContextProvider = function FoodContextProvider(props) {
       calories: calories,
       images: images
     }])); //copia mi array de objetos(...allfood) y le añado un objeto mas a mi array de objetos con las siguientes prop(name, calories, images )
+  }; //filtro por el nombre de la lista que viene desde newfood(setAllFood)
+
+
+  var searchFood = function searchFood(name) {
+    setAllFood(search.filter(function (food) {
+      return food.name.toLowerCase().includes(name.toLowerCase());
+    }));
   }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
@@ -28611,7 +28624,9 @@ var FoodContextProvider = function FoodContextProvider(props) {
     value: {
       allFood: allFood,
       setAllFood: setAllFood,
-      newFood: newFood
+      newFood: newFood,
+      searchFood: searchFood,
+      setAllSearch: setAllSearch
     }
   }, props.children);
 };
@@ -28840,6 +28855,54 @@ var NewFood = function NewFood() {
 };
 
 exports.NewFood = NewFood;
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/components/SearchFood.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.SearchFood = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _FoodContext = require("./context/FoodContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchFood = function SearchFood() {
+  //recojo el contexto
+  var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
+      searchFood = _useContext.searchFood;
+
+  var _useState = (0, _react.useState)(""),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      nameSearch = _useState2[0],
+      setNameSearch = _useState2[1];
+
+  var handleSearch = function handleSearch(name) {
+    //cambio el estado del input referenciandolo con el value
+    setNameSearch(name); //le paso el metodo que tengo echo en el contexto
+
+    searchFood(name);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("input", {
+    value: nameSearch,
+    onChange: function onChange(e) {
+      return handleSearch(e.target.value);
+    }
+  });
+};
+
+exports.SearchFood = SearchFood;
+var _default = SearchFood;
+exports.default = _default;
 },{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/App.js":[function(require,module,exports) {
 "use strict";
 
@@ -28858,6 +28921,8 @@ var _FoodContext = require("./components/context/FoodContext");
 
 var _NewFood = require("./components/NewFood");
 
+var _SearchFood = require("./components/SearchFood");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -28865,13 +28930,7 @@ var App = function App() {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("h1", {
     className: "title"
-  }, "IronNutrition"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    className: "input search-bar",
-    name: "search",
-    placeholder: "Search",
-    value: ""
-  })), /*#__PURE__*/_react.default.createElement("div", {
+  }, "IronNutrition"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_SearchFood.SearchFood, null)), /*#__PURE__*/_react.default.createElement("div", {
     className: "columns"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "column"
@@ -28883,7 +28942,7 @@ var App = function App() {
 };
 
 exports.App = App;
-},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js","./components/NewFood":"../src/components/NewFood.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js","./components/NewFood":"../src/components/NewFood.js","./components/SearchFood":"../src/components/SearchFood.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28927,7 +28986,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50214" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54547" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

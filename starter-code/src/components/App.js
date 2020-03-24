@@ -24,6 +24,8 @@ export const App = () => {
   const [error, setError] = useState();
   const [show, setShow] = useState(false);
   const [displayedFoods, setFoods] = useState(foods);
+  const [globalCals, setGlobalCals] = useState(0);
+  const [addedFoods, setAddedFoods] = useState([]);
 
   const handleSubmit = (name, cals, image) => {
     if (name === '' || cals <= 0 || image === '') {
@@ -85,6 +87,21 @@ export const App = () => {
               size='4x'
             />
           </ButtonContainer>
+        </div>
+        <div className='column content'>
+          <h2 className='subtitle'>Today's foods</h2>
+          {addedFoods && (
+            <ul>
+              {addedFoods.map((e, i) => {
+                return (
+                  <li>
+                    {e.name} = {e.calories} cals
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          <strong>Total: {globalCals} cal</strong>
         </div>
       </div>
     </div>

@@ -76,6 +76,7 @@ export const Header = ({ setSearch }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Iron Nutrition
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

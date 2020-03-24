@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, withRouter } from "react-router-dom";
+
 import _ from "lodash";
 
 import Grid from "@material-ui/core/Grid";
@@ -9,33 +10,30 @@ import { AddButton } from "../components/AddButton";
 import { FormCreate } from "../components/FormCreate";
 import { FoodInfo } from "../components/FoodInfo";
 
-export const Main = ({ list, addFood }) => {
-  console.log(list);
-
+export const Main = withRouter(({ history, list, addFood, updateFood }) => {
   const [infoFood, setInfoFood] = useState({
     list: [],
     calories: 0
   });
 
   const handleChangeInfoFood = data => {
-    const newInfoFood = { ...infoFood };
-    newInfoFood.calories += data.calories * data.quantity;
+    if (data.quantity > 0) {
+      const newInfoFood = { ...infoFood };
+      newInfoFood.calories += data.calories * data.quantity;
 
-    if (
-      _.filter(newInfoFood.list, () => {
-        data.name;
-      }).length !== 0
-    ) {
-      newInfoFood.list.map(e => {
-        if (e.name === data.name) e.quantity += data.quantity;
-      });
-    } else newInfoFood.list.unshift(data);
+      if (_.filter(newInfoFood.list, { name: data.name }).length !== 0) {
+        newInfoFood.list.map(e => {
+          if (e.name === data.name) e.quantity += data.quantity;
+        });
+      } else newInfoFood.list.unshift(data);
 
-    setInfoFood(newInfoFood);
+      setInfoFood(newInfoFood);
+    }
   };
 
   const handleRemoveInfoFood = index => {
     const newInfoFood = { ...infoFood };
+
     newInfoFood.calories -=
       newInfoFood.list[index].calories * newInfoFood.list[index].quantity;
     newInfoFood.list.splice(index, 1);
@@ -43,15 +41,26 @@ export const Main = ({ list, addFood }) => {
     setInfoFood(newInfoFood);
   };
 
+  const handleAddFood = newFood => {
+    addFood(newFood);
+    history.push("/");
+  };
+
   return (
     <main>
       <Grid container spacing={3} style={{ padding: 20 }}>
         <Grid item xs={6}>
-          {list.map((e, i) => (
-            <FoodBox key={i} setClick={handleChangeInfoFood}>
-              {e}
-            </FoodBox>
-          ))}
+          {list.map((e, i) => {
+            return (
+              <FoodBox
+                key={i}
+                setChange={quantity => updateFood(quantity, i)}
+                setClick={handleChangeInfoFood}
+              >
+                {e}
+              </FoodBox>
+            );
+          })}
         </Grid>
         <Grid item xs={6}>
           <Route
@@ -66,13 +75,11 @@ export const Main = ({ list, addFood }) => {
           />
           <Route
             path="/addFood"
-            component={() => (
-              <FormCreate setSubmit={newFood => addFood(newFood)} />
-            )}
+            component={() => <FormCreate setSubmit={handleAddFood} />}
           />
         </Grid>
         <AddButton />
       </Grid>
     </main>
   );
-};
+});

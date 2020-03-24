@@ -15,19 +15,31 @@ export const App = () => {
   const handleSearch = query =>
     setList(_.filter(foods, e => e.name.match(new RegExp(query, "igm"))));
 
-  const handleList = newFood => {
+  const handleAddFood = newFood => {
+    newFood.quantity = 0;
     foods.unshift(newFood);
     const newList = [...list];
     newList.unshift(newFood);
     setList(newList);
   };
 
+  const handleUpdateFood = (quantity, index) => {
+    const newList = [...list];
+    newList[index].quantity = quantity;
+    setList(newList);
+  };
+
   return (
     <>
       <Header setSearch={query => handleSearch(query)} />
+
       <Router>
         <Switch>
-          <Main list={list} addFood={handleList}></Main>
+          <Main
+            list={list}
+            addFood={handleAddFood}
+            updateFood={handleUpdateFood}
+          ></Main>
         </Switch>
       </Router>
     </>

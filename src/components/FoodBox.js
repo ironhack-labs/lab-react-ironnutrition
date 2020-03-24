@@ -1,28 +1,26 @@
 import React, { useState } from "react";
 
-export const FoodBox = ({ children, setClick }) => {
-  const [info, setInfo] = useState(children);
-
+export const FoodBox = ({ children, setChange, setClick }) => {
   const handleChange = ({ target }) => {
     const quantity = Number(target.value);
-    setInfo({ ...info, quantity });
+    setChange(quantity);
   };
 
-  const handleClick = () => setClick({ ...info });
+  const handleClick = () => setClick({ ...children });
 
   return (
     <div className="box">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={info.image} />
+            <img src={children.image} />
           </figure>
         </div>
         <div className="media-content">
           <div className="content">
             <p>
-              <strong>{info.name}</strong> <br />
-              <small>{info.calories}</small>
+              <strong>{children.name}</strong> <br />
+              <small>{children.calories}</small>
             </p>
           </div>
         </div>
@@ -32,7 +30,7 @@ export const FoodBox = ({ children, setClick }) => {
               <input
                 className="input"
                 type="number"
-                value={info.quantity}
+                value={children.quantity}
                 onChange={handleChange}
               />
             </div>

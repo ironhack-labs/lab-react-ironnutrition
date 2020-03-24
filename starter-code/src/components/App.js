@@ -68,12 +68,14 @@ export const App = () => {
     }
   };
 
-  const addCals = () => {
-    const prevCals = globalCals;
-    const currentCals = addedFoods.reduce((acc, e) => {
-      acc + e.calories;
+  const removeElement = index => {
+    let newFood = [...addedFoods];
+    newFood = newFood.filter((e, i) => i !== index);
+    let cals = newFood.reduce((acc, e) => {
+      return acc + e.calories * e.quantity;
     }, 0);
-    console.log(currentCals);
+    setAddedFoods(newFood);
+    setGlobalCals(cals);
   };
 
   return (
@@ -121,7 +123,8 @@ export const App = () => {
                 return (
                   <li key={i}>
                     {`${e.quantity} ${e.name} = ${e.calories *
-                      e.quantity} cals`}
+                      e.quantity} cals`}{' '}
+                    <button onClick={e => removeElement(i)}>Remove</button>
                   </li>
                 );
               })}

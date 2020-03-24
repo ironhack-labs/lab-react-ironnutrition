@@ -58,6 +58,12 @@ export const FoodsList = () => {
     }
   };
 
+  const deleteFood = id => {
+    const newList = [...todayFoods].filter(food => food.name !== id);
+
+    setTodayFoods(newList);
+  };
+
   useEffect(() => {
     const calculateCalories = () =>
       todayFoods.reduce((acc, cur) => acc + cur.calories, 0);
@@ -111,7 +117,11 @@ export const FoodsList = () => {
           )}
         </div>
         <div className="column">
-          <TodayFoods foods={todayFoods} totalCalories={totalCalories} />
+          <TodayFoods
+            foods={todayFoods}
+            totalCalories={totalCalories}
+            deleteFood={deleteFood}
+          />
         </div>
       </div>
     </>

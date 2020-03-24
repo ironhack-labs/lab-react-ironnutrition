@@ -9,6 +9,13 @@
 # production
 /build
 
+# parcel
+dist 
+.cache
+
+#vscode
+.vscode
+
 # misc
 .DS_Store
 .env.local

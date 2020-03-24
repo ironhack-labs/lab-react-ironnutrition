@@ -80,13 +80,11 @@ export const FoodsList = () => {
   });
 
   return (
-    <>
+    <div className="container">
       <SearchBar searchFood={handleSearch} />
-      <div>
-        <span>Add new food</span>
-        <button className="button is-small" onClick={handleClick}>
-          <i className="fas fa-plus-circle"></i>
-        </button>
+      <div className="add-food">
+        <p>Add a new food to the list</p>
+        <i className="fas fa-plus-circle" onClick={handleClick}></i>
       </div>
 
       <FormModal
@@ -123,7 +121,7 @@ export const FoodsList = () => {
             ))
           )}
         </div>
-        <div className="column">
+        <div className="column today-list">
           <TodayFoods
             foods={todayFoods}
             totalCalories={totalCalories}
@@ -131,6 +129,6 @@ export const FoodsList = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };

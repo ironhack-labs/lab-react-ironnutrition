@@ -3,8 +3,7 @@ import "./App.css";
 import { FoodContextProvider } from "./components/context/Context";
 import { FoodBox } from "./components/FoodBox";
 import { AddFood } from "./components/AddFood";
-
-// import { SearchInput } from "./components/SearchFood";
+import { SearchInput } from "./components/SearchFood";
 
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -12,16 +11,7 @@ export const App = () => (
   <FoodContextProvider>
     <div className="container">
       <h1 className="title">IronNutrition</h1>
-      <div>
-        <input
-          type="text"
-          className="input search-bar"
-          name="search"
-          placeholder="Search"
-          value=""
-        />
-      </div>
-      {/* <SearchInput /> */}
+      <SearchInput />
       <div className="columns">
         <div className="column">
           <FoodBox />

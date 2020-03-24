@@ -5,18 +5,30 @@ export const FoodContext = createContext();
 
 export const FoodContextProvider = props => {
   const [allFood, setAllFood] = useState(foodData);
+  const [searchAllFood, setSearchAllFood] = useState(foodData); //to Search
 
   const addFood = food => {
     const { name, calories, image } = food;
     setAllFood([...allFood, { name, calories, image }]);
+    setSearchAllFood([...allFood, { name, calories, image }]);
   };
 
-  const findFood = name => {
-    return food.find(food => food.name === name);
+  const searchFood = name => {
+    setAllFood(
+      searchAllFood.filter(food =>
+        food.name.toLowerCase().includes(name.toLowerCase())
+      )
+    );
   };
 
   return (
-    <FoodContext.Provider value={{ allFood, setAllFood, addFood, findFood }}>
+    <FoodContext.Provider
+      value={{
+        allFood,
+        addFood,
+        searchFood
+      }}
+    >
       {props.children}
     </FoodContext.Provider>
   );

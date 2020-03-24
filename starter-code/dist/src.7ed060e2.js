@@ -28443,7 +28443,24 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
+},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"../node_modules/@babel/runtime/helpers/defineProperty.js":[function(require,module,exports) {
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+},{}],"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
 var arrayLikeToArray = require("./arrayLikeToArray");
 
 function _arrayWithoutHoles(arr) {
@@ -28567,6 +28584,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FoodContextProvider = exports.FoodContext = void 0;
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
@@ -28580,6 +28599,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 //creación de contexto
 var FoodContext = (0, _react.createContext)(); //creacion de Provider y de sus values
@@ -28630,7 +28653,21 @@ var FoodContextProvider = function FoodContextProvider(props) {
     }));
   };
 
-  var todayNutrition = function todayNutrition() {}; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
+  var todayNutrition = function todayNutrition(food) {
+    var name = food.name,
+        calories = food.calories,
+        quantity = food.quantity;
+    setAllTodayFood([].concat((0, _toConsumableArray2.default)(todayFood), [food]));
+  };
+
+  var addQuantityFood = function addQuantityFood(name, quantity) {
+    setAllFood(allFood.map(function (food) {
+      //le devuelvo el objeto food  mas el quantity que es lo que necesitas
+      return food.name == name ? _objectSpread({}, food, {
+        quantity: quantity
+      }) : food;
+    }));
+  }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
   return /*#__PURE__*/_react.default.createElement(FoodContext.Provider, {
@@ -28639,13 +28676,16 @@ var FoodContextProvider = function FoodContextProvider(props) {
       setAllFood: setAllFood,
       newFood: newFood,
       searchFood: searchFood,
-      setAllSearch: setAllSearch
+      setAllSearch: setAllSearch,
+      todayNutrition: todayNutrition,
+      todayFood: todayFood,
+      addQuantityFood: addQuantityFood
     }
   }, props.children);
 };
 
 exports.FoodContextProvider = FoodContextProvider;
-},{"@babel/runtime/helpers/toConsumableArray":"../node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","../../../public/data/foods.json":"data/foods.json"}],"../src/components/FoodBox.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/defineProperty":"../node_modules/@babel/runtime/helpers/defineProperty.js","@babel/runtime/helpers/toConsumableArray":"../node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","../../../public/data/foods.json":"data/foods.json"}],"../src/components/FoodBox.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28668,10 +28708,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var FoodBox = function FoodBox() {
   //se recoge todos los datos del contexto para realizar el map de la linea 11
   var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
-      allFood = _useContext.allFood; // para poder usar el contexto siempre se tiene que hacer un UseContext
+      allFood = _useContext.allFood,
+      todayNutrition = _useContext.todayNutrition,
+      addQuantityFood = _useContext.addQuantityFood; // para poder usar el contexto siempre se tiene que hacer un UseContext
 
 
-  var _useState = (0, _react.useState)(0),
+  var _useState = (0, _react.useState)(1),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       foodQuantity = _useState2[0],
       setFoodQuantity = _useState2[1]; //par quitar el error de quantity le cambio el estado a 1
@@ -28703,14 +28745,17 @@ var FoodBox = function FoodBox() {
     }, /*#__PURE__*/_react.default.createElement("input", {
       className: "input",
       type: "number",
-      value: foodQuantity,
+      value: food.quantity,
       onChange: function onChange(e) {
-        return setFoodQuantity(e.target.value);
+        return addQuantityFood(food.name, e.target.value);
       }
     })), /*#__PURE__*/_react.default.createElement("div", {
       className: "control"
     }, /*#__PURE__*/_react.default.createElement("button", {
-      className: "button is-info"
+      className: "button is-info",
+      onClick: function onClick() {
+        return todayNutrition(food);
+      }
     }, "+"))))));
   }));
 };
@@ -28916,7 +28961,35 @@ var SearchFood = function SearchFood() {
 exports.SearchFood = SearchFood;
 var _default = SearchFood;
 exports.default = _default;
-},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/App.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/components/TodayFood.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TodayFood = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _FoodContext = require("./context/FoodContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var TodayFood = function TodayFood() {
+  var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
+      todayFood = _useContext.todayFood;
+
+  return /*#__PURE__*/_react.default.createElement("div", null, todayFood.map(function (food, i) {
+    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("li", {
+      key: i
+    }, " ", food.quantity, " \xA0", food.name, " ", "=", " \xA0", food.calories, " cal"));
+  }));
+};
+
+exports.TodayFood = TodayFood;
+},{"react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28936,6 +29009,8 @@ var _NewFood = require("./components/NewFood");
 
 var _SearchFood = require("./components/SearchFood");
 
+var _TodayFood = require("./components/TodayFood");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -28951,11 +29026,11 @@ var App = function App() {
     className: "column content"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "subtitle"
-  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "1 Pizza = 400 cal"), /*#__PURE__*/_react.default.createElement("li", null, "2 Salad = 300 cal")), /*#__PURE__*/_react.default.createElement("strong", null, "Total: 700 cal")))));
+  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(_TodayFood.TodayFood, null)), /*#__PURE__*/_react.default.createElement("strong", null, "Total: ")))));
 };
 
 exports.App = App;
-},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js","./components/NewFood":"../src/components/NewFood.js","./components/SearchFood":"../src/components/SearchFood.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./App.css":"../src/App.css","./components/FoodBox":"../src/components/FoodBox.js","./components/context/FoodContext":"../src/components/context/FoodContext.js","./components/NewFood":"../src/components/NewFood.js","./components/SearchFood":"../src/components/SearchFood.js","./components/TodayFood":"../src/components/TodayFood.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28999,7 +29074,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59541" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57290" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

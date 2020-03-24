@@ -4,6 +4,7 @@ import { FoodBox } from "./components/FoodBox";
 import { FoodContextProvider } from "./components/context/FoodContext";
 import { NewFood } from "./components/NewFood";
 import { SearchFood } from "./components/SearchFood";
+import { TodayFood } from "./components/TodayFood";
 
 export const App = () => (
   <FoodContextProvider>
@@ -27,10 +28,9 @@ export const App = () => (
         <div className="column content">
           <h2 className="subtitle">Today's foods</h2>
           <ul>
-            <li>1 Pizza = 400 cal</li>
-            <li>2 Salad = 300 cal</li>
+            <TodayFood />
           </ul>
-          <strong>Total: 700 cal</strong>
+          <strong>Total: </strong>
         </div>
       </div>
     </div>

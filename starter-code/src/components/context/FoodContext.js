@@ -28,12 +28,34 @@ export const FoodContextProvider = props => {
       )
     );
   };
-  const todayNutrition = () => {};
+
+  const todayNutrition = food => {
+    const { name, calories, quantity } = food;
+    setAllTodayFood([...todayFood, food]);
+  };
+
+  const addQuantityFood = (name, quantity) => {
+    setAllFood(
+      allFood.map(food => {
+        //le devuelvo el objeto food  mas el quantity que es lo que necesitas
+        return food.name == name ? { ...food, quantity } : food;
+      })
+    );
+  };
 
   //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
   return (
     <FoodContext.Provider
-      value={{ allFood, setAllFood, newFood, searchFood, setAllSearch }}
+      value={{
+        allFood,
+        setAllFood,
+        newFood,
+        searchFood,
+        setAllSearch,
+        todayNutrition,
+        todayFood,
+        addQuantityFood
+      }}
     >
       {props.children}
       {/* las props children se usan para cualquier propiedad a los componenentes hijos del contexto(value)  */}

@@ -16,7 +16,7 @@ export const AddNewFoodPage = withRouter(({ history }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setFoods([...foods, { name, calories, image, quantity: 1 }]);
+        setFoods([...foods, { name, calories, image, quantity: 0 }]);
         history.push("/");
     }
 

@@ -7,6 +7,7 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
     image: '',
     quantity: 0
   });
+
   const handleSubmit = e => {
     e.preventDefault();
     console.log('form submited!');
@@ -22,6 +23,19 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
       image: ''
     });
   };
+
+  const handleClick = () => {
+    closeModal();
+
+    // clear inputs after closing form
+    setNewFood({
+      ...newFood,
+      name: '',
+      calories: '',
+      image: ''
+    });
+  };
+
   return (
     <div className={`modal is-clipped ${isOpen ? 'is-active' : ''}`}>
       <div className="modal-background"></div>
@@ -36,7 +50,7 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
                 className="input is-rounded"
                 type="text"
                 placeholder="Name"
-                value={newFood.name}
+                value={!isOpen ? '' : newFood.name}
                 onChange={e => setNewFood({ ...newFood, name: e.target.value })}
               />
             </div>
@@ -49,9 +63,9 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
                 className="input is-rounded"
                 type="text"
                 placeholder="Calories"
-                value={newFood.calories}
+                value={!isOpen ? '' : newFood.calories}
                 onChange={e =>
-                  setNewFood({ ...newFood, calories: e.target.value })
+                  setNewFood({ ...newFood, calories: Number(e.target.value) })
                 }
               />
             </div>
@@ -63,8 +77,8 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
               <input
                 className="input is-rounded"
                 type="text"
-                placeholder="Image"
-                value={newFood.image}
+                placeholder="Image url"
+                value={!isOpen ? '' : newFood.image}
                 onChange={e =>
                   setNewFood({ ...newFood, image: e.target.value })
                 }
@@ -74,7 +88,10 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
             <button className="button is-success is-light">Add Food</button>
           </form>
 
-          <button className="button is-danger is-light" onClick={closeModal}>
+          <button
+            className="button is-danger is-light"
+            onClick={() => handleClick()}
+          >
             Cancel
           </button>
         </div>

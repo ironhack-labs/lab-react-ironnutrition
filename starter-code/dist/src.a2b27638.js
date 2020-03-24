@@ -28285,7 +28285,300 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/App.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/foods.json":[function(require,module,exports) {
+module.exports = [{
+  "name": "Pizza",
+  "calories": 400,
+  "image": "https://i.imgur.com/eTmWoAN.png",
+  "quantity": 0
+}, {
+  "name": "Salad",
+  "calories": 150,
+  "image": "https://i.imgur.com/DupGBz5.jpg",
+  "quantity": 0
+}, {
+  "name": "Sweet Potato",
+  "calories": 120,
+  "image": "https://i.imgur.com/hGraGyR.jpg",
+  "quantity": 0
+}, {
+  "name": "Gnocchi",
+  "calories": 500,
+  "image": "https://i.imgur.com/93ekwW0.jpg",
+  "quantity": 0
+}, {
+  "name": "Pot Roast",
+  "calories": 350,
+  "image": "https://i.imgur.com/WCzJDWz.jpg",
+  "quantity": 0
+}, {
+  "name": "Lasagna",
+  "calories": 750,
+  "image": "https://i.imgur.com/ClxOafl.jpg",
+  "quantity": 0
+}, {
+  "name": "Hamburger",
+  "calories": 400,
+  "image": "https://i.imgur.com/LoG39wK.jpg",
+  "quantity": 0
+}, {
+  "name": "Pad Thai",
+  "calories": 475,
+  "image": "https://i.imgur.com/5ktcSzF.jpg",
+  "quantity": 0
+}, {
+  "name": "Almonds",
+  "calories": 75,
+  "image": "https://i.imgur.com/JRp4Ksx.jpg",
+  "quantity": 0
+}, {
+  "name": "Bacon",
+  "calories": 175,
+  "image": "https://i.imgur.com/7GlqDsG.jpg",
+  "quantity": 0
+}, {
+  "name": "Hot Dog",
+  "calories": 275,
+  "image": "https://i.imgur.com/QqVHdRu.jpg",
+  "quantity": 0
+}, {
+  "name": "Chocolate Cake",
+  "calories": 490,
+  "image": "https://i.imgur.com/yrgzA9x.jpg",
+  "quantity": 0
+}, {
+  "name": "Wheat Bread",
+  "calories": 175,
+  "image": "https://i.imgur.com/TsWzMfM.jpg",
+  "quantity": 0
+}, {
+  "name": "Orange",
+  "calories": 85,
+  "image": "https://i.imgur.com/abKGOcv.jpg",
+  "quantity": 0
+}, {
+  "name": "Banana",
+  "calories": 175,
+  "image": "https://i.imgur.com/BMdJhu5.jpg",
+  "quantity": 0
+}, {
+  "name": "Yogurt",
+  "calories": 125,
+  "image": "https://i.imgur.com/URhdrAm.png",
+  "quantity": 0
+}];
+},{}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/bulma/css/bulma.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/Components/FoodBox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Foods = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _foods = _interopRequireDefault(require("../foods.json"));
+
+require("bulma/css/bulma.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log(_foods.default);
+
+var Foods = function Foods() {
+  return _foods.default.map(function (food, i) {
+    return _react.default.createElement("div", {
+      className: "box",
+      key: i
+    }, _react.default.createElement("article", {
+      className: "media"
+    }, _react.default.createElement("div", {
+      className: "media-left"
+    }, _react.default.createElement("figure", {
+      className: "image is-64x64"
+    }, _react.default.createElement("img", {
+      src: food.image
+    }))), _react.default.createElement("div", {
+      className: "media-content"
+    }, _react.default.createElement("div", {
+      className: "content"
+    }, _react.default.createElement("p", null, _react.default.createElement("strong", null, food.name), " ", _react.default.createElement("br", null), _react.default.createElement("small", null, food.calories)))), _react.default.createElement("div", {
+      className: "media-right"
+    }, _react.default.createElement("div", {
+      className: "field has-addons"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input",
+      type: "number",
+      defaultValue: "1"
+    })), _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("button", {
+      className: "button is-info"
+    }, "+"))))));
+  });
+};
+
+exports.Foods = Foods;
+},{"react":"node_modules/react/index.js","../foods.json":"src/foods.json","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css"}],"src/Components/AddFood.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AddButton = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("bulma/css/bulma.css");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var AddButton = function AddButton() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      show = _useState2[0],
+      setShow = _useState2[1];
+
+  var showFields = function showFields() {
+    setShow(!show);
+  };
+
+  if (!show) {
+    return _react.default.createElement("div", {
+      className: "field"
+    }, _react.default.createElement("button", {
+      className: "button is-primary",
+      onClick: function onClick() {
+        return showFields();
+      }
+    }, "Add Food"));
+  } else {
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+      className: "field"
+    }, _react.default.createElement("button", {
+      className: "button is-danger",
+      onClick: function onClick() {
+        return showFields();
+      }
+    }, "Cancel")), _react.default.createElement("div", {
+      className: "field"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input is-primary",
+      type: "text",
+      placeholder: "Primery Input"
+    }))), _react.default.createElement("div", {
+      className: "field"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input is-primary",
+      type: "text",
+      placeholder: "Primery Input"
+    }))), _react.default.createElement("div", {
+      className: "field"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input is-primary",
+      type: "text",
+      placeholder: "Primery Input"
+    }))));
+  }
+};
+
+exports.AddButton = AddButton;
+},{"react":"node_modules/react/index.js","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28295,14 +28588,18 @@ exports.App = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _FoodBox = require("./Components/FoodBox");
+
+var _AddFood = require("./Components/AddFood");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react.default.createElement("h1", null, "HOLA");
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_AddFood.AddButton, null), _react.default.createElement(_FoodBox.Foods, null));
 };
 
 exports.App = App;
-},{"react":"node_modules/react/index.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/FoodBox":"src/Components/FoodBox.js","./Components/AddFood":"src/Components/AddFood.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28346,7 +28643,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34001" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

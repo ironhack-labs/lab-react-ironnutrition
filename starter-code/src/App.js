@@ -1,5 +1,11 @@
 import React from "react";
-
+import { Foods } from "./Components/FoodBox";
+import { AddButton } from "./Components/AddFood";
 export const App = () => {
-  return <h1>HOLA</h1>;
+  return (
+    <>
+      <AddButton />
+      <Foods />
+    </>
+  );
 };

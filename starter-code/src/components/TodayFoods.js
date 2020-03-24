@@ -10,6 +10,9 @@ export const TodayFoods = ({ foods, totalCalories, deleteFood }) => {
           .map((food, i) => (
             <li key={i}>
               {food.quantity} {food.name} = {food.calories} cal
+              {food.quantity > 1
+                ? ` (${food.calories / food.quantity}cal/u)`
+                : ''}
               <i
                 onClick={() => deleteFood(food.name)}
                 className="fas fa-trash"

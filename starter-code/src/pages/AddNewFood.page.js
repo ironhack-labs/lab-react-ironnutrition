@@ -33,7 +33,7 @@ export const AddNewFoodPage = withRouter(({ history }) => {
             <div className="field">
                 <label className="label">Calories</label>
                 <div className="control">
-                    <input className="input" type="number" placeholder={`e.g ${example.calories}`} onChange={e => setCalories(e.target.value)} value={calories} />
+                    <input className="input" type="number" min="0" placeholder={`e.g ${example.calories}`} onChange={e => setCalories(e.target.value)} value={calories} />
                 </div>
             </div>
 

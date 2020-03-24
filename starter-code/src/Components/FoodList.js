@@ -20,6 +20,8 @@ export const FoodList = () => {
   const [listSelectFood, setListSelectFood] = useState([]);
   const [totCal, setTotCal] = useState(0);
 
+  console.log(list);
+
   function addNewFood(food) {
     console.log(food);
     const copyFoodsData = [...foods];
@@ -95,6 +97,9 @@ export const FoodList = () => {
               {list.map(foodname => (
                 <li>
                   · {foodname.value} {foodname.name} = {foodname.calories}
+                  <button>
+                    <i class="fas fa-recycle"></i>
+                  </button>
                 </li>
               ))}
             </ul>

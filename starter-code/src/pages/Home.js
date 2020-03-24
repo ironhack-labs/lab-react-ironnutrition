@@ -1,10 +1,11 @@
 import React from "react";
 import { FoodBox } from "../components/FoodBox";
+import { Search } from "../components/UI/Search";
 
 export const Home = () => {
   return (
     <>
-      <h1>Home Page</h1>
+      <Search />
       <FoodBox />
     </>
   );

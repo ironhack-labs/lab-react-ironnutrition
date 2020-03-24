@@ -1,21 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import 'bulma/css/bulma.css';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+//Components
+import { Layout } from "./components/Layout"
+import { MainPage } from './pages/Main.page';
+import { AddNewFoodPage } from './pages/AddNewFood.page'
+
+//Context
+import initialFoods from "./foods.json";
+export const FoodContext = React.createContext(initialFoods);
+
+
+const App = () => {
+  const [foods, setFoods] = useState(initialFoods);
+  const [filtered, setFiltered] = useState("");
+  const [todayFoods, setTodayFoods] = useState("");
+  return (
+    <FoodContext.Provider value={{ foods, setFoods, filtered, setFiltered, todayFoods, setTodayFoods }}>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={MainPage} />
+            <Route path="/add" component={AddNewFoodPage} />
+          </Switch>
+        </Layout >
+      </Router>
+    </FoodContext.Provider>
+
+  )
+};
 
 export default App;

@@ -5,12 +5,14 @@ import foods from "../../../public/data/foods.json";
 export const FoodContext = createContext();
 
 //creacion de Provider y de sus values
-
 export const FoodContextProvider = props => {
-  //recojo los datos del json y se crea un useState, puedes recoger toda la lista del json donde quieras.
+  //recojo el estado de los  datos del json y se crea un useState, puedes recoger toda la lista del json donde quieras.
   const [allFood, setAllFood] = useState(foods);
-  //recojo los datos de la comida para realizar la busqueda
+  //recojo estado de los datos de la comida para realizar la busqueda
   const [search, setAllSearch] = useState(foods);
+  //recojo el estado de los datos de las comidas y de las calorias.
+  const [todayFood, setAllTodayFood] = useState([]);
+  const [caloriasFood, setAllCaloriasFood] = useState(0);
 
   //añadir un nuevo alimento a la lista
   const newFood = food => {
@@ -26,6 +28,7 @@ export const FoodContextProvider = props => {
       )
     );
   };
+  const todayNutrition = () => {};
 
   //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
   return (

@@ -28587,17 +28587,28 @@ var FoodContext = (0, _react.createContext)(); //creacion de Provider y de sus v
 exports.FoodContext = FoodContext;
 
 var FoodContextProvider = function FoodContextProvider(props) {
-  //recojo los datos del json y se crea un useState, puedes recoger toda la lista del json donde quieras.
+  //recojo el estado de los  datos del json y se crea un useState, puedes recoger toda la lista del json donde quieras.
   var _useState = (0, _react.useState)(_foods.default),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       allFood = _useState2[0],
-      setAllFood = _useState2[1]; //recojo los datos de la comida para realizar la busqueda
+      setAllFood = _useState2[1]; //recojo estado de los datos de la comida para realizar la busqueda
 
 
   var _useState3 = (0, _react.useState)(_foods.default),
       _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       search = _useState4[0],
-      setAllSearch = _useState4[1]; //añadir un nuevo alimento a la lista
+      setAllSearch = _useState4[1]; //recojo el estado de los datos de las comidas y de las calorias.
+
+
+  var _useState5 = (0, _react.useState)([]),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+      todayFood = _useState6[0],
+      setAllTodayFood = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
+      caloriasFood = _useState8[0],
+      setAllCaloriasFood = _useState8[1]; //añadir un nuevo alimento a la lista
 
 
   var newFood = function newFood(food) {
@@ -28617,7 +28628,9 @@ var FoodContextProvider = function FoodContextProvider(props) {
     setAllFood(search.filter(function (food) {
       return food.name.toLowerCase().includes(name.toLowerCase());
     }));
-  }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
+  };
+
+  var todayNutrition = function todayNutrition() {}; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
   return /*#__PURE__*/_react.default.createElement(FoodContext.Provider, {
@@ -28658,7 +28671,7 @@ var FoodBox = function FoodBox() {
       allFood = _useContext.allFood; // para poder usar el contexto siempre se tiene que hacer un UseContext
 
 
-  var _useState = (0, _react.useState)(1),
+  var _useState = (0, _react.useState)(0),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       foodQuantity = _useState2[0],
       setFoodQuantity = _useState2[1]; //par quitar el error de quantity le cambio el estado a 1
@@ -28986,7 +28999,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54547" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59541" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

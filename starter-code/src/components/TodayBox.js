@@ -4,14 +4,13 @@ import { TodayBox } from "../../public/styles/Today.styles";
 
 export const TodayFood = () => {
   const { todayFoods } = useContext(FoodsContext);
-
   return (
     <TodayBox>
       <h3>Today's Food</h3>
       <ul>
         {todayFoods.map((food, i) => (
           <li key={i}>
-            {food.quantity} {food.name} = {food.calories * food.quantity} cal
+            {food.quantity} {food.name} = {food.calories * food.quantity} cal{" "}
           </li>
         ))}
       </ul>

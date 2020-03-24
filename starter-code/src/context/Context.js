@@ -16,11 +16,17 @@ export const FoodsContextProvider = props => {
 
   const [todayFoods, setTodayFoods] = useState([]);
 
-  const getTodayFood = (e, name, quantityFood) => {
+  const getTodayFood = (e, name) => {
     e.preventDefault();
 
-    const foodA = getFoodName(name);
-    setTodayFoods([...todayFoods, foodA]);
+    const foodIncludeToday = getFoodName(name);
+
+    if (
+      !todayFoods.includes(foodIncludeToday) &&
+      foodIncludeToday.quantity > 0
+    ) {
+      setTodayFoods([...todayFoods, foodIncludeToday]);
+    }
   };
 
   //Obtener name food

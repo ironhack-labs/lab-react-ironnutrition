@@ -2,6 +2,11 @@ import React, { useState, useContext } from 'react';
 import { Button } from 'react-bulma-components';
 import { Field, Control, Input, Label } from 'react-bulma-components/lib/components/form';
 import {FoodContext} from './../contexts/FoodContext';
+import styled from 'styled-components';
+
+const StyledButton = styled(Button )`
+  margin-bottom: 30px;
+`;
 
 const NewFood = () => {
   const {addFood} = useContext(FoodContext);
@@ -32,7 +37,7 @@ const NewFood = () => {
   } else {
     return(
       <div>
-        <Button color="primary" onClick={()=>handleActiveForm()}>Cancel</Button>
+        <StyledButton color="primary" onClick={()=>handleActiveForm()}>Cancel</StyledButton>
 
         <Field>
           <Label>Food</Label>
@@ -55,11 +60,8 @@ const NewFood = () => {
           </Control>
         </Field>
 
-        <Field>
-          <Control>
-            <Button type="primary" onClick={()=>handleSubmitForm()}>Add</Button>
-          </Control>
-        </Field>
+          <Button color="primary" onClick={()=>handleSubmitForm()}>Add</Button>
+
       </div>
 
     );

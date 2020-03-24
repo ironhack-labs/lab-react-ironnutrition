@@ -2,8 +2,16 @@ import React, { useState, useContext } from "react";
 import { FoodContext } from "./context/Context";
 
 export const FoodBox = () => {
-  const { allFood } = useContext(FoodContext);
+  const { allFood, addTodaysFood } = useContext(FoodContext);
   const [foodQuantity, setFoodQuantity] = useState(1);
+
+  // const handleAddTodaysFood = () => {
+  //   addTodaysFood({
+  //     name: food.name,
+  //     quantity: food.quantity,
+  //     calories: food.calories
+  //   });
+  // };
 
   return (
     <>
@@ -30,11 +38,17 @@ export const FoodBox = () => {
                     className="input"
                     type="number"
                     value={foodQuantity}
+                    min="0"
                     onChange={e => setFoodQuantity(e.target.value)}
                   />
                 </div>
                 <div className="control">
-                  <button className="button is-info">+</button>
+                  <button
+                    className="button is-info"
+                    onClick={() => handleAddTodaysFood()}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>

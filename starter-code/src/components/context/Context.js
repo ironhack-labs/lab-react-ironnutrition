@@ -6,6 +6,7 @@ export const FoodContext = createContext();
 export const FoodContextProvider = props => {
   const [allFood, setAllFood] = useState(foodData);
   const [searchAllFood, setSearchAllFood] = useState(foodData); //to Search
+  // const [todaysFood, setTodaysFood] = useState([]);
 
   const addFood = food => {
     const { name, calories, image } = food;
@@ -21,12 +22,19 @@ export const FoodContextProvider = props => {
     );
   };
 
+  // const addTodaysFood = food => {
+  //   const { name, calories, quantity } = food;
+  //   setTodaysFood([...todaysFood, { name, calories, quantity }]);
+  // };
+
   return (
     <FoodContext.Provider
       value={{
         allFood,
         addFood,
-        searchFood
+        searchFood,
+        todaysFood,
+        addTodaysFood
       }}
     >
       {props.children}

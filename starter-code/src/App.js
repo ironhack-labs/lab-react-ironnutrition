@@ -4,6 +4,7 @@ import { FoodContextProvider } from "./components/context/Context";
 import { FoodBox } from "./components/FoodBox";
 import { AddFood } from "./components/AddFood";
 import { SearchInput } from "./components/SearchFood";
+import { TodaysFood } from "./components/TodaysFood";
 
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -17,14 +18,7 @@ export const App = () => (
           <FoodBox />
           <AddFood />
         </div>
-        <div className="column content">
-          <h2 className="subtitle">Today's foods</h2>
-          <ul>
-            <li>1 Pizza = 400 cal</li>
-            <li>2 Salad = 300 cal</li>
-          </ul>
-          <strong>Total: 700 cal</strong>
-        </div>
+        <TodaysFood />
       </div>
     </div>
   </FoodContextProvider>

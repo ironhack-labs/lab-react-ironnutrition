@@ -12,6 +12,7 @@ export const FoodContextProvider = props => {
   const [search, setAllSearch] = useState(foods);
   //recojo el estado de los datos de las comidas y de las calorias.
   const [todayFood, setAllTodayFood] = useState([]);
+
   const [caloriasFood, setAllCaloriasFood] = useState(0);
 
   //añadir un nuevo alimento a la lista
@@ -42,6 +43,9 @@ export const FoodContextProvider = props => {
       })
     );
   };
+  //borrar
+  const deleteFood = foodToDelete =>
+    setTodaysFoods(todayFood.filter(food => food.name !== foodToDelete));
 
   //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
   return (
@@ -54,7 +58,8 @@ export const FoodContextProvider = props => {
         setAllSearch,
         todayNutrition,
         todayFood,
-        addQuantityFood
+        addQuantityFood,
+        deleteFood
       }}
     >
       {props.children}

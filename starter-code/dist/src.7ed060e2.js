@@ -28667,6 +28667,13 @@ var FoodContextProvider = function FoodContextProvider(props) {
         quantity: quantity
       }) : food;
     }));
+  }; //borrar
+
+
+  var deleteFood = function deleteFood(foodToDelete) {
+    return setTodaysFoods(todayFood.filter(function (food) {
+      return food.name !== foodToDelete;
+    }));
   }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
@@ -28679,7 +28686,8 @@ var FoodContextProvider = function FoodContextProvider(props) {
       setAllSearch: setAllSearch,
       todayNutrition: todayNutrition,
       todayFood: todayFood,
-      addQuantityFood: addQuantityFood
+      addQuantityFood: addQuantityFood,
+      deleteFood: deleteFood
     }
   }, props.children);
 };
@@ -28981,10 +28989,20 @@ var TodayFood = function TodayFood() {
   var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
       todayFood = _useContext.todayFood;
 
+  var handleDeleteFood = function handleDeleteFood(event) {
+    deleteFood(event.currentTarget.getAttribute("food"));
+  };
+
   return /*#__PURE__*/_react.default.createElement("div", null, todayFood.map(function (food, i) {
     return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("li", {
       key: i
-    }, " ", food.quantity, " \xA0", food.name, " ", "=", " \xA0", food.calories, " cal"));
+    }, " ", food.quantity, " x ", food.name, " = ", food.calories * food.quantity, " ", /*#__PURE__*/_react.default.createElement("a", {
+      className: "delete",
+      onClick: handleDeleteFood,
+      food: food.name
+    })), /*#__PURE__*/_react.default.createElement("strong", null, "Total:", " ", todayFood.reduce(function (acc, current) {
+      return acc + current.calories;
+    }, 0), " "));
   }));
 };
 
@@ -29026,7 +29044,7 @@ var App = function App() {
     className: "column content"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "subtitle"
-  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(_TodayFood.TodayFood, null)), /*#__PURE__*/_react.default.createElement("strong", null, "Total: ")))));
+  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(_TodayFood.TodayFood, null))))));
 };
 
 exports.App = App;
@@ -29074,7 +29092,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57290" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62200" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

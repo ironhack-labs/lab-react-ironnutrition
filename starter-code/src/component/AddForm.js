@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function AddForm({handleChange, handleSubmit}) {
+export default function AddForm({handleChange, handleSubmit, newFood}) {
   return (
     <form className="addFormBox" onSubmit={handleSubmit}>
         <div className="field">
@@ -10,6 +10,7 @@ export default function AddForm({handleChange, handleSubmit}) {
               className="input .input-form"
               type="text"
               name="name"
+              value={newFood.name}
               placeholder="Tag Name"
             />
           </div>
@@ -22,6 +23,7 @@ export default function AddForm({handleChange, handleSubmit}) {
               className="input .input-form"
               type="number"
               name="calories"
+              value={newFood.calories}              
               placeholder="100"
             />
           </div>
@@ -34,6 +36,7 @@ export default function AddForm({handleChange, handleSubmit}) {
               className="input .input-form"
               type="file" 
               name="image"
+              value={newFood.image}
               placeholder="Load image"
             />
           </div>

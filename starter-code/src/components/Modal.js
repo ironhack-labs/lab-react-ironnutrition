@@ -10,7 +10,6 @@ export const FormModal = ({ isOpen, closeModal, addFood }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('form submited!');
 
     closeModal();
     addFood(newFood);

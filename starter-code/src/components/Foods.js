@@ -16,8 +16,6 @@ export const FoodsList = () => {
   const handleClick = () => setModal(!isOpen);
 
   const createNewFood = newFood => {
-    console.log('food added', newFood);
-
     setFoods([...foods, newFood]);
 
     setFilteredFoods([]); //clean filtered array if user's adding new foods

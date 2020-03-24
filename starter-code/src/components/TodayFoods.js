@@ -11,7 +11,7 @@ export const TodayFoods = ({ foods, totalCalories, deleteFood }) => {
             <li key={i}>
               {food.quantity} {food.name} = {food.calories} cal
               {food.quantity > 1
-                ? ` (${food.calories / food.quantity}cal/u)`
+                ? ` (${food.calories / food.quantity} cal/u)`
                 : ''}
               <i
                 onClick={() => deleteFood(food.name)}

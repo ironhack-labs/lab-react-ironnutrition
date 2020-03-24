@@ -28,6 +28,7 @@ export const FoodBox = ({ name, calories, image, addFood }) => {
                 type="number"
                 value={quantity}
                 onChange={handleChange}
+                min="1"
               />
             </div>
             <div className="control">

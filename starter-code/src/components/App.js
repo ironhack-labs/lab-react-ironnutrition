@@ -51,6 +51,31 @@ export const App = () => {
     }
   };
 
+  const handleAddFood = (food, quantity) => {
+    const dup = addedFoods.filter(e => e.name === food.name);
+    const notDup = addedFoods.filter(e => e.name !== food.name);
+    if (dup.length > 0) {
+      console.log(dup[0].quantity + quantity);
+      let newQuantity = dup[0].quantity + quantity;
+      let newFood = [...notDup, { ...food, quantity: newQuantity }];
+      setAddedFoods(newFood);
+      const minusCals = food.calories * dup[0].quantity;
+      setGlobalCals(globalCals - minusCals + food.calories * newQuantity);
+    } else {
+      let newFood = [...addedFoods, { ...food, quantity }];
+      setAddedFoods(newFood);
+      setGlobalCals(globalCals + food.calories * quantity);
+    }
+  };
+
+  const addCals = () => {
+    const prevCals = globalCals;
+    const currentCals = addedFoods.reduce((acc, e) => {
+      acc + e.calories;
+    }, 0);
+    console.log(currentCals);
+  };
+
   return (
     <div className='container'>
       <h1 className='title'>IronNutrition</h1>
@@ -76,7 +101,7 @@ export const App = () => {
       <div className='columns'>
         <div className='column'>
           {displayedFoods.map((e, i) => {
-            return <FoodBox key={i} {...e} />;
+            return <FoodBox key={i} {...e} addFood={handleAddFood} />;
           })}
 
           <ButtonContainer>
@@ -94,8 +119,9 @@ export const App = () => {
             <ul>
               {addedFoods.map((e, i) => {
                 return (
-                  <li>
-                    {e.name} = {e.calories} cals
+                  <li key={i}>
+                    {`${e.quantity} ${e.name} = ${e.calories *
+                      e.quantity} cals`}
                   </li>
                 );
               })}

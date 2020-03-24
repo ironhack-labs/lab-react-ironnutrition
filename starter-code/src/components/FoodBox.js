@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 export const FoodBox = props => {
   const [quantity, setQuantity] = useState();
 
+  const handleAdd = q => {
+    const newQ = parseInt(q);
+    if (newQ > 0) {
+      props.addFood(props, newQ);
+      setQuantity('');
+    }
+  };
+
   return (
     <div className='box'>
       <article className='media'>
@@ -27,11 +35,21 @@ export const FoodBox = props => {
                 type='number'
                 value={quantity}
                 placeholder={0}
-                onChange={e => setQuantity(e.target.value)}
+                onChange={e => {
+                  setQuantity(e.target.value);
+                  e.preventDefault();
+                }}
               />
             </div>
             <div className='control'>
-              <button className='button is-info'>+</button>
+              <button
+                className='button is-info'
+                onClick={e => {
+                  handleAdd(quantity);
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

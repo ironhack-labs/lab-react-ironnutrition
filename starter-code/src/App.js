@@ -1,4 +1,5 @@
 import React from "react";
 import "./App.css";
+import { FoodBox } from "./components/FoodBox";
 
-export const App = () => <div>ironNutritions</div>;
+export const App = () => <FoodBox></FoodBox>;

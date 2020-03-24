@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FoodContext } from "./context/Context";
 
 export const FoodBox = () => {
-  const { food } = useContext(FoodContext);
+  const { allFood } = useContext(FoodContext);
+  const [foodQuantity, setFoodQuantity] = useState(1);
 
   return (
     <>
-      {food.map((food, i) => (
+      {allFood.map((food, i) => (
         <div className="box" key={i}>
           <article className="media">
             <div className="media-left">
@@ -28,7 +29,8 @@ export const FoodBox = () => {
                   <input
                     className="input"
                     type="number"
-                    value={food.quantity}
+                    value={foodQuantity}
+                    onChange={e => setFoodQuantity(e.target.value)}
                   />
                 </div>
                 <div className="control">

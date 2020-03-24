@@ -2,28 +2,33 @@ import React from "react";
 import "./App.css";
 import { FoodContextProvider } from "./components/context/Context";
 import { FoodBox } from "./components/FoodBox";
+import { AddFood } from "./components/AddFood";
+
+// import { SearchInput } from "./components/SearchFood";
 
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export const App = () => (
   <FoodContextProvider>
-    <div class="container">
-      <h1 class="title">IronNutrition</h1>
+    <div className="container">
+      <h1 className="title">IronNutrition</h1>
       <div>
         <input
           type="text"
-          class="input search-bar"
+          className="input search-bar"
           name="search"
           placeholder="Search"
           value=""
         />
       </div>
-      <div class="columns">
-        <div class="column">
+      {/* <SearchInput /> */}
+      <div className="columns">
+        <div className="column">
           <FoodBox />
+          <AddFood />
         </div>
-        <div class="column content">
-          <h2 class="subtitle">Today's foods</h2>
+        <div className="column content">
+          <h2 className="subtitle">Today's foods</h2>
           <ul>
             <li>1 Pizza = 400 cal</li>
             <li>2 Salad = 300 cal</li>

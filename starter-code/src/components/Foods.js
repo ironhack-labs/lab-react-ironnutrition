@@ -34,13 +34,17 @@ export const FoodsList = () => {
   };
 
   const addTodayFood = (id, quantity) => {
-    // retrieve food if is already in today's list
+    // retrieve food
+    const foodToAdd = foods.find(food => food.name === id);
+
+    // check if food is already in today's list
     const foodIncluded = todayFoods.find(food => food.name === id);
+
     if (foodIncluded) {
       const newList = todayFoods.filter(food => food.name !== id); // remove food from today's list
 
       const totalQuantity = quantity + foodIncluded.quantity;
-      const foodCalories = foodIncluded.calories * totalQuantity;
+      const foodCalories = foodToAdd.calories * totalQuantity;
 
       // set new list updating total quantity and total calories
       setTodayFoods([
@@ -54,7 +58,10 @@ export const FoodsList = () => {
     } else {
       // retrieve food from full list to add it to today's list for the first time
       const foodToAdd = foods.find(food => food.name === id);
-      setTodayFoods([...todayFoods, { ...foodToAdd, quantity }]);
+      setTodayFoods([
+        ...todayFoods,
+        { ...foodToAdd, quantity, calories: foodToAdd.calories * quantity }
+      ]);
     }
   };
 

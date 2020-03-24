@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { FoodContext } from "./FoodContext";
 
 const FoodBox = ({ food }) => {
+  const { addFood } = useContext(FoodContext);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantity = event => setQuantity(event.target.value);
+  const handleAddFood = () =>
+    addFood({
+      name: food.name,
+      quantity: +quantity,
+      calories: food.calories * quantity
+    });
+
   return (
     <div className="box">
       <article className="media">
@@ -20,10 +32,18 @@ const FoodBox = ({ food }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value="1" />
+              <input
+                className="input"
+                type="number"
+                value={quantity}
+                onChange={handleQuantity}
+                min="0"
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={handleAddFood}>
+                +
+              </button>
             </div>
           </div>
         </div>

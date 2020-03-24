@@ -28671,7 +28671,7 @@ var FoodContextProvider = function FoodContextProvider(props) {
 
 
   var deleteFood = function deleteFood(foodToDelete) {
-    return setTodaysFoods(todayFood.filter(function (food) {
+    return setAllTodayFood(todayFood.filter(function (food) {
       return food.name !== foodToDelete;
     }));
   }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
@@ -28987,7 +28987,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var TodayFood = function TodayFood() {
   var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
-      todayFood = _useContext.todayFood;
+      todayFood = _useContext.todayFood,
+      deleteFood = _useContext.deleteFood;
 
   var handleDeleteFood = function handleDeleteFood(event) {
     deleteFood(event.currentTarget.getAttribute("food"));
@@ -29092,7 +29093,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62200" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55112" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

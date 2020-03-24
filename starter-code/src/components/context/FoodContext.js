@@ -45,7 +45,7 @@ export const FoodContextProvider = props => {
   };
   //borrar
   const deleteFood = foodToDelete =>
-    setTodaysFoods(todayFood.filter(food => food.name !== foodToDelete));
+    setAllTodayFood(todayFood.filter(food => food.name !== foodToDelete));
 
   //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
   return (

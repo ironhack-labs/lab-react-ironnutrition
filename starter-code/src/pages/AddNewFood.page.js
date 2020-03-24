@@ -26,21 +26,21 @@ export const AddNewFoodPage = withRouter(({ history }) => {
             <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder={`e.g ${example.name}`} onChange={e => setName(e.target.value)} value={name} />
+                    <input className="input" type="text" placeholder={`e.g ${example.name}`} onChange={e => setName(e.target.value)} value={name} required />
                 </div>
             </div>
 
             <div className="field">
                 <label className="label">Calories</label>
                 <div className="control">
-                    <input className="input" type="number" min="0" placeholder={`e.g ${example.calories}`} onChange={e => setCalories(e.target.value)} value={calories} />
+                    <input className="input" type="number" min="0" placeholder={`e.g ${example.calories}`} onChange={e => setCalories(e.target.value)} value={calories} required />
                 </div>
             </div>
 
             <div className="field">
                 <label className="label">Image link</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder={`e.g ${example.image}`} onChange={e => setImage(e.target.value)} value={image} />
+                    <input className="input" type="text" placeholder={`e.g ${example.image}`} onChange={e => setImage(e.target.value)} value={image} required />
                 </div>
             </div>
 

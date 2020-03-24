@@ -29,10 +29,8 @@ export const App = () => {
     if (name === '' || cals <= 0 || image === '') {
       setError('Hey, fill all the camps');
     } else {
-      setFoods([
-        ...displayedFoods,
-        { name: name, calories: cals, image: image }
-      ]);
+      foods.push({ name: name, calories: cals, image: image });
+      setFoods([...foods]);
       setShow(false);
       setError();
     }

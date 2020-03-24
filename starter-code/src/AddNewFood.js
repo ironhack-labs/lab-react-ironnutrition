@@ -31,7 +31,7 @@ const AddNewFood = () => {
 
   if (!open)
     return (
-      <button className="button" onClick={handleOpen}>
+      <button className="button is-primary" onClick={handleOpen}>
         Add new food
       </button>
     );
@@ -82,7 +82,7 @@ const AddNewFood = () => {
             </button>
           </div>
           <div className="control">
-            <button className="button is-link is-light" onClick={handleCancel}>
+            <button className="button is-black" onClick={handleCancel}>
               Cancel
             </button>
           </div>

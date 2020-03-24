@@ -3,15 +3,19 @@ import "./App.css";
 import FoodBox from "./FoodBox";
 import { FoodContext } from "./FoodContext";
 import AddNewFood from "./AddNewFood";
+import Search from "./Search";
 
 const App = () => {
-  const { foods } = useContext(FoodContext);
+  const { foods, searchFoods } = useContext(FoodContext);
 
   return (
     <div className="App">
-      {foods.map((food, index) => (
-        <FoodBox key={index} {...{ food }} />
-      ))}
+      <Search />
+      {foods
+        .filter(food => food.name.includes(searchFoods))
+        .map((food, index) => (
+          <FoodBox key={index} {...{ food }} />
+        ))}
       <AddNewFood />
     </div>
   );

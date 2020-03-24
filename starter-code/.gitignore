@@ -21,3 +21,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
+
+yarn.lock
+package-lock.json
+
+.cache
+dist
+.vscode

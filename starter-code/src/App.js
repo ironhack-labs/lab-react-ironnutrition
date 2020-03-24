@@ -16,8 +16,9 @@ export const FoodContext = React.createContext(initialFoods);
 const App = () => {
   const [foods, setFoods] = useState(initialFoods);
   const [filtered, setFiltered] = useState("");
+  const [todayFoods, setTodayFoods] = useState("");
   return (
-    <FoodContext.Provider value={{ foods, setFoods, filtered, setFiltered }}>
+    <FoodContext.Provider value={{ foods, setFoods, filtered, setFiltered, todayFoods, setTodayFoods }}>
       <Router>
         <Layout>
           <Switch>

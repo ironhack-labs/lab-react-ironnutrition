@@ -14,7 +14,7 @@ export const App = () => {
     <>
       <div className="container">
         <div className="columns is-vcentered">
-          <div classame="column is-two-thirds">
+          <div className="column is-two-thirds">
             <h1 className="App-title">Iron Nutrition</h1>
           </div>
           <div className="column ">

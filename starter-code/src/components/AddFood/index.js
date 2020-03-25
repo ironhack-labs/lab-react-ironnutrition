@@ -26,7 +26,7 @@ export const AddFood = () => {
 
   return (
     <>
-      <h2>ADD A NEW FOOD:</h2>
+      <h2 className="App-title">Add new food:</h2>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label className="label" htmlFor="name">

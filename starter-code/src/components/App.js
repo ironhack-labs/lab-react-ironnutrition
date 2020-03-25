@@ -38,10 +38,10 @@ export const App = () => {
     }
   };
 
-  const handleSearch = q => {
-    if (q) {
-      setSearch(q);
-      const replace = q;
+  const handleSearch = string => {
+    if (string) {
+      setSearch(string);
+      const replace = string;
       const regex = new RegExp(replace, 'gi');
       const newFoods = foods.filter(e => regex.test(e.name));
       setFoods(newFoods);
@@ -88,7 +88,7 @@ export const App = () => {
           name='search'
           placeholder='Search'
           value={search}
-          onChange={e => handleSearch(e.target.value)}
+          onChange={event => handleSearch(event.target.value)}
         />
       </div>
       {show && (

@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 export const FoodBox = props => {
   const [quantity, setQuantity] = useState();
 
-  const handleAdd = q => {
-    const newQ = parseInt(q);
-    if (newQ > 0) {
-      props.addFood(props, newQ);
+  const handleAdd = quantity => {
+    const newQuantity = parseInt(quantity);
+    if (newQuantity > 0) {
+      props.addFood(props, newQuantity);
       setQuantity('');
     }
   };

@@ -6,11 +6,11 @@ export const FoodContext = createContext();
 export const FoodContextProvider = props => {
   const [allFood, setAllFood] = useState(foodData);
   const [searchAllFood, setSearchAllFood] = useState(foodData); //to Search
-  // const [todaysFood, setTodaysFood] = useState([]);
+  const [todaysFood, setTodaysFood] = useState([]);
 
   const addFood = food => {
     const { name, calories, image } = food;
-    setAllFood([...allFood, { name, calories, image }]);
+    setAllFood([...allFood, { name, calories, image, quantity: 0 }]);
     setSearchAllFood([...allFood, { name, calories, image }]);
   };
 
@@ -22,10 +22,22 @@ export const FoodContextProvider = props => {
     );
   };
 
-  // const addTodaysFood = food => {
-  //   const { name, calories, quantity } = food;
-  //   setTodaysFood([...todaysFood, { name, calories, quantity }]);
-  // };
+  const addTodaysFood = food => {
+    const { name, calories, quantity } = food;
+    setTodaysFood([...todaysFood, food]);
+  };
+
+  const addQuantity = (name, quantity) => {
+    setAllFood(
+      allFood.map(food => {
+        return food.name == name ? { ...food, quantity } : food;
+      })
+    );
+  };
+
+  const deleteFood = foodClicked => {
+    setTodaysFood(todaysFood.filter(food => food.name !== foodClicked));
+  };
 
   return (
     <FoodContext.Provider
@@ -34,7 +46,9 @@ export const FoodContextProvider = props => {
         addFood,
         searchFood,
         todaysFood,
-        addTodaysFood
+        addTodaysFood,
+        addQuantity,
+        deleteFood
       }}
     >
       {props.children}

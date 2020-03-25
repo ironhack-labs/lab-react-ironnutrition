@@ -28458,7 +28458,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Footer = function Footer() {
-  return _react.default.createElement("footer", null, _react.default.createElement("p", null, "\xA9 2020 Webdev Part time by Francisco Molleda"));
+  return _react.default.createElement("footer", null, _react.default.createElement("p", null, "\xA9 2020 WebDev Part Time by Francisco Molleda"));
 };
 
 var _default = Footer;
@@ -28468,7 +28468,63 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/DataContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.DataContext = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _foods = _interopRequireDefault(require("./foods.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+//creamoos Datacontext para poder disponer de él en todas partes
+var DataContext = (0, _react.createContext)(); //Devuelve un objeto con 2 valores {Provider, Consumer}
+//Paso children como prop y declaro la collección
+
+exports.DataContext = DataContext;
+
+var DataContextProvider = function DataContextProvider(_ref) {
+  var children = _ref.children;
+
+  var _useState = (0, _react.useState)(_foods.default),
+      _useState2 = _slicedToArray(_useState, 2),
+      foods = _useState2[0],
+      setFoods = _useState2[1]; //No entiendo lo de children
+  //Usamos el Provider para dar "value" a todos sus hijos
+
+
+  return _react.default.createElement(DataContext.Provider, {
+    value: {
+      foods: foods,
+      setFoods: setFoods
+    }
+  }, children);
+};
+
+var _default = DataContextProvider;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./foods.json":"src/foods.json"}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35697,7 +35753,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var _default = _styledComponents.default.label(_templateObject());
 
 exports.default = _default;
-},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/FoodBox.js":[function(require,module,exports) {
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/FormFood.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35707,9 +35763,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _foods = _interopRequireDefault(require("../foods.json"));
-
-require("bulma/css/bulma.css");
+var _DataContext = require("../DataContext");
 
 require("bootstrap/dist/css/bootstrap.min.css");
 
@@ -35747,31 +35801,30 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var FoodBox = function FoodBox() {
-  var _useState = (0, _react.useState)(_toConsumableArray(_foods.default)),
+var FormFood = function FormFood() {
+  var _useContext = (0, _react.useContext)(_DataContext.DataContext),
+      foods = _useContext.foods,
+      setFoods = _useContext.setFoods;
+
+  var _useState = (0, _react.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      foods = _useState2[0],
-      setFoods = _useState2[1];
+      name = _useState2[0],
+      setName = _useState2[1];
 
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      name = _useState4[0],
-      setName = _useState4[1];
+      calories = _useState4[0],
+      setCalories = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      calories = _useState6[0],
-      setCalories = _useState6[1];
+      image = _useState6[0],
+      setImage = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(""),
+  var _useState7 = (0, _react.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      image = _useState8[0],
-      setImage = _useState8[1];
-
-  var _useState9 = (0, _react.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      show = _useState10[0],
-      setShow = _useState10[1];
+      show = _useState8[0],
+      setShow = _useState8[1];
 
   var handleClose = function handleClose() {
     return setShow(false);
@@ -35811,45 +35864,13 @@ var FoodBox = function FoodBox() {
     setImage("");
   }
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("main", null, _react.default.createElement("div", {
-    className: "container"
-  }, _react.default.createElement("div", {
-    className: "row"
-  }, _react.default.createElement("div", {
+  return _react.default.createElement("div", {
     className: "col"
-  }, _react.default.createElement("h1", null, "IronNutrition"), _react.default.createElement("div", null, _react.default.createElement("div", null, foods.map(function (food, i) {
-    return _react.default.createElement("article", {
-      key: i,
-      style: {
-        display: "flex"
-      }
-    }, _react.default.createElement("div", null, _react.default.createElement("figure", {
-      className: "image is-64x64"
-    }, _react.default.createElement("img", {
-      src: food.image
-    }))), _react.default.createElement("div", {
-      className: "media-content"
-    }, _react.default.createElement("div", {
-      className: "content"
-    }, _react.default.createElement("p", null, _react.default.createElement("strong", null, food.name), " ", _react.default.createElement("br", null), _react.default.createElement("small", null, food.calories, " cal")))), _react.default.createElement("div", {
-      className: "media-right"
-    }, _react.default.createElement("div", {
-      className: "field has-addons"
-    }, _react.default.createElement("div", {
-      className: "control"
-    }, _react.default.createElement("input", {
-      className: "input",
-      type: "number",
-      value: "0",
-      onChange: _react.useState
-    })), _react.default.createElement("div", {
-      className: "control"
-    }, _react.default.createElement("button", {
-      className: "button is-info"
-    }, "+")))));
-  })))), _react.default.createElement("div", {
-    className: "col"
-  }, _react.default.createElement("main", null, _react.default.createElement(_Button.default, {
+  }, _react.default.createElement("main", {
+    style: {
+      paddingTop: "2rem"
+    }
+  }, _react.default.createElement(_Button.default, {
     style: {
       marginTop: "3.5rem",
       backgroundColor: "#2793da"
@@ -35912,12 +35933,92 @@ var FoodBox = function FoodBox() {
   }, "Limpiar"), _react.default.createElement(_Button.default, {
     variant: "secondary",
     onClick: handleClose
-  }, "Close")))))))));
+  }, "Close")))));
+};
+
+var _default = FormFood;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../DataContext":"src/DataContext.js","bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","react-bootstrap/Modal":"node_modules/react-bootstrap/esm/Modal.js","react-bootstrap/Button":"node_modules/react-bootstrap/esm/Button.js","./UI/styles/FormGroup":"src/components/UI/styles/FormGroup.js","./UI/styles/Label":"src/components/UI/styles/Label.js"}],"src/components/FoodBox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("bulma/css/bulma.css");
+
+require("bootstrap/dist/css/bootstrap.min.css");
+
+var _DataContext = require("../DataContext");
+
+var _FormFood = _interopRequireDefault(require("../components/FormFood"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var FoodBox = function FoodBox() {
+  //Xpé foods y setFoods va entre {}???
+  var _useContext = (0, _react.useContext)(_DataContext.DataContext),
+      foods = _useContext.foods;
+
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("main", {
+    style: {
+      paddingTop: "4rem"
+    }
+  }, _react.default.createElement("div", {
+    className: "container"
+  }, _react.default.createElement("div", {
+    className: "row"
+  }, _react.default.createElement("div", {
+    className: "col"
+  }, _react.default.createElement("h1", {
+    style: {
+      paddingBottom: "2rem"
+    }
+  }, "IronNutrition"), _react.default.createElement("div", null, _react.default.createElement("div", {
+    className: "list-group"
+  }, foods.map(function (food, i) {
+    return _react.default.createElement("article", {
+      key: i,
+      style: {
+        display: "flex"
+      }
+    }, _react.default.createElement("div", null, _react.default.createElement("figure", {
+      className: "image is-64x64"
+    }, _react.default.createElement("img", {
+      src: food.image
+    }))), _react.default.createElement("div", {
+      className: "media-content"
+    }, _react.default.createElement("div", {
+      className: "content"
+    }, _react.default.createElement("p", null, _react.default.createElement("strong", null, food.name), " ", _react.default.createElement("br", null), _react.default.createElement("small", null, food.calories, " cal")))), _react.default.createElement("div", {
+      className: "media-right"
+    }, _react.default.createElement("div", {
+      className: "field has-addons"
+    }, _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("input", {
+      className: "input",
+      type: "number",
+      value: "0",
+      onChange: _react.useState
+    })), _react.default.createElement("div", {
+      className: "control"
+    }, _react.default.createElement("button", {
+      className: "button is-info"
+    }, "+")))));
+  })))), _react.default.createElement(_FormFood.default, null)))));
 };
 
 var _default = FoodBox;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../foods.json":"src/foods.json","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css","bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","react-bootstrap/Modal":"node_modules/react-bootstrap/esm/Modal.js","react-bootstrap/Button":"node_modules/react-bootstrap/esm/Button.js","./UI/styles/FormGroup":"src/components/UI/styles/FormGroup.js","./UI/styles/Label":"src/components/UI/styles/Label.js"}],"src/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css","bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","../DataContext":"src/DataContext.js","../components/FormFood":"src/components/FormFood.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35942,7 +36043,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "App"
-  }), _react.default.createElement(_FoodBox.default, null), _react.default.createElement(_Layout.default, null));
+  }), _react.default.createElement(_FoodBox.default, null), _react.default.createElement(_Layout.default, {
+    className: "footer"
+  }));
 };
 
 exports.App = App;
@@ -35955,14 +36058,16 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _App = require("./App");
 
+var _DataContext = _interopRequireDefault(require("./DataContext"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
 
-  _reactDom.default.render(_react.default.createElement(_App.App, null), root);
+  _reactDom.default.render(_react.default.createElement(_DataContext.default, null, _react.default.createElement(_App.App, null)), root);
 });
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js","./DataContext":"src/DataContext.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -35990,7 +36095,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64101" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56261" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

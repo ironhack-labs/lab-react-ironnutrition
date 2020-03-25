@@ -10,7 +10,7 @@ export const App = () => {
     <>
       <div className="App"></div>
       <FoodBox />
-      <Footer />
+      <Footer className="footer" />
     </>
   );
 };

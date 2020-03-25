@@ -13,11 +13,11 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        <div class="columns">
+        <div class="columns is-vcentered">
           <div class="column is-two-thirds">
             <h1 className="App-title">Iron Nutrition</h1>
           </div>
-          <div class="column">
+          <div class="column ">
             <button
               onClick={openModal}
               className="button is-link"

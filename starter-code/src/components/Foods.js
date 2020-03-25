@@ -35,7 +35,7 @@ export const FoodsList = () => {
     // retrieve food
     const foodToAdd = foods.find(food => food.name === id);
 
-    // check if food is already in today's list
+    // retrieve food if is already in today's list
     const foodIncluded = todayFoods.find(food => food.name === id);
 
     if (foodIncluded) {

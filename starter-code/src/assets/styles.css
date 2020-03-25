@@ -4,8 +4,22 @@ body {
     font-family: sans-serif;
 }
 
+/*
+
+-------------------------------------------*/
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin-top: 30px;
+}
+
 .box {
-    max-width: 500px;
+    max-width: 490px;
 }
 
 .box .image.is-64x64 {
@@ -14,4 +28,51 @@ body {
 
 .media {
     align-items: center;
+}
+
+.icon {
+    position: relative;
+}
+
+.icon-add {
+    font-size: 25px;
+    position: relative;
+    top: -3px;
+    z-index: 2;
+}
+
+.icon::after {
+    content: '';
+    display: inline-block;
+    background: rgb(29, 231, 184);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.food-list {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.food-list .box {
+    flex: 1 0 40%;
+}
+
+.food-added {
+    background-color: #f5f5f5;
+    margin: 13px 0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#food-form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
 }

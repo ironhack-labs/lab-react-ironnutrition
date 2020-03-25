@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const FoodBox = ({ food }) => {
+
+    const [quantity, setQuantity] = useState(food.quantity);
+
     return (
         <div className="box">
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={food.image} />
+                        <img src={food.image} alt="" />
                     </figure>
                 </div>
                 <div className="media-content">
@@ -21,7 +24,7 @@ export const FoodBox = ({ food }) => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input type="number" className="input" value="1" />
+                            <input type="number" className="input" value={quantity} onChange={e => setQuantity(e.target.value)} />
                         </div>
                         <div className="control">
                             <button className="button is-info">+</button>

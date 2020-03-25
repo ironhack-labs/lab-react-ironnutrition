@@ -3,6 +3,7 @@ import { FoodsContext } from "../context/Context";
 
 export const AddFood = () => {
   const { createNewFood } = useContext(FoodsContext);
+  const { closeModal } = useContext(FoodsContext);
 
   const [newFood, setNewFood] = useState({
     name: "",
@@ -20,6 +21,7 @@ export const AddFood = () => {
       calories: "",
       image: ""
     });
+    closeModal(e);
   };
 
   return (

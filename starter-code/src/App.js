@@ -8,9 +8,10 @@ import FoodBox from "./components/FoodBox";
 export const App = () => {
   return (
     <>
-      <div className="App"></div>
-      <FoodBox />
-      <Footer className="footer" />
+      <div className="App">
+        <FoodBox />
+        <Footer className="footer" />
+      </div>
     </>
   );
 };

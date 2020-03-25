@@ -5,14 +5,21 @@ import FoodsArray from "./foods.json";
 export const DataContext = createContext();
 //Devuelve un objeto con 2 valores {Provider, Consumer}
 
-//Paso children como prop y declaro la collección
+//Recibo children, que viene de App.js, donde le decimos que App es children del provider
 const DataContextProvider = ({ children }) => {
   const [foods, setFoods] = useState(FoodsArray);
+  const [searchFoods, setSearchFoods] = useState("");
 
-  //No entiendo lo de children
-  //Usamos el Provider para dar "value" a todos sus hijos
+  //Usamos el Provider para dar "value" a todas lo que declaramos arriba
   return (
-    <DataContext.Provider value={{ foods, setFoods }}>
+    <DataContext.Provider
+      value={{
+        foods,
+        setFoods,
+        searchFoods,
+        setSearchFoods
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

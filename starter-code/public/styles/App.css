@@ -46,6 +46,7 @@ body {
 }
 
 footer {
+  display: block;
   background-color: #2793DA;
   position: absolute;
   bottom: 0;
@@ -54,4 +55,8 @@ footer {
   color: white;
   text-align: center;
   padding-top: .5rem;
+}
+
+.search-bar {
+  border: 1px solid #2793DA
 }

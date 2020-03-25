@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.js": "javascriptreact"
+    },
+
+    "editor.formatOnSave": true,
+
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
+
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FoodItem } from "./FoodItem";
+import { FoodItem } from "../FoodItem/index";
 
 export const FoodBox = ({ foodList }) => {
   console.log("foods list --- >>>", foodList);

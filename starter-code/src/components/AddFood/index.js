@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { FoodsContext } from "../context/Context";
+import { FoodsContext } from "../../context/Context";
 
 export const AddFood = () => {
   const { createNewFood } = useContext(FoodsContext);

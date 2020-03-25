@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { FoodsContext } from "../context/Context";
-import { AddFood } from "../../src/components/AddFood";
+import { FoodsContext } from "../../context/Context";
+import { AddFood } from "../AddFood";
 
 export const FormModal = () => {
   const { modalOpen } = useContext(FoodsContext);

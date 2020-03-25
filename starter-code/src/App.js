@@ -3,8 +3,8 @@ import { FoodsContext } from "./context/Context";
 
 import "../public/styles/App.css";
 
-import { FoodBox } from "../src/components/FoodBox";
-import { FormModal } from "../src/components/Modal";
+import { FoodBox } from "./components/FoodBox";
+import { FormModal } from "./components/Modal";
 
 export const App = () => {
   const { foods } = useContext(FoodsContext);
@@ -13,11 +13,11 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        <div class="columns is-vcentered">
-          <div class="column is-two-thirds">
+        <div className="columns is-vcentered">
+          <div classame="column is-two-thirds">
             <h1 className="App-title">Iron Nutrition</h1>
           </div>
-          <div class="column ">
+          <div className="column ">
             <button
               onClick={openModal}
               className="button is-link"

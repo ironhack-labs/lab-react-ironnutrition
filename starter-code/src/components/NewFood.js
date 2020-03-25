@@ -28,7 +28,7 @@ export const NewFood = () => {
 
   //variable para que me añada el objeto
   const handleSubmit = () => {
-    newFood({ name, calories, image });
+    newFood({ name, calories, image, quantity: 0 });
     setShowButton(false);
     cleanInput();
   };

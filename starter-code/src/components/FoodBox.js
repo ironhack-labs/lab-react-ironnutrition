@@ -4,7 +4,7 @@ import { FoodContext } from "./context/FoodContext";
 export const FoodBox = () => {
   //se recoge todos los datos del contexto para realizar el map de la linea 11
   const { allFood, todayNutrition, addQuantityFood } = useContext(FoodContext); // para poder usar el contexto siempre se tiene que hacer un UseContext
-  const [foodQuantity, setFoodQuantity] = useState(1); //par quitar el error de quantity le cambio el estado a 1
+  // const [foodQuantity, setFoodQuantity] = useState(1); //par quitar el error de quantity le cambio el estado a 1
 
   return (
     <>
@@ -31,6 +31,7 @@ export const FoodBox = () => {
                   <input
                     className="input"
                     type="number"
+                    min="1"
                     value={food.quantity}
                     onChange={e => addQuantityFood(food.name, e.target.value)}
                   />

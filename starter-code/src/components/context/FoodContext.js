@@ -12,12 +12,13 @@ export const FoodContextProvider = props => {
   const [search, setAllSearch] = useState(foods);
   //recojo el estado de los datos de las comidas y de las calorias.
   const [todayFood, setAllTodayFood] = useState([]);
-  const [caloriasFood, setAllCaloriasFood] = useState(0);
+
+  // const [caloriasFood, setAllCaloriasFood] = useState(0);
 
   //añadir un nuevo alimento a la lista
   const newFood = food => {
     const { name, calories, images } = food; //objetos que voy a recuperar de la prop food
-    setAllFood([...allFood, { name, calories, images }]); //copia mi array de objetos(...allfood) y le añado un objeto mas a mi array de objetos con las siguientes prop(name, calories, images )
+    setAllFood([...allFood, { name, calories, images, quantity: 0 }]); //copia mi array de objetos(...allfood) y le añado un objeto mas a mi array de objetos con las siguientes prop(name, calories, images )
   };
 
   //filtro por el nombre de la lista que viene desde newfood(setAllFood)
@@ -42,6 +43,9 @@ export const FoodContextProvider = props => {
       })
     );
   };
+  //borrar
+  const deleteFood = foodToDelete =>
+    setAllTodayFood(todayFood.filter(food => food.name !== foodToDelete));
 
   //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
   return (
@@ -54,7 +58,9 @@ export const FoodContextProvider = props => {
         setAllSearch,
         todayNutrition,
         todayFood,
-        addQuantityFood
+        addQuantityFood,
+        deleteFood,
+        setAllTodayFood
       }}
     >
       {props.children}

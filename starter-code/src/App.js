@@ -30,7 +30,6 @@ export const App = () => (
           <ul>
             <TodayFood />
           </ul>
-          <strong>Total: </strong>
         </div>
       </div>
     </div>

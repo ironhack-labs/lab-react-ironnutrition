@@ -28363,7 +28363,83 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/@babel/runtime/helpers/arrayWithHoles.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/@babel/runtime/helpers/defineProperty.js":[function(require,module,exports) {
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+},{}],"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js":[function(require,module,exports) {
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+},{}],"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+},{"./arrayLikeToArray":"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+},{}],"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(n);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+},{"./arrayLikeToArray":"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+},{}],"../node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
+var arrayWithoutHoles = require("./arrayWithoutHoles");
+
+var iterableToArray = require("./iterableToArray");
+
+var unsupportedIterableToArray = require("./unsupportedIterableToArray");
+
+var nonIterableSpread = require("./nonIterableSpread");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+},{"./arrayWithoutHoles":"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"../node_modules/@babel/runtime/helpers/iterableToArray.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableSpread":"../node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"../node_modules/@babel/runtime/helpers/arrayWithHoles.js":[function(require,module,exports) {
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
@@ -28398,32 +28474,7 @@ function _iterableToArrayLimit(arr, i) {
 }
 
 module.exports = _iterableToArrayLimit;
-},{}],"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js":[function(require,module,exports) {
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-module.exports = _arrayLikeToArray;
-},{}],"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":[function(require,module,exports) {
-var arrayLikeToArray = require("./arrayLikeToArray");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(n);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
-},{"./arrayLikeToArray":"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime/helpers/nonIterableRest.js":[function(require,module,exports) {
+},{}],"../node_modules/@babel/runtime/helpers/nonIterableRest.js":[function(require,module,exports) {
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
@@ -28443,58 +28494,7 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"../node_modules/@babel/runtime/helpers/defineProperty.js":[function(require,module,exports) {
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-},{}],"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
-var arrayLikeToArray = require("./arrayLikeToArray");
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-
-module.exports = _arrayWithoutHoles;
-},{"./arrayLikeToArray":"../node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-},{}],"../node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableSpread;
-},{}],"../node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
-var arrayWithoutHoles = require("./arrayWithoutHoles");
-
-var iterableToArray = require("./iterableToArray");
-
-var unsupportedIterableToArray = require("./unsupportedIterableToArray");
-
-var nonIterableSpread = require("./nonIterableSpread");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-},{"./arrayWithoutHoles":"../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"../node_modules/@babel/runtime/helpers/iterableToArray.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableSpread":"../node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"data/foods.json":[function(require,module,exports) {
+},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray":"../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"data/foods.json":[function(require,module,exports) {
 module.exports = [{
   "name": "Pizza",
   "calories": 400,
@@ -28626,12 +28626,8 @@ var FoodContextProvider = function FoodContextProvider(props) {
   var _useState5 = (0, _react.useState)([]),
       _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
       todayFood = _useState6[0],
-      setAllTodayFood = _useState6[1];
-
-  var _useState7 = (0, _react.useState)(0),
-      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
-      caloriasFood = _useState8[0],
-      setAllCaloriasFood = _useState8[1]; //añadir un nuevo alimento a la lista
+      setAllTodayFood = _useState6[1]; // const [caloriasFood, setAllCaloriasFood] = useState(0);
+  //añadir un nuevo alimento a la lista
 
 
   var newFood = function newFood(food) {
@@ -28642,7 +28638,8 @@ var FoodContextProvider = function FoodContextProvider(props) {
     setAllFood([].concat((0, _toConsumableArray2.default)(allFood), [{
       name: name,
       calories: calories,
-      images: images
+      images: images,
+      quantity: 0
     }])); //copia mi array de objetos(...allfood) y le añado un objeto mas a mi array de objetos con las siguientes prop(name, calories, images )
   }; //filtro por el nombre de la lista que viene desde newfood(setAllFood)
 
@@ -28667,6 +28664,13 @@ var FoodContextProvider = function FoodContextProvider(props) {
         quantity: quantity
       }) : food;
     }));
+  }; //borrar
+
+
+  var deleteFood = function deleteFood(foodToDelete) {
+    return setAllTodayFood(todayFood.filter(function (food) {
+      return food.name !== foodToDelete;
+    }));
   }; //para poder usar el Contexto en cualquier componente necesitamos llamar al nombre del createContext().Provider
 
 
@@ -28679,7 +28683,9 @@ var FoodContextProvider = function FoodContextProvider(props) {
       setAllSearch: setAllSearch,
       todayNutrition: todayNutrition,
       todayFood: todayFood,
-      addQuantityFood: addQuantityFood
+      addQuantityFood: addQuantityFood,
+      deleteFood: deleteFood,
+      setAllTodayFood: setAllTodayFood
     }
   }, props.children);
 };
@@ -28693,8 +28699,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.FoodBox = void 0;
 
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _FoodContext = require("./context/FoodContext");
@@ -28703,20 +28707,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var FoodBox = function FoodBox() {
   //se recoge todos los datos del contexto para realizar el map de la linea 11
   var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
       allFood = _useContext.allFood,
       todayNutrition = _useContext.todayNutrition,
       addQuantityFood = _useContext.addQuantityFood; // para poder usar el contexto siempre se tiene que hacer un UseContext
-
-
-  var _useState = (0, _react.useState)(1),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-      foodQuantity = _useState2[0],
-      setFoodQuantity = _useState2[1]; //par quitar el error de quantity le cambio el estado a 1
+  // const [foodQuantity, setFoodQuantity] = useState(1); //par quitar el error de quantity le cambio el estado a 1
 
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, allFood.map(function (food, i) {
@@ -28745,6 +28742,7 @@ var FoodBox = function FoodBox() {
     }, /*#__PURE__*/_react.default.createElement("input", {
       className: "input",
       type: "number",
+      min: "1",
       value: food.quantity,
       onChange: function onChange(e) {
         return addQuantityFood(food.name, e.target.value);
@@ -28763,7 +28761,7 @@ var FoodBox = function FoodBox() {
 exports.FoodBox = FoodBox;
 var _default = FoodBox;
 exports.default = _default;
-},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/components/NewFood.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./context/FoodContext":"../src/components/context/FoodContext.js"}],"../src/components/NewFood.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28828,7 +28826,8 @@ var NewFood = function NewFood() {
     newFood({
       name: name,
       calories: calories,
-      image: image
+      image: image,
+      quantity: 0
     });
     setShowButton(false);
     cleanInput();
@@ -28979,13 +28978,25 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var TodayFood = function TodayFood() {
   var _useContext = (0, _react.useContext)(_FoodContext.FoodContext),
-      todayFood = _useContext.todayFood;
+      todayFood = _useContext.todayFood,
+      deleteFood = _useContext.deleteFood,
+      setAllTodayFood = _useContext.setAllTodayFood;
 
-  return /*#__PURE__*/_react.default.createElement("div", null, todayFood.map(function (food, i) {
-    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("li", {
+  var handleDeleteFood = function handleDeleteFood(event) {
+    deleteFood(event.currentTarget.getAttribute("food"));
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", null, todayFood.map(function (food, i) {
+    return /*#__PURE__*/_react.default.createElement("li", {
       key: i
-    }, " ", food.quantity, " \xA0", food.name, " ", "=", " \xA0", food.calories, " cal"));
-  }));
+    }, food.quantity, " x ", food.name, " = ", food.calories * food.quantity, /*#__PURE__*/_react.default.createElement("a", {
+      className: "delete",
+      onClick: handleDeleteFood,
+      food: food.name
+    }));
+  })), /*#__PURE__*/_react.default.createElement("strong", null, "Total:", todayFood.reduce(function (acc, current) {
+    return acc + current.calories;
+  }, 0)));
 };
 
 exports.TodayFood = TodayFood;
@@ -29026,7 +29037,7 @@ var App = function App() {
     className: "column content"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "subtitle"
-  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(_TodayFood.TodayFood, null)), /*#__PURE__*/_react.default.createElement("strong", null, "Total: ")))));
+  }, "Today's foods"), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement(_TodayFood.TodayFood, null))))));
 };
 
 exports.App = App;
@@ -29074,7 +29085,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57290" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56894" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

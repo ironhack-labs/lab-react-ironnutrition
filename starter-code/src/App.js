@@ -3,6 +3,7 @@ import "./App.css";
 import FoodList from "./components/FoodList";
 import FoodContextProvider from "./contexts/FoodContext";
 import FlexContainer from "./components/FlexContainer";
+import NewFood from "./components/NewFood";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <FoodContextProvider>
         <FlexContainer>
           <FoodList />
+          <NewFood />
         </FlexContainer>
       </FoodContextProvider>
     </div>

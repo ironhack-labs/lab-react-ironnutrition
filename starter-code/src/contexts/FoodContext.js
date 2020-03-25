@@ -5,14 +5,20 @@ export const FoodContext = createContext();
 
 const FoodContextProvider = (props) => {
   const [foods, setFoods] = useState(foodsJson);
-  //console.log(`foods ${foods}`);
+
+  const addFood = (food) => {
+    const {name, calories, image} = food;
+
+    if(name && calories && image){
+      setFoods([...foods,{name, calories, image}]);
+    }
+  }
+
   return(
-    <FoodContext.Provider value={{foods, setFoods}}>
+    <FoodContext.Provider value={{foods, addFood}}>
       {props.children}
     </FoodContext.Provider>
   )
 };
 
 export default FoodContextProvider;
-
-

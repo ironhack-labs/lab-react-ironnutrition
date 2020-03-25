@@ -1,23 +1,13 @@
-import React, { useState, useContext } from "react";
-
-import foodsArray from "../src/context/foods.json";
+import React, { useContext } from "react";
+import { FoodsContext } from "./context/Context";
 
 import "../public/styles/App.css";
-import { FoodsContext } from "../src/context/Context";
 
 import { FoodBox } from "../src/components/FoodBox";
 import { AddFood } from "../src/components/AddFood";
 
 export const App = () => {
-  //   const { foods } = useContext(FoodsContext);
-  const [foods, setFoods] = useState(foodsArray);
-  //   const [foodsList, setFoodsList] = useState(foods);
-
-  const createNewFood = newFood => {
-    setFoods([newFood, ...foods]);
-    console.log("HEY newFood!", newFood);
-  };
-
+  const { foods } = useContext(FoodsContext);
   return (
     <>
       <div className="container">
@@ -27,7 +17,7 @@ export const App = () => {
             <FoodBox foodList={foods} />
           </div>
           <div className="column is-half">
-            <AddFood otraCosa={"otra cosa"} addFood={createNewFood} />
+            <AddFood />
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FoodsContext } from "../context/Context";
 
-export const AddFood = ({ otraCosa, addFood }) => {
-  //   console.log("props", props);
-  //   console.log("otraCosa", otraCosa);
-  //   console.log("addFood", addFood);
+export const AddFood = () => {
+  const { createNewFood } = useContext(FoodsContext);
 
   const [newFood, setNewFood] = useState({
     name: "",
@@ -14,7 +13,7 @@ export const AddFood = ({ otraCosa, addFood }) => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log("form sent!");
-    addFood(newFood);
+    createNewFood(newFood);
     setNewFood({
       ...newFood,
       name: "",

@@ -1,9 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
 import { FoodContainer } from "../components/UI/FoodContainer";
 
-export const FoodBox = () => {
+export const FoodBox = props => {
   const { foodList } = useContext(DataContext);
+  const [count, setCount] = useState(0);
+
+  const handleAdd = (name, e) => {
+    setCount(
+      foodList.map(food => {
+        if (food.name === name) food.quantity = e.target.value;
+        return food;
+      })
+    );
+  };
 
   return (
     <>
@@ -25,7 +35,12 @@ export const FoodBox = () => {
           </div>
           <div className="media-right">
             <div className="control">
-              <input className="input" type="number" value={food.quantity} />
+              <input
+                className="input"
+                type="number"
+                value={food.quantity}
+                onChange={e => handleAdd(food.name, e)}
+              />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

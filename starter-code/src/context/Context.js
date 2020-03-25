@@ -6,6 +6,7 @@ export const FoodsContext = createContext();
 export const FoodsContextProvider = ({ children }) => {
   const [foods, setFoods] = useState(dataFoods);
   const [modalOpen, setModalOpen] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const createNewFood = newFood => {
     setFoods([newFood, ...foods]);
@@ -33,7 +34,9 @@ export const FoodsContextProvider = ({ children }) => {
         modalOpen,
         setModalOpen,
         openModal,
-        closeModal
+        closeModal,
+        filter,
+        setFilter
       }}
     >
       {children}

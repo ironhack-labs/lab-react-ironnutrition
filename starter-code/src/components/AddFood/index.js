@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { FoodsContext } from "../context/Context";
+import { FoodsContext } from "../../context/Context";
 
 export const AddFood = () => {
   const { createNewFood } = useContext(FoodsContext);
@@ -26,7 +26,7 @@ export const AddFood = () => {
 
   return (
     <>
-      <h2>ADD A NEW FOOD:</h2>
+      <h2 className="App-title">Add new food:</h2>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label className="label" htmlFor="name">

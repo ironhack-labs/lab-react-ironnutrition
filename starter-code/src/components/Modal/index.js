@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
-import { FoodsContext } from "../context/Context";
-import { AddFood } from "../../src/components/AddFood";
+import { FoodsContext } from "../../context/Context";
+import { AddFood } from "../AddFood";
+
+import { StyledModal } from "./style";
 
 export const FormModal = () => {
   const { modalOpen } = useContext(FoodsContext);
@@ -8,7 +10,10 @@ export const FormModal = () => {
 
   return (
     <>
-      <div id="formModal" className={`modal ${modalOpen ? "is-active" : ""} `}>
+      <StyledModal
+        id="formModal"
+        className={`modal ${modalOpen ? "is-active" : ""} `}
+      >
         <div className="modal-background"></div>
         <div className="modal-content">
           <AddFood />
@@ -18,7 +23,7 @@ export const FormModal = () => {
           className="modal-close is-large"
           aria-label="close"
         ></button>
-      </div>
+      </StyledModal>
     </>
   );
 };

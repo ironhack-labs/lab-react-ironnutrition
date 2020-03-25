@@ -9,6 +9,8 @@ import { FoodBox } from './components/FoodBox';
 
 export const App = () => {
     return (
-        <FoodBox />
+        foods && foods.map((food, i) => {
+            return <FoodBox key={i} food={food} />
+        })
     )
 }

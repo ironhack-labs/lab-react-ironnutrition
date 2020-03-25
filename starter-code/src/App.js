@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // DATA
-import foodArr from './food.json';
+import foodArray from './food.json';
 
 // COMPONENTS
 import { FoodBox } from './components/FoodBox';
@@ -9,12 +9,18 @@ import { AddFoodForm } from './components/AddFoodForm';
 
 export const App = () => {
 
-    const [food, setFood] = useState(foodArr);
+    const [food, setFood] = useState([]);
     const [formVisibility, setFormVisibility] = useState(false);
+    const [query, setQuery] = useState('');
+
+    useEffect(() => {
+        const filter = foodArray.filter(f => f.name.toLowerCase().includes(query));
+        setFood(filter);
+    }, [query])
 
     const handleAddFood = (data) => {
-        let newFood = [...food]
-        newFood.unshift(data)
+        let newFood = [...food];
+        newFood.unshift(data);
         setFood(newFood);
     }
 
@@ -32,6 +38,12 @@ export const App = () => {
                     </span>
                     <span>Add Food</span>
                 </button>
+
+                <div className="field search-bar">
+                    <div className="control">
+                        <input className="input" id="search" name="search" type="text" value={query} onChange={e => setQuery(e.target.value)} />
+                    </div>
+                </div>
             </header>
             <AddFoodForm
                 isVisible={formVisibility}

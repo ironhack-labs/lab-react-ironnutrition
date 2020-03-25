@@ -10,6 +10,7 @@ body {
 
 .app-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -18,8 +19,14 @@ body {
     margin-top: 30px;
 }
 
+.search-bar {
+    flex: 1 0 100%;
+    margin-bottom: 25px;
+}
+
 .box {
     max-width: 490px;
+    max-height: 90px;
 }
 
 .box .image.is-64x64 {

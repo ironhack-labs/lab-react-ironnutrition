@@ -1,14 +1,19 @@
-import React from 'react';
-import './App.css';
-import foods from './foods.json';
-import FoodBox from './components/FoodBox';
+import React from "react";
+import "./App.css";
+import FoodList from "./components/FoodList";
+import FoodContextProvider from "./contexts/FoodContext";
+import FlexContainer from "./components/FlexContainer";
 
-function App (){
+const App = () => {
   return (
     <div className="App">
-      <FoodBox/>
+      <FoodContextProvider>
+        <FlexContainer>
+          <FoodList />
+        </FlexContainer>
+      </FoodContextProvider>
     </div>
   );
-}
+};
 
 export default App;

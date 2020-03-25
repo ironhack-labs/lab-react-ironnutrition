@@ -1,10 +1,12 @@
-import React from "react";
-import foods from "../foods.json";
+import React, { useContext } from "react";
+import { FoodContext } from "./context/foodContext";
+// import foods from "../foods.json";
 import "bulma/css/bulma.css";
 
-console.log(foods);
 export const Foods = () => {
-  return foods.map((food, i) => (
+  const { allFood } = useContext(FoodContext);
+
+  return allFood.map((food, i) => (
     <div className="box" key={i}>
       <article className="media">
         <div className="media-left">

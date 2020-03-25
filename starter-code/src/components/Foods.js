@@ -16,8 +16,6 @@ export const FoodsList = () => {
   const handleClick = () => setModal(!isOpen);
 
   const createNewFood = newFood => {
-    console.log('food added', newFood);
-
     setFoods([...foods, newFood]);
 
     setFilteredFoods([]); //clean filtered array if user's adding new foods
@@ -34,13 +32,17 @@ export const FoodsList = () => {
   };
 
   const addTodayFood = (id, quantity) => {
+    // retrieve food
+    const foodToAdd = foods.find(food => food.name === id);
+
     // retrieve food if is already in today's list
     const foodIncluded = todayFoods.find(food => food.name === id);
+
     if (foodIncluded) {
       const newList = todayFoods.filter(food => food.name !== id); // remove food from today's list
 
       const totalQuantity = quantity + foodIncluded.quantity;
-      const foodCalories = foodIncluded.calories * totalQuantity;
+      const foodCalories = foodToAdd.calories * totalQuantity;
 
       // set new list updating total quantity and total calories
       setTodayFoods([
@@ -54,8 +56,17 @@ export const FoodsList = () => {
     } else {
       // retrieve food from full list to add it to today's list for the first time
       const foodToAdd = foods.find(food => food.name === id);
-      setTodayFoods([...todayFoods, { ...foodToAdd, quantity }]);
+      setTodayFoods([
+        ...todayFoods,
+        { ...foodToAdd, quantity, calories: foodToAdd.calories * quantity }
+      ]);
     }
+  };
+
+  const deleteFood = id => {
+    const newList = [...todayFoods].filter(food => food.name !== id);
+
+    setTodayFoods(newList);
   };
 
   useEffect(() => {
@@ -67,13 +78,11 @@ export const FoodsList = () => {
   });
 
   return (
-    <>
+    <div className="container">
       <SearchBar searchFood={handleSearch} />
-      <div>
-        <span>Add new food</span>
-        <button className="button is-small" onClick={handleClick}>
-          <i className="fas fa-plus-circle"></i>
-        </button>
+      <div className="add-food">
+        <p>Add a new food to the list</p>
+        <i className="fas fa-plus-circle" onClick={handleClick}></i>
       </div>
 
       <FormModal
@@ -110,10 +119,14 @@ export const FoodsList = () => {
             ))
           )}
         </div>
-        <div className="column">
-          <TodayFoods foods={todayFoods} totalCalories={totalCalories} />
+        <div className="column today-list">
+          <TodayFoods
+            foods={todayFoods}
+            totalCalories={totalCalories}
+            deleteFood={deleteFood}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -4,11 +4,17 @@ import { FoodsContext } from "../../context/Context";
 
 export const FoodItem = ({ thisFood }) => {
   const { addTodayFoods } = useContext(FoodsContext);
-  const [value, setQuantity] = useState(1);
 
-  const handleNewFood = food => {
-    food.quantity = value;
-    addTodayFoods(food);
+  const [quantity, setQuantity] = useState(1);
+  const handleQuantity = e => setQuantity(e.target.value);
+
+  const handleAddFood = () => {
+    const newTodayFood = {
+      name: thisFood.name,
+      quantity: +quantity,
+      calories: thisFood.calories * quantity
+    };
+    addTodayFoods(newTodayFood);
   };
 
   return (
@@ -32,15 +38,12 @@ export const FoodItem = ({ thisFood }) => {
             <input
               className="input"
               type="number"
-              value={value}
-              onChange={e => setQuantity(e.target.value)}
+              value={quantity}
+              onChange={handleQuantity}
             />
           </div>
           <div className="control">
-            <button
-              onClick={() => handleNewFood(thisFood)}
-              className="button is-info"
-            >
+            <button onClick={handleAddFood} className="button is-info">
               +
             </button>
           </div>

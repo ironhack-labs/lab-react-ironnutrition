@@ -12,10 +12,19 @@ export const TodayFoods = () => {
         <ul>
           {todayFoods.map((food, i) => (
             <li id={food.name} key={i}>
-              <b>{food.name}</b> - {food.calories} cal - {food.quantity} units
+              <div>
+                <b>{food.name}</b> - {food.calories} cal - {food.quantity} units
+              </div>
+              <button className="button is-link" type="submit">
+                Remove
+              </button>
             </li>
           ))}
         </ul>
+        <p className="total">
+          <b>Total: </b>
+          {todayFoods.reduce((acc, cur) => acc + cur.calories, 0)} calories
+        </p>
       </StyledList>
     </>
   );

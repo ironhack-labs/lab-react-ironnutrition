@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components"
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Accordion } from 'react-bootstrap';
 import foodsArray from "../../src/foods"
 
 const Block = styled.section`
@@ -32,8 +32,10 @@ class FoodBox extends Component {
 
 
   render() {
-    console.log("This is the return Array of objects JSON", this.state.foods)
+    console.log("This is the return Array of objects from the JSON", this.state.foods)
+
     return (
+
       this.state.foods.map((food, i) =>
         <Block key={i}>
           <div className="box">

@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { FoodsContext } from "./context/Context";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+import "../public/styles/App.css";
+
+import { Header } from "./components/Header";
+import { FoodBox } from "./components/FoodBox";
+import { FormModal } from "./components/Modal";
+import { TodayFoods } from "./components/TodayFoods";
+
+export const App = () => {
+  const { foods } = useContext(FoodsContext);
+
+  return (
+    <>
+      <Header />
+      <div className="container">
+        <div className="columns ">
+          <div className="column is-half">
+            <FoodBox foodList={foods} />
+          </div>
+          <div className="column is-half">
+            <TodayFoods />
+          </div>
+        </div>
+        <FormModal />
       </div>
-    );
-  }
-}
-
-export default App;
+    </>
+  );
+};

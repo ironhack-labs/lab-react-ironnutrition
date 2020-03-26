@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 
+#parcel
+.cache
+dist
+
 # testing
 /coverage
 
@@ -21,3 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
+
+.jshintrc

@@ -15,7 +15,14 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 1.5em 0;
+}
+h2.App-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.3em 0;
 }
 
 .App-intro {
@@ -23,6 +30,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

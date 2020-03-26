@@ -6,26 +6,29 @@ import foodArray from './food.json';
 // COMPONENTS
 import { FoodBox } from './components/FoodBox';
 import { AddFoodForm } from './components/AddFoodForm';
+import { TodayFood } from './components/TodayFood';
 
 export const App = () => {
 
     const [food, setFood] = useState([]);
-    const [formVisibility, setFormVisibility] = useState(false);
     const [query, setQuery] = useState('');
+    const [todayFood, setTodayFood] = useState([]);
+
+    const [formVisibility, setFormVisibility] = useState(false);
 
     useEffect(() => {
         const filter = foodArray.filter(f => f.name.toLowerCase().includes(query));
         setFood(filter);
-    }, [query])
+    }, [query]);
+
+    const toggleFormVisibility = (e, isVisible) => {
+        setFormVisibility(isVisible);
+    }
 
     const handleAddFood = (data) => {
         let newFood = [...food];
         newFood.unshift(data);
         setFood(newFood);
-    }
-
-    const toggleFormVisibility = (e, isVisible) => {
-        setFormVisibility(isVisible);
     }
 
     return (
@@ -51,13 +54,11 @@ export const App = () => {
             />
             <div className="columns">
                 <div className="column is-three-quarter food-list">
-                    {food.length && food.map((food, i) => {
-                        return <FoodBox key={i} food={food} />
+                    {food.length && food.map((f, i) => {
+                        return <FoodBox key={i} food={f} todayFood={todayFood} setTodayFood={setTodayFood} />
                     })}
                 </div>
-                <div className="column is-one-quarter food-added">
-                    hola
-                </div>
+                <TodayFood todayFood={todayFood} />
             </div>
         </div>
     )

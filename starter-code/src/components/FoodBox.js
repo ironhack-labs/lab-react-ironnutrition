@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const FoodBox = ({ food }) => {
+export const FoodBox = ({ food, todayFood, setTodayFood }) => {
 
     const [quantity, setQuantity] = useState(food.quantity);
 
@@ -24,10 +24,10 @@ export const FoodBox = ({ food }) => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input type="number" className="input" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                            <input type="number" className="input" value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
                         </div>
                         <div className="control">
-                            <button className="button is-info">+</button>
+                            <button className="button is-info" disabled={quantity <= 0} onClick={() => setTodayFood([...todayFood, { ...food, quantity }])}>+</button>
                         </div>
                     </div>
                 </div>

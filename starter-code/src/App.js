@@ -5,6 +5,7 @@ import "../public/styles/App.css";
 
 import { FoodBox } from "./components/FoodBox";
 import { FormModal } from "./components/Modal";
+import { TodayFoods } from "./components/TodayFoods";
 
 export const App = () => {
   const { foods } = useContext(FoodsContext);
@@ -34,7 +35,7 @@ export const App = () => {
             <FoodBox foodList={foods} />
           </div>
           <div className="column is-half">
-            <p>OTRA</p>
+            <TodayFoods />
           </div>
         </div>
         <FormModal />

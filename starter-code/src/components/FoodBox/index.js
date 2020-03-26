@@ -18,7 +18,7 @@ export const FoodBox = ({ foodList }) => {
               <FoodItem
                 key={i}
                 className="box"
-                data={food}
+                thisFood={food}
                 //   addNewFood={createNewFood} AÑADIR CANTIDAD
               />
             )

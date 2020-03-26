@@ -7,6 +7,7 @@ export const FoodsContextProvider = ({ children }) => {
   const [foods, setFoods] = useState(dataFoods);
   const [modalOpen, setModalOpen] = useState(false);
   const [filter, setFilter] = useState("");
+  const [todayFoods, setTodayFoods] = useState([]);
 
   const createNewFood = newFood => {
     setFoods([newFood, ...foods]);
@@ -25,6 +26,24 @@ export const FoodsContextProvider = ({ children }) => {
     setModalOpen(false);
   };
 
+  const addTodayFoods = food => {
+    console.log(food);
+    const newTodayFood = {
+      name: food.name,
+      calories: food.calories,
+      quantity: food.quantity
+    };
+
+    const uniqueList = [...todayFoods].filter(e => e === food);
+    console.log("que es----->", uniqueList);
+    //   console.log("aqui----->", newTodayFood);
+    setTodayFoods([...uniqueList, newTodayFood]);
+
+    // console.log(`aqui ${name} ${calories} ${image}`);
+    // setTodayFoods([...todayFoods, { name, calories, image, quantity }]);
+    // console.log(`new today food! ${todayFoods}`);
+  };
+
   return (
     <FoodsContext.Provider
       value={{
@@ -36,7 +55,10 @@ export const FoodsContextProvider = ({ children }) => {
         openModal,
         closeModal,
         filter,
-        setFilter
+        setFilter,
+        todayFoods,
+        setTodayFoods,
+        addTodayFoods
       }}
     >
       {children}

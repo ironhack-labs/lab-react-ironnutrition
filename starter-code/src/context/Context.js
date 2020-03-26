@@ -7,6 +7,7 @@ export const FoodsContextProvider = ({ children }) => {
   const [foods, setFoods] = useState(dataFoods);
   const [modalOpen, setModalOpen] = useState(false);
   const [filter, setFilter] = useState("");
+  const [todayFoods, setTodayFoods] = useState([]);
 
   const createNewFood = newFood => {
     setFoods([newFood, ...foods]);
@@ -25,6 +26,23 @@ export const FoodsContextProvider = ({ children }) => {
     setModalOpen(false);
   };
 
+  const addTodayFoods = newFood => {
+    const index = todayFoods.findIndex(food => food.name === newFood.name);
+    if (index !== -1) {
+      const newTodayFoods = [...todayFoods];
+      const oldFood = newTodayFoods[index];
+      newTodayFoods[index] = {
+        name: oldFood.name,
+        quantity: oldFood.quantity + newFood.quantity,
+        calories: oldFood.calories + newFood.calories
+      };
+      setTodayFoods(newTodayFoods);
+    } else setTodayFoods([...todayFoods, newFood]);
+  };
+
+  const deleteFood = foodToDelete =>
+    setTodaysFoods(todaysFoods.filter(food => food.name !== foodToDelete));
+
   return (
     <FoodsContext.Provider
       value={{
@@ -36,7 +54,10 @@ export const FoodsContextProvider = ({ children }) => {
         openModal,
         closeModal,
         filter,
-        setFilter
+        setFilter,
+        todayFoods,
+        setTodayFoods,
+        addTodayFoods
       }}
     >
       {children}

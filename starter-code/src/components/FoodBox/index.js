@@ -15,12 +15,7 @@ export const FoodBox = ({ foodList }) => {
         {foodList.map(
           (food, i) =>
             food.name.toLowerCase().includes(filter.toLowerCase()) && (
-              <FoodItem
-                key={i}
-                className="box"
-                data={food}
-                //   addNewFood={createNewFood} AÑADIR CANTIDAD
-              />
+              <FoodItem key={i} className="box" thisFood={food} />
             )
         )}
       </div>

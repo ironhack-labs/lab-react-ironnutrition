@@ -19,6 +19,11 @@
   font-weight: bold;
   margin: 1.5em 0;
 }
+h2.App-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.3em 0;
+}
 
 .App-intro {
   font-size: large;

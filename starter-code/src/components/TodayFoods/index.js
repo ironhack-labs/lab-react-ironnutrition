@@ -5,6 +5,12 @@ import { StyledList } from "./style";
 
 export const TodayFoods = () => {
   const { todayFoods } = useContext(FoodsContext);
+  const { removeFood } = useContext(FoodsContext);
+
+  const handleRemoveFood = e => {
+    console.log(e.currentTarget);
+    removeFood(e.currentTarget.getAttribute("food"));
+  };
   return (
     <>
       <StyledList>
@@ -15,7 +21,12 @@ export const TodayFoods = () => {
               <div>
                 <b>{food.name}</b> - {food.calories} cal - {food.quantity} units
               </div>
-              <button className="button is-link" type="submit">
+              <button
+                onClick={handleRemoveFood}
+                food={food.name}
+                className="button is-link"
+                type="submit"
+              >
                 Remove
               </button>
             </li>

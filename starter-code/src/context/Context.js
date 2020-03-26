@@ -40,8 +40,12 @@ export const FoodsContextProvider = ({ children }) => {
     } else setTodayFoods([...todayFoods, newFood]);
   };
 
-  const deleteFood = foodToDelete =>
-    setTodaysFoods(todaysFoods.filter(food => food.name !== foodToDelete));
+  const removeFood = thisFood => {
+    const filteredTodayFoods = todayFoods.filter(
+      food => food.name !== thisFood
+    );
+    setTodayFoods(filteredTodayFoods);
+  };
 
   return (
     <FoodsContext.Provider
@@ -57,7 +61,8 @@ export const FoodsContextProvider = ({ children }) => {
         setFilter,
         todayFoods,
         setTodayFoods,
-        addTodayFoods
+        addTodayFoods,
+        removeFood
       }}
     >
       {children}

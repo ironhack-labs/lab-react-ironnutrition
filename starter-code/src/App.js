@@ -1,21 +1,53 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-class App extends Component {
-  render() {
+// DATA
+import foodArray from './food.json';
+
+// COMPONENTS
+import { AddFoodModal } from './components/AddFoodModal';
+import { Header } from './components/Header';
+import { Search } from './components/Search';
+import { FoodList } from './components/FoodList';
+import { TodayFood } from './components/TodayFood';
+
+export const App = () => {
+
+    const [food, setFood] = useState([]);
+    const [query, setQuery] = useState('');
+    const [todayFood, setTodayFood] = useState([]);
+    const [modalVisibility, setModalVisibility] = useState(false);
+
+    useEffect(() => {
+        const filter = foodArray.filter(f => f.name.toLowerCase().includes(query.toLowerCase()));
+        setFood(filter);
+    }, [query]);
+
+    const handleAddFood = (newFood) => {
+        const foodCopy = [...food, newFood];
+        setFood(foodCopy);
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+        <div>
+            <AddFoodModal
+                visibility={modalVisibility}
+                setVisibility={setModalVisibility}
+                onFormSubmit={data => handleAddFood(newFood)}
+            />
+            <div className="container">
+                <Header
+                    modalVisibility={modalVisibility}
+                    setModalVisibility={setModalVisibility}
+                />
+                <Search
+                    query={query}
+                    setQuery={setQuery}
+                />
+                <div className="columns is-desktop is-multiline">
+                    <FoodList food={food} todayFood={todayFood} setTodayFood={setTodayFood} />
+                    <TodayFood todayFood={todayFood} setTodayFood={setTodayFood} />
+                </div>
+            </div>
+        </div>
+    )
 }
-
-export default App;

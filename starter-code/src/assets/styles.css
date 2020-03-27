@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.mt-0 {
+    margin-top: 10px !important;
+}
+
+.app-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin-top: 30px;
+}
+
+.search-bar {
+    flex: 1 0 100%;
+    margin-bottom: 25px;
+}
+
+.box {
+    max-width: 490px;
+    max-height: 90px;
+}
+
+.box .image.is-64x64 {
+    height: auto;
+}
+
+.media {
+    align-items: center;
+}
+
+.icon {
+    position: relative;
+}
+
+.icon-add {
+    font-size: 25px;
+    position: relative;
+    top: -3px;
+    z-index: 2;
+}
+
+.icon::after {
+    content: '';
+    display: inline-block;
+    background: rgb(29, 231, 184);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.food-added {
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.modal-background {
+    position: fixed;
+    z-index: 5;
+}
+
+.modal-card {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+}
+
+.modal-close {
+    z-index: 7;
+}
+
+.today-food-item {
+    display: flex;
+    align-items: center;
+}
+
+.today-food-item span {
+    padding-right: 5px;
+}

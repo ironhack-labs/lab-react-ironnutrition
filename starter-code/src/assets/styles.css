@@ -78,8 +78,28 @@ body {
     border-radius: 5px;
 }
 
-#food-form {
-    background-color: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 20px;
+.modal-background {
+    position: fixed;
+    z-index: 5;
+}
+
+.modal-card {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+}
+
+.modal-close {
+    z-index: 7;
+}
+
+.today-food-item {
+    display: flex;
+    align-items: center;
+}
+
+.today-food-item span {
+    padding-right: 5px;
 }

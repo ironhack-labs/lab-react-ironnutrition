@@ -26,7 +26,7 @@ export const TodayFood = ({ todayFood, setTodayFood }) => {
                             foodArr.map((food, i) => (
                                 <li className="today-food-item" key={i}>
                                     <span>{`${food.quantity} ${food.name} = ${food.calories} calories`}</span>
-                                    <a className="delete is-small" onClick={(e) => setTodayFood(todayFood.filter(f => f.name !== food.name))}></a>
+                                    <button className="delete is-small" onClick={(e) => setTodayFood(todayFood.filter(f => f.name !== food.name))}></button>
                                 </li>
                             ))
                         }

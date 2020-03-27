@@ -32,7 +32,7 @@ export const App = () => {
             <AddFoodModal
                 visibility={modalVisibility}
                 setVisibility={setModalVisibility}
-                onFormSubmit={data => handleAddFood(newFood)}
+                onFormSubmit={newFood => handleAddFood(newFood)}
             />
             <div className="container">
                 <Header

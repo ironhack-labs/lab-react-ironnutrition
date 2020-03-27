@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import 'bulma/css/bulma.css';
+import foods from "./foods.json"
 import FoodBox from "./components/FoodBox"
-import Form from "./components/Form"
+
 
 const App = () => {
+  const [todaysFood, setTodaysFood] = useState([]); //Creamos un estado inicial todaysFood con un array vacio []
+  console.log("this is the useState", useState())
+  console.log("this is the array of the initial foods", foods)
+  console.log("this is the todaysFood", todaysFood)
+  console.log("this is the setTodaysFood", setTodaysFood)
+
+  const renderFoods = () =>
+    foods.map(food =>
+      <FoodBox food={food} />
+
+    );
+
+
 
   return (
+    < div className="App" >
+      <div className="row">
+        <div className="food-container">{renderFoods()}</div>
 
-    <Router>
-
-
-      <Switch>
-        <Route path="/" exact component={FoodBox} />
-        <Route path="/" exact component={Form} />
-
-      </Switch>
-
-    </Router>
-
+      </div>
+    </div >
 
   );
-
-}
+};
 
 export default App;

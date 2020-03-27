@@ -25,7 +25,7 @@ export const FoodBox = ({ food, todayFood, setTodayFood }) => {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input type="number" className="input" value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
+                                <input type="number" className="input" value={quantity} onChange={e => setQuantity(parseInt(e.target.value, 10))} />
                             </div>
                             <div className="control">
                                 <button className="button is-info" disabled={quantity <= 0} onClick={() => setTodayFood([...todayFood, { ...food, quantity }])}>+</button>

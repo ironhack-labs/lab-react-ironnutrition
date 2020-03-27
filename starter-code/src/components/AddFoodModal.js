@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 
 export const AddFoodModal = ({ visibility, setVisibility, onFormSubmit }) => {
 
-    const [name, setName] = useState('');
-    const [calories, setCalories] = useState('');
-    const [image, setImage] = useState('');
+    const [newFood, setNewFood] = useState({
+        name: '',
+        calories: '',
+        image: '',
+        quantity: 0
+    });
 
     const handleSubmit = (e, data) => {
         e.preventDefault();
         onFormSubmit(data);
         setVisibility(false);
+        setNewFood({ name: '', calories: '', image: '' })
     }
 
     return (
@@ -17,7 +21,7 @@ export const AddFoodModal = ({ visibility, setVisibility, onFormSubmit }) => {
             <div className="modal-background"></div>
 
             <div className="modal-card">
-                <form onSubmit={(e) => handleSubmit(e, { name, calories, image, quantity: 0 })}>
+                <form onSubmit={(e) => handleSubmit(e, newFood)}>
                     <header className="modal-card-head">
                         <p className="modal-card-title">Add food</p>
                     </header>
@@ -25,19 +29,19 @@ export const AddFoodModal = ({ visibility, setVisibility, onFormSubmit }) => {
                         <div className="field">
                             <label className="label" htmlFor="name">Name</label>
                             <div className="control">
-                                <input className="input" id="name" name="name" type="text" value={name} onChange={e => setName(e.target.value)} required />
+                                <input className="input" id="name" name="name" type="text" value={newFood.name} onChange={e => setNewFood({ ...newFood, 'name': e.target.value })} required />
                             </div>
                         </div>
                         <div className="field">
                             <label className="label" htmlFor="calories">Calories</label>
                             <div className="control">
-                                <input className="input" id="calories" name="calories" type="number" value={calories} onChange={e => setCalories(e.target.value)} required />
+                                <input className="input" id="calories" name="calories" type="number" value={newFood.calories} onChange={e => setNewFood({ ...newFood, calories: e.target.value })} required />
                             </div>
                         </div>
                         <div className="field" htmlFor="image_url">
                             <label className="label" htmlFor="image">Image Url</label>
                             <div className="control">
-                                <input className="input" id="image" name="image" type="text" value={image} onChange={e => setImage(e.target.value)} />
+                                <input className="input" id="image" name="image" type="text" value={newFood.image} onChange={e => setNewFood({ ...newFood, image: e.target.value })} />
                             </div>
                         </div>
 

@@ -22,9 +22,9 @@ export const App = () => {
         setFood(filter);
     }, [query]);
 
-    const handleAddFood = (data) => {
-        let newFood = [...food, data];
-        setFood(newFood);
+    const handleAddFood = (newFood) => {
+        const foodCopy = [...food, newFood];
+        setFood(foodCopy);
     }
 
     return (
@@ -32,7 +32,7 @@ export const App = () => {
             <AddFoodModal
                 visibility={modalVisibility}
                 setVisibility={setModalVisibility}
-                onFormSubmit={data => handleAddFood(data)}
+                onFormSubmit={data => handleAddFood(newFood)}
             />
             <div className="container">
                 <Header

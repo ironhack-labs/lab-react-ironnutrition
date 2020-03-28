@@ -28486,6 +28486,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28515,7 +28523,36 @@ var DataContextProvider = function DataContextProvider(_ref) {
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       searchFoods = _useState4[0],
-      setSearchFoods = _useState4[1]; //Usamos el Provider para dar "value" a todas lo que declaramos arriba
+      setSearchFoods = _useState4[1];
+
+  var _useState5 = (0, _react.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      todaysFoods = _useState6[0],
+      setTodaysFoods = _useState6[1];
+
+  var addFood = function addFood(newFood) {
+    var index = todaysFoods.findIndex(function (food) {
+      return food.name === newFood.name;
+    });
+
+    if (index !== -1) {
+      var newTodaysFoods = _toConsumableArray(todaysFoods);
+
+      var oldFood = newTodaysFoods[index];
+      newTodaysFoods[index] = {
+        name: oldFood.name,
+        quantity: oldFood.quantity + newFood.quantity,
+        calories: oldFood.calories + newFood.calories
+      };
+      setTodaysFoods(newTodaysFoods);
+    } else setTodaysFoods([].concat(_toConsumableArray(todaysFoods), [newFood]));
+  };
+
+  var deleteFood = function deleteFood(foodToDelete) {
+    return setTodaysFoods(todaysFoods.filter(function (food) {
+      return food.name !== foodToDelete;
+    }));
+  }; //Usamos el Provider para dar "value" a todas lo que declaramos arriba
 
 
   return _react.default.createElement(DataContext.Provider, {
@@ -28523,7 +28560,10 @@ var DataContextProvider = function DataContextProvider(_ref) {
       foods: foods,
       setFoods: setFoods,
       searchFoods: searchFoods,
-      setSearchFoods: setSearchFoods
+      setSearchFoods: setSearchFoods,
+      todaysFoods: todaysFoods,
+      addFood: addFood,
+      deleteFood: deleteFood
     }
   }, children);
 };
@@ -36002,6 +36042,49 @@ var SearchFood = function SearchFood() {
 
 var _default = SearchFood;
 exports.default = _default;
+},{"react":"node_modules/react/index.js","../DataContext":"src/DataContext.js"}],"src/components/TodaysFood.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _DataContext = require("../DataContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var TodaysFoods = function TodaysFoods() {
+  var _useContext = (0, _react.useContext)(_DataContext.DataContext),
+      todaysFoods = _useContext.todaysFoods,
+      deleteFood = _useContext.deleteFood,
+      foods = _useContext.foods;
+
+  var handleDeleteFood = function handleDeleteFood(event) {
+    deleteFood(event.currentTarget.getAttribute("food"));
+  };
+
+  return _react.default.createElement("div", null, _react.default.createElement("h2", {
+    className: "title is-2"
+  }, "Today's foods"), _react.default.createElement("ul", null, todaysFoods.map(function (food) {
+    return _react.default.createElement("li", {
+      key: food.name
+    }, food.quantity, " x ", food.name, " = ", food.calories, " ", _react.default.createElement("a", {
+      className: "delete",
+      onClick: handleDeleteFood,
+      food: food.name
+    }));
+  })), _react.default.createElement("p", null, "Total: ", todaysFoods.reduce(function (acc, cur) {
+    return acc + cur.calories;
+  }, 0), " ", "calories"));
+};
+
+var _default = TodaysFoods;
+exports.default = _default;
 },{"react":"node_modules/react/index.js","../DataContext":"src/DataContext.js"}],"src/components/FoodBox.js":[function(require,module,exports) {
 "use strict";
 
@@ -36022,16 +36105,57 @@ var _FormFood = _interopRequireDefault(require("../components/FormFood"));
 
 var _SearchFood = _interopRequireDefault(require("./SearchFood"));
 
+var _TodaysFood = _interopRequireDefault(require("./TodaysFood"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var FoodBox = function FoodBox() {
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+var FoodBox = function FoodBox(_ref) {
+  _objectDestructuringEmpty(_ref);
+
   var _useContext = (0, _react.useContext)(_DataContext.DataContext),
       foods = _useContext.foods,
+      addFood = _useContext.addFood,
       searchFoods = _useContext.searchFoods;
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todaysFood = _useState2[0],
+      setTodaysFood = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(1),
+      _useState4 = _slicedToArray(_useState3, 2),
+      quantity = _useState4[0],
+      setQuantity = _useState4[1];
+
+  var handleQuantity = function handleQuantity(event) {
+    return setQuantity(event.target.value);
+  };
+
+  var handleAddFood = function handleAddFood() {
+    return addFood({
+      name: foods.name,
+      quantity: +quantity,
+      calories: foods.calories * quantity
+    });
+  };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("main", {
     style: {
@@ -36077,19 +36201,22 @@ var FoodBox = function FoodBox() {
     }, _react.default.createElement("input", {
       className: "input",
       type: "number",
-      value: "0",
-      onChange: _react.useState
+      value: quantity,
+      onChange: handleQuantity
     })), _react.default.createElement("div", {
       className: "control"
     }, _react.default.createElement("button", {
-      className: "button is-info"
+      className: "button is-info",
+      onClick: handleAddFood
     }, "+")))));
-  })))), _react.default.createElement(_FormFood.default, null)))));
+  })))), _react.default.createElement("main", null, _react.default.createElement(_TodaysFood.default, {
+    todaysFood: todaysFood
+  })), _react.default.createElement(_FormFood.default, null)))));
 };
 
 var _default = FoodBox;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css","bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","../DataContext":"src/DataContext.js","../components/FormFood":"src/components/FormFood.js","./SearchFood":"src/components/SearchFood.js"}],"src/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","bulma/css/bulma.css":"node_modules/bulma/css/bulma.css","bootstrap/dist/css/bootstrap.min.css":"node_modules/bootstrap/dist/css/bootstrap.min.css","../DataContext":"src/DataContext.js","../components/FormFood":"src/components/FormFood.js","./SearchFood":"src/components/SearchFood.js","./TodaysFood":"src/components/TodaysFood.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36166,7 +36293,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61350" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

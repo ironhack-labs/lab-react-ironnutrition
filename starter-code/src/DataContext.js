@@ -9,6 +9,24 @@ export const DataContext = createContext();
 const DataContextProvider = ({ children }) => {
   const [foods, setFoods] = useState(FoodsArray);
   const [searchFoods, setSearchFoods] = useState("");
+  const [todaysFoods, setTodaysFoods] = useState([]);
+
+  const addFood = newFood => {
+    const index = todaysFoods.findIndex(food => food.name === newFood.name);
+    if (index !== -1) {
+      const newTodaysFoods = [...todaysFoods];
+      const oldFood = newTodaysFoods[index];
+      newTodaysFoods[index] = {
+        name: oldFood.name,
+        quantity: oldFood.quantity + newFood.quantity,
+        calories: oldFood.calories + newFood.calories
+      };
+      setTodaysFoods(newTodaysFoods);
+    } else setTodaysFoods([...todaysFoods, newFood]);
+  };
+
+  const deleteFood = foodToDelete =>
+    setTodaysFoods(todaysFoods.filter(food => food.name !== foodToDelete));
 
   //Usamos el Provider para dar "value" a todas lo que declaramos arriba
   return (
@@ -17,7 +35,10 @@ const DataContextProvider = ({ children }) => {
         foods,
         setFoods,
         searchFoods,
-        setSearchFoods
+        setSearchFoods,
+        todaysFoods,
+        addFood,
+        deleteFood
       }}
     >
       {children}

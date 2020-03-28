@@ -4,9 +4,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { DataContext } from "../DataContext";
 import FormFood from "../components/FormFood";
 import SearchFood from "./SearchFood";
+import TodaysFood from "./TodaysFood";
 
-const FoodBox = () => {
-  const { foods, searchFoods } = useContext(DataContext);
+const FoodBox = ({}) => {
+  const { foods, addFood, searchFoods } = useContext(DataContext);
+  const [todaysFood, setTodaysFood] = useState([]);
+
+  const [quantity, setQuantity] = useState(1);
+  const handleQuantity = event => setQuantity(event.target.value);
+  const handleAddFood = () =>
+    addFood({
+      name: foods.name,
+      quantity: +quantity,
+      calories: foods.calories * quantity
+    });
 
   return (
     <>
@@ -44,12 +55,17 @@ const FoodBox = () => {
                               <input
                                 className="input"
                                 type="number"
-                                value="0"
-                                onChange={useState}
+                                value={quantity}
+                                onChange={handleQuantity}
                               />
                             </div>
                             <div className="control">
-                              <button className="button is-info">+</button>
+                              <button
+                                className="button is-info"
+                                onClick={handleAddFood}
+                              >
+                                +
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -58,6 +74,9 @@ const FoodBox = () => {
                 </div>
               </div>
             </div>
+            <main>
+              <TodaysFood todaysFood={todaysFood} />
+            </main>
             <FormFood />
           </div>
         </div>

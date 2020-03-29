@@ -31,3 +31,22 @@
   width:40%;
   margin-left: 10%;
 }
+
+.add-button{
+  transition: 0.3s all;
+  cursor: pointer;
+  width:10%;
+  height:30%;
+  margin-top:30px;
+  border-radius: 10%;
+
+}
+
+.add-button:hover {
+  background-color: green;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+

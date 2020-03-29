@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const FoodBox = ({ food: { image, name, calories, quantity } }) => {   //en vez de ponerlo así ({ food }) => { y luego poner food.image, food.calores,... optimizamos
-
+export const FoodBox = ({ food: { image, name, calories, quantity } }) => {
+  //en vez de ponerlo así ({ food }) => { y luego poner food.image, food.calores,... optimizamos
   return (
 
     < div className="box" >
@@ -43,28 +43,3 @@ export const FoodBox = ({ food: { image, name, calories, quantity } }) => {   //
 
 export default FoodBox;
 
-
-
-
-
-
-
-    // this.state.foods.map((food, i) =>
-// <Block key={i}>
-//   <div className="box">
-//     <Card style={{ width: '18rem' }}>
-//       <Card.Img style={{ width: 60, height: 50 }} variant="top" src={food.image} />
-//       <Card.Body>
-//         <Card.Title>{food.name} {food.quantity}</Card.Title>
-//         <Card.Text>{food.calories} calories</Card.Text>
-
-//         <BtnFormat>
-//           <Button style={{ marginRight: 5 }} variant="primary">+</Button>
-//           <Button style={{ marginRight: 5 }} variant="primary">-</Button>
-//           <Button type="submit" value="Submit" variant="primary">Add New</Button>{' '}
-//         </BtnFormat>
-//       </Card.Body>
-//     </Card>
-//   </div >
-// </Block>
-// )

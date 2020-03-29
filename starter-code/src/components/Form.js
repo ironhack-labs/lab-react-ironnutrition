@@ -1,46 +1,35 @@
-import React, { Component } from 'react';
+// imrus
+import React, { useState } from 'react';
 
-import { Card, Button, Accordion } from 'react-bootstrap';
-
-
-class Form extends Component {
-
-  constructor() {
-    super()
-    this.state = []
-
-
-  }
+// rfc
+const Form = ({ setNewFood, newFood }) => {
+  const [food, setFood] = useState({ name: "", calories: Number, image: "", quantity: 0 });
+  console.log("Esto es food: ", food, "Esto es setFood: ", setFood)
+  //console.log(useState) Solo detecta cuando se produce un cambio
+  console.log("Esto es newFood: ", newFood, "Esto es setNewFood:", setNewFood)
+  const handleChange = e => setFood({ ...food, [e.target.name]: e.target.value }) //Añade alimento a newFood: array de alimentos
 
 
-  render() {
 
-    console.log("pinta el form????", this.state)
-    return (
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Click me!
-          </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>Hello! I'm the body</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="1">
-              Click me!
-          </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Hello! I'm another body</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    );
-  }
-}
+
+  return (
+    < form onSubmit={e => {
+      e.preventDefault();    //Prevents screen from refreshing and losing all data submitted
+      if (food.name === "") { //Si food.name está vacio devuelve return/rompe la posterior asignación. Se queda alli
+        console.log('🐑 Error de formualario:por favor introduce todos los campos')
+        return;
+      }
+      setNewFood([food, ...newFood]); //Cambié el orden para que el alimento añadido salga al principio
+
+    }}
+    >
+      <input type="text" placeholder="name" name="name" onChange={e => handleChange(e)} />
+      <input type="text" placeholder="calories" name="calories" onChange={e => handleChange(e)} />
+      <input type="text" placeholder="image" name="image" onChange={e => handleChange(e)} />
+      <button type="submit">Submit</button>
+    </form >
+  );
+};
 
 export default Form;
+

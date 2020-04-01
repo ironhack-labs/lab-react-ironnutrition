@@ -7,14 +7,25 @@ import FoodBox from "./components/FoodBox";
 import FoodForm from "./components/FoodForm";
 
 class App extends Component {
-    state = {
+  constructor() {
+    super();
+    this.state = {
       foodsArr: foods,
       showForm: false
-    }
-//Addfood --> imprime los foodform (poner componente dentro de una función)
-addForm = () => {
-  this.setState ({showForm: !this.state.showForm})
-}
+    };
+  }
+  //Addfood --> imprime los foodform (poner componente dentro de una función)
+  addForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
+  pushFoodHandler = food => {
+    console.log("pushfoodHandleeer", food)
+    let foodCopy = [...this.state.foodsArr];
+    foodCopy.unshift(food);
+    this.setState({ foodsArr: foodCopy });
+  };
+
   render() {
     return (
       <div className="App">
@@ -23,18 +34,23 @@ addForm = () => {
           <h1 className="App-title">Welcome to Ironnutrition</h1>
         </header>
         <p className="App-intro"></p>
-        <button onClick={this.addForm}>{!this.state.showForm ? "Add new food" : "Hide form"}</button>
-        {this.state.showForm ? <FoodForm addFood={this.handleFormSubmit}/> : null}
-        {
-          this.state.foodsArr.map((e,i) => {
-          return <FoodBox key={i}
-            name={e.name}
-            calories={e.calories}
-            image={e.image}
-            quantity={e.quantity}
-          ></FoodBox>
-          })
-        }
+        <button onClick={this.addForm}>
+          {!this.state.showForm ? "Add new food" : "Hide form"}
+        </button>
+        {this.state.showForm ? (
+          <FoodForm pushFood={this.pushFoodHandler} />
+        ) : null}
+        {this.state.foodsArr.map((e, i) => {
+          return (
+            <FoodBox
+              key={i}
+              name={e.name}
+              calories={e.calories}
+              image={e.image}
+              quantity={e.quantity}
+            ></FoodBox>
+          );
+        })}
       </div>
     );
   }

@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.content{
+  display: flex;
+  align-items: row;
+}
+
+.box{
+  width: 500px;
+  height: 70px;
+  margin: auto;
+}
+
+.is-64x64 img{
+  max-height: 64px;
+}

@@ -1,18 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "bulma/css/bulma.css";
+import foods from "./foods.json";
+
+import "./App.css";
+import { FoodBox } from "./components/FoodBox";
+import AddFood from "./components/AddFood";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      firstFood: foods
+    };
+  }
+
+  addFoodHandler = theFood => {
+    const foodsCopy = [...this.state.firstFood];
+    foodsCopy.push(theFood);
+    this.setState({ firstFood: foodsCopy });
+  };
+
   render() {
+    const allFoods = this.state.firstFood.map((oneItem, index) => (
+      <FoodBox
+        key={oneItem.id}
+        image={oneItem.image}
+        name={oneItem.name}
+        calories={oneItem.calories}
+      />
+    ));
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <AddFood addTheFood={this.addFoodHandler} />
+        {allFoods}
       </div>
     );
   }

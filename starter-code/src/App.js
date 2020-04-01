@@ -33,11 +33,38 @@ class App extends Component {
     return calories
   }
 
+  // groupItemsTogether = (arr) => {
+  //   let arr2 = []
+  //   for (let food of arr){
+  //     for (let thing of arr2) {
+
+
+
+
+  //     }
+  //   }
+  // }
+
   addFood = (i, amount) => {
     let foodlist = [...this.state.addedfoods]
     let newfood = Object.assign({}, this.state.f[i])
     newfood.amount = amount
-    foodlist.push(newfood)
+    // newfood.forEach(food=>{
+    //   if (food.name === this.state.f[i].name){
+    //     food.amount += this.state.f[i].amount
+    //   }
+    // })
+    let count = 0
+    foodlist.forEach(food=>{
+      if (food.name === newfood.name) {
+        food.amount = Number(food.amount) + Number(newfood.amount)
+        count++
+      }
+    })
+    if (count === 0){
+      foodlist.push(newfood)
+    }
+    count = 0
     let calories = this.countCalories(foodlist)
     this.setState({
       addedfoods:foodlist,

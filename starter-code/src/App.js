@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import { FoodBox } from './foodbox/FoodBox';
-//import foods from './foods.json'
+import FoodList from './foodbox/FoodList';
 
 
-
-export const App = () => {
-  return (
-      <FoodBox />
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <FoodList />
+      </div>
     )
+  }
 }
 
 export default App;

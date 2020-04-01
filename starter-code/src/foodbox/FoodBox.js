@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+const FoodBox = (props) => {
+  const { food } = props;
+  const [quantity, setQuantity] = useState(0);
 
-export const FoodBox = () => {
+  const handleQuantity = () => {
+    setQuantity(quantity+1);
+  }
+
   return (
     <div className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src="https://i.imgur.com/eTmWoAN.png" alt=""/>
+          <img src={food.image} alt=""/>
         </figure>
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>Pizza</strong> <br />
-            <small>400 cal</small>
+            <strong>{food.name}</strong> <br />
+            <small>{food.calories}</small>
           </p>
         </div>
       </div>
@@ -24,11 +30,11 @@ export const FoodBox = () => {
             <input
               className="input"
               type="number" 
-              value="1"
+              value={quantity}
             />
           </div>
           <div className="control">
-            <button className="button is-info">
+            <button className="button is-info" onClick={ () => handleQuantity()}>
               +
             </button>
           </div>
@@ -36,5 +42,7 @@ export const FoodBox = () => {
       </div>
     </article>
   </div>
-)
+);
 }
+
+export default FoodBox;

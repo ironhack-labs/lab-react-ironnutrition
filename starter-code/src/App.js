@@ -3,7 +3,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 
 import "./App.css";
-import {FoodBox}  from "./components/FoodBox";
+import { FoodBox } from "./components/FoodBox";
 import AddFood from "./components/AddFood";
 
 class App extends Component {
@@ -18,6 +18,19 @@ class App extends Component {
     const foodsCopy = [...this.state.firstFood];
     foodsCopy.push(theFood);
     this.setState({ firstFood: foodsCopy });
+  };
+
+  filterList = event => {
+    let filtered = [...this.state.filteredList];
+    filtered.filter(item => {
+      return (
+        item[0].name.toLowerCase().search(event.target.value.toLowerCase()) !==
+        -1
+      );
+    });
+    this.setState({
+      filteredList: filtered
+    })
   };
 
   render() {

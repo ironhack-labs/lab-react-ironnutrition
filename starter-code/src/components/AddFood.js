@@ -7,11 +7,11 @@ export default class AddFood extends Component {
       name: "",
       image: "",
       calories: "",
-      quantity: ""
+      quantity: "",
     };
   }
 
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
     this.props.addTheFood(this.state);
     this.setState({
@@ -23,7 +23,7 @@ export default class AddFood extends Component {
     });
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
   };
@@ -32,12 +32,22 @@ export default class AddFood extends Component {
     this.setState({
       showForm: !this.state.showForm
     });
-  }
+  };
+
+  searchHandler = e => {
+    this.setState({
+      search: e.target.value
+    });
+  };
 
   render() {
+    
+    
     if (this.state.showForm) {
       return (
         <div>
+          
+
           <button onClick={() => this.formToggler()}>Hide</button>
           <form onSubmit={this.handleFormSubmit}>
             <label>Name</label>
@@ -75,10 +85,14 @@ export default class AddFood extends Component {
             <input type="submit" value="Submit" />
           </form>
         </div>
-      )
+      );
     } else {
-      return (      <button onClick={() => this.formToggler()}>Add Food</button>
-)
+      return (
+        <div>
+          
+          <button onClick={() => this.formToggler()}>Add Food</button>
+        </div>
+      );
     }
   }
 }

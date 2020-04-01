@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 export default class AddFood extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             name: '',
             calories: '',

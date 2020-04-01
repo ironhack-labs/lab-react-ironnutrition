@@ -10,13 +10,14 @@ export default class Search extends Component {
 
     handleChange = event => {
         let { name, value } = event.target;
+        this.props.searchBar(this.state);
         this.setState({ [name]: value })
     }
 
     render() {
         return (
             <div>
-                <textarea type="submit" placeholder="Search"></textarea>
+                <input type="text" className="input search-bar" name="serch" placeholder="Search" onChange={e => this.handleChange(e)}></input>
             </div>
         )
     }

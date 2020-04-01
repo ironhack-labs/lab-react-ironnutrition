@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-    foodsArr: foods, 
+    foodsArr: foods,
     showForm: false
   };
   }
@@ -25,6 +25,10 @@ class App extends Component {
     this.setState ({foodsArr: foodCopy})
   }
 
+  searchBarHandler = food => {
+    const foodCopy = [...this.state.foodsArr];
+  }
+
   render() {
     return (
       <div className="App">
@@ -32,7 +36,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Ironnutrition</h1>
         </header>
         <button onClick={this.addForm}>{this.state.showForm ? "Hide form" : "Add food"}</button>
-        <Search/>
+        <Search searchBar={this.searchBarHandler}/>
         {this.state.showForm ? <FoodForm pushFood={this.pushFoodHandler}/> : null} 
         {this.state.foodsArr.map((e, i) => {
         return <FoodBox key={i}

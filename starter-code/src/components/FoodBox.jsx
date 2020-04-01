@@ -1,7 +1,6 @@
 import React from "react";
 import FoodItem from "./FoodItem"
 
-
 class FoodBox extends React.Component {
   render() {
     return (

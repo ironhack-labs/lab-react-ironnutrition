@@ -1,5 +1,4 @@
 import React from "react";
-// import '../styling/Contact.css';
 
 class FoodItem extends React.Component {
   render() {

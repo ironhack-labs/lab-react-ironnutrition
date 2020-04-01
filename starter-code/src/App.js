@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
 import AddFood from "./components/AddFood";
+import Search from "./components/Search";
 
 class App extends React.Component {
   constructor() {
@@ -11,27 +12,22 @@ class App extends React.Component {
     let foodList = [...foods];
     this.state = {
       foodList: foodList,
-      showForm: false
+      showForm: false,
+      searchTerm: null
     };
   }
 
-//   displayForm = () => {
-//     this.setState({
-//       showForm: true });
-// };
-
   toggleVisibility = () => {
-    if (this.state.showForm === false){
+    if (this.state.showForm === false) {
       this.setState({
         showForm: true
       });
-    }
-    else{
+    } else {
       this.setState({
         showForm: false
       });
     }
-  }
+  };
 
   addFoodItem = foodItem => {
     const foodCopy = [...this.state.foodList];
@@ -41,34 +37,51 @@ class App extends React.Component {
     });
   };
 
+  handleSearch = searchValue => {
+    this.setState({
+      searchTerm: searchValue
+    })
+  }
+
   render() {
+    const filteredList = this.state.foodList.filter((item) => {
+      if (this.state.searchTerm === null){
+        return true
+      }
+      else {
+        return item.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      }
+    })
+
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">IronNutrition</h1>
         </header>
-        <div className="Add-food">
-        <div>
-          {/* <button onClick={this.toggleVisibility}>Add more</button> */}
-          { this.state.showForm
-          ? 
-          <div>
-          {/* <button onClick={this.toggleVisibility}>Add more</button> */}
-          <AddFood
-          addFoodItem={this.addFoodItem}
-          toggleVisibility={this.toggleVisibility}
-          /> 
-          </div>
-          :
-          <button onClick={this.toggleVisibility} >Add more</button>
-          }
+
+        <div className="Search">
+          <Search 
+            handleSearch={this.handleSearch}
+          />
         </div>
 
-        
+        <div className="Add-food">
+          <div>
+            {this.state.showForm ? (
+              <div>
+                <AddFood
+                  addFoodItem={this.addFoodItem}
+                  toggleVisibility={this.toggleVisibility}
+                />
+              </div>
+            ) : (
+              <button onClick={this.toggleVisibility}>Add more</button>
+            )}
+          </div>
         </div>
 
         <div className="App-intro">
-          <FoodBox foodList={this.state.foodList} />
+          <FoodBox foodList={filteredList} />
         </div>
       </div>
     );
@@ -76,4 +89,3 @@ class App extends React.Component {
 }
 
 export default App;
-

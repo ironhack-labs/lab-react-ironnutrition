@@ -26,3 +26,47 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.btnLooks{
+margin-top: 15px;
+display: flex;
+justify-content: start;
+margin-left: 250px;
+font-size: 15px;
+border-radius: 25px;
+margin-bottom: 10px;
+}
+.formLooks{
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
+flex-direction: column;
+width: 500px;
+}
+.divForm{
+background-color: cadetblue;
+display:flex;
+justify-content: start;
+width: 600px;
+border-radius: 25px;
+margin: 25px;
+}
+.box{
+width: 600px;
+margin-left: 20px;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.columns{
+flex-direction: column;
+}
+.titleToday{
+font-size: 30px;
+}
+.borderFood{
+  border: 2px solid black;
+}

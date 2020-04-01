@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.w-40{
+  width: 40vw;
+}
+
+.flex{
+  display: flex;
+  justify-content: end;
+}

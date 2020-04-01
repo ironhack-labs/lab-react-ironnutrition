@@ -1,0 +1,20 @@
+.App {
+  width: 80%;
+  margin: 0 auto;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+}
+
+
+.input {
+  margin: 15px 0;
+}

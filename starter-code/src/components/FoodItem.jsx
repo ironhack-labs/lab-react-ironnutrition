@@ -7,7 +7,7 @@ class FoodItem extends React.Component {
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={this.props.image} />
+            <img src={this.props.image} alt="Food"/>
           </figure>
         </div>
 
@@ -22,13 +22,13 @@ class FoodItem extends React.Component {
 
         <div className="media-right">
           <div className="field has-addons">
-            <div className="control">
+            {/* <div className="control">
               <input
                 className="input"
                 type="number"
                 value="1"
               />
-            </div>
+            </div> */}
             <div className="control">
               <button className="button is-info">+</button>
             </div>

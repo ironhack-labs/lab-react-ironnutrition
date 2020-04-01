@@ -26,3 +26,27 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App{
+  margin: 20px;
+}
+.box{
+  margin: 20px;
+  width: 500px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.column{
+  flex-direction: column;
+}
+
+.listmenu{
+   
+   font-size: 20px;
+   padding: 20px;
+   justify-content: left;
+}

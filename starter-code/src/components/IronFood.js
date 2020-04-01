@@ -11,8 +11,6 @@ export default class IronFood extends Component {
             food: foods,
             form:false,
             list:[]
-
-
         }
     }
     addFoodHandler = (food) => {
@@ -41,12 +39,12 @@ export default class IronFood extends Component {
         this.setState({list: listCopy});
     }
     deleteList = (index) =>{
-        console.log(index);
-        const listCopy = [...this.state.list].splice([index],1)
-        // console.log('listCopy: ',listCopy);
-        const delList = listCopy.splice([index],1)
-        // console.log('delList: ',delList);
-        this.setState({list: delList.splice(index,1)});
+        const listCopy = [...this.state.list];
+        listCopy.splice(index,1);
+        console.log(listCopy);
+        this.setState({list: listCopy});
+
+
     }
 
     render() {

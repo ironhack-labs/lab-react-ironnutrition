@@ -4,6 +4,7 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import FoodForm from './components/FoodForm';
 import 'bulma/css/bulma.css';
+import Search from './components/Search';
 
 class App extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Ironnutrition</h1>
         </header>
         <button onClick={this.addForm}>{this.state.showForm ? "Hide form" : "Add food"}</button>
+        <Search/>
         {this.state.showForm ? <FoodForm pushFood={this.pushFoodHandler}/> : null} 
         {this.state.foodsArr.map((e, i) => {
         return <FoodBox key={i}

@@ -10,7 +10,7 @@ export default class FoodForm extends Component {
         }
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         let { name, value } = event.target;
         this.setState({ [name]: value })
     }

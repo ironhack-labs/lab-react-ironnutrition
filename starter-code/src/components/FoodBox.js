@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 
 const FoodBox = (props) => {
     // console.log(props);
-    const [quantity,setQuantity] = useState(props.info.quantity);
+    const [fBox,setFBox] = useState(props.info.quantity);
 // console.log(quantity);
 
     return (
@@ -29,11 +29,11 @@ const FoodBox = (props) => {
                                 type="number"
                                 min="0"
                                 max="20"
-                                onChange={(event)=>{setQuantity({name:props.info.name,totalCalories:parseInt(props.info.calories)*parseInt(event.target.value),quantity:parseInt(event.target.value)})}}
+                                onChange={(event)=>{setFBox({name:props.info.name,calories:parseInt(props.info.calories),quantity:parseInt(event.target.value)})}}
                             />
                         </div>
                         <div className="control">
-                            <button className="button is-info" onClick={()=>props.list({quantity})}>+</button>
+                            <button className="button is-info" onClick={()=>props.list({fBox})}>+</button>
                         </div>
                     </div>
                 </div>

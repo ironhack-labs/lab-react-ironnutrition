@@ -16,14 +16,22 @@ class App extends Component {
 		this.setState({
 			foods: foodsCopy
 		});
-	};
+  };
+  
+  searchingHandler = (mySearch) => {
+    const foodsCopy = [ ...this.state.foods ];
+    if(foodsCopy.includes(mySearch.search)){
+      foodsCopy.filter(theFood => theFood.search === foodsCopy.name)
+    }
+    this.setState({foods: foodsCopy})
+  }
 
 	render() {
 		return (
 			<div className="App">
 				<h1>IronNutrition</h1>
 				<AddNewFoods addTheFood={this.addFoodHandler} />
-				<Search />
+				<Search mySearch={this.searchingHandler} />
 				{this.state.foods.map((elem, index) => {
 					console.log(elem);
 					return <FoodBox key={index} foods={elem} />;

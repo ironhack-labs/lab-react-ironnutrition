@@ -11,14 +11,15 @@ export class Search extends Component {
     handleChange = (event) => {
         let { name, value } = event.target;
         this.setState({ [name]: value})
+        this.props.mySearch(this.state)
     }
 
-    
+
 
 
 
     render() {
-        console.log(this.state.search)
+        
         return (
             <div>
                 <input type="text" className="input search-bar" name="search" placeholder="Search your meal" onChange={e => this.handleChange(e)} value={this.state.search} />

@@ -1,28 +1,67 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.search-input {
+  height: 50px;
+  width: 50vw;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 2px solid rgb(210,210,210);
+  background-color: rgb(233, 232, 232);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.food-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  height: 120px;
+  box-shadow: 0px 1px 5px rgb(128, 128, 128);
+  margin-top:20px;
+  margin-bottom:20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.food-box img {
+  width: 30%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.food-box button {
+  width: 20%;
+  height: 100%;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  background-color: dodgerblue;
   color: white;
+  font-size: 3rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.food-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+  text-align: start;
 }
 
-.App-intro {
-  font-size: large;
+.food-list {
+  width: 70%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.number-input {
+  width: 30px;
+}
+
+.todays-foods h3, h4 {
+  color:grey;
 }

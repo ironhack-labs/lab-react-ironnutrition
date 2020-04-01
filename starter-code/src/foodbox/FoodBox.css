@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  .box {
+    max-width: 500px;
+  }
+  
+  .box .image.is-64x64 {
+    height: auto;
+  }
+  
+  .media {
+    align-items: center;
+  }

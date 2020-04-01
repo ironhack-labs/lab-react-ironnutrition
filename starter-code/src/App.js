@@ -45,10 +45,11 @@ class App extends Component {
       addFoodForm = <AddFood addTheFood={this.addFoodHandler}/>
      // console.log(addFoodForm)
     }
+
   
     return (
       <div>
-      <input type="text" onChange={this.filteredFoods} placeholder='Search Food'/> 
+      <input type="text" onChange={e => this.filteredFoods(e)} placeholder='Search Food' value={this.state.filteredFoods}/> 
 
         <button onClick= {this.showFood}> Add new Food</button>
         {addFoodForm}

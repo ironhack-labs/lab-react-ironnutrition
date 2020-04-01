@@ -1,0 +1,15 @@
+.box {
+  padding: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  display: flex;
+}
+
+.content {
+  width: 300px;
+  height: auto;
+}

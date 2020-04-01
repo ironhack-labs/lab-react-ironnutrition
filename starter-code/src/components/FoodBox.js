@@ -3,6 +3,11 @@ import '../App.css'
 import 'bulma/css/bulma.css';
 
 const FoodBox = (props) => {
+ 
+this.input = React.createRef();
+     
+
+
 
     return (
         <div className="box">
@@ -23,7 +28,7 @@ const FoodBox = (props) => {
 					<div className="media-right">
 						<div className="field has-addons">
 							<div className="control">
-								<input className="input" type="number" value={props.foods.quantity} />
+								<input ref={this.input} className="input" type="number" value={props.foods.quantity} />
 							</div>
 							<div className="control">
 								<button className="button is-info">+</button>

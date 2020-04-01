@@ -35,7 +35,7 @@ class AddNewFoods extends Component {
     }
 
 	render() {
-        console.log(this.state)
+        
         if(this.state.show){
             return(<div>
                 <button onClick={() => this.showForm()}>Hide</button>       

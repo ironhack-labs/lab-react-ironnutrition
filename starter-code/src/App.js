@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import Search from './components/Search';
+import AddNewFoods from './components/AddNewFoods';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+	state = {
+		foods: foods
+	};
+
+	addFoodHandler = (theFood) => {
+		const foodsCopy = [ ...this.state.foods ];
+		foodsCopy.push(theFood);
+		this.setState({
+			foods: foodsCopy
+		});
+	};
+
+	render() {
+		return (
+			<div className="App">
+				<h1>IronNutrition</h1>
+				<AddNewFoods addTheFood={this.addFoodHandler} />
+				<Search />
+				{this.state.foods.map((elem, index) => {
+					console.log(elem);
+					return <FoodBox key={index} foods={elem} />;
+				})}
+			</div>
+		);
+	}
 }
 
 export default App;

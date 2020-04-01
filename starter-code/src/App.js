@@ -3,7 +3,7 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 
 import "./App.css";
-import { FoodBox } from "./components/FoodBox";
+import {FoodBox}  from "./components/FoodBox";
 import AddFood from "./components/AddFood";
 
 class App extends Component {

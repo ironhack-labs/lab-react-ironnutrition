@@ -7,33 +7,28 @@ export default class FoodForm extends Component {
             name: "",
             calories: "",
             image: "",
-            quantity: ""
         }
     }
 
-    handleFormSubmit = (event) => {
-      event.preventDefault();
-      this.props.addTheMovie(this.state);
-      this.setState({
-        title: "",
-        director: "",
-        hasOscars: false,
-        IMDbRating: ""
-      })
-  }
-
-  handleChange = (event) => {
-    let { name, value } = event.target;
-    if (name === "hasOscars" && value === "on"){
-        value = true
+    handleChange = (event) => {
+        let { name, value } = event.target;
+        this.setState({ [name]: value })
     }
-    this.setState({ [name]: value})
-  }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.pushFood(this.state);
+        this.setState({
+            name: "",
+            image: "",
+            calories: 0
+        })
+    }
 
     render() {
         return (
         <div>
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={this.handleSubmit}>
             <label>Name:</label>
             <input
                 type="text"
@@ -43,7 +38,7 @@ export default class FoodForm extends Component {
             />
             <label>Number of calories:</label>
             <input
-                type="text"
+                type="number"
                 name="calories"
                 value={this.state.calories}
                 onChange={e => this.handleChange(e)}

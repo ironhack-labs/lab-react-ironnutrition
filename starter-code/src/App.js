@@ -6,13 +6,22 @@ import FoodForm from './components/FoodForm';
 import 'bulma/css/bulma.css';
 
 class App extends Component {
-  state = {
+  constructor() {
+    super();
+    this.state = {
     foodsArr: foods, 
     showForm: false
+  };
   }
   
   addForm = () => {
     this.setState ({showForm : !this.state.showForm})
+  }
+
+  pushFoodHandler = food => {
+    const foodCopy = [...this.state.foodsArr];
+    foodCopy.unshift(food);
+    this.setState ({foodsArr: foodCopy})
   }
 
   render() {
@@ -22,7 +31,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Ironnutrition</h1>
         </header>
         <button onClick={this.addForm}>{this.state.showForm ? "Hide form" : "Add food"}</button>
-        {this.state.showForm ? <FoodForm/> : null} 
+        {this.state.showForm ? <FoodForm pushFood={this.pushFoodHandler}/> : null} 
         {this.state.foodsArr.map((e, i) => {
         return <FoodBox key={i}
         name={e.name} 

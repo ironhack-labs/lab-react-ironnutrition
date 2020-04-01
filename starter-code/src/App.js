@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bulma/css/bulma.css";
+
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
 import AddFood from "./components/AddFood";
@@ -40,45 +41,52 @@ class App extends React.Component {
   handleSearch = searchValue => {
     this.setState({
       searchTerm: searchValue
-    })
-  }
+    });
+  };
 
   render() {
-    const filteredList = this.state.foodList.filter((item) => {
-      if (this.state.searchTerm === null){
-        return true
+    const filteredList = this.state.foodList.filter(item => {
+      if (this.state.searchTerm === null) {
+        return true;
+      } else {
+        return item.name
+          .toLowerCase()
+          .includes(this.state.searchTerm.toLowerCase());
       }
-      else {
-        return item.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-      }
-    })
+    });
 
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">IronNutrition</h1>
+        <header className="hero-image">
+          <h1 className="hero-text">IronNutrition</h1>
         </header>
 
-        <div className="Search">
-          <Search 
-            handleSearch={this.handleSearch}
-          />
-        </div>
-
-        <div className="Add-food">
-          <div>
-            {this.state.showForm ? (
-              <div>
-                <AddFood
-                  addFoodItem={this.addFoodItem}
-                  toggleVisibility={this.toggleVisibility}
-                />
-              </div>
-            ) : (
-              <button onClick={this.toggleVisibility}>Add more</button>
-            )}
+        <section id="main">
+          <div className="Search">
+            <Search handleSearch={this.handleSearch} />
           </div>
-        </div>
+
+          <div className="Add-food">
+            <div>
+              {this.state.showForm ? (
+                
+                <div>
+                  <AddFood
+                    addFoodItem={this.addFoodItem}
+                    toggleVisibility={this.toggleVisibility}
+                  />
+                </div>
+              ) : (
+                <button
+                  onClick={this.toggleVisibility}
+                  className="button **is-large is-success is-rounded**"
+                >
+                  Add more
+                </button>
+              )}
+            </div>
+          </div>
+        </section>
 
         <div className="App-intro">
           <FoodBox foodList={filteredList} />

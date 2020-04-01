@@ -16,7 +16,7 @@ class Search extends React.Component {
     return (
       <div>
         <input
-          className="search-bar"
+          className="search-bar input is-primary"
           placeholder="Search for food..."
           type="text"
           name="text"

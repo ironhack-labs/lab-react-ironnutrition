@@ -28,9 +28,9 @@ class FoodItem extends React.Component {
                 value="1"
               />
             </div> */}
-            <div className="control">
+            {/* <div className="control">
               <button className="button is-info">+</button>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -18,7 +18,7 @@ class AddFood extends React.Component {
       name: "",
       calories: "",
       image: ""
-    })  
+    })
   }
 
   handleNameInput = (event) => {
@@ -41,21 +41,28 @@ class AddFood extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="add-food">
         <form onSubmit={this.handleFormSubmit}>
-          <label>Name:</label>
-          <input type="text" name="name" value={this.state.name}
-          onChange={(e) => this.handleNameInput(e)} />
+          <h1>Add food</h1>
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" value={this.state.name} className="input is-primary is-small"
+              onChange={(e) => this.handleNameInput(e)} />
+          </div>
+          <div>
+            <label>Calories:</label>
+            <input type="text" name="calories" value={this.state.calories} className="input is-primary is-small"
+              onChange={(e) => this.handleCaloriesInput(e)} />
+          </div>
+          <div>
+            <label>Image Url:</label>
+            <input type="text" name="image" value={this.state.image} className="input is-primary is-small"
+              onChange={(e) => this.handleImageInput(e)} />
+          </div>
 
-          <label>Calories:</label>
-          <input type="text" name="calories" value={this.state.calories}
-           onChange={(e) => this.handleCaloriesInput(e)} />
+          <input type="submit" value="Submit" className="button **is-large is-success is-rounded**"
+          />
 
-          <label>Image Url:</label>
-          <input type="text" name="image" value={this.state.image} 
-           onChange={(e) => this.handleImageInput(e)} />
-
-          <input type="submit" value="Submit"/>
         </form>
       </div>
     );

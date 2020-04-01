@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#main{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.add-food .input{
+  max-width: fit-content!important;
+  margin-bottom: 20px;
+}
+
+.add-food{
+  display: flex;
+  justify-content: center;
+}
+
+.add-food h1{
+  font-size: 1.6rem;
+  color: #23d160;
+}

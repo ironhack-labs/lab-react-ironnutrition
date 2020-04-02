@@ -22,11 +22,12 @@ class App extends Component {
     todaysFoods:[],
     showingFoods: foods,
     hidden:true,
-    name:"",
-    calories:0,
-    image:"https://i.imgur.com/eTuCPxM.jpg",
-    quantity:0
-
+    tempFood: {
+      name:"",
+      calories:0,
+      image:"https://i.imgur.com/eTuCPxM.jpg",
+      quantity:0
+    }
   }
 
   // Deletes one of the items in the today's foods list
@@ -39,30 +40,18 @@ class App extends Component {
 
   // Adds food to the list
   addFood () {
-    debugger
+    // debugger
     let tempFoodList = [...this.state.ironFoods];
     let tempShowingFoodList = [...this.state.showingFoods]
-    tempFoodList.unshift({
-      name: this.state.name,
-      calories: this.state.calories,
-      image: this.state.image,
-      quantity: this.state.quantity
-    });
-    tempShowingFoodList.unshift({
-      name: this.state.name,
-      calories: this.state.calories,
-      image: this.state.image,
-      quantity: this.state.quantity
-    });
-
-    this.setState({ironFoods:tempFoodList});
-    this.setState({showingFoods:tempShowingFoodList})
+    tempFoodList.unshift(this.state.tempFood);
+    tempShowingFoodList.unshift(this.state.tempFood);
+    this.setState({ironFoods:tempFoodList, showingFoods:tempShowingFoodList});
     this.toggleForm();
   }
 
   // Adds an item to Today's food list
   addToday (Ix,qn) {
-      debugger
+      // debugger
       let tempTodayList = [...this.state.todaysFoods];
       let foodExistsIx = tempTodayList.findIndex((food)=>{
         return (
@@ -92,14 +81,22 @@ class App extends Component {
 
   // Handles the changes in the name input field
   nameInputHandler(event){
-    debugger
-    this.setState({name:event.target.value})
+    // debugger
+    let foodCopy = {...this.state.tempFood};
+    foodCopy.name = event.target.value;
+    this.setState({
+      tempFood: foodCopy
+    })
   }
 
   // Handles the changes in the calories input field
   caloriesInputHandler(event){
-    debugger
-    this.setState({calories: Number(event.target.value)})
+    // debugger
+    let foodCopy = {...this.state.tempFood};
+    foodCopy.calories = Number(event.target.value)
+    this.setState({
+      tempFood: foodCopy
+     })
   }
 
   // toggles add food form's visibility

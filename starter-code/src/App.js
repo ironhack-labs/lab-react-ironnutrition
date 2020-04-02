@@ -4,6 +4,7 @@ import './App.css';
 import FoodList from './foodbox/FoodList';
 import FoodContextProvider from './create/FoodContext';
 import CreateFood from './create/CreateFood';
+import Search from './create/Search';
 
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
     return (
       <div className="App">
       <FoodContextProvider>
+      <Search />
       <CreateFood />
       <FoodList />
       </FoodContextProvider>

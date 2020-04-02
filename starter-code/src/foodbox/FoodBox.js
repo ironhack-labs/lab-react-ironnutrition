@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const FoodBox = (props) => {
   const { food } = props;
   const [quantity, setQuantity] = useState(0);
@@ -7,6 +8,7 @@ const FoodBox = (props) => {
   const handleQuantity = () => {
     setQuantity(quantity+1);
   }
+
 
   return (
     <div className="box">

@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import FoodBox from './FoodBox'
-import foods from '../foods.json'
+import {FoodContext} from '../create/FoodContext'
 
 const FoodList = () => {
-    return (
-        foods.map((food, i) =>{
-            return <FoodBox key={i} food={food}/>
-        })
+    const {foods} = useContext(FoodContext);
+    return(
+      foods.map((food, i) => {
+        return <FoodBox key={i} food={food}/>
+      })
     );
-}
-
-
-export default FoodList
+  }
+  
+  export default FoodList;
+  

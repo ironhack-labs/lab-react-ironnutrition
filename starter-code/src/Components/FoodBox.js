@@ -17,7 +17,7 @@ const FoodBox = (props) => {
             <div className="content">
               <p>
                 <strong>{props.name}</strong> <br />
-                <small>{props.calories} calories</small>
+                <small>{props.calories*quantity} calories</small>
               </p>
             </div>
           </div>

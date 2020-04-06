@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import foodList from '../foods.json'
 import FoodBox from './FoodBox';
 import AddFood from './AddFood';
-// import Search from './Search';
 
 class DisplayFoods  extends Component {
     constructor(){
@@ -40,7 +39,6 @@ class DisplayFoods  extends Component {
                 <div>
                     <input type="text" placeholder = "Search" onChange={this.filterFoods}/>
                 </div>
-                    {/* <Search filterFood = {this.filterFoods}/> */}
                 <div className = "columns">
                     <div className = "column">
                     {this.state.filteredFoods.map((item, indexN)=>(

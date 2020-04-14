@@ -1,7 +1,16 @@
-.App {
-  padding: 20px 30px;
+.container {
+  /* width: 70vw; */
+  /* padding: 30px 30px; */
+  /* border: 1px solid red; */
 }
 
-.title {
-  font-size: 1.5em;
+.food-container {
+  /* margin-top: 30px;
+  display: flex;
+  justify-content: space-between; */
+}
+
+.foodboxes, .todays-foods {
+  /* width: 50%;
+  border: 1px solid red; */
 }

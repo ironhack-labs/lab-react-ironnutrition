@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class FoodBox extends Component {
   
   render () {
-    const { name, calories, image, quantity } = this.props;
+    const { name, calories, image } = this.props;
     return (
       <div className="box">
         <article className="media">
@@ -26,7 +26,7 @@ class FoodBox extends Component {
                 <input
                   className="input"
                   type="number" 
-                  value={quantity}
+                  value='1'
                 />
               </div>
               <div className="control">

@@ -1,28 +1,57 @@
-.App {
+.container {
+  max-width: 900px;
+  margin-top: 30px;
+}
+div.App {
+  margin-top: 30px;
+}
+.openModal {
+  float:right;
+  margin: 20px 0;
+  background: rgb(20, 150, 237);
+  color:white;
+  border:none;
+  padding:10px;
+  cursor:pointer;
+}
+
+.search-bar {
+  margin-bottom: 30px;
+}
+
+.box {
+  padding: 0;
+  max-width: 400px;
+}
+
+.box .media {
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.box img {
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.box input {
+  width: 100px;
   text-align: center;
+  border: 0px white;
+  -webkit-box-shadow: inset 0 1px 2px white;
+  box-shadow: inset 0 1px 2px white
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.box .button {
+  width: 64px;
+  font-size: 1.3em;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.box input, .box .button {
+  height: 64px;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+ul {
+  margin-bottom: 10px;
 }

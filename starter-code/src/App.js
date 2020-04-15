@@ -1,43 +1,49 @@
 import React, { Component } from 'react';
-import FoodBox from './components/FoodBox';
+import FoodBoxes from './components/FoodBoxes';
+import AddFoodForm from './components/AddFoodForm';
 import foods from './foods.json';
+
 import './App.css';
 import 'bulma/css/bulma.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foods,
+    }
+  }
+
+  // addFood = () => {
+  //   const { newFood } = this.state;
+  //   this.setState({
+  //     food: [
+  //       ...this.state.food,
+  //       this.state.newFood,
+  //     ],
+  //   });
+  // };
+
   render() {
+    console.log('foods are', foods);
     return (
       <div className='container'>
         <header>
           <h1 className='title'>IronNutrition</h1>
         </header>
         <main>
+          <AddFoodForm />
           <div className='columns'>
-            <FoodBoxes />
+
+            <FoodBoxes foods={this.state.foods}/>
             <div className='column'>
-              <h3 class='subtitle is-3'>Today's foods</h3>
+              <h3 className='subtitle is-3'>Today's foods</h3>
             </div>
           </div>
         </main>
       </div>
     );
   }
-}
-
-const FoodBoxes = () => {
-  return (
-    <div className='column'>
-      {foods.map(food => {
-        const { name, calories, image, quantity } = food;
-        return <FoodBox
-          name={name}
-          calories={calories}
-          image={image}
-          quantity={quantity}
-          />
-      })}
-  </div>
-  );
 }
 
 export default App;

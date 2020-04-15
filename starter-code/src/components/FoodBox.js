@@ -22,7 +22,7 @@ const FoodBox = (props) => {
         </div>
         <div className='media-right'>
           <div className='field has-addons'>
-            <div className='control'>
+            <div className='content'>
               <input
                 className='input'
                 type='number' 

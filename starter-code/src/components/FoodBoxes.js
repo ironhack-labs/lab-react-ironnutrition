@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// components/FoodBoxes.js
+
+import React from 'react';
 import FoodBox from './FoodBox';
 
 const FoodBoxes = (props) => {
@@ -8,14 +10,14 @@ const FoodBoxes = (props) => {
       {foods.map((food, index) => {
         const { name, calories, image, quantity } = food;
         return <FoodBox
-          key={index + name}
-          name={name}
-          calories={calories}
-          image={image}
-          quantity={quantity}
+            key={index + name}
+            name={name}
+            calories={calories}
+            image={image}
+            quantity={quantity}
           />
       })}
-  </div>
+    </div>
   );
 }
 

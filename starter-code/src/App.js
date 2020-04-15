@@ -7,22 +7,16 @@ import './App.css';
 import 'bulma/css/bulma.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      foods,
-    }
-  }
+  state = { foods };
 
-  // addFood = () => {
-  //   const { newFood } = this.state;
-  //   this.setState({
-  //     food: [
-  //       ...this.state.food,
-  //       this.state.newFood,
-  //     ],
-  //   });
-  // };
+  addFood = () => {
+    this.setState({
+      foods: [
+        ...this.state.foods,
+        this.state.food,
+      ],
+    });
+  };
 
   render() {
     console.log('foods are', foods);

@@ -3,13 +3,12 @@ import React, { Component } from "react";
 class AddFoodForm extends Component {
   state = {
     name: '',
-    calories: '',
+    calories: 0,
     image: '',
-  };
+  }
 
   handleInput = (e) => {
-    console.log(e.target.name);
-    console.log(e);
+    console.log(`Input ${e.target.name} value ${e.target.value}`);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -30,12 +29,12 @@ class AddFoodForm extends Component {
         <label htmlFor="calories">calories</label>
         <input
           id="calories"
-          type="text"
+          type="number"
           name="calories"
           value={calories}
           onChange={this.handleInput}
         />
-        <label htmlFor="calories">image</label>
+        <label htmlFor="image">image</label>
         <input
           id="image"
           type="text"
@@ -43,6 +42,7 @@ class AddFoodForm extends Component {
           value={image}
           onChange={this.handleInput}
         />
+        <button>Add Food</button>
       </div>
     );
   }

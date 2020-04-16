@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class AddFoodForm extends Component {
   state = {
     name: '',
-    calories: 0,
+    calories: '',
     image: '',
+    quantity: 1,
   }
 
   handleInput = (e) => {
-    console.log(`Input ${e.target.name} value ${e.target.value}`);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -16,33 +16,39 @@ class AddFoodForm extends Component {
 
   render() {
     const { name, calories, image } = this.state;
+    const { addFood } = this.props;
     return (
-      <div>
-        <label htmlFor="name">name</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={this.handleInput}
-        />
-        <label htmlFor="calories">calories</label>
-        <input
-          id="calories"
-          type="number"
-          name="calories"
-          value={calories}
-          onChange={this.handleInput}
-        />
-        <label htmlFor="image">image</label>
-        <input
-          id="image"
-          type="text"
-          name="image"
-          value={image}
-          onChange={this.handleInput}
-        />
-        <button>Add Food</button>
+      <div className='control'>
+          <label className='label' htmlFor='name'>name</label>
+          <input
+            className='input'
+            type='text'
+            name='name'
+            placeholder='Cheeseburger'
+            value={name}
+            onChange={this.handleInput}
+          />
+          <label className='label' htmlFor='calories'>calories</label>
+          <input
+            className='input'
+            type='number'
+            name='calories'
+            placeholder='300'
+            value={calories}
+            onChange={this.handleInput}
+          />
+          <label className='label' htmlFor='image'>image</label>
+          <input
+            className='input'
+            type='text'
+            name='image'
+            placeholder='https://your.blog.com/cheeseburger.jpg'
+            value={image}
+            onChange={this.handleInput}
+          />
+          <button onClick={() => addFood(this.state)}
+            className='button is-primary'>Add Food
+          </button>
       </div>
     );
   }

@@ -10,7 +10,7 @@ class FoodBox extends Component {
   handleInput = (e) => {
     console.log(`Input ${e.target.name} value ${e.target.value}`);
     this.setState({
-      [e.target.name]: e.target.value,
+      quantity: e.target.value,
     });
   };
 
@@ -39,8 +39,9 @@ class FoodBox extends Component {
                 <input
                   className='input'
                   type='number' 
+                  min='0'
                   value={quantity}
-                  // onChange='foo'
+                  onChange={this.handleInput}
                 />
               </div>
               <div className='control'>

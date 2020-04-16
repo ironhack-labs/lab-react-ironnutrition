@@ -8,7 +8,7 @@ class List extends Component {
            <div>
                 <ul>
                     {addedToList.map((food, index)=> {
-                        const {name, calories, image, quantity} = food;
+                        const {name, calories, quantity} = food;
                         return (
                             <li key={index}>{quantity} uds. / {name} / {calories} calories</li>
                         );

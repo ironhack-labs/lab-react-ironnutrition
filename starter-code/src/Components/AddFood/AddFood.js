@@ -3,7 +3,7 @@ import FoodBox from '../FoodBox/FoodBox';
 
 class AddFood extends Component {
     state = {
-        form: undefined,
+        formState: undefined,
         name: undefined,
         calories: undefined,
         image: undefined
@@ -11,7 +11,7 @@ class AddFood extends Component {
 
     renderForm = () => {
         this.setState({
-            form: this.state.form === true? false : true 
+            formState: this.state.formState === true? false : true 
         })
     }
 
@@ -35,11 +35,11 @@ class AddFood extends Component {
   
             <div className="control">
                 <button onClick={this.renderForm} className="button is-info">
-                    {!this.state.form? "Show form" : "Hide form"}
+                    {!this.state.formState? "Show form" : "Hide form"}
                 </button>
             </div>
 
-            {this.state.form?
+            {this.state.formState?
                 <div><br/>
                     <label>Name</label>
                     <input  className="input"

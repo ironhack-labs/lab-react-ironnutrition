@@ -26,39 +26,40 @@ class App extends Component {
     }, this.toggleAddForm());
   };
 
+  getIndex = (foodToFind, foodArray) => {
+    const foodIndex = foodArray.findIndex(food => {
+      return food.name === foodToFind.name;
+    })
+    return foodIndex;
+  }
+
   addTodaysFoods = (addedFood) => {
-    // this function should be refactored into two functions
-    // since it updates state of both foods and todaysFoods
     const { foods, todaysFoods } = this.state;
 
-    const foodToUpdate = foods.findIndex(food => {
-      return food.name === addedFood.name;
-    });
-    const updatedFoods = [...foods];
-    updatedFoods.splice(foodToUpdate, 1, addedFood);
+    // const foodToUpdate = this.getIndex(addedFood, foods);
+    // const updatedFoods = [...foods];
+    // updatedFoods.splice(foodToUpdate, 1, addedFood);
 
-    const todaysFoodsToUpdate = todaysFoods.findIndex(food => {
-      return food.name === addedFood.name;
-    });
-    const todaysUpdatedFoods = [...todaysFoods];
+    const todaysFoodsToUpdate = this.getIndex(addedFood, todaysFoods);
+    const todaysFoodsUpdated = [...todaysFoods];
 
     if (todaysFoodsToUpdate === -1) {
-      todaysUpdatedFoods.push(addedFood);
+      todaysFoodsUpdated.push(addedFood);
     } else {
-      todaysUpdatedFoods[todaysFoodsToUpdate].quantity += addedFood.quantity;
+      todaysFoodsUpdated[todaysFoodsToUpdate].quantity += addedFood.quantity;
     }
 
     this.setState({
-      foods: updatedFoods,
-      todaysFoods: todaysUpdatedFoods,
+      // foods: updatedFoods,
+      todaysFoods: todaysFoodsUpdated,
     })
   }
 
   removeTodaysFoods = (name) => {
     const { todaysFoods } = this.state;
-    const todaysUpdatedFoods = todaysFoods.filter(food => food.name !== name);
+    const todaysFoodsUpdated = todaysFoods.filter(food => food.name !== name);
     this.setState({
-      todaysFoods: todaysUpdatedFoods,
+      todaysFoods: todaysFoodsUpdated,
     })
   }
 

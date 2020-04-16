@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 
 class TodaysFoods extends Component {
   handleRemove = (e) => {
-    console.log('target.value', e.target.value);
-    console.log('this.props', this.props);
     this.props.removeTodaysFoods(e.target.value);
   };
 

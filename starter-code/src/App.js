@@ -34,23 +34,15 @@ class App extends Component {
   }
 
   addTodaysFoods = (addedFood) => {
-    const { foods, todaysFoods } = this.state;
-
-    // const foodToUpdate = this.getIndex(addedFood, foods);
-    // const updatedFoods = [...foods];
-    // updatedFoods.splice(foodToUpdate, 1, addedFood);
-
-    const todaysFoodsToUpdate = this.getIndex(addedFood, todaysFoods);
+    const { todaysFoods } = this.state;
+    const foodToUpdate = this.getIndex(addedFood, todaysFoods);
     const todaysFoodsUpdated = [...todaysFoods];
-
-    if (todaysFoodsToUpdate === -1) {
+    if (foodToUpdate === -1) {
       todaysFoodsUpdated.push(addedFood);
     } else {
-      todaysFoodsUpdated[todaysFoodsToUpdate].quantity += addedFood.quantity;
+      todaysFoodsUpdated[foodToUpdate].quantity += addedFood.quantity;
     }
-
     this.setState({
-      // foods: updatedFoods,
       todaysFoods: todaysFoodsUpdated,
     })
   }

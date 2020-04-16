@@ -9,61 +9,59 @@ class FoodBox extends Component {
         all : Foods,
     }
 
-    show = () => {
-      let newFood = this.props.click;
+    addToArray = (input) => {
       this.setState({
-        all: [...this.state.all, newFood]
-      })
-      console.log(this.state.all)
-    }
+        all: [...this.state.all, input],
+      });
+    };
+
 
     render(){
         return(
             <div>
-             <button onClick={this.show} className="button is-info test">Check Callback</button>
-
-                {this.state.all.map((item, index) => { //render the content of foods.json
-                    return (
+              <AddFood click={this.addToArray}/>
+                {this.state.all.map((item, index) => {
+                    return ( 
                         <div className="box" key={index}>
-                        <article className="media">
-                          <div className="media-left">
-                            <figure className="image is-64x64">
-                              <img alt={item.name} src={item.image} />
-                            </figure>
-                          </div>
-                          <div className="media-content">
-                            <div className="content">
-                              <p>
-                                <strong >{item.name}</strong> <br />
-                                <small>{item.calories}</small>
-                              </p>
+                          <article className="media">
+                            <div className="media-left">
+                              <figure className="image is-64x64">
+                                <img alt={item.name} src={item.image} />
+                              </figure>
                             </div>
-                          </div>
-                          <div className="media-right">
-                            <div className="field has-addons">
-                              <div className="control">
-                                <input
-                                  className="input"
-                                  type="number"
-                                  placeholder="1" 
-                                />
-                              </div>
-                              <div className="control">
-                                <button className="button is-info">
-                                  +
-                                </button>
+                            <div className="media-content">
+                              <div className="content">
+                                <p>
+                                  <strong >{item.name}</strong> <br />
+                                  <small>{item.calories}</small>
+                                </p>
                               </div>
                             </div>
-                          </div>
-                        </article>
-                      </div>
-                    )
-                })}
-            </div>
+                            <div className="media-right">
+                              <div className="field has-addons">
+                                <div className="control">
+                                  <input
+                                    className="input"
+                                    type="number"
+                                    placeholder="1" 
+                                  />
+                                </div>
+                                <div className="control">
+                                  <button className="button is-info">
+                                    +
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                  
+                      )
+                  })}
+              </div>
         )
     }
 }
-
 export default FoodBox
 
 

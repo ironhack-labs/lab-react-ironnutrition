@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FoodBox from '../FoodBox/FoodBox';
 
 class AddFood extends Component {
     state = {
@@ -22,24 +21,24 @@ class AddFood extends Component {
     }
 
     addToList= (e) => {
+        const { click } = this.props;
+        click(this.state);
         this.setState({
             [e.target.name]: e.target.value,
         })
-        console.log(this.state)
     }
 
     render(){
         return(
             <div>
         <div className="box">
-  
             <div className="control">
                 <button onClick={this.renderForm} className="button is-info">
                     {!this.state.formState? "Show form" : "Hide form"}
                 </button>
             </div>
 
-            {this.state.formState?
+            {this.state.formState? //if TRUE, render the form
                 <div><br/>
                     <label>Name</label>
                     <input  className="input"
@@ -71,7 +70,6 @@ class AddFood extends Component {
                 </div> 
             : false}
             </div>
-         <FoodBox click={this.state}/>  
         </div>
         )
     }

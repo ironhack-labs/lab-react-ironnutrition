@@ -7,17 +7,16 @@ class Search extends Component {
     }
     
     handleInput = (e) => {
-        const filterFunc = this.props.filterFoodBoxList;
         this.setState(
             { [e.target.name]: e.target.value }, 
-            filterFunc(e.target.value)
+            this.props.filterFoodBoxList(e.target.value)
         );
     };
     
     render() {
         return (
             <div>
-                <input type="search" name="search" value="" onChange={this.handleInput} />
+                <input type="search" name="search" value={this.state.search} onChange={this.handleInput} />
             </div>
         );
     }

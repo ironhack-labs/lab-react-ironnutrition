@@ -8,19 +8,22 @@ import foods from './foods.json'
 class App extends Component {
   
   state = {
-    foods : [...foods]
+    foods : [...foods],
+    addedByUser : []
   }
 
   addFoodBox= (newBox) => {
-    const {foods} = this.state
+    const {foods, addedByUser} = this.state
     this.setState({
-      foods : [...foods, newBox]
+      foods : [...foods, newBox],
+      addedByUser: [...addedByUser, newBox]
     });
   }
 
   filterFoodBoxList= (searchValue) => {
-    const {foods} = this.state
-    const filteredFoods = foods.filter(food => food.name.includes(searchValue));  
+    const { addedByUser} = this.state;
+    const totalFood = [...foods, ...addedByUser];
+    const filteredFoods = totalFood.filter(food => food.name.includes(searchValue));  
     this.setState({
       foods : filteredFoods
     });

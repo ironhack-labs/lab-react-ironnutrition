@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
 import FoodBox from './components/FoodBox'
-import foods from './foods.json'
+import AddButton from './components/AddButton';
+import Foods from './foods.json'
 import './App.css';
 import 'bulma/css/bulma.css';
 
 class App extends Component {
 
   state = {
-    listFood: foods,
+    listFood: Foods,
+  }
+
+  addFoodHandler = (theFood) => {
+    const newListFood = [...this.state.listFood];
+    newListFood.push(theFood);
+    this.setState({
+      listFood: newListFood,
+    })
   }
 
   render() {
     return (
       <div>
-        {this.state.listFood.map((list) => (
-              <FoodBox name={ list.pictureUrl } calories={ list.name } image={ list.image } />
+        <div className="FoodBox-container">
+          {this.state.listFood.map((list) => (
+            <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
             ))}
-      </div>
+        </div>
+        <AddButton addFood = { this.addFoodHandler }/>
+      </div>  
     );
   }
 }

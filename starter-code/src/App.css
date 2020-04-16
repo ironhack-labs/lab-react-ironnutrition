@@ -1,28 +1,83 @@
-.App {
+/**************
+***** APP *****
+**************/
+
+body {
+  margin:0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.FoodBox-container {
+  margin: 2rem 1rem 3rem 2rem;
+}
+
+/**************
+*** FOODBOX ***
+**************/
+
+.container {
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+.search-bar {
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+}
+
+.box {
+  padding: 0;
+  max-width: 400px;
+}
+
+.box .media {
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.box img {
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.box input {
+  width: 100px;
   text-align: center;
+  border: 0px white;
+  -webkit-box-shadow: inset 0 1px 2px white;
+  box-shadow: inset 0 1px 2px white
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.box .button {
+  width: 64px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.box input, .box .button {
+  height: 64px;
 }
 
-.App-title {
-  font-size: 1.5em;
+ul {
+  margin-bottom: 10px;
 }
 
-.App-intro {
-  font-size: large;
+/********************
+*** FORM ADD FOOD ***
+********************/
+
+.form-add-food-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.form-add-food {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 }

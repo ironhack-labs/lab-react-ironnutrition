@@ -11,14 +11,14 @@ class FoodBox extends Component {
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={ image } />
+              <img src={ image } alt="food"/>
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
                 <strong>{ name }</strong> <br />
-                <small>{ calories }</small>
+                <small>{ calories } cal</small>
               </p>
             </div>
           </div>

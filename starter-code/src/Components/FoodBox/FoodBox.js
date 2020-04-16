@@ -7,19 +7,18 @@ import AddFood from '../AddFood/AddFood.js'
 class FoodBox extends Component {
     state = {
         all : foods,
-        stuff: this.props.click
     }
 
     show = () => {
-      console.log(this.state.stuff)
-
+      console.log(this.props.click)
     }
 
     render(){
         return(
             <div>
-             <button onClick={this.show}></button>
-                {this.state.all.map((item, index) => {
+             <button onClick={this.show} className="button is-info">Check Callback</button>
+
+                {this.state.all.map((item, index) => { //render the content of foods.json
                     return (
                         <div className="box" key={index}>
                         <article className="media">
@@ -43,7 +42,6 @@ class FoodBox extends Component {
                                   className="input"
                                   type="number"
                                   placeholder="1" 
-                  
                                 />
                               </div>
                               <div className="control">

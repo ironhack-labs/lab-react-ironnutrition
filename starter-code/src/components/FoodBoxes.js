@@ -6,16 +6,18 @@ import FoodBox from './FoodBox';
 const FoodBoxes = (props) => {
   const { foods } = props;
   return (
-    <div className='column'>
+    <div>
       {foods.map((food, index) => {
-        const { name, calories, image, quantity } = food;
-        return <FoodBox
-            key={index + name}
-            name={name}
-            calories={calories}
-            image={image}
-            quantity={quantity}
-          />
+        const { name, calories, image, quantity, show } = food;
+        if (show)
+          return <FoodBox
+              key={index + name}
+              name={name}
+              calories={calories}
+              image={image}
+              quantity={quantity}
+            />
+        else return false
       })}
     </div>
   );

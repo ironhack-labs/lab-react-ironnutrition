@@ -9,7 +9,9 @@ import 'bulma/css/bulma.css';
 
 class App extends Component {
   state = {
-    foods,
+    foods: foods.map(food => {
+      return { ...food, show: true }
+    }),
     showForm: false,
   };
 
@@ -17,7 +19,7 @@ class App extends Component {
     this.setState({
       foods: [
         ...this.state.foods,
-        food,
+        { ...food, show: true },
       ],
     }, this.toggleAddForm());
   };
@@ -28,22 +30,36 @@ class App extends Component {
     });
   };
 
+  toggleFood = (searchResults) => {
+    this.setState({
+      foods: searchResults,
+    });
+  };
+
   render() {
-    const { showForm } = this.state;
+    const { showForm, foods } = this.state;
     return (
       <section className='section'>
         <h1 className='title'>IronNutrition</h1>
 
-        <Search />
-
-        <div className='content'>
-          <button onClick={this.toggleAddForm} className='button is-info'>Add Food</button>
-          {showForm && <AddFoodForm addFood={this.addFood}/>}
+        <div className='columns'>
+          <div className='column is-one-fifth'>
+            <button onClick={this.toggleAddForm} className='button is-info level-right'>Add Food</button>
+          </div>
+          <div className='column is-four-fifths'>
+            {showForm && <AddFoodForm addFood={this.addFood}/>}
+          </div>
         </div>
 
+        <Search foods={foods} toggleFood={this.toggleFood}/>
+
         <div className='columns'>
-          <FoodBoxes foods={this.state.foods}/>
-          <TodaysFoods />
+          <div className='column'>
+            <FoodBoxes foods={foods}/>
+          </div>
+          <div className='column'>
+            <TodaysFoods />
+          </div>
         </div>
       </section>
     );

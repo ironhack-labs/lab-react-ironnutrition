@@ -4,7 +4,7 @@ import React from 'react';
 
 const TodaysFoods = () => {
   return (
-    <div className='column'>
+    <div>
       <h3 className='subtitle is-3'>Today's foods</h3>
     </div>
   );

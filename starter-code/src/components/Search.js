@@ -9,14 +9,21 @@ class Search extends Component {
     search: '',
   }
 
-  handleInput = (e) => {
+  handleInput = (e, foods, toggleFood) => {
+    const { name, value } = e.target;
     this.setState({
-      [e.target.name]: e.target.value,
+      [name]: value,
+    }, () => {
+      const searchResults = foods.map(food => {
+        return { ...food, show: food.name.includes(value) }
+      });
+      toggleFood(searchResults);
     });
   };
 
   render() {
     const { search } = this.state;
+    const { foods, toggleFood } = this.props;
     return (
       <div className='content'>
         <p className='control has-icons-left'>
@@ -26,7 +33,7 @@ class Search extends Component {
             name='search'
             placeholder='Cheeseburger'
             value={search}
-            onChange={this.handleInput}
+            onChange={(e) => this.handleInput(e, foods, toggleFood)}
           />
           <span className="icon is-small is-left">
             <i className="fas fa-camera"></i>

@@ -45,6 +45,7 @@ class AddFoodForm extends Component {
           <input
             className='input'
             type='number'
+            min='0'
             name='calories'
             placeholder='300'
             value={calories}

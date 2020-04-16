@@ -37,7 +37,7 @@ class FoodBox extends Component {
               <div className='content'>
                 <input
                   className='input'
-                  type='number' 
+                  type='number'
                   min='0'
                   value={quantity}
                   onChange={this.handleInput}

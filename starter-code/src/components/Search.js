@@ -15,7 +15,7 @@ class Search extends Component {
       [name]: value,
     }, () => {
       const searchResults = foods.map(food => {
-        return { ...food, show: food.name.includes(value) }
+        return { ...food, show: food.name.toUpperCase().includes(value.toUpperCase()) }
       });
       toggleFood(searchResults);
     });

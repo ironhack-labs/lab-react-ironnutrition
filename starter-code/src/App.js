@@ -30,18 +30,27 @@ class App extends Component {
     // this function should be refactored into two functions
     // since it updates state of both foods and todaysFoods
     const { foods, todaysFoods } = this.state;
+
     const foodToUpdate = foods.findIndex(food => {
       return food.name === addedFood.name;
     });
     const updatedFoods = [...foods];
     updatedFoods.splice(foodToUpdate, 1, addedFood);
 
+    const todaysFoodsToUpdate = todaysFoods.findIndex(food => {
+      return food.name === addedFood.name;
+    });
+    const todaysUpdatedFoods = [...todaysFoods];
+
+    if (todaysFoodsToUpdate === -1) {
+      todaysUpdatedFoods.push(addedFood);
+    } else {
+      todaysUpdatedFoods[todaysFoodsToUpdate].quantity += addedFood.quantity;
+    }
+
     this.setState({
       foods: updatedFoods,
-      todaysFoods: [
-        ...todaysFoods,
-        addedFood,
-      ]
+      todaysFoods: todaysUpdatedFoods,
     })
   }
 

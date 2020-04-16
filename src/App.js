@@ -47,7 +47,7 @@ class App extends Component {
       }
     }
 
-    found === false ?
+    found === false && quantity !==0 ?
       this.setState({
         addedToList : [ ...addedToList, {name, calories, quantity} ]
       })

@@ -22,7 +22,7 @@ class AddFoodForm extends Component {
     const { name, calories, image } = this.state;
     const { addFood } = this.props;
     return (
-      <div className='control box'>
+      <div className='control box column is-four-fifths'>
         <div className='field'>
           <label className='label' htmlFor='name'>Name:</label>
           <p className='control has-icons-left'>

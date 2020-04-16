@@ -19,7 +19,7 @@ class TodaysFoods extends Component {
   render() {
     const { todaysFoods } = this.props;
     return (
-      <div>
+      <div className='column'>
         <h3 className='subtitle is-3'>Today's foods</h3>
         <div className='content'>
           <ul>

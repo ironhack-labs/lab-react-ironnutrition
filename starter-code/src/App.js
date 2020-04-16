@@ -3,6 +3,7 @@ import foods from './foods.json';
 import FoodBoxes from './components/FoodBoxes';
 import TodaysFoods from './components/TodaysFoods';
 import Search from './components/Search';
+import AddFoodButton from './components/AddFoodButton';
 import AddFoodForm from './components/AddFoodForm';
 
 import './App.css';
@@ -70,30 +71,20 @@ class App extends Component {
   render() {
     const { showForm, foods, todaysFoods } = this.state;
     return (
-      <div className='App'>
-        <section className='section'>
-          <h1 className='title'>IronNutrition</h1>
+      <div className='App section'>
+        <h1 className='title'>IronNutrition</h1>
 
-          <div className='columns'>
-            <div className='column is-one-fifth'>
-              <button onClick={this.toggleAddForm} className='button is-info level-right'>Add Food</button>
-            </div>
-            <div className='column is-four-fifths'>
-              {showForm && <AddFoodForm addFood={this.addFood} />}
-            </div>
-          </div>
+        <div className='columns'>
+          <AddFoodButton toggleAddForm={this.toggleAddForm} />
+          {showForm && <AddFoodForm addFood={this.addFood} />}
+        </div>
 
-          <Search foods={foods} toggleFood={this.toggleFood} />
+        <Search foods={foods} toggleFood={this.toggleFood} />
 
-          <div className='columns'>
-            <div className='column'>
-              <FoodBoxes foods={foods} addTodaysFoods={this.addTodaysFoods} />
-            </div>
-            <div className='column'>
-              <TodaysFoods todaysFoods={todaysFoods} removeTodaysFoods={this.removeTodaysFoods} />
-            </div>
-          </div>
-        </section>
+        <div className='columns'>
+          <FoodBoxes foods={foods} addTodaysFoods={this.addTodaysFoods} />
+          <TodaysFoods todaysFoods={todaysFoods} removeTodaysFoods={this.removeTodaysFoods} />
+        </div>
       </div>
     );
   }

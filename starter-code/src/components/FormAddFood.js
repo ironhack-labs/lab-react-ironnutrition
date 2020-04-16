@@ -21,13 +21,6 @@ class FormAddFood extends Component {
       [name]: value
     });
   }
-  
-  // handleInput = (e) => {
-  //   console.log(e.target.name);
-  //   this.setState({
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
 
   handleFormSubmit = (event) => {
     event.preventDefault();

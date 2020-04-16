@@ -16,15 +16,6 @@ class AddButton extends Component {
     });
   };
 
-  // addFoodHandler = (theFood) => {
-  //   this.props.addFood(theFood);
-  //   // const newListFood = [...this.state.listFood];
-  //   // newListFood.push(theFood);
-  //   // this.setState({
-  //   //   listFood: newListFood,
-  //   // })
-  // }
-
   render() {
     const { isVisible } = this.state;
     return (

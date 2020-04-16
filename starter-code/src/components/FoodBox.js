@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
-// import foods from './foods.json'
 
 
 class FoodBox extends Component {

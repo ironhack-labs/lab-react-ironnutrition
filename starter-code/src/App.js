@@ -70,6 +70,7 @@ class App extends Component {
 
   render() {
     const { showForm, foods, todaysFoods } = this.state;
+    // const filter = this.state.foods.filter()
     return (
       <div className='App section'>
         <h1 className='title'>IronNutrition</h1>

@@ -9,11 +9,7 @@ class TodaysFoods extends Component {
 
   totalCalories = () => {
     const { todaysFoods } = this.props;
-    if (todaysFoods.length > 0) {
       return todaysFoods.reduce((accumulator, current) => accumulator + current.quantity * current.calories, 0);
-    } else {
-      return 0;
-    }
   }
 
   render() {

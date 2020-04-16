@@ -9,8 +9,9 @@ class Search extends Component {
     search: '',
   }
 
-  handleInput = (e, foods, toggleFood) => {
+  handleInput = (e) => {
     const { value } = e.target;
+    const { foods, toggleFood } = this.props;
     this.setState({
       search: value,
     }, () => {
@@ -23,7 +24,6 @@ class Search extends Component {
 
   render() {
     const { search } = this.state;
-    const { foods, toggleFood } = this.props;
     return (
       <div className='content'>
         <p className='control has-icons-left'>
@@ -33,7 +33,7 @@ class Search extends Component {
             name='search'
             placeholder='Cheeseburger'
             value={search}
-            onChange={(e) => this.handleInput(e, foods, toggleFood)}
+            onChange={this.handleInput}
           />
           <span className="icon is-small is-left">
             <i className="fas fa-camera"></i>

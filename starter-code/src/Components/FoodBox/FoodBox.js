@@ -10,7 +10,6 @@ class FoodBox extends Component {
     }
 
     show = () => {
-      console.log(this.props.click)
       let newFood = this.props.click;
       this.setState({
         all: [...this.state.all, newFood]

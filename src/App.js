@@ -32,27 +32,29 @@ class App extends Component {
   }
 
   addTolist =  (name, calories, quantity) => () => {
-    const { addedToList} = this.state;
+    let addedToList = [...this.state.addedToList];
     
-    //check if element is in array to avoid duplications
+    //check if element is in array to avoid duplications s
     let found = false;
     for(let i = 0; i < addedToList.length; i++) {
       if (addedToList[i].name === name) {
         addedToList[i].quantity = quantity;
+        if (addedToList[i].quantity == 0) {
+          addedToList.splice(i, 1);
+        } 
         found = true;
         break;
       }
     }
 
-    if (found === false) {
+    found === false ?
       this.setState({
         addedToList : [ ...addedToList, {name, calories, quantity} ]
-      });
-    } else {
+      })
+    :
       this.setState({
         addedToList : [ ...addedToList ]
       });
-    }
   }
   
   render() {

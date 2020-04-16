@@ -14,7 +14,9 @@ class Form extends Component {
     })
   }
 
-  handle
+  handleClick = () => {
+    this.props.updateFoods(this.state);
+  }
 
   render() {
     const { name, calories, image} = this.state;
@@ -38,7 +40,7 @@ class Form extends Component {
             <input className="input" type="text" name="image" placeholder="Image" value={image} onChange={this.handleInput} />
           </div>
         </div>
-        <input className="button is-normal is-success" type="submit" value="Add Food" />
+        <button onClick={this.handleClick} className="button is-normal is-success">Add Food</button>
       </form>
     );
   }

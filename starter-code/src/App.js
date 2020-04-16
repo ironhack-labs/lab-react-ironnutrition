@@ -18,14 +18,28 @@ class App extends Component {
     })
   }
 
+  updateFoods = (newFood) => {
+    const updatedFoods = [...this.state.allfood];
+    updatedFoods.push(newFood); 
+    console.log(newFood);
+    this.setState({
+      allfood: updatedFoods,
+    })
+  }
+
+  printAllFood = () => {
+    const { allfood } = this.state;
+    return allfood.map(item => <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />);
+  }
+
   render() {
-    const { allfood, form } = this.state;
+    const { form } = this.state;
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
         <button onClick={this.toggleForm} className="button is-normal is-danger">Add new food</button>
-        { !form && <Form /> }
-        { form && <div>{allfood.map(item => <FoodBox name={item.name} calories={item.calories} image={item.image} />)}</div> }
+        { !form && <Form updateFoods={this.updateFoods} /> }
+        { form && <div>{this.printAllFood()}</div> }
       </div>
     );
   }

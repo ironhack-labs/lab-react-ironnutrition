@@ -5,6 +5,7 @@ import TodaysFoods from './components/TodaysFoods';
 import Search from './components/Search';
 import AddFoodForm from './components/AddFoodForm';
 
+import './App.css';
 import 'bulma/css/bulma.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     foods: foods.map(food => {
       return { ...food, show: true }
     }),
+    todaysFoods: [],
     showForm: false,
   };
 
@@ -23,6 +25,25 @@ class App extends Component {
       ],
     }, this.toggleAddForm());
   };
+
+  addTodaysFoods = (addedFood) => {
+    // this function should be refactored into two functions
+    // since it updates state of both foods and todaysFoods
+    const { foods, todaysFoods } = this.state;
+    const foodToUpdate = foods.findIndex(food => {
+      return food.name === addedFood.name;
+    });
+    const updatedFoods = [...foods];
+    updatedFoods.splice(foodToUpdate, 1, addedFood);
+
+    this.setState({
+      foods: updatedFoods,
+      todaysFoods: [
+        ...todaysFoods,
+        addedFood,
+      ]
+    })
+  }
 
   toggleAddForm = () => {
     this.setState({
@@ -37,31 +58,33 @@ class App extends Component {
   };
 
   render() {
-    const { showForm, foods } = this.state;
+    const { showForm, foods, todaysFoods } = this.state;
     return (
-      <section className='section'>
-        <h1 className='title'>IronNutrition</h1>
+      <div className='App'>
+        <section className='section'>
+          <h1 className='title'>IronNutrition</h1>
 
-        <div className='columns'>
-          <div className='column is-one-fifth'>
-            <button onClick={this.toggleAddForm} className='button is-info level-right'>Add Food</button>
+          <div className='columns'>
+            <div className='column is-one-fifth'>
+              <button onClick={this.toggleAddForm} className='button is-info level-right'>Add Food</button>
+            </div>
+            <div className='column is-four-fifths'>
+              {showForm && <AddFoodForm addFood={this.addFood} />}
+            </div>
           </div>
-          <div className='column is-four-fifths'>
-            {showForm && <AddFoodForm addFood={this.addFood}/>}
-          </div>
-        </div>
 
-        <Search foods={foods} toggleFood={this.toggleFood}/>
+          <Search foods={foods} toggleFood={this.toggleFood} />
 
-        <div className='columns'>
-          <div className='column'>
-            <FoodBoxes foods={foods}/>
+          <div className='columns'>
+            <div className='column'>
+              <FoodBoxes foods={foods} addTodaysFoods={this.addTodaysFoods} />
+            </div>
+            <div className='column'>
+              <TodaysFoods todaysFoods={todaysFoods} />
+            </div>
           </div>
-          <div className='column'>
-            <TodaysFoods />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import FoodBox from './FoodBox';
 
 const FoodBoxes = (props) => {
-  const { foods } = props;
+  const { foods, addTodaysFoods } = props;
   return (
     <div>
       {foods.map((food, index) => {
@@ -16,6 +16,8 @@ const FoodBoxes = (props) => {
               calories={calories}
               image={image}
               quantity={quantity}
+              show={show}
+              addTodaysFoods={addTodaysFoods}
             />
         else return false
       })}

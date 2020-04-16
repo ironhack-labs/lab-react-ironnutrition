@@ -10,9 +10,9 @@ class Search extends Component {
   }
 
   handleInput = (e, foods, toggleFood) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     this.setState({
-      [name]: value,
+      search: value,
     }, () => {
       const searchResults = foods.map(food => {
         return { ...food, show: food.name.toUpperCase().includes(value.toUpperCase()) }

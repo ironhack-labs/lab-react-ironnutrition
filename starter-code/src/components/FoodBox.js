@@ -8,7 +8,6 @@ class FoodBox extends Component {
   }
 
   handleInput = (e) => {
-    console.log(`Input ${e.target.name} value ${e.target.value}`);
     this.setState({
       quantity: e.target.value,
     });

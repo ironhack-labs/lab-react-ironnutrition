@@ -1,3 +1,5 @@
+// components/AddFoodForm.js
+
 import React, { Component } from 'react';
 
 class AddFoodForm extends Component {
@@ -47,7 +49,7 @@ class AddFoodForm extends Component {
             onChange={this.handleInput}
           />
           <button onClick={() => addFood(this.state)}
-            className='button is-primary'>Add Food
+            className='button is-primary'>Submit
           </button>
       </div>
     );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class List extends Component {
     render() {
         const {addedToList} = this.props;
-        const totalCalories = addedToList.reduce((a, b) => a + (b["calories"] || 0), 0);
+        const totalCalories = addedToList.reduce((a, b) => a + (b["calories"] * b["quantity"] || 0), 0);
         return (
            <div>
                 <ul>

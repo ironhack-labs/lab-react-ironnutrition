@@ -33,10 +33,26 @@ class App extends Component {
 
   addTolist =  (name, calories, quantity) => () => {
     const { addedToList} = this.state;
+    
     //check if element is in array to avoid duplications
-    this.setState({
-      addedToList : [ ...addedToList, {name, calories, quantity} ]
-    });
+    let found = false;
+    for(let i = 0; i < addedToList.length; i++) {
+      if (addedToList[i].name === name) {
+        addedToList[i].quantity = quantity;
+        found = true;
+        break;
+      }
+    }
+
+    if (found === false) {
+      this.setState({
+        addedToList : [ ...addedToList, {name, calories, quantity} ]
+      });
+    } else {
+      this.setState({
+        addedToList : [ ...addedToList ]
+      });
+    }
   }
   
   render() {

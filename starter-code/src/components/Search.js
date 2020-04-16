@@ -15,7 +15,15 @@ export default class Search extends Component {
 
   render() {
     return (
-        <input style={{marginBottom: '25px'}} placeholder="Search food" className="input is-fullwidth is-primary is-rounded" onChange={this.handleFilterCb} type="search" name="value" id="search" value={this.state.value}/>
+        <input
+          style={{marginBottom: '25px'}}
+          placeholder="Search food"
+          className="input is-fullwidth is-primary is-rounded"
+          onChange={this.handleFilterCb}
+          type="search"
+          name="value"
+          id="search"
+          value={this.state.value}/>
     )
   }
 }

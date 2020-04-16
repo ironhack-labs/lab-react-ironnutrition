@@ -16,15 +16,20 @@ export default class FoodContent extends Component {
 
   /* Resume info */
   addItemQuantity = (name, quantity) => {
-    this.setState(
-      this.state.myFoods.map(f => f.name === name ? f.quantity += parseInt(quantity, 10) : f)
-    )
+    this.state.myFoods.forEach(f => {
+      if(f.name === name) f.quantity += parseInt(quantity, 10)
+    });
+    this.setState({
+      myFoods: [...this.state.myFoods]
+    })
   }
-
   deleteItemQuantity = (name) => {
-    this.setState(
-      this.state.myFoods.map(f => f.name === name ? f.quantity = 0 : f)
-    )
+    this.state.myFoods.forEach(f => {
+      if(f.name === name) f.quantity = 0
+    })
+    this.setState({
+      myFoods: [...this.state.myFoods]
+    })
   }
   
   /* Add Food */

@@ -16,23 +16,23 @@ export default class FoodList extends Component {
     this.setState({filter: text})
   }
 
-  
   render() {
-    const { myFoods } = this.props
+    const { myFoods, addItemQuantity } = this.props
+    const foodsToShow = myFoods.filter(f => {
+      return f.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    })
     return (
       <div>
         <Search setFilter={this.setFilter}/>
-        {myFoods.map((f,i) => {
-          if(f.name.toLowerCase().includes(this.state.filter.toLowerCase())){
-            return (<FoodBox
-                    addItemQuantity={this.props.addItemQuantity}
-                    key={i}
-                    name={f.name}
-                    calories={f.calories}
-                    image={f.image}
-                    quantity={f.quantity}/>
-                  )}
-            return false
+        {foodsToShow.map((f,i) => {
+          return (<FoodBox
+                  addItemQuantity={addItemQuantity}
+                  key={i}
+                  name={f.name}
+                  calories={f.calories}
+                  image={f.image}
+                  quantity={f.quantity}/>
+                )
         })}
       </div>
     )

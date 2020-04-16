@@ -39,7 +39,7 @@ class App extends Component {
     for(let i = 0; i < addedToList.length; i++) {
       if (addedToList[i].name === name) {
         addedToList[i].quantity = quantity;
-        if (addedToList[i].quantity == 0) {
+        if (addedToList[i].quantity === 0) {
           addedToList.splice(i, 1);
         } 
         found = true;

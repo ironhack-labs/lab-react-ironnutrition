@@ -9,7 +9,7 @@ class FoodBox extends Component {
 
     handleInput = (e) => {
         this.setState({
-          [e.target.name]: e.target.value,
+          [e.target.name]: parseInt(e.target.value, 10)
         });
     };
 

@@ -54,6 +54,14 @@ class App extends Component {
     })
   }
 
+  removeTodaysFoods = (name) => {
+    const { todaysFoods } = this.state;
+    const todaysUpdatedFoods = todaysFoods.filter(food => food.name !== name);
+    this.setState({
+      todaysFoods: todaysUpdatedFoods,
+    })
+  }
+
   toggleAddForm = () => {
     this.setState({
       showForm: !this.state.showForm,
@@ -89,7 +97,7 @@ class App extends Component {
               <FoodBoxes foods={foods} addTodaysFoods={this.addTodaysFoods} />
             </div>
             <div className='column'>
-              <TodaysFoods todaysFoods={todaysFoods} />
+              <TodaysFoods todaysFoods={todaysFoods} removeTodaysFoods={this.removeTodaysFoods} />
             </div>
           </div>
         </section>

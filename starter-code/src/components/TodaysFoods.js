@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 
 class TodaysFoods extends Component {
   handleRemove = (e) => {
-    console.log(e.target);
+    console.log('target.value', e.target.value);
+    console.log('this.props', this.props);
+    this.props.removeTodaysFoods(e.target.value);
   };
 
   totalCalories = () => {
@@ -29,7 +31,7 @@ class TodaysFoods extends Component {
               <li key={index + name + quantity}>
                 <div className='level'>
                   <span>{quantity} {name} = {quantity * calories} calories</span>
-                  <button onClick={this.handleRemove} className='button is-small outlined'>Remove</button>
+                  <button onClick={this.handleRemove} value={name} className='button is-small outlined'>Remove</button>
                 </div>
               </li>
             );

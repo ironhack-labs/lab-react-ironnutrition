@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import AddFoodForm from './components/AddFoodForm';
+import foods from './foods.json';
 import FoodBoxes from './components/FoodBoxes';
 import TodaysFoods from './components/TodaysFoods';
-import foods from './foods.json';
+import Search from './components/Search';
+import AddFoodForm from './components/AddFoodForm';
 
 import 'bulma/css/bulma.css';
 
@@ -33,9 +34,12 @@ class App extends Component {
       <section className='section'>
         <h1 className='title'>IronNutrition</h1>
 
-        <button onClick={this.toggleAddForm} className='button is-info'>Add Food</button>
+        <Search />
 
-        {showForm && <AddFoodForm addFood={this.addFood}/>}
+        <div className='content'>
+          <button onClick={this.toggleAddForm} className='button is-info'>Add Food</button>
+          {showForm && <AddFoodForm addFood={this.addFood}/>}
+        </div>
 
         <div className='columns'>
           <FoodBoxes foods={this.state.foods}/>

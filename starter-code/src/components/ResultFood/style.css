@@ -1,0 +1,9 @@
+.listFood {
+    float: left;
+    width: 50%;
+    background-color: lightgrey;
+    border-radius: 1em;
+    margin: 20px;
+    padding: 50px;
+}
+

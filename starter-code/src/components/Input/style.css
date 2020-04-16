@@ -1,0 +1,10 @@
+.box-input{
+    padding: 30px;
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 1em;
+    border: 1px solid black;
+}

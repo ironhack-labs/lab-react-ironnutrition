@@ -1,0 +1,8 @@
+.all-form{
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: lightgrey;
+    border-radius: 1em;
+    border: 1px solid black;
+}

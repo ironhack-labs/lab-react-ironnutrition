@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     allfood: [...foods],
     form: true,
+    filteredFood: [...foods],
   }
 
   toggleForm = () => {
@@ -31,15 +32,16 @@ class App extends Component {
   filterFood = (search) => {
     const { allfood } = this.state;
     console.log(search);
-
-    const filteredFood = allfood.filter();
+    const filteredFood = allfood.filter(item => {
+      return item.name.toLowerCase().includes(search.toLowerCase());
+    });
     this.setState({
-      allfood: filteredFood,
+      filteredFood: filteredFood,
     })
   }
 
   render() {
-    const { form, allfood } = this.state;
+    const { form, filteredFood } = this.state;
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -50,7 +52,7 @@ class App extends Component {
         { form && 
         <div className="columns">
           <div className="column">
-            {allfood.map(item => {
+            {filteredFood.map(item => {
               return <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />
             })}
           </div>

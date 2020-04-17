@@ -9,6 +9,7 @@ import 'bulma/css/bulma.css';
 class App extends Component {
 
   state = {
+    foodFilter: "",
     listFood: Foods,
   }
 
@@ -20,12 +21,22 @@ class App extends Component {
     })
   }
 
+  handleFilter = event => {
+    this.setState({
+      foodFilter: event.target.value
+    })
+  }
+
   render() {
+    const { foodFilter } = this.state;
+    const filteredFood = Foods.filter((food) => {
+      return food.name.toLowerCase().indexOf( foodFilter.toLowerCase() ) !== -1
+    })
     return (
       <div>
-        <SearchBar />
+        <SearchBar inputValue={this.state.foodFilter} inputOnChange={this.handleFilter}/>
         <div className="FoodBox-container">
-          {this.state.listFood.map((list) => (
+          {filteredFood.map((list) => (
             <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
             ))}
         </div>

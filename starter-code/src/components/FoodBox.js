@@ -2,6 +2,14 @@ import React, { Component } from "react";
 
 class FoodBox extends Component {
   
+  state = {
+    value: '1',
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
   render () {
     const { name, calories, image } = this.props;
     return (
@@ -23,10 +31,11 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input readOnly
+                <input 
+                  onChange={this.handleChange}
                   className="input"
                   type="number" 
-                  value='1'
+                  value={this.state.value}
                 />
               </div>
               <div className="control">

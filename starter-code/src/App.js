@@ -57,7 +57,10 @@ class App extends Component {
             })}
           </div>
           <div className="column gray-column">
-            Hola
+            <h2 className='today-food'>Today's foods</h2>
+            <ul>
+
+            </ul>
           </div>
         </div> }
       </div>

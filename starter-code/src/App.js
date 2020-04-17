@@ -11,7 +11,8 @@ class App extends Component {
 
   state = {
     food: foods,
-    search: ''
+    search: '',
+    todayFod:  []
   }
 
   handleInput = (e) => {
@@ -35,9 +36,22 @@ class App extends Component {
       });
   }
 
+  addFoodList = (name,image,calories,number) => {
+
+    let addFoodList =  {
+      "name": name.name,
+      "image": image.image,
+      "calories": calories.calories,
+      "number": number
+    }
+    this.setState({
+      todayFod: [...this.state.todayFod, addFoodList]
+    });
+  }
+
   render() {
 
-    const {search} = this.state;
+    const {search, todayFod} = this.state;
 
     return (
       <div className="App">
@@ -47,10 +61,10 @@ class App extends Component {
         <AddFood addFood={this.addFood}/>
 
         <div className="boxFlex">
-          <ShowList filter={search} list={this.state.food}/>
-          <ResultFood />
+          <ShowList filter={search} list={this.state.food} addFoodList={this.addFoodList}/>
+          <ResultFood newFoodList={todayFod}/>
         </div>
-        
+
       </div>
     );
   }

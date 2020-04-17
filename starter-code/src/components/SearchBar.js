@@ -7,12 +7,12 @@ class SearchBar extends Component {
     const { inputValue, inputOnChange} = this.props;
     return (
       <div>
-        <div>
-          <label htmlFor="filter">Search: </label>
-          <input type="text" id="filter" 
+        <div className="search-bar-box">
+          <label className="search-input" htmlFor="filter">Search</label>
+          <input class="input is-info" type="text" id="filter" 
           value={inputValue} 
           onChange={inputOnChange}
-          placeholder="Filter by word"/>
+          placeholder="Filter by words"/>
         </div>
       </div>
       

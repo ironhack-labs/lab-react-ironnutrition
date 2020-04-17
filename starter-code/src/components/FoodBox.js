@@ -31,9 +31,7 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
-                  +
-                </button>
+                <button className="button is-info">+</button>
               </div>
             </div>
           </div>

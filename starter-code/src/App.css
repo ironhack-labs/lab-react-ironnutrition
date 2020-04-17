@@ -8,8 +8,13 @@ body {
   font-size: 10px;
 }
 
+.principal-container {
+  display: flex;
+  margin-top: 3rem;
+}
+
 .FoodBox-container {
-  margin: 2rem 1rem 3rem 2rem;
+  margin: 0 3rem 3rem 2rem;
 }
 
 /**************
@@ -80,4 +85,40 @@ ul {
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+}
+
+/*****************
+*** SEARCH BAR ***
+*****************/
+
+.search-bar-container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 2rem 0 0 4rem;
+}
+
+.search-bar-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+}
+
+.search-input {
+  display: flex;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+/*****************
+*** MENU COUNT ***
+*****************/
+
+.menu-count-box {
+  font-size: 1.3rem;
+}
+
+.menu-count-box > h2 {
+  text-decoration: underline;
+  font-size: 2rem;
 }

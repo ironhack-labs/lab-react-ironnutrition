@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FoodBox from './components/FoodBox'
 import AddButton from './components/AddButton';
 import SearchBar from './components/SearchBar';
+import MenuCount from './components/MenuCount';
 import Foods from './foods.json'
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -33,19 +34,25 @@ class App extends Component {
       return food.name.toLowerCase().indexOf( foodFilter.toLowerCase() ) !== -1
     })
     return (
-      <div>
-        <SearchBar inputValue={this.state.foodFilter} inputOnChange={this.handleFilter}/>
-        <div>
+      <div >
+        <header className="search-bar-container">
+          <SearchBar inputValue={this.state.foodFilter} inputOnChange={this.handleFilter}/>
+        </header>
+        
+        <section className="principal-container">
           <div className="FoodBox-container">
             {filteredFood.map((list) => (
               <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
               ))}
           </div>
-          <div>
 
+          <div>
+            <MenuCount />
           </div>
-        </div>
+        </section>
+
         <AddButton addFood = { this.addFoodHandler }/>
+
       </div>  
     );
   }

@@ -12,6 +12,8 @@ class App extends Component {
     allfood: [...foods],
     form: true,
     filteredFood: [...foods],
+    todaysFood: [],
+    totalCalories: 0,
   }
 
   toggleForm = () => {
@@ -31,7 +33,6 @@ class App extends Component {
 
   filterFood = (search) => {
     const { allfood } = this.state;
-    console.log(search);
     const filteredFood = allfood.filter(item => {
       return item.name.toLowerCase().includes(search.toLowerCase());
     });
@@ -40,8 +41,18 @@ class App extends Component {
     })
   }
 
+  addToList = (fvalue, fname, fcalories) => {
+    this.setState({
+      todaysFood: this.state.todaysFood.concat({fvalue, fname, fcalories}),
+    })
+  }
+
+  caloriesCount = () => {
+
+  }
+
   render() {
-    const { form, filteredFood } = this.state;
+    const { form, filteredFood, todaysFood, totalCalories } = this.state;
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -53,14 +64,17 @@ class App extends Component {
         <div className="columns">
           <div className="column">
             {filteredFood.map(item => {
-              return <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />
+              return <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} addToList={this.addToList} />
             })}
           </div>
           <div className="column gray-column">
             <h2 className='today-food'>Today's foods</h2>
             <ul>
-
+              {todaysFood.map(item => {
+                return <li>{item.fvalue} {item.fname} = {item.fcalories * item.fvalue} calories</li>
+              })}
             </ul>
+            <p>Total: {totalCalories} cal</p>
           </div>
         </div> }
       </div>

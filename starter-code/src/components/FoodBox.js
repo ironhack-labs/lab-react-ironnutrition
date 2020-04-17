@@ -10,6 +10,12 @@ class FoodBox extends Component {
     this.setState({value: event.target.value});
   }
 
+  getValues = () => {
+    const { name, calories } = this.props;
+    const { value } = this.state;
+    this.props.addToList(value, name, calories );
+  }
+
   render () {
     const { name, calories, image } = this.props;
     return (
@@ -39,7 +45,7 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={this.getValues} className="button is-info">
                   +
                 </button>
               </div>

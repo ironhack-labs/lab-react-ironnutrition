@@ -12,7 +12,23 @@ class AddFood extends Component{
     }
     handleClickAddFood = (e) => {
         e.preventDefault()
-        console.log(this.state)
+        //console.log(this.state)
+
+        const { click } = this.props;
+        click(this.state.newFood);
+        this.setState(
+          {
+            newFood: "",
+          },
+          () => {
+            console.log("input", this.state.newFood);
+          }
+        );
+      };
+
+
+
+
     }
 
     handleInput = (e) => {
@@ -38,7 +54,7 @@ class AddFood extends Component{
                     <input type="text" name="name" value={name} onChange={this.handleInput}/>
                     <label>Calories</label>
                     <input type="number" name="calories" value={calories} onChange={this.handleInput}/>
-                    <button type="sumbit" value="Submit">Submit</button>
+                    <button type="sumbit" value="Submit" onClick={this.handleClickAddFood}>Submit</button>
 
                 </form>
             

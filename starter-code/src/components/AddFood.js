@@ -2,34 +2,28 @@ import React, { Component } from "react";
 
 class AddFood extends Component{
 
-     state = {
+    state = {
         newFood : {
             name: "", 
             calories: 0,
             image: "",
         }
-
     }
+
     handleClickAddFood = (e) => {
         e.preventDefault()
-        //console.log(this.state)
 
-        const { click } = this.props;
-        click(this.state.newFood);
-        this.setState(
-          {
-            newFood: "",
-          },
-          () => {
-            console.log("input", this.state.newFood);
-          }
-        );
-      };
+        const { functionToAddFood } = this.props;
+        functionToAddFood(this.state.newFood);
 
-
-
-
-    }
+        this.setState({
+            newFood: {
+                name: "", 
+                calories: 0,
+                image: "",
+            }
+        });
+    };
 
     handleInput = (e) => {
         console.log("event", e.target.value)
@@ -43,9 +37,8 @@ class AddFood extends Component{
     }
 
     render() {
-        const { name, calories, image } = this.state.newFood
+        const { name, calories, image } = this.state.newFood;
         return(
-            
             <div>
                 <form onSubmit={this.handleClickAddFood}>
                     <label>Image</label>
@@ -57,15 +50,10 @@ class AddFood extends Component{
                     <button type="sumbit" value="Submit" onClick={this.handleClickAddFood}>Submit</button>
 
                 </form>
-            
-
             </div>
-
-
         )
-
     }
-        
+
 }
 
 export default AddFood;

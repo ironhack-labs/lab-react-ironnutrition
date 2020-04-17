@@ -4,8 +4,21 @@ import 'bulma/css/bulma.css';
 
 class FoodBox extends Component{
     
-    render(){
+    state = {
+        quantityToAdd: 0
+    }
 
+    handleClickAddTodaysFoods = (food) => {
+        const {addFoodToTodaysFoods} = this.props;
+        addFoodToTodaysFoods(food, this.state.quantityToAdd)
+    }
+
+    actualizarValue = (e) => {
+        console.log(e.target.value)
+        this.setState({quantityToAdd: e.target.value})
+    }
+
+    render(){
         const { comida } = this.props;
 
         return(
@@ -27,10 +40,11 @@ class FoodBox extends Component{
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number" value={comida.quantity}/>
+                                <input className="input" type="number" onChange={this.actualizarValue}/>
                             </div>
                             <div className="control">
-                                <button className="button is-info">+</button>
+                                {/* Se crea una función anónima porque sino la función 'handleClickAddTodaysFoods' sería llamada al hacer un render del elemento, sin esperar a hacer click. */}
+                                <button className="button is-info" onClick={() => this.handleClickAddTodaysFoods(comida)}>+</button>
                             </div>
                         </div>
                     </div>

@@ -32,7 +32,7 @@ class Form extends Component {
   render() {
     const { name, calories, image } = this.state;
     return (
-      <div>
+      <div className="form-add">
         <div className="field">
           <label className="label">Name</label> 
           <div className="control">

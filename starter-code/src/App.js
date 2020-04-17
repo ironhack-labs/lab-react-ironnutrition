@@ -37,9 +37,19 @@ class App extends Component {
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        <button onClick={this.toggleForm} className="button is-normal is-danger">Add new food</button>
+        
+        { form && <div className="button-home"><button onClick={this.toggleForm} className="button is-normal is-info">Add new food</button>
+        <input className="input input-search" type="text" placeholder="Search"></input></div> }
         { !form && <Form updateFoods={this.updateFoods} toggle={this.toggleForm}/> }
-        { form && <div>{this.printAllFood()}</div> }
+        { form && 
+        <div class="columns">
+          <div class="column">
+            {this.printAllFood()}
+          </div>
+          <div class="column gray-column">
+            Hola
+          </div>
+        </div> }
       </div>
     );
   }

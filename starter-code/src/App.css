@@ -27,6 +27,25 @@
   to { transform: rotate(360deg); }
 }
 
-.is-danger {
+.form-add {
+  margin-left: 25%;
+  width: 50%;
+}
+
+.button-home {
+  text-align: center;
+}
+
+.is-info {
   margin: 0 0 1.5rem 0;
+}
+
+.gray-column {
+  background-color: gainsboro;
+  border-radius: 10px;
+  margin-top: 0.7rem;
+}
+
+.input-search {
+  margin-bottom: 2rem; 
 }

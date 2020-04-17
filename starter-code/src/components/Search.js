@@ -9,6 +9,8 @@ class Search extends Component {
         const { foods, search } = this.props;
         const filteredFoods = foods.filter(food => (food.name.toLowerCase()).indexOf(e.target.value.toLowerCase()) >= 0);
 
+        // console.log(filteredFoods);
+
         search(filteredFoods);
 
         this.setState({

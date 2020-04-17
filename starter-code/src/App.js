@@ -27,7 +27,7 @@ class App extends Component {
     updatedFoods.push(newFood); 
     console.log(newFood);
     this.setState({
-      allfood: updatedFoods,
+      filteredFood: updatedFoods,
     })
   }
 
@@ -47,12 +47,19 @@ class App extends Component {
     })
   }
 
-  caloriesCount = () => {
-
+  showCalories = (fcal, fvalue) => {
+    let sumCal = fcal * fvalue;
+    return sumCal;
   }
 
+  // updateCalories = (sumCal) => {
+  //   this.setState({
+  //     totalCalories: this.state.totalCalories + sumCal,
+  //   })
+  // }
+
   render() {
-    const { form, filteredFood, todaysFood, totalCalories } = this.state;
+    const { form, filteredFood, todaysFood } = this.state;
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -71,10 +78,10 @@ class App extends Component {
             <h2 className='today-food'>Today's foods</h2>
             <ul>
               {todaysFood.map(item => {
-                return <li>{item.fvalue} {item.fname} = {item.fcalories * item.fvalue} calories</li>
+                return <li>{item.fvalue} {item.fname} = {this.showCalories(item.fcalories, item.fvalue)} calories</li>
               })}
             </ul>
-            <p>Total: {totalCalories} cal</p>
+            <p>Total: {this.showCalories} cal</p>
           </div>
         </div> }
       </div>

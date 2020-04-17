@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import FormAddFood from './FormAddFood';
-import Foods from '../foods.json';
 import 'bulma/css/bulma.css';
 
 
 class AddButton extends Component {
   state = {
     isVisible: false,
-    listFood: Foods,
   };
 
   handleVisibility = () => {

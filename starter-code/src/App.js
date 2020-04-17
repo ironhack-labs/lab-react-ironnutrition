@@ -29,16 +29,21 @@ class App extends Component {
 
   render() {
     const { foodFilter } = this.state;
-    const filteredFood = Foods.filter((food) => {
+    const filteredFood = this.state.listFood.filter((food) => {
       return food.name.toLowerCase().indexOf( foodFilter.toLowerCase() ) !== -1
     })
     return (
       <div>
         <SearchBar inputValue={this.state.foodFilter} inputOnChange={this.handleFilter}/>
-        <div className="FoodBox-container">
-          {filteredFood.map((list) => (
-            <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
-            ))}
+        <div>
+          <div className="FoodBox-container">
+            {filteredFood.map((list) => (
+              <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
+              ))}
+          </div>
+          <div>
+
+          </div>
         </div>
         <AddButton addFood = { this.addFoodHandler }/>
       </div>  

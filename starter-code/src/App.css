@@ -27,6 +27,10 @@
   to { transform: rotate(360deg); }
 }
 
+.title {
+  margin-left: 41%;
+}
+
 .form-add {
   margin-left: 25%;
   width: 50%;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FoodBox from './components/FoodBox';
 import Form from './components/Form';
 import foods from './foods.json';
+import Search from './components/Search';
 import 'bulma/css/bulma.css';
 import './App.css';
 
@@ -32,6 +33,10 @@ class App extends Component {
     return allfood.map(item => <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />);
   }
 
+  searchFood = (e) => {
+    
+  }
+
   render() {
     const { form } = this.state;
     return (
@@ -39,7 +44,7 @@ class App extends Component {
         <h1 className="title">IronNutrition</h1>
         
         { form && <div className="button-home"><button onClick={this.toggleForm} className="button is-normal is-info">Add new food</button>
-        <input className="input input-search" type="text" placeholder="Search"></input></div> }
+        <Search searchFood={this.searchFood}/> </div> }
         { !form && <Form updateFoods={this.updateFoods} toggle={this.toggleForm}/> }
         { form && 
         <div class="columns">

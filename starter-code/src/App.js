@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import 'bulma/css/bulma.css'
+import foods from './foods.json'
 import './App.css';
+import FoodBox from './components/FoodBox';
+import AddFood from './components/AddFood';
 
 class App extends Component {
+  state = {
+    appFoods: foods
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {this.state.appFoods.map((item, index) => {
+            return <FoodBox key={index} comida={item}/>
+        })}
+        <AddFood/>
       </div>
     );
   }
 }
 
 export default App;
+

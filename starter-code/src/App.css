@@ -26,3 +26,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+hr {
+  border-top: 1px dotted red;
+}
+.content{
+  display: flex;
+  flex-direction: row;
+}
+.components {
+  width: 70%;
+}
+.cart {
+  background-color: gainsboro;
+  width: 40%;
+  margin: 0;
+  align-items: flex-start;
+}
+

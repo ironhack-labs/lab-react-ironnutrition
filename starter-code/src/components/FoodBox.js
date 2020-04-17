@@ -23,7 +23,7 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input
+                <input readOnly
                   className="input"
                   type="number" 
                   value='1'

@@ -9,7 +9,7 @@ import './App.css';
 class App extends Component {
 
   state = {
-    allfood: foods,
+    allfood: [...foods],
     form: true,
   }
 
@@ -28,30 +28,33 @@ class App extends Component {
     })
   }
 
-  printAllFood = () => {
+  filterFood = (search) => {
     const { allfood } = this.state;
-    return allfood.map(item => <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />);
-  }
+    console.log(search);
 
-  searchFood = (e) => {
-    
+    const filteredFood = allfood.filter();
+    this.setState({
+      allfood: filteredFood,
+    })
   }
 
   render() {
-    const { form } = this.state;
+    const { form, allfood } = this.state;
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
         
         { form && <div className="button-home"><button onClick={this.toggleForm} className="button is-normal is-info">Add new food</button>
-        <Search searchFood={this.searchFood}/> </div> }
+        <Search filterFood={this.filterFood}/> </div> }
         { !form && <Form updateFoods={this.updateFoods} toggle={this.toggleForm}/> }
         { form && 
-        <div class="columns">
-          <div class="column">
-            {this.printAllFood()}
+        <div className="columns">
+          <div className="column">
+            {allfood.map(item => {
+              return <FoodBox key={item.name} name={item.name} calories={item.calories} image={item.image} />
+            })}
           </div>
-          <div class="column gray-column">
+          <div className="column gray-column">
             Hola
           </div>
         </div> }

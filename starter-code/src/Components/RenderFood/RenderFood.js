@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
 class RenderFood extends Component {
+  state = {
+    name: "",
+    calories:""
+  };
+
+  handleClick = (e) => {
+    const {handleToUpdate} = this.props;
+    handleToUpdate(this.state)
+    this.setState({
+      name:  e.target.name,
+      calories:  e.target.calories,
+    });
+  };
+
   render() {
+    var handleToUpdate = this.props.handleToUpdate;
     return (
       <div>
         {this.props.list.map((item, index) => {
@@ -27,7 +42,14 @@ class RenderFood extends Component {
                       <input className="input" type="number" placeholder="1" />
                     </div>
                     <div className="control">
-                      <button className="button is-info">+</button>
+                      <button
+                        className="button is-info"
+                        name={item.name}
+                        calories={item.calories}
+                        onClick={this.handleClick}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -38,7 +38,7 @@ class App extends Component {
       <div className="container">
         <h1 className="title">IronNutrition</h1>
         <button onClick={this.toggleForm} className="button is-normal is-danger">Add new food</button>
-        { !form && <Form updateFoods={this.updateFoods} /> }
+        { !form && <Form updateFoods={this.updateFoods} toggle={this.toggleForm}/> }
         { form && <div>{this.printAllFood()}</div> }
       </div>
     );

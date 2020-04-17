@@ -6,6 +6,8 @@ class Form extends Component {
     name: '',
     calories: '',
     image: '',
+    quantity: '',
+    form: true,
   }
 
   handleInput = (e) => {
@@ -14,16 +16,25 @@ class Form extends Component {
     })
   }
 
+  hideform = () => {
+    this.setState({
+      form: !this.state.form,
+    })
+  }
+
   handleClick = () => {
-    this.props.updateFoods(this.state);
+    const { name, calories, image, quantity } = this.state;
+    const newFood = { name, calories, image, quantity };
+    this.props.updateFoods(newFood);
+    this.props.toggle();
   }
 
   render() {
-    const { name, calories, image} = this.state;
+    const { name, calories, image } = this.state;
     return (
-      <form>
+      <div>
         <div className="field">
-          <label className="label">Name</label>
+          <label className="label">Name</label> 
           <div className="control">
             <input className="input" type="text" name="name" placeholder="Food name" value={name} onChange={this.handleInput} />
           </div>
@@ -40,8 +51,8 @@ class Form extends Component {
             <input className="input" type="text" name="image" placeholder="Image" value={image} onChange={this.handleInput} />
           </div>
         </div>
-        <button onClick={this.handleClick} className="button is-normal is-success">Add Food</button>
-      </form>
+        <button onClick={this.handleClick} className="button is-normal is-success">Add Food</button>  
+      </div> 
     );
   }
 }

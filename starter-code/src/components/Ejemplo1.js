@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+/* import React, { Component } from "react";
 import foods from "../foods.json";
 
 const Food = foods;
@@ -41,14 +41,14 @@ class Ejemplo1 extends Component {
                           <strong>{data.name}</strong> <br />
                           <small>{data.name} cal </small>
                         </p>
-                      </div>
+                      </div
                     </div>
                     <div className="media-right">
                       <div className="field has-addons">
                         <div className="control">
                           <input
                             className="input"
-                            type="number" /*  value="1"  */
+                            type="number" e
                           />
                         </div>
                         <div className="control">
@@ -68,3 +68,4 @@ class Ejemplo1 extends Component {
 }
 
 export default Ejemplo1;
+ */

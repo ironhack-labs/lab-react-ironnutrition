@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import foods from "../foods.json";
-import Ejemplo1 from "./Ejemplo1";
+
 class Search extends Component {
   render() {
 

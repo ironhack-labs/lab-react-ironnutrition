@@ -1,21 +1,17 @@
 import React, { Component } from "react";
-import foods from "../foods.json";
 
 class Add extends Component {
-    render() {
-        return (
-            <div class="column content">
-                <button>ADD</button>
-            </div>
+  render() {
+    return (
+      <div className=" addform control">
+        <button className="button is-info" onClick={this.props.onClick} >+</button>
+        <input type="text" placeholder="Food Name" name="nameAdd" className="input" onChange={this.props.nameChange} value={this.props.nameAdd} />
+        <input type="number" placeholder="Calories" name="calAdd" className="input" onChange={this.props.nameChange} value={this.props.calAdd} />
+        <input type="text" placeholder="image" name="img" className="input" onChange={this.props.nameChange} value={this.props.img} />
 
-        )
-    }
-
-
-
-
-
-
+      </div>
+    );
+  }
 }
 
-export default Add
+export default Add;

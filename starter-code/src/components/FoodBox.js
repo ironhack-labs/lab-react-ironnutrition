@@ -7,7 +7,7 @@ class FoodBox extends Component {
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={this.props.img} />
+              <img alt="" src={this.props.img} />
             </figure>
           </div>
           <div className="media-content">
@@ -21,10 +21,13 @@ class FoodBox extends Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" />
+                <input className="input" name="canti" value={this.props.value} onChange={this.props.cantiChange}  type="number" />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onClick={this.props.onClickElement}   className="button is-info">+</button>
+           
+                    <button name="delete" onClick={this.props.onClick} className="button is-danger">Delete</button>
+                  
               </div>
             </div>
           </div>

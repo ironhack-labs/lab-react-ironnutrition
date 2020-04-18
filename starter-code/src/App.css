@@ -1,8 +1,47 @@
 .App {
   text-align: center;
-  
+}
+.header {
+  text-align: center;
+  background-color: blanchedalmond;
+  font-size: 160%;
+}
+.searchdiv {
+  background-color: coral;
+  color: black;
+  padding: 30px;
+   width: 50%;
+
+}
+.conte{
+  display: flex;
+}
+.foodlistdiv{
+ background-color: coral;
+  color: black;
+  padding: 30px;
+  width: 70%;
+}
+.DivToScroll{  
+    background-color: #F5F5F5;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    color: #3B3C3E;
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    padding: 10px 7px 5px;
 }
 
+.DivWithScroll{
+    height: 100vh;
+    overflow:scroll;
+    overflow-x:hidden;
+}
+.searchdiv span {
+  font-size: 120%;
+  font-weight: bold;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -22,16 +61,32 @@
 .App-intro {
   font-size: large;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
-  
-
 }
-.column{
-    width: 40%;
+.column {
+  width: 40%;
+}
+
+.addform {
+  border: rgba(146, 146, 146, 0.753) solid 1px;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3%;
+  background-color: rgba(87, 86, 86, 0.842);
+  width: 70%;
+}
+.addform input {
+  width: 90%;
+
+  margin: 20px;
 }
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

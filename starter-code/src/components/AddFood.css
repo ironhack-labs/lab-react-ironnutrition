@@ -1,0 +1,19 @@
+.AddFood{
+  margin-top: 50px;
+}
+
+.AddForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  margin: 30px;
+}
+
+.AddformInput{
+  margin: 10px 0px;
+}
+
+.AddformInput label{
+  margin-right: 10px;
+}

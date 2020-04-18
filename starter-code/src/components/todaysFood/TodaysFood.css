@@ -1,0 +1,17 @@
+.todaysFood-container {
+  position: relative;
+  width: 40rem;
+  left: 10rem;
+}
+.todaysFood-container h1 {
+  position: absolute;
+  bottom: 10rem;
+  right: 33rem;
+}
+.todaysFood-head {
+  height: 15rem;
+}
+.todaysFood-title {
+  position: absolute;
+  top: -2rem;
+}

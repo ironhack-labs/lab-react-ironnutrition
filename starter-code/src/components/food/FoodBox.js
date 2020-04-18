@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+import TodaysFood from "../todaysFood/TodaysFood.js";
 import "./FoodBox.css";
 
 export default class FoodBox extends Component {
   render() {
-    const { name, calories, img } = this.props;
+    const { name, calories, img, quantity } = this.props;
+
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={img} alt="pppic" />
+              <img src={img} alt="image" />
             </figure>
           </div>
           <div className="media-content">
@@ -21,14 +23,29 @@ export default class FoodBox extends Component {
             </div>
           </div>
           <div className="media-right">
-            <div className="field has-addons">
-              <div className="control">
-                <input className="input" type="number" value="1" />
+            <TodaysFood name={name} quantity={quantity} />
+
+            {/* <div className="field has-addons">
+               <div className="control">
+                <input
+                  className="input"
+                  id="quantity"
+                  type="number"
+                  name="quantity"
+                  value={quantity}
+                  onChange={this.handleQuantity}
+                />
               </div>
+
               <div className="control">
-                <button className="button is-info">+</button>
-              </div>
-            </div>
+                <button
+                  className="button is-info"
+                  onClick={this.handleSubmitQuantity}
+                >
+                  +
+                </button>
+              </div> 
+            </div>*/}
           </div>
         </article>
       </div>

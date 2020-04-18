@@ -16,6 +16,12 @@ export default class AddFood extends Component {
     });
   };
 
+  handleClose = () => {
+    this.setState({
+      formVisible: false,
+    });
+  };
+
   handleInput = (el) => {
     this.setState({
       [el.target.name]: el.target.value,
@@ -24,7 +30,10 @@ export default class AddFood extends Component {
 
   handleSubmit = () => {
     const { name, calories, image } = this.state;
-    this.props.AddAfood({ name, calories, image, quantity: 0 });
+    this.props.AddAfood({ name, calories, image });
+    this.setState({
+      formVisible: false,
+    });
   };
 
   render() {
@@ -43,7 +52,11 @@ export default class AddFood extends Component {
           <div className="addFood-form modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">Add a new Food</p>
-              <button className="delete" aria-label="close"></button>
+              <button
+                className="delete"
+                aria-label="close"
+                onClick={this.handleClose}
+              ></button>
             </header>
             <section class="modal-card-body">
               <div>
@@ -73,6 +86,7 @@ export default class AddFood extends Component {
                   value={image}
                   onChange={this.handleInput}
                   placeholder="Image"
+                  alt="image"
                 ></input>
               </div>
             </section>

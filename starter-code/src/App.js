@@ -38,12 +38,14 @@ class App extends Component {
         <div className="container">
           <SearchBar onChange={this.handleFilter} />
           <AddFood AddAfood={this.handleAddAFood} />
+
           {filter.map((el, index) => (
             <FoodBox
               key={index}
               name={el.name}
               calories={el.calories}
               img={el.image}
+              quantity={el.quantity}
             />
           ))}
         </div>

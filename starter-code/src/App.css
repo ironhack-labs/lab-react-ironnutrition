@@ -122,3 +122,7 @@ ul {
   text-decoration: underline;
   font-size: 2rem;
 }
+
+.menu-count-quantity {
+  margin-right: 1rem;
+}

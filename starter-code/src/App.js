@@ -12,12 +12,11 @@ class App extends Component {
   state = {
     foodFilter: "",
     listFood: Foods,
-    countFood: ""
+    listTodayFood: [],
   }
 
   addFoodHandler = (theFood) => {
-    const newListFood = [...this.state.listFood];
-    newListFood.push(theFood);
+    const newListFood = [...this.state.listFood, theFood]; /* theFood => Is the same as "newListFood.push(theFood)" */
     this.setState({
       listFood: newListFood,
     })
@@ -28,6 +27,19 @@ class App extends Component {
       foodFilter: event.target.value
     })
   }
+
+  handleAddToTodaysFood = (todaysFood) => {
+    console.log(todaysFood.name)
+    const newListTodayFood = [...this.state.listTodayFood, todaysFood]; 
+    this.setState({
+      listTodayFood: newListTodayFood,
+    })
+  }
+
+  calcualteAmountOfCalories = () => {    
+    const total = this.state.listTodayFood.reduce((accumulator, foods) => foods.quantity * foods.calories, 0); 
+    return total;
+}
 
   render() {
     const { foodFilter } = this.state;
@@ -44,12 +56,26 @@ class App extends Component {
         <section className="principal-container">
           <div className="FoodBox-container">
             {filteredFood.map((list) => (
-              <FoodBox image={ list.image } name={ list.name } calories={ list.calories } />
-              ))}
+              <FoodBox
+                image={ list.image }
+                name={ list.name }
+                calories={ list.calories }
+                addFoodToday = { this.handleAddToTodaysFood }/> 
+            ))}
           </div>
 
           <div>
-            <MenuCount /*image={ list.image } name={ list.name } totalCalories={ list.calories } quantity={ list.quantity }*/ />
+            <div className="menu-count-box">
+              <h2>Today's foods</h2>
+            </div>
+            {this.state.listTodayFood.map((list) => (
+              <MenuCount
+                image= { list.image }
+                name= { list.name }
+                calories= { list.calories }
+                quantity= { list.quantity } />
+            ))}
+            <p>Total Calories: { this.calcualteAmountOfCalories() } cal</p>
           </div>
         </section>
 

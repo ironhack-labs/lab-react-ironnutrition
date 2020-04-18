@@ -3,8 +3,20 @@ import 'bulma/css/bulma.css';
 
 
 class FoodBox extends Component {
+  state = {
+    quantity: "",
+  }
+
+  handleInput(event) {
+    let { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
-    let { image, name, calories } = this.props;
+    let { image, name, calories, addFoodToday } = this.props;
+    let { quantity } = this.state;
     return (
       <div className="box">
         <article className="media">
@@ -26,12 +38,16 @@ class FoodBox extends Component {
               <div className="control">
                 <input
                   className="input"
+                  id="quantity"
+                  name="quantity"
                   type="number" 
-                  value="1"
+                  value={ quantity }
+                  onChange={(e) => this.handleInput(e)}
+                  placeholder="0"
                 />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" onClick={ () => addFoodToday({name, calories, image, quantity}) } > + </button>
               </div>
             </div>
           </div>

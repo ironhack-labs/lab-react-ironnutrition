@@ -13,9 +13,9 @@ class App extends Component {
   };
 
   handleAddAFood = (newFood) => {
-    const { food } = this.state;
+    const { foods } = this.state;
     this.setState({
-      food: [...food, newFood],
+      filter: [...foods, newFood],
     });
   };
 
@@ -29,7 +29,7 @@ class App extends Component {
   };
 
   render() {
-    const { foods, filter } = this.state;
+    const { filter } = this.state;
     return (
       <div className="App">
         <header className="App-header">

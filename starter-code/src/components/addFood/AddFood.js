@@ -10,44 +10,21 @@ export default class AddFood extends Component {
     image: "",
   };
 
-  addFood = (el) => {
-    const { foods } = this.state;
-
-    this.setState({
-      foods: [...foods, el],
-    });
-  };
-
   setVisibleForm = () => {
     this.setState({
       formVisible: true,
     });
   };
 
-  handleInput = (e) => {
+  handleInput = (el) => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [el.target.name]: el.target.value,
     });
   };
 
-  handleClick = () => {
-    const { click } = this.props;
-
-    const newFood = {
-      name: this.state.name,
-      calories: this.state.calories,
-      image: this.state.image,
-      quantity: 0,
-    };
-
-    click(newFood);
-
-    this.setState({
-      formVisible: false,
-      name: "",
-      calories: "",
-      image: "",
-    });
+  handleSubmit = () => {
+    const { name, calories, image } = this.state;
+    this.props.AddAfood({ name, calories, image, quantity: 0 });
   };
 
   render() {
@@ -100,7 +77,7 @@ export default class AddFood extends Component {
               </div>
             </section>
             <footer className="modal-card-foot">
-              <button className="button is-success" onClick={this.handleClick}>
+              <button className="button is-success" onClick={this.handleSubmit}>
                 Submit
               </button>
             </footer>

@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     foodFilter: "",
     listFood: Foods,
+    countFood: ""
   }
 
   addFoodHandler = (theFood) => {
@@ -33,6 +34,7 @@ class App extends Component {
     const filteredFood = this.state.listFood.filter((food) => {
       return food.name.toLowerCase().indexOf( foodFilter.toLowerCase() ) !== -1
     })
+    
     return (
       <div >
         <header className="search-bar-container">
@@ -47,7 +49,7 @@ class App extends Component {
           </div>
 
           <div>
-            <MenuCount />
+            <MenuCount /*image={ list.image } name={ list.name } totalCalories={ list.calories } quantity={ list.quantity }*/ />
           </div>
         </section>
 

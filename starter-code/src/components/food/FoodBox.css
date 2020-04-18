@@ -1,0 +1,23 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 28rem;
+  margin: 10px;
+  height: 4rem;
+}
+.media {
+  position: relative;
+}
+.input {
+  width: 3rem;
+  height: 4rem;
+}
+.media-right {
+  position: absolute;
+  left: 22rem;
+}
+.control button {
+  height: 4rem;
+  width: 4rem;
+}

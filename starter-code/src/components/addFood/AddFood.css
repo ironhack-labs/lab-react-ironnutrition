@@ -1,0 +1,15 @@
+.buttonAddFood {
+  position: absolute;
+  bottom: 0rem;
+  height: 5rem;
+  width: 5rem;
+  left: 33rem;
+}
+.addFood-container {
+  position: relative;
+}
+.addFood-form {
+  position: absolute;
+  left: 33rem;
+  margin: 1rem;
+}

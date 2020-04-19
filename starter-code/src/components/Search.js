@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
+import './Search.css';
 
 class Search extends Component {
     state = {
-        search: ''
+        searchValue: ''
     }
 
     handleInput = (e) => {
-        const { foods, search } = this.props;
-        const filteredFoods = foods.filter(food => (food.name.toLowerCase()).indexOf(e.target.value.toLowerCase()) >= 0);
-
-        // console.log(filteredFoods);
-
-        search(filteredFoods);
-
         this.setState({
             [e.target.name]: e.target.value
         });
+
+        this.props.setFilterFoods(e.target.value);
     }
 
     render() {
-        const { search } = this.state;
+        const { searchValue } = this.state;
 
         return (
             <div>
-                <input id="search" type="text" name="search" value={search} onChange={this.handleInput} placeholder='Search'></input>
+                <input className='Search-input' id="searchValue" type="text" name="searchValue" value={searchValue} onChange={this.handleInput} placeholder='Search'></input>
             </div>
         );
     }

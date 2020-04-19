@@ -1,0 +1,22 @@
+.TodaysFood-h2 {
+    font-size: 1.7rem;
+}
+
+.TodaysFood-ul {
+    margin: 20px 40px;
+}
+
+.TodaysFood-li {
+    list-style-type: disc;
+}
+
+.TodaysFood-li-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TodaysFood-delete-button {
+    font-size: 1.3rem;
+    border: none;
+    background-color: transparent;
+}

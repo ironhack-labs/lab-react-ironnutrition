@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './FormAddFood.css';
 
 class FormAddFood extends Component {
     state = {
@@ -44,18 +45,18 @@ class FormAddFood extends Component {
 
         return (
             <div>
-                <button onClick={this.setVisibleForm}>More food!</button>
+                <button className='button is-info FormAddFood-more-food' onClick={this.setVisibleForm}>More food!</button>
                 {
                     formVisible &&
                     <div>
-                        <h1>Insert new food:</h1>
+                        <h2 className='FormAddFood-h2'>Insert new food:</h2>
                         <label htmlFor="name">Name: </label>
-                        <input id="name" type="text" name="name" value={name} onChange={this.handleInput}></input>
+                        <input className='FormAddFood-input' id="name" type="text" name="name" value={name} onChange={this.handleInput}></input>
                         <label htmlFor='calories'>Calories: </label>
-                        <input id='calories' type='number' name='calories' value={calories} onChange={this.handleInput}></input>
+                        <input className='FormAddFood-input' id='calories' type='number' name='calories' value={calories} onChange={this.handleInput}></input>
                         <label htmlFor='image'>URL image: </label>
-                        <input id='image' type='text' name='image' value={image} onChange={this.handleInput}></input>
-                        <button onClick={this.handleClick}>Save food</button>
+                        <input className='FormAddFood-input' id='image' type='text' name='image' value={image} onChange={this.handleInput}></input>
+                        <button className='FormAddFood-save-food button is-info' onClick={this.handleClick}>Save food</button>
                     </div>
                 }
             </div>

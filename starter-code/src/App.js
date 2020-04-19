@@ -10,44 +10,65 @@ import 'bulma/css/bulma.css';
 class App extends Component {
   state = {
     foods: foods,
-    filteredFoods: foods
+    filterFoodsBy: ''
   }
 
   handleAddFood = (newFood) => {
-    const { foods, filteredFoods } = this.state;
+    const { foods } = this.state;
 
     this.setState({
       foods: [...foods, newFood],
-      filteredFoods: [...filteredFoods, newFood]
     });
   }
 
-  handleSearch = (filteredFoods) => {
+  handleSearch = (textToFilter) => {
     this.setState({
-      filteredFoods: filteredFoods
+      filterFoodsBy: textToFilter
     });
-    // console.log(filteredFoods)
+  }
+
+  addFoodToTodayList = (name, quantity) => {
+    this.state.foods.forEach(food => {
+      if(food.name === name) {
+        food.quantity += parseInt(quantity, 10);
+      }
+    });
+
+    this.setState({
+      foods: [...this.state.foods]
+    })
+  }
+
+  deleteFoodFromTodayList = (name) => {
+    this.state.foods.forEach(food => {
+      if(food.name === name) {
+        food.quantity = 0;
+      }
+
+      this.setState({
+        foods: [...this.state.foods]
+      })
+    })
   }
 
   render() {
-    const { foods, filteredFoods } = this.state;
-
-    console.log(filteredFoods);
+    const { foods, filterFoodsBy } = this.state;
+    const filteredFoods = foods.filter(food => (food.name.toLowerCase()).indexOf(filterFoodsBy.toLowerCase()) >= 0);
 
     return (
-      <div className="App">
-        <h1>IronNutrition</h1>
+      <div className='App'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <h1 className='App-h1'>IronNutrition</h1>
         <FormAddFood click={this.handleAddFood}/>
-        <Search foods={foods} search={this.handleSearch}/>
+        <Search setFilterFoods={this.handleSearch}/>
         <div className='columns'>
           <div className='column'>
-            {filteredFoods.map((food, index) => (
-              <FoodBox key={index} food={food}/>
-              // <FoodBox key={index} image={food.image} name={food.name} calories={food.calories} quantity={food.quantity} />
+            {filteredFoods.map((food, index) => ( 
+              <FoodBox key={index} food={food} addFoodToTodayList={this.addFoodToTodayList}/>
             ))}
           </div>
           <div className='column'>
-            <TodaysFood />
+            <TodaysFood foods={foods} deleteFoodFromTodayList={this.deleteFoodFromTodayList}/>
           </div>
         </div>
       </div>

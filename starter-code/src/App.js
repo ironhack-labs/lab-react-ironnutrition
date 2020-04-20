@@ -6,7 +6,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <ShowFood/>
+      <h1>Iron Nutrition</h1>
+       <ShowFood />
       </div>
     );
   }

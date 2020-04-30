@@ -1,28 +1,89 @@
 .App {
-  text-align: center;
+  padding-top: 100px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 20;
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  width: 100vw;
+  height: 50px;
+  padding: 0 50px;
+
+  background-color: rgb(161, 232, 208);
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.nav__title {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.App-intro {
-  font-size: large;
+.nav__input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 30%;
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* list */
+.main {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Today's list */
+.todays-list {
+  width: 30%;
+  height: 80vh;
+  padding: 20px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.152);
+}
+
+.todays-list__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(161, 232, 208);
+}
+
+.todays-list__item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 10px;
+  border:1px solid  rgb(161, 232, 208);
+}
+
+.todays-list__item:nth-child(odd){
+  background-color:  rgb(161, 232, 208);
+}
+
+.button--todays-list {
+  margin-left: 20px;
+}
+
+/* Food list */
+.food-list {
+  width: 60%;
+  height: 80vh;
+  padding: 20px;
+  overflow: scroll;
+}
+/* Add Food */
+
+.form--add-food {
+  position: fixed;
+  top:50px;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+
+  background-color:white;
 }

@@ -31,7 +31,7 @@ class AddFood extends Component {
 
     render() { 
         return (
-            <form onSubmit={this.handleSubmit} >
+            <form className="form--add-food animated fadeInDown" onSubmit={this.handleSubmit} >
                 <FormInput handleChange={this.handleChange} name='name' type='text'  />
                 <FormInput handleChange={this.handleChange} name='calories' type='number'  />
                 <FormInput handleChange={this.handleChange} name='image' type='text'  />

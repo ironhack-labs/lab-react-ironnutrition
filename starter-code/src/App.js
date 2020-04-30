@@ -55,7 +55,7 @@ class App extends Component {
     for (let i = 0; i < newArr.length; i += 1){
       if (newArr[i].name === name){
         newArr[i].calories += calories
-        newArr[i].quantity += quantity
+        newArr[i].quantity += +quantity
         this.setState({
           todaysList: newArr
         })
@@ -82,12 +82,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>IronNutrition</h2>
-        <FormInput handleChange={this.handleSearch} name='search' type='text' />
-        <button onClick={this.handleForm} >{ this.state.showForm ? 'Close form' : "Add food" }</button>
+        <nav class="nav">
+          <h2 class="nav__title">IronNutrition</h2>
+          <div class="nav__input-container">
+            <FormInput handleChange={this.handleSearch} name='search' type='text' />
+            <button class="button nav__btn" onClick={this.handleForm} >{ this.state.showForm ? 'Close form' : "Add food" }</button>
+          </div>
+        </nav>
         {this.state.showForm ? <AddFood newFood={this.newFood} /> : null }
-        <TodaysList removeItem={this.removeItem} info={this.state.todaysList} />
-        {this.state.filteredFoods.map((foods, idx ) => <FoodBox AddToToday = {this.AddToToday} key={idx} foods={foods} /> )};
+        <main className="main">
+          <div className="food-list">
+            {this.state.filteredFoods.map((foods, idx ) => <FoodBox AddToToday = {this.AddToToday} key={idx} foods={foods} /> )};
+          </div>
+          <TodaysList removeItem={this.removeItem} info={this.state.todaysList} />
+        </main>
       </div>
     );
   }

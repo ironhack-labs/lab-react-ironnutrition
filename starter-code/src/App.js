@@ -30,13 +30,7 @@ class App extends Component {
     this.setState({ foods: foodsCopy })
   }
 
-  filterHandler = search => {
-    this.setState({
-      searched: this.state.foods.filter(food =>
-        food.name.toLowerCase().includes(search.toLowerCase())
-      ),
-    })
-  }
+  filterHandler = search => this.setState({ searched: search })
 
   addToday = food => {
     const todayCopy = [...this.state.today]
@@ -66,7 +60,7 @@ class App extends Component {
   render() {
     const { foods, toggle, searched, today } = this.state
 
-    const foodsArr = !searched ? foods : searched
+    // const foodsArr = !searched ? foods : searched
 
     return (
       <div>
@@ -77,9 +71,13 @@ class App extends Component {
         {toggle && <AddForm createHandler={this.createHandler} />}
         <section className="columns">
           <article className="column">
-            {foodsArr.map((food, index) => (
-              <FoodBox {...food} key={index} addToday={this.addToday} />
-            ))}
+            {foods
+              .filter(food =>
+                food.name.toLowerCase().includes(searched.toLowerCase())
+              )
+              .map((food, index) => (
+                <FoodBox {...food} key={index} addToday={this.addToday} />
+              ))}
           </article>
           <Group today={today} deleteToday={this.deleteToday} />
         </section>

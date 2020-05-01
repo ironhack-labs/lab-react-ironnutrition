@@ -22,8 +22,6 @@ class App extends Component {
   toggleHandler = () => this.setState({ toggle: !this.state.toggle })
 
   createHandler = food => {
-    // food.quantity = 0
-
     const { foods } = this.state
 
     const foodsCopy = [...foods]

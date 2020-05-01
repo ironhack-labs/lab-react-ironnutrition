@@ -43,6 +43,7 @@ class Addform extends Component {
                 name="name"
                 value={name}
                 onChange={this.changeHandler}
+                required={true}
               />
             </div>
           </fieldset>
@@ -61,6 +62,7 @@ class Addform extends Component {
                 name="calories"
                 value={calories}
                 onChange={this.changeHandler}
+                required={true}
               />
             </div>
           </fieldset>
@@ -79,6 +81,7 @@ class Addform extends Component {
                 name="image"
                 value={image}
                 onChange={this.changeHandler}
+                required={true}
               />
             </div>
           </fieldset>

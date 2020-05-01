@@ -46,9 +46,7 @@ class Form extends Component {
 
                 <input onChange={this.handleChange} type="text" name="image" placeholder="image" value={this.state.image}></input>
 
-                <input onChange={this.handleChange} type="text" name="calories" placeholder="calories" value={this.state.calories}></input>
-
-                <input onChange={this.handleChange} type="number" name="quantity" placeholder="quantity" value={this.state.quantity}></input>
+                <input onChange={this.handleChange} type="number" name="calories" placeholder="calories" value={this.state.calories}></input>
 
                 <button>Add</button>
             </form>

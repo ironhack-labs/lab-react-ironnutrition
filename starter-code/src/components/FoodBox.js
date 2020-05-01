@@ -6,9 +6,6 @@ class FoodBox extends Component {
     super(props);
     const { image, name, calories, quantity } = this.props;
     this.state = {
-      image,
-      name,
-      calories,
       quantity: 1
     };
 
@@ -17,7 +14,13 @@ class FoodBox extends Component {
   }
 
   todaysFoodHandler() {
-    this.props.todaysFood(this.state);
+    const { image, name, calories, quantity } = this.props;
+
+    this.props.todaysFood({
+      name,
+      calories: +calories,
+      quantity: +this.state.quantity
+    });
 
     this.setState({
       quantity: 1
@@ -26,10 +29,6 @@ class FoodBox extends Component {
 
   handleChange(e) {
     let { name, value } = e.target;
-
-    if (name === "calories" || name === "quantity") {
-      value = +value;
-    }
 
     this.setState({
       [name]: value,

@@ -25,6 +25,8 @@ class App extends Component {
     const { foods } = this.state;
     const newFoods = [...foods];
     newFoods.unshift(food);
+    console.log(food)
+    console.log(newFoods)
     // console.log(this.state)
     this.setState({
       foods: newFoods,
@@ -70,12 +72,22 @@ class App extends Component {
     this.setState({
       formToggle: !this.state.formToggle,
     });
-    console.log(this.state.formToggle);
+    // console.log(this.state.formToggle);
   }
 
   handleFilter(e) {
     let { value } = e.target;
     this.searchHandler(value.toLowerCase());
+  }
+
+  deleteHandler(idx) {
+    const {todaysFoods} = this.state
+    const newFoods = [...todaysFoods]
+    newFoods.splice(idx, 1)
+
+    this.setState({
+      todaysFoods: newFoods
+    })
   }
 
   render() {
@@ -86,24 +98,28 @@ class App extends Component {
         {this.state.formToggle && <Form addHandlerFood={this.addHandlerFood} />}
         <div className="items">
           <div className="foodbox">
-            {this.state.foods.map((food) => (
+            {this.state.foods.map((food, idx) => {
+              return (
               <FoodBox
-                key={food.name}
+                key={idx}
                 name={food.name}
                 calories={food.calories}
                 image={food.image}
                 quantity={food.quantity}
                 todaysFood={this.todaysFood}
               />
-            ))}
+              )
+            })}
+            
           </div>
           <article className="list">
             <h1>Today's food</h1>
-            {this.state.todaysFoods.map((food) => (
-              <div key={food.name}>
+            {this.state.todaysFoods.map((food, idx) => (
+              <div key={idx}>
                 <p>{food.name}</p>
                 <p>{food.calories}</p>
                 <p>{food.quantity}</p>
+                <button onClick={() => this.deleteHandler(idx)}>DELETE ESTA MERDA</button>
               </div>
             ))}
           </article>

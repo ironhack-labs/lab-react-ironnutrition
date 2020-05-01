@@ -7,7 +7,6 @@ class AddFood extends Component {
         this.state = { }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     handleChange(e) {
@@ -26,6 +25,8 @@ class AddFood extends Component {
             calories: this.state.calories || 'not informed',
             image: this.state.image || 'https://media.giphy.com/media/DtXfTSHi6mHFS/giphy-facebook_s.jpg',
         })
+
+        this.props.handleForm();
     }
 
 
@@ -35,7 +36,7 @@ class AddFood extends Component {
                 <FormInput handleChange={this.handleChange} name='name' type='text'  />
                 <FormInput handleChange={this.handleChange} name='calories' type='number'  />
                 <FormInput handleChange={this.handleChange} name='image' type='text'  />
-            <button>Add</button>
+                <button className="button is-success">Add</button>
             </form>
         );
     }

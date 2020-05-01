@@ -29,7 +29,6 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 30%;
   height: 100%;
 }
 
@@ -79,11 +78,64 @@
 /* Add Food */
 
 .form--add-food {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   top:50px;
   left: 0;
   z-index: 10;
   width: 100vw;
+  padding:20px;
 
-  background-color:white;
+  background-color:rgb(242, 242, 242);
 }
+
+.form--add-food .input-container {
+  display:flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.form--add-food .input-container input {
+  width: 80%;
+  height: 100%;
+  margin-left: 10px;
+}
+
+ /* Search bar */
+
+ .nav .input-container {
+   display: flex;
+    align-items: center;
+    height: 100%; 
+    width: auto;
+    margin-right: 20px;
+ }
+
+ .nav .input-container label {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 60%;
+   margin-right: 10px;
+   font-size: 1.3rem;
+   padding: 5px 10px;
+   border-radius: 5px;
+   background-color: gray;
+ }
+
+ #search{
+   width: 0;
+   height: 60%;
+   padding: 0;
+   border: none;
+   overflow: hidden;
+   transition: width 0.3s linear;
+   font-size: 1.3rem;
+ }
+ #search:focus {
+   width: 60%;
+   transition: width 0.3s linear;
+ }

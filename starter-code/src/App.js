@@ -89,10 +89,10 @@ class App extends Component {
             <button class="button nav__btn" onClick={this.handleForm} >{ this.state.showForm ? 'Close form' : "Add food" }</button>
           </div>
         </nav>
-        {this.state.showForm ? <AddFood newFood={this.newFood} /> : null }
+        {this.state.showForm ? <AddFood handleForm={this.handleForm} newFood={this.newFood} /> : null }
         <main className="main">
           <div className="food-list">
-            {this.state.filteredFoods.map((foods, idx ) => <FoodBox AddToToday = {this.AddToToday} key={idx} foods={foods} /> )};
+            {this.state.filteredFoods.map((foods, idx ) => <FoodBox AddToToday={this.AddToToday} key={idx} foods={foods} /> )}
           </div>
           <TodaysList removeItem={this.removeItem} info={this.state.todaysList} />
         </main>

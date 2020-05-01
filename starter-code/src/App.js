@@ -34,12 +34,13 @@ class App extends Component {
 
   newFood(food) {
     this.setState({
-      filteredFoods: [food, ...this.state.filteredFoods]
+      foods: [food, ...this.state.foods],
+      filteredFoods: [food, ...this.state.foods]
     })
   }
 
   handleSearch(e) {
-    let foods = this.state.foods
+    let foods = this.state.foods;
     let regex = new RegExp(e.target.value, 'gi')
     let filteredArr = foods.filter(food => regex.test(food.name))
     this.setState({
@@ -51,7 +52,7 @@ class App extends Component {
   AddToToday(name, quantity, calories){
     let newArr = this.state.todaysList;
     console.log(newArr, name, quantity, calories)
-    // console.log(newArr.includes({name:name}))
+
     for (let i = 0; i < newArr.length; i += 1){
       if (newArr[i].name === name){
         newArr[i].calories += calories

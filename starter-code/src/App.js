@@ -1,68 +1,94 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import 'bulma/css/bulma.css';
-import foods from './foods.json';
-import FoodBox from './FoodBox';
-import AddNewFood from './AddNewFood';
-import SearchBar from './SearchBar';
+import React, { Component } from "react";
+import foods from "./foods.json";
+import "bulma/css/bulma.css";
+import FoodBox from "./components/FoodBox";
+import AddFood from "./components/AddFood";
+import Search from "./components/Search";
+import TodayFood from "./components/TodayFood";
 
 class App extends Component {
-
   state = {
-    foodsList: foods
-  }
+    foodList: foods,
+    filteredList: foods,
+    showForm: false,
+  };
 
-  addNewFood = (newFoodObj) => {
-    const newData = this.state.foodsList;
-    newData.push(newFoodObj)
-    this.setState({foodArr: newData})
-  }
+  addFood = (newFood) => {
+    const foodsCopy = [...this.state.foodList];
+    foodsCopy.unshift(newFood);
+    this.setState({
+      foodList: foodsCopy,
+    });
+  };
 
-  filterData = (str) => {
-    const filteredArr = foods.filter( (oneFood) => {
-      if (oneFood.name.includes(str) ) {
-        return true
-      } else {
-        return false
+  toggleForm = () => {
+    this.setState({
+      showForm: !this.state.showForm,
+    });
+  };
+
+  searchFood = (input) => {
+    const searchedFood = this.state.foodList.filter((oneFood) =>
+      oneFood.name.toLowerCase().includes(input)
+    );
+    this.setState({ filteredList: searchedFood });
+  };
+
+  addToTodaysFood = (name, quantity) => {
+    this.state.foodList.forEach( food => {
+      if (food.name === name) {
+        // quantity > 0 means the food has been selected for TodayFood
+        food.quantity += parseInt(quantity, 10)
       }
     })
-    this.setState({foodsList: filteredArr})
+    this.setState({
+      foodList: [...this.state.foodList]
+    })
+  } 
+
+  deleteFromTodaysFood = (name) => {
+    this.state.foodList.forEach(food => {
+      if (food.name === name) {
+        // quantity = 0 means the food will not show in TodayFood
+        food.quantity = 0;
+      }
+    })
+    this.setState({
+      foodList: [...this.state.foodList]
+    })
   }
-  
+
   render() {
+    // Condition for the food to show in TodayFood
+    const todayFood = foods.filter(food => food.quantity > 0)
+
     return (
       <div className="App">
+        <div className="container">
+          <h1 className="title">IronNutrition</h1>
 
-        {/* newSearch va a SearchBar.js y llama a una propiedad dentro de handleChange. Y filterData va a la funcion filter de App.js */}
-        <SearchBar newSearch={this.filterData}/>
+          <Search searchFood={this.searchFood} />
 
-        <div>
-          <button>Add food</button>
+          <button className="button" onClick={this.toggleForm}>Add Food</button>
+
+          {this.state.showForm ? <AddFood addFood={this.addFood} /> : null}
+
+          <div className="columns">
+            <div className="column">
+              {this.state.filteredList.map((food, index) => (
+                <FoodBox key={index} food={food} addToTodaysFood={this.addToTodaysFood} />
+              ))}
+            </div>
+
+            <div className="column">
+              <TodayFood todayFood={todayFood} deleteFromTodaysFood={this.deleteFromTodaysFood}/>
+            </div>
+          </div>
+
         </div>
-        <div>
-          <button>Search</button>
-        </div>
-
-        <AddNewFood addNew={this.addNewFood} />
-
-        {
-          this.state.foodsList.map( (foodObj) => {
-            return (
-              <FoodBox
-              name = {foodObj.name}
-              calories = {foodObj.calories}
-              image = {foodObj.image}
-              quantity = {foodObj.quantity}
-              />
-            )
-          })
-        }
-
       </div>
     );
   }
 }
 
-export default App
+export default App;

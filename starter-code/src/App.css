@@ -1,28 +1,64 @@
-.App {
-  text-align: center;
+.top-search {
+
+margin: 30px;;
+
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.top-search input,button {
+
+display: inline;
+
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.top-search input {
+
+width: 70%;
+margin-right: 100px;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+.food-container {
+
+display: flex;
+flex-direction: row;
+
+
+
 }
 
-.App-intro {
-  font-size: large;
+.food-list {
+
+margin-left: 30px;
+margin-right: 80px;
+width: 50vw;
+
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.food-list .box {
+
+margin-bottom: 20px;
+
+}
+
+.food-form {
+
+margin: 20px;
+width: 50vw;
+border: solid green;
+
+}
+
+.food-form input {
+
+margin: 10px;
+
+
+}
+
+.fa-trash-alt:hover {
+
+color:red;
+cursor:pointer
+
 }

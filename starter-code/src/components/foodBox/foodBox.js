@@ -23,7 +23,7 @@ const FoodBox = ({name, calories, image, quantity}) => {
           <input
             className="input"
             type="number" 
-            value="1"
+            value={quantity}
           />
         </div>
         <div className="control">

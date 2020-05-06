@@ -5,15 +5,26 @@ import FoodBox from './components/foodBox/foodBox'
 import './App.css'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      foods: [...Foods],
+    }
+  }
+
   render() {
     return (
       <div className="columns">
         <div className="column is-half">
+          {this.state.foods.map((elm, idx) => (
           <FoodBox
-            name="pizza"
-            calories="420"
-            image="https://i.imgur.com/DupGBz5.jpg"
+            key={idx}
+            name={elm.name}
+            calories={elm.calories}
+            image={elm.image}
+            quantity={elm.quantity}
           />
+          ))}
         </div>
       </div>
     )

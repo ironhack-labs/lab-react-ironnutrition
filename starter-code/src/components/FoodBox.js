@@ -1,41 +1,43 @@
 import React from 'react'
 
-function FoodBox({food}) {
-    return (
-        <div className="box">
-        <article className="media">
-          <div className="media-left">
-            <figure className="image is-64x64">
-              <img src={food.image} alt="food"/>
-            </figure>
+function FoodBox({ food, handleInputChange }) {
+  return (
+    <div className="box">
+      <article className="media">
+        <div className="media-left">
+          <figure className="image is-64x64">
+            <img src={food.image} alt="food" />
+          </figure>
+        </div>
+        <div className="media-content">
+          <div className="content">
+            <p>
+              <strong>{food.name}</strong> <br />
+              <small>{food.calories}</small>
+            </p>
           </div>
-          <div className="media-content">
-            <div className="content">
-              <p>
-                <strong>{food.name}</strong> <br />
-                <small>{food.calories}</small>
-              </p>
-            </div>
-          </div>
-          <div className="media-right">
-            <div className="field has-addons">
-              <div className="control">
+        </div>
+        <div className="media-right">
+          <div className="field has-addons">
+            <div className="control">
+              <form>
                 <input
-                  className="input"
+                  onChange={handleInputChange}
                   type="number"
-                  value={food.quantity}
+                  name={food.name}
+                  min={0}
+                  placeholder={0}
                 />
-              </div>
-              <div className="control">
-                <button className="button is-info">
-                  +
-                </button>
-              </div>
+              </form>
+            </div>
+            <div className="control">
+              <button className="button is-info">+</button>
             </div>
           </div>
-        </article>
-      </div>
-    )
+        </div>
+      </article>
+    </div>
+  )
 }
 
 export default FoodBox

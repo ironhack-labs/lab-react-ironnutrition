@@ -60,7 +60,7 @@ class FoodForm extends Component {
           />
         </label>
         <br />
-        <input type="submit" value="Create food" />
+        <input type="submit" value="Create food" className="button" />
       </form>
     )
   }

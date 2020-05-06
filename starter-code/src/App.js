@@ -3,7 +3,7 @@ import 'bulma/css/bulma.css'
 import Foods from './foods.json'
 import FoodBox from './components/foodBox/foodBox'
 import FoodForm from './components/foodForm/foodForm'
-// import SearchBar from ""
+import SearchBar from "./components/searchBar/searchBar"
 import './App.css'
 
 class App extends Component {
@@ -32,6 +32,9 @@ class App extends Component {
               <a onClick={this.toggleFormDisplay} className="button">
                 Add Food
               </a>
+            </nav>
+            <nav>
+              <SearchBar/>
             </nav>
           </div>
         </div>

@@ -1,0 +1,30 @@
+
+{
+    "React class component": {
+        "scope": "javascript,typescript",
+        "prefix": "component",
+        "body": [
+            "import React,{ Component} from 'react'",
+            "",
+            "class $1 extends Component {",
+            "",
+            "\tconstructor() {",
+            "\t\tsuper()",
+            "\t\tthis.state = {",
+            "\t\t}",
+            "\t}",
+            "",
+            "\trender() {",
+            "\t\treturn (",
+            "\t\t\t<>",
+            "\t\t\t</>",
+            "\t\t)",
+            "\t}",
+            "",
+            "}",
+            "",
+            "export default $1"
+        ],
+        "description": "Create a react class component"
+    }
+}

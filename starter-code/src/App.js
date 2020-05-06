@@ -3,12 +3,14 @@ import 'bulma/css/bulma.css'
 import Foods from './foods.json'
 import FoodBox from './components/foodBox/foodBox'
 import FoodForm from './components/foodForm/foodForm'
+// import SearchBar from ""
 import './App.css'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
+      displayForm: false,
       foods: [...Foods],
     }
   }
@@ -19,13 +21,15 @@ class App extends Component {
     this.setState({ foods: foodsCopy })
   }
 
+  toggleFormDisplay = () => this.setState({displayForm: !this.state.displayForm})
+
   render() {
     return (
       <main>
         <div className="columns">
           <div className="column">
             <nav>
-              <a href="#" className="button">
+              <a onClick={this.toggleFormDisplay} className="button">
                 Add Food
               </a>
             </nav>
@@ -44,7 +48,7 @@ class App extends Component {
             ))}
           </div>
           <div className="column is-half">
-            <FoodForm addFood={this.pushNewFood} />
+          {this.state.displayForm && <FoodForm addFood={this.pushNewFood} />}
           </div>
         </div>
       </main>

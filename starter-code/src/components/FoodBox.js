@@ -6,7 +6,7 @@ function FoodBox({food}) {
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={food.image} />
+              <img src={food.image} alt="food"/>
             </figure>
           </div>
           <div className="media-content">
@@ -22,7 +22,7 @@ function FoodBox({food}) {
               <div className="control">
                 <input
                   className="input"
-                  type="number" 
+                  type="number"
                   value={food.quantity}
                 />
               </div>

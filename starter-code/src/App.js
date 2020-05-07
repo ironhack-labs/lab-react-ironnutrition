@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     foods,
     allfoods: foods,
-    todayFood: [{calories: "400", food: "Pizza ", value: "1"},{calories: "400", food: "Pizza ", value: "1"}],
+    todayFood: [],
   };
   searchFood = e => {
     //const foundFood = [... this.state.foods]
@@ -26,15 +26,23 @@ class App extends Component {
   handleInputChange = ({ target: { name, value } }) => {
     const calories = name.split(' ')[name.split(' ').length - 1];
     const food = name.replace(calories, '');
+    let foodInInput = { food, calories, value };
 
-    let foodInInput = {};
-    foodInInput[food] = { food ,calories, value };
-
-    const allFoods = [...this.state.todayFood,foodInInput];
-
-
-
-     this.setState({ todayFood:allFoods });
+    if (this.state.todayFood.some(e => e.food === food)) {
+      const allFoods = this.state.todayFood.map(elem => {
+        if (elem.food === foodInInput.food) {
+          return {
+            food: foodInInput.food,
+            calories: foodInInput.calories,
+            value: foodInInput.value,
+          };
+        }
+        return elem;
+      });
+      this.setState({ todayFood: allFoods });
+    } else {
+      this.setState({ todayFood: [...this.state.todayFood, foodInInput] });
+    }
   };
 
   handleFormSubmit = e => {

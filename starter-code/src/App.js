@@ -10,6 +10,7 @@ class App extends Component {
   state = {
     allFoods: foods,
     on: false,
+    search: '',
   }
 
   showForm = () => {
@@ -25,14 +26,25 @@ class App extends Component {
     })
   }
 
-  add
+  updateSearch = (e) => {
+    this.setState({ search: e.target.value })
+  }
 
   render() {
+    let filteredFood = this.state.allFoods.filter((food) => {
+      return food.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    })
     return (
       <div className="App">
         {this.state.on && <Form addFood={this.addFood} />}
         <button onClick={this.showForm}>Add Food</button>
-        {this.state.allFoods.map((food) => (
+        <input
+          type="text"
+          value={this.state.search}
+          placeholder="Search"
+          onChange={this.updateSearch.bind(this)}
+        />
+        {filteredFood.map((food) => (
           <FoodBox
             key={food.id}
             name={food.name}

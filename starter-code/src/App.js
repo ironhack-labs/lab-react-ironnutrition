@@ -28,20 +28,16 @@ class App extends Component {
     const food = name.replace(calories, '');
     let foodInInput = { food, calories, value };
 
-    if (this.state.todayFood.some(e => e.food === food)) {
-      const allFoods = this.state.todayFood.map(elem => {
-        if (elem.food === foodInInput.food) {
-          return {
-            food: foodInInput.food,
-            calories: foodInInput.calories,
-            value: foodInInput.value,
-          };
-        }
-        return elem;
-      });
-      this.setState({ todayFood: allFoods });
-    } else {
+    let foodIdx = 'empty';
+    this.state.todayFood.forEach((e, i) => (foodIdx = e.food === food ? i : 'empty'));
+    console.log(foodIdx);
+
+    if (foodIdx === 'empty') {
       this.setState({ todayFood: [...this.state.todayFood, foodInInput] });
+    } else {
+      const allFoods = this.state.todayFood;
+      allFoods[foodIdx] = foodInInput
+      this.setState({ todayFood: allFoods });
     }
   };
 

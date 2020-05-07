@@ -8,7 +8,6 @@
 
 .box article {
   height: 100%;
-
 }
 
 .box input {
@@ -37,4 +36,8 @@
   margin-left: 30px;
   height: 30px;
   font-size: 16px;
+}
+
+main {
+  display: flex;
 }

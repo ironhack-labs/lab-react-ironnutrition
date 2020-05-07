@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function FoodBox({ food, handleInputChange }) {
+function FoodBox({ food, handleInputChange, handleFormSubmit}) {
   return (
     <div className="box">
       <article className="media">
@@ -19,25 +19,21 @@ function FoodBox({ food, handleInputChange }) {
         </div>
         <div className="media-right">
           <div className="field has-addons">
-            <div className="control">
-              <form>
+          <form onSubmit={handleFormSubmit}>
                 <input
                   onChange={handleInputChange}
                   type="number"
-                  name={food.name}
+                  name={`${food.name} ${food.calories}`}
                   min={0}
                   placeholder={0}
                 />
-              </form>
-            </div>
-            <div className="control">
-              <button className="button is-info">+</button>
-            </div>
+                <button className="button is-info">+</button>
+            </form>
           </div>
         </div>
       </article>
     </div>
-  )
+  );
 }
 
-export default FoodBox
+export default FoodBox;

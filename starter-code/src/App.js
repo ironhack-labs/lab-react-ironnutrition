@@ -6,12 +6,13 @@ import "bulma/css/bulma.css";
 import foods from "./foods.json";
 //Components
 import Foodbox from "./components/foodbox";
+import Clock from "./components/clock";
 
 class App extends Component {
   state = {
     foods: foods,
     newFood: {},
-    results: [],
+    results: foods,
     formIsShowed: false,
   };
 
@@ -43,7 +44,7 @@ class App extends Component {
 
   handleSearchInput = (e) => {
     let { name, value } = e.target;
-    const filteredResults = this.state.foods.filter(f=>f.name.includes(value))
+    const filteredResults = this.state.foods.filter(f=>f.name.toLowerCase().includes(value))
     this.setState({ 
       results: filteredResults,
       searchText: value
@@ -54,6 +55,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div>
+          <Clock />
+        </div>
         <div>
           <input
             type="text"

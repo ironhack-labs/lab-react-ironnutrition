@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     foods: foods,
     newFood: {},
+    results: [],
     formIsShowed: false,
   };
 
@@ -32,16 +33,37 @@ class App extends Component {
       name: this.state.name,
       calories: this.state.calories,
       quantity: this.state.quantity,
-      image: this.state.image
-    }
+      image: this.state.image,
+    };
     this.setState({
-      foods: [...this.state.foods, newFood]
-    })
+      foods: [...this.state.foods, newFood],
+    });
   };
+
+
+  handleSearchInput = (e) => {
+    let { name, value } = e.target;
+    const filteredResults = this.state.foods.filter(f=>f.name.includes(value))
+    this.setState({ 
+      results: filteredResults,
+      searchText: value
+    });
+  };
+
 
   render() {
     return (
       <div className="App">
+        <div>
+          <input
+            type="text"
+            className ="input search-bar"
+            name="searchText"
+            placeholder="Search"
+            value={this.state.searchText}
+            onChange = {(e) => this.handleSearchInput(e)}
+          ></input>
+        </div>
         {!this.state.formIsShowed && (
           <button className="button is-primary" onClick={this.displayForm}>
             Add New Food
@@ -76,15 +98,11 @@ class App extends Component {
               name="image"
               value={this.state.image}
               onChange={(e) => this.handleInput(e)}
-            >
-            </input>
-            <input 
-              type="submit" 
-              value="submit">
-            </input>
+            ></input>
+            <input type="submit" value="submit"></input>
           </form>
         )}
-        {this.state.foods.map((element, key) => (
+        {this.state.results.map((element, key) => (
           <Foodbox
             key={key}
             name={element.name}

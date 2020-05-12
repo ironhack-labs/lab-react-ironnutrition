@@ -7,6 +7,8 @@ import foods from "./foods.json";
 //Components
 import Foodbox from "./components/foodbox";
 import Clock from "./components/clock";
+import Search from "./components/search";
+import AddFood from "./components/button";
 
 class App extends Component {
   state = {
@@ -58,21 +60,15 @@ class App extends Component {
         <div>
           <Clock />
         </div>
-        <div>
-          <input
-            type="text"
-            className ="input search-bar"
-            name="searchText"
-            placeholder="Search"
-            value={this.state.searchText}
-            onChange = {(e) => this.handleSearchInput(e)}
-          ></input>
-        </div>
-        {!this.state.formIsShowed && (
-          <button className="button is-primary" onClick={this.displayForm}>
-            Add New Food
-          </button>
-        )}
+        <Search 
+          searchText ={this.state.searchText}
+          handleSearchInput={this.handleSearchInput}
+        />
+        <AddFood 
+          formIsShowed  = {this.state.formIsShowed}
+          displayForm   = {this.displayForm}
+        />
+
         {this.state.formIsShowed && (
           <form className="food-Form" onSubmit={(e) => this.handleSubmit(e)}>
             <label name="name">Name</label>

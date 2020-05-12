@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 
 class Clock extends Component {
@@ -24,7 +25,7 @@ class Clock extends Component {
     }
     render(){
     return (
-        <p>It is {this.state.date.toLocaleTimeString()} on Planet React</p>
+        <p>Today is  {this.state.date.toLocaleDateString("en-US", options)} and time is {this.state.date.toLocaleTimeString()}</p>
     );
   }
 }

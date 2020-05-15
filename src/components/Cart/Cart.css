@@ -1,0 +1,20 @@
+.cart{
+    width: 50%;
+}
+
+.cart-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.list-items {
+    width: 50%;
+    text-align: left;
+}
+
+.item-cart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

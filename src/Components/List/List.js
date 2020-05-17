@@ -16,7 +16,12 @@ class List extends React.Component {
 
     fillListItems() {
         return this.props.foods.map((e, index) => {
-            return <li key={index}>{this.format(e)}</li>;
+            return (
+                <li key={index}>
+                    {this.format(e)}
+                    <button onClick={() => this.props.removeMethod(e)}>Remove</button>
+                </li>
+            );
         });
     }
 

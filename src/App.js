@@ -17,13 +17,13 @@ class App extends React.Component {
     return (
       <div className="App" >
         <Search searchMethod={this.filterFoods} />
-        <Modal addFoodMethod={this.addFood}/>
+        <Modal addFoodMethod={this.addFood} />
         <div className="columns">
           <div className="column">
             {this.fillFoodBox()}
           </div>
           <div className="column">
-            <List foods={this.state.todayFoods}>Today's foods</List>
+            <List foods={this.state.todayFoods} removeMethod={this.removeTodayFood}>Today's foods</List>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ class App extends React.Component {
   addFood = newFood => {
     const newFoods = [...this.state.foods];
     newFoods.push(newFood);
-    this.setState({ foods: newFoods }, () => console.log(this.state.foods));
+    this.setState({ foods: newFoods });
   }
 
   filterFoods = text => {
@@ -46,9 +46,26 @@ class App extends React.Component {
   }
 
   addTodayFood = food => {
-    const newTodayFoods = [...this.state.todayFoods];
-    newTodayFoods.push(food);
-    this.setState({ todayFoods: newTodayFoods }, () => console.log(this.state.todayFoods));
+    const newTodayFoods = this.state.todayFoods.map(e => {
+      if (e.name === food.name) {
+        return {
+          ...e,
+          quantity: parseInt(e.quantity) + parseInt(food.quantity),
+        };
+      }
+      return e;
+    });
+
+    if (!newTodayFoods.some(e => e.name === food.name)) {
+      newTodayFoods.push(food);
+    }
+
+    this.setState({ todayFoods: newTodayFoods });
+  }
+
+  removeTodayFood = food => {
+    const newTodayFoods = this.state.todayFoods.filter(e => e.name !== food.name);
+    this.setState({ todayFoods: newTodayFoods });
   }
 }
 

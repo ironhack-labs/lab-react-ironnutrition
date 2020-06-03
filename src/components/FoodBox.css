@@ -1,0 +1,14 @@
+.media {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px groove black;
+    width: 400px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.media-content {
+    text-align: left;
+    margin: auto;
+}

@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
+import foods from './foods.json';
 import './App.css';
+import 'bulma/css/bulma.css';
+import Food from './Food';
+import AddFood from './AddFood';
 
-function App() {
+class App extends React.Component {
+
+  state={
+    foods:foods
+  }
+
+  addFoodHandler = (newFood) => {
+    
+    this.setState({
+
+      foods: this.state.foods.concat(newFood)
+    })
+  }
+
+
+    let clicked = false;
+
+    buttonClicked = () => {
+      clicked = true;
+      console.log('clicked')
+    }
+
+
+
+  render() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+     {this.state.foods.map((m) => <Food name={m.name} key={m.name} calories={m.calories} image={m.image} quantity={m.quantity}/>)}
+
+    <button onClick ={() => this.buttonClicked()} className="button is-info">Add new Food</button>
+    <AddFood addFoodHandler={this.addFoodHandler}></AddFood>
+
     </div>
   );
 }
-
+}
 export default App;

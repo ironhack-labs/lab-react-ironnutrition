@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import AddFood from './components/AddFood';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+class App extends Component {
+
+  state = {
+    foods:foods
+  }
+
+addFoodHandler =(newFood) => {
+    this.setState({
+      foods: this.state.foods.concat(newFood)
+    })
+  }
+
+render() {
+  return(
+    <div className="FoodBox">
+      <AddFood addFoodHandler={this.addFoodHandler}></AddFood>
+
+    {this.state.foods.map((food) => <FoodBox food={food}></FoodBox>)}
     </div>
   );
 }
+}
+
 
 export default App;

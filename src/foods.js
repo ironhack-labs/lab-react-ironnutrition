@@ -1,3 +1,4 @@
+export const foods =
 [
   {
     "name": "Pizza",

@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { foods } from './foods';
+import FoodBox from './components/FoodBox'
+import _ from 'lodash'
+import AddFood from './components/AddFood'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      foods: foods
+    };
+  }
+  addFoodHandler = (newFood) => {
+    this.setState({
+      foods: this.state.foods.concat(newFood)
+    })
+  }
+
+  render() {
+
+    return (
+      <div className="App">
+        <h1 className="title is-1">Iron Nutrion</h1>
+
+        <div>
+          {this.state.foods.map(food => {
+            console.log(food)
+            return <FoodBox food={food} key={food.name} />
+          })}
+        </div>
+        <div>
+          <AddFood addFoodHandler={this.addFoodHandler} />
+        </div>
+      </div>
+    )
+
+
+  }
 }
 
 export default App;

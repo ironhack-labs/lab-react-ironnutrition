@@ -4,15 +4,21 @@ import { foods } from './foods';
 import FoodBox from './components/FoodBox'
 import _ from 'lodash'
 import AddFood from './components/AddFood'
-
+import SearchBox from './components/SearchBox'
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      foods: foods
+      foods: foods,
+      searchfield: ''
     };
   }
+
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+  }
+
   addFoodHandler = (newFood) => {
     this.setState({
       foods: this.state.foods.concat(newFood)
@@ -21,12 +27,17 @@ class App extends Component {
 
   render() {
 
+    const { foods, searchfield } = this.state;
+    const filteredFoods = foods.filter(food =>{
+      return food.name.toLowerCase().includes(searchfield.toLowerCase());
+    })
+
     return (
       <div className="App">
         <h1 className="title is-1">Iron Nutrion</h1>
-
+        <SearchBox searchChange={this.onSearchChange}/>
         <div>
-          {this.state.foods.map(food => {
+          {filteredFoods.map(food => {
             console.log(food)
             return <FoodBox food={food} key={food.name} />
           })}
@@ -36,8 +47,6 @@ class App extends Component {
         </div>
       </div>
     )
-
-
   }
 }
 

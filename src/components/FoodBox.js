@@ -25,7 +25,7 @@ function FoodBox(props) {
                 name="quantity"
                 type="number"
                 onChange={(e) => props.onChangeHandler(e)}
-                defaultValue="1"
+                defaultValue="0"
               />
             </div>
             <div className="control">

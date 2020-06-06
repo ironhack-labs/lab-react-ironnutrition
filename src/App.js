@@ -48,8 +48,12 @@ class App extends Component {
     // update quantity
     // let foods = this.state.foods;
     // const name = food.name
-    food.quantity++;
-    food.calories = food.calories * food.quantity;
+    food.quantity=this.state.inputQuantity
+
+    if (this.state.inputQuantity) {
+      food.calories = food.calories * food.quantity;
+
+    }
 
     // console.log('food',food)
     // console.log('foods[food]',foods[name])
@@ -60,13 +64,14 @@ class App extends Component {
 
     const found = todaysFoods.some((item) => item.name === food.name);
 
-    if (!found) {
+    if (!found && this.state.inputQuantity) {
       console.log('calories',food.calories)
       todaysFoods.push(food);
     }
 
     this.setState({
-      todaysFoods: todaysFoods,
+      todaysFoods: [...todaysFoods],
+      inputQuantity: ''
     });
   };
 

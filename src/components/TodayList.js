@@ -14,7 +14,7 @@ function TodayList(props) {
           return (
             <li>
               {food.quantity} {food.name} = {food.calories} cal
-            </li>
+            <button onClick={props.clickToDelete(food.name)}>Delete</button></li>
           );
         })}
       </ul>

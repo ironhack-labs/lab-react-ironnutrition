@@ -14,7 +14,7 @@ class App extends Component {
     sortValue: '',
     inputValue: '',
     todaysFoods: [],
-    inputQuantity: '',
+    inputQuantity: 0,
   };
 
   addFoodHandler = (theFood) => {
@@ -45,14 +45,15 @@ class App extends Component {
   };
 
   addFoodToList = (food) => {
+    const foodsCopy = [...this.state.foods];
     // update quantity
     // let foods = this.state.foods;
     // const name = food.name
-    food.quantity=this.state.inputQuantity
+    const foodCopy = { ...food };
 
     if (this.state.inputQuantity) {
-      food.calories = food.calories * food.quantity;
-
+      foodCopy.quantity = parseInt(this.state.inputQuantity);
+      foodCopy.calories = food.calories * foodCopy.quantity;
     }
 
     // console.log('food',food)
@@ -65,15 +66,44 @@ class App extends Component {
     const found = todaysFoods.some((item) => item.name === food.name);
 
     if (!found && this.state.inputQuantity) {
-      console.log('calories',food.calories)
-      todaysFoods.push(food);
+      console.log('calories', food.calories);
+      todaysFoods.push(foodCopy);
+      // food.calories = food.calories / food.quantity;
+    } else if (found && this.state.inputQuantity) {
+      todaysFoods.map((foodINeedToEdit) => {
+        console.log('the food i need to edit and return', foodINeedToEdit);
+        console.log('the food the user is inputting', foodCopy);
+
+        foodINeedToEdit.quantity += parseInt(foodCopy.quantity);
+        foodINeedToEdit.calories += foodCopy.calories;
+        console.log(foodINeedToEdit);
+
+        return foodINeedToEdit;
+      });
     }
 
+
+    let inputs = document.querySelectorAll('.input');
+
+    inputs.forEach((input) => {
+      input.value = 0;
+    });
+
     this.setState({
-      todaysFoods: [...todaysFoods],
-      inputQuantity: ''
+      todaysFoods: todaysFoods,
+      inputQuantity: 0,
+      foods: foodsCopy,
     });
   };
+
+  deleteListItemHandler = (name) => {
+    const listCopy = [...this.state.todaysFoods]
+    const deleteIndex = listCopy.findIndex((listItem)=> listItem.name === name);
+    listCopy.splice(deleteIndex,1);
+    this.setState({
+      todaysFoods : listCopy
+    })
+  }
 
   render() {
     const filteredFoods = this.state.foods.filter((food) => {
@@ -110,7 +140,7 @@ class App extends Component {
             })}
           </div>
           <div>
-            <TodayList todaysFoods={this.state.todaysFoods} />
+            <TodayList todaysFoods={this.state.todaysFoods} clickToDelete={() => this.deleteListItemHandler}/>
           </div>
         </div>
       </div>

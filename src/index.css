@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar{
+  width: 100%;
+  padding: 0 20px;
+}
+
+.columns{
+  padding-top: 40px;
+}
+
+.aside{
+  margin-left: 100px;
+  text-align: left;
+}
+
+.aside h2{
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.aside ul{
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-bottom: 10px;
+}
+
+.aside p{
+  font-size: 0.9em;
+}
+
+.form-buttons button{
+  margin: 10px 20px;
+}

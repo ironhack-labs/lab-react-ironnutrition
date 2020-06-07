@@ -50,3 +50,10 @@ code {
 .form-buttons button{
   margin: 10px 20px;
 }
+
+.trash-btn{
+  width: 10%;
+  background-color: transparent;
+  border: none;
+  color: grey;
+}

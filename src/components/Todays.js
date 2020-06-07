@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 
 function Todays(props) {
 
@@ -7,7 +8,10 @@ function Todays(props) {
     }
 
     return (
-        <li>{props.quantity} {props.name} = {multiply(props.quantity, props.calories)} cal</li>
+        <li>
+        {props.quantity} {props.name} = {multiply(props.quantity, props.calories)} cal
+        <button className="trash-btn" onClick={props.clickToDelete}><FaTrashAlt /></button>
+        </li>
     )
 };
 

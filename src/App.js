@@ -93,6 +93,18 @@ class App extends Component {
     return reduced;
   };
 
+  deleteTodayFoodHandler = (name) => {
+    const todayCopy = [...this.state.today];
+
+    const deleteIndex = todayCopy.findIndex(item => item.name === name);
+
+    todayCopy.splice(deleteIndex, 1);
+
+    this.setState({
+      today: todayCopy
+    })
+  };
+
   render(){
     return (
       <div className="App">
@@ -114,7 +126,7 @@ class App extends Component {
             <h2>Today's foods</h2>
             <ul>
               {this.state.today.map(food => {
-                return <Todays key={food.name} {...food} />
+                return <Todays key={food.name} {...food} clickToDelete={() => this.deleteTodayFoodHandler(food.name)} />
               })}
             </ul>
             <p>Total: {this.totalCalHandler(this.state.today)} cal</p>

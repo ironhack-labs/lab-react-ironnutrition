@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 800px;
+}
+
+.add-food {
+  align-self: center;
 }
 
 .App-logo {

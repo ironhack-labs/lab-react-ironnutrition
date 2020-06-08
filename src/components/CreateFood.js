@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 
 class CreateFood extends Component {
     state= {
-        name:'',
-        pictureUrl:'https://images.unsplash.com/photo-1528328791021-a7d71822ffcd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+        foodName:'',
+        foodImage:'',
         calories: 0,
-        quantity: 0
     }
 
     handleChange = (event) => {
@@ -13,56 +12,54 @@ class CreateFood extends Component {
         this.setState({[name]: value})
     };
 
-
-
-    handleFormSubmit = (event) => {
+    handleSubmit = (event) => {
+        // prevents page reload
         event.preventDefault();
-        // Push the new food
-        this.props.addTheFood(this.state);
+        const { foodName, foodImage, calories } = this.state;
+        // Push the new food to the state from the parent
+        this.props.pushFood({
+            name: foodName,
+            image: foodImage,
+            calories
+        })
         this.setState({
-            name:'',
+            foodName:'',
             calories: 0,
-            quantity: 0
+            image: ''
         });
     };
 
     render() {
-        return (
-          <div>
-            <form
-              action=""
-              onSubmit={this.handleFormSubmit}
-              className="is-hidden"
-              id="addFoodForm"
-            >
-              <label htmlFor="">Name</label>
+      const { foodName, calories, foodImage } = this.state;
+      return (
+          <form onSubmit={this.handleSubmit}>
               <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                onChange={(e) => this.handleChange(e)}
+              className="input"
+              onChange={this.handleChange}
+              name="foodName"
+              type="text"
+              value={foodName}
+              placeholder="tomato"
               />
-              <label htmlFor="">Calories</label>
               <input
-                type="number"
-                name="calories"
-                value={this.state.calories}
-                onChange={(e) => this.handleChange(e)}
+              className="input"
+              onChange={this.handleChange}
+              type="number"
+              name="calories"
+              value={calories}
               />
-              <label htmlFor="">Quantity</label>
               <input
-                type="number"
-                name="quantity"
-                value={this.state.quantity}
-                onChange={(e) => this.handleChange(e)}
+              className="input"
+              onChange={this.handleChange}
+              name="foodImage"
+              type="text"
+              value={foodImage}
+              placeholder="https://i.imgur.com/5ktcSzF.jpg"
               />
-              <button type="submit" className="button is-success">
-                Submit!
-              </button>
-            </form>
-          </div>
-        );
-    }
+              <button className="button">Add</button>
+          </form>
+      );
+  }
 }
 
 export default CreateFood;

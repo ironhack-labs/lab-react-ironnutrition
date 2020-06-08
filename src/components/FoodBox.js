@@ -1,57 +1,54 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import './FoodBox.css';
 
-const Img = styled.img`
-width: 64px;
-height: 100%;
-`;
-const Button = styled.button`
-background-color:#00bfff;
-color:white;
-padding: 10px;
-height: 100%;
-width: 50px;
-font-size: 18px;
-font-weight: light;
-`;
-const Input = styled.input`
-width: 40px;
-border: 0;
-`;
+class FoodBox extends Component {
+  state = {
+    quantity: 1
+  }
 
-function FoodBox(props) {
-    return (
-      <div className="box">
-        <article className="media">
-          <div className="media-left">
-            <Img src={props.pictureUrl} />
-          </div>{' '}
-          <div className="media-content">
-            <div className="content">
-              <p>
-                <strong> {props.name} </strong> <br />
-                <small> {props.calories} cal</small>{' '}
-              </p>{' '}
-            </div>{' '}
-          </div>{' '}
-          <div className="media-right">
-            <Input
-              className="input"
-              type="number"
-              defaultValue="1"
-              onChange={props.onChangeHandler}
-            />
-            <Button
-              className="addButton is-info"
-              // onclick={props.clickToAdd}
-            >
-              +
-            </Button>{' '}
-          </div>{' '}
-        </article>{' '}
-      </div>
-    );
+  handleInputChange = (event) => {
+    const {value} = event.target;
+    this.setState({
+      quantity: Number(value)
+    })
+  }
+  render() {
+    const { name, calories, image } = this.props.food;
+    return(
+        <div className="box">
+            <article className="media">
+                <div className="media-left">
+                    <figure className="image is-64x64">
+                    <img src={image} alt="" />
+                    </figure>
+                </div>
+                <div className="media-content">
+                    <div className="content">
+                    <p>
+                        <strong>{name}</strong> <br />
+                        <small>{calories} cal</small>
+                    </p>
+                    </div>
+                </div>
+                <div className="media-right">
+                    <div className="field has-addons">
+                    <div className="control">
+                        <input
+                            onChange={this.handleInputChange}
+                            className="input"
+                            type="number"
+                            value={this.state.quantity}
+                        />
+                    </div>
+                    <div className="control">
+                    </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    )
+}
 }
 
 export default FoodBox;

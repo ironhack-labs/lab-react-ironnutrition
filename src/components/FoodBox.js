@@ -13,6 +13,13 @@ class FoodBox extends Component {
       quantity: Number(value)
     })
   }
+
+  handleAddTodaysFood = () => {
+    const todaysFoodObject = {...this.props.food, quantity: this.state.quantity};
+    this.props.addFood(todaysFoodObject);
+    console.log(todaysFoodObject)
+  }
+
   render() {
     const { name, calories, image } = this.props.food;
     return(
@@ -42,6 +49,10 @@ class FoodBox extends Component {
                         />
                     </div>
                     <div className="control">
+                        <button onClick={this.handleAddTodaysFood}
+                            className="button is-info">
+                            +
+                        </button>
                     </div>
                     </div>
                 </div>

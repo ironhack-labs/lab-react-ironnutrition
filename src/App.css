@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+h1{
+  font-size: 4em !important;
+  font-weight: 800 !important;
+  margin-left: 40vw !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.form input,
+.form button {
+  height: 50px;
+  font-size: 2em;
+  outline: none;
+}
+
+.form button {
+  background-color: blue;
   color: white;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.add-form {
+  width: 50%;
+  background-color: blue;
+  color: white;
+  font-size: 2em;
+  border: none;
+  margin-left: 25vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-form:hover {
+  background-color: rgb(73, 73, 255);
+}
+
+.box {
+  width: 100%;
+}
+
+.search-input {
+  height: 40px;
+  width: 50%;
+  background-color: white;
+  border: 2px solid blue;
+  color: black;
+  outline: none;
+  margin-left: 25vw;
+}
+
+.side-by-side {
+  display: flex;
+  justify-content: center;
+}
+
+.todays {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.totalCals{
+  background-color: red;
+  color: white;
+  width: 100%;
 }

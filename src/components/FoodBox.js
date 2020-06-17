@@ -3,18 +3,25 @@ import React, { Component } from 'react';
 class FoodBox extends Component {
 
     state = {
-        count: 0
+        count: 0,
+        list: []
     }
 
-    quantityClick = () => {
+    quantityClick = (event) => {
+        let quantity = event.target.value;
         this.setState({
-          quantity: this.state.allFood.quantity + 1,
+          count: quantity
         })
       }
+      addClick = (event) => {
+        this.setState({
+
+      })
+    }
       render() {
           return(
-            <div className="box">
-            <article className="media">
+            <div>
+            <article class="column" className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
                   <img src={this.props.image} alt=""/>
@@ -31,22 +38,18 @@ class FoodBox extends Component {
               <div className="media-right">
                 <div className="field has-addons">
                   <div className="control">
-                    <input className="input" type="number" value={this.props.quantity} />
+                    <input className="input" type="number" onChange={this.quantityClick} value={this.state.count} />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
+                    <button onClick = {() => {
+                        this.props.clickList(this.props.food)}} >
                       +
                     </button>
                   </div>
                 </div>
               </div>
             </article>
-            <div>
-            <h2>Today's food</h2>
-            <p>{this.props.quantity} {this.props.name} - {this.props.calories} cal</p>
-            <p>Total calories: cal</p>
             </div>
-          </div>
           )
       }
     }

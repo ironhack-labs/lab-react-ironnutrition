@@ -4,7 +4,7 @@ import 'bulma/css/bulma.css'
 import foods from './foods.json'
 import FoodBox from './components/FoodBox';
 import AddItem from './components/AddItem'
-// import Quantity from './components/CreateAddButton'
+import List from './components/List'
 
 class App extends Component {
   state = {
@@ -12,6 +12,7 @@ class App extends Component {
     filteredFood: foods,
     buttonText: 'Add new',
     showSection: false,
+    list: []
   }
   handleAddItem = (e) => {
     e.preventDefault()  // preventing event bubbling
@@ -39,10 +40,18 @@ class App extends Component {
       filteredFood: newItems,
     })
 }
+handleList = (food) => {
+  let clonedListFoods = [...this.state.list];
+    clonedListFoods.push(food);
+
+  this.setState({
+    list: clonedListFoods,
+  });
+}
 
   render() {
     return (
-      <div className="App">
+      <div className="column">
       {this.state.showSection && <div> 
       <AddItem 
         onAddItem={this.handleAddItem}
@@ -52,8 +61,11 @@ class App extends Component {
       <button onClick={this.handleClick}>{this.state.buttonText}</button>
       <input type="text" onChange={this.handleFilter}></input>
         {this.state.filteredFood.map((food, index) => {
-        return <FoodBox key={index} name={food.name} calories={food.calories} image={food.image} quantity={food.quantity} /> 
+        return <FoodBox key={index} name={food.name} calories={food.calories} image={food.image} quantity={food.quantity} clickList={this.handleList} /> 
       })}
+      <div className="column">
+        <List list={this.state.list} />
+      </div>
       </div>
     );
   }

@@ -15,7 +15,7 @@ class App extends React.Component {
     foods: foods,
     showSection: false,
     filteredFoods: foods,
-    foodList:[]
+    foodList:{}
   }
 
   handleAddForm = () => {
@@ -56,17 +56,28 @@ class App extends React.Component {
 
 
   handleAddToList = (food, quantity) => {
-    let newList = [...this.state.foodList]
-      this.state.foodList.push(food)
-      this.setState({
-        foodList: newList
-      })
+    let copiedFoodList = JSON.parse(JSON.stringify(this.state.foodList))
+
+    if(food.name in this.state.foodList){
+      copiedFoodList[food.name].quantity = quantity
+      copiedFoodList[food.name].totalCalories = food.calories * quantity
+    } else {
+      copiedFoodList[food.name] = {}
+      copiedFoodList[food.name].quantity = quantity
+      copiedFoodList[food.name].totalCalories = food.calories * quantity
+
+    }
+    this.setState({
+      foodList: copiedFoodList
+    })
+  }
+    
       
 
 
     
 
-  }
+  
 
 
   render() {
@@ -105,9 +116,15 @@ class App extends React.Component {
         </div>
 
             <div class="column">
-              <List 
+            
+              
+                 <List 
                 foodList={this.state.foodList}
               />
+
+              
+            
+              
             </div>
         
 

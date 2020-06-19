@@ -40,7 +40,7 @@ class AddFood extends Component {
             name: "",
             calories: "",
             image: "",
-        })
+        });
     }
 
     
@@ -50,15 +50,15 @@ class AddFood extends Component {
             <div>
                 <form onSubmit={this.submitForm}>
                     <input 
-                        type="text" onChange={this.setName}
+                        type="text" onChange={this.setName} className="input"
                         value={this.state.name} placeholder="Name of food" name="name" 
                     />
                     <input 
-                        type="text" onChange={this.setImage}
+                        type="text" onChange={this.setImage} className="input"
                         value={this.state.image} placeholder="Image" name="image" 
                     />
                     <input 
-                        type="number" onChange={this.setCalories}
+                        type="number" onChange={this.setCalories} className="input"
                         value={this.state.calories} placeholder="Calories" name="calories" 
                     />
                     <button className="button is-info" type="submit">Add Food</button>

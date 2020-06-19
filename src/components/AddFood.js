@@ -61,7 +61,7 @@ class AddFood extends Component {
                         type="number" onChange={this.setCalories}
                         value={this.state.calories} placeholder="Calories" name="calories" 
                     />
-                    <button type="submit">Add Food</button>
+                    <button className="button is-info" type="submit">Add Food</button>
 
                 </form>
             

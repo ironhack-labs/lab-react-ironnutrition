@@ -11,12 +11,15 @@ class App extends React.Component {
       super(props);
       this.addFood = this.addFood.bind(this);
       this.showForm = this.showForm.bind(this);
+      this.searchFood = this.searchFood.bind(this);
+
 
     }
 
   state = {
     foods: foods,
-    formShowing: false
+    formShowing: false,
+    filteredFoods: foods
   }
 
   addFood(food){
@@ -24,7 +27,7 @@ class App extends React.Component {
     foodsCopy.unshift(food);
     this.setState({
       foods: foodsCopy,
-      formShowing: false
+      formShowing: false,
     });
   }
 
@@ -34,18 +37,34 @@ class App extends React.Component {
     });
   }
 
+  searchFood(e){
+    let searchTerm = e.target.value;
+    let newFilterFoods = this.state.foods.filter((food)=> food.name.includes(searchTerm))
+    this.setState({
+      filteredFoods: newFilterFoods 
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <h1 class="title">IronNutrition</h1>
+          <div>
+            <input
+              type="text"
+              class="input search-bar"
+              placeholder="Search"
+              onChange={this.searchFood}
+            />
+          </div>
 
           <div className="columns">
             <div className="column FoodBox">
-            <button onClick={this.showForm}>Add your Food</button>
+            <button className="button is-info" onClick={this.showForm}>Add your Food</button>
             {this.state.formShowing && <AddFood addFood={this.addFood}/>}
               {
-                this.state.foods.map((food)=>
+                this.state.filteredFoods.map((food)=>
                 <FoodBox name={food.name} calories={food.calories} image={food.image}/>
                 )
               }

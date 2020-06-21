@@ -15,7 +15,9 @@ class App extends React.Component {
       this.showForm = this.showForm.bind(this);
       this.searchFood = this.searchFood.bind(this);
       this.todaysFoodHandler = this.todaysFoodHandler.bind(this);
-      // this.todaysTotalCals = this.todaysTotalCals.bind(this);
+      this.calculateCalories = this.calculateCalories.bind(this);
+      this.deleteFoodHandler = this.deleteFoodHandler.bind(this);
+
     }
 
   state = {
@@ -57,24 +59,38 @@ class App extends React.Component {
   }
 
   todaysFoodHandler(name, quantity, calories){
-    debugger
     let newTodaysFood = [...this.state.todaysFood];
     let dishesCalories = quantity * calories;
     let newFood = {name: name, quantity: quantity, calories: dishesCalories};
     let found = false;
     for (let i=0; i<newTodaysFood.length; i++){
       if (newTodaysFood[i].name === newFood.name){
-        newTodaysFood[i].quantity += quantity;
+        newTodaysFood[i].quantity += Number(quantity);
         newTodaysFood[i].calories += calories;
         found = true;
-        break;
       }
     }
     if (!found){
       newTodaysFood.unshift(newFood);
     }
-    let allCalories = newTodaysFood.map(food=> food.calories);
-    let totalCals = allCalories.reduce(( accumulator, currentValue ) => accumulator + currentValue,0);
+
+    let totalCals = this.calculateCalories(newTodaysFood);
+
+    this.setState({
+      todaysFood: newTodaysFood,
+      totalCalories: totalCals
+    });
+  }
+
+  calculateCalories(foodArray){
+    let allCalories = foodArray.map(food=> food.calories);
+    return allCalories.reduce(( accumulator, currentValue ) => accumulator + currentValue,0);
+  }
+
+  deleteFoodHandler(indexN) {
+    let newTodaysFood = [...this.state.todaysFood];
+    newTodaysFood.splice(indexN, 1);
+    let totalCals = this.calculateCalories(newTodaysFood);
     this.setState({
       todaysFood: newTodaysFood,
       totalCalories: totalCals
@@ -112,7 +128,7 @@ class App extends React.Component {
               <ul>
               {
                 this.state.todaysFood.map((food)=>
-                <TodaysFood name={food.name} quantity={food.quantity} calories={food.calories} />
+                <TodaysFood name={food.name} quantity={food.quantity} calories={food.calories} deleteItem={this.deleteFoodHandler}/>
                 
                 )
               }

@@ -57,10 +57,22 @@ class App extends React.Component {
   }
 
   todaysFoodHandler(name, quantity, calories){
+    debugger
     let newTodaysFood = [...this.state.todaysFood];
     let dishesCalories = quantity * calories;
     let newFood = {name: name, quantity: quantity, calories: dishesCalories};
-    newTodaysFood.unshift(newFood);
+    let found = false;
+    for (let i=0; i<newTodaysFood.length; i++){
+      if (newTodaysFood[i].name === newFood.name){
+        newTodaysFood[i].quantity += quantity;
+        newTodaysFood[i].calories += calories;
+        found = true;
+        break;
+      }
+    }
+    if (!found){
+      newTodaysFood.unshift(newFood);
+    }
     let allCalories = newTodaysFood.map(food=> food.calories);
     let totalCals = allCalories.reduce(( accumulator, currentValue ) => accumulator + currentValue,0);
     this.setState({

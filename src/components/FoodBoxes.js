@@ -5,6 +5,7 @@ import 'bulma/css/bulma.css';
 import foods from '../foods.json';
 import AddFood from './AddFood';
 import SearchBar from './SearchBar';
+import TodaysFoods from './TodaysFoods';
 
 class FoodBoxes extends Component {
   constructor(props) {
@@ -67,25 +68,8 @@ class FoodBoxes extends Component {
           ))}
           <AddFood addFood={this.addFoodHandler} />
         </div>
-        <div className="column content">
-          <h2 className="subtitle">Today's foods</h2>
-          {this.state.todaysFoods.map((food, index) => (
-            <ul key={index.toString()}>
-              <li>
-                {food.quantity} {food.name} = {food.calories}
-              </li>
-            </ul>
-          ))}
+        <TodaysFoods todaysFoods={this.state.todaysFoods} />
 
-          <strong>
-            Total:
-            {this.state.todaysFoods.reduce(
-              (sum, food) => sum + food.calories,
-              0
-            )}{' '}
-            cal
-          </strong>
-        </div>
       </div>
     );
   }

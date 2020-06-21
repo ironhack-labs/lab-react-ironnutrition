@@ -39,15 +39,9 @@ class App extends React.Component {
   }
 
   showForm(){
-    // if (this.formShowing){
-    //   this.setState({
-    //     formShowing: false
-    //   })
-    // } else {
       this.setState({
         formShowing: true
       });
-    // }
   }
 
   searchFood(e){
@@ -65,7 +59,8 @@ class App extends React.Component {
     let found = false;
     for (let i=0; i<newTodaysFood.length; i++){
       if (newTodaysFood[i].name === newFood.name){
-        newTodaysFood[i].quantity += Number(quantity);
+        let previousQuantity = Number(newTodaysFood[i].quantity);
+        newTodaysFood[i].quantity = previousQuantity + Number(quantity);
         newTodaysFood[i].calories += calories;
         found = true;
       }

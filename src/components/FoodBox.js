@@ -6,7 +6,7 @@ export default class FoodBox extends Component {
     constructor(props){
         super(props);
         this.setQuantity = this.setQuantity.bind(this);
-
+        this.resetQuantity = this.resetQuantity.bind(this);
 
     }
 
@@ -18,6 +18,12 @@ export default class FoodBox extends Component {
         this.setState({
             quantity: e.target.value
         });
+    }
+
+    resetQuantity(){
+        this.setState({
+            quantity: 1
+        })
     }
 
     render() {
@@ -43,7 +49,7 @@ export default class FoodBox extends Component {
                                 <input className="input" type="number" min="1" value={this.state.quantity} onChange={this.setQuantity}/>
                             </div>
                             <div className="control">
-                                <button className="button is-info" onClick={()=>this.props.todaysFoodHandler(this.props.name, this.state.quantity, this.props.calories)}> + </button>
+                                <button className="button is-info" onClick={()=> { this.props.todaysFoodHandler(this.props.name, this.state.quantity, this.props.calories); this.resetQuantity()}}> + </button>
                             </div>
                         </div>
                     </div>

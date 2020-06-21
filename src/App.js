@@ -54,9 +54,17 @@ class App extends Component {
     let todaysNameList = [...this.state.todaysFoodNames]
     let foodQuantity = [...this.state.todaysFoodQuantity]
     let todaysCalories = this.state.todaysFoodCalories
-    foodQuantity.push(number)
-    todaysCalories += calories
-    todaysNameList.push(name)
+    if(todaysNameList.includes(name)){
+      let index = todaysNameList.indexOf(name)
+      foodQuantity[index] += number
+
+    }else{
+      foodQuantity.push(number)
+      todaysNameList.push(name)
+    }
+    
+    todaysCalories += calories*number
+    
     this.setState({
       todaysFoodNames : todaysNameList,
       todaysFoodCalories : todaysCalories,

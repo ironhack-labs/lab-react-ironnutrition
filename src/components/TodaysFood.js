@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class TodaysFood extends Component {
     
     render() {
-
         console.log('hohohohhoho',this.props)
         return (
             <div>

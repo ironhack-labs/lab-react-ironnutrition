@@ -7,6 +7,19 @@
   pointer-events: none;
 }
 
+.container {
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+.search-bar {
+  margin-bottom: 30px;
+}
+
+ul {
+  margin-bottom: 10px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

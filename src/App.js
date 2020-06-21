@@ -5,7 +5,7 @@ import FoodList from "./components/FoodList";
 import SearchBar from './components/SearchBar'
 import foods from './foods.json'
 import AddFood from './components/AddFood'
-import TodaysFood from './TodaysFood';
+import TodaysFood from './components/TodaysFood';
 
 class App extends Component {
   constructor(props){
@@ -20,6 +20,7 @@ class App extends Component {
       filteredList : foods,
       addFoodBox : false,
       todaysFoodNames : [],
+      todaysFoodQuantity : [],
       todaysFoodCalories : 0
   }
   }
@@ -49,36 +50,36 @@ class App extends Component {
       addFoodBox: false
     })
   }
-  addTodaysFood = (name, calories) =>{
+  addTodaysFood = (name, calories, number) =>{
     let todaysNameList = [...this.state.todaysFoodNames]
+    let foodQuantity = [...this.state.todaysFoodQuantity]
     let todaysCalories = this.state.todaysFoodCalories
+    foodQuantity.push(number)
     todaysCalories += calories
     todaysNameList.push(name)
     this.setState({
       todaysFoodNames : todaysNameList,
-      todaysFoodCalories : todaysCalories
+      todaysFoodCalories : todaysCalories,
+      todaysFoodQuantity : foodQuantity
     })
     
     console.log("SOOOOOOOOOOO",this.state.todaysFoodCalories, this.state.todaysFoodNames);
   }
   
 
-
   render() {
-    console.log("Lallaa",this.state);
+    console.log("App State",this.state);
     return (
       <div className="App">
-        
         <SearchBar  
         search = {this.search}/>
         {this.state.addFoodBox ?  <AddFood addFood = {this.addFood}/> : <button onClick ={()=>this.addFoodForm()}>Add Food</button>}
-        <div>
+
+        <div className = "main-content">
           <FoodList 
           foodList ={this.state.filteredList}
           addTodaysFood = {this.addTodaysFood}/>
-           
-          {this.state.todaysFoodCalories > 0? <TodaysFood totalCal = {this.state.todaysFoodCalories} foodNames = {this.state.todaysFoodNames} /> : <h1>Add Food</h1>}
-          
+          {this.state.todaysFoodCalories > 0? <TodaysFood totalCal = {this.state.todaysFoodCalories} foodNames = {this.state.todaysFoodNames} quantity = {this.state.todaysFoodQuantity}/> : <h1>Add Food</h1>}
         </div>
       </div>
     );

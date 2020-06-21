@@ -5,8 +5,8 @@ class FoodList extends Component {
         super(props)
         this.addToList = this.addToList.bind(this);
     }
-    addToList = (name , calories) =>{
-        this.props.addTodaysFood(name, calories)
+    addToList = (name , calories, number) =>{
+        this.props.addTodaysFood(name, calories, number)
       }
     render() {
         return ( 

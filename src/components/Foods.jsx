@@ -39,6 +39,14 @@ class Foods extends Component {
         })
     }
 
+    deleteTodaysFoodHandler = index => {
+        let todaysFoodsCopy = [...this.state.todaysFoods];
+        todaysFoodsCopy.splice(index, 1);
+        this.setState({
+            todaysFoods: todaysFoodsCopy
+        })
+    }
+
     render() {
         let totalCal = 0;
         this.state.todaysFoods.map(item => totalCal += item.quantity * item.calories);
@@ -67,8 +75,11 @@ class Foods extends Component {
                         <h2 className="title">Today's foods</h2>
                         <ul>
                             {
-                                this.state.todaysFoods.map(todayItem => 
-                                    <li>{todayItem.quantity} {todayItem.name} = {todayItem.quantity * todayItem.calories} cal</li>
+                                this.state.todaysFoods.map((todayItem, index) => 
+                                    <li>
+                                        {todayItem.quantity} {todayItem.name} = {todayItem.quantity * todayItem.calories} cal
+                                        <button onClick = {() => this.deleteTodaysFoodHandler(index)}>-</button>
+                                    </li>
                                 )
                             }
                         </ul>

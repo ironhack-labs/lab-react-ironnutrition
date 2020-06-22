@@ -28,9 +28,12 @@ class Foods extends Component {
         })
     }
 
-    addTodaysFoodsHandler = food => {
+    addTodaysFoodsHandler = (food, quantity) => {
         let addTodaysFoods = this.state.todaysFoods;
-        addTodaysFoods.push({food});
+        let todaysFoodsName = addTodaysFoods.map(food => food.name);
+        if (quantity !== 0 && !todaysFoodsName.includes(food.name)){
+            addTodaysFoods.push({name: food.name, calories: food.calories, quantity: quantity});
+        }
         this.setState({
             todaysFoods: addTodaysFoods
         })
@@ -38,7 +41,7 @@ class Foods extends Component {
 
     render() {
         let totalCal = 0;
-        this.state.todaysFoods.map(item => totalCal += item.food.calories);
+        this.state.todaysFoods.map(item => totalCal += item.quantity * item.calories);
 
         return (
             <div className="container">
@@ -49,11 +52,12 @@ class Foods extends Component {
                     <div className="column">
                         {
                         this.state.filterFood.map((food, index)=>
-                            <Foodbox
+                           <Foodbox
                             key = {index}
                             name = {food.name}
                             calories = {food.calories}
                             image = {food.image}
+                            quantity = {food.quantity}
                             addTodaysFoods = {this.addTodaysFoodsHandler}
                             />
                         )
@@ -63,9 +67,9 @@ class Foods extends Component {
                         <h2 className="title">Today's foods</h2>
                         <ul>
                             {
-                            this.state.todaysFoods.map(todayItem => 
-                                <li>{todayItem.food.name} = {todayItem.food.calories} cal</li>
-                            )
+                                this.state.todaysFoods.map(todayItem => 
+                                    <li>{todayItem.quantity} {todayItem.name} = {todayItem.quantity * todayItem.calories} cal</li>
+                                )
                             }
                         </ul>
                         <p>Total: <span>{totalCal}</span> cal</p>

@@ -28,7 +28,7 @@ class AddFood extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "overlay">
             {
             <form onSubmit ={(e)=>this.handleFormSubmit(e)}>
                 <div className="control">

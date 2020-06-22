@@ -69,12 +69,20 @@ class App extends Component{
 	}
 
 	addFoodTolist(theName, theCalories, theQuantity){
-		debugger
 		const foodItem = {name: theName, calories: theCalories, quantity: theQuantity}
-		const newFoodList = [foodItem, ...this.state.foodList];
-		
+        const newFoodList = [foodItem, ...this.state.foodList];
+        
+        let totalCalories = 0;
+
+        newFoodList.forEach((food)=>{
+            debugger
+            totalCalories += food.calories;
+            return totalCalories
+        })
+
 		this.setState({
-			foodList: newFoodList
+            foodList: newFoodList,
+            total: totalCalories
 		})
 
 	}

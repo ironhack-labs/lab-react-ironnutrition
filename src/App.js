@@ -103,17 +103,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
-          <h1 class="title">IronNutrition</h1>
+          <h1 className="title my-4">IRON NUTRITION</h1>
           <div>
             <input
               type="text"
-              class="input search-bar"
+              className="input search-bar"
               placeholder="Search"
               onChange={this.searchFood}
             />
           </div>
           <div className="addBox">
-            <button className="button is-info" onClick={this.showForm}>Add your Food Form</button>
+            <button className="button is-info my-4" onClick={this.showForm}>Add your Food Form</button>
             {this.state.formShowing && <AddFood addFood={this.addFood} />}
           </div>
 
@@ -125,8 +125,8 @@ class App extends React.Component {
                 )
               }
             </div>
-            <div class="column content">
-              <h2 class="subtitle">Today's foods</h2>
+            <div className="column content">
+              <h2 className="subtitle">Today's foods</h2>
               <ul>
               {
                 this.state.todaysFood.map((food)=>

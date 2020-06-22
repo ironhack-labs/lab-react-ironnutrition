@@ -6,8 +6,6 @@ import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 import TodaysFood from './components/TodaysFood';
 
-
-
 class App extends React.Component {
   constructor(props){
       super(props);
@@ -17,7 +15,7 @@ class App extends React.Component {
       this.todaysFoodHandler = this.todaysFoodHandler.bind(this);
       this.calculateCalories = this.calculateCalories.bind(this);
       this.deleteFoodHandler = this.deleteFoodHandler.bind(this);
-
+      this.deleteBoxFoodHandler = this.deleteBoxFoodHandler.bind(this);
     }
 
   state = {
@@ -40,7 +38,7 @@ class App extends React.Component {
 
   showForm(){
       this.setState({
-        formShowing: true
+        formShowing: !this.state.formShowing
       });
   }
 
@@ -57,14 +55,14 @@ class App extends React.Component {
     let dishesCalories = quantity * calories;
     let newFood = {name: name, quantity: quantity, calories: dishesCalories};
     let found = false;
-    for (let i=0; i<newTodaysFood.length; i++){
-      if (newTodaysFood[i].name === newFood.name){
-        let previousQuantity = Number(newTodaysFood[i].quantity);
-        newTodaysFood[i].quantity = previousQuantity + Number(quantity);
-        newTodaysFood[i].calories += calories;
-        found = true;
+    newTodaysFood.forEach(food => {
+      if(food.name === newFood.name){
+      food.quantity = Number(food.quantity) + Number(quantity);
+      food.calories += calories;
+      found = true;
       }
-    }
+    });
+
     if (!found){
       newTodaysFood.unshift(newFood);
     }
@@ -92,6 +90,15 @@ class App extends React.Component {
     });
   }
 
+  deleteBoxFoodHandler(indexN) {
+    let newFoods = [...this.state.foods];
+    newFoods.splice(indexN, 1);
+    this.setState({
+      foods: newFoods,
+      filteredFoods: newFoods,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -113,8 +120,8 @@ class App extends React.Component {
           <div className="columns">
             <div className="column FoodBox">
               {
-                this.state.filteredFoods.map((food)=>
-                <FoodBox name={food.name} calories={food.calories} image={food.image} todaysFoodHandler={this.todaysFoodHandler}/>
+                this.state.filteredFoods.map((food, index)=>
+                <FoodBox name={food.name} calories={food.calories} image={food.image} todaysFoodHandler={this.todaysFoodHandler} deleteItem={this.deleteBoxFoodHandler}  index={index.toString()}/>
                 )
               }
             </div>
@@ -123,12 +130,12 @@ class App extends React.Component {
               <ul>
               {
                 this.state.todaysFood.map((food)=>
-                <TodaysFood name={food.name} quantity={food.quantity} calories={food.calories} deleteItem={this.deleteFoodHandler}/>
+                <TodaysFood name={food.name} quantity={food.quantity} calories={food.calories} deleteItem={this.deleteFoodHandler} />
                 
                 )
               }
               </ul>
-              <strong>Total: {this.state.totalCalories}</strong>
+              <strong>Total: {this.state.totalCalories} cal</strong>
             </div>
           </div>
 

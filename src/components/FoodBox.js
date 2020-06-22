@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default class FoodBox extends Component {
@@ -49,7 +52,10 @@ export default class FoodBox extends Component {
                                 <input className="input" type="number" min="1" value={this.state.quantity} onChange={this.setQuantity}/>
                             </div>
                             <div className="control">
-                                <button className="button is-info" onClick={()=> { this.props.todaysFoodHandler(this.props.name, this.state.quantity, this.props.calories); this.resetQuantity()}}> + </button>
+                                <button className="button is-info are-small" onClick={()=> { this.props.todaysFoodHandler(this.props.name, this.state.quantity, this.props.calories); this.resetQuantity()}}> + </button>
+                            </div>
+                            <div className="control">
+                                <button className="button is-info are-small is-outlined" onClick={()=> { this.props.deleteItem(this.props.index)}}><FontAwesomeIcon icon={faTrash} /></button>
                             </div>
                         </div>
                     </div>

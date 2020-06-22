@@ -13,28 +13,45 @@ class FoodBoxes extends Component {
     this.addFoodHandler = this.addFoodHandler.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.todaysFoodHandler = this.todaysFoodHandler.bind(this);
+    this.showForm = this.showForm.bind(this);
   }
 
   state = {
     foods: foods,
     filterFoods: foods,
     searchTerm: this.props.searchTerm,
+    showForm: false,
     todaysFoods: [],
     totalCalories: 0,
+    hideAddButton:false
   };
 
-  addFoodHandler(theFood) {
-    var foodsCopy = [...this.state.foods];
-    foodsCopy.push(theFood);
+  showForm() {
     this.setState({
-      foods: foodsCopy,
+      showForm: !this.state.showForm,
+      hideAddButton: !this.state.hideAddButton
     });
   }
+
+  addFoodHandler(theFood) {
+    var foodsCopy = [theFood, ...this.state.foods];
+    var filterFoods = [theFood,...this.state.filterFoods]
+
+    this.setState({
+      foods: foodsCopy,
+      filterFoods
+    });
+
+    this.showForm();
+
+  }
+
   handleSearch(searchTerm) {
     debugger;
     let foodsModified = this.state.foods.filter((food) =>
       food.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
     this.setState({
       filterFoods: foodsModified,
     });
@@ -49,12 +66,18 @@ class FoodBoxes extends Component {
     });
   }
 
-
   render() {
     return (
       <div className="columns">
         <div className="column">
+        
           <SearchBar handleSearch={this.handleSearch} />
+          <div className="addFoodBox">
+            {!this.state.hideAddButton && <button className="button is-info" onClick={this.showForm}>
+              Add Food
+            </button>}
+            {this.state.showForm && <AddFood addFood={this.addFoodHandler} />}
+        </div>
           {this.state.filterFoods.map((food, index) => (
             <FoodBox
               key={index.toString()}
@@ -66,10 +89,8 @@ class FoodBoxes extends Component {
               todaysFood={this.todaysFoodHandler}
             />
           ))}
-          <AddFood addFood={this.addFoodHandler} />
         </div>
         <TodaysFoods todaysFoods={this.state.todaysFoods} />
-
       </div>
     );
   }

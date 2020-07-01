@@ -22,10 +22,12 @@ const FoodBox = (props) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" />
+              <input className="input" name={props.food.name} 
+              onChange = {props.handleChangeQuant}
+              type="number" value={props.food.quantity}/>
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button onClick={props.addToList} name={props.food.name} className="button is-info" >
                 +
               </button>
             </div>

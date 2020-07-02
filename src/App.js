@@ -45,10 +45,9 @@ class App extends Component {
   }
 
   handleChangeQuant = event =>{
-
     let foodArrayCopy = this.state.foods.map(e => {return {...e}})
     let index = foodArrayCopy.findIndex(food => food.name===event.target.name)
-    foodArrayCopy[index].quantity = event.target.value
+    foodArrayCopy[index].quantity = Number(event.target.value)
 
     this.setState({
       foods:foodArrayCopy
@@ -56,25 +55,27 @@ class App extends Component {
 
   }
 
- /* addTodaysFood = (event) => {
-    let foodArrayCopy = this.state.foods.map(e => {return {...e}})
-    let index = foodArrayCopy.findIndex(food => food.name===event.target.value)
-    let todaysFoodArrayCopy = this.state.todaysFoodArray.map(e => {return {...e}})
-
- 
-    todaysFoodArrayCopy.push(foodArrayCopy[index])
-
-    this.setState({
-      todaysFoodArray:todaysFoodArrayCopy
-    })
-  }*/
-
   addTodaysFood = (event) => {
     let index = this.state.foods.findIndex(food => food.name===event.target.value)
     let todaysFoodArrayCopy = this.state.todaysFoodArray.map(e => {return {...e}})
 
-    todaysFoodArrayCopy.push(this.state.foods[index])
+    if(!todaysFoodArrayCopy.some(fooditem =>fooditem.name == event.target.value)){  
+        todaysFoodArrayCopy.push(this.state.foods[index])}
 
+    else{
+      let newIndex = todaysFoodArrayCopy.findIndex(food => food.name===event.target.value)
+      todaysFoodArrayCopy[newIndex].quantity+=this.state.foods[index].quantity
+    }    
+
+    this.setState({
+      todaysFoodArray:todaysFoodArrayCopy
+    })
+  }
+
+  removeItem = event =>{
+    let todaysFoodArrayCopy = this.state.todaysFoodArray.map(e => {return {...e}})
+    let index = todaysFoodArrayCopy.findIndex(food => food.name===event.target.value)
+    todaysFoodArrayCopy.splice(index,1)
     this.setState({
       todaysFoodArray:todaysFoodArrayCopy
     })
@@ -101,7 +102,7 @@ class App extends Component {
        : ''}
        </div>
        <div className='column'>   
-       <TodaysFood todaysFoodArray={this.state.todaysFoodArray}/>
+       <TodaysFood removeItem={this.removeItem} todaysFoodArray={this.state.todaysFoodArray}/>
        </div>
       </div>
     );

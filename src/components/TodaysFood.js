@@ -4,7 +4,7 @@ import 'bulma/css/bulma.css';
 const TodaysFoods = props => {
 
 	const displayFoodItem = foodItem => {
-		return <li>{foodItem.quantity} {foodItem.name} {foodItem.calories*foodItem.quantity} cal</li>
+		return <li>{foodItem.quantity} {foodItem.name} {foodItem.calories*foodItem.quantity} cal <button value={foodItem.name} onClick={props.removeItem}>Remove Item</button></li>
 	}
 
 

@@ -110,6 +110,7 @@ class App extends Component {
         ) : (
           ''
         )}
+        <h1>hi</h1>
         {this.displayTodaysFood()}
         {this.displayFood()}
       </div>

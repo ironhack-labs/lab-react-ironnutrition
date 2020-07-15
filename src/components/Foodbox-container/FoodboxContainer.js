@@ -8,12 +8,14 @@ import FoodBox from "../Foodbox/FoodBox"
 import Button from "../Button/Button"
 import AddFoodForm from "../AddFoodForm/AddFoodForm"
 import SearchBar from "../SearchBar/SearchBar"
+import TodayFoodList from "../TodayFoodList/TodayFoodList"
 
 class FoodBoxContainer extends Component {
     constructor() {
         super()
         this.state = {
             foods,
+            todayFoodList: [],
             isFormVisible: false,
             isFiltered: false,
         }
@@ -32,6 +34,9 @@ class FoodBoxContainer extends Component {
     filterFood = nameSearched => {
         this.filteredFoods = this.state.foods.filter(food => food.name.toLowerCase().includes(nameSearched.toLowerCase()))
     }
+    addFoodToFoodList = () => {
+
+    }
     render() {
         const foodToDisplay = this.state.isFiltered ? this.filteredFoods : this.state.foods
         const foodBoxes = foodToDisplay.map((food, i) => <FoodBox key={i} {...food} />)
@@ -41,6 +46,7 @@ class FoodBoxContainer extends Component {
                 <Button onClick={this.displayAddFoodForm} />
                 {this.state.isFormVisible && <AddFoodForm insertFood={this.insertFood} />}
                 {foodBoxes}
+                <TodayFoodList />
             </main>
         )
     }

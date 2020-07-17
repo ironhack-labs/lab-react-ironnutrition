@@ -1,36 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FoodCard from './FoodCard';
+import FormFood from './FormFood';
 
 const FoodBox = ({ food }) => {
-  const foodMap = food.map((item) => (
-    <article className="media">
-      <div className="media-left">
-        <figure className="image is-64x64">
-          <img src={item.image} alt={item.name} />
-        </figure>
-      </div>
-      <div className="media-content">
-        <div className="content">
-          <p>
-            <strong>{item.name}</strong>
-            <br />
-            <small>{item.calories}</small>
-          </p>
-        </div>
-      </div>
-      <div className="media-right">
-        <div className="field has-addons">
-          <div className="control">
-            <input className="input" type="number" value="1" />
-          </div>
-          <div className="control">
-            <button className="button is-info">+</button>
-          </div>
-        </div>
-      </div>
-    </article>
+  const initialState = {
+    foods: food,
+    form: false,
+    newFood: {
+      name: '',
+      calories: '',
+      image: '',
+      quantity: 0,
+    },
+  };
+
+  const [state, setState] = useState(initialState);
+
+  const foodMap = state.foods.map((item) => (
+    <FoodCard
+      name={item.name}
+      calories={item.calories}
+      quantity={item.quantity}
+      image={item.image}
+      key={item.name}
+    />
   ));
 
-  return <div className="box">{foodMap}</div>;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newFoodList = [...state.foods];
+    newFoodList.push(state.newFood);
+    setState({
+      foods: newFoodList,
+      form: false,
+      newFood: {
+        name: '',
+        calories: '',
+        image: '',
+        quantity: 0,
+      },
+    });
+  };
+
+  const handleClick = () => {
+    setState({
+      ...state,
+      form: !state.form,
+    });
+  };
+
+  const handleInputChange = (event) => {
+    setState({
+      ...state,
+      newFood: {
+        ...state.newFood,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+
+  return (
+    <section>
+      <button onClick={handleClick} className="button is-link">
+        {state.form ? 'Hide form' : 'Show form'}
+      </button>
+      {state.form ? (
+        <FormFood
+          onSubmit={handleSubmit}
+          onChange={handleInputChange}
+          value={state}
+        />
+      ) : null}
+
+      <div className="box">{foodMap}</div>
+    </section>
+  );
 };
 
 export default FoodBox;

@@ -7,6 +7,7 @@ import FoodBox from './components/FoodBox';
 function App() {
   return (
     <div className="App">
+      <h1>IronNutrition</h1>
       <FoodBox food={foods} />
     </div>
   );

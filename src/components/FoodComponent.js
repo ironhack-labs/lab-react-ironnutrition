@@ -1,42 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import foods from '../foods.json';
+import Product from './Product';
+import Form from './Form';
 
-const FoodComponent = props => {
-  
-    const product = [...props.food].map(prod => {
+const FoodComponent = () => {
+
+    const copyFood = [...JSON.parse(JSON.stringify(foods))]
+
+    const initialState = {
+        products: [...copyFood],
+        displayForm: false
+    }
+
+    const [state, setState] = useState(initialState)
+
+    const handleFormToggle = () => {
+        setState(state => ({
+            ...state,
+            displayForm: !state.displayForm
+        }))
+    }
+
+    const handleSave = newProduct => {
+        setState(state => ({
+            ...state,
+            products: [...state.products, newProduct]
+        }))
+    }
+
+    const listProducts = [...state.products].map(prod => {
         return (
-            <div className="box">
-                <article key={prod.name} className="media">
-                    <div className="media-left">
-                    <figure className="image is-64x64">
-                        <img src={prod.image} alt="product" />
-                    </figure>
-                    </div>
-                    <div className="media-content">
-                    <div className="content">
-                        <p>
-                        <strong>{prod.name}</strong> <br />
-                        <small>{prod.calories} cal</small>
-                        </p>
-                    </div>
-                    </div>
-                    <div className="media-right">
-                    <div className="field has-addons">
-                        <div className="control">
-                        <input className="input" type="number" value="1" />
-                        </div>
-                        <div className="control">
-                        <button className="button is-info">+</button>
-                        </div>
-                    </div>
-                    </div>
-                </article>
-            </div>
+            <Product key={prod.name} name={prod.name} image={prod.image} calories={prod.calories} />
         )
     })
-
+    
   return (
       <div>
-          {product}
+          <button onClick={handleFormToggle}>{ state.displayForm ? "Close" : "Add a new product" }</button>
+          { state.displayForm && <Form addProduct={handleSave} /> }
+          <div className="box">
+              {listProducts}
+          </div>
       </div>
   );
 }

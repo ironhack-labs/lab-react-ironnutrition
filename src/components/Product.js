@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Product = props => {
+
+    const initialState = {
+        name: props.name,
+        calories: props.calories,
+        quantity: 1
+    }
+
+    const [state, setState] = useState(initialState)
+
+    const resetState = () => {
+        setState(state => (
+            initialState
+        ))
+    }
+
+    const handleChange = ({target}) => {
+        const { value } = target
+        console.log(value)
+        setState(state => ({
+            ...state,
+            quantity: value
+        }))
+    }
+
+    const handleAddButton = event => {
+        event.preventDefault()
+        props.addToTodaysFood(state)
+        resetState()
+    }
+
     return (
         <div className="box">
             <article key={props.name} className="media">
@@ -20,10 +50,10 @@ const Product = props => {
                 <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                    <input className="input" type="number" value="1" />
+                    <input className="input" type="number" value={state.quantity} onChange={handleChange} />
                     </div>
                     <div className="control">
-                    <button className="button is-info">+</button>
+                    <button className="button is-info" onClick={handleAddButton}>+</button>
                     </div>
                 </div>
                 </div>

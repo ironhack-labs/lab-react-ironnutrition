@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import foods from '../foods.json';
 import Product from './Product';
 import Form from './Form';
+import TodaysFood from './TodaysFood';
 
 const FoodComponent = () => {
 
@@ -9,6 +10,7 @@ const FoodComponent = () => {
 
     const initialState = {
         products: [...copyFood],
+        todaysFood: [],
         displayForm: false,
         filteringString: ""
     }
@@ -30,6 +32,13 @@ const FoodComponent = () => {
         }))
     }
 
+    const handleAddTodaysFood = newProduct => {
+        setState(state => ({
+            ...state,
+            todaysFood: [...state.todaysFood, newProduct]
+        }))
+    }
+
     const handleSearch = ({target}) => {
         const { value } = target
         setState(state => ({
@@ -44,22 +53,28 @@ const FoodComponent = () => {
 
     const listProducts = [...filteredArray].map(prod => {
         return (
-            <Product key={prod.name} name={prod.name} image={prod.image} calories={prod.calories} />
+            <Product key={prod.name} name={prod.name} image={prod.image} calories={prod.calories} addToTodaysFood={handleAddTodaysFood} />
         )
     })
+
+    // const listTodaysFood = [...state.todaysFood].map
     
   return (
       <div>
-          <input type="text" onChange={handleSearch} />
+          <input type="text" onChange={handleSearch} placeholder="Search.." /><br />
           <button onClick={handleFormToggle}>{ state.displayForm ? "Close" : "Add a new product" }</button>
           { state.displayForm && <Form addProduct={handleSave} /> }
-          <div className="box">
-              {listProducts}
+          <div className="main">
+            <div className="box">
+                {listProducts}
+            </div>
+            <div className="todayFood">
+                <TodaysFood />
+            </div>
           </div>
+          
       </div>
   );
 }
 
 export default FoodComponent;
-
-// let query = new RegExp(req.query.fruit, 'i')

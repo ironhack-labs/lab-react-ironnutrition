@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+
+const foodCollection = [...foods]
+console.log(foodCollection[0].name)
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {foodCollection.map(el =>
+        <FoodBox
+          key={el.name}
+          name={el.name}
+          image={el.image}
+          calories={el.calories}
+          quantity={el.quantity}
+          {...foodCollection}
+        />
+      )}
     </div>
   );
 }

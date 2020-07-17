@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FoodCard from './FoodCard';
 import FormFood from './FormFood';
+import Search from './Search';
 
 const FoodBox = ({ food }) => {
   const initialState = {
@@ -59,8 +60,29 @@ const FoodBox = ({ food }) => {
     });
   };
 
+  const handleSearch = (event) => {
+    let currentList = [...state.foods];
+    let newList = [];
+
+    if (event.target.value !== '') {
+      newList = currentList.filter((item) => {
+        const listItem = item.name.toLowerCase();
+        const filter = event.target.value.toLowerCase();
+        return listItem.includes(filter);
+      });
+    } else {
+      newList = food;
+    }
+
+    setState({
+      ...state,
+      foods: newList,
+    });
+  };
+
   return (
     <section>
+      <Search foodList={state.foods} handleSearch={handleSearch} />
       <button onClick={handleClick} className="button is-link">
         {state.form ? 'Hide form' : 'Show form'}
       </button>

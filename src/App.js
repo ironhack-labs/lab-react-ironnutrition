@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
 
-    <Foodbox/>
+    <Foodbox food={foods}/>
     </div>
     
   );

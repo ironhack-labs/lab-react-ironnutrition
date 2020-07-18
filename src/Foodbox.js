@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import foods from './foods.json';
+import {NavLink} from "react-router-dom";
 
 export default class Foodbox extends Component {
     
@@ -13,7 +14,7 @@ export default class Foodbox extends Component {
     render() {
 
         const myFood = this.state.myFood.map(item => (
-          <div className="box">
+          <div className="box" key={item.name}>
             <article className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
@@ -24,7 +25,7 @@ export default class Foodbox extends Component {
                 <div className="content">
                   <p>
                     <strong>{item.name}</strong> <br />
-                    <small>{item.calories}</small>
+                    <small>{item.calories} cal</small>
                   </p>
                 </div>
               </div>
@@ -43,7 +44,11 @@ export default class Foodbox extends Component {
         ));
 
         return (
-            <div>
+            <div className="container">
+                
+                <NavLink to="/food/add" className="button is-info mb-5">
+                Add food
+                        </NavLink>
                 {myFood}
             </div>
         )

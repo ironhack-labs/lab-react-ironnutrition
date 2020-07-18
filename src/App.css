@@ -9,15 +9,21 @@
   margin-bottom: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: flex;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.foodList {
+  margin-left: 40px;
+}
+
+.foodList > h1 {
+  font-size: 32px;
+}
+
+.foodList > ul {
+  list-style-type: square;
+  margin: 10px 0px 5px 50px;
 }
 
 .App-header {

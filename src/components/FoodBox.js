@@ -13,25 +13,17 @@ const FoodBox = ({ food }) => {
       image: '',
       quantity: 0,
     },
+    todaysFoods: [],
   };
 
   const [state, setState] = useState(initialState);
-
-  const foodMap = state.foods.map((item) => (
-    <FoodCard
-      name={item.name}
-      calories={item.calories}
-      quantity={item.quantity}
-      image={item.image}
-      key={item.name}
-    />
-  ));
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newFoodList = [...state.foods];
     newFoodList.push(state.newFood);
     setState({
+      ...state,
       foods: newFoodList,
       form: false,
       newFood: {
@@ -80,21 +72,57 @@ const FoodBox = ({ food }) => {
     });
   };
 
+  const foodMap = state.foods.map((item) => (
+    <FoodCard
+      name={item.name}
+      calories={item.calories}
+      quantity={item.quantity}
+      image={item.image}
+      key={item.name}
+      setState={setState}
+      currentState={state}
+    />
+  ));
+
+  const foodList = state.todaysFoods.map((item) => (
+    <li key={item.name}>
+      {item.quantity} {item.name} = {item.quantity * item.calories} cal
+    </li>
+  ));
+
+  const calculateCalories = () => {
+    if (state.todaysFoods.length !== 0) {
+      return state.todaysFoods
+        .map((item) => item.quantity * item.calories)
+        .reduce((a, b) => a + b);
+    } else {
+      return 0;
+    }
+  };
+
   return (
     <section>
-      <Search foodList={state.foods} handleSearch={handleSearch} />
-      <button onClick={handleClick} className="button is-link">
-        {state.form ? 'Hide form' : 'Show form'}
-      </button>
-      {state.form ? (
-        <FormFood
-          onSubmit={handleSubmit}
-          onChange={handleInputChange}
-          value={state}
-        />
-      ) : null}
-
-      <div className="box">{foodMap}</div>
+      <header>
+        <Search foodList={state.foods} handleSearch={handleSearch} />
+        <button onClick={handleClick} className="button is-link">
+          {state.form ? 'Hide form' : 'Show form'}
+        </button>
+        {state.form ? (
+          <FormFood
+            onSubmit={handleSubmit}
+            onChange={handleInputChange}
+            value={state}
+          />
+        ) : null}
+      </header>
+      <main className="container">
+        <div className="box">{foodMap}</div>
+        <aside className="foodList">
+          <h1>Today's Foods</h1>
+          <ul>{foodList}</ul>
+          <p>Total: {calculateCalories()} cal</p>
+        </aside>
+      </main>
     </section>
   );
 };

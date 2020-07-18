@@ -6,8 +6,6 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 
 const foodCollection = [...foods]
-console.log(foodCollection[0].name)
-
 
 function App() {
   return (

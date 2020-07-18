@@ -16,6 +16,7 @@ function FoodBox(props) {
       [event.target.name]: event.target.value,
     });
   };
+
   return (
     <div className="box">
       <article className="media">
@@ -44,12 +45,7 @@ function FoodBox(props) {
               />
             </div>
             <div className="control">
-              <button
-                className="button is-info"
-                onSubmit={() => props.handleAdd(state)}
-              >
-                +
-              </button>
+              <button className="button is-info">+</button>
             </div>
           </div>
         </div>

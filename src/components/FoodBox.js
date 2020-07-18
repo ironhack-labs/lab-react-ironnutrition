@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FoodCard from './FoodCard';
 import FormFood from './FormFood';
 import Search from './Search';
+import RemoveButton from './RemoveButton';
 
 const FoodBox = ({ food }) => {
   const initialState = {
@@ -86,7 +87,8 @@ const FoodBox = ({ food }) => {
 
   const foodList = state.todaysFoods.map((item) => (
     <li key={item.name}>
-      {item.quantity} {item.name} = {item.quantity * item.calories} cal
+      {item.quantity} {item.name} = {item.quantity * item.calories} cal{' '}
+      <RemoveButton itemObj={item} currentState={state} setState={setState} />
     </li>
   ));
 

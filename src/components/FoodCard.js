@@ -21,12 +21,27 @@ const FoodCard = (props) => {
     event.preventDefault();
     if (quantityState.quantity > 0) {
       const newTodaysFood = [...props.currentState.todaysFoods];
-      newTodaysFood.push(quantityState);
+      const newFoodItem = { ...quantityState };
+
+      newTodaysFood.forEach((item) => {
+        if (item.name === newFoodItem.name) {
+          newFoodItem.quantity =
+            parseInt(item.quantity) + parseInt(newFoodItem.quantity);
+        }
+      });
+
+      const filteredFood = newTodaysFood.filter((item) => {
+        return item.name !== newFoodItem.name;
+      });
+
+      filteredFood.push(newFoodItem);
+
       props.setState({
         ...props.currentState,
-        todaysFoods: newTodaysFood,
+        todaysFoods: filteredFood,
       });
     }
+
     setQuantity({
       name: props.name,
       calories: props.calories,

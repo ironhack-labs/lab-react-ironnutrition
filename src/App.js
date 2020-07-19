@@ -14,26 +14,34 @@ function App() {
       calories: 0,
       quantity: 0
     },
-    foodList: [...foods]
-    
+    foodList: [...foods]    
   }
 
   const [currentFoods, setCurrentFoods] = useState(initialState)
+  const [currentSearch, setCurrentSearch] = useState('')
 
-  const renderFoods = currentFoods.foodList.map(food => (
-    <FoodBox 
+  const renderFoods = currentFoods.foodList.map(food => {
+    /* 
+      "isSearching" evalua si estamos buscando algo
+      "match" evalua: si estamos buscando y si coincide con el nombre de la comida. Si no coincide, añade display: none.
+    */
+    const isSearching =  currentSearch ? true : false
+    const match = !isSearching ? null : food.name.toLowerCase().includes(currentSearch) ? "" : "none"
+    
+    return (
+      <FoodBox 
       name={food.name}
       image={food.image}
       calories={food.calories}
       key={food.name}
+      display={match}
     />
-  ))
-
-
+    )
+  })
 
   return (
     <main >
-      <Searchbar currentFoods={currentFoods}/>
+      <Searchbar currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
       <section className="columns">
         <div className="column">
           {renderFoods}

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FoodBox(props) {
   return (
-    <div className="box">
+    <div className="box" style={{display: props.display}}>
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">

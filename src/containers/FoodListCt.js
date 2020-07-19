@@ -16,7 +16,7 @@ function FoodListCt() {
         todayList: []
     }
     const [state, setState] = useState(foodInitialState)
-    const handleChange = ({target}) => {
+    const handleChangeForm = ({target}) => {
         setState(state => ({
             ...state,
             newFood: {
@@ -25,7 +25,7 @@ function FoodListCt() {
             }
         }))
     }
-    const handleSubmit = e => {
+    const handleSubmitForm = e => {
         e.preventDefault()
         setState(state => ({
             ...state,
@@ -76,8 +76,8 @@ function FoodListCt() {
     return (
         <FoodList 
             state={state} 
-            handleChange={handleChange} 
-            handleSubmit={handleSubmit} 
+            handleChangeForm={handleChangeForm} 
+            handleSubmitForm={handleSubmitForm} 
             handleNewFoodBtn={handleNewFoodBtn} 
             handleSearchBar={handleSearchBar}
             handleFoodQuantity={handleFoodQuantity}

@@ -1,10 +1,14 @@
 import React from 'react';
 
 function TodayFoods(props) {
+  const handleDelete = (_food) => {
+    props.onDelete(_food);
+  };
   const todayFoods = props.today.map((t) => {
     return (
       <li key={t.name}>
-        {t.quantity} {t.name} = {t.quantity * t.calories} cal.
+        {t.quantity} {t.name} = {t.quantity * t.calories} cal.{' '}
+        <a class="delete is-medium" to="#" onClick={() => handleDelete(t)}></a>
       </li>
     );
   });

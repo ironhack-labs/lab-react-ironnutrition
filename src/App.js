@@ -53,6 +53,15 @@ function App() {
 
     setState({ ...state, selectedFoods: newSelFoods });
   };
+  const handleRemoveTodaysFood = (_food) => {
+    const newSelFoods = state.selectedFoods;
+    const selFoodInd = newSelFoods.findIndex((f) => f.name === _food.name);
+    if (selFoodInd >= 0) {
+      newSelFoods.splice(selFoodInd, 1);
+    }
+
+    setState({ ...state, selectedFoods: newSelFoods });
+  };
   const foodsList = state.foodList.map((food) => {
     return (
       <FoodBox
@@ -81,7 +90,10 @@ function App() {
       <div className="columns">
         <div className="column is-half">{foodsList}</div>
         <div className="column is-half">
-          <TodayFoods today={state.selectedFoods} />
+          <TodayFoods
+            today={state.selectedFoods}
+            onDelete={handleRemoveTodaysFood}
+          />
         </div>
       </div>
       <Modal

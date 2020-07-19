@@ -15,12 +15,31 @@ function App() {
       calories: 0,
       image: '',
     },
+    todayFood: [],
+    totalCalories: 0,
   };
 
   const [state, setState] = useState(initialState);
 
+  const addToList = (food) => {
+    const newArray = [...state.todayFood];
+    console.log(food.name);
+
+    newArray.push(food);
+    setState({
+      ...state,
+      todayFood: newArray,
+      totalCalories: food.calories + state.totalCalories
+    });
+  };
+
   const allFoods = state.food.map((element) => (
-    <FoodBox key={element.name} allFood={state.food} food={element.name} />
+    <FoodBox
+      key={element.name}
+      allFood={state.food}
+      food={{ ...element }}
+      addToList={addToList}
+    />
   ));
 
   const handleChange = (event) => {
@@ -71,6 +90,17 @@ function App() {
     }
   };
 
+  const handleSearch = (event) => {
+    const searchString = event.target.value.toLowerCase();
+    const filteredArray = state.food.filter((element) =>
+      element.name.toLowerCase().includes(searchString)
+    );
+    setState({
+      ...state,
+      food: filteredArray,
+    });
+  };
+
   const form = (
     <form onSubmit={saveNew} className={state.formClass}>
       <div className="field">
@@ -112,7 +142,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="field is-grouped">
+      <div className="field is-grouped my-4">
         <div className="control">
           <input type="submit" className="button is-link" value="Add" />
         </div>
@@ -125,12 +155,18 @@ function App() {
     </form>
   );
 
+  const todayFoodList = state.todayFood.map((item) => (
+    <li key={item.name}>
+      {item.quantity} {item.name} = {item.calories} cal
+    </li>
+  ));
+
   return (
     <div className="container">
       <div className="columns mx-4 my-4">
         <div className="column">
           <h1 className="is-size-1 has-text-weight-bold">Ironnutrition</h1>
-          <Search />
+          <Search handleSearch={handleSearch} />
           <div className="columns">
             <div className="column my-4">{allFoods}</div>
             <div className="column my-4">
@@ -138,6 +174,12 @@ function App() {
                 Add new food
               </button>
               {form}
+
+              <h2 className="is-size-4 has-text-weight-bold my-4">
+                Today's food
+              </h2>
+              <ul>{todayFoodList}</ul>
+              <p>Total: {state.totalCalories} cal</p>
             </div>
           </div>
         </div>

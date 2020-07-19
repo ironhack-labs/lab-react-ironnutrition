@@ -36,19 +36,37 @@ const Form = props => {
 
     return (
         <form onSubmit={handleFormSubmit}>
-            <label htmlFor="name">Name: </label>
-            <input type="text" name="name" id="name" value={state.name} onChange={handleChange} />
+            <div className="field">
+                <div class="control">
+                    <label className="label" htmlFor="name">Name: </label>
+                    <input type="text" name="name" id="name" value={state.name} onChange={handleChange} />
+                </div>
+            </div>
+            
+            <div className="field">
+                <div class="control">
+                    <label className="label" htmlFor="calories">Calories: </label>
+                    <input type="number" name="calories" min="0" id="calories" value={state.calories} onChange={handleChange} />
+                </div>
+            </div>
 
-            <label htmlFor="calories">Calories: </label>
-            <input type="number" name="calories" id="calories" value={state.calories} onChange={handleChange} />
+            <div className="field">
+                <div class="control">
+                    <label className="label" htmlFor="image">Image: </label>
+                    <input type="text" name="image" id="image" value={state.image} onChange={handleChange} />
+                </div>
+            </div>
 
-            <label htmlFor="image">Image: </label>
-            <input type="text" name="image" id="image" value={state.image} onChange={handleChange} />
+            <div className="field">
+                <div class="control">
+                    <label className="label" htmlFor="quantity">Quantity: </label>
+                    <input type="number" name="quantity" min="0" id="quantity" value={state.quantity} onChange={handleChange} />
+                </div>
+            </div>
 
-            <label htmlFor="quantity">Quantity: </label>
-            <input type="number" name="quantity" id="quantity" value={state.quantity} onChange={handleChange} />
-
-            <input type="submit" value="Add" />
+            <div className="field">
+                <input className="button" type="submit" value="Add" />
+            </div>
         </form>
     )
 }

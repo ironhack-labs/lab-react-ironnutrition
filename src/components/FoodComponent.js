@@ -56,20 +56,18 @@ const FoodComponent = () => {
             <Product key={prod.name} name={prod.name} image={prod.image} calories={prod.calories} addToTodaysFood={handleAddTodaysFood} />
         )
     })
-
-    // const listTodaysFood = [...state.todaysFood].map
     
   return (
       <div>
-          <input type="text" onChange={handleSearch} placeholder="Search.." /><br />
-          <button onClick={handleFormToggle}>{ state.displayForm ? "Close" : "Add a new product" }</button>
+          <input className="input" type="text" onChange={handleSearch} placeholder="Search.." /><br />
+          <button className="button" onClick={handleFormToggle}>{ state.displayForm ? "Close" : "Add a new product" }</button>
           { state.displayForm && <Form addProduct={handleSave} /> }
           <div className="main">
             <div className="box">
                 {listProducts}
             </div>
-            <div className="todayFood">
-                <TodaysFood />
+            <div className="todaysFood">
+                <TodaysFood ingredients={state.todaysFood}/>
             </div>
           </div>
           

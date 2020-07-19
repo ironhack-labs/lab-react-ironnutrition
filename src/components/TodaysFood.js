@@ -1,9 +1,21 @@
 import React from 'react'
 
-function TodaysFood() {
+const TodaysFood = props => {
+
+    let totalCalories = 0
+
+    const listTodaysFood = [...props.ingredients].map(elem => {
+        totalCalories += elem.calories * elem.quantity
+        return (
+            <li key={elem.name}>{elem.quantity} {elem.name} = {elem.calories * elem.quantity} cal</li>
+        )
+    })
+
     return (
         <div>
-            Hello
+            <h1 className="title is-3">Today's Food</h1>
+                {listTodaysFood}
+            <h3>Total: {totalCalories} cal</h3>
         </div>
     )
 }

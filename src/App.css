@@ -2,3 +2,7 @@
   display: flex;
   justify-content: row;
 }
+
+.todaysFood {
+  margin: 20px;
+}

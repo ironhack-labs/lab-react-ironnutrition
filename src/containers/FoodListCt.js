@@ -54,11 +54,17 @@ function FoodListCt() {
     }
     const handleAddFood = ({target}) => {
         const foodToAdd = state.foods.filter(food => food.name === target.name)
-        const todayListUpdated = [...state.todayList, ...foodToAdd]
+        const indexFood = state.todayList.findIndex(food => food.name === target.name)
+        let todayListUpdated = []
+        if (indexFood === -1) {
+            todayListUpdated = [...state.todayList, ...foodToAdd]
+        } else {
+            todayListUpdated = state.todayList.map(food => food.name !== target.name ? food : {...food, quantity: food.quantity + foodToAdd[0].quantity})
+        }
         setState(state => ({
             ...state,
             todayList: todayListUpdated
-        }))
+        })) 
     }
     return (
         <FoodList 

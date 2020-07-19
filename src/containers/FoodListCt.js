@@ -11,7 +11,8 @@ function FoodListCt() {
             image: '',
             quantity: 0
         },
-        showForm: false
+        showForm: false,
+        searchBar: ''
     }
     const [state, setState] = useState(foodInitialState)
     const handleChange = ({target}) => {
@@ -37,12 +38,19 @@ function FoodListCt() {
             showForm: true
         }))
     }
+    const handleSearchBar = ({target}) => {
+        setState(state => ({
+            ...state,
+            searchBar: target.value
+        }))
+    }
     return (
         <FoodList 
             state={state} 
             handleChange={handleChange} 
             handleSubmit={handleSubmit} 
             handleNewFoodBtn={handleNewFoodBtn} 
+            handleSearchBar={handleSearchBar}
         />
     )
 }

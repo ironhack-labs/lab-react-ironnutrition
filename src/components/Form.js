@@ -5,9 +5,7 @@ const Form = props => {
     const initialState = {
         name: "",
         calories: 0,
-        image: "",
-        quantity: 0
-    }
+        image: ""    }
 
     const [state, setState] = useState(initialState)
 
@@ -23,9 +21,7 @@ const Form = props => {
         setState(state => ({
             name: "",
             calories: 0,
-            image: "",
-            quantity: 0
-        }))
+            image: ""        }))
     }
 
     const handleFormSubmit = event => {
@@ -54,13 +50,6 @@ const Form = props => {
                 <div className="control">
                     <label className="label" htmlFor="image">Image: </label>
                     <input type="text" name="image" id="image" value={state.image} onChange={handleChange} />
-                </div>
-            </div>
-
-            <div className="field">
-                <div className="control">
-                    <label className="label" htmlFor="quantity">Quantity: </label>
-                    <input type="number" name="quantity" min="0" id="quantity" value={state.quantity} onChange={handleChange} />
                 </div>
             </div>
 

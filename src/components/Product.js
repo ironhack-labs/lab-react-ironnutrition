@@ -18,7 +18,6 @@ const Product = props => {
 
     const handleChange = ({target}) => {
         const { value } = target
-        console.log(value)
         setState(state => ({
             ...state,
             quantity: value

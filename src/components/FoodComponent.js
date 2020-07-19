@@ -44,13 +44,19 @@ const FoodComponent = () => {
             }))
         } else {
             copyState[index].calories = copyState[index].calories + newProduct.calories
-            copyState[index].quantity = copyState[index].quantity + 1
+            copyState[index].quantity = parseInt(copyState[index].quantity) + parseInt(newProduct.quantity)
             setState(state => ({
                 ...state,
                 todaysFood: copyState
             }))
         }
-        
+    }
+
+    const handleRemoveFromTodaysFood = productToDelete => {
+        setState(state => ({
+            ...state,
+            todaysFood: [...state.todaysFood].filter(elem => elem.name !== productToDelete.name)
+        }))
     }
 
     const handleSearch = ({target}) => {
@@ -81,7 +87,7 @@ const FoodComponent = () => {
                 {listProducts}
             </div>
             <div className="todaysFood">
-                <TodaysFood ingredients={state.todaysFood}/>
+                <TodaysFood ingredients={state.todaysFood} removeFromTodaysFood={handleRemoveFromTodaysFood} />
             </div>
           </div>
           

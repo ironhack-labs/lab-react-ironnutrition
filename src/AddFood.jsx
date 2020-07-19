@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function AddFood({newFood, setNewFood}) {
+export default function AddFood({currentFoods, setCurrentFoods}) {
 
     const handleChange = ({target}) => {
-        setNewFood( foods => {
+        setCurrentFoods( foods => {
             return {
                 ...foods,
                 form: {
@@ -15,7 +15,7 @@ export default function AddFood({newFood, setNewFood}) {
     }
 
     const handleSubmit = (e) => {
-        setNewFood( foods => {
+        setCurrentFoods( foods => {
             const newFoodtoAdd = {...foods.form}
 
             return {
@@ -37,7 +37,7 @@ export default function AddFood({newFood, setNewFood}) {
                         type="text" 
                         name="name" 
                         placeholder="Name of the food"
-                        value={newFood.name}
+                        value={currentFoods.name}
                         onChange={handleChange}    
                     />
                     </div>
@@ -51,7 +51,7 @@ export default function AddFood({newFood, setNewFood}) {
                         type="text" 
                         name="image" 
                         placeholder="URL of the image"
-                        value={newFood.image}
+                        value={currentFoods.image}
                         onChange={handleChange}    
                     />
                     </div>
@@ -64,14 +64,17 @@ export default function AddFood({newFood, setNewFood}) {
                         className="input"
                         type="number" 
                         name="calories" 
-                        value={newFood.calories}
+                        value={currentFoods.calories}
                         min="0"
                         onChange={handleChange}    
                     />
                     </div>
                 </div>
 
-                <input type="submit" className="submit" value="Save Food"/>
+                <input 
+                    type="submit" 
+                    className="submit button is-info" 
+                    value="Save Food"/>
             </form>
         </div>
     )

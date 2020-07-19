@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import foods from './foods.json';
 import FoodBox from  './FoodBox.jsx'
-import 'bulma/css/bulma.css';
 import AddFood from './AddFood';
+import Searchbar from './Searchbar.jsx'
+import 'bulma/css/bulma.css';
 
 function App() {
 
@@ -17,9 +18,9 @@ function App() {
     
   }
 
-  const [newFood, setNewFood] = useState(initialState)
+  const [currentFoods, setCurrentFoods] = useState(initialState)
 
-  const renderFoods = newFood.foodList.map(food => (
+  const renderFoods = currentFoods.foodList.map(food => (
     <FoodBox 
       name={food.name}
       image={food.image}
@@ -31,13 +32,17 @@ function App() {
 
 
   return (
-    <main className="columns">
-      <div className="column">
-        {renderFoods}
-      </div>
-      <div className="column">
-        <AddFood newFood={newFood} setNewFood={setNewFood}/>
-      </div>
+    <main >
+      <Searchbar currentFoods={currentFoods}/>
+      <section className="columns">
+        <div className="column">
+          {renderFoods}
+        </div>
+        <div className="column">
+          <AddFood currentFoods={currentFoods} setCurrentFoods={setCurrentFoods}/>
+        </div>
+      </section>
+      
     </main>
   );
 }

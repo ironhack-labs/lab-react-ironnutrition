@@ -66,6 +66,13 @@ function FoodListCt() {
             todayList: todayListUpdated
         })) 
     }
+    const handleDeleteOnToday = ({target}) => {
+        const todayListUpdated = state.todayList.filter(food => food.name !== target.id)
+        setState(state => ({
+            ...state,
+            todayList: todayListUpdated
+        })) 
+    }
     return (
         <FoodList 
             state={state} 
@@ -75,6 +82,7 @@ function FoodListCt() {
             handleSearchBar={handleSearchBar}
             handleFoodQuantity={handleFoodQuantity}
             handleAddFood={handleAddFood}
+            handleDeleteOnToday={handleDeleteOnToday}
         />
     )
 }

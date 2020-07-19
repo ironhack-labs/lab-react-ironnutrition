@@ -2,8 +2,9 @@ import React from 'react'
 import FoodBox from '../../components/FoodBox';
 import FormNewFood from '../../components/FormNewFood';
 import { capitalizeStr } from '../../tools/capitalizeString'
+import TodayListElement from '../../components/TodayListElement';
 
-function FoodList({state, handleChange, handleSubmit, handleNewFoodBtn, handleSearchBar, handleFoodQuantity, handleAddFood}) {
+function FoodList({state, handleChange, handleSubmit, handleNewFoodBtn, handleSearchBar, handleFoodQuantity, handleAddFood, handleDeleteOnToday}) {
     const wordToFind = capitalizeStr(state.searchBar)
     const allFoodCards = state.foods
                                 .filter(food => food.name.substring(0, state.searchBar.length) === wordToFind)
@@ -14,7 +15,7 @@ function FoodList({state, handleChange, handleSubmit, handleNewFoodBtn, handleSe
                                                 handleAddFood={handleAddFood} 
                                                 />
                                 )
-    const todayListFoods = state.todayList.map(food => <li key={food.name}>{food.quantity} {food.name} = {food.quantity*food.calories} cal</li>)
+    const todayListFoods = state.todayList.map(food => <TodayListElement key={food.name} food={food} handleDeleteOnToday={handleDeleteOnToday} />)
     const totalCalories = state.todayList.reduce((acc, food) => acc + food.quantity*food.calories, 0)
     return (
         <div className='box'>

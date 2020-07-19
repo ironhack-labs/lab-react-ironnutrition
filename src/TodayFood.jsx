@@ -8,8 +8,8 @@ export default function TodayFood(props) {
             return (
                 <div className="is-flex columns" key={"today list" + food.name}>
                     <p className="column is-italic has-text-weight-bold">{food.name}</p>
-                    <p className="column has-text-weight-bold">Calories: <span className="has-text-weight-normal">{totalCalories}</span></p>
                     <p className="column has-text-weight-bold">Quantity: <span className="has-text-weight-normal">{food.quantity}</span></p>
+                    <p className="column has-text-weight-bold">Total Calories: <span className="has-text-weight-normal">{totalCalories}</span></p>
                 </div>
             )
         }

@@ -5,6 +5,7 @@ import FoodBox from './components/foodbox/FoodBox';
 import FoodForm from './components/foodform/FoodForm';
 import Modal from './components/modal/Modal';
 import SearchBox from './components/searchbox/SearchBox';
+import TodayFoods from './components/todayfoods/TodayFoods';
 
 function App() {
   const initialState = {
@@ -40,27 +41,52 @@ function App() {
     }
     setState({ ...state, foodList: searchResult });
   };
-  const foodsList = state.foodList.map((food) => {
-    return <FoodBox key={food.name} food={food} />;
-  });
-  const selectedFoodsList = state.selectedFoods.map((food) => {
-    return <FoodBox key={food.name} food={food} />;
-  });
+  const handleAddTodaysFood = (_food) => {
+    const newSelFoods = state.selectedFoods;
+    const selFoodInd = newSelFoods.findIndex((f) => f.name === _food.name);
+    if (selFoodInd >= 0) {
+      newSelFoods[selFoodInd].quantity =
+        parseInt(newSelFoods[selFoodInd].quantity) + parseInt(_food.quantity);
+    } else {
+      newSelFoods.push(_food);
+    }
 
+    setState({ ...state, selectedFoods: newSelFoods });
+  };
+  const foodsList = state.foodList.map((food) => {
+    return (
+      <FoodBox
+        key={food.name}
+        food={food}
+        addTodaysFood={handleAddTodaysFood}
+      />
+    );
+  });
   return (
     <div className="container">
-      <SearchBox onChange={handleSearch} />
-      <div className="column is-half">
-        <button className="button is-success" onClick={handleModalOpen}>
-          Add Food
-        </button>
-        <hr />
-        {foodsList}
+      <div className="columns">
+        <div className="column is-one-fifth">
+          <button
+            className="button is-success is-large mt-4"
+            onClick={handleModalOpen}
+          >
+            Add Food
+          </button>
+        </div>
+        <div className="column">
+          <SearchBox onChange={handleSearch} />
+        </div>
       </div>
-      <div className="column is-half">{selectedFoodsList}</div>
+      <hr />
+      <div className="columns">
+        <div className="column is-half">{foodsList}</div>
+        <div className="column is-half">
+          <TodayFoods today={state.selectedFoods} />
+        </div>
+      </div>
       <Modal
         component={<FoodForm addFood={handleAdd}></FoodForm>}
-        onClose={() => handleModalClose()}
+        onClose={handleModalClose}
       />
     </div>
   );

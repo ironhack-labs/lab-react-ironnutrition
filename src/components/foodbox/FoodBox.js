@@ -16,6 +16,11 @@ function FoodBox(props) {
       [event.target.name]: event.target.value,
     });
   };
+  const handleClick = () => {
+    if (state.quantity > 0) {
+      props.addTodaysFood(state);
+    }
+  };
 
   return (
     <div className="box">
@@ -45,7 +50,9 @@ function FoodBox(props) {
               />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={handleClick}>
+                +
+              </button>
             </div>
           </div>
         </div>

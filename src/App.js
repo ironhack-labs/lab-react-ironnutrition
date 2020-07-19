@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import FoodBox from './components/FoodBox';
 import 'bulma/css/bulma.css';
-import foods from './foods.json';
+import FoodListCt from './containers/FoodListCt';
 
 function App() {
   return (
     <div className="App">
-      <FoodBox foods={foods} />
+      <FoodListCt />
+      {/* <button className='button is-primary'>Add new food</button> */}
     </div>
   );
 }

@@ -33,10 +33,24 @@ const FoodComponent = () => {
     }
 
     const handleAddTodaysFood = newProduct => {
-        setState(state => ({
-            ...state,
-            todaysFood: [...state.todaysFood, newProduct]
-        }))
+        const copyState = [...state.todaysFood]
+        const index = state.todaysFood.findIndex(product => {
+            return product.name === newProduct.name
+        }) 
+        if (index === -1) {
+            setState(state => ({
+                ...state,
+                todaysFood: [...state.todaysFood, newProduct]
+            }))
+        } else {
+            copyState[index].calories = copyState[index].calories + newProduct.calories
+            copyState[index].quantity = copyState[index].quantity + 1
+            setState(state => ({
+                ...state,
+                todaysFood: copyState
+            }))
+        }
+        
     }
 
     const handleSearch = ({target}) => {

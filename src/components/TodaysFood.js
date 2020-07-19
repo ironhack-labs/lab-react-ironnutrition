@@ -5,9 +5,9 @@ const TodaysFood = props => {
     let totalCalories = 0
 
     const listTodaysFood = [...props.ingredients].map(elem => {
-        totalCalories += elem.calories * elem.quantity
+        totalCalories += elem.calories
         return (
-            <li key={elem.name}>{elem.quantity} {elem.name} = {elem.calories * elem.quantity} cal</li>
+            <li key={elem.name}>{elem.quantity} {elem.name} = {elem.calories} cal</li>
         )
     })
 

@@ -13,17 +13,17 @@ export default function FoodBox(props) {
           <div className="content">
             <p>
               <strong>{props.name}</strong> <br />
-              <small>{props.calories}</small>
+              <small>Calories: {props.calories}</small>
             </p>
           </div>
         </div>
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" />
+              <input className="input" type="number" name="quantity"/>
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={() => props.increaseQuantity(props.name)}>+</button>
             </div>
           </div>
         </div>

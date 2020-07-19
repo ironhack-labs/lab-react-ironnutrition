@@ -17,7 +17,6 @@ export default function AddFood({currentFoods, setCurrentFoods}) {
     const handleSubmit = (e) => {
         setCurrentFoods( foods => {
             const newFoodtoAdd = {...foods.form}
-
             return {
                 ...foods,
                 foodList: [...foods.foodList, newFoodtoAdd]
@@ -29,6 +28,9 @@ export default function AddFood({currentFoods, setCurrentFoods}) {
     return (
         <div className="columns is-centered">
             <form className="box" onSubmit={handleSubmit}>
+                <div className="has-text-centered mb-3">
+                    <h2 className="title is-4">Add New Food</h2>
+                </div>
                 <div className="field">
                     <label className="label">Name</label>
                     <div className="control">
@@ -42,7 +44,6 @@ export default function AddFood({currentFoods, setCurrentFoods}) {
                     />
                     </div>
                 </div>
-
                 <div className="field">
                     <label className="label">Image URL</label>
                     <div className="control">
@@ -56,7 +57,6 @@ export default function AddFood({currentFoods, setCurrentFoods}) {
                     />
                     </div>
                 </div>
-
                 <div className="field">
                     <label className="label">Calories</label>
                     <div className="control">
@@ -70,11 +70,10 @@ export default function AddFood({currentFoods, setCurrentFoods}) {
                     />
                     </div>
                 </div>
-
                 <input 
                     type="submit" 
                     className="submit button is-info" 
-                    value="Save Food"/>
+                    value="Add Food"/>
             </form>
         </div>
     )

@@ -12,7 +12,8 @@ function FoodListCt() {
             quantity: 0
         },
         showForm: false,
-        searchBar: ''
+        searchBar: '',
+        todayList: []
     }
     const [state, setState] = useState(foodInitialState)
     const handleChange = ({target}) => {
@@ -44,6 +45,21 @@ function FoodListCt() {
             searchBar: target.value
         }))
     }
+    const handleFoodQuantity = ({target}) => {
+        const newFoodState = state.foods.map(food => food.name === target.name ? ({...food, quantity: food.quantity + 1}) : food)
+        setState(state => ({
+            ...state,
+            foods: newFoodState 
+        }))
+    }
+    const handleAddFood = ({target}) => {
+        const foodToAdd = state.foods.filter(food => food.name === target.name)
+        const todayListUpdated = [...state.todayList, ...foodToAdd]
+        setState(state => ({
+            ...state,
+            todayList: todayListUpdated
+        }))
+    }
     return (
         <FoodList 
             state={state} 
@@ -51,6 +67,8 @@ function FoodListCt() {
             handleSubmit={handleSubmit} 
             handleNewFoodBtn={handleNewFoodBtn} 
             handleSearchBar={handleSearchBar}
+            handleFoodQuantity={handleFoodQuantity}
+            handleAddFood={handleAddFood}
         />
     )
 }

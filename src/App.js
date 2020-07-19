@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <FoodListCt />
-      {/* <button className='button is-primary'>Add new food</button> */}
     </div>
   );
 }

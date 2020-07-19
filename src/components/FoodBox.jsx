@@ -1,6 +1,7 @@
 import React from 'react'
 
-function FoodBox({image, name, calories, quantity}) {
+function FoodBox(props) {
+    const {image, name, calories, quantity} = props.food
     return (
         <div className="box">
             <article className="media">
@@ -20,10 +21,17 @@ function FoodBox({image, name, calories, quantity}) {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input id='input-quantity' className="input" type="number" value={quantity} />
+                            <input 
+                                id='input-quantity' 
+                                name={name} 
+                                className="input" 
+                                type="number" 
+                                value={quantity} 
+                                onChange={props.handleFoodQuantity} 
+                            />
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" name={name} onClick={props.handleAddFood}>
                                 +
                             </button>
                         </div>

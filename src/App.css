@@ -37,10 +37,11 @@
   }
 }
 
-#food-list {
-  max-width: 500px;
+#input-quantity {
+  width: 60px;
 }
 
-#input-quantity {
-  width: 50px;
+#todays {
+  font-size: 36px;
+  padding-bottom: 10px;
 }

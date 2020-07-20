@@ -32,7 +32,6 @@ function App() {
     document.querySelector('.modal').classList.remove('is-active');
   };
   const handleSearch = (text) => {
-    console.log(text);
     setSearch(text.toLocaleLowerCase());
   };
   const handleAddTodaysFood = (_food) => {

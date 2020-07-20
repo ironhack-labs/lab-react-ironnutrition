@@ -8,7 +8,11 @@ function TodayFoods(props) {
     return (
       <li key={t.name}>
         {t.quantity} {t.name} = {t.quantity * t.calories} cal.{' '}
-        <a class="delete is-medium" to="#" onClick={() => handleDelete(t)}></a>
+        <a
+          className="delete is-medium"
+          to="#"
+          onClick={() => handleDelete(t)}
+        ></a>
       </li>
     );
   });

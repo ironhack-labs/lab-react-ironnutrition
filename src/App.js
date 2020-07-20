@@ -10,16 +10,16 @@ import TodayFoods from './components/todayfoods/TodayFoods';
 function App() {
   const initialState = {
     foods: [...Foods],
-    foodList: [...Foods],
     selectedFoods: [],
   };
 
   const [state, setState] = useState(initialState);
+  const [search, setSearch] = useState('');
 
   const handleAdd = (_food) => {
     const newFoods = [...state.foods];
-    newFoods.push(_food);
-    setState({ ...state, foodList: newFoods, foods: newFoods });
+    newFoods.unshift(_food);
+    setState({ ...state, foods: newFoods });
     handleModalClose(new Event('click'));
   };
 
@@ -33,13 +33,7 @@ function App() {
   };
   const handleSearch = (text) => {
     console.log(text);
-    let searchResult = state.foods;
-    if (text) {
-      searchResult = state.foodList.filter((f) =>
-        f.name.toLowerCase().includes(text.toLowerCase())
-      );
-    }
-    setState({ ...state, foodList: searchResult });
+    setSearch(text.toLocaleLowerCase());
   };
   const handleAddTodaysFood = (_food) => {
     const newSelFoods = state.selectedFoods;
@@ -62,15 +56,17 @@ function App() {
 
     setState({ ...state, selectedFoods: newSelFoods });
   };
-  const foodsList = state.foodList.map((food) => {
-    return (
-      <FoodBox
-        key={food.name}
-        food={food}
-        addTodaysFood={handleAddTodaysFood}
-      />
-    );
-  });
+  const foodsList = state.foods
+    .filter((f) => f.name.toLocaleLowerCase().includes(search))
+    .map((food) => {
+      return (
+        <FoodBox
+          key={food.name}
+          food={food}
+          addTodaysFood={handleAddTodaysFood}
+        />
+      );
+    });
   return (
     <div className="container">
       <div className="columns">

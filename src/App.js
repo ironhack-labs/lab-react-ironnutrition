@@ -5,7 +5,11 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <FoodBox food={foods} />
+    </div>
+  );
 }
 
 export default App;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const FoodBox = ({ food }) => {
-  const foodsList = food.map((el) => (
-    <div className="box">
+const FoodBox = ({ stateFoods }) => {
+  const foodsList = stateFoods.map((el) => (
+    <div key={el.name} className="box">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
@@ -20,7 +20,12 @@ const FoodBox = ({ food }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value={el.quantity} />
+              <input
+                className="input"
+                type="number"
+                value={el.quantity}
+                defaultValue="0"
+              />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

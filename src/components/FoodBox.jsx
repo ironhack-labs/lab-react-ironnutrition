@@ -1,25 +1,8 @@
-import React, { useState } from 'react';
-import foods from '../foods.json'
+import React from 'react';
+
 import 'bulma/css/bulma.css'
 
 function FoodBox(props) {
-    console.log('foods : ', foods);
-    const initialState = {
-        foods: foods,
-        name: '',
-        image: '',
-        calories: '',
-        quantity: '',
-    };
-    console.log('InitialState: ', initialState);
-    const { state, setState } = useState(initialState);
-    console.log('State: ', state);
-    const handleChange = (event) => {
-        setState((state) => ({
-            ...state,
-            [event.target.name]: event.target.value,
-        }));
-    };
 
     return (
         <div className="box">
@@ -37,20 +20,18 @@ function FoodBox(props) {
                         </p>
                     </div>
                 </div>
-                <div className="media-right">
+                <div>
                     <div className="field has-addons">
                         <div className="control">
                             <input
                                 className="input"
                                 type="number"
                                 name="quantity"
-                                value={props.quantity}
-                                onChange={handleChange}
                             />
                         </div>
                         <div className="control">
                             <button
-                                className="button is-info"
+                                className="button is-primary"
                             >
                                 +
               </button>

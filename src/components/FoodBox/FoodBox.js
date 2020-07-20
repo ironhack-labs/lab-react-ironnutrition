@@ -1,8 +1,12 @@
 import React from 'react'
 import "./Foodbox.css"
+import Search from "../Search/Search"
+
 
 function FoodBox({food}) {
+  
     const mapFood  = food.map((item) =>
+
     <div className="box">
     <article className="media">
       <div className="media-left">
@@ -33,13 +37,18 @@ function FoodBox({food}) {
     </article>
   </div>
     )
+  
 
     return (
         <div>
+            <Search/>
             {mapFood}
         </div>
     )
 }
 
 export default FoodBox
+
+
+
 

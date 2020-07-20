@@ -1,0 +1,9 @@
+.searchBar {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+ }
+ .input {
+     width: 100%;
+ }

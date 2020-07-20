@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox'
+//import FoodForm from './components/FoodForm'
+import SearchFood from './components/SearchFood'
+import AddFoodBTN from './components/AddFoodBTN'
 import 'bulma/css/bulma.css';
 
 
@@ -16,6 +19,8 @@ function App() {
   ))
   return (
     <div className="App">
+    <SearchFood/>
+    <AddFoodBTN/>
     {displayFoodbox}
 
 

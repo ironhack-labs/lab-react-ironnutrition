@@ -2,6 +2,7 @@ import React from 'react'
 
 
 export default function FoodBox(props) {
+
   return (
     <div className="box">
   <article className="media">

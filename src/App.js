@@ -1,14 +1,21 @@
 import React from 'react';
 import './App.css';
-import foods from "./foods.json"
 import 'bulma/css/bulma.css'
-import Foodbox from "./components/FoodBox/FoodBox"
+import Home from "./components/Home/Home"
+import { Route } from 'react-router-dom'
+import Form from './components/Form/Form';
 
 function App() {
   return (
-    <div>
-
-    <Foodbox food={foods}/>
+    <div id="root"> 
+  
+    <Route exact path="/">
+    <Home/>
+    </Route>
+    <Route exact path="/form">
+      <Form/>
+    </Route>
+    
     </div>
     
   );

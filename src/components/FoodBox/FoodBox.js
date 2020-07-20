@@ -1,4 +1,5 @@
 import React from 'react'
+import "./Foodbox.css"
 
 function FoodBox({food}) {
     const mapFood  = food.map((item) =>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, Switch, Link } from 'react-router-dom'
 
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -31,11 +32,21 @@ export default function App() {
 
   return (
     <div className="App">
-      <AddFoodForm
-        food={food}
-        setFood={setFood}
-      />
-      {showFood}
+
+      <Switch>
+        <Route exact path='/'>
+          <Link to='/add'>
+            Add new
+          </Link>
+          {showFood}
+        </Route>
+        <Route exact path='/add'>
+          <AddFoodForm
+            food={food}
+            setFood={setFood}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 

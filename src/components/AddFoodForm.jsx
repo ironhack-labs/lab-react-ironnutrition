@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AddFoodForm({ food, setFood }) {
 
@@ -25,7 +26,6 @@ export default function AddFoodForm({ food, setFood }) {
                 foodCollection: [...el.foodCollection, newFood]
             }
         })
-
     }
 
     return (
@@ -75,8 +75,9 @@ export default function AddFoodForm({ food, setFood }) {
                         />
                     </div>
                 </div>
-
-                <input type="submit" className="button is-success" value="Add Food" />
+                <Link to='/'>
+                    <input type="submit" className="button is-success" value="Add Food" />
+                </Link>
             </form>
         </div>
     )

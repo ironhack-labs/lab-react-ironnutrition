@@ -12,10 +12,11 @@ function App() {
   const state = {
     searchParam: '',
     foodList: [...foods],
+    selectedFoods: [],
   };
   const [stateFoods, setStateFoods] = useState(state);
   const handleChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setStateFoods((state) => ({ ...state, searchParam: value }));
   };
   return (

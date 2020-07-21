@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 const AddFoodForm = (props) => {
   const { stateFoods, setStateFoods } = props;
-  const [localFood, setLocalFood] = useState({
+  const initialState = {
     name: '',
     calories: '',
     image: '',
-  });
+  };
+  const [newFood, setNewFood] = useState(initialState);
   const handleChange = (e) => {
-    setLocalFood({ ...localFood, [e.target.name]: e.target.value });
+    setNewFood({ ...newFood, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStateFoods({
-      ...stateFoods,
-      foodList: [...stateFoods.foodList, localFood],
-    });
-    props.history.push('/');
+    if (!newFood.name || !newFood.calories || !newFood.image) {
+      alert('Yaw! Please fill the form');
+    } else {
+      setStateFoods({
+        ...stateFoods,
+        foodList: [...stateFoods.foodList, newFood],
+      });
+      setNewFood(initialState);
+      props.history.push('/');
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -30,7 +36,7 @@ const AddFoodForm = (props) => {
             name="name"
             placeholder="Enter food name"
             onChange={handleChange}
-            value={localFood.name}
+            value={newFood.name}
           />
         </div>
       </div>
@@ -58,7 +64,8 @@ const AddFoodForm = (props) => {
           />
         </div>
       </div>
-      <div className="field">
+      <div className="field flex">
+        <Link to="/">Go back</Link>
         <button type="submit" className="button is-success">
           Add new food
         </button>

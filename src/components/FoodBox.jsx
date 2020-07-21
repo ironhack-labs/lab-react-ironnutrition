@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-
 import 'bulma/css/bulma.css'
 
 function FoodBox(props) {
@@ -28,11 +26,13 @@ function FoodBox(props) {
                                 className="input"
                                 type="number"
                                 name="quantity"
+                                value={props.quantity}
                             />
                         </div>
                         <div className="control">
                             <button
                                 className="button is-primary"
+                                onClick={props.addTodaysFood}
                             >
                                 +
               </button>

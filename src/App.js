@@ -27,6 +27,22 @@ function App() {
     console.log(food);
 
     const newArray = [...state.todayFood];
+    const newFood = food;
+
+    console.log(
+      `Incluye el alimento? ${newFood.name}  : `,
+      newArray.filter((element) => element.name === newFood.name)
+    );
+
+    newArray
+      .filter((element) => element.name === newFood.name)
+      .map((element) => {
+        return {
+          ...element,
+          quantity: (element.quantity += newFood.quantity),
+          calories: (element.calories += newFood.calories),
+        };
+      });
 
     newArray.push(food);
 
@@ -63,7 +79,7 @@ function App() {
     const newArray = [...state.food];
     const newFood = {
       name: state.form.name,
-      calories: state.form.calories,
+      calories: parseInt(state.form.calories),
       image: state.form.image,
       quantity: 0,
     };

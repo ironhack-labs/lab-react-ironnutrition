@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState }  from 'react';
 import './App.css';
+import 'bulma/css/bulma.css';
+import {Switch, Route} from 'react-router-dom';
+import Navbar from './components/Navbar';
+import AddFood from './components/AddFood';
+import foods from './foods'
+import Search from './components/Search';
 
 function App() {
+  const foodsInitial = {
+    items: foods
+  }
+  const [foodList, setFood] = useState(foodsInitial)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1 className="title is-1">IronNutrition</h1>
+      <Navbar/>
+      <Switch>
+        <Route exact path='/'>
+          <Search foods={foodList}/>
+        </Route>
+        <Route exact path='/add'>
+          <AddFood foods={foodList} setFood={setFood}/>
+        </Route>
+      </Switch>
     </div>
   );
 }

@@ -17,30 +17,36 @@ function App() {
     },
     todayFood: [],
     totalCalories: 0,
+    search: '',
   };
 
   const [state, setState] = useState(initialState);
+  const [searchParam, setSearchParam] = useState('');
 
   const addToList = (food) => {
+    console.log(food);
+
     const newArray = [...state.todayFood];
-    console.log(food.name);
 
     newArray.push(food);
+
     setState({
       ...state,
       todayFood: newArray,
-      totalCalories: food.calories + state.totalCalories
+      totalCalories: food.calories + state.totalCalories,
     });
   };
 
-  const allFoods = state.food.map((element) => (
-    <FoodBox
-      key={element.name}
-      allFood={state.food}
-      food={{ ...element }}
-      addToList={addToList}
-    />
-  ));
+  const allFoods = state.food
+    .filter((food) => food.name.toLowerCase().includes(searchParam))
+    .map((element) => (
+      <FoodBox
+        key={element.name}
+        allFood={state.food}
+        food={{ ...element }}
+        addToList={addToList}
+      />
+    ));
 
   const handleChange = (event) => {
     setState({
@@ -91,14 +97,7 @@ function App() {
   };
 
   const handleSearch = (event) => {
-    const searchString = event.target.value.toLowerCase();
-    const filteredArray = state.food.filter((element) =>
-      element.name.toLowerCase().includes(searchString)
-    );
-    setState({
-      ...state,
-      food: filteredArray,
-    });
+    setSearchParam(event.target.value);
   };
 
   const form = (
@@ -155,8 +154,8 @@ function App() {
     </form>
   );
 
-  const todayFoodList = state.todayFood.map((item) => (
-    <li key={item.name}>
+  const todayFoodList = state.todayFood.map((item, index) => (
+    <li key={index}>
       {item.quantity} {item.name} = {item.calories} cal
     </li>
   ));
@@ -166,7 +165,7 @@ function App() {
       <div className="columns mx-4 my-4">
         <div className="column">
           <h1 className="is-size-1 has-text-weight-bold">Ironnutrition</h1>
-          <Search handleSearch={handleSearch} />
+          <Search handleSearch={handleSearch} searchValue={searchParam} />
           <div className="columns">
             <div className="column my-4">{allFoods}</div>
             <div className="column my-4">

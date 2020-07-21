@@ -7,6 +7,7 @@ const Search = (props) => {
         className="input"
         type="text"
         placeholder="Search"
+        value={props.searchValue}
         onChange={props.handleSearch}
       />
     </div>

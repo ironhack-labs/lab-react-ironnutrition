@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 const AddFoodForm = (props) => {
-  const { setStateFoods } = props;
+  const { stateFoods, setStateFoods } = props;
   const [localFood, setLocalFood] = useState({
     name: '',
     calories: '',
@@ -13,7 +13,10 @@ const AddFoodForm = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStateFoods((foods) => [...foods, localFood]);
+    setStateFoods({
+      ...stateFoods,
+      foodList: [...stateFoods.foodList, localFood],
+    });
     props.history.push('/');
   };
   return (

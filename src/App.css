@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -35,4 +35,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.App-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+
+.App-wrapper .field {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.App-wrapper button a {
+  color: #ffffff;
+  font-weight: bold;
 }

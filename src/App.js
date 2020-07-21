@@ -6,15 +6,34 @@ import FoodBox from './components/FoodBox';
 import AddFoodButton from './components/AddFoodButton';
 import { Switch, Route } from 'react-router-dom';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
-  const [stateFoods, setStateFoods] = useState(foods);
+  const state = {
+    searchParam: '',
+    foodList: [...foods],
+  };
+  const [stateFoods, setStateFoods] = useState(state);
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setStateFoods((state) => ({ ...state, searchParam: value }));
+  };
   return (
     <div className="App container">
+      <h1>IronNutrition</h1>
       <Switch>
         <Route exact path="/">
-          <AddFoodButton />
-          <FoodBox stateFoods={stateFoods} />
+          <div className="App-wrapper">
+            <Search
+              searchParam={stateFoods.searchParam}
+              handleChange={handleChange}
+            />
+            <AddFoodButton />
+          </div>
+          <FoodBox
+            searchParam={stateFoods.searchParam}
+            foodList={stateFoods.foodList}
+          />
         </Route>
         <Route exact path="/add-food">
           <AddFoodForm stateFoods={stateFoods} setStateFoods={setStateFoods} />

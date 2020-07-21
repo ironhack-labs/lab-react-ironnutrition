@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import 'bulma/css/bulma.css';
+import FoodBox from './components/FoodBox';
+import foods from './foods.json';
+import AddFood from './components/AddFood';
+//import { Link, Route } from 'react-router-dom';
+
 
 function App() {
+
+
+  const [foodList, setFoodList] = useState(foods)
+
+  const listaFoods = foodList.map(food => {
+    return <FoodBox food={food} />
+  })
+
+ 
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <AddFood />
+      {listaFoods}
+     
     </div>
   );
 }

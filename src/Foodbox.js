@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
-import foods from './foods.json';
 import {NavLink} from "react-router-dom";
 
-export default class Foodbox extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            myFood: foods             
-        }
-      }    
+export default class Foodbox extends Component {  
     
     render() {
-
-        const myFood = this.state.myFood.map(item => (
+        const myFood = this.props.foodList.foodList.map(item => (
           <div className="box" key={item.name}>
             <article className="media">
               <div className="media-left">
@@ -32,7 +23,7 @@ export default class Foodbox extends Component {
               <div className="media-right">
                 <div className="field has-addons">
                   <div className="control">
-                    <input className="input" type="number" value={item.quantity} />
+                    <input className="input" type="number" placeholder="0" />
                   </div>
                   <div className="control">
                     <button className="button is-info">+</button>
@@ -44,14 +35,13 @@ export default class Foodbox extends Component {
         ));
 
         return (
-            <div className="container">
-                
-                <NavLink to="/food/add" className="button is-info mb-5">
-                Add food
-                        </NavLink>
-                {myFood}
-            </div>
-        )
+          <div className="container">
+            <NavLink to="/add" className="button is-info mb-5">
+              Add food
+            </NavLink>
+            {myFood}
+          </div>
+        );
     }
 }
 

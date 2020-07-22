@@ -1,11 +1,11 @@
 import React from 'react'
 import foods from "../../foods.json"
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import "./Form.css"
 
 function Form() {
-    const { push } = useHistory()
+  //  const { push } = useHistory()
     const initialState = {
         foods: foods,
         form: false,
@@ -42,12 +42,12 @@ function Form() {
       } 
      
          }) 
-         push('/');
+       //  push('/');
             }
 
     return (
         <div className="formDiv">
-            <form key="form" >
+            <form onSubmit={handleSubmit} key="form" >
              
              <label className='label'>Name:</label>
              <input className='input' onChange={handleInput} type="text" name='name'   />
@@ -60,7 +60,7 @@ function Form() {
              <label className='label'>Image:</label>
              <input className='input' onChange={handleInput} type="text" name='image'     />
              
-             <button onSubmit={handleSubmit} className="button is-info" type='submit'>Submit</button>
+             <button  className="button is-info" type='submit'>Submit</button>
              
              </form>
         </div>

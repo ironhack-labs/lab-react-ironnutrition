@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Foodbox.css"
 import Search from "../Search/Search"
 
 
 function FoodBox({food}) {
+  const [searchParam, setSearchParam] = useState('');
+  const handleSearchParam = (event) => {
+      setSearchParam(event.target.value);
+    };
   
-    const mapFood  = food.map((item) =>
+    const displayFood  = food.filter((food) => {
+      return food.name.toLowerCase().includes(searchParam.toLowerCase())
+  })
+  .map((item) => 
 
     <div className="box">
     <article className="media">
@@ -41,8 +48,9 @@ function FoodBox({food}) {
 
     return (
         <div>
-            <Search/>
-            {mapFood}
+            <Search searchParam={searchParam}
+          handleSearchParam={handleSearchParam}/>
+            {displayFood}
         </div>
     )
 }

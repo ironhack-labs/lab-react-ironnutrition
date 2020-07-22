@@ -25,8 +25,11 @@ function AddFood(props) {
     }
 
     const handleSubmit = (e) => {
-        setAddNewFood()
         e.preventDefault()
+        const copyaFood= [...props.foods]
+        copyaFood.push(addNewFood.form)
+        props.modifFoodList(copyaFood)
+        
     }
 
     return (

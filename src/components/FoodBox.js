@@ -1,34 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 function FoodBox(props) {
-  console.log('Props: ', props);
-  const initialState = {
-    name: props.food.name,
-    image: props.food.image,
-    calories: props.food.calories,
-    quantity: props.food.quantity,
-  };
-  console.log('InitialState: ', initialState);
-  const { state, setState } = useState(initialState);
-  console.log('State: ', state);
-  const handleChange = (event) => {
-    setState((state) => ({
-      ...state,
-      [event.target.name]: event.target.value,
-    }));
-  };
   return (
     <div className="box">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={state.image} alt={state.name} />
+            <img src={props.image} alt={props.name} />
           </figure>
         </div>
         <div className="media-content">
           <div className="content">
             <p>
-              <strong>{state.name}</strong> <br />
-              <small>{state.calories} cal</small>
+              <strong>{props.name}</strong> <br />
+              <small>{props.calories} cal</small>
             </p>
           </div>
         </div>
@@ -38,15 +23,17 @@ function FoodBox(props) {
               <input
                 className="input"
                 type="number"
-                name="quantity"
-                value={state.quantity}
-                onChange={handleChange}
+                name={props.name}
+                min="0"
+                defaultValue="0"
+                onChange={props.onChange}
               />
             </div>
             <div className="control">
               <button
                 className="button is-info"
-                onSubmit={props.handleAdd(state)}
+                name={props.name}
+                onClick={props.onSubmit}
               >
                 +
               </button>
@@ -57,4 +44,5 @@ function FoodBox(props) {
     </div>
   );
 }
+
 export default FoodBox;

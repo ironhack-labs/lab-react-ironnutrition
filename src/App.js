@@ -6,7 +6,6 @@ import Foodbox from './Foodbox'
 import AddForm from './AddForm'
 import foods from './foods.json';
 
-
 function App() {
 
   const initialFoodList = {

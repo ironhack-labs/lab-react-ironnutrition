@@ -38,7 +38,7 @@ function FoodBoxes(props) {
         }))
     }
 
-    const foodsArray =  foods.map(item => <FoodBox key={props.foods.indexOf(item)} name={item.name} calories={item.calories} quantity={item.quantity} image={item.image} onChange={handleChange} onSubmit={printInfo}/>)
+    const foodsArray =  foods.map(item => <FoodBox key={props.foods.indexOf(item)} name={item.name} calories={item.calories} quantity={item.quantity} image={item.image} onChange={handleChange} onClick={printInfo}/>)
     if(todaysList.list.length!==0){
     return (
         <div className='columns'>

@@ -23,7 +23,7 @@ function FoodBox(props) {
                     <input className='input' type='number' name={props.name} min='0' defaultValue='0' onChange={props.onChange}/>
                     </div>
                     <div className='control'>
-                    <button className='button is-info' name={props.name} onClick={props.onSubmit}>
+                    <button className='button is-info' name={props.name} onClick={props.onClick}>
                         +
                     </button>
                     </div>

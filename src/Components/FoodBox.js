@@ -23,7 +23,7 @@ export default class FoodBox extends Component {
                         <div className="media-right">
                             <div className="field has-addons">
                                 <div className="control">
-                                    <input className="input" type="number" />
+                                    <input className="input" type="number" name="value" value={this.props.data[i]} onChange={this.props.handleValue} />
                                 </div>
                                 <div className="control">
                                     <button onClick={() => this.props.clickPlus(ele)}  className="button is-info" >

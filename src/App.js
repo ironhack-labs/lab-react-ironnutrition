@@ -14,7 +14,7 @@ export default class App extends Component {
       filteredFoods: [...foods],
       showForm: false,
       todayFood: [],
-      value: foods.quantity
+      value: 1
     }
 
     this.toggleForm = this.toggleForm.bind(this)
@@ -22,6 +22,7 @@ export default class App extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.searchInputChange = this.searchInputChange.bind(this)
     this.clickPlus = this.clickPlus.bind(this)
+    this.handleValue = this.handleValue.bind(this)
 
 
   }
@@ -66,14 +67,17 @@ export default class App extends Component {
 
   clickPlus(food) {
     console.log(food)
-   
     this.setState({
       todayFood: [...this.state.todayFood, food],
     })
   }
 
   handleValue(event){
-    
+      this.setState({
+        ...this.state,
+        [event.target.name]: event.target.value
+      })
+      console.log("state.value: ",event.target.value) 
   }
 
   render() {
@@ -83,8 +87,8 @@ export default class App extends Component {
         {this.state.showForm ? <Form handleFormChange={this.handleFormChange} handleFormSubmit={this.handleFormSubmit} />
           : null}
         <Search searchInputChange={this.searchInputChange} />
-        <FoodBox food={this.state.filteredFoods}  clickPlus={this.clickPlus} value={this.state.value} name="value" />
-        <TodayFood todayFood={this.state.todayFood} />
+        <FoodBox food={this.state.filteredFoods} data={this.state.value} clickPlus={this.clickPlus} handleValue={this.handleValue} name="value"  />
+        <TodayFood todayFood={this.state.todayFood} data={this.state.value} />
       </div>
     )
   }

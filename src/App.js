@@ -6,30 +6,30 @@ import Search from './Components/Search';
 import Form from './Components/Form';
 import TodayFood from './Components/TodayFood';
 
-
-
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       allFood: [...foods],
-      showForm: false, 
+      filteredFoods: [...foods],
+      showForm: false,
       todayFood: [],
+      value: foods.quantity
     }
+
     this.toggleForm = this.toggleForm.bind(this)
     this.handleFormChange = this.handleFormChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.searchInputChange = this.searchInputChange.bind(this)
     this.clickPlus = this.clickPlus.bind(this)
 
-  }
 
+  }
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
     })
   }
-
   handleFormSubmit(event) {
     event.preventDefault()
     this.toggleForm()
@@ -55,21 +55,24 @@ export default class App extends Component {
 
   searchInputChange(event) {
     let query = event.target.value;
-    let newArray = [];
-    if (query.length === 0) {
-      newArray = [this.state.allFood]
-    } else {
-      newArray = [...this.state.allFood].filter(item => {
-        return item.name.toLowerCase().includes(query.toLowerCase())
-      })
-    }
+    const foods = this.state.allFood.filter(item => {
+      return item.name.toLowerCase().includes(query.toLowerCase())
+    })
     this.setState({
-      allFood: newArray
+      ...this.state,
+      filteredFoods: foods
     })
   }
 
-  clickPlus(food){
-    console.log(this.state.todayFood);
+  clickPlus(food) {
+    console.log(food)
+   
+    this.setState({
+      todayFood: [...this.state.todayFood, food],
+    })
+  }
+
+  handleValue(event){
     
   }
 
@@ -80,10 +83,9 @@ export default class App extends Component {
         {this.state.showForm ? <Form handleFormChange={this.handleFormChange} handleFormSubmit={this.handleFormSubmit} />
           : null}
         <Search searchInputChange={this.searchInputChange} />
-        <FoodBox food={this.state.allFood} clickPlus={this.clickPlus}/>
-        <TodayFood {...this.state.todayFood} clickPlus={this.clickPlus}/>
+        <FoodBox food={this.state.filteredFoods}  clickPlus={this.clickPlus} value={this.state.value} name="value" />
+        <TodayFood todayFood={this.state.todayFood} />
       </div>
     )
   }
 }
-

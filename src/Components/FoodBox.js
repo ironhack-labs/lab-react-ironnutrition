@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
 export default class FoodBox extends Component {
+
     render() {
         const boxes = this.props.food.map((ele, i) => {
             return (
-                <div className="box" key={i}>
+                <div className="box" key={i} >
                     <article className="media">
                         <div className="media-left">
                             <figure className="image is-64x64">
@@ -25,7 +26,7 @@ export default class FoodBox extends Component {
                                     <input className="input" type="number" />
                                 </div>
                                 <div className="control">
-                                    <button onClick={this.props.clickPlus} className="button is-info" name={this.props.name}>
+                                    <button onClick={() => this.props.clickPlus(ele)}  className="button is-info" >
                                         +</button>
                                 </div>
                             </div>

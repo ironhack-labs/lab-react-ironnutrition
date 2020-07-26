@@ -3,6 +3,8 @@ import React from 'react'
 
 function FoodBox(props) {
 
+    
+
     return (
 
         <div className="box">
@@ -23,10 +25,10 @@ function FoodBox(props) {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value={props.quantity} />
+                            <input className="input" type="number" value={props.food.quantity} name="quantity" onChange={props.handleChange} />
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" name="todayfood" onClick={props.addTodayFood}>
                                 +
                             </button>
                         </div>
@@ -34,6 +36,9 @@ function FoodBox(props) {
                 </div>
             </article>
         </div>
+
+
+
     )
 }
 

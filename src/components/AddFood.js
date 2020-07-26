@@ -34,7 +34,7 @@ function AddFood(props) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div classNameName="field">
+            <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
                     <input className="input" type="text"
@@ -43,7 +43,7 @@ function AddFood(props) {
                         onChange={handleChange} />
                 </div>
             </div>
-            <div classNameName="field">
+            <div className="field">
                 <label className="label">Imag Urls</label>
                 <div className="control">
                     <input className="input" type="text"
@@ -52,7 +52,7 @@ function AddFood(props) {
                         onChange={handleChange} />
                 </div>
             </div>
-            <div classNameName="field">
+            <div className="field">
                 <label className="label">Calories</label>
                 <div className="control">
                     <input className="input" type="text"
@@ -61,7 +61,7 @@ function AddFood(props) {
                         onChange={handleChange} />
                 </div>
             </div>
-            <div classNameName="field">
+            <div className="field">
                 <label className="label">Quantity</label>
                 <div className="control">
                     <input className="input" type="number"

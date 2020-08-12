@@ -16,8 +16,10 @@ export default class App extends Component {
   //estado de foods y lo agrega al foodList
   addFood = (food) => {
     const newFoodList = [...this.state.filteredFood, food];
+    const filteredFoodCopy = [...this.state.filteredFood, food]
     this.setState({
-      filteredFood: newFoodList
+      foodList: newFoodList,
+      filteredFood: filteredFoodCopy
     }) 
   };
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FoodBox from './FoodBox'
 
 class AddFood extends Component {
     constructor(props){
@@ -9,8 +8,7 @@ class AddFood extends Component {
             name: '',
             calories: 0,
             image: '',
-            quantity: 0,
-            isClicked: false
+            quantity: 0
         };
     }
 
@@ -31,8 +29,7 @@ class AddFood extends Component {
             name: '',
             calories: 0,
             image: '',
-            quantity: 0,
-            isClicked: false
+            quantity: 0
         })
     }
 
@@ -50,8 +47,7 @@ class AddFood extends Component {
                     <label>Image:</label>
                     <input type="text" name="image" value={this.state.image} placeholder="Paste URL" onChange={(e) => this.handleChange(e)} />
 
-                    {this.state.isClicked ?!<AddFood />:null}
-                    <button onClick={this.showForm}  type="submit">Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         )

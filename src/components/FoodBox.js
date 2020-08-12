@@ -2,14 +2,31 @@ import React, { Component } from 'react'
 import foods from '../foods.json';
 
 import AddFood from './AddFood'
+import Search from './Search'
 
 class FoodBox extends Component {
     constructor() {
         super();
         this.state = {
             Food: foods,
-            isClicked: false
+            filtered: foods,
+            isClicked: false,
+            searchTerm: ''
         }
+    }
+
+    /* editSearchTerm = (e) => {
+      this.setState({searchTerm: e.target.value})
+    } */
+
+    dynamicSearch = (searchTerm) => {
+      const filtered = this.state.Food.filter(food => {
+        console.log(food.name)
+        return food.name.toLowerCase().includes(searchTerm.toLowerCase())
+      });
+      this.setState({
+        filtered
+      })
     }
 
     showForm = () => {
@@ -29,7 +46,8 @@ class FoodBox extends Component {
             {this.state.isClicked ?<AddFood addFood={this.insertFood}/>:null}
             <button onClick={this.showForm} className="btn">Add Food</button> 
           </div>
-          {this.state.Food.map((oneMeal, index) => {
+          <Search filterFood={this.dynamicSearch} />
+          {this.state.filtered.map((oneMeal, index) => {
             return(
                <div className="box">
                   <article className="media">

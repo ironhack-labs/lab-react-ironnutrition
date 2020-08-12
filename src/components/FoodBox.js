@@ -3,6 +3,7 @@ import foods from '../foods.json';
 
 import AddFood from './AddFood'
 import Search from './Search'
+import TodayList from './TodayList';
 
 class FoodBox extends Component {
     constructor() {
@@ -34,10 +35,11 @@ class FoodBox extends Component {
     }
 
     insertFood = (newFood) => {
-      const copyFood = [...this.state.Food]
+      const copyFood = [...this.state.filtered]
       copyFood.push(newFood)
-      this.setState({Food: copyFood, isClicked: false})
+      this.setState({filtered: copyFood, isClicked: false})
     }
+  
 
     render() {
         return (
@@ -47,6 +49,7 @@ class FoodBox extends Component {
             <button onClick={this.showForm} className="btn">Add Food</button> 
           </div>
           <Search filterFood={this.dynamicSearch} />
+        {/*   <TodayList /> */}
           {this.state.filtered.map((oneMeal, index) => {
             return(
                <div className="box">
@@ -84,7 +87,7 @@ class FoodBox extends Component {
         </div>
       )
     }
-    
-}
+  } 
+
 
 export default FoodBox

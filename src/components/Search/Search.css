@@ -1,0 +1,8 @@
+.toolBar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.toolBar .search-input{
+    max-width: 70%;
+}

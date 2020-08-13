@@ -24,12 +24,11 @@ const Form = (props) => {
                 calories
             }
         )
-        const refModal = e.currentTarget.getAttribute('data-target')
-        document.querySelector(`.${refModal}`).classList.remove('is-active')
+        handleModal(false)
     }
 
-    const handleModalState = () => {
-        let isModal = false;
+    const handleModal = (value) => {
+        props.handleModalState(value)
     }
 
     const handleInput = (e) => {
@@ -88,7 +87,7 @@ const Form = (props) => {
                     </form>
                 </div>
             </div>
-            <button className="modal-close is-large" aria-label="close"></button>
+            <button className="modal-close is-large" aria-label="close" onClick={() => handleModal(false)}></button>
         </div>
     )
 }

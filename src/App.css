@@ -1,10 +1,14 @@
 .App {
   text-align: center;
+  margin: 4% 25%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container-food {
+  margin-top: 4%;
+}
+
+.search-style {
+  border: 2px solid black;
 }
 
 @media (prefers-reduced-motion: no-preference) {

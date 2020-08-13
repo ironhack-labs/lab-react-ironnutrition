@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -32,7 +32,58 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.App h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.App-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+
+.App-wrapper .field {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.App-wrapper button a {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.foods-list h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.image.is-64x64 {
+  height: auto !important;
+}
+
+.media {
+  align-items: center !important;
+}
+
+.foods-list ul {
+  list-style: disc !important;
+  margin: 20px !important;
+}
+
+form .flex {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+form .flex a {
+  margin-right: 20px;
 }

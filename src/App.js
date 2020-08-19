@@ -108,7 +108,7 @@ class App extends React.Component {
           <ul>
             {
               this.state.TodayFoods.map((todayFood, i) => {
-                return <TodayFood 
+                return <FoodList 
                 todayFood={todayFood} 
                 key={'todayfood' + i}
                 id={i}

@@ -38,9 +38,14 @@ class App extends React.Component {
   }
 
   addToday=(food)=>{
-    console.log(food)
     let newToday = {name: food.name, calories: food.calories, quantity: food.quantity}
     this.setState({todayFoods: [...this.state.todayFoods, newToday]})
+  }
+
+  deleteToday=(id)=>{
+    let cloneToday = [...this.state.todayFoods]
+    cloneToday.splice(id, 1)
+    this.setState({todayFoods: cloneToday})
   }
   
 
@@ -55,7 +60,7 @@ class App extends React.Component {
             {this.state.filteredFoods.map((food, index)=>{
               return <FoodBox key={index} food={food} index={index} addToday={this.addToday}/>})}
           </div>
-          {this.state.todayFoods.length>0 && <TodayList todayList={this.state.todayFoods}/>}
+          {this.state.todayFoods.length>0 && <TodayList todayList={this.state.todayFoods} onDelete={this.deleteToday}/>}
         </div>
       </div>
     );

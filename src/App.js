@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import FoodBox from './components/FoodBox'
+import foods from './foods.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import DisplayFood from './components/DisplayFood'
+
+class App extends React.Component {
+
+  constructor(props){
+    super(props); // read more on this
+    this.state = {
+    foods: foods,
+
+    };
+
 }
 
+  handleAddfood = (event) => {
+    event.preventDefault() // always do this with submit events
+    let foodName = event.currentTarget.food.value
+    let newfoods = [{title:foodName, completed: false}, ...this.state.foods]
+    this.setState({
+      foods: newfoods,
+    })   
+  }
+
+  handleQuantityChange = () => {
+
+  }
+
+    render(){
+    return (
+      <div className= 'IronContacts'>
+      <h2>IronNutrition</h2>
+      <button onClick={() => this.handleAddfood()}>Add new food</button> 
+      <FoodBox theFood={foods} onQuantityChange={this.handleQuantityChange} />
+      </div>
+    );
+  }
+}
 export default App;

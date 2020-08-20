@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AddForm (props){
   return(
-    <form onSubmit={props.addFood()}>
+    <form onSubmit={()=>props.addFood()}>
       <div className="field">
         <label className="label">Name</label>
         <div className="control">

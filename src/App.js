@@ -28,7 +28,6 @@ class App extends React.Component {
   addFood=(event)=>{
     event.preventDefault();
     let newFood = {name: event.currentTarget.name.value, calories: event.currentTarget.calories.value, image: event.currentTarget.image.value}
-    console.log (newFood)
     this.setState({foods: [...this.state.foods, newFood], filteredFoods: [...this.state.foods, newFood]})
   }
 

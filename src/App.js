@@ -3,6 +3,8 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import FoodBox from './components/FoodBox'
 import foods from './foods.json';
+import AddFood from './components/AddFood'
+import FoodForm from './components/FoodForm'
 
 // import DisplayFood from './components/DisplayFood'
 
@@ -26,8 +28,13 @@ class App extends React.Component {
     })   
   }
 
-  handleQuantityChange = () => {
-
+  handleQuantityChange = (event) => {
+    const { name, value, quantity } = event.target;
+    this.setState({
+      name: name,
+      value: value,
+      quantity: quantity
+    })   
   }
 
     render(){
@@ -35,9 +42,14 @@ class App extends React.Component {
       <div className= 'IronContacts'>
       <h2>IronNutrition</h2>
       <button onClick={() => this.handleAddfood()}>Add new food</button> 
-      <FoodBox theFood={foods} onQuantityChange={this.handleQuantityChange} />
+      {foods.map((item, index) => {
+        return (
+      <FoodBox key={index} theFood={item} onQuantityChange={this.handleQuantityChange} /> 
+      )})}
+     
       </div>
     );
   }
 }
+
 export default App;

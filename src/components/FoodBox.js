@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AddFood from './AddFood'
 
 
 class FoodBox extends Component {
@@ -10,7 +11,7 @@ class FoodBox extends Component {
     }
 
     handleQuantity = (event) => {
-        console.log(event.currentTarget.value)
+       console.log(event.currentTarget.value)
        let newValue = event.currentTarget.value
        this.setState ({
         quantity: newValue 
@@ -42,7 +43,7 @@ class FoodBox extends Component {
                                     <input className='input' type='number' onChange={this.handleQuantity} name={this.props.theFood.name} value={this.state.quantity} />
                                 </div>
                                 <div className='control'>
-                                    <button className='button is-info' name={this.props.theFood.name}>
+                                <button className="button is-info" onClick={() => this.props.handleAddfood(this.props.theFood.name, this.state.quantity)}>
                                         +
                                     </button>
                                 </div>

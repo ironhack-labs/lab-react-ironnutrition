@@ -1,14 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function FoodForm(props) {
+const FoodForm = (props) => {
     return (
-        <form className="form" onSubmit={props.onAdd}>        
-                <input class="input is-primary" type="text" placeholder="Name"/>
-                <input class="input is-info" type="text" placeholder="Number of calories"/>
-                <input class="input is-success" type="text" placeholder="Image"/>
-                <button type="submit">Submit</button>     
-        </form>
+        <div>
+            <input onChange={props.onChange} placeholder="Search for a food"></input>
+        </div>
     )
-}
+};
 
 export default FoodForm;

@@ -13,9 +13,10 @@ class App extends React.Component {
   constructor(props){
     super(props); // read more on this
     this.state = {
+    showForm: false,  
     foods: foods,
     filtered: foods,
-    TodaysFoods: { }
+    TodaysFoods: { },
     };
 
 }
@@ -48,16 +49,21 @@ class App extends React.Component {
   })
 }
 
-
+showForm = () => {
+  this.setState({
+    showForm: true,
+  })
+}
 
     render(){
     return (
       <div>
       <div className= 'IronContacts'>
-      <h2>IronNutrition</h2><searchBar searchFood={this.filteredFood} />
+      <h2>IronNutrition</h2><searchBar filteredFood={this.filteredFood} />
+      
       <FoodForm handleChange={this.filteredFood} name='search' type='text' />
-      <AddFood />
-      <button onAdd={() => this.handleAddfood()}>Add new food</button> 
+      { this.state.showForm ? <AddFood handleAddfood = {this.handleAddfood}/> : <button className='button' onClick={this.showForm}>Add Food</button>}
+      {/* <button onAdd={() => this.handleAddfood()}>Add new food</button>  */}
       {foods.map((item, index) => {
         return (
       <FoodBox key={index} theFood={item} onQuantityChange={this.handleQuantityChange} /> 

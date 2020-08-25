@@ -130,7 +130,7 @@ function App() {
       </header>
       <br/>
     
-      <div style={styles.form}>
+      <div className="ma" style={styles.form}>
         <Form
           newFood={newFood}
           handleChange={handleChange}

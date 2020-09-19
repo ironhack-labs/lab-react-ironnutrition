@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bulma/css/bulma.css'
 import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
+import FoodBox from "./components/FoodBox";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <h1 className="title is-1">Iron Nutrition</h1>
+    <FoodBox/>
   </React.StrictMode>,
   document.getElementById('root')
 );

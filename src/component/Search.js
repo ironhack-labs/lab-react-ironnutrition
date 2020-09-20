@@ -3,12 +3,13 @@ import Main from '../styles/Main'
 import foods from "../foods.json"
 import Box from "../styles/Box"
 
+
+
 function Search() {
   const [name, setName] = useState("")
   const [arr, setArr] = useState([]);
-  const [calc, setCalc] = useState("")
 
-  function searchFood(e){
+    function searchFood(e){
     e.preventDefault();
     [...foods].forEach((ele, index)=>{
       if (ele.name === name){
@@ -19,6 +20,13 @@ function Search() {
     })
   }
 
+  const [calc, setCalc] = useState([])
+
+  function caluclateCalories(index){
+    const quantity = document.querySelector("#quantity").value
+    let calo = arr[index].calories * quantity
+    setCalc(calo)
+  }
 
 
   return (
@@ -33,20 +41,30 @@ function Search() {
       <div>
         {arr.map((ele, index, ar)=>{
           return (
-            <Box key={index}>
-              <div>
-                <img src={ele.image}></img>
-              </div>
-              <div className="text">
-                <h3>{ele.name}</h3>
-                <p>{ele.calories} Cal</p>
-              </div>
-              <div className="input">
-                <input min="0" type="number" name="calc"/>
-              </div>
-                <button className="btn">+</button>
-              {}
-            </Box>
+            <div>
+              <Box key={index}>
+                <div>
+                  <img src={ele.image}></img>
+                </div>
+                <div className="text">
+                  <h3>{ele.name}</h3>
+                  <p>{ele.calories} Cal</p>
+                </div>
+                <div className="input">
+                  <input min="0" type="number" name="calc" id="quantity"/>
+                </div>
+                  <button className="btn"  onClick={()=>{caluclateCalories(index)}}>+</button>
+              </Box>
+                  {calc>0 ? (
+                    <div>
+                      <p>Calories of {ele.name} : {calc} Cal</p>
+                    </div>
+                  ):
+                  (
+                    null
+                  )
+                  }
+            </div>
           )
         })}
       </div>

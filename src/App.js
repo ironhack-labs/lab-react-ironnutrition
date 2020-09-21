@@ -89,10 +89,9 @@ function App() {
       <div className="column content">
         <h2 className="subtitle">Today's foods</h2>
         <ul>
-            {todayFood?.map((food,index)=>(
+            {todayFood.map((food,index)=>(
                 <li key={index}>{food.name} = {food.calories}</li>
             ))}
-
         </ul>
         <strong>Total:</strong>
       </div>

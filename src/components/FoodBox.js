@@ -412,12 +412,8 @@ function FoodBox(){
             </article>
             <div>
                 <h2 class="title">COMPRA</h2>
-                    <ul>
-                        {todayFood?.map((food, i) => (
-                            <li key={i}>{food.name} = {food.calories}</li>
-                        ))}
-                    </ul>
-                    <h4 class="subtitle is-4">Total: {totalCalories}</h4>
+                    
+                    <h4 class="subtitle is-4">Total:</h4>
             </div>
 
         </div>

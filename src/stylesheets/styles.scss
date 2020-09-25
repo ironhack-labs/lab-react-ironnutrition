@@ -1,0 +1,106 @@
+$green: #07d1b2;
+$text: #333;
+$white: #fff;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,800;1,400&display=swap');
+
+html {
+  font-size: 10px;
+}
+
+body,
+.input,
+.button {
+  font-size: 1.6rem;
+  color: $text;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+
+.banner {
+  background: url(../images/banner-bg.jpg) no-repeat center center / cover fixed;
+  padding: 10rem 0;
+  box-shadow: inset 0 -2rem 8rem 0 rgba($text, 0.4);
+  position: relative;
+  text-align: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($green, 0.8);
+  }
+
+  .title {
+    color: $white;
+    font-weight: 300;
+    font-size: 4rem;
+
+    strong {
+        font-weight: 800;
+    }
+  }
+}
+
+.icon {
+  width: 12rem;
+  color: $white;
+  svg {
+    width: 12rem;
+  }
+}
+
+.button-col {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.add-btn.is-primary {
+    margin-top: -5rem;
+    border: solid 0.3rem $white;
+    border-radius: 0.8rem;
+    padding: 0.8rem 4rem;
+    height: auto;
+    margin-bottom: 3rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.input {
+  margin: 0.4rem auto 1.6rem auto;
+  border-radius: 0.4rem;
+  border: solid 0.1rem $green !important;
+}
+
+.form {
+  padding: 3rem;
+  border: solid 0.1rem $green;
+  margin-bottom: 2rem;
+  border-radius: 0.4rem;
+
+  button {
+    margin-top: 1rem;
+  }
+}
+
+.box {
+  border-radius: 0.4rem;
+  border: solid 0.1rem $green;
+
+  .input {
+    margin: 0;
+  }
+
+  .media,
+  figure {
+    display: flex;
+    align-items: center;
+  }
+}

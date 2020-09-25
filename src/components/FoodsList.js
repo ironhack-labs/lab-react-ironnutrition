@@ -109,7 +109,13 @@ class FoodsList extends Component {
       <div className="App">
         <h1 className="App-header"> Iron Nutrition </h1>
         <div>
-          <button onClick={this.showNewFoodItemForm}> Add Food </button>
+          <button
+            className="button is-primary is-primary is-active"
+            onClick={this.showNewFoodItemForm}
+          >
+            {' '}
+            Add Food
+          </button>
         </div>
         <div>
           <input
@@ -141,12 +147,15 @@ class FoodsList extends Component {
             {this.state.todaysFoodList.map((food, idx) => (
               <li>
                 {food.quantity} - {food.name}- {food.calories} cal
-                <span>
-                  <button onClick={() => this.delFoodFromToday(idx)}>
-                    {' '}
-                    Del{' '}
-                  </button>
-                </span>
+                <button
+                  className="button is-danger is-outlined"
+                  onClick={() => this.delFoodFromToday(idx)}
+                >
+                  <span>Del</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-times"></i>
+                  </span>
+                </button>
               </li>
             ))}
             <p>

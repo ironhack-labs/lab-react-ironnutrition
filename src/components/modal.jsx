@@ -1,74 +1,66 @@
-import React from 'react'
-import Input from './Input'
-import File from './File'
-import foods from '../foods.json';
-
-
+import React from 'react';
+import Input from './Input';
+import File from './File';
 
 export default class Modal extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        mood: false,
-        Name: "",
-        Calories: "",
-        Image: ""
-      }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    viewModal() {
-      this.setState((state) => ({
-        mood: !this.state.mood
-      }))
-    }
+  constructor(props) {
+    super(props);
+    this.reference = props.reference
+  }
 
-    handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    }
+  render() {
 
-    handleSubmit(e) {
-        e.preventDefault();
-        const newFood = {
-            "name" : this.state.Name,
-            "calories": this.state.Calories,
-            "image" : this.state.Image,
-            "quantity": 0
-        }
-        foods.push(newFood)
-    }
-  
-    render() {
-      return (
-        <div>
-            <button className="button is-success" onClick={() => this.viewModal()}>Add Food</button>
-            {this.state.mood &&
-            <div className="modal is-active is-medium">
-                <div className="modal-background"></div>
-                <div className="modal-card">
-                <header className="modal-card-head">
-                    <p className="modal-card-title">ADD FOOD</p>
-                    <button onClick={() => this.viewModal()} className="delete" aria-label="close"></button>
-                </header>
-                    <form onSubmit={this.handleSubmit}>
+    return (
+      <div>
+        <button className="button is-success" onClick={this.props.view}>
+          Add Food
+        </button>
+        {this.props.mood && (
+          <div className="modal is-active is-medium">
+            <div className="modal-background"></div>
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">ADD FOOD</p>
+                <button
+                  onClick={this.props.view}
+                  className="delete"
+                  aria-label="close"
+                ></button>
+              </header>
+              <form onSubmit={this.props.submit} encType="multipart/form-data">
                 <section className="modal-card-body">
-                    <Input name="Name" value={this.state.Name} onChange={this.handleChange} type="text"/>
-                    <Input name="Calories" value={this.state.Calories} onChange={this.handleChange} type="number" />
-                    <File name="Image" value={this.state.Image} onChange={this.handleChange} />
+                  <Input
+                    name="Name"
+                    value={this.props.Name}
+                    onChange={this.props.change}
+                    type="text"
+                  />
+                  <Input
+                    name="Calories"
+                    value={this.props.Calories}
+                    onChange={this.props.change}
+                    type="number"
+                  />
+                  <File
+                    name="Image"
+                    // value={this.props.Image}
+                    // onChange={this.props.change}
+                    reference={this.props.reference}
+                  />
                 </section>
                 <footer className="modal-card-foot">
-                    <button type="submit" className="button is-success">Save changes</button>
-                    <button onClick={() => this.viewModal()} className="button">Cancel</button>
+                  <button type="submit" className="button is-success">
+                    Save changes
+                  </button>
+                  <button onClick={this.props.view} className="button">
+                    Cancel
+                  </button>
                 </footer>
-                    </form>
-                </div>
+              </form>
             </div>
-            }
-        </div>
-      );
-    }
+          </div>
+        )}
+      </div>
+    );
   }
-  
+}

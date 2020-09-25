@@ -4,6 +4,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import Food from './components/Food/Food';
 import NewFood from './components/NewFood/NewFood';
+import Search from './components/Search/Search';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,9 +22,15 @@ export default class App extends React.Component {
     console.log('this is state', this.state.showFoodForm);
   };
 
+  searchFood = () => {};
+
   render() {
     return (
       <div>
+        <h1>IronNutrition</h1>
+        <div>
+          <Search onChange={this.searchFood} />
+        </div>
         {this.state.showFoodForm ? (
           <NewFood
             updateFoodList={this.updateFood}

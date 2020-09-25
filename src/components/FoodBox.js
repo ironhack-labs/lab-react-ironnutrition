@@ -1,6 +1,22 @@
 import React from 'react';
 
 const foodBox = (foodInfo) => {
+  /** */
+  const addTodayFood = (foodInfo) => {
+    console.log('foodBox ->  addTodayFood-> ', foodInfo.id);
+    foodInfo.updateTodayFood(foodInfo.id);
+  };
+
+  const updateFoodQty = (evt, id) => {
+    // console.log(evt.target.value);
+    // console.log(evt.target.name);
+    // console.log(id);
+    if (evt.target.name.trim() === 'qty') {
+      foodInfo.updateQty(evt.target.value, id);
+    }
+  };
+
+  /** */
   return (
     <div className="box">
       <article className="media">
@@ -23,12 +39,18 @@ const foodBox = (foodInfo) => {
               <input
                 className="input"
                 type="number"
-                value={foodInfo.qty}
-                readOnly
+                defaultValue={foodInfo.qty}
+                name="qty"
+                onChange={(evt) => updateFoodQty(evt, foodInfo.id)}
               />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button
+                className="button is-info"
+                onClick={() => addTodayFood(foodInfo)}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

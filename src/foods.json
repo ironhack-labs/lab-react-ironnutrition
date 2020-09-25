@@ -10,5 +10,23 @@
     "calories": 150,
     "image": "https://i.imgur.com/DupGBz5.jpg",
     "quantity": 0
+  },
+  {
+    "name": "Sweet Potato",
+    "calories": 120,
+    "image": "https://i.imgur.com/hGraGyR.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Gnocchi",
+    "calories": 500,
+    "image": "https://i.imgur.com/93ekwW0.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Pot Roast",
+    "calories": 350,
+    "image": "https://i.imgur.com/WCzJDWz.jpg",
+    "quantity": 0
   }
 ]

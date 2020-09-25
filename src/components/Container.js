@@ -23,13 +23,13 @@ export default class Container extends Component {
     return this.state.showFoodList ? (
       <div>
         <FoodList
-          flagShowList={this.toggleShowList}
+          toggleShowList={this.toggleShowList}
           foodItems={this.state.foods}
         />
       </div>
     ) : (
       <div>
-        <FoodAddForm flagShowList={this.toggleShowList} />
+        <FoodAddForm toggleShowList={this.toggleShowList} />
       </div>
     );
   }

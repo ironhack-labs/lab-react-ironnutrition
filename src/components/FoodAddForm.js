@@ -12,8 +12,12 @@ class FoodAddForm extends Component {
   addFoodToData = () => {
     console.log('FoodAddForm->addFoodToData()->state daa: ', this.state);
     // add the record to json file:
-    foods.push(this.state);
-    this.props.flagShowList(true);
+    if (this.state.foodName.trim().length > 0) {
+      foods.push(this.state);
+      this.props.toggleShowList(true);
+    } else {
+      this.props.toggleShowList(true);
+    }
   };
 
   /** form handler  */
@@ -36,21 +40,21 @@ class FoodAddForm extends Component {
       <div>
         <h2> Add a new Food Item </h2>
         <form onSubmit={(evt) => this.submitFormHdlr(evt)} method="POST">
-          {/* <label htmlFor="foodName"> Enter Food name: </label> */}
+          <label htmlFor="foodName"> Enter Food name: </label>
           <input
             type="text"
             name="foodName"
             onChange={(evt) => this.inputEventHdlr(evt)}
             defaultValue={this.state.foodName}
           />
-          {/* <label htmlFor="calories"> Enter Food Calaries: </label> */}
+          <label htmlFor="calories"> Enter Food Calaries: </label>
           <input
             type="text"
             name="calories"
             onChange={(evt) => this.inputEventHdlr(evt)}
             defaultValue={this.state.calories}
           />
-          {/* <label htmlFor="picture"> Picture url for food : </label> */}
+          <label htmlFor="picture"> Picture url for food : </label>
           <input
             type="text"
             name="picture"

@@ -5,6 +5,7 @@ import foods from '../foods.json';
 import ButtonNewFood from './ButtonNewFood';
 import InputWithLabel from './InputWithLabel'
 import InputSearch from './InputSearch';
+import Header from './Header'
 
 export default class FoodBox extends React.Component {
     constructor(props) {
@@ -46,7 +47,8 @@ export default class FoodBox extends React.Component {
         }
         
         this.setState({
-            filteredFoods: [newFood, ...this.state.filteredFoods]
+            filteredFoods: [newFood, ...this.state.filteredFoods],
+            foods: [newFood, ...this.state.foods]
         })
 
         this.setState(currentState => ({
@@ -67,7 +69,12 @@ export default class FoodBox extends React.Component {
 
     render() {
         return (
+            
+            
+            
+            
             <div className='container'>
+            <Header />
             <InputSearch onSearch={this.handleSearch}/>
                 <ButtonNewFood onClick={() => this.handleShowForm()} />
                 {this.state.showForm &&

@@ -13,6 +13,8 @@ class Foods extends React.Component {
     calories: 0,
     image: '',
     quantity: 0,
+    input: '',
+    counter: 1,
   };
 
   setTheState = (e) => {
@@ -33,39 +35,40 @@ class Foods extends React.Component {
 
     this.setState((previousState) => ({
       foods: newFoodList,
+      active: !previousState.active,
     }));
 
     console.log('list', newFoodList);
-
-    // if (!newList.includes(randomCeleb)) {
-    //     newList.push(randomCeleb);
-    //   }
-    //   this.setState((previousState) => ({
-    //     celebsList: newList,
-    //   }));
-    // };
 
     console.log('data', data);
   };
 
   toggleForm = () => {
-    //using state passing a function instead of an object
     this.setState((previousState) => ({
       active: !previousState.active,
     }));
   };
 
+  handleCounter = () => {
+    this.setState({
+      counter: (this.state.counter += 1),
+    });
+  };
+
   render() {
     const { active } = this.state;
+    const { input } = this.state;
     return (
       <>
         <button onClick={this.toggleForm}>Add new foods</button>
 
         <form
+          key="key"
           onSubmit={(e) => this.handleSubmit(e)}
           style={{ display: active ? 'block' : 'none' }}
         >
           <input
+            key="nam"
             name="name"
             type="text"
             placeholder="food name here"
@@ -73,6 +76,7 @@ class Foods extends React.Component {
             value={this.state.name}
           ></input>
           <input
+            key="cal"
             name="calories"
             type="number"
             placeholder="calories"
@@ -80,6 +84,7 @@ class Foods extends React.Component {
             value={this.state.calories}
           ></input>
           <input
+            key="img"
             name="image"
             type="text"
             placeholder="image url"
@@ -91,41 +96,62 @@ class Foods extends React.Component {
           </button>
         </form>
 
+        <div>
+          <input
+            name="input"
+            onChange={this.setTheState}
+            placeholder="search"
+          ></input>
+        </div>
+
         {foods.map((eachFood, index) => {
-          return (
-            <>
-              <div className="box">
-                <article className="media">
-                  <div className="media-left">
-                    <figure className="image is-64x64">
-                      <img src={eachFood.image} />
-                    </figure>
-                  </div>
-                  <div className="media-content">
-                    <div className="content">
-                      <p>
-                        <strong>{eachFood.name}</strong> <br />
-                        <small>{eachFood.calories} cal</small>
-                      </p>
+          if (eachFood.name.toLowerCase().includes(input.toLocaleLowerCase())) {
+            return (
+              <>
+                <div key={index} className="box">
+                  <article className="media">
+                    <div className="media-left">
+                      <figure className="image is-64x64">
+                        <img src={eachFood.image} />
+                      </figure>
                     </div>
-                  </div>
-                  <div className="media-right">
-                    <div className="field has-addons">
-                      <div className="control">
-                        <input className="input" type="number" value="1" />
-                      </div>
-                      <div className="control">
-                        <button className="button is-info">+</button>
+                    <div className="media-content">
+                      <div className="content">
+                        <p>
+                          <strong>{eachFood.name}</strong> <br />
+                          <small>{eachFood.calories} cal</small>
+                        </p>
                       </div>
                     </div>
-                  </div>
-                </article>
-              </div>
-            </>
-          );
+                    <div className="media-right">
+                      <div className="field has-addons">
+                        <div className="control">
+                          <input
+                            key={index}
+                            className="input"
+                            type="number"
+                            value={this.state.counter}
+                            onChange={this.setTheState}
+                          ></input>
+                        </div>
+                        <div className="control">
+                          <button
+                            onClick={this.handleCounter}
+                            className="button is-info"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </>
+            );
+          }
         })}
 
-        {/* hello */}
+        {/* div from return ends here */}
       </>
     );
   }

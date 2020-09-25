@@ -46,7 +46,7 @@ export default class FoodBox extends React.Component {
         }
         
         this.setState({
-            foods: [newFood, ...this.state.foods]
+            filteredFoods: [newFood, ...this.state.filteredFoods]
         })
 
         this.setState(currentState => ({
@@ -90,44 +90,7 @@ export default class FoodBox extends React.Component {
                         <button type="submit" className='button is-success'>Submit</button>
                     </form>
                 }
-                {this.state.filteredFoods ?
-
-                    this.state.filteredFoods.map((food, i) => {
-                    return (
-                        <div className="box" key={i}>
-                            <article className="media">
-                                <div className="media-left">
-                                    <figure className="image is-64x64">
-                                        <img src={food.image} />
-                                    </figure>
-                                </div>
-                                <div className="media-content">
-                                    <div className="content">
-                                        <p>
-                                            <strong>{food.name}</strong> <br />
-                                            <small>{food.calories}</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="media-right">
-                                    <div className="field has-addons">
-                                        <div className="control">
-                                            <input className="input" type="number" value={food.quantity} />
-                                        </div>
-                                        <div className="control">
-                                            <button className="button is-info">
-                                                +
-                        </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    )
-                })
-                 :
-                 
-                this.state.foods.map((food, i) => {
+                {this.state.filteredFoods.map((food, i) => {
                     return (
                         <div className="box" key={i}>
                             <article className="media">

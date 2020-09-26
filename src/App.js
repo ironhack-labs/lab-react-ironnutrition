@@ -1,24 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FoodBox from './components/FoodBox';
+import foods from './foods.json';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* {foods.map(food => <FoodBox {...food} />)}  */}
+      {/* Lo de arriba es object destructuring, hace que los objetos del array, las props sean su clave-valor ahorrando código */}
+      {foods.map(food => <FoodBox name={food.name} calories={food.calories} image={food.image} />)}
     </div>
   );
 }

@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import NewFoodForm from './components/NewFoodForm/NewFoodForm';
+import FoodList from './components/FoodList/FoodList';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import foods from './foods.json';
+
+
+class App extends React.Component {
+  state = {
+    foods: foods,
+    displayNewFoodForm: false
+  }
+
+  showNewFoodForm = () => {
+    this.setState({displayNewFoodForm: true})
+  }
+
+  handelCreateNewFood = (item) => {
+    this.setState(prev => ({
+      foods: [item, ...prev.foods],
+      displayNewFoodForm: false
+    }))
+    
+  }
+
+  render() {
+
+    return (
+      <div className="App columns mt-5 is-centered" style={{flexWrap: 'wrap', flexDirection: 'column', marginLeft: '2rem'}}>
+
+        <button className="button is-info mb-5" onClick={this.showNewFoodForm} style={{width: '150px'}}> + add food</button>
+
+        {this.state.displayNewFoodForm && <NewFoodForm createNewFood={this.handelCreateNewFood}/>}
+
+        <FoodList foods={this.state.foods}/>
+
+      </div>
+    );
+  }
 }
 
 export default App;

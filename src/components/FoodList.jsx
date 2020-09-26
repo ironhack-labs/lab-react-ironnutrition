@@ -1,12 +1,17 @@
 import React from 'react'
 import FoodBox from './FoodBox';
-import '../stylesheets/FoodList.css'
 import Menu from './Menu';
+import Button from './Button';
+import '../stylesheets/FoodList.css'
+import FoodForm from './FoodForm';
+import foods from '../foods.json'
 
 class FoodList extends React.Component {
   state = {
     search: '',
-    menu: []
+    menu: [],
+    foods: foods,
+    showAddNewFood: false
   }
 
   handleChange = (event) => {
@@ -32,8 +37,20 @@ class FoodList extends React.Component {
     })
   }
 
+  toggleAddFood = () => {
+    this.setState((prevState) => ({
+      showAddNewFood: !prevState.showAddNewFood
+    }))
+  }
+
+  addNewFood = (food) => {
+    this.setState((prevState) => ({
+      foods: [{...food, quantity: 0}, ...prevState.foods]
+    }))
+  }
+
   render() {
-    const filteredFoods = this.props.foods.filter(food => {
+    const filteredFoods = this.state.foods.filter(food => {
       return (
         new RegExp(this.state.search, "i").test(food.name) ||
         food.calories.toString() === this.state.search
@@ -50,6 +67,16 @@ class FoodList extends React.Component {
           onChange={this.handleChange}
           value={this.state.search}
         />
+
+        <div className="add-food">
+          <Button onClick={this.toggleAddFood} >
+            {this.state.showAddNewFood ? 'Hide' : 'Show'} new food
+          </Button>
+
+          {this.state.showAddNewFood && (
+            <FoodForm onSubmit={this.addNewFood} />
+          )}
+        </div>
 
         <div className="columns">
           <div className="column">

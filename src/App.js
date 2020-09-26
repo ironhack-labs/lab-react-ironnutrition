@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
-
+import AddFood from './Component/AddFood/AddFood';
 import FoodBox from './Component/Foodbox/FoodBox';
 
 function App() {
@@ -12,16 +12,8 @@ function App() {
       <h1>
         <b>IronNutrition</b>
       </h1>
-      {foods.map((food, index) => {
-        return (
-          <FoodBox
-            name={food.name}
-            calories={food.calories}
-            image={food.image}
-            quantity={food.quanity}
-          />
-        );
-      })}
+      <AddFood />
+      {/* <FoodBox /> */}
     </div>
   );
 }

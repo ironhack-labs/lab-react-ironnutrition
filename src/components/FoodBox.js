@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import FoodForm from "./FoodForm";
 //import "./FoodBox.css";
 
 class FoodBox extends Component {

@@ -8,11 +8,14 @@ function FoodCardDiv(props) {
     const [name, setName] = useState("");
     const [calories, setCalories] = useState(0);
     const [image, setImage] = useState('');
-    const [buttonStatus, setButtonStatus] = useState(false)
+    const [buttonStatus, setButtonStatus] = useState(false);
+    const [searchedFood, setSearchedFood] = useState('');
     const [quantity, setQuantity] = useState(1);
     // const [selectedFood, setSelectedFood] = useState([]);
 
-    const foodsInDiv = allFoods.map(food => {
+    const searched = allFoods.filter(food => food.name.toLowerCase().includes(searchedFood))
+    
+    const foodsInDiv = searched.map(food => {
         return (
             <li key={food.name}>
                 <div className="box">
@@ -49,7 +52,7 @@ function FoodCardDiv(props) {
 
     function showForm() {
         setButtonStatus(!buttonStatus)
-    }
+    };
 
     function submitForm(e) {
         console.log('entra')
@@ -67,16 +70,27 @@ function FoodCardDiv(props) {
         showForm();
     };
 
+    function searchFood(e) {
+        e.preventDefault();
+    }
+
     return (
         <div className="FoodCardDiv">
             <div>
-                <Button funct={showForm} buttonStatus={buttonStatus} />
-                {buttonStatus && <form onSubmit={submitForm}>
-                    <input className="input" type="text" name="image" value={image} placeholder="Image" onChange={(e) => setImage(e.target.value)} />
-                    <input className="input" type="text" name="name" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} />
-                    <input className="input" type="number" name="calories" value={calories} placeholder="Calories" onChange={(e) => setCalories(e.target.value)} />
-                    <button className="button is-info">+</button>
-                </form>}
+                <div>
+                    <form onSubmit={searchFood}>
+                        <input className="input" type="text" name="searched food" value={searchedFood} placeholder="Search Food" onChange={(e) => setSearchedFood(e.target.value)} />
+                    </form>
+                </div>
+                <div>
+                    <Button funct={showForm} buttonStatus={buttonStatus} />
+                    {buttonStatus && <form onSubmit={submitForm}>
+                        <input className="input" type="text" name="image" value={image} placeholder="Image" onChange={(e) => setImage(e.target.value)} />
+                        <input className="input" type="text" name="name" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                        <input className="input" type="number" name="calories" value={calories} placeholder="Calories" onChange={(e) => setCalories(e.target.value)} />
+                        <button className="button is-info">+</button>
+                    </form>}
+                </div>
             </div>
             <div className="splittedElem">
                 <ul>

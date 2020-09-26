@@ -2,10 +2,6 @@ import React from 'react';
 import foods from '../../foods.json';
 
 export default class NewFood extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     name: '',
     calories: '',
@@ -18,18 +14,15 @@ export default class NewFood extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    foods.push(this.state);
+    this.props.newFood(this.state);
     console.log('inside', foods);
-    this.props.showNewFoodForm(e);
+    //this.props.showNewFoodForm(e);
   };
 
   render() {
     return (
       <div>
-        <form
-          onSubmit={(e) => this.handleSubmit(e)}
-          style={{ display: 'block' }}
-        >
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label>
             Name:
             <input
@@ -37,6 +30,7 @@ export default class NewFood extends React.Component {
               type="text"
               onChange={this.setNewState}
               value={this.state.name}
+              placeholder="Salad"
             />
           </label>
           <label>
@@ -46,15 +40,17 @@ export default class NewFood extends React.Component {
               type="text"
               onChange={this.setNewState}
               value={this.state.calories}
+              placeholder="50"
             />
           </label>
           <label>
-            ImageUrl:
+            Image:
             <input
               name="image"
               type="text"
               onChange={this.setNewState}
               value={this.state.image}
+              placeholder="Url"
             />
           </label>
           <button type="submit">Submit</button>

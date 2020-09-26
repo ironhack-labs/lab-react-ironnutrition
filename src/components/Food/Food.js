@@ -1,12 +1,12 @@
 import React from 'react';
-import foods from '../../foods.json';
+
 import FoodBox from '../FoodBox/FoodBox';
 
 export default class Food extends React.Component {
   render() {
     return (
       <div className="Food">
-        {foods.map((food, idx) => {
+        {this.props.foodList.map((food, idx) => {
           return (
             <FoodBox
               key={idx}

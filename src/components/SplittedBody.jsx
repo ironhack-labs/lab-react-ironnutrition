@@ -67,10 +67,11 @@ function SplittedBody(props) {
                 </div>}
                 <div>
                     <Button funct={showForm} buttonStatus={buttonStatus} />
-                    {buttonStatus && <form onSubmit={submitForm}>
-                        <input className="input" type="text" name="image" value={image} placeholder="Image" onChange={(e) => setImage(e.target.value)} />
+                    {buttonStatus && 
+                    <form onSubmit={submitForm}>
                         <input className="input" type="text" name="name" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)} />
                         <input className="input" type="number" name="calories" value={calories} placeholder="Calories" onChange={(e) => setCalories(e.target.value)} />
+                        <input className="input" type="text" name="image" value={image} placeholder="Image" onChange={(e) => setImage(e.target.value)} />
                         <button className="button is-info">+</button>
                     </form>}
                 </div>

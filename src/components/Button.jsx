@@ -3,7 +3,7 @@ import React from 'react';
 function Button(props, state) {
     return (
         <div className="Button">
-            {!props.buttonStatus && <button className="button is-info" onClick={props.funct}>Add Food</button>}
+            <button className="button is-info" onClick={props.funct}>{!props.buttonStatus ? 'Add Food' : 'Hide Form'}</button>
         </div>
     );
 };

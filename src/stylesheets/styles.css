@@ -12,6 +12,12 @@ body,
   font-weight: 400;
 }
 
+.title {
+  font-weight: 300;
+  font-size: 3rem;
+  text-align: center;
+}
+
 .banner {
   background: url(../images/banner-bg.jpg) no-repeat center center/cover fixed;
   padding: 10rem 0;
@@ -33,8 +39,6 @@ body,
 
 .banner .title {
   color: #fff;
-  font-weight: 300;
-  font-size: 4rem;
 }
 
 .banner .title strong {
@@ -96,6 +100,10 @@ label {
   border: solid 0.1rem #07d1b2;
 }
 
+.box button {
+  font-weight: 800;
+}
+
 .box .input {
   margin: 0;
 }
@@ -108,5 +116,13 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.today .box {
+  border: 0;
+  border-bottom: solid 0.1rem #07d1b2;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 0;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -13,6 +13,7 @@ export default class FoodBox extends React.Component {
             viewForm: false,
             display: 'none',
             showCards: foods,
+            showFoods: [],
             search: 'Search food'
         }
         this.handleChange = this.handleChange.bind(this)
@@ -45,7 +46,6 @@ export default class FoodBox extends React.Component {
         })
 
         console.log(this.state.picture.current.files[0])
-
         console.log(this.state.showCards)
 
         this.setState(this.state.showCards)
@@ -79,10 +79,17 @@ export default class FoodBox extends React.Component {
         }
     }
 
+    addFood(e) {
+        console.log(e.target.getAttribute('name'))
+        this.state.showFoods.push(this.state.showCards.filter(el => el.name === e.target.getAttribute('name')))
+        const value = document.querySelector(`#${e.target.getAttribute('name')} .input`).value
+        this.setState({showFoods: this.state.showFoods[0], value: value})
+    }
 
+ 
     render() {
         const getCards = this.state.showCards.map((food, i) =>
-            <div className="box" key={i}>
+            <div className="box" id={`${food.name}`} key={i}>
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
@@ -103,9 +110,32 @@ export default class FoodBox extends React.Component {
                                 <input className="input" type="number" defaultValue="1" />
                             </div>
                             <div className="control">
-                                <button className="button is-primary">+</button>
+                                <button className="button is-primary" name={`${food.name}`} onClick={(e) => this.addFood(e)}>+</button>
                             </div>
                         </div>
+                    </div>
+                </article>
+            </div>
+        )
+
+
+        const getFoods = this.state.showFoods.map((food, i) =>
+            <div className="box" name={`${food.name}`} key={i}>
+                <article className="media">
+                    <div className="media-left">
+                        <figure className="image is-64x64">
+                            <img src={food.image} alt="" />
+                        </figure>
+                    </div>
+                    <div className="media-content">
+                        <div className="content">
+                            <p>
+                               {this.state.value} x <strong>{food.name}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div className="media-right">
+                        <small>{`${this.state.value * food.calories}`} cal</small>
                     </div>
                 </article>
             </div>
@@ -156,7 +186,10 @@ export default class FoodBox extends React.Component {
                     </div>
                     <div>{getCards}</div>
                 </div>
-                <div class="column"><h1 className="title">Today's Food</h1></div>
+                <div className="column today">
+                    <h1 className="title">Today's Food</h1>
+                    {getFoods}
+                </div>
             </div>
         )
     }

@@ -3,15 +3,15 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import foods from './foods.json'; 
 import Title from './components/Title';
-import FoodCardDiv from './components/FoodCardDiv';
+import SplittedBody from './components/SplittedBody';
 
 function App() {
   return (
     <div className="App">
       <Title />
-      <FoodCardDiv foods={foods} />
+      <SplittedBody foods={foods} />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,3 +1,8 @@
 .Summatory {
     padding-left: 100px
 }
+
+li {
+    list-style: none;
+    margin-left: -40px;
+}

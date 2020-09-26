@@ -1,0 +1,9 @@
+.splittedElem {
+    display: flex;
+    width: 100%;
+    padding: 100px;
+}
+
+.FoodBox {
+  margin: 10px;
+}

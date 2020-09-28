@@ -71,6 +71,8 @@ body,
   padding: 0.8rem 4rem;
   height: auto;
   margin-bottom: 3rem;
+  left: 50%;
+  margin-left: -13.5rem;
 }
 
 label {
@@ -124,5 +126,18 @@ label {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-radius: 0;
+}
+
+.delete-btn {
+  border: 0;
+}
+
+.delete-btn svg {
+  color: tomato;
+  width: 2rem;
+}
+
+.text-center {
+  text-align: center;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import 'bulma/css/bulma.css';
+// import 'bulma/css/bulma.css';
 import foodList from './foods.json';
 import FoodBox from './Component/Foodbox.js';
 import TodaysFoodContainer from './Component/TodaysFoodContainer.js';

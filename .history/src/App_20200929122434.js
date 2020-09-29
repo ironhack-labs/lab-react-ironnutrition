@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foodList from './foods.json';
-import FoodBox from './Component/Foodbox.js';
-import TodaysFoodContainer from './Component/TodaysFoodContainer.js';
+import FoodBox from './Component/FoodBox';
+import TodaysFoodContainer from './Component/TodaysFood/TodaysFoodContainer';
 
 class App extends React.Component {
   state = {
@@ -139,7 +139,7 @@ class App extends React.Component {
             <input
               className="input is-primary"
               type="text"
-              placeholder="Food Name"
+              placeholder="Pizza"
               name="searchParams"
               onChange={this.handleOnChange}
               value={this.state.searchParams}

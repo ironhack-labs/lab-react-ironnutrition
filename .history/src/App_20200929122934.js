@@ -139,7 +139,7 @@ class App extends React.Component {
             <input
               className="input is-primary"
               type="text"
-              placeholder="Food Name"
+              placeholder="Pizza"
               name="searchParams"
               onChange={this.handleOnChange}
               value={this.state.searchParams}

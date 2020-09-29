@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foodList from './foods.json';
-import FoodBox from './Component/Foodbox.js';
-import TodaysFoodContainer from './Component/TodaysFoodContainer.js';
+// import FoodBox from './Component/Foodbox/FoodBox';
+// import TodaysFoodContainer from './Component/TodaysFood/TodaysFoodContainer';
 
 class App extends React.Component {
   state = {
@@ -148,7 +148,7 @@ class App extends React.Component {
         </div>
 
         <div className="food-container">
-          <div>
+          {/* <div>
             {/* FOOD LIST */}
             {/* SEARCH BAR FILTERING*/}
             {this.state.foodList
@@ -165,13 +165,13 @@ class App extends React.Component {
                   handleDelete={this.handleDelete}
                 />
               ))}
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <TodaysFoodContainer
               todayFood={this.state.todayFood}
               handleDelete={this.handleDeleteTodayFood}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     );

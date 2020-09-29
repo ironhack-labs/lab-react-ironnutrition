@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foodList from './foods.json';
-import FoodBox from './Component/Foodbox.js';
-import TodaysFoodContainer from './Component/TodaysFoodContainer.js';
+// import FoodBox from './Component/Foodbox/FoodBox';
+// import TodaysFoodContainer from './Component/TodaysFood/TodaysFoodContainer';
 
 class App extends React.Component {
   state = {
@@ -139,37 +139,10 @@ class App extends React.Component {
             <input
               className="input is-primary"
               type="text"
-              placeholder="Food Name"
+              placeholder="Pizza"
               name="searchParams"
               onChange={this.handleOnChange}
               value={this.state.searchParams}
-            />
-          </div>
-        </div>
-
-        <div className="food-container">
-          <div>
-            {/* FOOD LIST */}
-            {/* SEARCH BAR FILTERING*/}
-            {this.state.foodList
-              .filter((element) =>
-                element.name
-                  .toLocaleLowerCase()
-                  .includes(this.state.searchParams.toLocaleLowerCase())
-              )
-              .map((element, index) => (
-                <FoodBox
-                  key={index}
-                  food={element}
-                  addQuantity={this.addQuantity}
-                  handleDelete={this.handleDelete}
-                />
-              ))}
-          </div>
-          <div>
-            <TodaysFoodContainer
-              todayFood={this.state.todayFood}
-              handleDelete={this.handleDeleteTodayFood}
             />
           </div>
         </div>

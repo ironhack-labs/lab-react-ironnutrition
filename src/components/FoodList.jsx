@@ -15,6 +15,7 @@ export default class FoodList extends React.Component {
     }
 
     state = {
+        search: '',
         foodArray: [],
         newFood: '',
         newCal: '',
@@ -26,9 +27,6 @@ export default class FoodList extends React.Component {
             [event.target.name]: event.target.value,
             // disabledButton: event.target.name === '' ? true : false
         })
-
-
-
     }
 
     onSubmit = (event) => {
@@ -49,24 +47,34 @@ export default class FoodList extends React.Component {
     }
 
     render() {
+        const filterdArr = this.state.foodArray.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
+
         return (
-            <div>
+            <div>   
                 <div className="columns">
-                    <div className="column has-text-left	">
+                    <div className="column has-text-left">
                         <AddFood onChange={this.handleOnChange} onSubmit={this.onSubmit} food={this.state.newFood} cal={this.state.newCal} img={this.state.newImg}></AddFood>
+
+
+                        <div className="field">
+                            <label className="label">Food Name</label>
+                            <div className="control">
+                                <input className="input" type="text" placeholder="Search Food" name="search" onChange={this.handleOnChange} />
+                            </div>
+                        </div>
+
+
                         <div className="food-list">
-                            {this.state.foodArray.map((food, index) =>
+                            {filterdArr.map((food, index) =>
                                 <FoodCard addFoodList={this.addFoodList} foodElem={food} index={index} key={food.name} />
                             )}
                         </div>
                     </div>
                     <div className="column has-text-left">
-                        <FoodSelected foods={this.state.foodArray} />
+                        <FoodSelected foods={filterdArr} />
                     </div>
 
                 </div>
-
-
 
             </div>
         )

@@ -8,8 +8,7 @@ export default function FoodSelected(props) {
             <ul style={{ paddingLeft: '25px' }}>
                 {props.foods.map((food, index) =>
                     food.quantity !== 0 &&
-                    <li key={food.name}>{food.quantity} {food.name} {food.calories}</li>
-
+                    <li key={food.name}>{food.quantity} {food.name} {food.calories} Cal.</li>
                 )}
             </ul>
         </div>

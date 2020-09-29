@@ -4,12 +4,13 @@ export default class FoodList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: []
+            list: props.list,
+            totalCalories: props.list.map(ele => ele.quantity * ele.calories).reduce((a, b) => a + b)
         }
     }
 
     totalCalories = () => {
-        return this.state.list.reduce((a, b) => a.calories + b.calories);
+        return this.state.list.map(ele => ele.calories).reduce((a, b) => a + b);
     }
 
     render() {
@@ -17,11 +18,11 @@ export default class FoodList extends Component {
             <div>
                 <h2 className="subtitle">Today's foods</h2>
                 <ul>
-                    {this.state.list.map(food =>
-                        <li>{food.quantity} {food.name} = {food.calories} ca;</li>
+                    {this.state.list.map((food, index) =>
+                        <li key={index}>{food.quantity} {food.name} = {food.calories} cal</li>
                     )}
                 </ul>
-                <strong>Total: {this.totalCalories} cal</strong>
+                <strong>Total: {this.state.totalCalories} cal</strong>
             </div>
         )
     }

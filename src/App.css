@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 40px;
 }
 
 .App-logo {
@@ -32,7 +33,20 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.box {
+  padding: 0.1rem 1.25rem !important;
+  padding-top: 20px !important;
+}
+
+.add-food {
+  padding: 0px 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-size: 1.5rem;
 }

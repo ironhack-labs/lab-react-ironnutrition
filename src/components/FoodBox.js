@@ -11,14 +11,17 @@ export default class FoodBox extends Component {
         }
     }
 
-    onClick = () => {
-        console.log(this.state);
-        this.props.onSubmit(this.state);
+    onClickAdd = () => {
+        const foodToSubmit = this.state;        
+        if (foodToSubmit.quantity > 0) {
+            this.props.onSubmit(this.state);
+        }
     }
 
     handleChange = (e) => {
+        const foodQuantity = Number(e.target.value);
         this.setState({
-            quantity: Number(e.target.value)
+            quantity: foodQuantity > 0 ? foodQuantity : 0
         })
     }    
 
@@ -46,8 +49,11 @@ export default class FoodBox extends Component {
                                 <input className="input" type="number" onChange={this.handleChange} value={quantity} />
                             </div>
                             <div className="control">
-                                <button className="button is-info" onClick={this.onClick}>
+                                <button className="button is-info" onClick={this.onClickAdd}>
                                     +
+                                </button>
+                                <button className="button is-danger" onClick={this.onClickRemove}>
+                                    -
                                 </button>
                             </div>
                         </div>

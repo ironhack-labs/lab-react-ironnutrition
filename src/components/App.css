@@ -1,0 +1,32 @@
+.app{
+
+  display: flex;
+}
+
+.food-list {
+
+  width: 50%;
+  padding: 40px 30px
+}
+
+.food-list .searcher{
+
+  margin: 20px 0
+}
+
+.food-list .form-btn{
+
+  margin: 10px 0
+}
+
+.today-title{
+
+  text-align: center;
+  font-size: 2em;
+}
+
+.total-calories{
+
+  font-weight: 900;
+  margin-top: 20px
+}

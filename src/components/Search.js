@@ -11,8 +11,7 @@ export default class Search extends Component {
     handleChange = async (event) => {
         await this.setState({
             search: event.target.value
-        });
-        
+        });        
         this.props.onChange(this.state.search);
     }
 

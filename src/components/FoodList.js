@@ -1,11 +1,15 @@
 import React from 'react'
 
 const FoodList = (props) => {
+    let {list} = props;
+    
+    list = list.filter(food => food.quantity >= 1);
+
     return (
         <div>
             <h2 className="subtitle">Today's foods</h2>
             <ul>
-                {props.list.map((food, index) =>
+                {list.map((food, index) =>
                     <li key={index}>{food.quantity} {food.name} = {food.calories} cal</li>
                 )}
             </ul>

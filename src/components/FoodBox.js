@@ -11,11 +11,10 @@ export default class FoodBox extends Component {
         }
     }
 
-    onClickAdd = () => {
-        const foodToSubmit = this.state;        
-        if (foodToSubmit.quantity > 0) {
-            this.props.onSubmit(this.state);
-        }
+    onClickAdd = (event) => {
+        let stateCopy = {...this.state};
+        if (event.target.innerText === "-") stateCopy.quantity *= -1;
+        this.props.onSubmit(stateCopy);
     }
 
     handleChange = (e) => {
@@ -52,7 +51,7 @@ export default class FoodBox extends Component {
                                 <button className="button is-info" onClick={this.onClickAdd}>
                                     +
                                 </button>
-                                <button className="button is-danger" onClick={this.onClickRemove}>
+                                <button className="button is-danger" onClick={this.onClickAdd}>
                                     -
                                 </button>
                             </div>

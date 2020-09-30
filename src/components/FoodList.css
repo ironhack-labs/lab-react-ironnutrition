@@ -1,0 +1,17 @@
+.title {
+    font-weight: 50px !important;
+    margin-left: auto !important;
+}
+
+.add-food {
+    margin: 1rem 0;
+}
+
+.food-list {
+    margin: 20px;
+}
+
+.search-deco {
+    width: 70rem;
+}
+

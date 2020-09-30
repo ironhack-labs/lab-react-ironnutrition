@@ -21,13 +21,27 @@ class App extends Component {
   }
   
   addFood = async (food) => {
+    let isInFoodList = false;
+    let newFoodList = [];
+    
+    // check if the added food item is already in the list
+    this.state.foodList.forEach(item => {
+      if (item.name === food.name) isInFoodList = true;
+    })
 
-    // Bonus iteration 6 still in progress
-    console.log(food)
-    const isFoodInList = this.state.foodList.length !== 0 ? this.state.foodList.filter(ele => ele.name === food.name) : 0;
-    console.log(isFoodInList)
+    // if the new food item is in the list, update the quantity
+    // else add the new food item to the list
+    if (isInFoodList) {
+      newFoodList = [...this.state.foodList].map((item) => {
+        if (item.name === food.name) item.quantity += food.quantity;
+        return item;
+      });  
+      newFoodList.filter(item => item.quantity >= 0);
+    } else {
+      newFoodList = [...this.state.foodList, food];
+    }
 
-    const newFoodList = [...this.state.foodList, food];
+    // update the state with the new list
     await this.setState({
       foodList: newFoodList
     });

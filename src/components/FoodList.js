@@ -10,7 +10,7 @@ const FoodList = (props) => {
             <h2 className="subtitle">Today's foods</h2>
             <ul>
                 {list.map((food, index) =>
-                    <li key={index}>{food.quantity} {food.name} = {food.calories} cal</li>
+                    <li key={index}>{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>
                 )}
             </ul>
             <strong>Total: {props.list.map(ele => ele.quantity * ele.calories).reduce((a, b) => a + b, 0)} cal</strong>

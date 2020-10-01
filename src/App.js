@@ -3,6 +3,7 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import FoodList from './components/FoodList';
 import Search from './components/Search';
+import AddFoodForm from './components/AddFoodForm';
 import 'bulma/css/bulma.css';
 import './App.css';
 
@@ -13,14 +14,14 @@ class App extends Component {
     foodList: []
   }
 
-  searchFilter = async (event) => {
+  searchFilter = (event) => {
     const filteredFoods = this.state.foods.filter(food => food.name.toLowerCase().includes(event.toLowerCase()));
-    await this.setState({
+    this.setState(() => ({
       filteredFoodList: filteredFoods
-    })
+    }))
   }
   
-  addFood = async (food) => {
+  addFoodToList = (food) => {
     let isInFoodList = false;
     let newFoodList = [];
     
@@ -42,20 +43,28 @@ class App extends Component {
     }
 
     // update the state with the new list
-    await this.setState({
+    this.setState(() => ({
       foodList: newFoodList
-    });
+    }));
+  }
+
+  addFoodBox = (food) => {
+    console.log(">>>> from form", food)
+    this.setState(state => ({
+      foods: [...state.foods, food]
+    }))
   }
 
   render() {
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        <Search onChange={this.searchFilter} />
+          <Search onChange={this.searchFilter} />
+          <AddFoodForm onSubmit={this.addFoodBox} /><br />
         <div className="columns">
           <div className="column">
               {this.state.filteredFoodList.map(food => 
-                <FoodBox onSubmit={this.addFood} key={food.name} item={food}/>
+                <FoodBox onSubmit={this.addFoodToList} key={food.name} item={food}/>
               )}
           </div>
           <div className="column content">

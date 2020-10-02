@@ -55,9 +55,6 @@ function App() {
   const addFood = (event) => {
     event.preventDefault();
     const tempFoods = JSON.parse(JSON.stringify(state.foods));
-    console.log(event.currentTarget.name.value);
-    console.log(event.currentTarget.calories.value);
-    console.log(event.currentTarget.image.value);
     tempFoods.push({
       name: event.currentTarget.name.value,
       calories: event.currentTarget.calories.value,
@@ -68,7 +65,6 @@ function App() {
   };
 
   const addFoodButton = (event) => {
-    console.log(state);
     setState({ ...state, addFoodState: true });
   };
 

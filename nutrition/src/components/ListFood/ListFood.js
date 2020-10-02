@@ -25,7 +25,7 @@ class ListFood extends Component {
 
         searchFoods = elm => {
             let { value } = elm.target
-            this.setState(state => ({foodList: this.state.foodList.filter((elm) => elm.name.toLowerCase().includes(value.toLowerCase()))}))
+            this.setState({foodList: this.state.foodList.filter((elm) => elm.name.toLowerCase().includes(value.toLowerCase())}))
         }
 
         //Intento de completar el array de  Today's list...en TodayFood.js iba a iterar este array, pero nop...

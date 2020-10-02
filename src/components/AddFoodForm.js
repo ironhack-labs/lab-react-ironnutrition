@@ -23,8 +23,6 @@ export default class AddFoodForm extends Component {
         await this.setState(() => ({
             food: foodStateCopy
         }));
-
-        console.log(this.state.food)
     }
 
     onButtonClick = (event) => {

@@ -34,7 +34,11 @@ class App extends Component {
     // else add the new food item to the list
     if (isInFoodList) {
       newFoodList = [...this.state.foodList].map((item) => {
-        if (item.name === food.name) item.quantity += food.quantity;
+        if (item.name === food.name) {
+          (item.quantity + food.quantity >= 0) 
+          ? item.quantity += food.quantity
+          : item.quantity = 0;
+        }
         return item;
       });  
       newFoodList.filter(item => item.quantity >= 0);
@@ -48,10 +52,10 @@ class App extends Component {
     }));
   }
 
-  addFoodBox = (food) => {
-    console.log(">>>> from form", food)
-    this.setState(state => ({
-      foods: [...state.foods, food]
+  addFoodBox = async (food) => {
+    await this.setState(state => ({
+      foods: [...state.foods, food],
+      filteredFoodList: [...state.filteredFoodList, food]
     }))
   }
 

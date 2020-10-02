@@ -102,15 +102,3 @@ function App() {
 export default App;
 
 // (new RegExp('(' + state.searchBox + ')', 'gi').test(el.name)
-
-////const tempFoods = [...state.foods];
-//   const tempFoods = JSON.parse(JSON.stringify(state.foods));
-// //tempFoods[event.currentTarget.id].quantity = event.currentTarget.value;
-//   setState((prevstate) => {
-//      console.log(state);
-//     prevstate.foods[event.currentTarget.id].quantity += Number(
-//      event.currentTarget.value
-//     );
-// console.log(state);
-//     return prevstate;
-// });

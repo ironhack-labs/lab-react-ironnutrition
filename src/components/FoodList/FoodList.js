@@ -7,7 +7,6 @@ function FoodList(props) {
         <h2 className="subtitle">Today's foods</h2>
         <ul>
           {props.foodList.map((el, i) => {
-            //console.log(props.foodList);
             return (
               <li key={i}>
                 {el.quantity} {el.name} = {el.calories}{' '}

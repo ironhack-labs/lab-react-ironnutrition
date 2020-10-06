@@ -18,10 +18,17 @@ class App extends React.Component {
     }));
   };
 
+  compareFoods = (food, foods) => {};
+
   addFoodMenu = (food) => {
-    this.setState((oldState) => ({
-      menu: [food, ...oldState.menu],
-    }));
+    console.log(food.quantity);
+    // this.state.menu.length !== 0
+    //   ? this.setState((oldState) => ({
+    //       menu: this.compareFoods(food, oldState.menu),
+    //     }))
+    //   : this.setState((oldState) => ({
+    //       menu: [food, ...oldState.menu],
+    //     }));
   };
 
   searchFoods = (string) => {
@@ -36,7 +43,7 @@ class App extends React.Component {
       ? foods.filter(
           (food) =>
             food.name.includes(search) ||
-            food.calories.toString().includes(Number(search))
+            food.calories.toString().includes(search)
         )
       : foods;
 

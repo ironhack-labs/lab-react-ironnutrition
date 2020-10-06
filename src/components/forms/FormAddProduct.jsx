@@ -1,22 +1,21 @@
 import React from 'react';
 
-export default class FormAddProduct extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: 1 };
+class FormAddProduct extends React.Component {
+  state = {
+    value: 1,
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  handleChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    });
+  };
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    alert('Add: ' + this.state.value);
-    event.preventDefault();
-  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.food.quantity = Number(this.state.value);
+    this.props.addFoodMenu(this.props.food);
+  };
 
   render() {
     return (
@@ -40,3 +39,5 @@ export default class FormAddProduct extends React.Component {
     );
   }
 }
+
+export default FormAddProduct;

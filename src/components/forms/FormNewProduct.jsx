@@ -42,7 +42,6 @@ class FormNewProduct extends React.Component {
 
   handleBlur = (event) => {
     const { name } = event.target;
-
     this.setState({
       touch: {
         ...this.state.touch,
@@ -53,7 +52,7 @@ class FormNewProduct extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.setFood(this.state.data);
+    this.props.setNewFood(this.state.data);
     this.setState({
       success: true,
     });
@@ -81,14 +80,17 @@ class FormNewProduct extends React.Component {
           name="name"
           type="text"
           value={data.name}
+          error={error['name']}
+          touch={touch['name']}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
         <InputLabelHorizontal
           name="calories"
           type="number"
-          className={touch['calories'] && error['calories'] ? 'is-danger' : ''}
           value={data.calories}
+          error={error['calories']}
+          touch={touch['calories']}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
@@ -96,6 +98,8 @@ class FormNewProduct extends React.Component {
           name="image"
           type="text"
           value={data.image}
+          error={error['image']}
+          touch={touch['image']}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
@@ -103,7 +107,6 @@ class FormNewProduct extends React.Component {
         <button type="submit" className="button is-primary" disabled={isError}>
           Save
         </button>
-        <p>{JSON.stringify(this.state)}</p>
       </form>
     );
   }

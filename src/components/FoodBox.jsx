@@ -1,5 +1,5 @@
 import React from 'react';
-import FormAddProduct from './forms/FormAddProduct'
+import FormAddProduct from './forms/FormAddProduct';
 
 export default function FoodBox(props) {
   return (
@@ -23,5 +23,5 @@ export default function FoodBox(props) {
         </div>
       </article>
     </div>
-  )
+  );
 }

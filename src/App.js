@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import FoodList from './components/FoodList';
 import NewProduct from './components/forms/NewProduct';
 import foods from './foods.json';
@@ -15,7 +14,7 @@ class App extends React.Component {
     });
   }
 
-  setFood = (food) => {
+  setNewFood = (food) => {
     this.setState((oldState) => ({
       foods: [food, ...oldState.foods],
     }));
@@ -46,7 +45,7 @@ class App extends React.Component {
             </ul>
             <strong>Total: 700 cal</strong>
             <hr />
-            <NewProduct setFood={this.setFood} />
+            <NewProduct setNewFood={this.setNewFood} />
           </div>
         </div>
       </div>

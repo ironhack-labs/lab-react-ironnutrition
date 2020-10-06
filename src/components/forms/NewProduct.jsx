@@ -28,7 +28,7 @@ export default class NewProduct extends React.Component {
         {this.state.isVisible && (
           <div className="container">
             <h1 className="title">New product</h1>
-            <FormNewProduct setFood={this.props.setFood} />
+            <FormNewProduct setNewFood={this.props.setNewFood} />
           </div>
         )}
       </div>

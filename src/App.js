@@ -1,5 +1,6 @@
 import React from 'react';
 import FoodList from './components/FoodList';
+import InputSearch from './components/forms/components/InputSeach';
 import NewProduct from './components/forms/NewProduct';
 import foods from './foods.json';
 
@@ -11,6 +12,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       foods: foods,
+      search: '',
     });
   }
 
@@ -20,7 +22,22 @@ class App extends React.Component {
     }));
   };
 
+  searchFoods = (string) => {
+    this.setState({
+      search: string,
+    });
+  };
+
   render() {
+    const { foods, search } = this.state;
+    const filteredFoods = search
+      ? foods.filter(
+          (food) =>
+            food.name.includes(search) ||
+            food.calories.toString().includes(Number(search))
+        )
+      : foods;
+    console.log(filteredFoods);
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -28,14 +45,14 @@ class App extends React.Component {
           <div className="column">
             <div className="field">
               <div className="control">
-                <input className="input" type="text" placeholder="Search" />
+                <InputSearch searchFoods={this.searchFoods} />
               </div>
             </div>
           </div>
         </div>
         <div className="columns">
           <div className="column">
-            <FoodList foods={this.state.foods} />
+            <FoodList foods={filteredFoods} />
           </div>
           <div className="column content">
             <h2 className="subtitle">Today's foods</h2>

@@ -13,6 +13,7 @@ class FormAddProduct extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    Number(this.state.value) <= 0 && alert('Quantity must be greater than 0');
     this.props.food.quantity = Number(this.state.value);
     this.props.addFoodMenu(this.props.food);
   };
@@ -23,6 +24,7 @@ class FormAddProduct extends React.Component {
         <div className="field has-addons">
           <div className="control">
             <input
+              min="1"
               type="number"
               className="input"
               value={this.state.value}

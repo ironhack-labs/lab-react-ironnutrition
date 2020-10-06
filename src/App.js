@@ -2,23 +2,25 @@ import React from 'react';
 import FoodList from './components/FoodList';
 import InputSearch from './components/forms/components/InputSeach';
 import NewProduct from './components/forms/NewProduct';
+import Menu from './components/Menu';
 import foods from './foods.json';
 
 class App extends React.Component {
   state = {
-    foods: [],
+    foods: foods,
+    menu: [],
+    search: '',
   };
-
-  componentDidMount() {
-    this.setState({
-      foods: foods,
-      search: '',
-    });
-  }
 
   setNewFood = (food) => {
     this.setState((oldState) => ({
       foods: [food, ...oldState.foods],
+    }));
+  };
+
+  addFoodMenu = (food) => {
+    this.setState((oldState) => ({
+      menu: [food, ...oldState.menu],
     }));
   };
 
@@ -37,7 +39,7 @@ class App extends React.Component {
             food.calories.toString().includes(Number(search))
         )
       : foods;
-    console.log(filteredFoods);
+
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -52,15 +54,10 @@ class App extends React.Component {
         </div>
         <div className="columns">
           <div className="column">
-            <FoodList foods={filteredFoods} />
+            <FoodList foods={filteredFoods} addFoodMenu={this.addFoodMenu} />
           </div>
           <div className="column content">
-            <h2 className="subtitle">Today's foods</h2>
-            <ul>
-              <li>1 Pizza = 400 cal</li>
-              <li>2 Salad = 300 cal</li>
-            </ul>
-            <strong>Total: 700 cal</strong>
+            <Menu foods={this.state.menu} />
             <hr />
             <NewProduct setNewFood={this.setNewFood} />
           </div>

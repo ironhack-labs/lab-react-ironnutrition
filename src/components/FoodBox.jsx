@@ -19,7 +19,7 @@ export default function FoodBox(props) {
           </div>
         </div>
         <div className="media-right">
-          <FormAddProduct />
+          <FormAddProduct addFoodMenu={props.addFoodMenu} />
         </div>
       </article>
     </div>

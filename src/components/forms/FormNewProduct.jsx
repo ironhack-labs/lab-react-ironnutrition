@@ -1,57 +1,111 @@
-import React from "react";
-import InputLabelHorizontal from "./components/InputLabelHorizontal";
+import React from 'react';
+import InputLabelHorizontal from './components/InputLabelHorizontal';
 
-export default class FormNewProduct extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props
-    this.state = {
-      foods: props.foods,
-      name: 'Hola',
-      calories: '200',
-      image: 'https://i.imgur.com/93ekwW0.jpg'
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const validations = {
+  name: (value) => value.length > 0,
+  calories: (value) => value.length > 0,
+  image: (value) => value.length > 0,
+};
 
-  handleChange(e) {
+class FormNewProduct extends React.Component {
+  state = {
+    data: {
+      name: '',
+      calories: '',
+      image: '',
+    },
+    error: {
+      name: true,
+      calories: true,
+      image: true,
+    },
+    touch: {},
+    success: false,
+  };
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+
+    const isValid = validations[name](value);
+
     this.setState({
-      [e.target.name]: e.target.value,
+      data: {
+        ...this.state.data,
+        [name]: value,
+      },
+      error: {
+        ...this.state.error,
+        [name]: !isValid,
+      },
     });
-  }
+  };
 
-  handleSubmit(e) {
+  handleBlur = (event) => {
+    const { name } = event.target;
+
+    this.setState({
+      touch: {
+        ...this.state.touch,
+        [name]: true,
+      },
+    });
+  };
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    const {name, calories, image } = this.state
-    this.state.foods.push({name, calories, image })
-    console.log(this.props);
-  }
+    this.props.setFood(this.state.data);
+    this.setState({
+      success: true,
+    });
+  };
+
+  handleClose = () => {
+    this.setState((oldState) => ({
+      success: !oldState.success,
+      data: Object.values(oldState.data).map((val) => (val = '')),
+    }));
+  };
 
   render() {
-    return (
+    const { data, error, touch, success } = this.state;
+    const isError = Object.values(error).some((err) => err);
+
+    return success ? (
+      <div className="notification is-primary">
+        <button className="delete" onClick={this.handleClose}></button>
+        New Food has been added, close this message for adding more foods
+      </div>
+    ) : (
       <form onSubmit={this.handleSubmit}>
-        <InputLabelHorizontal 
+        <InputLabelHorizontal
           name="name"
           type="text"
-          value={this.state.name}
+          value={data.name}
           onChange={this.handleChange}
+          onBlur={this.handleBlur}
         />
-        <InputLabelHorizontal 
+        <InputLabelHorizontal
           name="calories"
           type="number"
-          value={this.state.calories}
+          className={touch['calories'] && error['calories'] ? 'is-danger' : ''}
+          value={data.calories}
           onChange={this.handleChange}
+          onBlur={this.handleBlur}
         />
-        <InputLabelHorizontal 
+        <InputLabelHorizontal
           name="image"
           type="text"
-          value={this.state.image}
+          value={data.image}
           onChange={this.handleChange}
+          onBlur={this.handleBlur}
         />
 
-        <button type="submit" className="button is-primary">Save</button>
+        <button type="submit" className="button is-primary" disabled={isError}>
+          Save
+        </button>
+        <p>{JSON.stringify(this.state)}</p>
       </form>
     );
   }
 }
+export default FormNewProduct;

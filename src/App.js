@@ -18,25 +18,10 @@ class App extends React.Component {
     }));
   };
 
-  addFoodMenu = (newFood) => {
-    if (this.state.menu.length === 0) {
-      this.setState({
-        menu: [newFood],
-      });
-    } else {
-      this.setState((oldState) => {
-        const repeatedFood = oldState.menu.filter(
-          (f) => f.name === newFood.name
-        );
-        newFood.quantity = newFood.quantity + repeatedFood[0]?.quantity;
-        return {
-          menu: [
-            newFood,
-            ...oldState.menu.filter((f) => f.name !== newFood.name),
-          ],
-        };
-      });
-    }
+  addFoodMenu = (food) => {
+    this.setState((oldState) => ({
+      menu: [food, ...oldState.menu],
+    }));
   };
 
   searchFoods = (string) => {

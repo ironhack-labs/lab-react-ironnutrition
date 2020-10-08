@@ -20,7 +20,13 @@ class App extends React.Component {
 
   addFoodMenu = (food) => {
     this.setState((oldState) => ({
-      menu: [food, ...oldState.menu],
+      menu: [food, ...oldState.menu.filter((f) => f.name !== food.name)],
+    }));
+  };
+
+  removeFoodMenu = (food) => {
+    this.setState((oldState) => ({
+      menu: [...oldState.menu?.filter((f) => f.name !== food.name)],
     }));
   };
 
@@ -57,7 +63,10 @@ class App extends React.Component {
             <FoodList foods={filteredFoods} addFoodMenu={this.addFoodMenu} />
           </div>
           <div className="column content">
-            <Menu foods={this.state.menu} />
+            <Menu
+              foods={this.state.menu}
+              removeFoodMenu={this.removeFoodMenu}
+            />
             <hr />
             <NewProduct setNewFood={this.setNewFood} />
           </div>

@@ -57,9 +57,6 @@ export default class FoodList extends Component {
 
     render() {
 
-        console.log(this.state.foodsArray);
-
-
         const filteredFoods = this.state.foodsArray.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
 
         return (

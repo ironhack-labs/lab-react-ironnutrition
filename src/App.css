@@ -50,3 +50,7 @@
   margin-top: 30px;
   font-size: 1.5rem;
 }
+
+.add-food.today {
+  padding: 0;
+}

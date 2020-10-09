@@ -4,7 +4,6 @@ import SubmitForm from './SubmitForm'
 
 class AddFood extends React.Component {
 
-
     state = {
         showForm: false,
         newFood: '',
@@ -58,7 +57,8 @@ class AddFood extends React.Component {
 
 
                             <div className="column has-text-right ">
-                                {this.state.newFood && this.state.newCal && this.state.newImg ? <SubmitForm disabled="false" /> : <SubmitForm disabled="true" />
+                                {this.state.newFood && this.state.newCal && this.state.newImg ?
+                                    <SubmitForm disabled="false" /> : <SubmitForm disabled="true" />
                                 }
 
                             </div>

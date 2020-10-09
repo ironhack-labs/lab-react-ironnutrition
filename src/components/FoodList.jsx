@@ -1,31 +1,45 @@
-import React from 'react'
-import foods from '../foods.json'
-
+import React, { Component } from 'react'
+import FoodBox from './FoodBox';
+import FoodSearch from './FoodSearch';
+import MenuList from './MenuList';
+import TotalCalories from './TotalCalories';
 import AddFood from './AddFood'
-import FoodSelected from './FoodSelected';
-import FoodCard from './FoodCard'
 
-
-export default class FoodList extends React.Component {
+export default class FoodList extends Component {
 
     constructor(props) {
-        super();
-
-        foods.map((food) => this.state.foodArray.push(food))
+        super(props)
+        this.props.foods.map((food) => this.state.foodsArray.push(food))
     }
 
     state = {
         search: '',
-        foodArray: [],
-        newFood: '',
-        newCal: '',
-        newImg: '',
+        foodsMenu: [],
+        foodsArray: []
     }
 
     handleOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
-            // disabledButton: event.target.name === '' ? true : false
+        })
+    }
+
+    addFoodMenu = (food, quantity) => {
+        this.setState(
+            {
+                foodsMenu:
+                    [...this.state.foodsMenu.filter(f => f !== food),
+                        food]
+            })
+
+        food.quantity = quantity
+
+    }
+
+    deleteFoodMenu = (food) => {
+        console.log(food);
+        this.setState({
+            foodsMenu: this.state.foodsMenu.filter(e => e !== food)
         })
     }
 
@@ -38,46 +52,55 @@ export default class FoodList extends React.Component {
             image: this.state.newImg,
             quantity: 0
         }
-        this.setState({ foodArray: [newFoodAdd, ...this.state.foodArray] })
-    }
-
-    addFoodList = (event) => {
-        this.state.foodArray[event.target.id].quantity++
-        this.setState(this.state.foodArray)
+        this.setState({ foodsArray: [newFoodAdd, ...this.state.foodsArray] })
     }
 
     render() {
-        const filterdArr = this.state.foodArray.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
+
+        console.log(this.state.foodsArray);
+
+
+        const filteredFoods = this.state.foodsArray.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
 
         return (
-            <div>   
-                <div className="columns">
-                    <div className="column has-text-left">
-                        <AddFood onChange={this.handleOnChange} onSubmit={this.onSubmit} food={this.state.newFood} cal={this.state.newCal} img={this.state.newImg}></AddFood>
+            <div className="columns">
+                <div className="column has-text-left">
+                    <AddFood
+                        onChange={this.handleOnChange}
+                        onSubmit={this.onSubmit}
+                        food={this.state.newFood}
+                        cal={this.state.newCal}
+                        img={this.state.newImg}>
 
+                    </AddFood>
 
-                        <div className="field">
-                            <label className="label">Food Name</label>
-                            <div className="control">
-                                <input className="input" type="text" placeholder="Search Food" name="search" onChange={this.handleOnChange} />
-                            </div>
-                        </div>
+                    <FoodSearch onChange={this.handleOnChange} value={this.state.search} key="search" />
 
-
-                        <div className="food-list">
-                            {filterdArr.map((food, index) =>
-                                <FoodCard addFoodList={this.addFoodList} foodElem={food} index={index} key={food.name} />
-                            )}
-                        </div>
-                    </div>
-                    <div className="column has-text-left">
-                        <FoodSelected foods={filterdArr} />
-                    </div>
-
+                    {filteredFoods.map(food =>
+                        <FoodBox
+                            food={food}
+                            key={food.name}
+                            value={this.state.search}
+                            addFoodMenu={this.addFoodMenu}
+                        />
+                    )}
                 </div>
+                <div className="column has-text-left">
+                    <div className="pl-5">
+                        <p className="add-food today">Today's foods</p>
+                        <ul>
+                            {this.state.foodsMenu.map(food =>
+                                <MenuList
+                                    foodsMenu={this.state.foodsMenu}
+                                    food={food}
+                                    deleteFoodMenu={this.deleteFoodMenu} />
+                            )}
 
+                            <TotalCalories foodsMenu={this.state.foodsMenu} />
+                        </ul>
+                    </div>
+                </div>
             </div>
         )
     }
 }
-

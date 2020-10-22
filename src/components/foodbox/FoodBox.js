@@ -2,7 +2,16 @@ import React from 'react';
 
 
 export default function FoodBox(props) {
-  //console.log(props.name)
+
+
+/*   addToList = () => {
+    console.log("dodo")
+  } */
+
+   function sayHello() {
+    console.log(props.item)
+  } 
+
   return (
     <div>
       <div className="box">
@@ -26,7 +35,7 @@ export default function FoodBox(props) {
                 <input className="input" type="number" defaultValue={props.item.quantity} />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onClick={sayHello} className="button is-info" type="submit">+</button>
               </div>
             </div>
           </div>

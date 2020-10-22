@@ -5,80 +5,114 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/foodbox/FoodBox';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
-import Form from './components/form/Form';
+import TodayFood from './components/todayfood/TodayFood'
 
 export default class App extends Component {
   state = {
     foods: foods,
-    name: '', 
+    name: '',
     calories: '',
-    image: '', 
-    showForm: false, 
-    inputValue: ''
+    image: '',
+    showForm: false,
+    inputValue: '', 
+    quantity: 0
   };
 
   showForm = (e) => {
     console.log(e);
     this.setState({
-      showForm: true
-    })
+      showForm: true,
+    });
   };
 
   addData = (e) => {
-    const { name, value } = e.target
-    this.setState({[name]: value})
-  }
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
   submitForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let newFood = {
-      name: this.state.name, 
-      image: this.state.image, 
-      calories: this.state.calories
-    }
+      name: this.state.name,
+      image: this.state.image,
+      calories: this.state.calories,
+      quantity: this.state.quantity
+    };
     this.setState({
-    //  foods: [...foods, newFood]
-      foods: this.state.foods.concat([newFood]), 
-      showForm: false
-    })
+      //  foods: [...foods, newFood]
+      foods: this.state.foods.concat([newFood]),
+      showForm: false,
+    });
   };
 
   searchFood = (e) => {
     this.setState({
-      inputValue: e.target.value
-    })
+      inputValue: e.target.value,
+    });
+  };
+
+  sayHello() {
+    console.log('do')
   }
+ 
 
   render() {
     let search = this.state.foods.filter((food) => {
-      return food.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) !==  -1
-    })
+      return (
+        food.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) !==
+        -1
+      );
+    });
     return (
       <div className="App">
-      <input  type="text"  
-        value={this.state.inputValue} 
-        onChange={this.searchFood.bind(this)}
-      />
-        {search.map((item) => (
-          <FoodBox key={item.name} item={item} />
-        ))}
-        <button onClick={this.showForm}>Show a form</button>
-        {this.state.showForm ? 
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.searchFood.bind(this)}
+        />
+        <div className="flex">
           <div>
-          <form onSubmit={this.submitForm}>
-            <label htmlFor="name">Food name</label>
-            <input type="text" name="name" value={this.state.name}
-             onChange={this.addData} />
-            <label htmlFor="image">Image</label>
-            <input type="text" name="image" value={this.state.image}
-            onChange={this.addData} />
-            <label htmlFor="cal">Calories</label>
-            <input type="text" name="calories" value={this.state.calories}
-            onChange={this.addData} />
-            <button type="submit">Add new food</button>
-          </form>
-        </div> : null
-        }
+            {search.map((item) => (
+              <FoodBox key={item.name} item={item} />
+            ))}
+          </div>
+          <div>
+            <div>
+              <TodayFood />
+            </div>
+            <p>form is here</p>
+          </div>
+        </div>
+
+        <button onClick={this.showForm}>Show a form</button>
+        {this.state.showForm ? (
+          <div>
+            <form onSubmit={this.submitForm}>
+              <label htmlFor="name">Food name</label>
+              <input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.addData}
+              />
+              <label htmlFor="image">Image</label>
+              <input
+                type="text"
+                name="image"
+                value={this.state.image}
+                onChange={this.addData}
+              />
+              <label htmlFor="cal">Calories</label>
+              <input
+                type="text"
+                name="calories"
+                value={this.state.calories}
+                onChange={this.addData}
+              />
+              <button type="submit">Add new food</button>
+            </form>
+          </div>
+        ) : null}
       </div>
     );
   }

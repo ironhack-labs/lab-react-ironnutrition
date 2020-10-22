@@ -8,9 +8,22 @@ import FoodBox from './components/foodbox/FoodBox'
 function App() {
   return (
     <div className="App">
-      <FoodBox />
+      {foods.map(item => 
+          <FoodBox
+          key={item.name}
+          name={item.name}
+          calories={item.calories}
+          image={item.image}
+          quantity={item.quantity}
+           />
+     )}
+     
     </div>
   );
 }
 
 export default App;
+
+/* 
+<FoodBox name={foods.name} />
+{console.log(foods[0].name)} */

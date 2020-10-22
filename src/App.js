@@ -12,11 +12,15 @@ export default class App extends Component {
     foods: foods,
     name: '', 
     calories: '',
-    image: ''
+    image: '', 
+    showForm: false
   };
 
   showForm = (e) => {
     console.log(e);
+    this.setState({
+      showForm: true
+    })
   };
 
   addData = (e) => {
@@ -33,9 +37,10 @@ export default class App extends Component {
     }
     this.setState({
     //  foods: [...foods, newFood]
-      foods: this.state.foods.concat([newFood])
-     /*  foods.push(newFood) */
+      foods: this.state.foods.concat([newFood]), 
+      showForm: false
     })
+
     
     console.log(this.state.name);
     console.log(this.state.image);
@@ -50,7 +55,8 @@ export default class App extends Component {
           <FoodBox key={item.name} item={item} />
         ))}
         <button onClick={this.showForm}>Show a form</button>
-        <div>
+        {this.state.showForm ? 
+          <div>
           <form onSubmit={this.submitForm}>
             <label htmlFor="name">Food name</label>
             <input type="text" name="name" value={this.state.name}
@@ -63,7 +69,8 @@ export default class App extends Component {
             onChange={this.addData} />
             <button type="submit">Add new food</button>
           </form>
-        </div>
+        </div> : null
+        }
       </div>
     );
   }

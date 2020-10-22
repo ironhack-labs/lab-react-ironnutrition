@@ -13,7 +13,8 @@ export default class App extends Component {
     name: '', 
     calories: '',
     image: '', 
-    showForm: false
+    showForm: false, 
+    inputValue: ''
   };
 
   showForm = (e) => {
@@ -40,18 +41,25 @@ export default class App extends Component {
       foods: this.state.foods.concat([newFood]), 
       showForm: false
     })
-
-    
-    console.log(this.state.name);
-    console.log(this.state.image);
-    console.log(this.state.calories);
-    console.log(this.state.foods)
   };
 
+  searchFood = (e) => {
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
   render() {
+    let search = this.state.foods.filter((food) => {
+      return food.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) !==  -1
+    })
     return (
       <div className="App">
-        {this.state.foods.map((item) => (
+      <input  type="text"  
+        value={this.state.inputValue} 
+        onChange={this.searchFood.bind(this)}
+      />
+        {search.map((item) => (
           <FoodBox key={item.name} item={item} />
         ))}
         <button onClick={this.showForm}>Show a form</button>

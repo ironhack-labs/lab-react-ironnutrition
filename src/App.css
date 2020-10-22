@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.title{
+    color: #363636;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.125;
+}
+
+.box{
+  padding: 0px;
+  max-width: 450px;
+}

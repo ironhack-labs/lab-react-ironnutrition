@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from './FoodBox'
+import CreateFood from './CreateFood'
 
-function App() {
+class App extends React.Component{
+  state = {
+    visible:false
+  }
+
+  displayForm = (e) => {
+    e.preventDefault()
+    this.setState({visible:true}) 
+  }
+
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <h1 className='title'>IronNutrition</h1>
+      <button onClick={this.displayForm}>Add New Food</button>
+      {this.state.visible && <CreateFood/>}
+      <div>
+        <input type="text" className="input search-bar" name="search" placeholder="Search" value=""/>
+      </div>     
+      {foods.map((food, index) => {
+        return <FoodBox key={index} food={food}/>
+        })}
+      </div>
+  )}
 }
 
 export default App;

@@ -24,6 +24,3 @@ function App() {
 
 export default App;
 
-/* 
-<FoodBox name={foods.name} />
-{console.log(foods[0].name)} */

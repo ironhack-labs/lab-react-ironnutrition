@@ -3,23 +3,13 @@ import React, {useState} from 'react'
 
 export default function FoodBox(props) {
 
-
-/*   addToList = () => {
-    console.log("dodo")
-  } */
-
   function amount(e) {
     const { quantity, value } = e.target;
     props.item.quantity =  value 
   }
 
-  
-
   function sayHello() {
-
     console.log(props.item)
-    let foodName = props.item.name
-    
   } 
 
   return (

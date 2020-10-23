@@ -49,7 +49,7 @@ export default class App extends Component {
     this.setState({
       inputValue: e.target.value,
     });
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
 
   render() {
@@ -73,11 +73,9 @@ export default class App extends Component {
             ))}
           </div>
           <div>
-             
-                <TodayFood />
+            <TodayFood />
           </div>
         </div>
-
         <button onClick={this.showForm}>Show a form</button>
         {this.state.showForm ? (
           <div>

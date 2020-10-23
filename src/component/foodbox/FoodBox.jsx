@@ -5,6 +5,8 @@ import 'bulma/css/bulma.css'
 
 export default function FoodBox({foodType}) {
 
+
+
     return (
         <div>
             <div className="box">

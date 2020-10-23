@@ -7,6 +7,7 @@ export default class NewFood extends Component {
         name: '',
         calories: '',
         image: '',
+        formVisible: false
     }
 
     handleChange(e) {
@@ -18,14 +19,13 @@ export default class NewFood extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault()
 
-        this.props.addNewFood(this.state)
-        this.props.formNewFood(false)
+        this.props.addNewFood(this.state)        
 
         this.setState({
             name: '',
             calories: '',
             image: ''
-        })
+        })       
     }
 
 

@@ -5,30 +5,24 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './component/foodbox/FoodBox';
 import NewFood from './component/newfood/NewFood';
+import Search from './component/search/Search';
 
 
 export default class App extends Component {
 
   state = {
     foods: foods,
-    formNewFood: false
+    formNewFood: false,
+    filterdFoods: ''
   }
 
-  showFormAddFood = (formInvisible) => {
-    if(this.state.formNewFood) {
+  showFormAddFood = () => {
       this.setState({
         formNewFood: true
       })
-    } else {
-      this.setState({
-        formNewFood: formInvisible
-      })
-    }
-
-
   }
 
-  addFoodHandler= (newFood) => {
+  addFoodHandler = (newFood) => {
     const foodArrCopy = [...this.state.foods]
     foodArrCopy.push(newFood)
 
@@ -37,16 +31,33 @@ export default class App extends Component {
     })
   }
 
+  filterFoods = (searchInput) => {
+    let searchTerm = searchInput.search
+    const foodArrCopy = this.state.foods
+
+    let filteredArr = foodArrCopy.filter(food => food.name.toLowerCase().startsWith(searchTerm))
+
+    this.setState({
+      filterdFoods: filteredArr
+    })
+  }
+
   render() {
+   
     return (
       <div>
         <h1 className="title">IronNutrition</h1>
-        {this.state.foods.map((food, index) => 
-          <FoodBox key='index' foodType={food}/>
-        )}
         <button className="button is-primary" onClick={(e) => this.showFormAddFood(e)}>Add new food</button>
         {this.state.formNewFood &&  
-        <NewFood addNewFood={this.addFoodHandler} formNewFood={this.showFormAddFood}/>}
+        <NewFood addNewFood={this.addFoodHandler} />}
+        <Search searchTerm={this.filterFoods}/>
+        {this.state.filterdFoods !== '' ? 
+          this.state.filterdFoods.map((food, index) => 
+            <FoodBox key={index} foodType={food}/>) 
+            :
+          this.state.foods.map((food, index) => 
+          <FoodBox key={index} foodType={food}/>)
+        }
       </div>
     )
   }

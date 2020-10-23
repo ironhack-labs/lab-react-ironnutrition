@@ -2,6 +2,7 @@ import React from 'react'
 import 'bulma/css/bulma.css'
 
 
+
 export default function FoodBox({foodType}) {
 
     return (
@@ -34,8 +35,11 @@ export default function FoodBox({foodType}) {
                 </div>
                 </div>
             </article>
+
             </div>
+            
         </div>
+        
     )
 }
 

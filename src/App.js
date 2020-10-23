@@ -4,37 +4,37 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './component/foodbox/FoodBox';
+import NewFood from './component/newfood/NewFood';
 
 
 export default class App extends Component {
 
   state = {
-    foods: foods
+    foods: foods,
+    formNewFood: false
   }
 
-  addNewFood = (e) => {
-    console.log('check')
-    return(
-    <div>
-      <form >
-        <label>Name:</label>
-        <input type="text" name="name" value='' />
+  showFormAddFood = (formInvisible) => {
+    if(this.state.formNewFood) {
+      this.setState({
+        formNewFood: true
+      })
+    } else {
+      this.setState({
+        formNewFood: formInvisible
+      })
+    }
 
-        <label>Number of calories:</label>
-        <input type="text" name="calories" value=''  />
 
-        <label>Image:</label>
-        <input type="image" src='' alt="Submit" width="48" height="48" />
-
-        
-        <button onClick={this.submitFood}>Submit</button>
-      </form>  
-    </div>
-    )
   }
 
-  submitFood = () => {
+  addFoodHandler= (newFood) => {
+    const foodArrCopy = [...this.state.foods]
+    foodArrCopy.push(newFood)
 
+    this.setState({
+      foods: foodArrCopy
+    })
   }
 
   render() {
@@ -42,10 +42,11 @@ export default class App extends Component {
       <div>
         <h1 className="title">IronNutrition</h1>
         {this.state.foods.map((food, index) => 
-          <FoodBox key='food' foodType={food}/>
+          <FoodBox key='index' foodType={food}/>
         )}
-        <button onClick={(e) => this.addNewFood(e)}>Add new food</button>
-  
+        <button className="button is-primary" onClick={(e) => this.showFormAddFood(e)}>Add new food</button>
+        {this.state.formNewFood &&  
+        <NewFood addNewFood={this.addFoodHandler} formNewFood={this.showFormAddFood}/>}
       </div>
     )
   }

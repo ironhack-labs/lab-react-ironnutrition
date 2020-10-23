@@ -51,9 +51,7 @@ export default class App extends Component {
     });
   };
 
-  sayHello() {
-    console.log('do')
-  }
+
  
 
   render() {

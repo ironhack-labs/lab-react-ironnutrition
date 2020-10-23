@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react'
 
 
 export default function FoodBox(props) {
@@ -8,8 +8,18 @@ export default function FoodBox(props) {
     console.log("dodo")
   } */
 
-   function sayHello() {
+  function amount(e) {
+    const { quantity, value } = e.target;
+    props.item.quantity =  value 
+  }
+
+  
+
+  function sayHello() {
+
     console.log(props.item)
+    let foodName = props.item.name
+    
   } 
 
   return (
@@ -32,7 +42,7 @@ export default function FoodBox(props) {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" defaultValue={props.item.quantity} />
+                <input onChange={amount} className="input" type="number" name="quantity" defaultValue={props.item.quantity}/>
               </div>
               <div className="control">
                 <button onClick={sayHello} className="button is-info" type="submit">+</button>

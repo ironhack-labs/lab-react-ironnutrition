@@ -5,7 +5,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/foodbox/FoodBox';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
-import TodayFood from './components/todayfood/TodayFood'
+import TodayFood from './components/todayfood/TodayFood';
 
 export default class App extends Component {
   state = {
@@ -14,8 +14,8 @@ export default class App extends Component {
     calories: '',
     image: '',
     showForm: false,
-    inputValue: '', 
-    quantity: 0
+    inputValue: '',
+    quantity: 0,
   };
 
   showForm = (e) => {
@@ -36,7 +36,7 @@ export default class App extends Component {
       name: this.state.name,
       image: this.state.image,
       calories: this.state.calories,
-      quantity: this.state.quantity
+      quantity: this.state.quantity,
     };
     this.setState({
       //  foods: [...foods, newFood]
@@ -49,10 +49,8 @@ export default class App extends Component {
     this.setState({
       inputValue: e.target.value,
     });
+    console.log(e.target.value)
   };
-
-
- 
 
   render() {
     let search = this.state.foods.filter((food) => {
@@ -75,10 +73,8 @@ export default class App extends Component {
             ))}
           </div>
           <div>
-            <div>
-              <TodayFood />
-            </div>
-            <p>form is here</p>
+             
+                <TodayFood />
           </div>
         </div>
 

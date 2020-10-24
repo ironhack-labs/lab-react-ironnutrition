@@ -59,12 +59,6 @@ export default class App extends Component {
     })
   }
 
-  // caloriesHandler = (item) => {
-  //   const totalCalories = item.reduce((accumulator, currentValue) => {
-  //     accumulator, currentValue
-  //   })
-  // }
-
   render() {
     console.log(this.state.todaysFoods)
     return (

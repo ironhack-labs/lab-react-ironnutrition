@@ -1,7 +1,7 @@
 import React from 'react'
 
 function FoodBox(props){
-  //console.log(props)
+ 
 return(
 <div className="box">
   <article className="media">
@@ -21,10 +21,14 @@ return(
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="number" value="1" />
+          <input className="input" type="number" id='quantity' />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button className="button is-info" onClick={() => props.addTodayFood({
+            name: props.food.name,
+            calories:props.food.calories,
+            quantity: document.getElementById('quantity').value
+          })}>
             +
           </button>
         </div>

@@ -13,7 +13,8 @@ export default class App extends Component {
     image: ' ',
     quantity: 0,
     formVisible: false,
-    todaysFoods: []
+    todaysFoods: [],
+    allCalories: 0
   }
 
   showForm = () => {
@@ -58,6 +59,12 @@ export default class App extends Component {
     })
   }
 
+  // caloriesHandler = (item) => {
+  //   const totalCalories = item.reduce((accumulator, currentValue) => {
+  //     accumulator, currentValue
+  //   })
+  // }
+
   render() {
     console.log(this.state.todaysFoods)
     return (
@@ -96,6 +103,11 @@ export default class App extends Component {
               item={item} />
             )
           })}
+          <p>Total: <span>
+             {this.state.todaysFoods.reduce((accumulator, currentValue) => {
+            return accumulator + (currentValue.calories * currentValue.quantity)
+          }, 0)}
+          </span> calories</p>
         </div>
         </div>
       </div>

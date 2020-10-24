@@ -8,10 +8,7 @@ export default function FoodBox(props) {
     props.item.quantity =  value 
   }
 
-  function sayHello() {
-    console.log(props.item)
-  } 
-
+  
   return (
     <div>
       <div className="box">
@@ -35,7 +32,7 @@ export default function FoodBox(props) {
                 <input onChange={amount} className="input" type="number" name="quantity" defaultValue={props.item.quantity}/>
               </div>
               <div className="control">
-                <button onClick={sayHello} className="button is-info" type="submit">+</button>
+                <button onClick={() => props.onAdd(props.item)} className="button is-info" type="submit">+</button>
               </div>
             </div>
           </div>

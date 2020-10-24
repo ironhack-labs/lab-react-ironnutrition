@@ -11,11 +11,12 @@ export default class App extends Component {
   state = {
     foods: foods,
     name: '',
-    calories: '',
+    calories: 0,
     image: '',
     showForm: false,
     inputValue: '',
     quantity: 0,
+    todayFood: []
   };
 
   showForm = (e) => {
@@ -39,8 +40,8 @@ export default class App extends Component {
       quantity: this.state.quantity,
     };
     this.setState({
-      //  foods: [...foods, newFood]
-      foods: this.state.foods.concat([newFood]),
+       foods: [...this.state.foods, newFood],
+     // foods: this.state.foods.concat([newFood]),
       showForm: false,
     });
   };
@@ -52,6 +53,24 @@ export default class App extends Component {
     console.log(e.target.value);
   };
 
+  addHandler(item) {
+    console.log(item)
+
+    this.setState({
+      todayFood: [...this.state.todayFood, item]
+      //todayFood: this.state.todayFood.concat([item])
+    })
+    console.log(this.state.todayFood)
+  } 
+
+  allCalories() {
+    const totalCal = this.state.todayFood.calories.reduce((first, second) => {
+      return first + second
+    }, 0) 
+    console.log(totalCal)
+  }
+
+
   render() {
     let search = this.state.foods.filter((food) => {
       return (
@@ -59,6 +78,7 @@ export default class App extends Component {
         -1
       );
     });
+    console.log(this.state.todayFood)
     return (
       <div className="App">
         <input
@@ -69,11 +89,17 @@ export default class App extends Component {
         <div className="flex">
           <div>
             {search.map((item) => (
-              <FoodBox key={item.name} item={item} />
+              <FoodBox key={item.name} item={item} onAdd={(item) => this.addHandler(item)}/>
             ))}
           </div>
           <div>
-            <TodayFood />
+          <h4>Today's foods</h4>
+          {this.state.todayFood.map(item => 
+                <TodayFood key={item.name} item={item} />
+             )}
+             <p>Total: {this.state.todayFood.reduce((first, second) => {
+                 return first + (second.calories * second.quantity)
+                  }, 0)} cal</p> 
           </div>
         </div>
         <button onClick={this.showForm}>Show a form</button>
@@ -114,3 +140,9 @@ export default class App extends Component {
               calories={item.calories}
               image={item.image}
               quantity={item.quantity} */
+
+/*               {this.state.todayFood.map(item => 
+                <TodayFood key={item.name} item={item} />
+             )} */
+
+  /*            () => this.allCalories() */

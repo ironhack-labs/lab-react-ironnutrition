@@ -1,13 +1,13 @@
 import 'bulma/css/bulma.css'
 import React, { Component } from 'react'
+import './NewFood.css'
 
 export default class NewFood extends Component {
 
     state = {
         name: '',
         calories: '',
-        image: '',
-        formVisible: false
+        image: ''
     }
 
     handleChange(e) {
@@ -19,6 +19,7 @@ export default class NewFood extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault()
 
+    
         this.props.addNewFood(this.state)        
 
         this.setState({
@@ -30,9 +31,9 @@ export default class NewFood extends Component {
 
 
     render() {
-    
+            console.log(this.state)
             return (      
-            <div>
+            <div  className="block mt-4">
                 <form onSubmit={this.handleFormSubmit}>
                     <div class='field'>
                         <label htmlFor='name' class="label">Name:</label>

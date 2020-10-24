@@ -1,36 +1,53 @@
-import React from 'react'
+
 import 'bulma/css/bulma.css'
+import React, { Component } from 'react'
+
+export default class FoodBox extends Component {
+
+    state = {
+        quantity: 0
+    }
+
+    changeHandler = (e) => {
+        const {quantity, value} = e.target
+        this.setState(
+            {
+                quantity: value
+            }
+        )
+    }
 
 
+    render() {
 
-export default function FoodBox({foodType}) {
-
-
-
-    return (
-        <div>
+        return (
+        
             <div className="box">
             <article className="media">
                 <div className="media-left">
                 <figure className="image is-64x64">
-                    <img src={foodType.image} alt=''/>
+                    <img src={this.props.foodType.image} alt=''/>
                 </figure>
                 </div>
                 <div className="media-content">
                 <div className="content">
                     <p>
-                    <strong>{foodType.name}</strong> <br />
-                    <small>{foodType.calories}</small>
+                    <strong>{this.props.foodType.name}</strong> <br />
+                    <small>{this.props.foodType.calories}</small>
                     </p>
                 </div>
                 </div>
                 <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                    <input className="input" type="number" value="1" />
+                    <input className="input" type="number" name={this.props.name} value={this.state.quantity} onChange={this.changeHandler} />
                     </div>
                     <div className="control">
-                    <button className="button is-info">
+                    <button className="button is-info" onClick={() => this.props.onAdd({
+            name: this.props.foodType.name,
+            quantity: this.state.quantity,
+            calories: this.props.foodType.calories
+        })}>
                         +
                     </button>
                     </div>
@@ -38,11 +55,18 @@ export default function FoodBox({foodType}) {
                 </div>
             </article>
 
-            </div>
-            
         </div>
         
     )
+    }
 }
+
+
+    
+
+
+
+    
+
 
 

@@ -23,7 +23,7 @@ export default class Search extends Component {
                 <form >
                     <input 
                         type="text" 
-                        class="input search-bar" 
+                        className="input search-bar" 
                         name="search" 
                         placeholder="Search" 
                         value={this.state.search}

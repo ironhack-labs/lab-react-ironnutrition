@@ -1,0 +1,24 @@
+.todaysFood__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todaysFood__container > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.todaysFood__container > div > p {
+    color: white;
+    font-weight: 700;
+}
+
+
+button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}

@@ -1,0 +1,32 @@
+.foodBox__container {
+    display: flex;
+}
+
+
+.foodBox__todaysFood {
+    margin-left: 50px;
+    width: 400px;
+}
+
+.foodBox__todaysFood{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.foodBox__todaysFood>h4 {
+    text-align: center;
+    color: black;
+    background-color: white;
+    display: inline-block;
+    padding: 4px 5px;
+    transform: skew(-15deg);
+}
+
+.foodBox__todaysFood>p {
+    margin-top: 20px;
+    color: white;
+    font-weight: 900;
+    font-size: 23px;
+    align-self: flex-end;
+}

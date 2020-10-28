@@ -1,0 +1,15 @@
+.addFood__container{
+    width: 500px;
+    margin-bottom: 20px;
+}
+
+
+
+.addForm__btn__container {
+    display: flex;
+    justify-content: flex-end !important;
+}
+
+.addForm__btn{
+    margin-top: 10px;
+}

@@ -7,7 +7,6 @@ class FoodItem extends Component {
   };
 
   handleQty = (e) => {
-    // console.log(e.target.value);
     this.setState({
       qty: e.target.value,
     });

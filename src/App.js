@@ -46,7 +46,6 @@ class App extends React.Component {
     e.preventDefault();
     const { cloneFoods } = this.state;
     let searchInput = e.target.value.toLowerCase();
-    console.log(searchInput);
     let results = foods.filter((food) => {
       return food.name.toLowerCase().includes(searchInput);
     });
@@ -57,7 +56,6 @@ class App extends React.Component {
 
   // Today's food handler //
   handleTodaysFood = (item, qty) => {
-    console.log("Today's food", item);
     let duplicate = false;
     const { todaysFoods, totalCal } = this.state;
 
@@ -74,7 +72,6 @@ class App extends React.Component {
           calories: newFood.calories * (parseInt(food.quantity) + parseInt(qty)),
           quantity: parseInt(food.quantity) + parseInt(qty),
         };
-        console.log(food);
         duplicate = true;
         return food;
       }

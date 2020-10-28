@@ -31,10 +31,10 @@ class FoodBox extends Component {
             <div className="media-right">
               <div className="field has-addons">
                 <div className="control">
-                  <input className="input" type="number" value={singleFood.quantity} />
+                  <input className="input" type="number" value="1" />
                 </div>
                 <div className="control">
-                  <button className="button is-info">+</button>
+                  <button className="button is-info">+</button> 
                 </div>
               </div>
             </div>

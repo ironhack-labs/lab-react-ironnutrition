@@ -18,7 +18,7 @@ class App extends Component {
   handleAdd = (event) => {
     event.preventDefault();
 
-    const { foodItems } = this.state;
+    const { foodItems, filteredFood } = this.state;
 
     //to obtain the value passed by the user in the form
     let foodName = event.target.name.value;
@@ -34,6 +34,7 @@ class App extends Component {
 
     this.setState({
       foodItems: [...foodItems, newFoodAdded],
+      filteredFood: [...filteredFood, newFoodAdded],
       showForm: false,
     });
   };
@@ -45,31 +46,35 @@ class App extends Component {
     });
   };
 
-
-
   //to search for a food item
   handleSearch = (event) => {
-    console.log("event.target.value is: ", event.target.value)
+    console.log('event.target.value is: ', event.target.value);
 
-    let searchItem = event.target.value; 
+    let searchItem = event.target.value;
     const { foodItems } = this.state;
 
     let filteredFood = foodItems.filter((foodItem) => {
-      return foodItem.name.includes(searchItem)
-    })
+      return foodItem.name.includes(searchItem);
+    });
 
     this.setState({
-      filteredFood: filteredFood
-    })
+      filteredFood: filteredFood,
+    });
+  };
 
+
+  handleAddFoodToList = () => {
+    
   }
+
+
+
 
   render() {
     const { foodItems, showForm, filteredFood } = this.state;
 
     return (
       <div>
-
         {/* to show or hide the adding food form */}
         {showForm ? (
           <AddFoodItem onAdd={this.handleAdd} />
@@ -85,7 +90,12 @@ class App extends Component {
           placeholder="Search"
         ></input>
 
-        <FoodBox food={filteredFood} />
+        <div class="columns">
+          <div class="column is-two-thirds"><FoodBox food={filteredFood} /></div>
+          <div class="column"><h2>Today's foods</h2></div>
+        </div>
+
+        
       </div>
     );
   }

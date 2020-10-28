@@ -1,11 +1,41 @@
 .app {
   margin:50px;
-  
 }
 
+.header{
+  margin-bottom: 30px;
+}
 
 
 .headline {
   font-size: 2rem;
+  font-weight: bold;
+}
+
+
+.subline{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.button{
+  margin-right: 10px;
+}
+
+
+.search{
+  border: solid 1px lightgray;
+  box-shadow: inset 0px 0px 5px lightgray;
+  border-radius: 5px;
+  padding: 11px 30px 11px 10px
+  
+}
+
+.filter{
+  margin-top:20px;
+  margin-bottom: 30px;
+}
+
+.bold{
   font-weight: bold;
 }

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class Foodbox extends Component {
     state = {
-        quantity: this.props.food.quantity
+        name: this.props.food.name,
+        quantity: this.props.food.quantity,
+        calories: this.props.food.calories
     }
 
     handleChange = (e) => {
         e.preventDefault()
-
         this.setState({ quantity: e.target.value })
-
     }
 
   render() {
@@ -37,7 +37,7 @@ class Foodbox extends Component {
                 <input className="input" type="number" value={this.state.quantity} onChange={this.handleChange} />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" onClick={()=>{this.props.toSum(this.state)}}>+</button>
               </div>
             </div>
           </div>

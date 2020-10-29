@@ -14,8 +14,8 @@ function App() {
   const [isForm, setIsForm] = useState(true);
   const [query, setQuery] = useState('');
 
-  const [addingFood, setAddingFood] = useState([])
-  const [addedFood,setAddedFood] =useState([])
+  const [addingFood, setAddingFood] = useState([]);
+  const [addedFood, setAddedFood] = useState([]);
 
   useEffect(() => {
     setFoods(foodsData);
@@ -46,19 +46,17 @@ function App() {
     );
   };
 
-  const handleAddButton = (foodDetails,value) => {
-    
+  const handleAddButton = (foodDetails, value) => {
     console.log('hellofrom App', value);
-    let name = foodDetails.name
-    let calories = foodDetails.calories * value
+    let name = foodDetails.name;
+    let calories = foodDetails.calories * value;
 
-    let total = `${value} ${name} = ${calories} calories   `
+    let total = `${value} ${name} = ${calories} calories   `;
 
-    setAddingFood([...addingFood, total])
+    setAddingFood([...addingFood, total]);
 
-    setAddedFood([...addedFood, calories])
+    setAddedFood([...addedFood, calories]);
     // setAddingFood(adding)
-    
   };
 
   return (
@@ -76,13 +74,10 @@ function App() {
                 onChange={(event) => handleSearch(event.target.value)}
               />
 
-              <div style={{marginLeft:"60%"}}>Today's Food
-              
-              <p>{addingFood}</p>
-             
+              <div style={{ marginLeft: '60%' }}>
+                Today's Food
+                <p>{addingFood}</p>
               </div>
-
-
             </>
           ) : (
             <AddFood onAdd={handleAdd} />

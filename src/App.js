@@ -46,7 +46,7 @@ class App extends React.Component {
     e.preventDefault();
     const { cloneFoods } = this.state;
     let searchInput = e.target.value.toLowerCase();
-    let results = foods.filter((food) => {
+    let results = cloneFoods.filter((food) => {
       return food.name.toLowerCase().includes(searchInput);
     });
     this.setState({
@@ -58,31 +58,33 @@ class App extends React.Component {
   handleTodaysFood = (item, qty) => {
     let duplicate = false;
     const { todaysFoods, totalCal } = this.state;
+    if (qty !== 0) {
+      let newFood = {
+        name: item.name,
+        calories: item.calories,
+        quantity: qty,
+      };
 
-    let newFood = {
-      name: item.name,
-      calories: item.calories,
-      quantity: qty,
-    };
-
-    let newFoods = todaysFoods.map((food) => {
-      if (food.name == item.name) {
-        food = {
-          name: food.name,
-          calories: newFood.calories * (parseInt(food.quantity) + parseInt(qty)),
-          quantity: parseInt(food.quantity) + parseInt(qty),
-        };
-        duplicate = true;
+      let newFoods = todaysFoods.map((food) => {
+        if (food.name == item.name) {
+          food = {
+            name: food.name,
+            calories:
+              newFood.calories * (parseInt(food.quantity) + parseInt(qty)),
+            quantity: parseInt(food.quantity) + parseInt(qty),
+          };
+          duplicate = true;
+          return food;
+        }
         return food;
-      }
-      return food;
-    });
+      });
 
-    this.setState({
-      todaysFoods: duplicate ? [...newFoods] : [...newFoods, newFood],
-      totalCal: totalCal + newFood.quantity * newFood.calories,
-    });
-    duplicate = false;
+      this.setState({
+        todaysFoods: duplicate ? [...newFoods] : [...newFoods, newFood],
+        totalCal: totalCal + newFood.quantity * newFood.calories,
+      });
+      duplicate = false;
+    }
   };
 
   handleDelete = (itemName) => {

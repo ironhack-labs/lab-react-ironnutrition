@@ -46,11 +46,18 @@ function App() {
     );
   };
 
-  const handleAddButton = (adding,value) => {
+  const handleAddButton = (foodDetails,value) => {
     
     console.log('hellofrom App', value);
+    let name = foodDetails.name
+    let calories = foodDetails.calories * value
+
+    let total = `${value} ${name} = ${calories} calories   `
+
+    setAddingFood([...addingFood, total])
+
+    setAddedFood([...addedFood, calories])
     // setAddingFood(adding)
-    setAddingFood(adding)
     
   };
 
@@ -71,10 +78,8 @@ function App() {
 
               <div style={{marginLeft:"60%"}}>Today's Food
               
-              <p>{addingFood.name}</p>
-              <p>{addingFood.calories}</p>
-              <p>{addingFood.value}</p>
-              
+              <p>{addingFood}</p>
+             
               </div>
 
 

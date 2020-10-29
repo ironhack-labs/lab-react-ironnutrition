@@ -6,14 +6,14 @@ const FoodBox = (props) => {
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src="https://i.imgur.com/eTmWoAN.png" />
+            <img src={props.food.image} alt={props.food.name} />
           </figure>
         </div>
         <div className="media-content">
           <div className="content">
             <p>
-              <strong>Pizza</strong> <br />
-              <small>400 cal</small>
+              <strong>{props.food.name}</strong> <br />
+              <small>{props.food.calories} cal</small>
             </p>
           </div>
         </div>

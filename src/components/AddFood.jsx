@@ -18,7 +18,7 @@ class AddFood extends React.Component {
         <button onClick={this.displayForm} className="button">
           {this.state.addFood ? 'cancel' : ' + new food'}
         </button>
-        {this.state.addFood && <FoodForm />}
+        {this.state.addFood && <FoodForm addFood={this.props.addFood} displayForm={this.displayForm} />}
       </div>
     );
   }

@@ -5,17 +5,29 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 
-function App() {
-  return (
-    <div className="App">
-      <AddFood />
-      <div className="food-container">
-        {foods.map((food) => (
-          <FoodBox food={food} />
-        ))}
+class App extends React.Component {
+  state = {
+    foods: foods,
+  };
+
+  addFood = (data) => {
+    this.setState({
+      foods: foods.push(data),
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <AddFood addFood={this.addFood} />
+        <div className="food-container">
+          {foods.map((food) => (
+            <FoodBox key={food.name} food={food} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

@@ -11,6 +11,8 @@ class App extends Component {
 		foods,
 		filteredFoods: foods,
 		searchString: '',
+		foodList: [],
+		totalCalories: 0,
 	}
 
 	addFood = foodForm => {
@@ -22,6 +24,40 @@ class App extends Component {
 			const filtered = this.state.foods.filter(food => food.name.toLowerCase().includes(this.state.searchString.toLowerCase()));
 			this.setState({filteredFoods: filtered});
 		});
+	}
+
+	handleList = (food) => {
+		this.setState({foodList: [...this.state.foodList, food]})
+	}
+
+	handleCountReturn = (name, count, cal) => {
+        const returned = {
+            name: name,
+			qty: count,
+			calories: cal,
+			totalCals: count * cal,
+		}
+		const nameArray = this.state.foodList.map(f => f.name)
+		if (nameArray.includes(returned.name)) {
+			const toEdit = this.state.foodList[nameArray.indexOf(returned.name)];
+			toEdit.qty = returned.qty;
+			toEdit.totalCals = toEdit.qty * toEdit.calories;
+			const foodListCopy = this.state.foodList;
+			foodListCopy[nameArray.indexOf(returned.name)] = toEdit;
+			const totalCals = foodListCopy.map(food => food.totalCals).reduce((acc, curr) => acc += curr);
+			this.setState({foodList: foodListCopy, totalCalories: totalCals});
+		} else {
+			this.setState({foodList: [...this.state.foodList, returned]}, () => {
+				const totalCals = this.state.foodList.map(food => food.totalCals).reduce((acc, curr) => acc += curr);
+				this.setState({totalCalories: totalCals});
+	
+			});	
+		}
+	}
+
+	displayList = () => {
+		const list = this.state.foodList.map((food, idx) => <li key={idx} >{food.qty} {food.name} = {food.totalCals} cal</li>);
+		return list
 	}
 
 	render() {
@@ -38,9 +74,21 @@ class App extends Component {
 					<div className='column'>
 						{this.state.filteredFoods.map(food => {
 							return (
-								<FoodBox name={food.name} image={food.image} calories={food.calories} key={food.name} />
+								<FoodBox name={food.name}
+								image={food.image}
+								calories={food.calories}
+								key={food.name}
+								handler={this.handleList}
+								listHandler={this.handleCountReturn} />
 							)
 						})}
+					</div>
+					<div className='column content'>
+						<h2 className='subtitle'>Today's Foods</h2>
+						<ul>
+							{this.displayList()}
+						</ul>
+						<strong>Total: {this.state.totalCalories}</strong>
 					</div>
 				</div>
 				<AddFood create={this.addFood} />

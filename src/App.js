@@ -31,6 +31,7 @@ class App extends Component {
 	}
 
 	handleCountReturn = (name, count, cal) => {
+		if (count === 0) {return;}
         const returned = {
             name: name,
 			qty: count,
@@ -55,8 +56,18 @@ class App extends Component {
 		}
 	}
 
+	removeFromList = (index) => {
+		const foodListCopy = this.state.foodList;
+		foodListCopy.splice(index, 1);
+		if (foodListCopy.length === 0) { this.setState({foodList: [], totalCalories: 0}) }
+		else {
+			const totalCals = foodListCopy.map(food => food.totalCals).reduce((acc, curr) => acc += curr);
+			this.setState({foodList: foodListCopy, totalCalories: totalCals});
+		}
+	}
+
 	displayList = () => {
-		const list = this.state.foodList.map((food, idx) => <li key={idx} >{food.qty} {food.name} = {food.totalCals} cal</li>);
+		const list = this.state.foodList.map((food, idx) => <li key={idx} >{food.qty} {food.name} = {food.totalCals} cal <a onClick={() => this.removeFromList(idx)} ><i className="fas fa-trash"></i></a> </li>);
 		return list
 	}
 
@@ -88,7 +99,7 @@ class App extends Component {
 						<ul>
 							{this.displayList()}
 						</ul>
-						<strong>Total: {this.state.totalCalories}</strong>
+						<strong>Total: {this.state.totalCalories} cal</strong>
 					</div>
 				</div>
 				<AddFood create={this.addFood} />

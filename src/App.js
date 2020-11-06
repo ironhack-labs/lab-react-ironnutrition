@@ -3,10 +3,11 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
 import CreateNewUserForm from './components/CreateNewUserForm/CreateNewUserForm';
+import FilterBar from './components/FilterBar/FilterBar';
 
 class App extends React.Component {
-
   state = {
+    allFoods: foods,
     foods,
   }
 
@@ -35,7 +36,7 @@ class App extends React.Component {
               <div className="control">
                 <button className="button is-info">
                   +
-                                </button>
+                </button>
               </div>
             </div>
           </div>
@@ -45,14 +46,28 @@ class App extends React.Component {
     return foodReturned;
   }
 
+  addFood = foodAdded => {
+    this.state.foods.push(foodAdded);
+
+    this.setState({ foods: this.state.foods });
+  };
+
+  filterFood = (foodName) => {
+    const filteredFoods = this.state.allFoods.filter(food => food.name.toLowerCase().includes(foodName.toLowerCase()));
+    this.setState({ foods: filteredFoods });
+  };
+
   render() {
     return (
       <div>
+        <div>
+          <FilterBar filterFood={this.filterFood}/>
+        </div>
         <div className="App">
           <FoodBox food={this.displayFood()} />
         </div>
 
-        <CreateNewUserForm />
+        <CreateNewUserForm addFood={this.addFood}/>
 
       </div>
     );

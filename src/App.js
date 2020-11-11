@@ -18,7 +18,7 @@ class App extends Component {
     console.log(dishesCopy)
 
     this.setState({
-      dishesCopy: dishesCopy
+      foods: dishesCopy
     })
   }
 
@@ -27,7 +27,7 @@ class App extends Component {
     const newList = dishesCopy2.filter(food => food.name.includes(event.target.value))
     
     this.setState({
-      dishesCopy2: newList
+      foods: newList
     })
   }
 

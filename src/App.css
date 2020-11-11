@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+
+.food-list {
+  width: 40%;
+
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+label {
+  padding: 0 20px;
+  font-weight: bold;
+}

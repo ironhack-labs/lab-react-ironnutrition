@@ -7,6 +7,24 @@
   pointer-events: none;
 }
 
+.box{
+  width: 40%;
+}
+
+.boton{
+  width: 150px;
+  height: auto;
+}
+
+.search{
+  width: 95%;
+  height: 30px;
+}
+
+.App h1{
+  font-size: 40px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

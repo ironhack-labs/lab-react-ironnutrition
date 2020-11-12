@@ -20,10 +20,11 @@ class App extends Component {
     foodCopy.push(theFood)
     // actualizamos el state para lograr una nueva renderización del componente con la nueva película agregada
     this.setState({
-      foods: foodCopy
+      foods: foodCopy,
+      bootFoodFiltered: foodCopy
     })
   }
-  
+
   searchFood = event => {
     const foodCopy = [...this.state.foods];
     const search = foodCopy.filter((foods) => {
@@ -49,22 +50,22 @@ class App extends Component {
         })
 
 
-    let filter = this.state.bootFoodFiltered?this.state.bootFoodFiltered.map(function(food){
-      return(
-        <FoodBox
-        name = {food.name}
-        calories = {food.calories}
-        image = {food.image}
-        quantity = {food.quantity}
-        />
-      )
-    }): null
+      let filter = this.state.bootFoodFiltered ? this.state.bootFoodFiltered.map(function(food){
+        return(
+          <FoodBox
+          name = {food.name}
+          calories = {food.calories}
+          image = {food.image}
+          quantity = {food.quantity}
+          />
+        )
+      }): null
       
         return (
           <div>
-          <div>
-          <input type="search" className="search" name="search" placeholder="Search" value={this.state.search} onChange={(e) => this.searchFood(e)}/>
-          </div>
+            <div>
+            <input type="search" className="search" name="search" placeholder="Search" value={this.state.search} onChange={(e) => this.searchFood(e)}/>
+            </div>
             <div>
             <AddFood addTheFood={(e)=>this.addFoodHandler(e)}/> 
             </div>

@@ -16,7 +16,8 @@ class App extends Component {
     const foodsCopy = [...this.state.foods];
     foodsCopy.unshift(oneFood)
     this.setState({
-      foods: foodsCopy
+      foods: foodsCopy,
+      filteredFoodsList: foodsCopy,
     })
   };
 

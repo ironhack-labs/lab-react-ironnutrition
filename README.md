@@ -53,8 +53,8 @@ import 'bulma/css/bulma.css';
 
 Import the foods from the `foods.json`.
 
-```js
-import foods from './foods.json';
+```jsimport foods from './foods.json'
+;
 ```
 
 #### About the design

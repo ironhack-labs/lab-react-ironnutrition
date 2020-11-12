@@ -14,9 +14,7 @@ export class App extends Component {
   }
 
   addOneFood = foodObj =>{
-    this.setState(prevState=>{
-      return {foodsArrAll:[...prevState.foodsArrAll, foodObj]}
-    })
+    this.setState(prevState=>({foodsArrAll:[...prevState.foodsArrAll, foodObj], foodsArrFiltered:[...prevState.foodsArrAll, foodObj], showForm:'none'}))
   }
 
   searchFood = e =>{

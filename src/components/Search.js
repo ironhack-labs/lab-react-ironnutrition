@@ -13,7 +13,7 @@ export class Search extends Component {
   render() {
     return (
       <div>
-        <form onChange={(e) => this.handleResetChange(e)}>
+        <form>
           <input
             type="text"
             name="name"

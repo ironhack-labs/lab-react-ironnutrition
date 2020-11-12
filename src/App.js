@@ -5,14 +5,15 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 import Search from './components/Search';
-import OneFood from './components/OneFood';
+import TodaysFood from './components/TodaysFood';
 
 class App extends Component {
   state = {
     foods: foods,
     isAddForm: false,
-    todayFood: [],
-    caloriesSum: 0,
+    filteredFoodsList: foods,
+    todaysFood: [],
+    totalCalories: 0
   };
 
   showAddButton = () => {
@@ -27,6 +28,7 @@ class App extends Component {
     this.setState({
       foods: foodsCopy,
       isAddForm: false,
+      filteredFoodsList: foodsCopy,
     });
   };
 
@@ -36,18 +38,29 @@ class App extends Component {
       return elem.name.includes(value);
     });
     this.setState({
-      foods: filteredArr,
+      filteredFoodsList: filteredArr,
     });
   };
 
-  addToTodayHandler = (theFood) => {
-    const todayFoodsCopy = [...this.state.todayFood];
-    todayFoodsCopy.push(theFood);
-    console.log(todayFoodsCopy)
-    this.setState({
-      todayFood: todayFoodsCopy,
-    });
-  };
+  addTodaysFood = (foodObj) => {
+    let todaysFoodsCopy = [...this.state.todaysFood]
+    let found = todaysFoodsCopy.find(food => food.name === foodObj.name);
+
+    foodObj.calories *= foodObj.quantity;
+
+    if(found) {
+      found.quantity += foodObj.quantity;
+      found.calories += foodObj.calories;
+    } else {
+      todaysFoodsCopy.push(foodObj);
+    }
+
+    const totalCalories = todaysFoodsCopy.reduce(
+      (acc, val) => acc + val.calories, 0
+    );
+
+    this.setState({ todaysFood: todaysFoodsCopy, totalCalories });
+  }
 
   render() {
     return (
@@ -61,22 +74,24 @@ class App extends Component {
         <Search searchFood={this.searchFoodHandler} />
         <div>
           <div>
-            {this.state.foods &&
-              this.state.foods.map((food, index) => (
-                <FoodBox food={food} key={index} />
+            {this.state.filteredFoodsList.map((food, index) => (
+                <FoodBox food={food} key={index} updateTodaysFood={this.addTodaysFood}/>
               ))}
           </div>
-          <div>
-            <div>
-              <h2>Today's food</h2>
-              <ul>
-                <li>
-                  <OneFood addToToday={this.addToTodayHandler} />
-                </li>
-              </ul>
-              <p>Total: {this.state.caloriesSum} cal</p>
-            </div>
+          <div className="section2">
+          <h2 id="todays-food-title">Today's foods</h2>
+          <div className='ul-container'>
+            <ul>
+            {this.state.todaysFood.map( (oneTodaysFood, index) => {
+              <TodaysFood key={index} {...oneTodaysFood} 
+                // deleteFood={() => this.deleteFood(index)}
+              />         
+            })}
+            </ul>
+            <p className='total-calories'>Total calories: {this.state.totalCalories}</p>
           </div>
+          }
+        </div>
         </div>
       </div>
     );

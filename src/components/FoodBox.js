@@ -2,24 +2,13 @@ import React, { Component } from 'react';
 
 class FoodBox extends Component {
   state = {
-    name: '',
-    calories: 0,
     quantity: 0,
-  }
-  
-  addToToday = (event) => {
-    event.preventDefault();
-    this.setState({
-      name: this.props.food.name,
-      calories: this.props.food.calories,
-      quantity: this.props.food.quantity,
-    });
-    this.props.addToToday(this.state);
-    console.log("name", this.props.food.name)
-    console.log("calories", this.props.food.calories)
-    console.log("quantity", this.props.food.quantity)
-    console.log(this.state)
   };
+
+  handleChange = e => {
+    const { value } = e.target;
+    this.setState({ quantity: Number(value) })
+  }
 
   render() {
     return (
@@ -42,12 +31,22 @@ class FoodBox extends Component {
             <div className="media-right">
               <div className="field has-addons">
                 <div className="control">
-                  <input className="input" type="number" value="1" />
+                  <input
+                    className="input"
+                    type="number"
+                    value={this.state.quantity}
+                    onChange={this.handleChange}
+                  />
                 </div>
                 <div className="control">
                   <button
                     className="button is-info"
-                    onSubmit={(e) => this.addToToday(e)}
+                    onClick={() =>
+                      this.props.updateTodaysFood({
+                        ...this.props.food,
+                        quantity: this.state.quantity,
+                      })
+                    }
                   >
                     +
                   </button>

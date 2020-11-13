@@ -9,26 +9,14 @@ import Search from './components/Search';
 function App() {
 
   
-  let foodsAdd = [];
+  let foodsArr = [];
 
-  const [stateAdd, setStateAdd] = useState({foodsArr: foodsAdd, quantity: 1})
+  const [stateAdd, setStateAdd] = useState(foodsArr)
 
   let calories = 0;
 
   const [valueAdd, setValueAdd] = useState(calories)
-
-  function handleClickAdd(event){
-  foods.push({name: props.name, calories: (props.calories * stateAdd.quantity), amount: stateAdd.quantity});
-  calories += (stateAdd.quantity * props.calories);
-  setValueAdd(calories);
-  setStateAdd({...stateAdd, foodsArr: foodsAdd});
-  }
-
-  function handleChangeAdd(event){
-  const {value} = event.target;
-  setStateAdd({...stateAdd, quantity: value})
-  }
-
+ 
   const [state, setState] = useState([...foods]);
 
   const [value, setValue] = useState('');
@@ -55,16 +43,17 @@ function App() {
                 name={element.name}
                 calories={element.calories}
                 image={element.image}
-                onClick={handleClickAdd}
-                onChange={handleChangeAdd}
-                value={valueAdd}
+                setStateAdd={setStateAdd}
+                stateAdd={stateAdd}
+                setValueAdd={setValueAdd}
+                valueAdd={valueAdd}
               />
             </li>
           ))}
         </ul>
         <div>
   <h2>Today's foods</h2>
-    <ul>{stateAdd.foodsArr.map((elem) => <li>{elem.amount} {elem.name} = {elem.calories} cal</li>)}</ul>
+    <ul>{stateAdd.map((elem) => <li>{elem.quantity} {elem.name} = {elem.calories} cal</li>)}</ul>
     <p>Total: {valueAdd} cal</p>
   </div>
       </div>

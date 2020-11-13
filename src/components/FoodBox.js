@@ -3,6 +3,24 @@ import 'bulma/css/bulma.css';
 
 function FoodBox(props){
 
+const [value, setValue] = useState(0);
+
+
+  function handleClick(){
+    let calories = props.valueAdd;
+    let newFoods = [...props.stateAdd];
+    newFoods.push({name: props.name, calories: (props.calories * value), quantity: value});
+    calories += (value * props.calories);
+    props.setValueAdd(calories);
+    props.setStateAdd(newFoods);
+   }
+
+   function handleChange(event){
+    const amount = event.currentTarget.value;
+    setValue(amount);
+    }
+  
+  
     return (
 
       <div>
@@ -24,10 +42,10 @@ function FoodBox(props){
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input className="input" onChange={props.onChange} type="number" value={props.value} />
+          <input className="input" onChange={handleChange} type="number" value={value} />
         </div>
         <div className="control">
-          <button className="button is-info" onClick={props.onClick}>
+          <button className="button is-info" onClick={handleClick}>
             +
           </button>
         </div>

@@ -38,6 +38,9 @@ function NewFood(props) {
     setState({
       ...state,
       toggleForm: false,
+      image: '',
+      name: '',
+      calories: '',
     });
   }
 

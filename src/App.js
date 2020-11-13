@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import foods from './foods.json';
+import FoodBox from './FoodBox/FoodBox';
+import NewFood from './newfood/NewFood';
+import SearchBar from './search/SearchBar';
+import 'bulma/css/bulma.css';
 import './App.css';
 
 function App() {
+  const [state, setState] = useState([...foods]);
+  // setState é uma função para atualizar o state
+  //props só flui do pai pro filho
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar></SearchBar>
+
+      {state.map((itemFood) => (
+        <FoodBox
+          name={itemFood.name}
+          calories={itemFood.calories}
+          image={itemFood.image}
+          quantity={itemFood.quantity}
+        ></FoodBox>
+      ))}
+
+      <NewFood addFood={state} attFood={setState}></NewFood>
     </div>
   );
 }

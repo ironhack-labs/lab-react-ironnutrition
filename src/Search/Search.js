@@ -2,24 +2,22 @@ import React, { useState } from 'react';
 import foodsOriginal from '../foods.json';
 
 function Search(props) {
-  const [search, setSearch] = useState('');
+  const [search, setState] = useState('');
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setSearch(value.toLowerCase());
+    const { value } = e.target;
+    setState(value, searchWord(value.toLowerCase()));
+  }
 
-    if (search.length <= 0) {
-      props.setSearch(foodsOriginal);
-    } else {
-      let newList = [];
-      let itemLower = '';
-      foodsOriginal.map((item) =>
-        (itemLower = item.name.toLowerCase()).indexOf(search) >= 0
-          ? newList.push(item)
-          : false
-      );
-      props.setSearch(newList);
-    }
+  function searchWord(word) {
+    let newList = [];
+    let itemLower = '';
+    foodsOriginal.map((item) =>
+      (itemLower = item.name.toLowerCase()).indexOf(word) >= 0
+        ? newList.push(item)
+        : false
+    );
+    props.setSearch(newList);
   }
 
   return (

@@ -16,6 +16,7 @@ function FoodBox(props) {
       let food = {
         name: name,
         calories: calories,
+        image: image,
         quantity: Number(value)+Number(todayFood[idx].quantity),
       }
       let newarray = [...todayFood];
@@ -29,6 +30,7 @@ function FoodBox(props) {
             name: name,
             calories: calories,
             quantity: value,
+            image: image
           },
         ]);
     }

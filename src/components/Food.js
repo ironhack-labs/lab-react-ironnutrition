@@ -15,12 +15,25 @@ function handleClick(e){
 }
 
     return (
-      <li>
+
+  <article className="media">
+    <figure className="media-left">
+      <p className="image is-64x64">
+        <img src={image} />
+      </p>
+    </figure>
+    <div className="media-content">
+      <div className="content">
         <p>
-          <a onClick={handleClick} className="delete is-danger mx-1"></a>
-          {quantity} - {name} - {quantity * calories}
-        </p>
-      </li>
+          <strong>{name}</strong><br/><small>({quantity})</small> <small>{calories*quantity} cal</small>
+          </p>
+      </div>
+    </div>
+    <div className="media-right">
+      <button className="delete" onClick={handleClick}></button>
+    </div>
+  </article>
+
     );
 }
 

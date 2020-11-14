@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import foods from './foods.json';
 import FoodBox from './FoodBox/FoodBox';
 import NewFood from './newfood/NewFood';
-import SearchBar from './search/SearchBar';
+import Search from './search/SearchBar';
+
 import 'bulma/css/bulma.css';
 import './App.css';
 
 function App() {
   const [state, setState] = useState([...foods]);
+
   // setState é uma função para atualizar o state
   //props só flui do pai pro filho
+
   return (
     <div className="App">
-      <SearchBar></SearchBar>
+    
+      <Search list={state} setSearch={setState} />
 
       {state.map((itemFood) => (
         <FoodBox

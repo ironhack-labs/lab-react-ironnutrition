@@ -6,7 +6,7 @@ function NewFood(props) {
     name: '',
     calories: '',
     image: '',
-    toggleForm: true,
+    toggleForm: false,
   });
   console.log(state);
   function handleChange(event) {

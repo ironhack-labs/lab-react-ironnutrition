@@ -47,33 +47,48 @@ function NewFood(props) {
   return (
     <div>
       <div>
-        <button onClick={handleClick}>Add Food</button>
+        <button className="button is-link" onClick={handleClick}>
+          Add Food
+        </button>
       </div>
       {state.toggleForm ? (
-        <div>
+        <div className="is-flex-direction-column mt-3">
           <input
+            className="input field is-primary"
             onChange={handleChange}
             name="name"
             value={state.name}
             placeholder="Food Name"
           ></input>
-          <br />
           <input
+            className="input field is-warning"
             onChange={handleChange}
             type="number"
             name="calories"
             value={state.calories}
             placeholder="Calories Number"
           ></input>
-          <br />
-          <input
-            onChange={handleChange}
-            name="image"
-            value={state.image}
-            placeholder="Image"
-          ></input>
-          <br />
-          <button onClick={handleClickS}>Submit</button>
+
+          <div className=" field is-dark file has-name">
+            <label className="file-label">
+              <input
+                className=" file-input"
+                onChange={handleChange}
+                type="file"
+                name="image"
+                value={state.image}
+                placeholder="Image"
+              ></input>
+              <span className="file-cta">
+                <span className="file-label">Choose a file…</span>
+              </span>
+              <span class="file-name ">{state.image}</span>
+            </label>
+          </div>
+
+          <button className="button is-black" onClick={handleClickS}>
+            Submit
+          </button>
         </div>
       ) : (
         ''

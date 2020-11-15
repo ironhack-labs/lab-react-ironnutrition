@@ -16,14 +16,6 @@ function FoodBox(props) {
     if (todayList.length === 0) {
       qntFoods = 0;
     }
-    if (add.qnt > 0 && todayList.length === 0) {
-      todayList.push({
-        foodName: props.name,
-        foodCal: props.cal,
-        foodQnt: add.qnt,
-      });
-      qntFoods += 1;
-    }
     checkFood(props.name);
     function checkFood(chackName) {
       if (add.qnt > 0) {
@@ -45,7 +37,7 @@ function FoodBox(props) {
     if (alter === 'yes') {
       if (todayList.length === 1) {
         todayList.find(function (food) {
-          if (food.foodName === props.name && qntFoods === 2) {
+          if (food.foodName === props.name && qntFoods === 1) {
             food.foodQnt = add.qnt;
           }
         });

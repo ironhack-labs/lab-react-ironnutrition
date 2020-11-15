@@ -13,6 +13,9 @@ function FoodBox(props) {
   }
 
   function handleClick() {
+    if (todayList.length === 0) {
+      qntFoods = 0;
+    }
     if (add.qnt > 0 && todayList.length === 0) {
       todayList.push({
         foodName: props.name,

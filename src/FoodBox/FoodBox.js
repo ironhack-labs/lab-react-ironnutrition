@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 let todayList = [];
 let alter = '';
-let qntFoods = 0;
 
 function FoodBox(props) {
   const [add, setAdd] = useState(props);
@@ -14,12 +13,10 @@ function FoodBox(props) {
 
   function handleClick() {
     if (todayList.length === 0) {
-      qntFoods = 0;
     }
     checkFood(props.name);
     function checkFood(chackName) {
       if (add.qnt > 0) {
-        qntFoods += 1;
         if (
           todayList.find(function (food) {
             if (food.foodName === chackName) {
@@ -34,17 +31,8 @@ function FoodBox(props) {
         }
       }
     }
-    if (alter === 'yes') {
-      if (todayList.length === 1) {
-        todayList.find(function (food) {
-          if (food.foodName === props.name && qntFoods === 1) {
-            food.foodQnt = add.qnt;
-          }
-        });
-      }
-    } else {
+    if (alter === 'no') {
       if (add.qnt > 0) {
-        qntFoods += 1;
         todayList.push({
           foodName: props.name,
           foodCal: props.cal,

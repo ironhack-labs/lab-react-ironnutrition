@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 function TodayCalories(props) {
-  let newarr = props.dayFood;
+  // let newarr = props.dayFood;
 
-  const [state, setState] = useState({ newarr });
+  //const [state, setState] = useState({ newarr });
 
   let total = 0;
   props.dayFood.map((e) => (total += e.foodQnt * e.foodCal));

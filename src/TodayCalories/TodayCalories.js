@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 
 function TodayCalories(props) {
-  // let newarr = props.dayFood;
-
-  //const [state, setState] = useState({ newarr });
-
-  let total = 0;
-  props.dayFood.map((e) => (total += e.foodQnt * e.foodCal));
+  //const [state, setState] = useState( props.dayFood );
 
   function handleClick(event) {
     const { name } = event.target;
@@ -37,7 +32,11 @@ function TodayCalories(props) {
           </li>
         ))}
       </ul>
-      <strong>Total: {total} cal</strong>
+      <strong>
+        Total:{' '}
+        {props.dayFood.reduce((acc, ele) => acc + ele.foodQnt * ele.foodCal, 0)}
+        cal
+      </strong>
     </div>
   );
 }

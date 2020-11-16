@@ -10,13 +10,10 @@ function Search(props) {
   }
 
   function searchWord(word) {
-    let newList = [];
-    let itemLower = '';
-    foodsOriginal.map((item) =>
-      (itemLower = item.name.toLowerCase()).indexOf(word) >= 0
-        ? newList.push(item)
-        : false
-    );
+    const newList = foodsOriginal.filter((item) => {
+      return item.name.toLocaleLowerCase().indexOf(word) >= 0;
+    });
+
     props.setSearch(newList);
   }
 

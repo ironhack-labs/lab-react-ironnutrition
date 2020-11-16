@@ -19,8 +19,9 @@ function App() {
 
       <div className="columns">
         <div className="column">
-          {state.map((element) => (
+          {state.map((element, idx) => (
             <FoodBox
+              index={idx}
               image={element.image}
               name={element.name}
               cal={element.calories}

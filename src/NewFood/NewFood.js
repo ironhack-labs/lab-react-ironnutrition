@@ -26,7 +26,7 @@ function NewFood(props) {
     });
   }
 
-  function handleClickS(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     foodsOriginal.push({
       name: state.name,
@@ -86,7 +86,7 @@ function NewFood(props) {
             </label>
           </div>
 
-          <button className="button is-black" onClick={handleClickS}>
+          <button className="button is-black" onClick={handleSubmit}>
             Submit
           </button>
         </div>

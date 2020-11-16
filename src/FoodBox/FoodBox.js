@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 let todayList = [];
-let alter = '';
 
 function FoodBox(props) {
   const [add, setAdd] = useState(props);

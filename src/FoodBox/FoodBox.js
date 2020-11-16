@@ -12,8 +12,6 @@ function FoodBox(props) {
   }
 
   function handleClick() {
-    if (todayList.length === 0) {
-    }
     checkFood(props.name);
     function checkFood(chackName) {
       if (add.qnt > 0) {
@@ -25,19 +23,14 @@ function FoodBox(props) {
             }
           })
         ) {
-          alter = 'yes';
+          return;
         } else {
-          alter = 'no';
+          todayList.push({
+            foodName: props.name,
+            foodCal: props.cal,
+            foodQnt: add.qnt,
+          });
         }
-      }
-    }
-    if (alter === 'no') {
-      if (add.qnt > 0) {
-        todayList.push({
-          foodName: props.name,
-          foodCal: props.cal,
-          foodQnt: add.qnt,
-        });
       }
     }
     props.dayFood({ list: todayList });

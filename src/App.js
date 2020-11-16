@@ -76,8 +76,9 @@ function App() {
         ></input>
       </div>
 
-      {searchResults.map((item) => (
+      {searchResults.map((item, i) => (
         <FoodBox
+          key={i}
           name={item.name}
           calories={item.calories}
           img={item.image}

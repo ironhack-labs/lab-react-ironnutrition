@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import foodBox from './Foodbox';
 
 function App() {
   return (

@@ -37,7 +37,7 @@ const columns = [
           <input className="input" type="number" value="1" />
         </div>
         <div className="control">
-          <Button type="primary">Primary Button</Button>
+          <Button type="primary">+</Button>
         </div>
       </div>
     ),

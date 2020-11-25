@@ -7,7 +7,7 @@ function FoodBox() {
         <div className="media-left">
           <figure className="image is-64x64">
             <img
-              style={{ width: '500px' }}
+              style={{ width: '300px' }}
               src="https://i.imgur.com/eTmWoAN.png"
             />
           </figure>

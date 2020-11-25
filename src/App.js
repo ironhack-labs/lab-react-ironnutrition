@@ -5,6 +5,7 @@ import data from './foods.json';
 // import FoodBox from './Foodbox';
 import { Table } from 'antd';
 import { Button } from 'antd';
+import { Formik } from 'formik';
 
 const columns = [
   {
@@ -37,12 +38,47 @@ const columns = [
           <input className="input" type="number" value="1" />
         </div>
         <div className="control">
-          <Button type="primary">+</Button>
+          <Button type="primary" onClick={() => formik()}>
+            +
+          </Button>
         </div>
       </div>
     ),
   },
 ];
+
+function formik() {
+  const BasicExample = () => (
+    <div>
+      <h1>My Form</h1>
+      <Formik
+        initialValues={{ name: 'jared' }}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
+      >
+        {(props) => (
+          <form onSubmit={props.handleSubmit}>
+            <input
+              type="text"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.name}
+              name="name"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+            <button type="submit">Submit</button>
+          </form>
+        )}
+      </Formik>
+    </div>
+  );
+  console.log(BasicExample);
+  return BasicExample;
+}
 
 function App() {
   return (

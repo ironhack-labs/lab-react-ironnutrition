@@ -15,7 +15,7 @@ const columns = [
       <img
         src={image}
         style={{
-          width: '25px',
+          width: '250px',
         }}
       />
     ),
@@ -23,7 +23,6 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    width: 150,
   },
   {
     title: 'calories',

@@ -4,35 +4,30 @@ import foodList from './foods.json';
 import './App.css';
 import Foodbox from './foodbox';
 import AddFoodForm from './addfood';
+import Search from './search';
 
 function App() {
   const [foods, setFoods] = useState(foodList);
   const [showForm, setShowForm] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
 
   const toggleForm = () => setShowForm(!showForm);
 
   const addFoodHandler = (newFood) => {
     const foodCopy = [...foods];
+    //I know I'm actually not supposed to touch the initial list but otherwise I don't know how to properly make search work
     foodList.push(newFood);
     foodCopy.push(newFood);
     setFoods(foodCopy);
   };
 
-  const handleSearchInput = (event) => {
-    event.preventDefault();
-    setSearchInput(event.target.value);
-  };
-
-  const searchFoods = (event) => {
-    event.preventDefault();
+  const searchFoods = (input) => {
     let foodCopy = [...foods];
-    if (searchInput === '') {
-      setFoods(foodList)
+    if (input === '') {
+      setFoods(foodList);
     } else {
       setFoods(
         foodCopy.filter((item) =>
-          item.name.toUpperCase().includes(searchInput.toUpperCase())
+          item.name.toUpperCase().includes(input.toUpperCase())
         )
       );
     }
@@ -43,13 +38,7 @@ function App() {
       <h1>IronNutrition</h1>
       <div className="foodWrapper">
         <div className="foodList">
-          <form className="search" onSubmit={searchFoods}>
-            <input
-              type="text"
-              placeholder="Search for food"
-              onChange={handleSearchInput}
-            />
-          </form>
+          <Search searchFood={searchFoods} />
           {foods.map((item, index) => (
             <Foodbox key={index} food={item} />
           ))}

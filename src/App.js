@@ -15,7 +15,7 @@ const columns = [
       <img
         src={image}
         style={{
-          width: '250px',
+          width: '200px',
         }}
       />
     ),
@@ -31,7 +31,6 @@ const columns = [
   {
     title: 'quantity',
     dataIndex: 'quantity',
-    width: 150,
     render: () => (
       <div className="field has-addons">
         <div className="control">

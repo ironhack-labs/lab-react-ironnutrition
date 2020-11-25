@@ -5,10 +5,12 @@ import './App.css';
 import Foodbox from './foodbox';
 import AddFoodForm from './addfood';
 import Search from './search';
+import Totaleaten from './Totaleaten';
 
 function App() {
   const [foods, setFoods] = useState(foodList);
   const [showForm, setShowForm] = useState(false);
+  const [totalEaten, setTotalEaten] = useState([]);
 
   const toggleForm = () => setShowForm(!showForm);
 
@@ -33,6 +35,12 @@ function App() {
     }
   };
 
+  const handleTotalEaten = (input) => {
+    let totalEatenCopy = [...totalEaten];
+    totalEatenCopy.push(input);
+    setTotalEaten(totalEatenCopy);
+  };
+
   return (
     <div className="App">
       <h1>IronNutrition</h1>
@@ -40,16 +48,22 @@ function App() {
         <div className="foodList">
           <Search searchFood={searchFoods} />
           {foods.map((item, index) => (
-            <Foodbox key={index} food={item} />
+            <Foodbox key={index} food={item} addToTotal={handleTotalEaten} />
           ))}
         </div>
-        <div>
-          <button onClick={() => toggleForm()}>Add food</button>
-          {showForm ? (
-            <AddFoodForm addFood={addFoodHandler} formToggler={toggleForm} />
-          ) : (
-            ''
-          )}
+        <div className="rightColumn">
+          <div>
+            {!totalEaten.length ? '' : <Totaleaten foodTotal={totalEaten} />}
+          </div>
+          <div className="addFood">
+            {showForm ? (
+              <AddFoodForm addFood={addFoodHandler} formToggler={toggleForm} />
+            ) : (
+              <button class="button is-primary" onClick={() => toggleForm()}>
+                Add new item to food to list
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

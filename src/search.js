@@ -15,11 +15,19 @@ function Search(props) {
 
   return (
     <form className="search" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Search for food"
-        onChange={handleSearchInput}
-      />
+      <div class="field has-addons">
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Search for food"
+            onChange={handleSearchInput}
+          />
+        </div>
+        <div class="control">
+          <p class="button is-info">Search</p>
+        </div>
+      </div>
     </form>
   );
 }

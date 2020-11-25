@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Foodbox(props) {
+  const [quantity, setQuantity] = useState(props.quantity);
+
+  const handleQuantity = (event) => {
+    event.preventDefault();
+    setQuantity(event.target.value);
+  };
+
+  let foodForTotal = {
+    name: props.food.name,
+    quantity,
+    calories: quantity * props.food.calories,
+  };
+
+  const addToTotal = (event) => {
+    event.preventDefault();
+    props.addToTotal(foodForTotal);
+  };
+
   return (
     <div className="box">
       <article className="media">
@@ -23,11 +41,14 @@ function Foodbox(props) {
               <input
                 className="input"
                 type="number"
-                value={props.food.quantity}
+                value={quantity}
+                onChange={handleQuantity}
               />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={addToTotal}>
+                +
+              </button>
             </div>
           </div>
         </div>

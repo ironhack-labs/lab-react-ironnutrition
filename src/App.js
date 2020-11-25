@@ -5,7 +5,7 @@ import './App.css';
 import Foodbox from './foodbox';
 import AddFoodForm from './addfood';
 import Search from './search';
-import Totaleaten from './Totaleaten';
+import TotalEaten from './Totaleaten';
 
 function App() {
   const [foods, setFoods] = useState(foodList);
@@ -37,7 +37,19 @@ function App() {
 
   const handleTotalEaten = (input) => {
     let totalEatenCopy = [...totalEaten];
-    totalEatenCopy.push(input);
+    console.log(input);
+
+    if (totalEatenCopy.filter((item) => item.name === input.name).length > 0) {
+      let index = totalEatenCopy.findIndex((item) => item.name === input.name);
+      totalEatenCopy[index].quantity =
+        Number(totalEatenCopy[index].quantity) + Number(input.quantity);
+
+      totalEatenCopy[index].calories =
+        Number(totalEatenCopy[index].calories) + Number(input.calories);
+    } else {
+      totalEatenCopy.push(input);
+    }
+
     setTotalEaten(totalEatenCopy);
   };
 
@@ -53,7 +65,7 @@ function App() {
         </div>
         <div className="rightColumn">
           <div>
-            {!totalEaten.length ? '' : <Totaleaten foodTotal={totalEaten} />}
+            {!totalEaten.length ? '' : <TotalEaten foodTotal={totalEaten} />}
           </div>
           <div className="addFood">
             {showForm ? (

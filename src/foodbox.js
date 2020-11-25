@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Foodbox(props) {
-  const [quantity, setQuantity] = useState(props.quantity);
+  const [quantity, setQuantity] = useState(props.food.quantity);
 
   const handleQuantity = (event) => {
     event.preventDefault();
@@ -17,6 +17,7 @@ function Foodbox(props) {
   const addToTotal = (event) => {
     event.preventDefault();
     props.addToTotal(foodForTotal);
+    setQuantity(0);
   };
 
   return (

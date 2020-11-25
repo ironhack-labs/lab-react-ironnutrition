@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Totaleaten(props) {
+function TotalEaten(props) {
   const totalCalories = () => {
     return props.foodTotal
       .map((item) => item.calories)
@@ -13,8 +13,8 @@ function Totaleaten(props) {
     <div className="totalEaten">
       <h2>Today's Food:</h2>
       <ul>
-        {props.foodTotal.map((item) => (
-          <li>
+        {props.foodTotal.map((item, index) => (
+          <li key={index}>
             {item.quantity} {item.name} = {item.calories}
           </li>
         ))}
@@ -26,4 +26,4 @@ function Totaleaten(props) {
   );
 }
 
-export default Totaleaten;
+export default TotalEaten;

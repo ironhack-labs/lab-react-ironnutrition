@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function foodBox() {
+function FoodBox() {
   return (
     <div className="box">
       <article className="media">
@@ -31,3 +31,5 @@ export default function foodBox() {
     </div>
   );
 }
+
+export default FoodBox;

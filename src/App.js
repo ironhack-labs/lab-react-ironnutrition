@@ -27,6 +27,16 @@ const columns = [
   {
     title: 'quantity',
     dataIndex: 'quantity',
+    render: () => (
+      <div className="field has-addons">
+        <div className="control">
+          <input className="input" type="number" value="1" />
+        </div>
+        <div className="control">
+          <button className="button is-info">+</button>
+        </div>
+      </div>
+    ),
   },
   {
     title: 'calories',

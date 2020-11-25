@@ -37,7 +37,6 @@ function App() {
 
   const handleTotalEaten = (input) => {
     let totalEatenCopy = [...totalEaten];
-    console.log(input);
 
     if (totalEatenCopy.filter((item) => item.name === input.name).length > 0) {
       let index = totalEatenCopy.findIndex((item) => item.name === input.name);
@@ -49,6 +48,13 @@ function App() {
     } else {
       totalEatenCopy.push(input);
     }
+
+    setTotalEaten(totalEatenCopy);
+  };
+
+  const deleteEatenItem = (index) => {
+    let totalEatenCopy = [...totalEaten];
+    totalEatenCopy.splice(index, 1);
 
     setTotalEaten(totalEatenCopy);
   };
@@ -65,7 +71,14 @@ function App() {
         </div>
         <div className="rightColumn">
           <div>
-            {!totalEaten.length ? '' : <TotalEaten foodTotal={totalEaten} />}
+            {!totalEaten.length ? (
+              ''
+            ) : (
+              <TotalEaten
+                foodTotal={totalEaten}
+                deleteHandler={deleteEatenItem}
+              />
+            )}
           </div>
           <div className="addFood">
             {showForm ? (

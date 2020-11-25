@@ -16,6 +16,12 @@ function TotalEaten(props) {
         {props.foodTotal.map((item, index) => (
           <li key={index}>
             {item.quantity} {item.name} = {item.calories}
+            <p
+              className="button is-info delete-btn"
+              onClick={() => props.deleteHandler(index)}
+            >
+              Delete
+            </p>
           </li>
         ))}
       </ul>

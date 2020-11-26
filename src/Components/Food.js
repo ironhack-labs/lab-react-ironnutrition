@@ -5,12 +5,10 @@ function Food(props){
     const {quantity, name, calories, image} = props;
     const [todayFood, setTodayFood] = props.todayFood;
 
-    function handleClick(e){
+    function handleClick(foodName){
         let foodCollection = [...todayFood];
-        let index = foodCollection.map(()=>e.name).indexOf(name);
-            if(index >= 0){
-                foodCollection.splice(index,1); 
-            }
+        let index = foodCollection.findIndex(food => food.name === foodName);
+        foodCollection.splice(index,1); 
         setTodayFood([...foodCollection]);
     }
 
@@ -29,7 +27,7 @@ function Food(props){
                 </div>
             </div>
             <div className="media-right">
-                <button className="delete" onClick={handleClick}></button>
+                <button className="delete" onClick={()=>handleClick(name)}></button>
             </div>
         </article>
     );

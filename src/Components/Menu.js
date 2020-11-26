@@ -12,7 +12,7 @@ function Menu(props){
         {todayFood.map((food, index) => {
           return (
             <Food
-              key="index"
+              key={index}
               name={food.name}
               quantity={food.quantity}
               image={food.image}

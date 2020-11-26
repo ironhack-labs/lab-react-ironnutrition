@@ -9,30 +9,39 @@ const initialState = {
   };
 
 const AddFoodForm = (props) => {
-    const [allValues, setAllValues] = useState(initialState);
+    
+    const [formState, setFormState] = useState(initialState);
 
-    const inputChangeHandler = (event) => {
-        let { name, value, type, } = event.target;
-        setAllValues({ ...allValues, [name]: value });
+    const handleInputChange = (event) => {
+      let inputValue = event.target.value;
+      let inputName = event.target.name;
+      let inputType = event.target.type;
+
+      if(inputType === "number") {
+        inputValue = parseInt(inputValue)
       };
 
-    const handleFormSubmission = (event) => {
-        event.preventDefault();
-        props.addFood(allValues);
-        setAllValues(initialState);
-      };
+      setFormState({ ...formState, [inputName]: inputValue});
+
+    };
+
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+      props.handleLiftFoodFromState(formState);
+      setFormState(initialState);
+    };
 
       return (
         <div>
-          <form onSubmit={handleFormSubmission} >
+          <form onSubmit={handleFormSubmit} >
             <div class="field">
                 <label class="label">Name:</label>
                 <div class="control">
                 <input class="input"
                     type="text"
                     name="name"
-                    value={allValues.name}
-                    onChange={inputChangeHandler}
+                    value={formState.name}
+                    onChange={handleInputChange}
             />
                 </div>
             </div>
@@ -43,8 +52,8 @@ const AddFoodForm = (props) => {
                 <input class="input"
                     type="number"
                     name="calories"
-                    value={allValues.calories}
-                    onChange={inputChangeHandler}
+                    value={formState.calories}
+                    onChange={handleInputChange}
                     />
                 </div>
             </div>
@@ -55,8 +64,8 @@ const AddFoodForm = (props) => {
                 <input class="input"
                     type="text"
                     name="image"
-                    checked={allValues.image}
-                    onChange={inputChangeHandler}
+                    checked={formState.image}
+                    onChange={handleInputChange}
                     />
                 </div>
             </div>
@@ -67,8 +76,8 @@ const AddFoodForm = (props) => {
                 <input class="input"
                     type="number"
                     name="quantity"
-                    value={allValues.quantity}
-                    onChange={inputChangeHandler}
+                    value={formState.quantity}
+                    onChange={handleInputChange}
                     />
                 </div>
             </div>

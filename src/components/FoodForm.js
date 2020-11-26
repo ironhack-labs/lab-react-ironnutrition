@@ -11,6 +11,7 @@ export default function FormFood({addNewFood}) {
                 quantity:0
             }}>
                 onSubmit={(values,{resetForm})=>{
+                    console.log(values)
                     addNewFood({...values})
                     resetForm()
                 }}
@@ -19,10 +20,8 @@ export default function FormFood({addNewFood}) {
         <Field id="name" name="name" placeholder="Pizza" />
         <label htmlFor="calories">Calories</label>
         <Field id="calories" name="calories" placeholder="400" />
-        <label htmlFor="hasOscars">Has Oscars</label>
-        <Field type='checkbox' id="hasOscars" name="hasOscars" placeholder="9.2" />
-        <label htmlFor="IMDbRating">IMDbRating</label>
-        <Field id="IMDbRating" name="IMDbRating" placeholder="9.2" />
+        <label htmlFor="image">ImageURL</label>
+        <Field id="image" name="image" placeholder="https://i.imgur.com/eTmWoAN.png" />
         <button type='submit'>Add</button>
       </Form>
 
@@ -30,3 +29,4 @@ export default function FormFood({addNewFood}) {
         </div>
     )
 }
+

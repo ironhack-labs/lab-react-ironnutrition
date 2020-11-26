@@ -1,43 +1,36 @@
 import React, { useState } from 'react';
-import { List, Avatar, Button, InputNumber } from 'antd';
+import { List, Input } from 'antd';
+import FoodItem from './FoodItem';
+const { Search } = Input;
 
 const FoodBox = ({ data, HandlerAddQuantity }) => {
-  const [number, setNumber] = useState({
-    value: 0,
-  });
-
-  const onNumberChange = (value) => {
-    setNumber({ value });
+  const [searchFood, setSearchFood] = useState({});
+  const onSearch = (value) => {
+    const searchString = new RegExp(value.toLowerCase().split(' ').join('|'));
+    const search = data.filter((e) => searchString.test(e.name.toLowerCase()));
+    setSearchFood(search);
   };
-
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={data}
-      renderItem={(item) => (
-        <List.Item
-          actions={[
-            <InputNumber
-              min={0}
-              value={number.value}
-              onChange={onNumberChange}
-            />,
-            <Button
-              type="primary"
-              onClick={() => HandlerAddQuantity(item.name)}
-            >
-              +
-            </Button>,
-          ]}
-        >
-          <List.Item.Meta
-            avatar={<Avatar src={item.image} alt={item.name} size="large" />}
-            title={item.name}
-            description={`${item.calories} cal.`}
-          />
-        </List.Item>
+    <>
+      <Search
+        placeholder="input search text"
+        allowClear
+        enterButton="Search"
+        size="large"
+        onSearch={onSearch}
+      />
+      {searchFood.length ? (
+        <List
+          itemLayout="horizontal"
+          dataSource={searchFood}
+          renderItem={(item) => (
+            <FoodItem HandlerAddQuantity={HandlerAddQuantity} item={item} />
+          )}
+        />
+      ) : (
+        <> </>
       )}
-    />
+    </>
   );
 };
 

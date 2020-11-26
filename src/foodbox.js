@@ -4,7 +4,6 @@ function Foodbox(props) {
   const [quantity, setQuantity] = useState(props.food.quantity);
 
   const handleQuantity = (event) => {
-    event.preventDefault();
     setQuantity(event.target.value);
   };
 

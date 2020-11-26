@@ -84,7 +84,7 @@ function App() {
             {showForm ? (
               <AddFoodForm addFood={addFoodHandler} formToggler={toggleForm} />
             ) : (
-              <button class="button is-primary" onClick={() => toggleForm()}>
+              <button className="button is-primary" onClick={() => toggleForm()}>
                 Add new item to food to list
               </button>
             )}

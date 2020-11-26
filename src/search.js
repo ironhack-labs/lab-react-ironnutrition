@@ -4,7 +4,6 @@ function Search(props) {
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearchInput = (event) => {
-    event.preventDefault();
     setSearchInput(event.target.value);
   };
 
@@ -15,17 +14,19 @@ function Search(props) {
 
   return (
     <form className="search" onSubmit={handleSubmit}>
-      <div class="field has-addons">
-        <div class="control">
+      <div className="field has-addons">
+        <div className="control">
           <input
-            class="input"
+            className="input"
             type="text"
             placeholder="Search for food"
             onChange={handleSearchInput}
           />
         </div>
-        <div class="control">
-          <p class="button is-info">Search</p>
+        <div className="control">
+          <button type="submit" className="button is-info">
+            Search
+          </button>
         </div>
       </div>
     </form>

@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import foods from './foods.json';
 import './App.css';
+import FoodList from './components/FoodList'
+import TodaysFoods from './components/TodaysFoods'
+import SearchBar from './components/SearchBar'
+
 
 function App() {
+  const itemList = [...foods]
+  let [foodList, setFoodList] = useState(itemList)
+  let [searchedFood, setSearchedFood] = useState('')
+
+  const searchItem = (input) => {
+    console.log(input)
+    let result = []
+    input ? result = foodList.filter(city => city.name.toLowerCase().includes(input.toLowerCase())) : result = foodList
+    console.log(result)
+
+    setSearchedFood(input)
+    setFoodList([...result])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='container'>
+        <h1 className='title'>IronNutrition</h1>
+        <SearchBar searchItem={searchItem}/>
+        <div className='columns'> 
+            <FoodList render={foodList}/>
+            <TodaysFoods />
+        </div>
+      </div>
     </div>
-  );
+    
+  )
 }
 
 export default App;

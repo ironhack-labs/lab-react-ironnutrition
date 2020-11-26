@@ -6,10 +6,14 @@ import FoodBox from './Components/FoodBox';
 
 
 class App extends Component {
+  state = {
+    foodState: foodList
+  };
+
   render() {
     return (
       <div>
-        {foodList.map((foodItem, index) => (
+        {this.state.foodState.map((foodItem, index) => (
           <FoodBox key={index} {...foodItem} />
         ))}
       </div>

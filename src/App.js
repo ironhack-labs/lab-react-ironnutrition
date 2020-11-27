@@ -45,9 +45,13 @@ class App extends Component {
 
   handleAddTodayFood = (incomingFood) => {
     const stateCopy = {...this.state};
-    stateCopy.todaysFood = [...stateCopy.todaysFood, incomingFood];
+
+    incomingFood.calories *= incomingFood.quantity;
+    stateCopy.todaysFood.push(incomingFood)
     this.setState(stateCopy);
   };
+
+  handleCalculateTotalCal = () => this.state.todaysFood.reduce((acc, val) => acc + val.calories, 0)
 
 
   render(){
@@ -68,15 +72,22 @@ class App extends Component {
               <div className="column">
                 {this.state.searching
                   ? this.state.filteredFoodListState.map((foodItem, index) => (
-                      <FoodBox key={index} {...foodItem} />
+                      <FoodBox key={index} {...foodItem} handleAddFood={this.handleAddTodayFood}/>
                     ))
                   : this.state.foodState.map((foodItem, index) => (
-                      <FoodBox key={index} {...foodItem} />
+                      <FoodBox key={index} {...foodItem} 
+                        handleAddFood={this.handleAddTodayFood}
+                      />
                     ))}
               </div>
               <div className="column">
                 <h3>Today's Foods</h3>
-                <p>{this.state.todaysFood}</p>
+                    <ul>
+                      {this.state.todaysFood.map((element, index) => (
+                        <li key={index}>{element.quantity} {element.name} = {element.calories} cal</li>
+                      ) )}
+                    </ul>
+                    <p>Total: {this.handleCalculateTotalCal()}</p>
               </div>
             </div>
         </section>

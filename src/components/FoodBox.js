@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 class FoodBox extends Component {
     state = {
-        quantity: 0,
-        todaysFood: this.props.todaysFood
+        quantity: 1,
     }
 
     quantityChangeHandler = (event) => {
@@ -11,27 +10,6 @@ class FoodBox extends Component {
         const stateCopy = {quantity: inputValue};
 
         this.setState(stateCopy)
-    }
-
-    addTodayFoodHandler = (event) => {
-        //add food and quantity to list rendered on right side
-
-        //crazy attempt that is very wrong
-        // let foodIndex = todaysFood.map(foodItem => foodItem.this.name).indexOf(this.name)
-        // if(foodIndex >= 0){
-        //     let food = {
-        //         name: this.name,
-        //         calories: this.calories
-        //     }
-        //     let newArray = [...todaysFood];
-        //     newArray.splice(index,1,food);
-        //     setTodaysFood([...newArray])
-        // } else {
-        //     setTodaysFood([...todaysFood,{
-        //         name: this.name,
-        //         calories: this.calories
-        //     }])
-        // }
     }
 
     render(){
@@ -57,9 +35,14 @@ class FoodBox extends Component {
                     <input className="input" type="number" value={this.state.quantity} onChange={this.quantityChangeHandler} />
                     </div>
                     <div className="control">
-                    <button className="button is-info" onClick={this.addTodayFoodHandler}>
-                        +
-                    </button>
+                    <button className="button is-info" onClick={() => {
+                        this.props.handleAddFood({
+                            name: this.props.name,
+                            calories: this.props.calories,
+                            quantity: this.state.quantity
+                        })
+                    }}>
+                    +</button>
                     </div>
                 </div>
                 </div>

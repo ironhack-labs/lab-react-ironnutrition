@@ -1,0 +1,13 @@
+.container {
+    width: 500px;
+    margin:auto;
+    margin-top: 20px;
+}
+
+.container button {
+    text-align: center !important;
+}
+
+.container button:hover {
+    cursor: pointer;
+}

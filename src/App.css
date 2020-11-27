@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.AppDiv{
+  display: flex;
+  flex-direction: column;
+}
+
+.addButton{
+  align-self: center;
+  margin: 30px;
+}

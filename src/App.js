@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import foods from './foods.json';
-import FoodBox from './FoodBox/FoodBox'
+import FoodBox from './FoodBox/FoodBox';
+import AddFoodForm from './AddFoodForm/AddFoodForm';
+import Search from './Search/Search';
 
 function App() {
+const[foodState, setFoods] = useState([...foods]);
+
   return (
     <div className="App">
-    <h1>IronNutrition</h1>
-
-    {foods.map(foodItem => (
-      <FoodBox
-      name = {foodItem.name}
-      image = {foodItem.image}
-      calories = {foodItem.calories}
-       />
-    ))}
-    </div>
+     <AddFoodForm addFood={foodState} attFood={setFoods} />
+      <Search appState = {foodState} setApp={setFoods}
+      />
+      <h1>IronNutrition</h1>
+      {foodState.map((foodItem, idx) => (
+        <FoodBox
+        index = {idx}
+        name = {foodItem.name}
+        image = {foodItem.image}
+        calories = {foodItem.calories}
+        quantity = {foodItem.quantity}
+        /> ))}
+       
+  </div>
   );
 }
 

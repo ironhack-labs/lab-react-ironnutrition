@@ -40,9 +40,20 @@
 .AppDiv{
   display: flex;
   flex-direction: column;
+  margin: 30px 13vw;
 }
 
 .addButton{
   align-self: center;
   margin: 30px;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.foodBoxes {
+  width: 60vw;
 }

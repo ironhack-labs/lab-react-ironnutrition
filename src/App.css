@@ -46,6 +46,17 @@
 .addButton{
   align-self: center;
   margin: 30px;
+  border-radius: 0px;
+  background-color: #2693DA;
+  border: 1px solid #2693DA;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 10px;
+}
+
+.addButton:hover {
+  background-color: white;
+  color: #2693DA;
 }
 
 .body {
@@ -57,3 +68,6 @@
 .foodBoxes {
   width: 60vw;
 }
+
+
+

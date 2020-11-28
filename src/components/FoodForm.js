@@ -27,7 +27,7 @@ const FoodForm = (prop) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form  className='formAddFood' onSubmit={handleSubmit}>
       <label htmlFor='foodName'>Name:</label>
       <input id='foodName' type='text' name='name' onChange={handleFormChanges} value={formState.name}></input>
 
@@ -37,7 +37,7 @@ const FoodForm = (prop) => {
       <label htmlFor='foodImage'>Image:</label>
       <input id='foodImage' type='text' name='image' onChange={handleFormChanges} value={formState.image}></input>
 
-      <button type='submit'>Submit</button>
+      <button className='submitButton' type='submit'>Submit</button>
     </form>
   )
 };

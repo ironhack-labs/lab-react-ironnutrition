@@ -1,0 +1,9 @@
+.searchBar {
+  width: 60vw;
+  padding: 5px;
+}
+
+.searchBar:hover {
+  border: 2px solid #2693DA;
+  border-radius: 3px;
+}

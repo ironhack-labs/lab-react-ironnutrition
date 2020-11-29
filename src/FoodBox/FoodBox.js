@@ -1,12 +1,17 @@
 import React from 'react';
 
+//Create a foodbox component: geeft een food item weer vanuit foods.json
+// ontvang uit json via APP --> dus doorgeven als prop
+
 function FoodBox(food){
-    return (
-        <div className="box">
+  //Foodbox beschrijft de box voor maar 1 fooditem
+ 
+  return(
+    <div className="box" key={food.index}>
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={food.image} alt= "food" />
+        <img src={food.image} />
       </figure>
     </div>
     <div className="media-content">
@@ -20,7 +25,7 @@ function FoodBox(food){
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="number" value={food.quantity} readOnly/>
+          <input className="input" type="number" value={food.quantity} />
         </div>
         <div className="control">
           <button className="button is-info">
@@ -31,9 +36,6 @@ function FoodBox(food){
     </div>
   </article>
 </div>
-    )
+  )
 }
-
-
-
-export default FoodBox;
+export default FoodBox

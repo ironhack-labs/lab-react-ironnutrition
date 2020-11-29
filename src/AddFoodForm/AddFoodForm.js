@@ -1,57 +1,84 @@
 import React, {useState} from 'react';
 
-function AddFoodForm (props){
-    const initialFormState = {
-        name: '',
-        calories: 0,
-        image: '',
-    }
+//Iteration 3: voeg nieuw food toe
+//Form met input: name, number, calories, image
+//Button met submit
+//Voeg nieuw item toe aan huidige foodlijst
+//form verdwijnt wanneer button klikken
 
-    const [newFoodState, setNewFood] = useState(initialFormState);
-
-    function handleClick(event){
-        event.preventDefault();
-        setNewFood( initialFormState )
-        const copyFood = [...props.addFood]
-        copyFood.push(newFoodState);
-        props.attFood(copyFood)
-    }
-
-    function handleInputChange(event){
-        const {name, value} = event.target;
-        setNewFood({
-            ...newFoodState, 
-            [name]: value,
-        })
+function AddFoodForm(props){
+    let initialState = {
+      name: "",
+      quantity: "",
+      calories: "",
+      image: "",
     }
     
-
-    return(
-        <form>
-            <label htmlFor="name">Name:</label>
-            <input
-                type="text"
-                name="name"
-                value={newFoodState.name}
-                onChange={handleInputChange}
-                />
-            <label htmlFor="calories">Calories:</label>
-            <input
-                type='number'
-                name="calories"
-                onChange={handleInputChange} 
-                value={newFoodState.calories}
-                />
-            <label htmlFor="image">Image:</label>
-            <input
-                type="text"
-                name="image"
-                onChange={handleInputChange}
-                value={newFoodState.image}
-                />
-             <button onClick={handleClick}>Add New Food</button>
+    //component bevat state want ingevuld of niet
+    const [newFood, setNewFood] = useState(initialState)
+    
+    //handleSubmit functie nodig
+    function handleSubmit(event){
+      event.preventDefault();
+      setNewFood(initialState)
+      //Voeg nieuwe food(newFoodState) aan lijst van app toe
+      const copyFoodList = [...props.foodList];
+      copyFoodList.push(newFood)
+      props.setFoodList(copyFoodList)
+      
+    }
+    //handleInputChange functie nodig
+    function handleInputChange(event){
+      const {name, value} = event.target;
+      setNewFood({...newFood, [name]: value })
+    }
+    
+      return(
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor ="name">Name:</label>
+            <input 
+            name="name" 
+            type="text"
+            onChange = {handleInputChange}
+            value={newFood.name}
+                     />
+    
+    
+          </div>
+           <div>
+          <label htmlFor ="quantity">Quantity:</label>
+            <input 
+            name="quantity" 
+            type="number"
+            onChange = {handleInputChange}
+            value={newFood.number}
+    
+                     />
+    
+          </div> 
+          <div>
+          <label htmlFor ="calories">Calories:</label>
+            <input 
+            name="calories" 
+            type="number"
+            onChange = {handleInputChange}
+            value={newFood.calories}
+              />
+          </div>
+          <div>
+          <label htmlFor ="image">Image:</label>
+            <input 
+            name="image" 
+            type="text"
+            onChange = {handleInputChange}
+            value={newFood.image}
+                     />
+          </div>
+          <button type="submit">Add food</button>
         </form>
-    );
-}
+      )
+    }
+
 
 export default AddFoodForm;

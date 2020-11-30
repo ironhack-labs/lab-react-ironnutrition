@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './SearchBar.css';
 
 const SearchBar = (prop) => {

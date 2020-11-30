@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FoodBox from './components/FoodBox'
 import 'bulma/css/bulma.css';
@@ -9,8 +8,6 @@ import SearchBar from './components/SearchBar';
 import TodaysFood from './components/TodaysFoods';
 
 let totalCalories = 0;
-
-
 
 function App() {
   const [foodState, setFoodState] = useState(foodList);
@@ -29,7 +26,6 @@ function App() {
   }
 
   const foodFilter = (value) => {
-    
     const filteredFood = foodState.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
     setFoodSearch(filteredFood);
   }

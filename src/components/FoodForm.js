@@ -9,7 +9,6 @@ const initialState = {
 }
 
 const FoodForm = (prop) => {
-  
   const [formState, setFormState] = useState(initialState)
 
   const handleSubmit = (event) => {
@@ -30,13 +29,10 @@ const FoodForm = (prop) => {
     <form  className='formAddFood' onSubmit={handleSubmit}>
       <label htmlFor='foodName'>Name:</label>
       <input id='foodName' type='text' name='name' onChange={handleFormChanges} value={formState.name}></input>
-
       <label htmlFor='foodCalories'>Calories:</label>
       <input id='foodCalories' type='number' name='calories' onChange={handleFormChanges} value={formState.calories}></input>
-
       <label htmlFor='foodImage'>Image:</label>
       <input id='foodImage' type='text' name='image' onChange={handleFormChanges} value={formState.image}></input>
-
       <button className='submitButton' type='submit'>Submit</button>
     </form>
   )

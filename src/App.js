@@ -12,8 +12,10 @@ function App() {
   const [foodList, setFoodList] = useState(foods);
   const [searchValue, setSearchValue] = useState('');
   const [selectedFood, setSelectedFood] = useState([]);
-
+  console.log(foodList);
   const handleAddFood = (formData) => {
+    formData.calories = parseInt(formData.calories);
+    formData.quantity = 0;
     setFoodList([...foodList, formData]);
     setShowForm(false);
   };
@@ -21,17 +23,11 @@ function App() {
   const handleAddSelectedFood = (newFood) => {
     const selectedFoodCopy = [...selectedFood];
     let existFoodIndex = selectedFoodCopy.findIndex((food) => food.name === newFood.name);
-    //console.log('BEFORE MODIFICATION: ', selectedFoodCopy);
     existFoodIndex !== -1
       ? (selectedFoodCopy[existFoodIndex].quantity = newFood.quantity)
       : selectedFoodCopy.push(newFood);
-    //console.log('AFTER MODIFICATION: ', selectedFoodCopy);
     setSelectedFood(selectedFoodCopy);
   };
-
-  useEffect(() => {
-    //console.log(selectedFood);
-  }, [selectedFood]);
 
   return (
     <div className="App">
@@ -44,7 +40,7 @@ function App() {
             <label>Search food </label>
             <SearchBar value={searchValue} setSearchValue={setSearchValue}></SearchBar>
           </div>
-          <div class="foodList-map-container">
+          <div className="foodList-map-container">
             {foodList.map((food, i) =>
               food.name.toLowerCase().includes(searchValue) ? (
                 <FoodList

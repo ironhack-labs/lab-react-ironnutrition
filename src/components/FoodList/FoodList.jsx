@@ -4,9 +4,7 @@ const FoodList = (props) => {
   const [quantity, setQuantity] = useState(1);
 
   const addSelectedFood = (food) => {
-    //console.log(food);
     food.quantity += parseInt(quantity);
-    //console.log(food);
     props.handleAddSelectedFood(food);
   };
 

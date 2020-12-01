@@ -9,7 +9,7 @@ function FoodBox(props) {
       setValue(e.currentTarget.value);
     }
   
-    function handleClick(e) {
+    const handleClick = () => {
       let index = todayFood.map(el=>el.name).indexOf(name);
       if(index >= 0){
         let food = {

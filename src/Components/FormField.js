@@ -2,10 +2,10 @@ import React from "react";
 
 function FormField(props){
 
-       const [state, setState] = props.state;  
-
-    function handleChange(e){
-        setState({...state,[e.target.name]:e.target.value});
+    const [state, setState] = props.state;  
+    const handleChange =(e) =>{
+        const { name, value } = e.target;
+        setState({...state,[name]: value});
     }
 
     return (

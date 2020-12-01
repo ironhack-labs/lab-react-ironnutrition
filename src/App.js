@@ -35,7 +35,6 @@ function App() {
                 image={food.image}
                 quantity={food.quantity}
                 key={index}
-                keyId={index}
                 todayFood={[todayFood, setTodayFood]}
                 foodList={[foodList, setFood]}
               />

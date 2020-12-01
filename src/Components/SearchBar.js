@@ -1,12 +1,10 @@
-import React,{useState} from "react";
+import React from "react";
 
 function SearchBar(props){
 
   const [foodList, setFood] = props.listFood;
-  const [searchKey, setSearch] = useState("");
 
-  function handleSearch(e){
-    setSearch(e.target.value);    
+  function handleSearch(e){    
     setFood(foodList.filter(food=>food.name.toLowerCase().includes(e.target.value.toLowerCase())));
   }
     return (
@@ -23,5 +21,4 @@ function SearchBar(props){
       </div>
     );
 }
-
 export default SearchBar; 

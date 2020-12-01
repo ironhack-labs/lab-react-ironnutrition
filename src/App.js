@@ -6,10 +6,12 @@ import TodaysFoods from './components/TodaysFoods'
 import SearchBar from './components/SearchBar'
 
 
+
 function App() {
   const itemList = [...foods]
   let [foodList, setFoodList] = useState(itemList)
   let [searchedFood, setSearchedFood] = useState('')
+  const [todaysFood, setTodaysFood]=useState([])
 
   const searchItem = (input) => {
     console.log(input)
@@ -20,6 +22,8 @@ function App() {
     setSearchedFood(input)
     setFoodList([...result])
   }
+  
+
 
   return (
     <div className='App'>
@@ -28,7 +32,7 @@ function App() {
         <SearchBar searchItem={searchItem}/>
         <div className='columns'> 
             <FoodList render={foodList}/>
-            <TodaysFoods />
+            {/* <TodaysFoods key={food.id}/> */}
         </div>
       </div>
     </div>

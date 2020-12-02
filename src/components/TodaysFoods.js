@@ -9,8 +9,6 @@ function TodaysFoods(props) {
     totalCalories += item;
   });
 
-  console.log(totalCalories);
-
   return (
     <div>
       <h1>
@@ -21,8 +19,16 @@ function TodaysFoods(props) {
           return (
             <li key={item.name}>
               <p>
-                {item.quantity} {item.name} = {item.calories * item.quantity}
+                {item.quantity} {item.name} = {item.calories * item.quantity}{' '}
+                calories
               </p>
+              <button
+                onClick={() => {
+                  props.delete(item.name);
+                }}
+              >
+                trash
+              </button>
             </li>
           );
         })}

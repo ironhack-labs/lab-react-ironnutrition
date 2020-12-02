@@ -5,13 +5,13 @@ import 'bulma/css/bulma.css';
 import React from 'react'
 
 const FoodBox = (props) => {
-  const {name, calories, image, quantity} = props;
+  const {name, calories, image} = props;
     return (
         <div className="box">
         <article className="media">
           <div className="media-left">
-            <figure className="image is-64x64">
-              <img src={image} />
+            <figure className="image is-64x64" >
+              <img src={image} alt="food"/>
             </figure>
           </div>
           <div className="media-content">

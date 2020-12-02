@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import 'bulma/css/bulma.css';
 import AddFood from './components/AddFood';
 import FoodBox from './components/FoodBox';
 import foods from './foods.json';
@@ -25,9 +24,29 @@ function App() {
 
   const addTodaysFood = (foodObj) => {
     let todaysFoodCopy = [...todaysFood];
-    if (foodObj.quantity > 0) {
+
+    let exists = false;
+    let index = undefined;
+
+    todaysFoodCopy.forEach((item, i) => {
+      if (item.name === foodObj.name) {
+        exists = true;
+        index = i;
+      }
+    });
+
+    if (!exists) {
       todaysFoodCopy.push(foodObj);
     }
+
+    if (exists) {
+      let prev = Number(todaysFoodCopy[index].quantity);
+      let newquan = Number(foodObj.quantity);
+      todaysFoodCopy[index].quantity = prev + newquan;
+    }
+
+    console.log(todaysFoodCopy);
+
     setTodaysFood(todaysFoodCopy);
   };
 

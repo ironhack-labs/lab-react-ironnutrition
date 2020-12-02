@@ -8,6 +8,7 @@ function FoodBox(props) {
   const handleClick = () => {
     const foodObj = { name, calories, quantity: quantityState };
     props.addFood(foodObj);
+    setQuantityState(0);
   };
   return (
     <div className="box">

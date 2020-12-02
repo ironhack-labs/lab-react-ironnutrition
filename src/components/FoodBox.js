@@ -1,5 +1,5 @@
 import React from 'react'
-
+// import foods from './foods.json';
 
 const FoodBox = (props) => {
 

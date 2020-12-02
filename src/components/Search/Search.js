@@ -19,7 +19,7 @@ class Search extends React.Component {
     this.getData();
     this.setState({ query: value });
     let responseData = this.state.data;
-    console.log(responseData)
+    console.log(responseData);
     // if (value.length > 0) {
     //   const updatedResponseData = responseData.filter((el) => {
     //     //console.log(responseData);
@@ -29,8 +29,6 @@ class Search extends React.Component {
     // }
     // console.log(this.state.data)
   };
-
-
 
   render() {
     return (

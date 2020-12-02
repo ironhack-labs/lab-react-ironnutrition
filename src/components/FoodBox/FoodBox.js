@@ -29,7 +29,7 @@ class FoodBox extends React.Component {
                 <input className="input" type="number" value="1" />
               </div>
               <div className="control">
-                <button className="button is-info" onClick={this.handleClick}>
+                <button className="button is-info" onClick={this.props.handleClick}>
                   +
                 </button>
               </div>

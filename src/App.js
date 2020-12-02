@@ -12,6 +12,7 @@ class App extends React.Component {
   state = {
     foods: foods,
     showForm: false,
+    currentFood: {},
   };
 
   toggleForm = () => {
@@ -26,15 +27,25 @@ class App extends React.Component {
     this.toggleForm();
   };
 
+  addFoodToToday = (foodObj) => {
+    console.log('helloo');
+    this.setState({ currentFood: foodObj });
+  };
+
   render() {
     return (
       <div className="App">
         <button onClick={this.toggleForm}>Add new food</button>
         {this.state.showForm ? <AddFood createFood={this.addOneFood} /> : null}
-
-        {/* <Search foods={this.state.foods}/> */}
+        <TodaysFood foodObj={this.state.currentFood} />
+        <Search foods={this.state.foods}/>
         {this.state.foods.map((food) => {
-          return <FoodBox food={food} />;
+          return (
+            <FoodBox
+              food={food}
+              handleClick={() => this.addFoodToToday(food)}
+            />
+          );
         })}
       </div>
     );

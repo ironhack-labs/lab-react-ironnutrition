@@ -15,11 +15,12 @@
   width: 70vw;
 }
 .App .today-foods{
-  width: 20vw;
+  width: 40vw;
   position: absolute;
   top: 30vh;
   left: 75vw;
 }
+
 .App ul{
   list-style-type: initial;
 }
@@ -30,4 +31,10 @@
   font-weight: bolder;
   font-size: 20px;
   text-decoration: underline;
+}
+
+.App ul li{
+  display: inline-block;
+  margin-right: 6px;
+  margin-bottom: 10px;
 }

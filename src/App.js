@@ -48,7 +48,17 @@ class App extends React.Component {
       } else if(_name==='sum'){
         copyOfCalories+=calories;
         this.setState({totalCalories: copyOfCalories});
-        copyOfTodayFoods.push(_value);
+        let newTodayFood = {name: _value, calories}
+        this.state.todayFoods.forEach((food)=>{
+          if(food.name===newTodayFood.name){
+            const newCalories = food.calories;
+            copyOfTodayFoods.splice(this.state.todayFoods.indexOf(newTodayFood), 1)
+            newTodayFood.calories = newCalories + calories;
+            return
+          } 
+        })
+        copyOfTodayFoods.push(newTodayFood);
+
         this.setState({todayFoods: copyOfTodayFoods});
       }
 
@@ -77,7 +87,20 @@ class App extends React.Component {
 
   displayTodayFoods = () => {
     return this.state.todayFoods.map((food, index)=>{
-      return <li key={index}>{food}</li>
+        return (
+          <div key={index}>
+            <li>{food.name} = {food.calories} cal</li>
+            <button className="button is-small is-danger" onClick={()=>{
+              const copyOfTodayFoods = [...this.state.todayFoods];
+              let copyOfCalories = this.state.totalCalories;
+              copyOfCalories-=food.calories;
+              this.setState({totalCalories: copyOfCalories});
+              const indexToSplice = this.state.foods.indexOf(food);
+              copyOfTodayFoods.splice(indexToSplice, 1);
+              this.setState({todayFoods: copyOfTodayFoods});
+            }}>Delete Food</button>
+          </div>
+        )
     })
   }
 

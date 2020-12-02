@@ -19,7 +19,7 @@ function AddFood(props) {
     <div className="AddFood__container">
       <form onSubmit={handleSubmit}>
         <input
-          class="input is-info"
+          className="input is-info"
           value={name}
           name="name"
           type="text"
@@ -28,7 +28,7 @@ function AddFood(props) {
         />
         <br />
         <input
-          class="input is-info"
+          className="input is-info"
           value={calories}
           name="calories"
           type="number"
@@ -37,7 +37,7 @@ function AddFood(props) {
         />
         <br />
         <input
-          class="input is-info"
+          className="input is-info"
           value={image}
           name="image"
           type="text"

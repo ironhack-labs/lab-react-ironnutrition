@@ -25,7 +25,9 @@ function App() {
 
   const addTodaysFood = (foodObj) => {
     let todaysFoodCopy = [...todaysFood];
-    todaysFoodCopy.push(foodObj);
+    if (foodObj.quantity > 0) {
+      todaysFoodCopy.push(foodObj);
+    }
     setTodaysFood(todaysFoodCopy);
   };
 

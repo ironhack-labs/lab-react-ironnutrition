@@ -13,10 +13,10 @@ export default class App extends Component {
     calories: 0,
     image: '',
     search: "",
-    namesArr: foods.map ((el)=>{
-      const name = el.name;
-      return name;
-    })
+    // namesArr: foods.map ((el)=>{
+    //   const name = el.name;
+    //   return name;
+    // })
   };
   
   handleClick = () => {
@@ -45,9 +45,9 @@ export default class App extends Component {
     //get value from form
     const { value } = event.target;
     //filter over the foods array // no need to floor, as filter creates new arr
-    //but first we need to map an array of only the names (above in state)
-    const filteredArr = this.state.namesArr.filter((el)=>{
-      if (el.includes(value)){
+    //but first we need to map an array of only the names (above in state, nah!)
+    const filteredArr = this.state.myFoods.filter((el)=>{
+      if (el.name.includes(value)){
         return el;
       }
     })

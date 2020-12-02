@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import 'bulma/css/bulma.css';
 import './App.css';
+import FoodBox from './Foodbox/FoodBox';
+import NewFoodForm from './NewFoodForm/NewFoodForm';
+import Search from './Search/Search';
+import foods from './foods.json';
 
-function App() {
-  return (
+  
+
+class App extends Component {
+  state = {
+    foods: foods,
+    showForm: false,
+  }
+
+  toggleForm = () => {
+    this.setState ({showForm: !this.state.showForm});
+  };
+
+  addOneFood = (newFood) => {
+    const updatedFoodList = [newFood, ...this.state.foods]
+
+    this.setState( { foods: updatedFoodList } );
+
+    this.toggleForm();
+
+  };
+
+  render() {
+ 
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search/>
+      <button onClick={this.toggleForm}>Add new food</button>
+      {this.state.showForm ? <NewFoodForm addFood={this.addOneFood}/> : null}
+
+      {this.state.foods.map((food) => {
+        return <FoodBox food={food} />;
+      })}
     </div>
   );
+ }
 }
 
 export default App;

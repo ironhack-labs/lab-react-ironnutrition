@@ -29,8 +29,6 @@ class FoodForm extends Component {
 
     }
 
-
-
     render() {
         return (
             <form onSubmit={this.handleFormSubmit}>

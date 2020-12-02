@@ -1,0 +1,11 @@
+h1 {
+    font-weight: 800;
+    font-size: 3em;
+    text-align: center;
+}
+
+.hero {
+    max-width: 60%;
+    margin-left: 250px;
+}
+

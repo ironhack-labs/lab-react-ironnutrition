@@ -12,7 +12,13 @@ export default class App extends Component {
     name: '',
     calories: 0,
     image: '',
+    search: "",
+    namesArr: foods.map ((el)=>{
+      const name = el.name;
+      return name;
+    })
   };
+  
   handleClick = () => {
     this.setState({ showForm: !this.state.showForm });
   };
@@ -25,20 +31,57 @@ export default class App extends Component {
       image: this.state.image,
     });
     this.setState({ myFoods: floor });
+    this.setState({ showForm: false });
   };
 
   handleInput = (event) => {
+    //get name and value from form
     const { name, value } = event.target;
+    //and set the value for each key (input name)
     this.setState({ [name]: value });
-    //get the value entered by user
-    //szwconst value = event.target.value;
-    console.log(value);
-    //set the value in the state (will update the field)
   };
+
+  handleSearchInput = (event) =>{
+    //get value from form
+    const { value } = event.target;
+    //filter over the foods array // no need to floor, as filter creates new arr
+    //but first we need to map an array of only the names (above in state)
+    const filteredArr = this.state.namesArr.filter((el)=>{
+      if (el.includes(value)){
+        return el;
+      }
+    })
+    console.log('filteredArr :>> ', filteredArr);
+    //update the state
+    this.setState ({myFoods: filteredArr})
+    this.setState ({search: value})
+
+  }
 
   render() {
     return (
       <div>
+        
+        {<form>
+        <label>Search: </label>
+        <input
+              type="text"
+              name="search"
+              value={this.state.search}
+              onChange={this.handleSearchInput}
+            />
+        </form>}
+
+        {this.state.myFoods.map((el, i) => {
+          return (
+            <FoodBox
+              key={i}
+              name={el.name}
+              calories={el.calories}
+              image={el.image}
+            />
+          );
+        })}
         <button onClick={this.handleClick}>New</button>
         {this.state.showForm === true ? (
           <form onSubmit={this.handleSubmit}>
@@ -72,17 +115,15 @@ export default class App extends Component {
             <button type="submit"> Add new food </button>
           </form>
         ) : null}
-
-        {this.state.myFoods.map((el, i) => {
-          return (
-            <FoodBox
-              key={i}
-              name={el.name}
-              calories={el.calories}
-              image={el.image}
-            />
-          );
-        })}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

@@ -46,19 +46,18 @@ class App extends React.Component {
         copyOfSearchValue.stringToSearch = _value
         this.setState({searchValue: copyOfSearchValue})
       } else if(_name==='sum'){
-        copyOfCalories+=calories;
-        this.setState({totalCalories: copyOfCalories});
         let newTodayFood = {name: _value, calories}
-        this.state.todayFoods.forEach((food)=>{
+        this.state.todayFoods.forEach((food, index)=>{
           if(food.name===newTodayFood.name){
             const newCalories = food.calories;
-            copyOfTodayFoods.splice(this.state.todayFoods.indexOf(newTodayFood), 1)
+            copyOfTodayFoods.splice(index, 1)
             newTodayFood.calories = newCalories + calories;
-            return
-          } 
+          }
         })
         copyOfTodayFoods.push(newTodayFood);
-
+        
+        copyOfCalories+=calories;
+        this.setState({totalCalories: copyOfCalories});
         this.setState({todayFoods: copyOfTodayFoods});
       }
 

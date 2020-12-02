@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
- class Foodbox extends Component {
+ class Foodbox extends Component {  
+
     render() {
         return (
             <div>
@@ -8,7 +9,7 @@ import React, { Component } from 'react'
                     <article className="media">
                         <div className="media-left">
                         <figure className="image is-64x64">
-                            <img src={this.props.food.image} />
+                            <img src={this.props.food.image} alt=""/>
                         </figure>
                         </div>
                         <div className="media-content">
@@ -25,7 +26,7 @@ import React, { Component } from 'react'
                             <input className="input" type="number" value="1" />
                             </div>
                             <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" onClick={() => this.props.addFoodToday(this.props.food.name)}>
                                 +
                             </button>
                             </div>

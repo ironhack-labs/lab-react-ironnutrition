@@ -41,7 +41,7 @@ class App extends React.Component {
       }else if(_name==='image'){
         copyOfTemporalFood.image = _value;
       } else if(_name==='calories'){
-        copyOfTemporalFood.calories = _value;
+        copyOfTemporalFood.calories = Number(_value);
       } else if(_name==='search'){
         copyOfSearchValue.stringToSearch = _value
         this.setState({searchValue: copyOfSearchValue})
@@ -72,7 +72,7 @@ class App extends React.Component {
     });
   };
   displayTotalCalories = () => {
-    return <p>Total calories: {this.state.totalCalories} cal</p>
+    return <p>Total calories: {Number(this.state.totalCalories)} cal</p>
   }
 
   displayTodayFoods = () => {
@@ -126,7 +126,7 @@ class App extends React.Component {
                     type="text" 
                     id="calories" 
                     name="calories"
-                    value={this.state.temporalNewfood.calories} 
+                    value={Number(this.state.temporalNewfood.calories)} 
                     onChange={(event)=>this.onInputChange(event)}  
                     />
 

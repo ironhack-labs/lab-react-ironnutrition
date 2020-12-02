@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 
 function FoodBox(props) {
-  const { name, calories, image, quantity } = props.food;
+  const [quantityState, setQuantityState] = useState(0);
+
+  const { name, calories, image } = props.food;
+  const handleClick = () => {
+    const foodObj = { name, calories, quantity: quantityState };
+    props.addFood(foodObj);
+  };
   return (
     <div className="box">
       <article className="media">
@@ -22,10 +28,17 @@ function FoodBox(props) {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" defaultValue={quantity} />
+              <input
+                onChange={(e) => setQuantityState(e.target.value)}
+                className="input"
+                type="number"
+                value={quantityState}
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button onClick={handleClick} className="button is-info">
+                +
+              </button>
             </div>
           </div>
         </div>

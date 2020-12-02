@@ -26,6 +26,7 @@ function AddFood(props) {
           placeholder="name"
           onChange={(e) => setName(e.target.value)}
         />
+        <br />
         <input
           class="input is-info"
           value={calories}
@@ -34,6 +35,7 @@ function AddFood(props) {
           placeholder="Calories"
           onChange={(e) => setCalories(e.target.value)}
         />
+        <br />
         <input
           class="input is-info"
           value={image}
@@ -42,6 +44,7 @@ function AddFood(props) {
           placeholder="picture url"
           onChange={(e) => setImage(e.target.value)}
         />
+        <br />
         <button type="submit" className="button is-info">
           Add a food
         </button>

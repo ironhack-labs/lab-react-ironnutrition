@@ -1,6 +1,20 @@
 .App {
   text-align: center;
 }
+.container {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+}
+
+.add-food {
+  margin: 10px 0;
+}
 
 .App-logo {
   height: 40vmin;

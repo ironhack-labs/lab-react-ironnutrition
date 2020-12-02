@@ -1,0 +1,27 @@
+.image-food img{
+  width: 100px;
+}
+
+.box {
+  margin-left: 20px;
+  margin-top: 50px;
+  margin-right: 20px;
+}
+
+form {
+
+  margin-left: 50px;
+}
+
+.form-control{
+
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.title {
+
+  margin-left: 50px;
+  font-weight: bold;
+  margin-top: 25px;
+}

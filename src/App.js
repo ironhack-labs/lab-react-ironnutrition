@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 export default class App extends Component {
   state = {
     myFoods: foods,
+    myFoodsCopy: foods,
     showForm: false,
     name: '',
     calories: 0,
@@ -55,7 +56,7 @@ export default class App extends Component {
     })
     console.log('filteredArr :>> ', filteredArr);
     //update the state
-    this.setState ({myFoods: filteredArr})
+    this.setState ({myFoodsCopy: filteredArr})
     this.setState ({search: value})
 
   }
@@ -63,7 +64,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        
+        {/*try making a component withthe below form and passing the method as pros as this.props.handleSeacrhInput(value)*/}
         {<form>
         <label>Search: </label>
         <input
@@ -74,7 +75,7 @@ export default class App extends Component {
             />
         </form>}
 
-        {this.state.myFoods.map((el, i) => {
+        {this.state.myFoodsCopy.map((el, i) => {
           return (
             <FoodBox
               key={i}

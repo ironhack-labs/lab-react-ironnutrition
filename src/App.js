@@ -47,7 +47,9 @@ export default class App extends Component {
     //filter over the foods array // no need to floor, as filter creates new arr
     //but first we need to map an array of only the names (above in state, nah!)
     const filteredArr = this.state.myFoods.filter((el)=>{
-      if (el.name.includes(value)){
+      const lowerCaseEl = el.name.toLowerCase();
+      const lowerCaseValue = value.toLowerCase();
+      if (lowerCaseEl.includes(lowerCaseValue)){
         return el;
       }
     })

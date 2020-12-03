@@ -16,8 +16,8 @@ function App() {
     setFormDisplay(clicked);
   };
 
-  const addNewFood = (newFoodObj) => {
-    const foodsCopy = [newFoodObj, ...foodList];
+  const addNewFood = (FoodObj) => {
+    const foodsCopy = [FoodObj, ...foodList];
     setFoodList(foodsCopy);
     toggleForm();
   };
@@ -38,11 +38,10 @@ function App() {
     if (!exists) {
       todaysFoodCopy.push(foodObj);
     }
-
     if (exists) {
       let prev = Number(todaysFoodCopy[index].quantity);
-      let newquan = Number(foodObj.quantity);
-      todaysFoodCopy[index].quantity = prev + newquan;
+      let newquantity = Number(foodObj.quantity);
+      todaysFoodCopy[index].quantity = prev + newquantity;
     }
 
     console.log(todaysFoodCopy);
@@ -62,8 +61,9 @@ function App() {
   };
 
   useEffect(() => {
-    const foodCopy = [...foodList];
-    const filteredFood = foodCopy.filter((food) => food.name.includes(search));
+    const filteredFood = foods.filter((food) =>
+      food.name.toLowerCase().includes(search.toLowerCase())
+    );
     setFoodList(filteredFood);
   }, [search]);
 

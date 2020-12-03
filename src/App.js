@@ -31,7 +31,7 @@ export default class App extends Component {
       calories: this.state.calories,
       image: this.state.image,
     });
-    this.setState({ myFoods: floor });
+    this.setState({ myFoodsCopy: floor });
     this.setState({ showForm: false });
   };
 

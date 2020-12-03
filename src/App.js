@@ -14,6 +14,7 @@ export default class App extends Component {
     calories: 0,
     image: '',
     search: "",
+    today: [],
     // namesArr: foods.map ((el)=>{
     //   const name = el.name;
     //   return name;
@@ -58,8 +59,9 @@ export default class App extends Component {
     //update the state
     this.setState ({myFoodsCopy: filteredArr})
     this.setState ({search: value})
-
   }
+  // 
+
 
   render() {
     return (
@@ -119,6 +121,10 @@ export default class App extends Component {
           </form>
         ) : null}
         <br />
+        <ul> {this.state.today.map((food) => {
+		          return(<li>{food.quantity} {food.name} = {food.quantity * food.calories} cal </li>)
+              })}
+        </ul>
         <br />
         <br />
         <br />
@@ -131,3 +137,44 @@ export default class App extends Component {
     );
   }
 }
+/*
+State inside Foodbox component (needs be class)
+
+state = {
+	quantity: 1
+}
+
+handleQuantityInput = (event) => {
+	const{value, name } = event.target;
+	this.setState ({[name]: value});
+}
+handleAddFood =(event)=>{
+	const dish = {
+		quantity: this.state.quantity,
+		name: this.props.dish.name,
+		calories: this.props.dish.calories,
+	}
+	const{value, name } = event.target;
+}
+
+—
+<input
+className="input"
+type="number"
+value={this.state.quantity}
+onChange ={this.handleQuantityInput}
+/>
+
+<button onClick={this.handleAddFood}
+
+
+——
+In app.js
+
+addFood = (dish) => {
+	const todayUpdated = […this.state.today, dish];
+	this.setState({today: todayUpdated})
+}
+this.props.addFood(dish);
+
+*/

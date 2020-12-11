@@ -1,4 +1,4 @@
-![logo_hatebook](https://hatebooksocial.herokuapp.com/static/media/hatebook-words.71c9f562.jpg)
+
 
 # LAB | React IronNutrition
 

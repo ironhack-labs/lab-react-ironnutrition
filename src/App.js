@@ -42,9 +42,26 @@ class App extends React.Component {
   }
 
   addQuantity = (foodObject) => {
-    let todayFood = [...this.state.todayFood, foodObject];
+    let todayFood = this.state.todayFood.slice();
+    let found = todayFood.find((element) => element.name === foodObject.name);
+
+    foodObject.calories *= foodObject.quantity;
+    if (found){
+      found.quantity += foodObject.quantity;
+      foodObject.calories += foodObject.quantity;
+    }else {
+      todayFood.push(foodObject)
+    }
+
     this.setState({
       todayFood
+    })
+  }
+
+  deleteFood = (foodName) => {
+    const newFoodArray = this.state.foodList.filter((element) => element.name !== foodName);
+    this.setState({
+      foodList: newFoodArray
     })
   }
 
@@ -77,7 +94,7 @@ class App extends React.Component {
         
         <div className="food-container">
           <div>
-            {this.state.foodList.filter(element => element.name.includes(this.state.searchParams)).map((element, idx) => <FoodBox key={idx} food={element} addQuantity={this.addQuantity} />)}
+            {this.state.foodList.filter(element => element.name.includes(this.state.searchParams)).map((element, idx) => <FoodBox key={idx} food={element} deleteFood={this.deleteFood} addQuantity={this.addQuantity} />)}
           </div>
           
           <div>

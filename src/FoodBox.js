@@ -9,7 +9,7 @@ function FoodBox(props) {
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={props.image} alt={props.name}/>
+                        <img src={props.image} alt={props.name} />
                     </figure>
                 </div>
                 <div className="media-content">
@@ -28,7 +28,7 @@ function FoodBox(props) {
                         <div className="control">
                             <button className="button is-info">
                                 +
-          </button>
+                            </button>
                         </div>
                     </div>
                 </div>

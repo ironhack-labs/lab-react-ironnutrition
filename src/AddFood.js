@@ -4,8 +4,8 @@ import 'bulma/css/bulma.css';
 class AddFood extends React.Component {
 
     // I am using here "extends React.COmponent"
-    // in this case constructor is a standard property
-    // I can ship it here or create my own which will overwrite the standard one
+    // in this case constructor is a standard property of that class
+    // I can skip it here or create my own constructor which will overwrite the standard one
 
     state = {
         name: "",
@@ -47,13 +47,13 @@ class AddFood extends React.Component {
         return (
             <div>
                 <form>
-                    <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameInput} ></input>
+                    <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameInput} className="input"></input>
 
-                    <input type="number" name="calories" placeholder="Calories" value={this.state.calories} onChange={this.handleCaloriesInput} ></input>
+                    <input type="number" name="calories" placeholder="Calories" value={this.state.calories} onChange={this.handleCaloriesInput} className="input"></input>
 
-                    <input type="text" name="image" placeholder="Image URL" value={this.state.image} onChange={this.handleImageInput} ></input>
+                    <input type="text" name="image" placeholder="Image URL" value={this.state.image} onChange={this.handleImageInput} className="input"></input>
 
-                    <button onClick={this.submitHandler}>Submit</button>
+                    <button onClick={this.submitHandler} className="button my-button">Submit</button>
                 </form>
             </div>
         )

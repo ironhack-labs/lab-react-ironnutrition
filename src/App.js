@@ -1,6 +1,7 @@
 import React from 'react';
-import './App.css';
+
 import 'bulma/css/bulma.css';
+import './App.css';
 
 import foods from './foods.json';
 import FoodBox from './FoodBox';
@@ -44,21 +45,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-
         <h1>IronNutrition</h1>
 
         <SearchBar value={this.state.searchTerm} onChange={this.handleSearchTerm} />
 
-        <br></br>
-        <br></br>
-
-        {this.state.displayAddFood ? (<AddFood addNewFood={this.addNewFoodHandler} />) : (<button className="button is-info" onClick={() => this.setState({ displayAddFood: true })}>Add New Food</button>)}
-
+        {this.state.displayAddFood ? (<AddFood addNewFood={this.addNewFoodHandler} />) : (<button className="button is-info my-button" onClick={() => this.setState({ displayAddFood: true })}>Add New Food</button>)}
 
         {this.dynamicSearch().map((food, key) => {
 
           return <FoodBox key={key} name={food.name} image={food.image} calories={food.calories}></FoodBox>
-        })}
+          
+          }
+        )}
       </div>
     )
   }

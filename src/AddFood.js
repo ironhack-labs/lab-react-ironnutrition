@@ -38,6 +38,8 @@ class AddFood extends React.Component {
             image: this.state.image,
             quantity: 0
         };
+
+        // call the parent passed function
         this.props.addNewFood(newFood);
     }
 
@@ -45,14 +47,11 @@ class AddFood extends React.Component {
         return (
             <div>
                 <form>
-                    <label htmlFor="fname"></label>
-                    <input id="fname" type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameInput} ></input>
+                    <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameInput} ></input>
 
-                    <label htmlFor="fcalories"></label>
-                    <input id="fcalories" type="number" name="calories" placeholder="Calories" value={this.state.calories} onChange={this.handleCaloriesInput} ></input>
+                    <input type="number" name="calories" placeholder="Calories" value={this.state.calories} onChange={this.handleCaloriesInput} ></input>
 
-                    <label htmlFor="fimage"></label>
-                    <input id="fimage" type="text" name="image" placeholder="Image URL" value={this.state.image} onChange={this.handleImageInput} ></input>
+                    <input type="text" name="image" placeholder="Image URL" value={this.state.image} onChange={this.handleImageInput} ></input>
 
                     <button onClick={this.submitHandler}>Submit</button>
                 </form>

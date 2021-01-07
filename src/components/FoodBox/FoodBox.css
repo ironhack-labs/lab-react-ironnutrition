@@ -1,0 +1,21 @@
+.food-box {
+        border: 1px solid rgba(128, 128, 128, 0.5);
+        display: flex;
+        align-items: center;
+        max-width: 300px;
+        width: 100%;
+        padding:0 !important;
+}
+
+.media-right {
+        display: inline-block;
+}
+
+.food-box input {
+        border: none;
+        outline: none;
+        width: 50px;
+}
+.food-box button{
+        height: 100%;
+}

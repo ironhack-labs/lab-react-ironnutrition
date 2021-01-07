@@ -26,7 +26,9 @@ export default class AddNewFood extends Component {
 
         render() {
                 return (
+                      
                         <form onSubmit={this.handleSubmit} className="form-add-new-food">
+                          <h1>Add a new food</h1>
                                 <div className="field">
                                         <label className="label">Name</label>
                                         <div className="control">
@@ -50,7 +52,7 @@ export default class AddNewFood extends Component {
 
                                 <div className="field">
                                         <div className="control">
-                                                <button className="button is-link">Submit</button>
+                                                <button className="button is-link is-primary">Submit</button>
                                         </div>
                                 </div>
                         </form>

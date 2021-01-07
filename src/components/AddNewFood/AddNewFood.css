@@ -1,4 +1,23 @@
-.form-add-new-food{
+.form-add-new-food {
+        position: fixed;
+        z-index: 100;
+        top: 40vh;
+        left: 40vw;
+        transition: translate(-50vw, -50vh);
         max-width: 20rem;
         width: 100%;
+        border: 1px solid yellow;
+        box-shadow: 1px 1px 10px 2px yellow;
+        padding: 1.5rem;
+
+}
+
+.form-add-new-food h1 {
+        font-size: 2rem;
+        color: yellow !important;
+        font-weight: bold;
+}
+
+.form-add-new-food label {
+        color: yellow !important;
 }

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import "./Search.css"
 
 export default class Search extends Component {
         state = {
@@ -12,8 +13,8 @@ export default class Search extends Component {
         }
         render() {
                 return (
-                        <div className="field">
-                                <div className="control">
+                        <div className="field search-form">
+                                <div className="control ">
                                         <input className="input is-primary is-rounded" type="text"
                                                 placeholder="Search food"
                                                 name="search"

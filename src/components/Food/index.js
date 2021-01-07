@@ -3,6 +3,7 @@ import foods from "../../foods.json"
 import AddNewFood from '../AddNewFood'
 import FoodBox from '../FoodBox'
 import Search from '../Search'
+import './Food.css'
 
 export default class Food extends Component {
         state = {
@@ -38,14 +39,14 @@ export default class Food extends Component {
                         if (findFoodOnTodayList) {
                                 food.quantity = findFoodOnTodayList.quantity + food.quantity;
                                 food.calories = food.calories * food.quantity;
+                                const amount = this.state.amount + food.calories - findFoodOnTodayList.calories
 
                                 const newTodayList = [...this.state.todayList].filter(item => item.name !== food.name);
                                 newTodayList.push(food)
                                 this.setState({
                                         todayList: newTodayList,
-                                        amount: this.state.amount + food.calories
+                                        amount: amount
                                 })
-
                         } else {
                                 this.setState({
                                         todayList: [...this.state.todayList, food],
@@ -64,34 +65,36 @@ export default class Food extends Component {
         render() {
 
                 return (
-                        <div>
-                                <h1>IronNutrition</h1>
-                                <button onClick={this.handleButtonFormAdd}>Add new food</button>
+                        <div className="container">
+                                <h1 className='title is-ancestor'>IronNutrition</h1>
+                                <button onClick={this.handleButtonFormAdd} className='button is-primary container__btn-add'>Add new food</button>
 
-                                <div style={{ display: this.state.showForm ? 'flex' : 'none' }} >
+                                <div style={{ display: this.state.showForm ? 'flex' : 'none' }} className='form-add-new'>
                                         <AddNewFood handleAddNewFood={this.addFood} />
                                 </div>
 
                                 <Search handleSearch={this.handleSearch} />
-                                <div>
-                                        {this.state.listFoods.map((food, i) => {
-                                                return (
-                                                        <FoodBox key={i}
-                                                                food={food}
-                                                                addFoodOnTodayList={this.addFoodOnTodayList}
+                                <div className="columns">
+                                        <div className="column">
+                                                {this.state.listFoods.map((food, i) => {
+                                                        return (
+                                                                <FoodBox key={i}
+                                                                        food={food}
+                                                                        addFoodOnTodayList={this.addFoodOnTodayList}
 
-                                                        />
-                                                )
-                                        })}
-                                </div>
-                                <div>
-                                        <h1>Today's foods</h1>
-                                        <ul>
-                                                {this.state.todayList.map((food, index) =>
-                                                        <li key={index}>{food.quantity} {food.name} = {food.calories} cal</li>
-                                                )}
-                                        </ul>
-                                        <p>Total:{this.state.amount} cal</p>
+                                                                />
+                                                        )
+                                                })}
+                                        </div>
+                                        <div className="column">
+                                                <h1 className='title is-parent'>Today's foods</h1>
+                                                <ul>
+                                                        {this.state.todayList.map((food, index) =>
+                                                                <li key={index}>{food.quantity} {food.name} = {food.calories} cal</li>
+                                                        )}
+                                                </ul>
+                                                <p>Total:<strong>{this.state.amount}</strong> cal</p>
+                                        </div>
                                 </div>
 
 

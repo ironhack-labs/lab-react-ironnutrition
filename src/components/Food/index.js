@@ -32,18 +32,27 @@ export default class Food extends Component {
                 });
         }
         addFoodOnTodayList = (food, datatype) => {
-           
-                if (datatype === 'add') {
-                        const findFoodOnTodayList = [...this.state.todayList].find(fo => fo.name === food.name);
-                        if (findFoodOnTodayList) {
-                                // food.quantity = food.quantity + findFoodOnTodayList.quantity;
-                                // food.calories = food.quantity * food.calories;
-                                // console.log(findFoodOnTodayList, findFoodOnTodayList.quantity, findFoodOnTodayList.calories)
 
-                        }else{
-                                this.setState({ todayList: [...this.state.todayList, food] })
+                if (datatype === 'add') {
+                        const findFoodOnTodayList = [...this.state.todayList].find(item => item.name === food.name);
+                        if (findFoodOnTodayList) {
+                                food.quantity = findFoodOnTodayList.quantity + food.quantity;
+                                food.calories = food.calories * food.quantity;
+
+                                const newTodayList = [...this.state.todayList].filter(item => item.name !== food.name);
+                                newTodayList.push(food)
+                                this.setState({
+                                        todayList: newTodayList,
+                                        amount: this.state.amount + food.calories
+                                })
+
+                        } else {
+                                this.setState({
+                                        todayList: [...this.state.todayList, food],
+                                        amount: this.state.amount + food.calories
+                                })
                         }
-   
+
 
                 } else {
                         this.setState({
@@ -53,6 +62,7 @@ export default class Food extends Component {
 
         }
         render() {
+
                 return (
                         <div>
                                 <h1>IronNutrition</h1>
@@ -66,7 +76,11 @@ export default class Food extends Component {
                                 <div>
                                         {this.state.listFoods.map((food, i) => {
                                                 return (
-                                                        <FoodBox key={i} food={food} addFoodOnTodayList={this.addFoodOnTodayList} />
+                                                        <FoodBox key={i}
+                                                                food={food}
+                                                                addFoodOnTodayList={this.addFoodOnTodayList}
+
+                                                        />
                                                 )
                                         })}
                                 </div>

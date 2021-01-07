@@ -4,7 +4,7 @@ import './FoodBox.css'
 export default class FoodBox extends Component {
         state = {
 
-                quantity: 0
+                quantity: 1
 
         }
         handleChange = (event) => {
@@ -44,7 +44,7 @@ export default class FoodBox extends Component {
                                                 <div className='field has-addons'>
                                                         <div className='control'>
                                                                 <input className='input' type='number' value={this.state.quantity}
-                                                                        onChange={this.handleChange} min='0' />
+                                                                        onChange={this.handleChange} min='1' />
                                                         </div>
                                                         <div className='control'>
                                                                 <button className='button is-info is-64x64'

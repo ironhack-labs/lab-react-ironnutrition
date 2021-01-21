@@ -31,3 +31,5 @@ class AddFood extends React.Component {
         )
     }
 }
+
+export default AddFood;

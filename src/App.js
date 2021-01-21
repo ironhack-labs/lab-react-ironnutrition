@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import FoodList from './components/FoodList';
+import SelectedFoodList from './components/SelectedFoodList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="columns">
+        <FoodList>
+          {foods.map(food => {
+            return <FoodBox key={food.name} {...food} />
+          })}
+        </FoodList>
+        <div className="column content">
+          <SelectedFoodList />
+          <div>
+            <button className="button is-info">Add a new food</button>
+          </div>         
+        </div>
+      </div>
+    </>
   );
 }
 

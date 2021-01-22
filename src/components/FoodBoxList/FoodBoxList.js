@@ -3,12 +3,20 @@ import '../../App.css';
 import 'bulma/css/bulma.css';
 import foods from '../../foods.json'
 import FoodBox from '../FoodBox/FoodBox'
+import {AddFood} from '../AddFood/AddFood'
 
 
 class FoodBoxList extends React.Component {
 
     state = {foods}
 
+    addFoodHandler = (foodItem) => {
+        const newFoods = [foodItem, ...this.state.foods]
+
+        this.setState({
+            foods: newFoods,
+        })
+    }
 
     render(){
 
@@ -20,6 +28,8 @@ class FoodBoxList extends React.Component {
 
         return(
             <div>
+                <AddFood AddFood={this.addFoodHandler}/>
+
                 {FoodBoxList}
             </div>
         )

@@ -35,7 +35,23 @@ class App extends React.Component {
     })
   }
 
+  selectFoodHandler = (selectedFood) => {
+    this.setState({
+      foods: this.state.foods.map((food) => {
+        if (selectedFood.name === food.name) {
+          return {
+            ...food,
+            quantity: food.quantity + selectedFood.quantity,
+          };
+        }
+        return food;
+      }),
+    })
+  }
+
   render() {
+    const selectedFoods = this.state.foods.filter(food => food.quantity > 0);
+    
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -43,11 +59,11 @@ class App extends React.Component {
         <div className="columns">
           <FoodList>
             {this.state.displayedFoods.map(food => {
-              return <FoodBox key={food.name} {...food} />
+              return <FoodBox key={food.name} {...food} selectFood={this.selectFoodHandler} />
             })}
           </FoodList>
           <div className="column content">
-            <SelectedFoodList />
+            <SelectedFoodList selectedFoods={selectedFoods} />
             <div>
               {!this.state.showAddForm && (
                 <button onClick={this.clickAddFoodHandler} className="button is-info">

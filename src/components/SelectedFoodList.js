@@ -1,25 +1,17 @@
 import React from 'react';
 
-class SelectedFoodList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedFood: [],
-    };
-  }
-
-  render() {
-    return (
-      <>
-        <h2 className="subtitle">Today's foods</h2>
-        <ul>
-          <li>1 Pizza = 400 cal</li>
-          <li>2 Salad = 300 cal</li>
-        </ul>
-        <strong>Total: 700 cal</strong>
-      </>
-    );
-  }
-}
+function SelectedFoodList(props) {
+  return (
+    <>
+      <h2 className="subtitle">Today's foods</h2>
+      <ul>
+        {props.selectedFoods.map(food => {
+            return <li key={'selected' + food.name}>{food.quantity} {food.name} = {food.calories * food.quantity} cal</li>
+          })}
+      </ul>
+      <strong>Total: {props.selectedFoods.reduce((acc, val) => {return acc + (val.calories * val.quantity)}, 0)} cal</strong>
+    </>
+  );
+};
 
 export default SelectedFoodList;

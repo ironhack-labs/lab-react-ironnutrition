@@ -1,6 +1,7 @@
 import {Component, React} from 'react';
 import foods from '../foods.json';
 import FoodBox from './FoodBox';
+import AddNewFood from './addFood';
 
 class FoodList extends Component {
 	constructor(props) {
@@ -8,11 +9,17 @@ class FoodList extends Component {
 		this.state = {foods};
 	}
 
+	addNewFood = newFood => {
+		const newFoods = [newFood, ...this.state.foods];
+
+		this.setState({
+			foods: newFoods
+		});
+	};
+
 	render() {
 		const FoodList = this.state.foods.map(item => {
-			// console.log(item);
 			const {id, name, image, calories, quantity} = item;
-			// console.log(id, name, image);
 			return (
 				<FoodBox
 					key={id}
@@ -25,6 +32,8 @@ class FoodList extends Component {
 		return (
 			<div className="columns">
 				<div className="column">
+					<AddNewFood
+						submitToAdd={this.addNewFood}/>
 					{FoodList}
 				</div>
 			</div>

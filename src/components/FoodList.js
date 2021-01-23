@@ -18,7 +18,11 @@ class FoodList extends Component {
 	};
 
 	render() {
-		const FoodList = this.state.foods.map(item => {
+		const filteredFoodList = this.state.foods.filter(item => {
+			return item.name.toLowerCase().includes(this.props.searchTerm.toLowerCase());
+		});
+
+		const FoodList = filteredFoodList.map(item => {
 			const {id, name, image, calories, quantity} = item;
 			return (
 				<FoodBox
@@ -29,6 +33,7 @@ class FoodList extends Component {
 					quantity={quantity}/>
 			);
 		});
+
 		return (
 			<div className="columns">
 				<div className="column">

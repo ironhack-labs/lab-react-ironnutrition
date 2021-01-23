@@ -11,7 +11,7 @@ import SearchBar from './components/SearchBar';
 class App extends React.Component {
   state = {
     foods,
-    displayedFoods: foods,
+    searchInput: '',
     showAddForm: false
   };
 
@@ -26,13 +26,6 @@ class App extends React.Component {
     this.setState({
       foods: newFoods, 
       showAddForm: false,
-      displayedFoods: newFoods
-    })
-  }
-
-  filterFoodHandler = (searchedFood) => {
-    this.setState({
-      displayedFoods: this.state.foods.filter(food => food.name.toUpperCase().includes(searchedFood.toUpperCase()))
     })
   }
 
@@ -66,14 +59,17 @@ class App extends React.Component {
 
   render() {
     const selectedFoods = this.state.foods.filter(food => food.quantity > 0);
+    const displayedFoods = this.state.foods.filter(food => {
+      return food.name.toUpperCase().includes(this.state.searchInput.toUpperCase());
+    });
 
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        <SearchBar filterFood={this.filterFoodHandler} />
+        <SearchBar searchInputValue={this.state.searchInput} handleSearch={(searchInput) => this.setState({ searchInput })}/>
         <div className="columns">
           <FoodList>
-            {this.state.displayedFoods.map(food => {
+            {displayedFoods.map(food => {
               return <FoodBox key={food.name} {...food} selectFood={this.selectFoodHandler} />
             })}
           </FoodList>

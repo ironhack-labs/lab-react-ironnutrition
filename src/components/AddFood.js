@@ -30,15 +30,15 @@ class AddFood extends React.Component {
       <form onSubmit={this.handleFormSubmit}>
         <label>
           Name:
-          <input onChange={(e) => this.onInputChangeHandler(e)} type="text" name="name" />
+          <input onChange={(e) => this.onInputChangeHandler(e)} type="text" name="name" value={this.state.name} />
         </label>
         <label>
           Calories:
-          <input onChange={(e) => this.onInputChangeHandler(e)} type="number" name="calories" />
+          <input onChange={(e) => this.onInputChangeHandler(e)} type="number" name="calories" value={this.state.calories} />
         </label>
         <label>
           Image:
-          <input onChange={(e) =>  this.onInputChangeHandler(e)} type="text" name="image" />
+          <input onChange={(e) =>  this.onInputChangeHandler(e)} type="text" name="image" value={this.state.image} />
         </label>
         <button type="submit">Add</button>
       </form>

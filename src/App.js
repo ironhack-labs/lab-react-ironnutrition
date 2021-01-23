@@ -11,7 +11,7 @@ import SearchBar from './components/SearchBar';
 class App extends React.Component {
   state = {
     foods,
-    displayedFoods: [...foods],
+    displayedFoods: foods,
     showAddForm: false
   };
 
@@ -25,7 +25,8 @@ class App extends React.Component {
     const newFoods = [newFood, ...this.state.foods];
     this.setState({
       foods: newFoods, 
-      showAddForm: false
+      showAddForm: false,
+      displayedFoods: newFoods
     })
   }
 
@@ -45,13 +46,27 @@ class App extends React.Component {
           };
         }
         return food;
-      }),
+      })
+    })
+  }
+
+  deleteSelectedHandler = (foodName) => {
+    this.setState({
+      foods: this.state.foods.map(food => {
+        if (foodName === food.name) {
+          return {
+            ...food,
+            quantity: 0
+          };
+        }
+        return food;
+      })
     })
   }
 
   render() {
     const selectedFoods = this.state.foods.filter(food => food.quantity > 0);
-    
+
     return (
       <div className="container">
         <h1 className="title">IronNutrition</h1>
@@ -63,7 +78,7 @@ class App extends React.Component {
             })}
           </FoodList>
           <div className="column content">
-            <SelectedFoodList selectedFoods={selectedFoods} />
+            <SelectedFoodList selectedFoods={selectedFoods} deleteSelected={this.deleteSelectedHandler} />
             <div>
               {!this.state.showAddForm && (
                 <button onClick={this.clickAddFoodHandler} className="button is-info">

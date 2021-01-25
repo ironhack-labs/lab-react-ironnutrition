@@ -28,7 +28,7 @@ class  App extends React.Component {
   
   render(){
     const foodList = this.state.foods.map( element => {
-      return <FoodBox key={element.name} food={elgement}/>
+      return <FoodBox key={element.name} food={element}/>
     })
   
     return (

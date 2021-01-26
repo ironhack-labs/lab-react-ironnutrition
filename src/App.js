@@ -5,9 +5,10 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox'
 import AddNewFood from './components/AddNewFood'
 import SearchBar from './components/SearchBar'
+import TotalFood from './components/TotalFood'
 
 class  App extends React.Component {
-  state = {foods}
+  state = {foods, foodtally: []}
 
   handleAddFood = (food) => {
     const newFoodList = [...this.state.foods, food]
@@ -25,16 +26,31 @@ class  App extends React.Component {
     }
    
   }
+
+  handleFoodTally = (FoodQuantity) =>{
+    const newTally = [...this.state.foodtally]
+
+    const result = newTally.findIndex(({item})=> item === FoodQuantity.item)
+    if(result > -1){
+      newTally[result].quantity = parseInt(newTally[result].quantity) + parseInt(FoodQuantity.quantity)
+    }else{
+      newTally.push(FoodQuantity) 
+    }
+
+    
+    this.setState({foodtally: newTally})
+  }
   
   render(){
     const foodList = this.state.foods.map( element => {
-      return <FoodBox key={element.name} food={element}/>
+      return <FoodBox key={element.name} food={element} FoodTally={this.handleFoodTally}/>
     })
   
     return (
       <div className="App">
         <SearchBar filterFood = {this.handleFoodSearch} />
-        <AddNewFood addFood={this.handleAddFood}/>
+        <AddNewFood addFood={this.handleAddFood} />
+        <TotalFood  foodItems={this.state.foodtally}/>
         {foodList}
         
       </div>

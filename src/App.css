@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.Box{
+  background-color:white ;
+  width:400px;
+  height:100px;
+  align-items: center;
+  margin-left:25px;
+  border: 1px solid #d0d2d6;
+  border-radius: 4%;
+}
+
+button {
+  background-color: #00acee ;
+  color: white;
+  float:right;
+  border:none;
+  height:64px;
+  width:64px;
+  margin:10px;
+}
+
+.control{
+  float:left;
+  margin-top:20px;
+  margin-left:20px;
+  margin-right:20px;
+}
+
+input{
+  width:32px;
+  height:64px;
+  border:none;
+}
+
+img {
+  width:64px;
+  height:64px;
+  margin:10px;
+}
+
+.media-left{
+  float:left;
+}
+.media-content{
+  float:left;
+  color: black;
+  margin-left: 15px;
+  margin-top:30px;
+  margin-right: 15px;
+  max-width: 120px;
+}
+
+.SearchBox {
+  max-width:1200px;
+  height:50px;
+  margin:25px;
+}

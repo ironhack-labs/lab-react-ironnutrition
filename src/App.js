@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import FoodBox from './components/FoodBox';
+import foods from './foods.json';
+import SearchBox from './components/SearchBox'
 import './App.css';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" id="App">
+    <h1>IronNutrition</h1>
+    <ul id='list'>
+    <SearchBox />
+   {foods.map(food =>(
+  <FoodBox {...food}/>))}
+  </ul>
     </div>
   );
 }

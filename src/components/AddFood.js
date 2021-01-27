@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bulma/css/bulma.css';
 
 class AddFood extends Component {
 
@@ -50,15 +51,15 @@ class AddFood extends Component {
         }
         return (
             <div>
-                <button onClick={this.displayForm}>{this.state.isShown ? 'Hide form' : 'Show form'}</button>
+                <button className='button is-success' onClick={this.displayForm}>{this.state.isShown ? 'Hide form' : 'Show form'}</button>
                 <form onSubmit={this.handleFormSubmit} style={formStyle}>
                     <label>Name:</label>
-                        <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+                        <input className='input' type='text' name='name' value={this.state.name} onChange={this.handleChange} />
                     <label>Calories:</label>
-                        <input type='text' name='calories' value={this.state.calories} onChange={this.handleChange} />
+                        <input className='input' type='text' name='calories' value={this.state.calories} onChange={this.handleChange} />
                     <label>Image:</label>
-                        <input type='text' name='image' value={this.state.image} onChange={this.handleChange} />
-                    <button type='submit'>Add</button>
+                        <input className='input' type='text' name='image' value={this.state.image} onChange={this.handleChange} />
+                    <button className='button is-primary' type='submit'>Add</button>
                 </form>
                 
             </div>

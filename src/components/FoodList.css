@@ -1,0 +1,9 @@
+.listsContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: column;
+}
+
+h1 {
+    font-size: 75px;
+}

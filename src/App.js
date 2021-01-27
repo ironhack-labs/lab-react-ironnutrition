@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       <h1 className="App-main-text">IronNutrition</h1>
-      <FoodList />
-    </div>
+        <FoodList />
+      </div>
   );
 }
 

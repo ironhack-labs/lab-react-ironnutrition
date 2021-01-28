@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
+import SearchBar from './components/SearchBar';
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,13 @@ class App extends React.Component {
     })
   }
 
+  handleFilterFood = (value) => {
+    const newFoods = this.state.foods.filter(food => (food.name.toUpperCase().includes(value.toUpperCase())))
+    this.setState({
+      displayedFoods: newFoods
+    })
+  }
+
   render() {
     const foodList = this.state.displayedFoods.map((element) => {
       return <FoodBox key={element.name} food={element} />
@@ -26,7 +34,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <AddFood addFood={this.handleAddFood}/>
+
+        <SearchBar filterFood={this.handleFilterFood} />
+
+        <AddFood addFood={this.handleAddFood} />
         {foodList}
 
 

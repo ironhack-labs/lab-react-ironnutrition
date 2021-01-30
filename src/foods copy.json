@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Bacon",
+    "calories": 175,
+    "image": "https://i.imgur.com/7GlqDsG.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Hot Dog",
+    "calories": 275,
+    "image": "https://i.imgur.com/QqVHdRu.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Chocolate Cake",
+    "calories": 490,
+    "image": "https://i.imgur.com/yrgzA9x.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Wheat Bread",
+    "calories": 175,
+    "image": "https://i.imgur.com/TsWzMfM.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Orange",
+    "calories": 85,
+    "image": "https://i.imgur.com/abKGOcv.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Banana",
+    "calories": 175,
+    "image": "https://i.imgur.com/BMdJhu5.jpg",
+    "quantity": 0
+  },
+  {
+    "name": "Yogurt",
+    "calories": 125,
+    "image": "https://i.imgur.com/URhdrAm.png",
+    "quantity": 0
+  }
+]

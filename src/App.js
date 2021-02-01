@@ -1,26 +1,89 @@
 import React from 'react';
 import logo from './logo.svg';
+import 'bulma/css/bulma.css';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import foods from "./foods.json";
+import FoodBox from "./FoodBox"
+import AddFood from "./AddFood"
+ 
+class App extends React.Component {
+  
+  state = {
+    foodList: foods,
+    showForm: false,
+    fileteredList: foods,
+ }
+ 
+ toggleForm = () => {
+   this.setState({
+     showForm: true
+   })
+ }
+  
+ handleAdd = (event) => {
+    event.preventDefault()
+    const {name, calories, image} = event.target
+    // let name = event.target.name.value
+    // let calories = event.target.calories.value
+    // let image = event.target.image.value
+ 
+    let newFood = {
+      name: name.value,
+      calories: calories.value,
+      image: image.value,
+      quantity: 0
+    }
+ 
+    this.setState({
+      foodList: [newFood, ...this.state.foodList,],
+      showForm: false,
+    })
+ }
+ 
+ handleSearch = (event) => {
+   let searchText = event.target.value
+   let fileteredList = this.state.foodList.filter((food) =>{
+     return food.name.toLowerCase().includes(searchText.toLowerCase())
+     /*we could use startsWith instead of includes*/ 
+   })
+ 
+ 
+   this.setState({
+     fileteredList
+   })
+ 
+ }
+ 
+  render () {
+ 
+    const {foodList, showForm, fileteredList} = this.state
+ 
+    return(
+    <React.Fragment>
+      {
+        showForm ? (
+          <AddFood onAdd = {this.handleAdd}/>
+        ) : (
+          <button onClick={this.toggleForm}> Show Form</button>
+        )
+      }
+ 
+      <input onChange={this.handleSearch} type="text" placeholder="Search"></input>
+ 
+      {
+        fileteredList.map((food,index) => {
+          return (
+          <FoodBox
+            key = {index}
+            singleFood = {food}
+          />
+          )
+        })
+      }
+    </React.Fragment>
+ 
   );
+  }
 }
-
+ 
 export default App;

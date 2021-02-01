@@ -12,6 +12,7 @@ class App extends React.Component {
     foodList: foods,
     showForm: false,
     fileteredList: foods,
+    totalCalorieFoods: [],
  }
  
  toggleForm = () => {
@@ -54,32 +55,67 @@ class App extends React.Component {
  
  }
  
+ handleAddCalories = (food, quantity) => {
+    let myFood = {
+      name: food.name,
+      calories: food. calories,
+      quantity: quantity
+    }
+
+    this.setState({
+      totalCalorieFoods: [...this.state.totalCalorieFoods, myFood]
+    })
+
+ }
+
   render () {
  
     const {foodList, showForm, fileteredList} = this.state
+
+    let totalCalories = this.state.totalCalorieFoods.reduce((acc, food) => {
+      return acc + (food.calories * food.quantity)
+    }, 0)
  
     return(
     <React.Fragment>
-      {
-        showForm ? (
-          <AddFood onAdd = {this.handleAdd}/>
-        ) : (
-          <button onClick={this.toggleForm}> Show Form</button>
-        )
-      }
- 
-      <input onChange={this.handleSearch} type="text" placeholder="Search"></input>
- 
-      {
-        fileteredList.map((food,index) => {
-          return (
-          <FoodBox
-            key = {index}
-            singleFood = {food}
-          />
-          )
-        })
-      }
+
+      <div class="columns">
+        <div class="column">
+            {
+            showForm ? (
+              <AddFood onAdd = {this.handleAdd}/>
+            ) : (
+              <button onClick={this.toggleForm}> Show Form</button>
+            )
+          }
+    
+          <input onChange={this.handleSearch} type="text" placeholder="Search"></input>
+    
+          {
+            fileteredList.map((food,index) => {
+              return (
+              <FoodBox
+                key = {index}
+                singleFood = {food}
+                onAdd={this.handleAddCalories}
+              />
+              )
+            })
+          }
+        </div>
+        <div class="column">
+          Total calories
+          <ul>
+            {
+                this.state.totalCalorieFoods.map((food)=>{
+                return <li>{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>
+              })
+            }
+          </ul>
+          <p>Total {totalCalories} cal</p>
+        </div>
+      </div>
+
     </React.Fragment>
  
   );

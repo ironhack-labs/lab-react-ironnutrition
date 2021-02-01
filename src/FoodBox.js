@@ -11,9 +11,20 @@ class FoodBox extends React.Component {
     }
     */ 
 
+    state = {
+        quantity: 1
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            quantity: Number(event.target.value)
+        })
+    }
+
     render () {
 
         const {name,calories, image} = this.props.singleFood
+        const {quantity} = this.state
 
         return (
         <div className="box">
@@ -34,10 +45,10 @@ class FoodBox extends React.Component {
                 <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                    <input className="input" type="number" value="1" />
+                    <input onChange={this.handleChange} className="input" type="number" value={quantity} />
                     </div>
                     <div className="control">
-                    <button className="button is-info">
+                    <button onClick={() => {this.props.onAdd(this.props.singleFood, quantity)}} className="button is-info">
                         +
                     </button>
                     </div>

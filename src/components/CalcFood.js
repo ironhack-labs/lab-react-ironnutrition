@@ -1,31 +1,31 @@
 import React from 'react';
-import FoodBox from './FoodBox'
 
 class CalcFood extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            name: this.props.calories,
-            calories: this.props.calories,
-            image: '',
-            quantity: this.props.quantity
         }
     }
 
-    handleAddItem = (event) =>{
-        const name = event.target.name;
+    render(props){
         
-        this.setState({
-            addItem: name
-        });
-        console.log ('Item add')
-    }
+        console.log(this.props.todaysFood)
 
-    render(){
+        const todaysFoodList = this.props.todaysFood.map((todaysFood) => {
+            return (
+                <div className="media-left has-text-left">
+                <li>{todaysFood.quantity}x {todaysFood.name} = {todaysFood.calories} kcal</li>
+                </div>
+            )
+        })
+
         return(
             <div>
-            <h1>CalorienClac</h1>
-            <p>{this.props.calories}</p>
+            <h1>Today´s foods:</h1>
+            <div className="has-text-left">
+            <p>{todaysFoodList}</p>
+            <p>Total: <strong>{this.props.todaysFood.reduce((sumCal, newCal) => {return sumCal + (newCal.calories * newCal.quantity)}, 0)}</strong></p>
+            </div>
             </div>
         )
     }

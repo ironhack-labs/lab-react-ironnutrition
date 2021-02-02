@@ -6,11 +6,13 @@ import FoodBox from './components/FoodBox'
 import AddFood from './components/AddFood'
 import SearchBar from './components/SearchBar'
 import CalcFood from './components/CalcFood'
+import FoodList from './components/FoodList';
 
 class App extends React.Component {
   state = { 
     foods: foods,
-    displayedFoods: [...foods]
+    displayedFoods: [...foods],
+    todaysFood: []
    }
 
   handleAddFood = (newFood) => {
@@ -29,11 +31,16 @@ class App extends React.Component {
     })
   }
 
-  render() {
-    const foodList = this.state.displayedFoods.map(element => {
-      return <FoodBox key={element.name} food={element} />
+  handleTodaysFood = (addedFood) => {
+    const newTodaysFood = [addedFood, ...this.state.todaysFood]
+    this.setState({
+      todaysFood: newTodaysFood
+    });
+  }
 
-    })
+
+  render() {
+    
     return (
       <div className="App">
         <AddFood addFood={this.handleAddFood} />
@@ -41,11 +48,10 @@ class App extends React.Component {
         <SearchBar filterFood={this.handleFoodSearch}/>
         <div class="columns">
           <div class="column">
-            {foodList}
+            <FoodList foods={this.state.displayedFoods} handleTodaysFood={this.handleTodaysFood}/>
           </div>
           <div class="column">
-           <h1>Today´s foods:</h1>
-           <CalcFood />
+           <CalcFood todaysFood={this.state.todaysFood}/>
           </div>
         </div>
         
@@ -54,5 +60,7 @@ class App extends React.Component {
     );
   }
 }
+
+
 
 export default App;

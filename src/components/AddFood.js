@@ -23,7 +23,7 @@ class AddNewFood extends Component {
 						id="name"
 						name="name"
 						value={this.state.name}
-						onChange={event => this.handleInputChange(event)}/>
+						onChange={this.handleInputChange}/>
 
 					<label htmlFor="calories">Calories:</label>
 					<input
@@ -31,26 +31,19 @@ class AddNewFood extends Component {
 						id="calories"
 						name="calories"
 						value={this.state.calories}
-						onChange={event => this.handleInputChange(event)}/>
+						onChange={this.handleInputChange}/>
 
 					<label htmlFor="image">Image:</label>
-					<input type="file"
+					<input type="text"
 						   id="image"
-						   name="file"
-						   onChange={event => this.handleInputFile(event)}/>
+						   name="image"
+						   value={this.state.image}
+						   onChange={this.handleInputChange}/>
 
 					<button type="submit">Add new Food</button>
 				</form>
 			</div>
 		);
-	};
-
-	handleInputFile = event => {
-		const image = event.target.files[0];
-
-		this.setState({
-			image: image
-		});
 	};
 
 	handleInputChange = event => {

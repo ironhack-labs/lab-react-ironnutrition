@@ -29,7 +29,7 @@ class App extends Component {
 							   name="search"
 							   placeholder="Search"
 							   value={this.state.search}
-							   onChange={event => this.handleInputChange(event)}/>
+							   onChange={this.handleInputChange}/>
 					</div>
 					<FoodList searchTerm={this.state.search}/>
 				</div>

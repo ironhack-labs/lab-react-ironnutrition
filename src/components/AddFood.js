@@ -59,49 +59,52 @@ class AddFood extends React.Component {
   };
 
   handleUpdateQuantity = (name, event) => {
-    let i = 0;
-    const n = this.state.foodsCopy.length;
-    while (i < n) {
-      if (this.state.foodsCopy[i].name == name) {
-        this.state.foodsCopy[i].quantity = event.target.value;
-      }
-    }
     this.setState({ foodsCopy: this.state.foodsCopy });
   };
 
   render() {
-    console.log(this.state.foodArr);
     return (
-      <div className="columns">
-        <div className="column">
+      <div className="columns m-2">
+        <div className="column m-2">
           <Form
+            label="Search"
             value={this.state.searchText}
             type="text"
             onChange={this.handleSearch}
             name="searchText"
           />
-          <button onClick={this.handleToggle}>Add Food</button>
+          <button className="button is-success m-2" onClick={this.handleToggle}>
+            Add Food
+          </button>
           {this.state.toggle ? (
             <div>
               <Form
+                label="Name"
                 onChange={this.handleChange}
                 value={this.state.name}
                 name="name"
                 type="text"
               />
               <Form
+                label="Calories"
                 onChange={this.handleChange}
                 value={this.state.calories}
                 name="calories"
                 type="number"
               />
               <Form
+                label="Image Link"
                 onChange={this.handleChange}
                 value={this.state.image}
                 name="image"
                 type="text"
               />
-              <button onClick={this.handleAddClick}>Submit</button>
+              <button
+                className="button is-link m-2"
+                onClick={this.handleAddClick}
+              >
+                Submit
+              </button>
             </div>
           ) : (
             <></>
@@ -109,7 +112,7 @@ class AddFood extends React.Component {
           {this.state.foodsCopy.map((element) => (
             <Foodbox
               {...element}
-              onChange={this.handleUpdateQuantity}
+              onChange={this.handleChange}
               onClick={() =>
                 this.handleClickTodays(
                   element.name,

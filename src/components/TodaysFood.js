@@ -3,11 +3,12 @@ import React from 'react';
 function TodaysFood(props) {
   return (
     <div>
-      <h1>Today's Foods</h1>
+      <h1 className="is-size-1 mt-5">Today's Foods</h1>
       <ul>
         {props.foodArr.map((element) => (
           <li key={element.name}>
-            {element.quantity} {element.name} = {element.calories} cal
+            {element.quantity} {element.name} ={' '}
+            {element.calories * element.quantity} cal
           </li>
         ))}
       </ul>

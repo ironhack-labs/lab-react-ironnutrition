@@ -68,6 +68,13 @@ class AddFood extends React.Component {
       });
     }
   };
+
+  handleDelete = (obj) => {
+    const foodIndex = this.state.foodArr.indexOf(obj);
+    this.state.foodArr.splice(foodIndex, 1);
+    this.setState({ foodArr: this.state.foodArr });
+  };
+
   render() {
     return (
       <div className="columns m-2">
@@ -120,7 +127,10 @@ class AddFood extends React.Component {
           ))}
         </div>
         <div className="column">
-          <TodaysFood foodArr={this.state.foodArr} />
+          <TodaysFood
+            onClick={this.handleDelete}
+            foodArr={this.state.foodArr}
+          />
         </div>
       </div>
     );

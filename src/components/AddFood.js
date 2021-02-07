@@ -12,7 +12,7 @@ class AddFood extends React.Component {
     name: '',
     image: '',
     calories: 0,
-    quantity: 0,
+    quantity: 1,
     searchText: '',
     foodArr: [],
   };
@@ -56,10 +56,6 @@ class AddFood extends React.Component {
         },
       ],
     });
-  };
-
-  handleUpdateQuantity = (name, event) => {
-    this.setState({ foodsCopy: this.state.foodsCopy });
   };
 
   render() {
@@ -110,17 +106,7 @@ class AddFood extends React.Component {
             <></>
           )}
           {this.state.foodsCopy.map((element) => (
-            <Foodbox
-              {...element}
-              onChange={this.handleChange}
-              onClick={() =>
-                this.handleClickTodays(
-                  element.name,
-                  element.calories,
-                  element.quantity
-                )
-              }
-            />
+            <Foodbox {...element} onClick={this.handleClickTodays} />
           ))}
         </div>
         <div className="column">

@@ -46,18 +46,28 @@ class AddFood extends React.Component {
   };
 
   handleClickTodays = (name, calories, quantity) => {
-    this.setState({
-      foodArr: [
-        ...this.state.foodArr,
-        {
-          name: name,
-          calories: calories,
-          quantity: quantity,
-        },
-      ],
-    });
+    const isInArray = [...this.state.foodArr].filter(
+      (food) => food.name === name
+    );
+    if (isInArray.length > 0) {
+      const foodIndex = this.state.foodArr.indexOf(isInArray[0]);
+      const updatedArr = [...this.state.foodArr];
+      updatedArr[foodIndex].quantity =
+        parseInt(updatedArr[foodIndex].quantity) + parseInt(quantity);
+      this.setState({ foodArr: updatedArr });
+    } else {
+      this.setState({
+        foodArr: [
+          ...this.state.foodArr,
+          {
+            name: name,
+            calories: calories,
+            quantity: quantity,
+          },
+        ],
+      });
+    }
   };
-
   render() {
     return (
       <div className="columns m-2">

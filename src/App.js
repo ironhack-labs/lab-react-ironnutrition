@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import DisplayFoods from './components/DisplayFoods';
+import AddNewFoodButton from './components/AddNewFoodButton';
+// import Search from "./components/Search"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      <h1 class="title is-1">Iron Nutrition</h1>
+      <DisplayFoods />
+      <AddNewFoodButton />
     </div>
   );
 }

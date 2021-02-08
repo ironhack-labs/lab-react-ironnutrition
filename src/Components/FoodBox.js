@@ -1,45 +1,51 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 
-const FoodBox = props => {
+class FoodBox extends Component {
 
-  let newQuantity = 0
+  state = {
+    quantity: 1
+  }
+  
 
-  const handleChange = (event) => {
-    newQuantity = event.target.value;
+  handleChange = (event) => {
+    this.setState({quantity: event.target.value})
   }
 
-  return (
-    <div className="box">
-      <article className="media">
-        <div className="media-left">
-          <figure className="image is-64x64">
-            <img src={props.image} alt="food" />
-          </figure>
-        </div>
-        <div className="media-content">
-          <div className="content">
-            <p>
-              <strong>{props.name}</strong> <br />
-              <small>{props.calories}</small>
-            </p>
+  render () {
+    return (
+      <div className="box">
+        <article className="media">
+          <div className="media-left">
+            <figure className="image is-64x64">
+              <img src={this.props.image} alt="food" />
+            </figure>
           </div>
-        </div>
-        <div className="media-right">
-          <div className="field has-addons">
-            <div className="control">
-              <input className="input" type="number" placeholder={props.quantity} min="1" onChange={handleChange}/>
-            </div>
-            <div className="control">
-              <button className="button is-info" onClick={() => props.handleClick(props.name, props.image, props.calories, newQuantity)}>              
-                +
-              </button>
+          <div className="media-content">
+            <div className="content">
+              <p>
+                <strong>{this.props.name}</strong> <br />
+                <small>{this.props.calories}</small>
+              </p>
             </div>
           </div>
-        </div>
-      </article>
-    </div>
-  )
+          <div className="media-right">
+            <div className="field has-addons">
+              <div className="control">
+                <input className="input" type="number" value={this.state.quantity} min="0" onChange={this.handleChange}/>
+              </div>
+              <div className="control">
+                <button className="button is-info" onClick={() => this.props.handleClick(this.props.name, this.props.image, this.props.calories, this.state.quantity)}>              
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    )
+  }
+  
 }
 
 export default FoodBox

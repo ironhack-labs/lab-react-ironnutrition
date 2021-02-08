@@ -77,7 +77,7 @@ class FoodsList extends Component {
     }
 
     render() {
-        console.log(this.state.input)
+        
         return (
         
             <div className='is-flex '>

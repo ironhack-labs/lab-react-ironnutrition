@@ -13,13 +13,23 @@ class Form extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  insertNewFood = () => {
-    console.log("algo")
-  }
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const data = this.state;
+
+  //   newFoods.push(data);
+
+  //   console.log(newFoods);
+
+  //   foods = newFoods;
+
+  //   alert('Uma comida foi adicionada: ' + this.state.name);
+  // };
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <FormTextInput
           label="Name"
           type="text"
@@ -47,7 +57,8 @@ class Form extends React.Component {
           onChange={this.handleChange}
           value={this.state.image}
         />
-        <button class="button is-info m-5" onClick={this.insertNewFood}>Submit</button>
+        {/* <button class="button is-info m-5" type="submit">Submit</button> */}
+        <input class="button is-info m-5" type="submit" value="Submit"></input>
       </form>
     );
   }

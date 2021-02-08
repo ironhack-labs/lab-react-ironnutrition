@@ -9,10 +9,9 @@ import AddNewFoodButton from './components/AddNewFoodButton';
 
 function App() {
   return (
-    <div class="container">
-      <h1 class="title is-1">Iron Nutrition</h1>
+    <div className="container">
+      <h1 className="title is-1 mt-4">Iron Nutrition</h1>
       <DisplayFoods />
-      <AddNewFoodButton />
     </div>
   );
 }

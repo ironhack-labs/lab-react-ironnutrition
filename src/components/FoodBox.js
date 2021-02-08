@@ -1,8 +1,8 @@
 import React from 'react';
 import foods from '../foods.json';
 
-function FoodBox(props, index, toAdd) {
-  let foodSelected = foods.filter(item => item.name === props.food);
+function FoodBox(props) {
+  let foodSelected = foods.filter((item) => item.name === props.food);
 
   return (
     <div className="box" key={foodSelected[0].name}>
@@ -23,10 +23,20 @@ function FoodBox(props, index, toAdd) {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value={foodSelected[0].quantity} />
+              <input
+                className="input"
+                type="number"
+                onChange={() => console.log(props.quantity)}
+                value={props.quantity}
+              />
             </div>
             <div className="control">
-              <button className="button is-info" onClick={() => toAdd(index)}>+</button>
+              <button
+                className="button is-info"
+                onClick={() => props.addingFood(props.index)}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

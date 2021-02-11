@@ -8,7 +8,7 @@ const Main = ({ food }) => {
   const [setFood, setAddFood] = useState(food);
   const handlerFoodForm = (event, newFood, resetForm, stateFunc) => {
     event.preventDefault();
-    stateFunc((state) => ({ ...state, {name, calories, url, quantity:0}  }));
+    stateFunc((state) => [...state, newFood]);
     const resetFormState = resetForm;
   };
   console.log(setFood);

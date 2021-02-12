@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import 'bulma/css/bulma.css';
+import FoodBox from './components/FoodBox/FoodBox';
+import AddFoods from './components/AddFoods/AddFoods';
+import Search from "./components/Search/Search"
 function App() {
+  const [show, setShow] = React.useState(true);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search/>
+      {
+       show? <AddFoods />:null
+      }
+      <button onClick={() => setShow(!show)}>Add new food</button>
+   
+     
+      
     </div>
   );
 }

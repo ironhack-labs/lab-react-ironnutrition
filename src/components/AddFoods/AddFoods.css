@@ -1,0 +1,14 @@
+.container{
+    margin: 20px auto;
+    width: 400px;
+}
+
+.food-container{
+    display:flex;
+    flex-direction: column;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}

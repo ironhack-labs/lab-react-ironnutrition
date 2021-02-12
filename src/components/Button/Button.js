@@ -1,4 +1,5 @@
 import React from 'react';
+import InputForm from '../InputForm/InputForm';
 
 class Button extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Button extends React.Component {
         <button type="button" onClick={this.handleClick}>
           click to add Food
         </button>
-        {this.state.show && <div>input</div>}
+        {this.state.show && <InputForm/>}
       </div>
     );
   }

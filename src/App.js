@@ -20,7 +20,7 @@ function App() {
             <li>2 Salad = 300 cal</li>
           </ul>
           <strong>Total: 700 cal</strong>
-          <Button/>
+          
         </div>
       </div>
     </div>
@@ -28,9 +28,15 @@ function App() {
 }
 
 function FoodList() {
-  return foods.map((value, index) => (
+
+  const [foodsState, setFoodsState] = React.useState(foods);
+
+  return <> {foodsState.map((value, index) => (
     <FoodBox {...value} key={value.name}></FoodBox>
-  ));
+
+  ))}
+    <Button setFoodsState = {setFoodsState}/>
+  </>
 }
 
 export default App;

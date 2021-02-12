@@ -21,7 +21,7 @@ class Button extends React.Component {
         <button type="button" onClick={this.handleClick}>
           click to add Food
         </button>
-        {this.state.show && <InputForm/>}
+        {this.state.show && <InputForm setFoodsState = {this.props.setFoodsState}/>}
       </div>
     );
   }

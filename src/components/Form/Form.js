@@ -14,6 +14,7 @@ const Form = ({ submitHandler, stateFunc }) => {
     setForm((state) => ({
       ...state,
       [name]: value,
+      quantity: 0,
     }));
   };
   return (
@@ -42,13 +43,14 @@ const Form = ({ submitHandler, stateFunc }) => {
       />
       <label htmlFor="image">Add url image</label>
       <input
-        type="url"
-        name="url"
+        type="text"
+        name="image"
         id="url"
-        value={formState.url}
+        value={formState.image}
         required
         onChange={handleChange}
       />
+
       <button type="submit">Save new Food</button>
     </form>
   );

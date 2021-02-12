@@ -4,10 +4,10 @@ function SearchBar(props){
 
   const [search, SetSearch] = React.useState({input: ""})
   //Para que se vaya actualizando el state mientras escribo
-  const handleChange = ({ target }) => {
+ const handleChange = ({ target }) => {
     SetSearch({input: target.value});
-    props.filterFood(search.input)
-    console.log(search.input)
+    props.filterFood(target.value)
+    console.log(target.value)
 };
 
   return(

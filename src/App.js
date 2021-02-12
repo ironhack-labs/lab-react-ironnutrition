@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
+import Button from './components/Button/Button';
 
 function App() {
   //console.log(foods)
@@ -19,6 +20,7 @@ function App() {
             <li>2 Salad = 300 cal</li>
           </ul>
           <strong>Total: 700 cal</strong>
+          <Button/>
         </div>
       </div>
     </div>

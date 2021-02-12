@@ -31,6 +31,8 @@ function FoodList() {
 
   const [foodsState, setFoodsState] = React.useState(foods);
 
+  
+
   return <> {foodsState.map((value, index) => (
     <FoodBox {...value} key={value.name}></FoodBox>
 

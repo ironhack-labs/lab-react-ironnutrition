@@ -8,10 +8,23 @@ const initialState = {
 };
 
 
-function InputForm(){
+function InputForm(props){
 
     const [formState, setFormState] = React.useState(initialState);
 
+    const handleChange = ({ target }) => {
+        setFormState({
+            ...formState,
+            [target.name]: target.value
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newFood = { ...formState };
+        props.setFoodsState((prevState)=>prevState.concat(newFood));
+        setFormState(initialState);
+    };
 
 
 
@@ -19,7 +32,7 @@ function InputForm(){
 
     return (
         <div className="container">
-            <form className="form" >
+            <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input
                     type="text"
@@ -27,7 +40,7 @@ function InputForm(){
                     id="name"
                     required
                     value={formState.name}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <label htmlFor="calories">Calories</label>
                 <input
@@ -36,7 +49,7 @@ function InputForm(){
                     id="calories"
                     required
                     value={formState.calories}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <label htmlFor="image">Image Url</label>
                 <input
@@ -45,7 +58,7 @@ function InputForm(){
                     id="image"
                     required
                     value={formState.image}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <button type="submit">Add</button>
             </form>

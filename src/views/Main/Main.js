@@ -8,7 +8,7 @@ const Main = ({ food }) => {
   const [showForm, setForm] = useState(false);
   const [showAddButton, setAddButton] = useState(true);
   const [setFood, setAddFood] = useState(food);
-  const [searchQuery, setQuery] = useState(null);
+  const [searchQuery, setQuery] = useState('');
 
   const handlerFoodForm = (event, newFood, resetForm, stateFunc) => {
     event.preventDefault();
@@ -16,6 +16,10 @@ const Main = ({ food }) => {
     const resetFormState = resetForm;
     setForm(false);
     setAddButton(true);
+  };
+
+  const foodSearch = (query) => {
+    setQuery(query);
   };
 
   return (
@@ -35,12 +39,14 @@ const Main = ({ food }) => {
         )}
       </article>
       <article>
-        <Search func={setQuery} />
+        <Search func={foodSearch} />
       </article>
       <div id="foodList">
         {searchQuery
           ? setFood
-              .filter(({ name }) => name.includes(searchQuery))
+              .filter(({ name }) =>
+                name.toLowerCase().includes(searchQuery.toLowerCase())
+              )
               .map((item, idx) => <FoodBox info={item} key={item.name + idx} />)
           : setFood.map((item, idx) => (
               <FoodBox info={item} key={item.name + idx} />

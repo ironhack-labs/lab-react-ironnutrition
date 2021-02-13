@@ -12,8 +12,11 @@ function FoodBox(props) {
 const handleCLick = ({ target }) => {
   
   props.setFoodOrder((prev)=>prev.concat({name:props.name, calories: props.calories, quantity: quantity}))
+
+  
   
 };
+
 
 
   return (

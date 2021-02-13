@@ -21,7 +21,10 @@ function App() {
   const [foodSearch, setFoodSearch] = React.useState(initialState);
 
   const [foodOrder, setFoodOrder] = React.useState(initialOrder);
-  console.log("foodOrderApp",foodOrder)
+
+  const [calories, setCalories] = React.useState(0);
+
+
   
   return (
     <div className="container">
@@ -30,18 +33,22 @@ function App() {
       
       <div className="columns">
         <div className="column">
-          <FoodList foodsState= {foodsState} setFoodsState= {setFoodsState} foodSearch={foodSearch} setFoodOrder= {setFoodOrder} foodOrder = {foodOrder}/>
+          <FoodList foodsState= {foodsState} setFoodsState= {setFoodsState} foodSearch={foodSearch} setFoodOrder= {setFoodOrder} foodOrder = {foodOrder} setCalories = {setCalories}/>
         </div>
         <div className="column content">
           <h2 className="subtitle">Today's foods</h2>
           <OrderList foodOrder = {foodOrder}/>
-          <strong>Total: 700 cal</strong>
+          <strong>Total: {foodOrder.reduce((acc, curr)=> {
+            return acc + (curr.calories * curr.quantity);},0)}
+            </strong>
           
         </div>
       </div>
     </div>
   );
 }
+
+
 
 function FoodList(props) {
 
@@ -51,7 +58,7 @@ function FoodList(props) {
   if(props.foodSearch.search===""){
     return <> {props.foodsState.map((value, index) => 
     
-      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder}></FoodBox>))
+      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder} setCalories ={props.setCalories}></FoodBox>))
     }
       
   
@@ -62,7 +69,7 @@ function FoodList(props) {
 
     return <> {foodSearch.map((value, index) => 
     
-      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder}></FoodBox>))
+      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder} setCalories ={props.setCalories}></FoodBox>))
     }
       
   

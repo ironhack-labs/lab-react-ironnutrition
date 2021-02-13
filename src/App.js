@@ -19,6 +19,7 @@ const openNewFoodForm = () => {
 }
 
 function App() {
+
   //Lista Today's food
   const [formStateTodaysFood, setformStateTodaysFood] = React.useState(initialStateTodaysFood);
 
@@ -27,6 +28,9 @@ function App() {
   
   //Lista a mostrar de alimentos
   const[foodListState, setFoodListState] = React.useState(Foods)
+
+  //State Filtrado
+  const[foodListFilter, setListFilter] = React.useState(Foods)
   
   //Change para los inputs del nuevo alimento
   const handleChange = (event) => {
@@ -38,13 +42,13 @@ function App() {
   }
   
   //Filtrado de la lista
-  const handleSearchBarChange = (event) => {
-    const {value} = event.target;
-    const foodFilter = foodListState.filter(food => (food.name.toLowerCase().includes(value.toLowerCase())))
+  const handleSearchBarChange = (tag) => {
+    const {value} = tag.target;
     if(value !== ""){
-      setFoodListState(foodFilter)
+      const foodFilter = foodListState.filter(food => (food.name.toLowerCase().includes(value.toLowerCase())))
+      setListFilter(foodFilter)
     } else {
-      setFoodListState(Foods)
+      setListFilter([...foodListState])
     }
   }
   
@@ -52,6 +56,7 @@ function App() {
   const handleSubmitNewFood = (event) => {
   event.preventDefault();
   setFoodListState(foodListState.concat(foodInputsState))
+  setListFilter(foodListState.concat(foodInputsState))
   }
   
   
@@ -63,16 +68,21 @@ function App() {
       calories:calories,
       quantity: document.querySelector("#quantity").value
     }
+
     //Sumo la cantidad
     formStateTodaysFood.forEach(food => {
       if(food.name === foodClicked.name){
         const sum = food.quantity*1 + foodClicked.quantity*1
         food.quantity = sum
-      }      
+        console.log("Ha entrado el if");
+      }  else {
+        console.log("Ha entrado el else");
+        setformStateTodaysFood([...formStateTodaysFood].concat(foodClicked));
+      }  
     })
-    setformStateTodaysFood([...formStateTodaysFood].concat(foodClicked));
+    setformStateTodaysFood([...formStateTodaysFood].concat(foodClicked));  
   }
-
+  
   return (
     <article style={{
       display:"flex",
@@ -110,7 +120,7 @@ function App() {
         />
         <button type="submit">Add</button>
       </form>
-        {foodListState.map(food => <FoodBox {...food} handleAdd={()=> handleAdd(food.name,food.image,food.calories,food.quantity)}/>)}
+        {foodListFilter.map(food => <FoodBox {...food} handleAdd={()=> handleAdd(food.name,food.image,food.calories,food.quantity)}/>)}
       </div>
       <div>
         <h1>Today's foods</h1>

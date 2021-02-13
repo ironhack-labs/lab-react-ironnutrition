@@ -1,6 +1,21 @@
 import React from 'react';
 
 function FoodBox(props) {
+
+  const [quantity, setQuantity] = React.useState(1);
+
+
+  const handleChange = ({ target }) => {
+    setQuantity(target.value);
+};
+
+const handleCLick = ({ target }) => {
+  
+  props.setFoodOrder((prev)=>prev.concat({name:props.name, calories: props.calories, quantity: quantity}))
+  
+};
+
+
   return (
     <div className="box">
       <article className="media">
@@ -20,10 +35,10 @@ function FoodBox(props) {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value="1" />
+              <input className="input" type="number" value={quantity} onChange={handleChange} />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick = {handleCLick}>+</button>
             </div>
           </div>
         </div>

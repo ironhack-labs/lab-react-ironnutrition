@@ -5,19 +5,24 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
 import Button from './components/Button/Button';
 import SearchBar from './components/SearchBar/SearchBar';
-
+import OrderList from './components/OrderList/OrderList';
 
 const initialState = {
   search: "",
 
 };
 
+const initialOrder = [];
+
 function App() {
 
   const [foodsState, setFoodsState] = React.useState(foods);
 
   const [foodSearch, setFoodSearch] = React.useState(initialState);
-  //console.log(foods)
+
+  const [foodOrder, setFoodOrder] = React.useState(initialOrder);
+  console.log("foodOrderApp",foodOrder)
+  
   return (
     <div className="container">
       <h1 className="title">IronNutrition</h1>
@@ -25,14 +30,11 @@ function App() {
       
       <div className="columns">
         <div className="column">
-          <FoodList foodsState= {foodsState} setFoodsState= {setFoodsState} foodSearch={foodSearch}/>
+          <FoodList foodsState= {foodsState} setFoodsState= {setFoodsState} foodSearch={foodSearch} setFoodOrder= {setFoodOrder} foodOrder = {foodOrder}/>
         </div>
         <div className="column content">
           <h2 className="subtitle">Today's foods</h2>
-          <ul>
-            <li>1 Pizza = 400 cal</li>
-            <li>2 Salad = 300 cal</li>
-          </ul>
+          <OrderList foodOrder = {foodOrder}/>
           <strong>Total: 700 cal</strong>
           
         </div>
@@ -49,18 +51,18 @@ function FoodList(props) {
   if(props.foodSearch.search===""){
     return <> {props.foodsState.map((value, index) => 
     
-      (<FoodBox {...value} key={value.name}></FoodBox>))
+      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder}></FoodBox>))
     }
       
   
-    )
+    
       <Button setFoodsState = {props.setFoodsState}/>
     </>
   }else{
 
     return <> {foodSearch.map((value, index) => 
     
-      (<FoodBox {...value} key={value.name}></FoodBox>))
+      (<FoodBox {...value} key={value.name} setFoodOrder= {props.setFoodOrder} foodOrder = {props.foodOrder}></FoodBox>))
     }
       
   

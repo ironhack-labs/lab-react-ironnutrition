@@ -1,5 +1,6 @@
 import React from 'react';
 import FoodBox from "./FoodBox/FoodBox"
+import FoodBoxTodaysFood from "./FoodBoxTodaysFood/FoodBoxTodaysFood"
 import './App.css';
 import Foods from "./foods.json"
 import 'bulma/css/bulma.css';
@@ -60,8 +61,15 @@ function App() {
       name:name,
       image:image,
       calories:calories,
-      quantity:quantity
+      quantity: document.querySelector("#quantity").value
     }
+    //Sumo la cantidad
+    formStateTodaysFood.forEach(food => {
+      if(food.name === foodClicked.name){
+        const sum = food.quantity*1 + foodClicked.quantity*1
+        food.quantity = sum
+      }      
+    })
     setformStateTodaysFood([...formStateTodaysFood].concat(foodClicked));
   }
 
@@ -94,7 +102,7 @@ function App() {
         />
         <label htmlFor="calories">calories</label>
         <input
-          type="text"
+          type="number"
           name="calories"
           id="calories"
           required
@@ -108,7 +116,7 @@ function App() {
         <h1>Today's foods</h1>
         <form>
           <button type="submit">Create your food</button>
-          {formStateTodaysFood.map(food => <FoodBox {...food} />)}
+          {formStateTodaysFood.map(food => <FoodBoxTodaysFood {...food} />)}
         </form>
       </div>
     </article>

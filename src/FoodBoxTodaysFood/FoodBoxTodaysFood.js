@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 
-function FoodBox ({name,calories,image,quantity,handleAdd}){
+function FoodBoxTodaysFood ({name,calories,image,quantity}){
     return(
     <div className="box">
         <article className="media">
@@ -21,12 +21,7 @@ function FoodBox ({name,calories,image,quantity,handleAdd}){
             <div className="l">
                 <div className="field has-addons">
                     <div className="control">
-                        <input id="quantity" className="input" type="number" placeholder="1" />
-                    </div>
-                    <div className="control">
-                            <button onClick={handleAdd} className="button is-info">
-                                +
-                            </button>
+                        <input className="input" type="number" value={quantity} />
                     </div>
                 </div>
             </div>
@@ -35,4 +30,4 @@ function FoodBox ({name,calories,image,quantity,handleAdd}){
     );
 }
 
-export default FoodBox;
+export default FoodBoxTodaysFood;

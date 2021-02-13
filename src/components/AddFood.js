@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import FoodBox from './FoodBox';
 
-// It creates a button to add new food. When a user clicks the button, a form will appear for a name, number of calories, and an image. When the user clicks submit, the food is added to the list. The form disappears when the user clicks the submit button.
+// It creates a button to add new food. 
+//When a user clicks the button, a form will appear for a name, number of calories, and an image. 
+//When the user clicks submit, the food is added to the list. The form disappears when the user clicks the submit button.
 class AddFood extends Component {
     constructor(props) {
         super(props);

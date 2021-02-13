@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 //It performs a search that updates the list.
 class SearchBar extends Component {
     constructor(props){

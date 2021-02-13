@@ -33,11 +33,11 @@ function AddFoods() {
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
           <label htmlFor= "name">Name </label>
-          <input type="text" name = "name" id ="name" onChange={handleChange}></input>
+          <input type="text" name = "name" id ="name" value ={formFood.name} onChange={handleChange}></input>
           <label htmlFor= "image"  >Image</label>
-          <input type="text" name = "image" id ="image"  onChange={handleChange}></input>
+          <input type="text" name = "image" id ="image" value ={formFood.image}  onChange={handleChange}></input>
           <label htmlFor= "calories">Calories</label>
-          <input type="number" name = "calories" id ="calories"  onChange={handleChange}></input>
+          <input type="number" name = "calories" id ="calories" value ={formFood.calories} onChange={handleChange}></input>
           <button type="submit">submit new food</button>
       </form>
 
@@ -46,6 +46,7 @@ function AddFoods() {
               foodList.map(list=>(
                   <div key={list.key}>
                       <h3>{list.name}</h3>
+                      <img>{list.image}</img>
                       <h3>{list.calories}</h3>
 
                        

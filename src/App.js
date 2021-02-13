@@ -26,7 +26,8 @@ function App() {
   
   //Lista a mostrar de alimentos
   const[foodListState, setFoodListState] = React.useState(Foods)
-
+  
+  //Change para los inputs del nuevo alimento
   const handleChange = (event) => {
     const {value, name} = event.target;
     setFoodInputsState({
@@ -34,12 +35,26 @@ function App() {
         [name]: value
       });
   }
-
+  
+  //Filtrado de la lista
+  const handleSearchBarChange = (event) => {
+    const {value} = event.target;
+    const foodFilter = foodListState.filter(food => (food.name.toLowerCase().includes(value.toLowerCase())))
+    if(value !== ""){
+      setFoodListState(foodFilter)
+    } else {
+      setFoodListState(Foods)
+    }
+  }
+  
+  //Añadirlo a la lista de toda la comida
   const handleSubmitNewFood = (event) => {
   event.preventDefault();
   setFoodListState(foodListState.concat(foodInputsState))
   }
-
+  
+  
+  //Lista de Todaays Food
   const handleAdd = (name,image,calories,quantity) => {
     const foodClicked = {
       name:name,
@@ -56,6 +71,10 @@ function App() {
       justifyContent:"space-evenly"
     }}>
       <div>
+      <form>
+        <label htmlFor="searchBar">Search Bar</label>
+        <input type="text" name="searchBar" id="searchBar" onChange={handleSearchBarChange}/>
+      </form>
       <button onClick={openNewFoodForm}>Add new food</button>
       <form onSubmit={handleSubmitNewFood} id="newFood" className="hidden">
         <label htmlFor="name">Name</label>

@@ -21,7 +21,7 @@ function FoodBox ({name,calories,image,quantity,handleAdd}){
             <div className="l">
                 <div className="field has-addons">
                     <div className="control">
-                        <input className="input" type="number" value="1" />
+                        <input className="input" type="number" placeholder="1"/>
                     </div>
                     <div className="control">
                             <button onClick={handleAdd} className="button is-info">

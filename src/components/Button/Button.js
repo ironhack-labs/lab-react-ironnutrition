@@ -17,11 +17,13 @@ class Button extends React.Component {
 
   render() {
     return (
+        
       <div>
+      {/* {console.log(this.state.show)} */}
         <button type="button" onClick={this.handleClick}>
           click to add Food
         </button>
-        {this.state.show && <InputForm setFoodsState = {this.props.setFoodsState}/>}
+        {this.state.show && <InputForm setFoodsState = {this.props.setFoodsState} handleClick = {this.handleClick}/>}
       </div>
     );
   }

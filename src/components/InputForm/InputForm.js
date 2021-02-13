@@ -24,10 +24,8 @@ function InputForm(props){
         const newFood = { ...formState };
         props.setFoodsState((prevState)=>prevState.concat(newFood));
         setFormState(initialState);
+        props.handleClick();
     };
-
-
-
 
 
     return (

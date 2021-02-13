@@ -52,7 +52,7 @@ function App() {
 
 function FoodList(props) {
 
-  const foodSearch = props.foodsState.filter(value => value.name.includes(props.foodSearch.search))
+  const foodSearch = props.foodsState.filter(value => value.name.toLowerCase().includes(props.foodSearch.search.toLowerCase()))
 
 
   if(props.foodSearch.search===""){

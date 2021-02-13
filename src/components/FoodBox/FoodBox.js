@@ -15,7 +15,7 @@ function FoodBox() {
 function Foods({ name, calories, image, quantity }) {
   return (
     <div className="box">
-      <article className="media" style={{width:600}}>
+      <article className="media" style={{ width: 600 }}>
         <div className="media-left">
           <figure className="image is-64x64">
             <img src={image} />

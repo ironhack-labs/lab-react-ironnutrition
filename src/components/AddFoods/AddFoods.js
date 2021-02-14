@@ -1,33 +1,35 @@
 import React from 'react';
 import './AddFoods.css';
-import FoodBox from '../FoodBox/FoodBox.js';
+
+
 let id = 0;
 
 const listFoods = {
-  id: '',
-  name: '',
-  image: '',
-  calories: '',
+    id: '',
+    name: '',
+    image: '',
+    calories: 0,
+    quantity: 0,
 };
 
-function AddFoods() {
+function AddFoods({submitForm}) {
   const [formFood, SetFormFood] = React.useState(listFoods);
-  const [foodList, setFoodList] = React.useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitForm(formFood);
+    SetFormFood(listFoods)
+  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    SetFormFood((state) => ({
-      ...state,
+    SetFormFood((formFood) => ({
+      ...formFood,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const todo = { id: ++id, ...formFood };
-    setFoodList(foodList.concat(todo));
-  };
-
+  
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
@@ -55,18 +57,18 @@ function AddFoods() {
           value={formFood.calories}
           onChange={handleChange}
         ></input>
+         <label htmlFor="quantity">Quantity</label>
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          value={formFood.quantity}
+          onChange={handleChange}
+        ></input>
         <button type="submit">submit new food</button>
       </form>
 
-      <div>
-        {foodList.map((list) => (
-          <div key={list.key}>
-            <h3>{list.name}</h3>
-            <img>{list.image}</img>
-            <h3>{list.calories}</h3>
-          </div>
-        ))}
-      </div>
+     
     </div>
   );
 }

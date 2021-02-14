@@ -1,18 +1,8 @@
 import React from 'react';
-import foodsJson from '../../foods.json';
 
-function FoodBox() {
-  const [foods, setFoods] = React.useState(foodsJson);
-  return (
-    <div>
-      {foods.map((food) => (
-        <Foods key={food.id} {...food} />
-      ))}
-    </div>
-  );
-}
 
-function Foods({ name, calories, image, quantity }) {
+function FoodBox({ name, calories, image, quantity }) {
+ 
   return (
     <div className="box">
       <article className="media" style={{ width: 600 }}>
@@ -42,6 +32,9 @@ function Foods({ name, calories, image, quantity }) {
       </article>
     </div>
   );
+     
 }
+
+
 
 export default FoodBox;

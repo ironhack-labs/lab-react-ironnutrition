@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css';
+import LayOutApp from './components/LayOutApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LayOutApp title="IronNutrition">
+      <App />
+    </LayOutApp>
   </React.StrictMode>,
   document.getElementById('root')
 );

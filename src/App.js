@@ -1,21 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
-import React, { Component } from 'react';
+import React from 'react';
 import FoodBox from './components/foodBox/foodBox';
-class App extends Component {
+import AddFood from './components/addFood/addFood';
+import Search from './components/search/Search';
+
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
       data: foods,
+      showFoods: true,
+      showForm: true,
     };
     this.updateQuantity = this.updateQuantity.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
 
   toggleDisplay(foodName) {
-    // console.log('where  in toggleDisplay, food is:', foodName);
     let { data } = this.state;
     const foodsCopy = [...data];
     foodsCopy.forEach((oneFood) => {
@@ -23,38 +26,68 @@ class App extends Component {
         oneFood.isShown = oneFood.isShown ? false : true; //    !oneFood.isDone
       }
     });
-    // console.log(foodsCopy[foodName]);
     this.setState({ data: foodsCopy });
   }
 
-  updateQuantity(foodName, direction) {
-    console.log('where  in quantity, food is:', foodName);
+  updateQuantity(name, value) {
     let { data } = this.state;
     const foodsCopy = [...data];
     foodsCopy.forEach((oneFood) => {
-      if (oneFood.name === foodName) {
-        oneFood.quantity =
-          direction === 'up'
-            ? oneFood.quantity + 1
-            : oneFood.quantity > 0
-            ? oneFood.quantity - 1
-            : 0;
+      if (oneFood.name === name) {
+        if (!oneFood.quantity) oneFood.quantity = '';
+        oneFood.quantity = Math.max(value, 0);
       }
     });
-    // console.log(foodsCopy[foodName]);
+    console.log(name, value);
     this.setState({ data: foodsCopy });
   }
+
+  toggleFoods = () => {
+    this.setState({ showFoods: !this.state.showFoods });
+  };
+
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
+  addNewFood = (newFood) => {
+    newFood.image = '/generic-food.png';
+    newFood.quantity = 0;
+    const updatedFoods = [newFood, ...this.state.data];
+    this.setState({ data: updatedFoods });
+  };
+
+  filterFood = (input) => {
+    const filtered = this.state.data.filter((el) =>
+      el.name.toLowerCase().includes(input.toLowerCase())
+    );
+    this.setState({ data: filtered });
+  };
 
   render() {
     return (
       <div>
+        <h1>
+          <strong>Awsome Food list!</strong>
+        </h1>
+
+        <Search filterFood={this.filterFood} />
+
+        <button onClick={this.toggleForm}>
+          {this.state.showForm ? 'Close' : 'Add Food'}
+        </button>
+
+        {/* If this.state.showForm is `true` the `AddMovie` is shown */}
+        {this.state.showForm && <AddFood addFood={this.addNewFood} />}
+
         {this.state.data.map((el) => {
           return (
             <FoodBox
               key={el.name}
               name={el.name}
               calories={el.calories}
-              image={el.image}
+              imageSrc={el.image}
+              imageAlt={el.name}
               quantity={el.quantity}
               updateQuantity={this.updateQuantity}
               toggleDisplay={this.toggleDisplay}

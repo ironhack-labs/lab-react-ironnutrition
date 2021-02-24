@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bulma/css/bulma.css';
+import AddFood from './../addFood/addFood';
 
 function FoodBox(props) {
   const {
-    key,
     name,
     calories,
-    image,
+    imageSrc,
+    imageAlt,
     quantity,
     updateQuantity,
     toggleDisplay,
@@ -16,10 +17,10 @@ function FoodBox(props) {
 
   return (
     <div>
-      <article key={key} className="media">
+      <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={image} />
+            <img src={imageSrc} alt={imageAlt} />
           </figure>
         </div>
         <div className="media-content">
@@ -37,7 +38,7 @@ function FoodBox(props) {
                 className="input"
                 type="number"
                 value={quantity}
-                onClick={() => toggleDisplay(name, quantity)}
+                onChange={(event) => updateQuantity(name, event.target.value)}
               />
             </div>
             <div className="control">

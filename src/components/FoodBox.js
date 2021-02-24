@@ -1,9 +1,24 @@
 import React from 'react';
 
 class FoodBox extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            quantity: 0
+        }
+        this.onAddFood = this.onAddFood.bind(this);
+    }
+
+    handleChange(event) {
+        const value = event.target.value;
+        this.setState({quantity: value});
+    }
+
+    onAddFood() {
+        if (this.state.quantity > 0) {
+            this.props.addFoodToday(this.props.food, this.state.quantity);
+        }
+    }
 
   render() {
     return (
@@ -16,7 +31,7 @@ class FoodBox extends React.Component {
             </div>
             <div className="media-content">
                 <div className="content">
-                <p>
+                <p className="has-text-left">
                     <strong>{this.props.food.name}</strong> <br />
                     <small>{this.props.food.calories} cal</small>
                 </p>
@@ -25,10 +40,10 @@ class FoodBox extends React.Component {
             <div className="media-right">
                 <div className="field has-addons">
                 <div className="control">
-                    <input className="input" type="number" value="1" />
+                    <input className="input quantity" type="number" value={this.state.quantity} min={1} name="quantity" onChange={(event) => this.handleChange(event)} />
                 </div>
                 <div className="control">
-                    <button className="button is-info">+</button>
+                    <button className="button is-info" onClick={this.onAddFood}>+</button>
                 </div>
                 </div>
             </div>

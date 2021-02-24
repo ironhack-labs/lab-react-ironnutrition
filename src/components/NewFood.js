@@ -42,7 +42,7 @@ class NewFood extends React.Component {
                     <div className="field-body">
                         <div className="field">
                             <p className="control">
-                                <input className="input" name="cal" type="number" min={0} placeholder="200 cal" required onChange={e => this.handleChange(e)} />
+                                <input className="input" name="cal" type="number" min={1} placeholder="200 cal" required onChange={e => this.handleChange(e)} />
                             </p>
                         </div>
                     </div>

@@ -7,7 +7,9 @@ import NewFood from './components/NewFood';
 class App extends React.Component {
   state = {
     displayedFoods: foods,
-    query: ""
+    query: "",
+    foodToday: {},
+    totalCal: 0
   };
 
   showInfo = (event) => {
@@ -43,19 +45,49 @@ class App extends React.Component {
     }
   };
 
+  addFoodToday = (food, quantity) => {
+    const foodTodayCopy = JSON.parse(JSON.stringify(this.state.foodToday))
+    let currentQuantity = foodTodayCopy.quantity || 0;
+    let updatedQuantity = currentQuantity + Number(quantity);
+    let totalCal = updatedQuantity * food.calories;
+    foodTodayCopy[food.name] = {quantity: updatedQuantity, totalCal: totalCal }
+    this.setState({
+      foodToday: foodTodayCopy,
+      totalCal: this.state.totalCal + totalCal
+    })
+  }
+
   render() {
     const foodList = this.state.displayedFoods.map((food, index) => {
-      return <FoodBox key={index} food={food} />;
+      return <FoodBox key={index} food={food} addFoodToday={this.addFoodToday} />;
     });
+
+    const todayFoods = Object.keys(this.state.foodToday).map((key, index) => {
+      return (
+        <li className="has-text-left" key={index}>{this.state.foodToday[key].quantity} {key} = {this.state.foodToday[key].totalCal} cal</li>
+      )
+    })
     return (
       <div className="App">
         <button className="button is-primary" onClick={this.showInfo}>
           Add a food
         </button>
+        <NewFood handleSubmitNewFood={this.handleSubmitNewFood} />
         <br/>
         <input className="input" name="query" value={this.state.query} type="text" placeholder="Searching for a food" onChange={e => this.handleQuery(e)} />
-        <NewFood handleSubmitNewFood={this.handleSubmitNewFood} />
-        {foodList}
+        <div className="is-flex">
+          <div>
+            {foodList}
+          </div>
+          <div className="m-3 pl-5" >
+            <h2 className="is-size-4"><b>Today's foods:</b></h2>
+            <ul>
+              {todayFoods}
+            </ul>
+            <hr/>
+            <h3 className="is-size-5 has-text-left"><i>Total:</i> {this.state.totalCal} cal</h3>
+          </div>
+        </div>
       </div>
     );
   }

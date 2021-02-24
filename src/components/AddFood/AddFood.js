@@ -28,7 +28,7 @@ class AddFood extends Component {
   
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form  onSubmit={this.handleSubmit}>
 
         <p className="is-size-4">Add a new food:</p>
         <br />

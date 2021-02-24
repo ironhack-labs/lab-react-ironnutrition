@@ -9,6 +9,8 @@ class FoodList extends Component {
     allFoods: this.props.db,
     filteredFoods: this.props.db,
     showForm: false,
+    todayList: [],
+    totalCalories: 0
   }
 
   handleSearchInput = (event) => {
@@ -32,6 +34,52 @@ class FoodList extends Component {
   addNewFood = (newFood) => {
     const newAllFoods = [newFood, ...this.state.allFoods];    
     this.setState({ allFoods: newAllFoods, filteredFoods: newAllFoods });
+  }
+
+  addToday = (quantity, name, calories) => {
+    
+    const newItem = {
+      name,
+      quantity,
+      calories,
+      key: name + quantity
+    }
+
+    const newList = [...this.state.todayList]
+
+    const itemToUpdate = newList.find( ({name}) => name === newItem.name )
+
+    if (itemToUpdate === undefined) {
+
+      //UNSHIFT OPTION
+      newList.unshift(newItem)
+      
+      //SPREAD OPERATOR OPTION
+      // newList = [
+      //   newItem,
+      // ...this.state.todayList]
+
+    } else {
+      itemToUpdate.quantity += Number(newItem.quantity);
+    }
+
+    let newCal = (calories * quantity) + this.state.totalCalories
+    this.setState({todayList: newList, totalCalories: newCal})
+  }
+
+  deleteItem = (key, calories, quantity) => {
+
+    let updatedCal = this.state.totalCalories - (calories * quantity)
+
+    const newTodayList = this.state.todayList.filter((singleFood) => {
+      if(singleFood.name === key ) {
+        return false
+      } else {
+        return true
+      }
+    })
+
+    this.setState({todayList: newTodayList, totalCalories: updatedCal})
   }
 
   render() {
@@ -64,14 +112,28 @@ class FoodList extends Component {
                     key={food.name + food.calories} 
                     name={food.name} 
                     calories={food.calories} 
-                    image={food.image} 
+                    image={food.image}
+                    addList={this.addToday} 
                   />
                 )
             })}
           </div>
 
           <div className="column">
-            <h1 className="is-size-2">Today's foods</h1>
+            <h1 className="is-size-2 has-text-left">Today's foods</h1>
+            <br />
+            <p> Total: {this.state.totalCalories} cal</p>
+            <br />
+            {this.state.todayList.map( (food) => {
+              return (
+                <ul style={ { display: "flex"} } key={food.name + food.calories}>
+                  <li>{food.name} x </li>
+                  <li> {food.quantity} = </li>
+                  <li> {food.quantity * food.calories} calories</li>
+                  <button className="button is-small is-rounded is-danger" onClick={() => {this.deleteItem(food.name, food.calories, food.quantity)}}><i class="fas fa-trash-alt"></i></button>
+                </ul>
+              )
+            })}
           </div>
         </div>
 

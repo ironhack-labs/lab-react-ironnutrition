@@ -12,6 +12,16 @@ class AddFoodForm extends Component {
     };
   }
 
+  handleInputChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.addFood(this.state);
+  }
+
   render() {
     return (
       <section className="food-form">
@@ -60,19 +70,6 @@ class AddFoodForm extends Component {
             </label>
           </div>
 
-          <div className="field">
-            <label>
-              Quantity:
-              <div className="control">
-                <input
-                  type="text"
-                  name="quantity"
-                  value={this.state.quantity}
-                  onChange={(e) => this.handleInputChange(e)}
-                />
-              </div>
-            </label>
-          </div>
           <input className="button" type="submit" value="Añadir comida" />
         </form>
       </section>

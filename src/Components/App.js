@@ -21,11 +21,19 @@ class App extends Component {
     });
   }
 
+  addFood(newFood) {
+    const foods = [...this.state.foods];
+    foods.push(newFood);
+    this.setState({ foods, displayForm: false });
+  }
+
   render() {
     return (
       <main>
         <Button onClick={() => this.displayFoodForm()}>Add food</Button>
-        {this.state.displayForm && <AddFoodForm />}
+        {this.state.displayForm && (
+          <AddFoodForm addFood={(food) => this.addFood(food)} />
+        )}
         {this.state.foods.map((food, idx) => (
           <FoodBox
             key={idx}

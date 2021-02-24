@@ -34,6 +34,16 @@ class App extends Component {
     });
   }
 
+  updateQuantity(updatedFoodIdx, updatedQuantity) {
+    const newFood = { ...this.state.foods[updatedFoodIdx] };
+    newFood.quantity = +updatedQuantity + 1;
+    const allFoods = [...this.state.foods];
+    allFoods.splice(updatedFoodIdx, 1, newFood);
+    this.setState({
+      foods: allFoods,
+    });
+  }
+
   render() {
     return (
       <main>
@@ -45,9 +55,14 @@ class App extends Component {
         {this.state.foods.map((food, idx) => (
           <FoodBox
             key={idx}
+            id={idx}
             image={food.image}
             name={food.name}
             calories={food.calories}
+            quantity={food.quantity}
+            onChange={(updatedFood, updateQuantity) =>
+              this.updateQuantity(updatedFood, updateQuantity)
+            }
           />
         ))}
       </main>

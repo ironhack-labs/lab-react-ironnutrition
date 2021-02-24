@@ -7,7 +7,14 @@ import foods from '../foods.json';
 function App() {
   return (
     <>
-      <FoodBox />
+      {foods.map((food, idx) => (
+        <FoodBox
+          key={idx}
+          image={food.image}
+          name={food.name}
+          calories={food.calories}
+        />
+      ))}
     </>
   );
 }

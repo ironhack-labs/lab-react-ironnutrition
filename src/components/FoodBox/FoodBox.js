@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 function FoodBox (props) {
   return (
-    <div className="box"  style={{width: '40%'}}>
+    <div className="box column"  style={{width: '40%'}}>
       <article className="media" style={{width: '40%'}}>
         <div className="media-left">
           <figure className="image is-64x64">

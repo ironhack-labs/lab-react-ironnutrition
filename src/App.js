@@ -75,11 +75,11 @@ class App extends React.Component {
         <NewFood handleSubmitNewFood={this.handleSubmitNewFood} />
         <br/>
         <input className="input" name="query" value={this.state.query} type="text" placeholder="Searching for a food" onChange={e => this.handleQuery(e)} />
-        <div className="is-flex">
-          <div>
+        <div className="columns">
+          <div className="column">
             {foodList}
           </div>
-          <div className="m-3 pl-5" >
+          <div className="m-3 pl-5 column" >
             <h2 className="is-size-4"><b>Today's foods:</b></h2>
             <ul>
               {todayFoods}

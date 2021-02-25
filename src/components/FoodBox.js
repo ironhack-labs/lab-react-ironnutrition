@@ -14,8 +14,9 @@ export default function FoodBox() {
 
     const [item, setItem] = useState(foods)
 
-
     const [search, setSearch] = useState(item)
+
+    const [listaDerecha, setListaDerecha]  = useState([])
 
     console.log(formState)
 
@@ -78,6 +79,35 @@ export default function FoodBox() {
     
     }
 
+const sumarALista = (elemento)=>{
+
+    setListaDerecha(...listaDerecha, elemento)
+
+    const elementoSumado = listaDerecha.filter((elem)=>{ return elemento.name===elem.name})
+        console.log("este es ",elementoSumado)
+
+    elementoSumado.quantity+=1
+    elementoSumado.calories+=elementoSumado.calories
+
+    setListaDerecha(elementoSumado)
+    console.log("este es elem sumado",elementoSumado)
+
+    // listaDerecha.map((element)=>{
+
+    //     if(element.name ===elementoSumado.name) {
+
+    //     return (elementoSumado) }
+    //     else {
+    //         return elemento
+         
+
+    
+
+   
+    // setListaDerecha([...listaDerecha,elemento])
+
+
+}
 
     function form(){
         return (
@@ -97,6 +127,7 @@ export default function FoodBox() {
     }
     
     
+
     
     
     return (
@@ -135,13 +166,13 @@ name="search" placeholder="Search"/>
                 <div className="control">
                     <input className="input" type="number" value={e.quantity} />
                 </div>
-            <div className="control">
+         
           
-                <button className="button is-info">
+                <button className="button is-info" onClick={()=>sumarALista(e)}>
                      +
                 </button>
 
-            </div>
+           
         </div>
     </div>
             </article>
@@ -151,6 +182,23 @@ name="search" placeholder="Search"/>
 
     })
 }
+
+<div>
+    <p>Today's Food</p>
+ 
+    {listaDerecha.map((element)=>{
+        return (
+        <div>
+            <p>Name: {element.name}</p>
+            <p>Quantity: {element.quantity}</p>
+            <p>Calories: {element.calories}</p>
+        </div>
+        )
+    })
+        
+    }
+</div>
+
         </div>
     )
 }

@@ -6,7 +6,8 @@ state={
     name:"...",
     calories:"...", 
     image:'...',
-    foods: foods
+    foods: foods,
+    show: true
 }
 
 handleChange = (e) => {
@@ -21,13 +22,14 @@ handleSubmit = (e) => {
     console.log('new food')
     console.log(this.state)
     let copyFoods = [...this.state.foods];
-    copyFoods.unshift({
+    let newFood = copyFoods.unshift({
         name: this.state.name,
         calories: this.state.calories,
+        image: this.state.image
       
     })
     this.setState({
-        foods: copyFoods
+        foods: newFood
     })
 }
 
@@ -44,9 +46,22 @@ search = (e) => {
 
 }
 
+toggleForm = () => {
+  this.setState({ show: !this.state.show})
+}
 
 
 
+addFood =(i)=>{
+  console.log('add food');
+  let copyFoods = [...this.state.foods];
+  let newFood = copyFoods.splice(i,1);
+
+  this.setState({
+    foods: newFood
+  })
+
+}
 
 showFood = () => {
     return this.state.foods.map((eachFood, i) => {
@@ -69,10 +84,10 @@ showFood = () => {
               <div className="media-right">
                 <div className="field has-addons">
                   <div className="control">
-                    <input className="input" type="number" value="1" />
+                    <input className="input" type="number" min="1" />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
+                    <button className="button is-info"  onClick={this.addFood}>
                       +
                     </button>
                   </div>
@@ -97,7 +112,8 @@ showFood = () => {
           <button>Search</button>
          </form>
 
-      
+
+{this.state.show && (
 
             <form onSubmit={this.handleSubmit}>
         
@@ -109,6 +125,9 @@ showFood = () => {
 
               <button>Add Food</button>
           </form>
+)}
+      
+         <button onClick={this.toggleForm} >Toggle Form</button>
 
           <ul>
 

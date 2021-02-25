@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import FoodBox from '../FoodBox/FoodBox'
 import AddFood from '../AddFood/AddFood'
+import foods from '../../foods.json';
+import SearchBar from '../SearchBar/SearchBar'
 
 class FoodList extends Component {
 
   state = {
-    search: '',
-    allFoods: this.props.db,
-    filteredFoods: this.props.db,
+    search: "",
+    allFoods: [...foods],
+    filteredFoods: [...foods],
     showForm: false,
     todayList: [],
     totalCalories: 0
@@ -96,13 +98,7 @@ class FoodList extends Component {
 
         { this.state.showForm && <AddFood addFood={this.addNewFood}/> }
         
-        <form>
-          <input 
-            className="input is-medium is-rounded m-5" 
-            value={this.state.search} 
-            onChange={this.handleSearchInput}>     
-          </input>
-        </form>
+        <SearchBar textToSearch={this.state.search} handleSearch={this.handleSearchInput}/>
 
         <div className="columns">
           <div className="column">

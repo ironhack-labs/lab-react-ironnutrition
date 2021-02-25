@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
 import './App.css';
+import FoodBox from './components/FoodBox';
+import Form from './components/Form';
+import Search from './components/Search';
 
 function App() {
+  const [newFood, setNewFood] = useState(foods);
+  const [activeForm, setActiveForm] = useState(false);
+  const [searchFood, setSearchFood] = useState(newFood);
+
+  function showForm() {
+    setActiveForm(true);
+    console.log(Form.prueba);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={() => showForm()}>Add new food</button>
+      <Search searchFood={searchFood} setSearchFood={setNewFood} />
+      {activeForm ? (
+        <Form
+          addSearch={setSearchFood}
+          addFood={newFood}
+          setAddFood={setNewFood}
+          changeActive={setActiveForm}
+        />
+      ) : (
+        <> </>
+      )}
+      <FoodBox setFoods={setNewFood} foods={newFood} />
+    </>
   );
 }
 

@@ -1,35 +1,31 @@
-import { render } from '@testing-library/react';
-import React from 'react';
-
+import React, {Component} from 'react';
+import './../App.css';
 // It takes food as a prop and displays a box with all the info about an ingredient.
-class FoodBox extends React.Component {
+class FoodBox extends Component {
   state = {
     quantity: 1,
   };
-
-  handleChange = (event) => {
-    this.setState({
-      quantity: Number(event.target.value),
-    });
-  };
+  
+  handleChange = e => {
+    const { value } = e.target;
+    this.setState({ quantity: Number(value) })
+  }
 
   render() {
     const { name, calories, image } = this.props.food;
-    const { quantity } = this.state;
-
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={this.props.food.image} alt={this.props.food.name} />
+              <img src={image} width="200"  height="150" />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>{this.props.food.name}</strong> <br />
-                <small>{this.props.food.calories} cal</small>
+                <strong>{name}</strong> <br />
+                <small>{calories} cal</small>
               </p>
             </div>
           </div>
@@ -37,20 +33,16 @@ class FoodBox extends React.Component {
             <div className="field has-addons">
               <div className="control">
                 <input
-                  onChange={this.handleChange}
                   className="input"
-                  type="number"
-                  value={quantity}
+                  type="number" 
+                  value={this.state.quantity}
+                  onChange={this.handleChange}
                 />
               </div>
               <div className="control">
-                <button
-                  onClick={()=> this.props.handleAddCalories(
-                    this.props.food,
-                    quantity
-                  )}
-                  className="button is-info"
-                >
+                <button 
+                  onClick={() => this.props.updateTodaysFood({...this.props.food, quantity: this.state.quantity})} 
+                  className="button is-info">
                   +
                 </button>
               </div>
@@ -58,8 +50,8 @@ class FoodBox extends React.Component {
           </div>
         </article>
       </div>
-    );
+    )
   }
-};
+}
 
 export default FoodBox;

@@ -2,13 +2,16 @@ import { Component } from 'react';
 import foods from '../../foods.json';
 import FoodBox from '../food-box/FoodBox';
 import Search from '../search/Search';
+import TodaysFood from '../todays-foods/TodaysFoods';
 
 class FoodList extends Component {
 
     state = {
+        totalCalories: 0,
         searchValue: '',
         foods,
         displayedFoods: foods,
+        selectedFood: [],
         data: {
             name: '',
             calories: 0,
@@ -60,8 +63,21 @@ class FoodList extends Component {
         console.log(value)
     }
 
+    addToList = (food) => {
+        this.setState({
+            selectedFood: [food, ...this.state.selectedFood]
+        })
+        this.handleCalories(food.calories * food.quantity);
+    }
+
+    handleCalories = (newCalories) => {
+        this.setState({
+            totalCalories: this.state.totalCalories + newCalories
+        })
+    }
+
     render() {
-        const { addFormDisplayed, data, displayedFoods, searchValue } = this.state;
+        const { addFormDisplayed, data, displayedFoods, searchValue, totalCalories } = this.state;
         return (
             <div>
                 <div className="is-full is-flex is-justify-content-space-between is-align-items-center">
@@ -110,10 +126,18 @@ class FoodList extends Component {
                     </form>
                     : null
                 }
-                <Search className="mb-5" handleSearch={this.handleSearch} value={searchValue}/>
-                {displayedFoods.map((food, i) => {
-                    return <FoodBox key={i} food={food} />
-                })}
+                <Search className="mb-5" handleSearch={this.handleSearch} value={searchValue} />
+                <div className="columns">
+                    <div className="column">
+                        {displayedFoods.map((food, i) => {
+                            return <FoodBox key={i} food={food} addToList={this.addToList}/>
+                        })}
+                    </div>
+                    <div className="column">
+                        <TodaysFood selectedFood={this.state.selectedFood}/>
+                        <p className="mt-3">Total calories: {totalCalories}</p>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
 import logo from './logo.svg';
 import './App.css';
 

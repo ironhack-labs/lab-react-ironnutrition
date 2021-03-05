@@ -1,10 +1,14 @@
 import { Component } from 'react';
 import foods from '../../foods.json';
 import FoodBox from '../food-box/FoodBox';
+import Search from '../search/Search';
 
 class FoodList extends Component {
+
     state = {
+        searchValue: '',
         foods,
+        displayedFoods: foods,
         data: {
             name: '',
             calories: 0,
@@ -36,6 +40,7 @@ class FoodList extends Component {
         event.preventDefault();
         this.setState({
             foods: [this.state.data, ...this.state.foods],
+            displayedFoods: [this.state.data, ...this.state.foods],
             data: {
                 name: '',
                 name: '',
@@ -46,46 +51,55 @@ class FoodList extends Component {
         })
     }
 
+    handleSearch = (event) => {
+        const { value } = event.target;
+        this.setState({
+            searchValue: value,
+            displayedFoods: this.state.foods.filter(food => food.name.toLowerCase().includes(value.toLowerCase()))
+        })
+        console.log(value)
+    }
+
     render() {
-        const { addFormDisplayed, data, foods } = this.state;
+        const { addFormDisplayed, data, displayedFoods, searchValue } = this.state;
         return (
             <div>
                 <div className="is-full is-flex is-justify-content-space-between is-align-items-center">
                     <h1 className="my-6 is-size-1 has-text-weight-semibold">IronNutrition</h1>
-                    <button onClick={this.showAddForm} class="button is-dark">{addFormDisplayed ? 'Hide form' : 'Add food'}</button>
+                    <button onClick={this.showAddForm} className="button is-dark">{addFormDisplayed ? 'Hide form' : 'Add food'}</button>
                 </div>
                 { addFormDisplayed ?
                     <form onSubmit={this.handleSubmitNewFood}>
                         <div className="columns is-flex is-align-items-flex-end mb-5">
                             <div className="column">
-                                <div class="field">
-                                    <label class="label has-text-left">Name</label>
-                                    <div class="control">
+                                <div className="field">
+                                    <label className="label has-text-left">Name</label>
+                                    <div className="control">
                                         <input value={data.name} name="name" onChange={this.handleChange} class="input" type="text" placeholder="Tomato" />
                                     </div>
                                 </div>
                             </div>
                             <div className="column">
-                                <div class="field">
-                                    <label class="label has-text-left">Calories</label>
-                                    <div class="control">
-                                        <input value={data.calories} name="calories" onChange={this.handleChange} class="input" type="number" placeholder="150" />
+                                <div className="field">
+                                    <label className="label has-text-left">Calories</label>
+                                    <div className="control">
+                                        <input value={data.calories} name="calories" onChange={this.handleChange} className="input" type="number" placeholder="150" />
                                     </div>
                                 </div>
                             </div>
                             <div className="column">
-                                <div class="field">
-                                    <label class="label has-text-left">Image URL</label>
-                                    <div class="control">
-                                        <input value={data.image} name="image" onChange={this.handleChange} class="input" type="text" placeholder="https://..." />
+                                <div className="field">
+                                    <label className="label has-text-left">Image URL</label>
+                                    <div className="control">
+                                        <input value={data.image} name="image" onChange={this.handleChange} className="input" type="text" placeholder="https://..." />
                                     </div>
                                 </div>
                             </div>
                             <div className="column">
-                                <div class="field">
-                                    <label class="label has-text-left">Quantity</label>
-                                    <div class="control">
-                                        <input value={data.quantity} name="quantity" onChange={this.handleChange} class="input" type="number" placeholder="50" />
+                                <div className="field">
+                                    <label className="label has-text-left">Quantity</label>
+                                    <div className="control">
+                                        <input value={data.quantity} name="quantity" onChange={this.handleChange} className="input" type="number" placeholder="50" />
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +110,8 @@ class FoodList extends Component {
                     </form>
                     : null
                 }
-                {foods.map((food, i) => {
+                <Search className="mb-5" handleSearch={this.handleSearch} value={searchValue}/>
+                {displayedFoods.map((food, i) => {
                     return <FoodBox key={i} food={food} />
                 })}
             </div>

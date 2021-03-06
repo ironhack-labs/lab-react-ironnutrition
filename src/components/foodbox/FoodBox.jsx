@@ -14,6 +14,11 @@ class FoodBox extends Component {
         foodForm: null
     }
 
+    showForm = () =>  {
+        const foodForm = !this.state.foodForm
+        this.setState({foodForm})
+    }
+
 
     addFood = (food) => {
         foods.push(food)
@@ -23,27 +28,23 @@ class FoodBox extends Component {
             }
         })
         this.setState.saved = true
+    this.showForm()
         console.log(foods.length)
     }
-
-
     render() {
-
         return (
-
-
-
             <>
+                {!this.state.foodForm &&
 
-
-
-                <button
-                    onClick={() => this.setState.foodForm = true}
-                    className="button is-link my-3">
-                    Add new food
+                    <button
+                        className="button is-link my-3"
+                        onClick={this.showForm}
+                    >
+                        Add new food
                         </button>
+                }
 
-                {this.state.foodForm &&
+                {this.state.foodForm === true &&
                     <FoodForm
                         addFood={this.addFood} />}
 
@@ -83,8 +84,6 @@ class FoodBox extends Component {
                 }
             </>
         )
-
     }
-
 }
 export default FoodBox

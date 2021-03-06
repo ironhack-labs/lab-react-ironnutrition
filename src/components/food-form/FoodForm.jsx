@@ -42,11 +42,6 @@ class FoodForm extends React.Component {
         })
     }
 
-
-
-
-
-
     render() {
         return (
             <>

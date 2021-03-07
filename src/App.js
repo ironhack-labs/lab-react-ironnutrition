@@ -41,9 +41,11 @@ class App extends React.Component {
     });
   };
 
-  deleteTodayFood = (id) => {
-    this.setState({ today: [this.state.today.filter(food => food.id !== id)] })
-  }
+  deleteTodayFood = (name) => {
+    this.setState((prev) => {
+      return ({ today: prev.today.filter(food => food.name !== name) })
+    }
+  )}
 
   render() {
     const displayedFoods = this.state.data.filter((food) => {

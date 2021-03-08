@@ -17,7 +17,7 @@ class FoodForm extends React.Component {
 
         this.props.addFood({
             ...this.state.data,
-            quantity: 1
+            quantity: 0
         })
 
         this.setState({

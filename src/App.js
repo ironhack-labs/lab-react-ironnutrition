@@ -33,7 +33,7 @@ class App extends React.Component {
     this.setState((prev) => {
       if (this.state.today.includes(food)) {
         return { today: [...prev.today] };
-      } else if (food.quantity === 0) {
+      } else if (Number(food.quantity) === 0) {
         return { today: [...prev.today] }
       } else {
         return { today: [...prev.today, food] };

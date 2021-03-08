@@ -33,7 +33,7 @@ class FoodBox extends React.Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={this.state.quantity} onChange={this.handleQuantity}/>
+                <input className="input" type="number" min="0" value={this.state.quantity} onChange={this.handleQuantity}/>
               </div>
               <div className="control">
                 <button

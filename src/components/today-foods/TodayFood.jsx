@@ -20,8 +20,7 @@ function TodayFood({ foods, deleteTodayFood }) {
             <div className="column">
               <button
                 className="button is-danger"
-                onClick={() => deleteTodayFood(food.name)}
-              >
+                onClick={() => deleteTodayFood(food.name)}>
                 Delete
               </button>
             </div>

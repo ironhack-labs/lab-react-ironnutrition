@@ -61,7 +61,8 @@ class FoodBox extends React.Component {
                             <div className="control">
                                 <button
                                     className="button is-info"
-                                    onClick={() => this.props.foodToBuy(this.state)}>
+                                    
+                                    onClick={() => {this.state.quantity !=0 && this.props.foodToBuy(this.state)}}>
                                     +
                              </button>
                             </div>

@@ -16,20 +16,20 @@ class AddProduct extends React.Component {
     }
 
     handleChange = (event) => {
-        const { id, value } = event.target  
+        const { id, value } = event.target
         this.setState((prev) => {
             return {
                 data: {
                     ...prev.data,
-                    [id]: value   
+                    [id]: value
                 }
             }
         })
     }
 
-    handleSubmit = (event) => {       
+    handleSubmit = (event) => {
         event.preventDefault()
-      
+
         this.props.addFood({
             ...this.state.data,
             name: this.state.data.name,
@@ -49,10 +49,7 @@ class AddProduct extends React.Component {
         return (
 
             <div>
-                <pre>
-                    {JSON.stringify(this.state.data)}
-                </pre>
-
+ 
                 <form className="mb-4" onSubmit={this.handleSubmit}>
 
 

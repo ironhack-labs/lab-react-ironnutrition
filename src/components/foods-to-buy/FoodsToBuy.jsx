@@ -2,12 +2,13 @@ import React from 'react';
 
 
 
-function FoodsToBuy( props ) {
-    console.log(props)
-    
+function FoodsToBuy( props ) {    
+
+   
 
     const list = props.foodsToBuy.map(item => {
         const { name, quantity, calories } = item;
+        
 
         return (
             <li>{quantity} {name} = {quantity * calories}</li>
@@ -22,6 +23,7 @@ function FoodsToBuy( props ) {
 
     return (
 
+       
         
 		<div className="column content">
 			<h2 className="subtitle">Today's foods</h2>

@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.foodBox {
+  width: 100%
+}
+
+.main {
+  display: flex;
+}
+
+.todayFood {
+  display: flex;
+  justify-content: center;
+  width: 100%
+}

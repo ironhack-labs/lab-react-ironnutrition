@@ -7,6 +7,7 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox'
 import CreateFood from './components/CreateFood'
 import SearchBar from './components/SearchBar'
+import TodayFood from './components/TodayFood'
 
 export default class App extends Component {
 
@@ -23,8 +24,13 @@ export default class App extends Component {
     this.setState({searchInput: searchInput})
   }
 
+  updateTodayFoodQuantity = (name, value) => {
+    const foods = [...this.state.foods]
+    foods.forEach(food => food.quantity = food.name === name ? food.quantity+Number(value) : food.quantity )
+    this.setState({foods: foods})
+  }
+
   render() {
-    console.log(this.state.searchInput)
     return (
       <div className="App">
         <SearchBar
@@ -34,16 +40,27 @@ export default class App extends Component {
         <CreateFood
           addFood={this.addFood}
         />
-        {
-        this.state.foods
-          .filter(food => food.name.match(new RegExp ("^" + this.state.searchInput, "i")))
-          .map((food, index) => 
-          <FoodBox
-            food={food}
-            key={index}
-          />
-        )
-        }
+        <div className="main">
+          <div className="foodBox">
+            {
+            this.state.foods
+              .filter(food => food.name.match(new RegExp ("^" + this.state.searchInput, "i")))
+              .map((food, index) => 
+              <FoodBox
+                food={food}
+                key={index}
+                updateTodayFoodQuantity={this.updateTodayFoodQuantity}
+              />
+            )
+            }
+          </div>
+          <div className="todayFood">
+            <TodayFood
+              foods={this.state.foods}
+            />
+          </div>
+
+        </div>
       </div>
     );
   }

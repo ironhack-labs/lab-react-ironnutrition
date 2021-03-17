@@ -3,6 +3,21 @@ import 'bulma/css/bulma.css';
 
 
 export default class FoodBox extends Component {
+
+    state = {
+        quantity: 0
+    }
+
+    addOneQuantity = event => {
+        event.preventDefault() ;
+        this.props.updateTodayFoodQuantity(event.target.name, this.state.quantity)
+        this.setState({quantity: 0})
+    }
+
+    updateQuantity = event => {
+        this.setState({quantity: event.target.value})
+    }
+ 
     render() {
         return (
             <div className="box">
@@ -22,14 +37,25 @@ export default class FoodBox extends Component {
                 </div>
                 <div className="media-right">
                 <div className="field has-addons">
-                    <div className="control">
-                    <input className="input" type="number" value="1" />
-                    </div>
-                    <div className="control">
-                    <button className="button is-info">
-                        +
-                    </button>
-                    </div>
+                    <form 
+                        className="control" 
+                        name={this.props.food.name} 
+                        onSubmit={this.addOneQuantity}
+                    >
+                        <div className="control">
+                        <input 
+                            className="input" 
+                            type="number" 
+                            value={this.state.quantity} 
+                            onChange={this.updateQuantity}
+                        />
+                        </div>
+                        <div>
+                        <button className="button is-info">
+                            +
+                        </button>
+                        </div>
+                    </form>
                 </div>
                 </div>
             </article>

@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+.searchBar {
+  width: 95vw;
+  height: 40px;
+}

@@ -6,9 +6,16 @@ state = {
     name: "",
     calories: "",
     image: "",
-    quantity: ""
+    quantity: "",
+    show: "none"
 
-}
+};
+
+showForm = () =>{
+    this.setState({ show: !this.state.show})
+};
+
+
 
 handleChange =(event) => {
     const name = event.target.name;
@@ -32,7 +39,8 @@ handleSubmit = (evt) => {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <button onClick={this.showForm}>Menu sucks? Add your food</button>
+                <form onSubmit={this.handleSubmit} style={{display: this.state.show ? "none" : "block"}}>
                     <div>
                         <label htmlFor="name">Name</label>
                         <input onChange={this.handleChange} value ={this.value}  type="text" id="name" name="name"   ></input>
@@ -49,7 +57,7 @@ handleSubmit = (evt) => {
                         <label htmlFor="quantity">Quantity</label>
                         <input onChange={this.handleChange} value ={this.value}  type="text" id="quantity" name="quantity"  ></input>
                     </div>
-                    <button>Add Sexy Meal</button>
+                    <button onClick={this.showForm}>Add Sexy Meal</button>
                 </form>
             </div>
         )

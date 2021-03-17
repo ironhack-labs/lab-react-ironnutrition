@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json'
 import FoodBox from './Components/FoodBox.jsx'
 import NewFoods from './Components/NewFoods.jsx'
+import Search from './Components/Search.jsx'
 
 
 
@@ -22,6 +23,7 @@ import NewFoods from './Components/NewFoods.jsx'
   render() {
     return (
       <div>
+        <Search/>
         <FoodBox 
       
       myFoodies={this.state.myFoodies}

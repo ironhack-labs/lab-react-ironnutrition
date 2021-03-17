@@ -13,6 +13,7 @@ class App extends React.Component {
     foods: foodsJson,
     boolean: false,
     filter : "",
+    todayMeal : [],
     meal : undefined,
     quantity: 0, 
     calories: 0
@@ -27,7 +28,12 @@ class App extends React.Component {
     this.setState({ filter: input });
 }
   addQuantityOnMeal=(input)=>{
-    this.setState({quantity :input.quantity, meal : input.meal, calories: input.calories})
+    let todayMeal = [...this.state.todayMeal];
+
+    todayMeal.push( input);
+    
+    this.setState({ todayMeal : todayMeal });
+
   }
 
   HandleAdd = ()  => {
@@ -50,8 +56,8 @@ class App extends React.Component {
           <button onClick={this.HandleAdd}>Add new Food</button>
         )}
         {this.state.boolean && <Form addMeal={this.addMeal} />}
-        {/* {console.log(this.state.meal)} */}
-        {<Today meal={this.state.meal} quantity={this.state.quantity} calories={this.state.calories*this.state.quantity}/>}
+        {console.log(this.state.todayMeal)}
+        {<Today meals={this.state.todayMeal}/>}
 
       </div>
     );

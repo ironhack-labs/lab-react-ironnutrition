@@ -17,7 +17,7 @@ export default class FoodBox extends Component {
     this.setState({value : event.target.value})
   };
 
-  HandleClick=(event)=>{
+  HandleClick=()=>{
     this.props.addQuantity({quantity : this.state.value, meal: this.state.meal, calories: this.state.calories})
     this.setState({    meal : "", value:1, calories : 0})
   }

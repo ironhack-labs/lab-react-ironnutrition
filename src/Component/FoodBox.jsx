@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react';
 import foodsJSON from '../foods.json';
 
 export class FoodBox extends PureComponent {
-  state = {
-    listOfFood: foodsJSON,
-  };
+//   state = {
+//     listOfFood: foodsJSON,
+//   };
 
   render() {
     return (
       <div className="box">
         <button>Add</button>
 
-        {this.state.listOfFood.map((food, i) => (
+        {this.props.listOfFood.map((food, i) => (
           <article key={i} className="media">
             <div className="media-left">
               <figure className="image is-64x64">

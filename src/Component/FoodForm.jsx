@@ -31,12 +31,12 @@ export class FoodForm extends PureComponent {
   handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // this.props.addFood({
-    //     name: this.state.name,
-    //     calories: this.state.calories,
-    //     quantity: this.state.quantity,
-    //     image: this.state.image
-    //   });
+    this.props.addFood({
+        name: this.state.name,
+        calories: this.state.calories,
+        quantity: this.state.quantity,
+        image: this.state.image
+      });
 
   }
 

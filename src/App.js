@@ -21,7 +21,7 @@ export class App extends PureComponent {
   render() {
     return (
       <div className="App">
-        <FoodBox  foods={this.state.foods}  />
+        <FoodBox  listOfFood={this.state.listOfFood}  />
         <FoodForm addFood={this.addFood}  />
       </div>
     );

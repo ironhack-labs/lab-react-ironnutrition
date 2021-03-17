@@ -13,9 +13,9 @@ export class App extends PureComponent {
     listOfFood: foodsJSON,
   };
 
-  addFood = (aValueFromChild) => {
-    console.log(aValueFromChild, "again from parent");
-    this.setState({ listOfFood: [aValueFromChild, ...this.state.listOfFood] });
+  addFood = (newFood) => {
+    // console.log(aValueFromChild, "again from parent");
+    this.setState({ listOfFood: [newFood, ...this.state.listOfFood] });
   };
 
   render() {

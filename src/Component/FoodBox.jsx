@@ -2,15 +2,23 @@ import React, { PureComponent } from 'react';
 import foodsJSON from '../foods.json';
 
 export class FoodBox extends PureComponent {
-//   state = {
-//     listOfFood: foodsJSON,
-//   };
+  state = {
+    displayed: false,
+  };
+
+
+  handleDisplayForm = (evt) => {
+    this.setState({ displayed: !this.state.displayed });
+  };
+
+
+  !this.state.displayed ? 
 
   render() {
     return (
       <div className="box">
-        <button>Add</button>
-
+        <button onClick={this.handleDisplayForm}>Add</button>
+        <div>
         {this.props.listOfFood.map((food, i) => (
           <article key={i} className="media">
             <div className="media-left">
@@ -42,6 +50,7 @@ export class FoodBox extends PureComponent {
             </div>
           </article>
         ))}
+        </div>
       </div>
     );
   }

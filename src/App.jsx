@@ -25,8 +25,9 @@ export default class App extends Component {
   }
 
   updateTodayFoodQuantity = (name, value) => {
+    console.log(name, value)
     const foods = [...this.state.foods]
-    foods.forEach(food => food.quantity = food.name === name ? food.quantity+Number(value) : food.quantity )
+    foods.forEach(food => food.quantity = food.name === name ? Number(value) : food.quantity )
     this.setState({foods: foods})
   }
 
@@ -57,6 +58,7 @@ export default class App extends Component {
           <div className="todayFood">
             <TodayFood
               foods={this.state.foods}
+              updateTodayFoodQuantity = {this.updateTodayFoodQuantity}
             />
           </div>
 

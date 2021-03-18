@@ -10,7 +10,9 @@ export default class TodayFood extends Component {
                     {
                         this.props.foods.map(
                             (food,index) => food.quantity > 0 ?
-                                <div key={index}>{food.quantity} {food.name} = {food.quantity*food.calories} cal</div> :
+                                <div className="chooseFood" key={index}>
+                                    <div>{food.quantity} {food.name} = {food.quantity*food.calories} cal</div>
+                                    <button className="button is-info" onClick={() => this.props.updateTodayFoodQuantity(food.name, 0)}>-</button></div> :
                                 ""
                         )
                     }

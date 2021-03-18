@@ -15,7 +15,7 @@ export default class FoodBox extends Component {
     }
 
     updateQuantity = event => {
-        this.setState({quantity: event.target.value})
+        this.setState({quantity: Math.max(event.target.value, 0)})
     }
  
     render() {

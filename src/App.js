@@ -34,6 +34,11 @@ class App extends Component {
       this.setState({ todaysFood: [...this.state.todaysFood, food] });
     }
   };
+  deleteItem = (index) => {
+    let newTodaysFood = [...this.state.todaysFood];
+    newTodaysFood.splice(index,1);
+    this.setState({todaysFood: newTodaysFood});
+  };
   render() {
     return (
       <div className="App">
@@ -63,7 +68,7 @@ class App extends Component {
           </div>
           <div className="column">
             {this.state.formRendered || (
-              <TodaysFoods list={this.state.todaysFood} />
+              <TodaysFoods list={this.state.todaysFood} deleteItem={this.deleteItem} />
             )}
           </div>
         </div>

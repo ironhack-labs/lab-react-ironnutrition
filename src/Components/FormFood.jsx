@@ -5,11 +5,22 @@ class FormFood extends Component {
     name: '',
     calories: '',
     image: '',
+    isDisplayed: false,
   };
+
+  toggleForm = () => {
+    this.setState({
+        isDisplayed: !this.state.isDisplayed
+    })
+  }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.props.addFood(this.state)
+    this.props.addFood({
+        name: this.state.name,
+        calories: this.state.calories,
+        image: this.state.image,   //I'M NOT SENDING THE "isDisplayed" KEY, SO WE DESTRUCTURE WITH WHAT WE SEND
+    })
 
     this.setState({
       name: '',
@@ -19,62 +30,74 @@ class FormFood extends Component {
     
   };
 
-  handleNameSubmit = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
-  };
+  handleInput = (event) => {
+      this.setState({[event.target.name]: event.target.value})
+  }
 
-  handleCaloriesSubmit = (event) => {
-    this.setState({
-      calories: event.target.value,
-    });
-  };
+//   handleNameSubmit = (event) => {
+//     this.setState({
+//       name: event.target.value,
+//     });
+//   };
 
-  handleImageSubmit = (event) => {
-    this.setState({
-      image: event.target.value,
-    });
-  };
+//   handleCaloriesSubmit = (event) => {
+//     this.setState({
+//       calories: event.target.value,
+//     });
+//   };
+
+//   handleImageSubmit = (event) => {
+//     this.setState({
+//       image: event.target.value,
+//     });
+//   };
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <div>
-          <label htmlFor="name">Name</label> <br />
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={this.state.name}
-            onChange={(event) => this.handleNameSubmit(event)}
-          />
-        </div>
+      <div>
+        <button onClick={this.toggleForm}> Add New Food </button>
+        {this.state.isDisplayed && (
+          <form onSubmit={this.handleFormSubmit}>
+            <div>
+              <label htmlFor="name">Name</label> <br />
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={this.state.name}
+                onChange={this.handleInput}
+                //   onChange={(event) => this.handleNameSubmit(event)}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="calories">Number of Calories</label> <br />
-          <input
-            type="number"
-            name="calories"
-            id="calories"
-            value={this.state.calories}
-            onChange={(event) => this.handleCaloriesSubmit(event)}
-          />
-        </div>
+            <div>
+              <label htmlFor="calories">Number of Calories</label> <br />
+              <input
+                type="number"
+                name="calories"
+                id="calories"
+                value={this.state.calories}
+                onChange={this.handleInput}
+                //   onChange={(event) => this.handleCaloriesSubmit(event)}
+              />
+            </div>
 
-        <div>
-          <label htmlFor="image">Image</label> <br />
-          <input
-            type="text"
-            name="image"
-            id="image"
-            value={this.state.image}
-            onChange={(event) => this.handleImageSubmit(event)}
-          />
-        </div>
+            <div>
+              <label htmlFor="image">Image</label> <br />
+              <input
+                type="text"
+                name="image"
+                id="image"
+                value={this.state.image}
+                onChange={this.handleInput}
+                //   onChange={(event) => this.handleImageSubmit(event)}
+              />
+            </div>
 
-        <button>Submit</button>
-      </form>
+            <button>Submit</button>
+          </form>
+        )}
+      </div>
     );
   }
 }

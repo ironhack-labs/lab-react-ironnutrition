@@ -13,20 +13,25 @@ class App extends React.Component {
   }
 
   addFoodHandler = (newFood) => {
-    const foodsCopy = [...this.state.foods]
-    foodsCopy.push(newFood)    
 
-    this.setState({
-      foods: foodsCopy
-    })
-    console.log(foodsCopy);
+    this.setState({foods: [newFood, ...this.state.foods]})
+    // const foodsCopy = [...this.state.foods]
+    // foodsCopy.push(newFood)    
+
+    // this.setState({
+    //   foods: foodsCopy
+    // })
+    // console.log(foodsCopy);
   }
 
   render() {
     return (
       <div className="App">
-        <FormFood addFood = {this.addFoodHandler}/>
-        <FoodBox />
+        <FormFood addFood={this.addFoodHandler}/>
+      
+      {this.state.foods.map((foodData, i)=>(
+        <FoodBox key={i} food={foodData}/>
+      ))}  
       </div>
     );
   }

@@ -4,30 +4,27 @@ import foods from '../foods.json'
 
 class FoodBox extends Component {
 
-    state = {
-        foods: foods
-    }
 
     render() {
 
        
         return (
           <div className="box">
-            <button> Add New Food </button>
             
-            {this.state.foods.map((food, i) => {
-              return (
-                <article key={i} className="media">
+            
+            
+              
+                <article className="media">
                   <div className="media-left">
                     <figure className="image is-64x64">
-                      <img src={food.image} />
+                      <img src={this.props.food.image} />
                     </figure>
                   </div>
                   <div className="media-content">
                     <div className="content">
                       <p>
-                        <strong>{food.name}</strong> <br />
-                        <small>{food.calories}cal</small>
+                        <strong>{this.props.food.name}</strong> <br />
+                        <small>{this.props.food.calories}cal</small>
                       </p>
                     </div>
                   </div>
@@ -42,8 +39,8 @@ class FoodBox extends Component {
                     </div>
                   </div>
                 </article>
-              );
-            })}
+              
+            
           </div>
         );
     }

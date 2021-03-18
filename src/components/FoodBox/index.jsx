@@ -1,7 +1,7 @@
 import 'bulma/css/bulma.css';
 import React from 'react'
 
-const FoodBox = ({food}) => {
+const FoodBox = ({food, handleAddChoice, handleQuantityChange}) => {
   return (
     <div className="box">
       <article className="media">
@@ -21,10 +21,10 @@ const FoodBox = ({food}) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" defaultValue={food.quantity} />
+              <input className="input" type="number" value={food.quantity} onChange={(e) =>handleQuantityChange(e,food.name)}/>
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button onClick={()=>handleAddChoice(food)} className="button is-info">+</button>
             </div>
           </div>
         </div>

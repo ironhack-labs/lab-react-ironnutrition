@@ -17,6 +17,8 @@ export class FoodBox extends Component {
   //     this.props.createTotal(this.state);
   //   };
 
+  addFoodHandler = (newFood) => {};
+
   render() {
     const { name, calories, image, quantity } = this.props;
     return (

@@ -14,7 +14,6 @@ class Form extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`this.state.name`, this.state.name);
     this.props.addFood({
       name: this.state.name,
       calories: this.state.calories,

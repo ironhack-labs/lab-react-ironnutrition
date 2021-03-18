@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bulma/css/bulma.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import './App.css';
+import Foodbox from './components/Foodbox';
+import FormFood from './components/FormFood';
+import foodsJSON from './foods.json';
+
+class App extends React.Component {
+
+  state = {
+    foods: foodsJSON,
+  };
+
+  addFood = (aValueFromChild) => {
+    console.log(aValueFromChild, "again from parent");
+
+    this.setState({ foods: [aValueFromChild, ...this.state.foods] });
+  };
+  render() {
+    return (
+    <div >
+      <Foodbox foods={this.state.foods}/>
+      <FormFood addFood={this.addFood}/>
     </div>
   );
+  }
 }
 
 export default App;

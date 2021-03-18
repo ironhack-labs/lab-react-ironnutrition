@@ -8,7 +8,7 @@ const FoodBox = ({food }) => {
 <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={image} alt={image} />
+        <img src={image} alt={name} />
       </figure>
     </div>
     <div className="media-content">

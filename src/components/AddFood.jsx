@@ -5,7 +5,7 @@ export default class AddFood extends Component {
     formVisible: false,
       name: '',
       image: '',
-      calories: 0
+      calories: 0,
   };
 
   handleClick = () => {
@@ -32,6 +32,10 @@ export default class AddFood extends Component {
         calories: 0
       })
       this.handleClick()
+  }
+
+  liftValue = () => {
+
   }
 
   render() {

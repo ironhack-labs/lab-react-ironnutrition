@@ -7,17 +7,22 @@ import AddFood from './components/AddFood'
 class App extends React.Component {
   state = {
     foods: foodsjson,
+    filterText: ''
   };
 
   add = (food) => {
     this.setState({foods: [food, ...this.state.foods]})
   }
 
+
   render() {
+
+    const filteredProducts = this.state.foods.filter(product => product.name.includes(this.state.filterText))
+
     return (
       <div className="App">
         <div>
-          {this.state.foods.map((food) => (
+          {filteredProducts.map((food) => (
             <FoodBox food={food} />
           ))}
         </div>

@@ -1,38 +1,35 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App,
+.AddFood {
+  margin: 30px auto;
+  width: 1000px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.AddFood input, button{
+  margin: 10px;
+  height: 30px
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SearchBar {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+.SearchBar input{
+  flex-grow: 1;
+  height: 30px;
+}
+
+section {
+  display: flex;
+}
+
+.TodayFood {
+  margin-left: 20px;
+}
+.TodayFood h1 {
+  font-size: 2rem;
+  font-weight: bold;
 }

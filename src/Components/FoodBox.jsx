@@ -5,38 +5,34 @@ export class FoodBox extends Component {
 
 // state = {
 //     food: foodsJSON,
+// isDisplayed: false
 // }
 
-handleDisplayForm = (event) => {
-const value = event.target.value
-};
+
 
 
     render() {
         return (
             <div>
-                <button onClick={this.handleDisplayForm}>Create new nomnomfood</button>
-                {this.props.foods.map((food, index) => 
-                (
                 <div className="box">
                     <article className="media">
                         <div className="media-left">
                             <figure className="image is-64x64">
-                                <img src={food.image} />
+                                <img src={this.props.foods.image} />
                             </figure>
                         </div>
                         <div className="media-content">
                             <div className="content">
                                 <p>
-                                    <strong>{food.name}</strong> <br />
-                                    <small>{food.calories}</small>
+                                    <strong>{this.props.foods.name}</strong> <br />
+                                    <small>{this.props.foods.calories}</small>
                                 </p>
                             </div>
                         </div>
                         <div className="media-right">
                             <div className="field has-addons">
                                 <div className="control">
-                                    <input className="input" type="number" value={food.quantity}/>
+                                    <input className="input" type="number"/>
                                 </div>
                                 <div className="control">
                                     <button className="button is-info">
@@ -46,9 +42,6 @@ const value = event.target.value
                         </div>
                     </article>
                 </div>
-                )
-
-                )}
             </div>
         )
     }

@@ -8,16 +8,26 @@ import FoodForm from './Components/FoodForm';
 export class App extends Component {
 
   state = {
-    foods: [...foodsJSON],
+    foods: foodsJSON,
   }
 
-
+  addFoodHandler = (newFood) => {
+    this.setState({
+      foods:
+        [newFood, ...this.state.foods]
+    })
+  }
 
   render() {
     return (
       <div>
-         <FoodBox foods={this.state.foods}/>
-         <FoodForm/>
+        <FoodForm addFood={this.addFoodHandler} />
+
+        { this.state.foods.map((item, index) => (
+          <FoodBox key={index} foods={item} />
+        ))}
+
+
       </div>
     )
   }

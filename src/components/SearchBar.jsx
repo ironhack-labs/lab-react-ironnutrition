@@ -1,26 +1,19 @@
-import React, { Component } from 'react'
-import 'bulma/css/bulma.css';
+import React from 'react'
 
+export default function searchBar({searchInput, updateInput}) {
 
-export default class SearchBar extends Component {
-
-    searchPizza = event => {
-        this.props.updateInput(event.target.value)
-    }
-
-    render() {
-        return (
-            <div>
-                <input 
-                    className="input" 
-                    type="text" 
-                    name="searchBar" 
-                    id="searchBar" 
-                    placeholder="Pizza"
-                    onChange={this.searchPizza}
-                    value={this.props.searchInput}
-                />
-            </div>
-        )
-    }
+    return (
+        <div>
+            <input 
+                className="input" 
+                type="text" 
+                name="searchBar" 
+                id="searchBar" 
+                placeholder="Pizza"
+                onChange={event => updateInput(event.target.value)}
+                value={searchInput}
+            />
+        </div>
+    )
 }
+

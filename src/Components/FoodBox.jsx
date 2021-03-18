@@ -11,7 +11,7 @@ export class FoodBox extends Component {
         this.props.getFood({
             name: this.props.food.name,
             calories: this.props.food.calories,
-            quantity: this.state.quantity
+            quantity: Number(this.state.quantity)
         })
     }
     render() {

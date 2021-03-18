@@ -3,10 +3,10 @@ import React from 'react'
 const TodaysFoods = (props) => {
     return (
         <div>
-                <h3>Today's food</h3>
+                <h2><strong>Today's food</strong></h2>
                 <ul>
                     {props.list.map((food,i) => 
-                    <li key={i}>{food.quantity} {food.name} {food.calories * food.quantity}</li> 
+                    <li key={i}>{food.quantity} {food.name} = {food.calories * food.quantity} calories</li> 
                     )}
                 </ul>
                 <p>Total: {props.list.reduce((acc,food) => acc+food.quantity*food.calories,0)} calories</p>

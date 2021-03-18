@@ -1,0 +1,8 @@
+.main-content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.TodayFood {
+    margin-left: 20px;
+}

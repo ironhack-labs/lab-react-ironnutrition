@@ -30,7 +30,14 @@ export class addForm extends Component {
           quantity: this.state.quantity
         })
         console.log("Inside Form > ", this.state);
-    }
+
+        this.setState({ 
+            name: "",
+            calories: 0,
+            image: "",
+            quantity: 0
+          })
+    }      
 
 
     render() {
@@ -38,12 +45,13 @@ export class addForm extends Component {
 
         return (
           <div className="AddFood">
-            <button onClick={this.displayMenu}> Add Pizza </button>
+            <button onClick={this.displayMenu}> Add Product </button>
 
             {this.state.isVisible && 
               <form onSubmit={this.submitFood} >
                 <label htmlFor="name">Name</label>
                 <input
+                  required
                   type="text"
                   id="name"
                   name="name"
@@ -53,6 +61,7 @@ export class addForm extends Component {
 
                 <label htmlFor="calories">Calories</label>
                 <input
+                  min="0"
                   type="number"
                   id="calories"
                   name="calories"
@@ -71,6 +80,7 @@ export class addForm extends Component {
 
                 <label htmlFor="quantity">Quantity</label>
                 <input
+                  min="0"
                   type="number"
                   id="quantity"
                   name="quantity"

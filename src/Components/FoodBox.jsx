@@ -6,31 +6,29 @@ export class FoodBox extends Component {
     
     state = {
         quantity: 0,
-        isClicked: false
     }
 
     changeQuantity = (event) => {
-        this.setState({quantity: event.target.value})
-        this.props.addQuantity(this.props.foodElement.name, this.state.quantity)
+        this.setState({quantity: event.target.value}, () => {
+            this.props.addQuantity(this.props.food.name, this.state.quantity)
+        })
+        
     }
 
     addTodayFood = () => {
-        if (!this.state.isClicked) {
-            this.setState({isClicked: true})
             this.props.addToList(
                 {   
-                    name: this.props.foodElement.name,
-                    calories: this.props.foodElement.calories,
-                    quantity: this.props.foodElement.quantity
+                    name: this.props.food.name,
+                    calories: this.props.food.calories,
+                    quantity: this.props.food.quantity
                 }
             )
         }
-        
-    }
     
-    
+
+
     render() {
-        const {name, calories, image, quantity} = this.props.foodElement;
+        const {name, calories, image, quantity} = this.props.food;
         return (
             <div className="box">
                 <article className="media">
@@ -50,7 +48,7 @@ export class FoodBox extends Component {
                     <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                        <input className="input" type="number" value={this.state.quantity }onChange={this.changeQuantity} />
+                        <input className="input" type="number" value={quantity} onChange={this.changeQuantity} />
                         </div>
                         <div className="control">
                         <button onClick={this.addTodayFood} className="button is-info">

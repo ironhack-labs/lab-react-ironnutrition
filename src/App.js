@@ -14,12 +14,13 @@ export class App extends Component {
   state = {
     foods: foodsJSON,
     search: "",
-    selectItems: []
+    selectItems: [],
   }
   
   addFood = (newFood) => {
     this.setState({foods: [newFood, ...this.state.foods]})
   }
+
   addQuantity = (product, newQuantity) => {
     const updatedArr = [... this.state.foods]
     updatedArr.forEach(food => {
@@ -27,6 +28,7 @@ export class App extends Component {
         food.quantity = newQuantity;
       }
     })
+    this.setState({foods: updatedArr})
   }
 
   stockSearchVal = (searchValue) => {
@@ -34,29 +36,43 @@ export class App extends Component {
   }
   
   addToList = (item) => {
-    this.setState({selectItems: [item, ...this.state.selectItems]})
-    
-    //console.log(this.state.selectItems)
-    
+    const updatedArr = [...this.state.selectItems]
+    if (updatedArr.length === 0) {
+      
+      this.setState({selectItems: [item, ...updatedArr] }, () => console.log(this.state.selectItems))
+    } else if (updatedArr.every(food => food.name !== item.name)){
+      updatedArr.push(item)
+      this.setState({selectItems: updatedArr })
+    }
+  
   }
 
   render() {
-    const {foods, search, selectItems} = this.state
+    const {foods, search, selectItems, totalCalories} = this.state
     const filteredFood = foods.filter(food => food.name.match(new RegExp ("^" + search, "i")))
 
     return (
       <div className="App">
         <AddForm addFood={this.addFood} />
-        <SearchBar search={search} stockSearchVal={this.stockSearchVal}/>
+        <SearchBar search={search} stockSearchVal={this.stockSearchVal} />
         <section>
           <div>
-            {filteredFood.map(food => <FoodBox addQuantity={this.addQuantity} addToList={this.addToList} foodElement={food} />)}
+            {filteredFood.map((food) => (
+              <FoodBox
+                key={food.name}
+                addQuantity={this.addQuantity}
+                addToList={this.addToList}
+                calculateCalories={this.calculateCalories}
+                food={food}
+              />
+            ))}
           </div>
-          <TodayFood selectItems={selectItems} />
+          <TodayFood 
+            selectItems={selectItems}
+            totalCalories={totalCalories} />
         </section>
-        
       </div>
-    )
+    );
   }
 }
 

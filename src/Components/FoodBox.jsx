@@ -13,13 +13,10 @@ class FoodBox extends Component {
     return (
       <div>
         <div>
-          <h1 style={{ fontWeight: 'bold', fontSize: '30px' }}>
+          {/* <h1 style={{ fontWeight: 'bold', fontSize: '30px' }}>
             IronNutrition
-          </h1>
-
-          {/* <button onClick={this.state.handleSubmit}> Add Food </button> */}
+          </h1> */}
         </div>
-        {/* {this.state.food.map((food) => ( */}
         <div className="box">
           <article className="media">
             <div className="media-left">
@@ -51,7 +48,7 @@ class FoodBox extends Component {
             </div>
           </article>
         </div>
-        {/* ))} */};
+        {/* ))} */}
       </div>
     );
   }

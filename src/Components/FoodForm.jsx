@@ -1,34 +1,79 @@
 import React, { Component } from 'react';
 
-export class FoodForm extends Component {
+class FoodForm extends Component {
   state = {
-    image: '',
     name: '',
     calories: '',
+    image: '',
+    isDisplayed: false,
   };
 
   handleSubmit = (event) => {
-    event.preventDefault();
+    event.PreventDefault();
     this.props.addFood({
-      image: this.state.image,
       name: this.state.name,
       calories: this.state.calories,
+      image: this.state.images,
+    });
+
+    this.setState({
+      name: '',
+      calories: '',
+      image: '',
     });
   };
 
-  handleChange = (event) =>{
-      const value =event.target.value;
-      const name = event.target.name;
-      this.setState({
-          [name]:value,
-      })
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  toggleForm = () => {
+    this.setState({
+      isDisplayed: !this.state.isDisplayed,
+    });
   };
 
   render() {
-    return;
-    <form onSubmit={this.handleSubmit}>
-        <div></div>
-    </form>;
+    return (
+      <div>
+        <button onClick={this.toggleForm}> Add new Meal</button>
+        {this.state.isDisplayed && (
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <label htmlFor="Name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="calories">Calories</label>
+              <input
+                type="text"
+                name="calories"
+                id="calories"
+                value={this.state.calories}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="img">Image</label>
+              <input
+                type="text"
+                name="images"
+                id="img"
+                value={this.state.image}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button>ADD</button>
+          </form>
+        )}
+      </div>
+    );
   }
 }
 

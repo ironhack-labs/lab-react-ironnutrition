@@ -12,7 +12,7 @@ class App extends React.Component {
   };
 
   handleMeals = (newMeal) => {
-    this.setState({ meals: [newMeal, ...this.state.meals] });
+    this.setState({ foods: [newMeal, ...this.state.foods] });
     console.log(newMeal);
   };
 
@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Hello Fellow Kids </h1>
-        <Form addFood={this.handleMeals} />
+        <Form handleMeals={this.handleMeals} />
         {this.state.foods.map((food, index) => (
           <Foodies key={index} food={food} />
         ))}

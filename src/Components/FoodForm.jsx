@@ -9,22 +9,24 @@ class FoodForm extends Component {
   };
 
   handleSubmit = (event) => {
-    event.PreventDefault();
-    this.props.addFood({
-      name: this.state.name,
-      calories: this.state.calories,
-      image: this.state.images,
+    event.preventDefault();
+    const { name, image, calories} = this.state;
+    this.props.handleMeals({
+      name : name,
+      image: image,
+      calories: calories
     });
 
     this.setState({
-      name: '',
-      calories: '',
-      image: '',
-    });
+      name:"",
+      image: "",
+      calories: 0
+    })
   };
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    console.log(event.target.value)
   };
 
   toggleForm = () => {

@@ -12,6 +12,7 @@ import React, { PureComponent } from 'react';
 export class App extends PureComponent {
   state = {
     listOfFood: foodsJSON,
+    searchValue: ''
   };
 
   addFood = (newFood) => {
@@ -20,10 +21,17 @@ export class App extends PureComponent {
     this.setState({ listOfFood: [newFood, ...this.state.listOfFood] });
   };
 
-  render() {
+  handleSearch = (_, value) => {
+    this.setState({ searchValue: value });
+  };
+
+  render(){
     return (
       <div className="App">
-        <Search/>
+        <Search
+          handleSearch={this.handleSearch}
+          searchValue={this.state.searchValue}
+        />
         {this.state.listOfFood.map((food, i) => (
           <FoodBox key={i} foods={food} />
         ))}

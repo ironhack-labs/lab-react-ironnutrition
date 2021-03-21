@@ -6,14 +6,10 @@ export class FoodBox extends PureComponent {
   //   displayed: false,
   // };
 
-
-
   render() {
     return (
       <div className="box">
-        
         <div>
-        
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
@@ -32,6 +28,7 @@ export class FoodBox extends PureComponent {
               <div className="field has-addons">
                 <div className="control">
                   <input
+                    // onChange=""
                     className="input"
                     type="number"
                     value={this.props.foods.quantity}
@@ -43,7 +40,6 @@ export class FoodBox extends PureComponent {
               </div>
             </div>
           </article>
-        
         </div>
       </div>
     );

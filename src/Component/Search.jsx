@@ -1,13 +1,18 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 
-export class Search extends PureComponent {
-    render() {
-        return (
-            <div>
-                <input placeholder="Search" type="text"></input>
-            </div>
-        )
-    }
-}
+const Search = (props) => {
+  const { searchValue, handleSearch } = props;
 
-export default Search
+  return (
+    <div>
+      <input 
+      placeholder="Search" 
+      type="text"
+      value={searchValue}
+      onChange={(event) => handleSearch(event, event.target.value)}
+      />
+    </div>
+  );
+};
+
+export default Search;

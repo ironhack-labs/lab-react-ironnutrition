@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import FoodBox from './Component/FoodBox';
 import FoodForm from './Component/FoodForm';
+import Search from './Component/Search';
 import 'bulma/css/bulma.css';
 import foodsJSON from './foods.json';
 
@@ -13,8 +14,6 @@ export class App extends PureComponent {
     listOfFood: foodsJSON,
   };
 
-  
-
   addFood = (newFood) => {
     // console.log(listOfFood)
     // console.log(aValueFromChild, "again from parent");
@@ -24,14 +23,12 @@ export class App extends PureComponent {
   render() {
     return (
       <div className="App">
-
-        <FoodForm addFood={this.addFood}  />
-      
+        <Search/>
         {this.state.listOfFood.map((food, i) => (
-          <FoodBox key={i} foods={food}  />
+          <FoodBox key={i} foods={food} />
         ))}
-        
-        
+
+        <FoodForm addFood={this.addFood} />
       </div>
     );
   }

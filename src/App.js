@@ -13,7 +13,10 @@ export class App extends PureComponent {
     listOfFood: foodsJSON,
   };
 
+  
+
   addFood = (newFood) => {
+    // console.log(listOfFood)
     // console.log(aValueFromChild, "again from parent");
     this.setState({ listOfFood: [newFood, ...this.state.listOfFood] });
   };
@@ -21,8 +24,14 @@ export class App extends PureComponent {
   render() {
     return (
       <div className="App">
-        <FoodBox  listOfFood={this.state.listOfFood}  />
+
         <FoodForm addFood={this.addFood}  />
+      
+        {this.state.listOfFood.map((food, i) => (
+          <FoodBox key={i} foods={food}  />
+        ))}
+        
+        
       </div>
     );
   }

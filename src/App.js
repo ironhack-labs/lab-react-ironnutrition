@@ -16,10 +16,6 @@ class App extends React.Component {
     this.setState({foods: [newFood, ...this.state.foods]})
     // const foodsCopy = [...this.state.foods];
     // foodsCopy.push(newFood);
-
-    // this.setState({
-    //   foods: foodsCopy,
-    // });
   };
 
   render() {
@@ -28,7 +24,7 @@ class App extends React.Component {
         <h1>IronNutrition</h1>
         <AddFood foods={this.state.foods} />
         {this.state.foods.map((food, i) => {
-          return(<FoodBox key={i} food={food}/>)
+          return(<FoodBox key={i} foods={food}/>)
         })}
       </div>
     );

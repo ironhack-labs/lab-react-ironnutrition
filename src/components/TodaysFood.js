@@ -4,10 +4,9 @@ const TodaysFood = ({foods}) => {
     
     let filteredFood = foods.filter(food => {
         return food.added === true
-        //console.log(food)
     })
     
-    console.log(filteredFood)
+
     let totalCal;
 
     if (filteredFood.length > 0) {
@@ -16,10 +15,9 @@ const TodaysFood = ({foods}) => {
         totalCal = 0;
     }
 
-    console.log('totalCal', totalCal)
-
     return (
         <div>
+        <div>Total Calories: <b>{totalCal}</b></div>
         {
             filteredFood.map(food => {
                 return (
@@ -30,7 +28,6 @@ const TodaysFood = ({foods}) => {
                 )
             })
         }
-        <div>Cal: {totalCal}</div>
         </div>
     )
 }

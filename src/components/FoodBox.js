@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 
 const FoodBox = ({ image, name, calories, quantity, addFood }) => {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       quantity: this.props.quantity
-    //     };
-    //   }
     return (
         <div className="box">
             <article className="media">
@@ -26,7 +20,7 @@ const FoodBox = ({ image, name, calories, quantity, addFood }) => {
                 <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                        <input className="input" type="number" value={quantity} />
+                        <input className="input" type="number" value={quantity} onChange={(e) => console.log('event', e.target.value)}/>
                     </div>
                     <div className="control">
                         <button className="button is-info" onClick={() => addFood(name)}>+</button>

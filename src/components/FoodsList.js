@@ -7,7 +7,8 @@ import uuid from 'react-uuid';
 class FoodsList extends Component {
     state = {
         foods: [...foods],
-        searchInput: ''
+        searchInput: '',
+        filtered: []
     }
 
     increaseQuantity = (name) => {
@@ -20,21 +21,21 @@ class FoodsList extends Component {
 
     handleInputSearch = (event) => {
         this.setState({searchInput: event.target.value})
-        let searchedFoods = this.state.foods.filter(food => {
-            console.log('event.target.name', event.target.value)
-            return food.name.includes(event.target.value)
-        })
+        let searchedFoods = this.state.foods.filter(food => food.name.includes(event.target.value))
         this.setState({
-            foods: searchedFoods
+            filtered: searchedFoods
         })
+        // return searchedFoods
+        console.log(this.state.filtered)
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({
-            foods: [...foods],
+            foods: [...foods]
         })
     }
+
 
     render () {
         const allFoods = this.state.foods
@@ -48,14 +49,17 @@ class FoodsList extends Component {
                     <TodaysFood foods={allFoods}/>
                     <button className="button is-success mt-2">Submit</button>
                 </form>
-                {
+                {   
                     allFoods.map((food, idx) => {
                         return <FoodBox
                             key={uuid()} 
                             {...food}
                             addFood={() => this.increaseQuantity(food.name)}
                         />
-                    })
+                    }) 
+                }
+                {
+                    
                 }
             </div>
         )

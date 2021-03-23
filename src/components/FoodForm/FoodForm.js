@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './FoodForm.css'
 
-
  class FoodForm extends Component {
     state = {
         showForm: false,
@@ -27,8 +26,7 @@ import './FoodForm.css'
      
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.newFood.name)
-        console.log(this.state.newFood.calories)
+        console.log(this.state.newFood)
     }
 
     render() {

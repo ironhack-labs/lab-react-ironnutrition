@@ -7,6 +7,7 @@ import uuid from 'react-uuid';
 class FoodsList extends Component {
     state = {
         foods: [...foods],
+        searchInput: ''
     }
 
     increaseQuantity = (name) => {
@@ -17,14 +18,21 @@ class FoodsList extends Component {
         }));
     }
 
-    // handleInputChange = (e) => {
-    //     this.setState({searchInput: e.target.value})
-    // }
+    handleInputSearch = (event) => {
+        this.setState({searchInput: event.target.value})
+        let searchedFoods = this.state.foods.filter(food => {
+            console.log('event.target.name', event.target.value)
+            return food.name.includes(event.target.value)
+        })
+        this.setState({
+            foods: searchedFoods
+        })
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({
-            foods: [...foods]
+            foods: [...foods],
         })
     }
 
@@ -33,7 +41,10 @@ class FoodsList extends Component {
 
         return (
             <div className='FoodList'>
-                <form className="p-5 mb-2" onSubmit={this.handleSubmit}>
+                {/* <form className="m-5">
+                </form> */}
+                <form className="p-3 m-3" onSubmit={this.handleSubmit}>
+                    <input className="input mb-2" value={this.state.searchInput} type="search" onChange={(e) => this.handleInputSearch(e)}/>
                     <TodaysFood foods={allFoods}/>
                     <button className="button is-success mt-2">Submit</button>
                 </form>

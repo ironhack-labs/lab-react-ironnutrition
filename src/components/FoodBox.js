@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const FoodBox = ({ image, name, calories, quantity, addFood }) => {
+
     return (
         <div className="box">
             <article className="media">

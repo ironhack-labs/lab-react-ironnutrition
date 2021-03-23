@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 
 const TodaysFood = ({foods}) => {
     
@@ -19,9 +20,9 @@ const TodaysFood = ({foods}) => {
         <div>
         <div>Total Calories: <b>{totalCal}</b></div>
         {
-            filteredFood.map(food => {
+            filteredFood.map((food, idx) => {
                 return (
-                <div>
+                <div key={uuid()}>
                     <h1>{food.name}</h1>
                     <h2>{food.calories}</h2>
                 </div>

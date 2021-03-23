@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FoodBox from './FoodBox.js';
 import TodaysFood from './TodaysFood';
 import foods from '../foods.json';
+import uuid from 'react-uuid';
 
 class FoodsList extends Component {
     state = {
@@ -16,9 +17,9 @@ class FoodsList extends Component {
         }));
     }
 
-    handleInputChange = (e) => {
-        this.setState({searchInput: e.target.value})
-    }
+    // handleInputChange = (e) => {
+    //     this.setState({searchInput: e.target.value})
+    // }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -39,7 +40,7 @@ class FoodsList extends Component {
                 {
                     allFoods.map((food, idx) => {
                         return <FoodBox
-                            key={idx} 
+                            key={uuid()} 
                             {...food}
                             addFood={() => this.increaseQuantity(food.name)}
                         />

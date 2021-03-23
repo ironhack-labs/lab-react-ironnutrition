@@ -1,11 +1,19 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.header__container{
+  text-align: center;
+  margin: 50px;
+  padding: 20px;
+  background-color: #7bcf27;
+}
+
+.header__container > h1{
+  font-size: large;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

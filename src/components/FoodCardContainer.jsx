@@ -22,7 +22,7 @@ class FoodCardContainer extends Component{
     filterFoods = () => {
         let foods = [...this.state.foods]
         if (this.state.search) {
-            foods = this.state.foods.filter(({ name }) => name.toLowerCase().includes(this.state.search))
+            foods = this.state.foods.filter(({ name }) => name.toLowerCase().includes(this.state.search.toLowerCase()))
         }
         return foods
     }

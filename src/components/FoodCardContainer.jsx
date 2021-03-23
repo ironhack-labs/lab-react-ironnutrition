@@ -3,6 +3,7 @@ import data from '../data/foods.json'
 
 //components
 import FoodCard from './FoodCard'
+import AddFood from './AddFood'
 
 //assets
 import '../assets/FoodCardContainer.css'
@@ -26,15 +27,25 @@ class FoodCardContainer extends Component{
         }
         return foods
     }
-  
 
+    addFoodHandler = (newFood) =>{
+        const foodsCopy = [...this.state.foods]
+        foodsCopy.push(newFood)
+        
+        this.setState({
+          foods: foodsCopy
+        })
+    }
+  
 
     render(){
 
         const foods = this.filterFoods()
 
         return(
+            
             <div className="food__card__container container">
+                <AddFood addTheFood={this.addFoodHandler}/>
 
                 <div className="row">
                     <input placeholder="Search" type="text" className="form-control search-bar" onChange={this.onSearch}/>

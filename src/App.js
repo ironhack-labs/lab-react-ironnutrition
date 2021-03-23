@@ -5,7 +5,7 @@ import './App.css';
 import FoodCardContainer from './components/FoodCardContainer';
 import FoodInfoContainer from './components/FoodInfoContainer';
 import Header from './components/Header'
-import AddFoodButton from './components/AddFoodButon'
+
 
 
 function App() {
@@ -16,7 +16,6 @@ function App() {
         </header>
         <main className="columns">
           <div className="column">
-            <AddFoodButton/>
             <FoodCardContainer/> 
           </div>
           <div className="column">

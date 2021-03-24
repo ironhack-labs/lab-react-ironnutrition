@@ -1,14 +1,18 @@
 import React from 'react';
-import FoodBox from './components/FoodBox'
-// import foods from './foods.json';
+import Search from './components/Search'
+import FoodList from './components/FoodList'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     
-     <FoodBox />
+      <div className="container">
+        <h1 className="title">IronNutrition</h1>
+        <Search />
+        <FoodList />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@ const TodaysFood = ({foods}) => {
     let filteredFood = foods.filter(food => {
         return food.added === true
     })
-    
 
     let totalCal;
 

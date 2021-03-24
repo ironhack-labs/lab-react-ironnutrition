@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 
 class AddFood extends Component {
     state = {
-        foodName: "Add new food",
-        calories: 0,
-        img: ""
+        name: "",
+        calories: "",
+        image: "",
+        quantity: 0,
     }
 
     handleChange = (e) => {
-        let {name, value, type } = e.target;
+        let {name, value } = e.target;
         this.setState({[name]: value})
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.props.createFood(this.state)
+        
         this.setState({
-            foodName: "Add new food",
-            calories: 0,
-            img: ""
+            name: "",
+            calories: "",
+            image: "",
+            quantity: 0,
         })
     }
 
@@ -26,16 +30,10 @@ class AddFood extends Component {
             <div className="box">
             <h2><b>Create New Food</b></h2>
             <form onSubmit={this.handleSubmit}>
-                <label>Food Name</label>
-                <input className="input mb-2" value={this.state.foodName} type="search" onChange={(e) => this.handleChange(e)}/>
-                
-                <label>Number of calories</label>
-                <input className="input mb-2" type="number" onChange={(e) => this.handleChange(e)}/>
-
-                <label>Add picture</label>
-                <input className="input mb-2" type="image" onChange={(e) => this.handleChange(e)}/>
-
-                <button className="button is-primary mt-2">Add new Food</button>
+                <input className="input mb-2" placeholder="Food Name" name="name" value={this.state.name} type="search" onChange={(e) => this.handleChange(e)}/>
+                <input className="input mb-2" placeholder="Number of calories" name="calories" value={this.state.calories} type="number" onChange={(e) => this.handleChange(e)}/>
+                <input className="input mb-2" placeholder="Add image url" name="image" value={this.state.image} type="url" onChange={(e) => this.handleChange(e)}/>
+                <button className="button is-primary mt-2">Add</button>
             </form>
             </div>
         )

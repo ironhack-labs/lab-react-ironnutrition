@@ -21,13 +21,11 @@ class FoodsList extends Component {
     }
 
     handleInputSearch = (event) => {
-        this.setState({searchInput: event.target.value})
-        let searchedFoods = this.state.foods.filter(food => food.name.includes(event.target.value))
+        this.setState({searchInput: event.target.value.toLowerCase()})
+        let searchedFoods = this.state.foods.filter(food => food.name.toLowerCase().includes(event.target.value.toLowerCase()))
         this.setState({
             filtered: searchedFoods
         })
-        // return searchedFoods
-        console.log(this.state.filtered)
     }
 
     handleSubmit = (event) => {
@@ -37,9 +35,19 @@ class FoodsList extends Component {
         })
     }
 
+    createFood = (newFood) => {
+        this.setState({
+            foods: [...this.state.foods, newFood]
+        })
+    }
+
 
     render () {
-        const allFoods = this.state.filtered
+        let allFoods = this.state.foods;
+
+        if (this.state.searchInput !== '') {
+            allFoods = this.state.filtered;
+        }
 
         return (
             <div className='FoodList p-3 m-3'>
@@ -48,7 +56,6 @@ class FoodsList extends Component {
                 <form className="box" onSubmit={this.handleSubmit}>
                     <input className="input mb-2" value={this.state.searchInput} type="search" onChange={(e) => this.handleInputSearch(e)}/>
                     <TodaysFood foods={allFoods}/>
-                    <button className="button is-success mt-2">Submit</button>
                 </form>
                 <h2 className="mb-2"><b>Foods List</b></h2>
                 {   
@@ -60,7 +67,9 @@ class FoodsList extends Component {
                         />
                     }) 
                 }
-                <AddFood />
+                <AddFood 
+                    createFood={this.createFood}
+                />
             </div>
         )
     }

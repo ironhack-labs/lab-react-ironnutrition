@@ -2,10 +2,6 @@ import React from 'react';
 import uuid from 'react-uuid';
 
 const searchedFoods = ({foods}) => {
-    
-    let searchedFoods = foods.filter(food => {
-        return food.name === true
-    })
 
     let totalCal;
 

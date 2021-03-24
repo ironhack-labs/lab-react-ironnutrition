@@ -1,19 +1,20 @@
 import React from 'react'
 
 const FoodBox = (props) => {
+    console.log(props)
             return (
             <div className="box">
                 <article className="media">
                     <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={props.foods[0].image} alt={props.foods[0].name    }/>
+                        <img src={props.image} alt={props.name}/>
                     </figure>
                     </div>
                     <div className="media-content">
                     <div className="content">
                         <p>
-                        <strong>{props.foods[0].name}</strong> <br />
-                        <small>{props.foods[0].calories} cal</small>
+                        <strong>{props.name}</strong> <br />
+                        <small>{props.calories} cal</small>
                         </p>
                     </div>
                     </div>

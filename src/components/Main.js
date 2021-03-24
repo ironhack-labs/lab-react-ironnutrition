@@ -9,10 +9,16 @@ export default class Main extends Component {
         foods: [...foods]
     }
 
+    foods = this.state.foods
+
     render() {
         return (
-            <div className="Main">
-                <FoodBox foods={foods}/>
+            <div>
+                {foods.map(food => (
+                  <div className="FoodBox" key={food.name}>
+                    <FoodBox {...food} />
+                  </div>
+                ))}
             </div>
         )
     }

@@ -26,7 +26,8 @@ import './FoodForm.css'
      
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.newFood)
+        this.props.addFood(this.state.newFood)
+        
     }
 
     render() {

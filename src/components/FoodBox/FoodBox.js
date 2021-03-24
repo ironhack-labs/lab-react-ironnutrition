@@ -21,8 +21,8 @@ const FoodBox = ({image, name, calories, quantity}) => {
             <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                        <input className="input" type="number" value={quantity} />
-                        {/* DUDA: Como renderizar quantity si FoodBox no es un componente de clase */}
+                        <input className="input" type="number" />
+                        {/* DUDA: Como renderizar quantity si FoodBox no es un componente de clase || onChange={ } value={quantity}*/}
                     </div>
                     <div className="control">
                         <button className="button is-info">

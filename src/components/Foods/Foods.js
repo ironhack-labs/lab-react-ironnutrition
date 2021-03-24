@@ -10,6 +10,11 @@ class Foods extends Component {
         search: ''
     }
 
+    addFood = (newFood) => {
+        //console.log(newFood)
+        this.setState({foods: [newFood, ...this.state.foods]})
+    }
+
     handleSearch = (e) => {
         this.setState({ search : e.target.value})
        //console.log(e.target.value)
@@ -33,10 +38,11 @@ class Foods extends Component {
                     <input onChange={this.handleSearch} value={this.state.search}/>
                 </div>
                 <div className="mb-5 pb-5">
-                    <FoodForm/>
+                    <FoodForm addFood={this.addFood}/>
                 </div>
                 <div className="column">
-                        {this.filteredFood().map((food) => {
+                    {this.state.foods.length &&
+                        this.filteredFood().map((food) => {
                             return (
                             <div className="mb-5 pb-5" key={food.name}>
                                 <Foodbox {...food} />

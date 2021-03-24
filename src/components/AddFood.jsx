@@ -11,17 +11,19 @@ class AddFoodButton extends Component {
       }
 
       handleChange = (event) => {
-        let { name, calories, value } = event.target
+        let { name, calories, image, value } = event.target
         this.setState({[name]: value, [calories]:value})
       }
 
 
     handleFormSubmit = (event)=>{
         event.preventDefault()
-        console.log(event.target.name.value)
-        console.log(event.target.calories.value)
-
         this.props.addTheFood(this.state);
+        this.setState({
+            name: '',
+            calories: '',
+            image: ''
+          })
     }
 
     onSearch = (event) => this.setState({search: event.target.value}) 
@@ -32,7 +34,7 @@ class AddFoodButton extends Component {
                 <form onSubmit={this.handleFormSubmit}>
                     <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleChange}/>
                     <input type="text" name="calories" placeholder="Calories" value={this.state.calories} onChange={this.handleChange}/>
-                    <input type="file" />
+                    <input type="text" name="image" placeholder="Url Image" value={this.state.image} onChange={this.handleChange}/>
                     <button>Add</button>
                 </form>
             </div>

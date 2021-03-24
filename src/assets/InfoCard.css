@@ -1,0 +1,23 @@
+.delete__info {
+    color: red;
+    cursor: pointer;
+}
+
+
+.box__info {
+    padding: 0;
+    min-width: 200px;
+    max-width: 400px;
+    margin: 10px;
+    text-align: left;
+  }
+
+.tr__style{
+  
+    border-top: black solid 1px;
+}
+
+.food_info{
+    min-width: 300px;
+    max-width: 400px;
+}

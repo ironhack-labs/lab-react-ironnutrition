@@ -13,6 +13,10 @@ class FoodCard extends Component{
 
     handleChange = (event) => this.setState({value: event.target.value}) 
 
+    handleClick = () => {
+        this.props.addFoodInfo(this.state)
+    }
+
     render(){
         return(
             <div className="box">
@@ -36,7 +40,7 @@ class FoodCard extends Component{
                                 <input className="input" type="number" value={this.state.value < 0 ? 0 : this.state.value }  onChange={this.handleChange}/>
                             </div>
                             <div className="control">
-                                <button className="button is-info">+</button>
+                                <button className="button is-info" onClick={this.handleClick}>+</button>
                             </div>
                         </div>
                     </div>

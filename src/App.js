@@ -5,9 +5,9 @@ import Foods from './components/Foods/Foods'
 
 function App() {
   return (
-    <div className="App">
-  
-      <Foods />
+    <div className="App container-fluid">
+      <h1>Iron Nutrition</h1>
+        <Foods />
 
     </div>
 

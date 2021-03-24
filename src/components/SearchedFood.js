@@ -6,7 +6,6 @@ const searchedFoods = ({foods}) => {
     let searchedFoods = foods.filter(food => {
         return food.name === true
     })
-    
 
     let totalCal;
 
@@ -20,7 +19,7 @@ const searchedFoods = ({foods}) => {
         <div>
         <div>Total Calories: <b>{totalCal}</b></div>
         {
-            filteredFood.filter((food, idx) => {
+            filteredFood.filter((food) => {
                 return (
                 <div key={uuid()}>
                     <h1>{food.name}</h1>

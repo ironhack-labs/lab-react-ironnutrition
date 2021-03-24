@@ -3,12 +3,13 @@ import FoodBox from './FoodBox.js';
 import TodaysFood from './TodaysFood';
 import foods from '../foods.json';
 import uuid from 'react-uuid';
+import AddFood from './AddFood.js';
 
 class FoodsList extends Component {
     state = {
         foods: [...foods],
         searchInput: '',
-        filtered: []
+        filtered: [...foods]
     }
 
     increaseQuantity = (name) => {
@@ -38,19 +39,20 @@ class FoodsList extends Component {
 
 
     render () {
-        const allFoods = this.state.foods
+        const allFoods = this.state.filtered
 
         return (
-            <div className='FoodList'>
+            <div className='FoodList p-3 m-3'>
                 {/* <form className="m-5">
                 </form> */}
-                <form className="p-3 m-3" onSubmit={this.handleSubmit}>
+                <form className="box" onSubmit={this.handleSubmit}>
                     <input className="input mb-2" value={this.state.searchInput} type="search" onChange={(e) => this.handleInputSearch(e)}/>
                     <TodaysFood foods={allFoods}/>
                     <button className="button is-success mt-2">Submit</button>
                 </form>
+                <h2 className="mb-2"><b>Foods List</b></h2>
                 {   
-                    allFoods.map((food, idx) => {
+                    allFoods.map((food) => {
                         return <FoodBox
                             key={uuid()} 
                             {...food}
@@ -58,9 +60,7 @@ class FoodsList extends Component {
                         />
                     }) 
                 }
-                {
-                    
-                }
+                <AddFood />
             </div>
         )
     }

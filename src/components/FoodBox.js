@@ -1,42 +1,27 @@
 
-import React, { Component } from "react";
+import React from "react";
 
-class FoodBox extends Component  {
-    constructor (props) {
-
-        super(props)
-        this.state = {
-            name: props.name,
-            calories: props.calories,
-            
-        }
-
-    }
-
-
-    render() {
-        console.log(this.state);
-        return (
-
-            <div className="box">
+const FoodBox =({name,calories,image,quantity})=>{
+    return(
+        <div className="box">
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
-                            <img src="https://i.imgur.com/eTmWoAN.png" />
+                            <img src={image} />
                         </figure>
                     </div>
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong>Pizza</strong> <br />
-                                <small>400 cal</small>
+                                <strong>{name}</strong> <br />
+                                <small>{calories} cal</small>
                             </p>
                         </div>
                     </div>
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number" value="1" />
+                                <input className="input" type="number" value={quantity} />
                             </div>
                             <div className="control">
                                 <button className="button is-info">
@@ -47,9 +32,12 @@ class FoodBox extends Component  {
                     </div>
                 </article>
             </div>
-        )
-    }
-}
+
+    )
+}  
+    
+
+   
 
 
 export default FoodBox;

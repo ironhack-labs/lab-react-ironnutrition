@@ -5,7 +5,7 @@ import '../assets/InfoCard.css'
 const InfoCard = ({name, calories, value, onDelete}) => {
 
         return(
-        <table class="table">
+        <table className="table">
             <tbody>
             <tr className="tr__style">
                 <th>{name}  x{value}</th>

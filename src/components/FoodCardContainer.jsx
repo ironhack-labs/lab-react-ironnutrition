@@ -33,7 +33,7 @@ class FoodCardContainer extends Component{
 
     filterFoodsInfo = () => {
         let foodsInfo = [...this.state.foodsInfo]
-        console.log(foodsInfo)
+        //TODO ADD FILTER FOR REPEATED MEALS
         return foodsInfo
     }
 
@@ -47,7 +47,6 @@ class FoodCardContainer extends Component{
     }
 
     addFoodInfo = (newInfo) => {
-        console.log("Add info")
         const infoCopy = [...this.state.foodsInfo]
         infoCopy.push(newInfo)
         
@@ -71,24 +70,23 @@ class FoodCardContainer extends Component{
         return(
             
             <div className="food__card__container container column">
-                <div className="columns">
-                    <div className="column">
+
+    
                         <AddFood addTheFood={this.addFoodHandler}/>
-                        <div className="row">
+                        <div className="">
                             <input placeholder="Search" type="text" className="form-control search-bar" onChange={this.onSearch}/>
                         </div>
-
-                        <div className="row">
-                            {foods.map(food => (
-                                <div className="col" key={uniqid(this.name)}>
-                                    <FoodCard {...food} addFoodInfo={this.addFoodInfo}/>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                        <div className="columns">
+                            <div className="column">
+                                {foods.map(food => (
+                                    <div className="" key={uniqid(this.name)}>
+                                        <FoodCard {...food} addFoodInfo={this.addFoodInfo}/>
+                                    </div>
+                                ))}
+                            </div>
                     <div className="column">
                         <h1>Today's Food</h1>
-                        <div className="row">
+                        <div className="">
                             {foodsInfo.map(info => (
                                 <div className="col food_info" key={uniqid()}>
                                     <InfoCard {...info} onDelete={() => this.deleteItem(info.name)}/>

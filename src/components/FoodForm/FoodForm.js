@@ -26,12 +26,13 @@ import './FoodForm.css'
      
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.newFood)
+        this.props.addFood(this.state.newFood)
+        
     }
 
     render() {
         return (
-            <div className="FoodForm">
+            <div className="FoodForm container-fluid">
                 <button onClick={this.handleDrawForm.bind(this)} className="button">Add Food</button>
                 {
                 this.state.showForm && 
@@ -47,7 +48,6 @@ import './FoodForm.css'
                     <input id="image" name="image" value={this.state.newFood.image} onChange={this.handleChange} />
 
                     <button> Submit</button>
-
                 </form>
                 }
             </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const FoodBox = (props) => {
-    console.log(props)
             return (
             <div className="box">
                 <article className="media">

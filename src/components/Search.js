@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Search extends Component {
-    render() {
-        return (
+const Search = ({handleSearch, search}) => {
+    return (
+        <div>
             <div>
-                <div>
-                    {/* <input type="text" className="input search-bar" name="search" placeholder="Search" onChange='' value="" /> */}
-                </div>
-            </div>)
-    }
+                <input type="text" className="input search-bar" name="search" onChange={handleSearch} value={search} />
+            </div>
+        </div>)
 }
+
+export default Search;
 
 

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import foods from '../foods.json';
 import FoodBox from './FoodBox';
 import AddForm from './AddForm';
-import { v4 as uuidv4 } from 'uuid';
+import Search from './Search'
+
+
 
 // uuidv4();
 
@@ -18,7 +21,20 @@ export default class FoodList extends Component {
         calories: 'Calories',
         image: 'Url image',
         quantity: 0,
-        key: ''
+        key: '',
+        search: ''
+    }
+
+    handleSearch = (e) => {
+        this.setState({ search: e.target.value })
+    }
+
+    filterFoods = () => {
+        if (this.state.search) {
+            return this.state.foods
+            .filter(food => food.name.toLowerCase().includes((this.state.search).toLowerCase()))
+        }
+        return this.state.foods
     }
 
     hideForm = () => {
@@ -57,18 +73,21 @@ export default class FoodList extends Component {
     }
 
     render() {
-        const { foods } = this.state
         const food = this.stateFood()
         return (
             <div className='row'>
                 <div className='col'>
-                    {foods.map((food, i) => {
+                    {this.filterFoods().map((food, i) => {
                         return (
                             <FoodBox {...food} />
                         )
                     })}
                 </div>
                 <div className='col'>
+                    <Search
+                        handleSearch={this.handleSearch}
+                        search={this.state.search}
+                    />
                     {
                         this.state.formOff
                             ? <button onClick={this.hideForm} className='btn btn-outline-success'>Add food</button>

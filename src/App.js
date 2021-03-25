@@ -1,5 +1,4 @@
 import React from 'react';
-import Search from './components/Search'
 import FoodList from './components/FoodList'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -10,7 +9,6 @@ function App() {
     <div className="App">
       <div className="container">
         <h1 className="title">IronNutrition</h1>
-        <Search />
         <FoodList />
       </div>
     </div>

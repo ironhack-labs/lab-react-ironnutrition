@@ -3,7 +3,7 @@ import React from 'react'
 const AddForm = ({ hideForm, addFood, handleChange, food }) => {
     return (
         <div>
-            <button onClick={hideForm}>x</button>
+            <button className='btn btn-outline-dark' onClick={hideForm}>X</button>
             <div className="col-6">
                 <form onSubmit={addFood} >
                     <label htmlFor="inputEmail4">Name</label>
@@ -33,7 +33,7 @@ const AddForm = ({ hideForm, addFood, handleChange, food }) => {
                         onChange={handleChange}
                     />
 
-                    <button type="submit" className="btn btn-primary button">
+                    <button type="submit" className="btn btn-primary button my-4">
                         Fill it!</button>
                 </form>
             </div>

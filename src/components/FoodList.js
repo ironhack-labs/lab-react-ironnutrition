@@ -71,7 +71,7 @@ export default class FoodList extends Component {
                 <div className='col'>
                     {
                         this.state.formOff
-                            ? <button onClick={this.hideForm}>+</button>
+                            ? <button onClick={this.hideForm} className='btn btn-outline-success'>Add food</button>
                             : <AddForm
                                 addFood={this.handleSubmit}
                                 handleChange={this.handleChange}

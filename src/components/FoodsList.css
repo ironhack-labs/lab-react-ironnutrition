@@ -1,0 +1,8 @@
+.allFoods {
+  width: 50%;
+}
+.ui-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}

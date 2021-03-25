@@ -3,77 +3,115 @@ import FoodBox from './FoodBox.js';
 import TodaysFood from './TodaysFood';
 import foods from '../foods.json';
 import uuid from 'react-uuid';
+import './FoodsList.css';
 import AddFood from './AddFood.js';
 
 class FoodsList extends Component {
-    state = {
-        foods: [...foods],
-        searchInput: '',
-        filtered: [...foods]
+  state = {
+    foods: [...foods],
+    search: '',
+  };
+
+  increaseQuantity = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    this.setState((prevState) => ({
+      foods: prevState.foods.map((food) =>
+        food.name === name ? { ...food, added: true } : food
+      ),
+    }));
+  };
+
+  handleInputChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    this.setState((prevState) => ({
+      foods: prevState.foods.map((food) =>
+        food.name === name && !food.added ? { ...food, quantity: value } : food
+      ),
+    }));
+  };
+
+  //   handleInputSearch = (event) => {
+  //     this.setState({ searchInput: event.target.value.toLowerCase() });
+  //     let searchedFoods = this.state.foods.filter((food) =>
+  //       food.name.toLowerCase().includes(event.target.value.toLowerCase())
+  //     );
+  //     this.setState({
+  //       foods: searchedFoods,
+  //     });
+  //   };
+
+  createFood = (newFood) => {
+    this.setState({
+      foods: [...this.state.foods, newFood],
+    });
+  };
+
+  handleClickRemove = (name) => {
+    this.setState((prevState) => ({
+      foods: prevState.foods.map((food) =>
+        food.name === name ? { ...food, quantity: 0, added: false } : food
+      ),
+    }));
+  };
+
+  onSearch = (e) => {
+    this.setState({
+      search: e.target.value,
+    });
+  };
+
+  filterFood = () => {
+    let foods = [...this.state.foods];
+    if (this.state.search) {
+      foods = this.state.foods.filter(({ name }) =>
+        name.toLowerCase().includes(this.state.search)
+      );
     }
 
-    increaseQuantity = (name) => {
-        this.setState(prevState => ({
-            foods: prevState.foods.map(
-                    food => food.name === name ? { ...food, quantity: food.quantity + 1, added: true } : food
-                )
-        }));
-    }
+    return foods;
+  };
 
-    handleInputSearch = (event) => {
-        this.setState({searchInput: event.target.value.toLowerCase()})
-        let searchedFoods = this.state.foods.filter(food => food.name.toLowerCase().includes(event.target.value.toLowerCase()))
-        this.setState({
-            filtered: searchedFoods
-        })
-    }
+  render() {
+    let allFoods = this.filterFood();
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.setState({
-            foods: [...foods]
-        })
-    }
+    return (
+      <div className="FoodList p-3 m-3">
+        <h1>
+          <b>Search Food</b>
+        </h1>
+        <form className="box">
+          <input
+            className="input mb-2"
+            value={this.state.searchInput}
+            type="search"
+            onChange={this.onSearch}
+          />
+        </form>
+        <AddFood createFood={this.createFood} />
 
-    createFood = (newFood) => {
-        this.setState({
-            foods: [...this.state.foods, newFood]
-        })
-    }
-
-
-    render () {
-        let allFoods = this.state.foods;
-
-        if (this.state.searchInput !== '') {
-            allFoods = this.state.filtered;
-        }
-
-        return (
-            <div className='FoodList p-3 m-3'>
-                {/* <form className="m-5">
-                </form> */}
-                <form className="box" onSubmit={this.handleSubmit}>
-                    <input className="input mb-2" value={this.state.searchInput} type="search" onChange={(e) => this.handleInputSearch(e)}/>
-                    <TodaysFood foods={allFoods}/>
-                </form>
-                <h2 className="mb-2"><b>Foods List</b></h2>
-                {   
-                    allFoods.map((food) => {
-                        return <FoodBox
-                            key={uuid()} 
-                            {...food}
-                            addFood={() => this.increaseQuantity(food.name)}
-                        />
-                    }) 
-                }
-                <AddFood 
-                    createFood={this.createFood}
+        <div className="ui-wrapper">
+          <div className="allFoods">
+            {allFoods.map((food, idx) => {
+              return (
+                <FoodBox
+                  key={uuid()}
+                  {...food}
+                  addFood={(e) => this.increaseQuantity(e)}
+                  handleInputChange={(e) => this.handleInputChange(e)}
                 />
-            </div>
-        )
-    }
-
+              );
+            })}
+          </div>
+          <TodaysFood
+            foods={this.state.foods}
+            handleClickRemove={this.handleClickRemove}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default FoodsList;

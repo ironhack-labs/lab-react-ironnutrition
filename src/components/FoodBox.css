@@ -1,0 +1,7 @@
+.box {
+  width: 100%;
+}
+
+.media-right form {
+  display: flex;
+}

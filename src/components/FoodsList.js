@@ -66,7 +66,8 @@ class FoodsList extends Component {
     let foods = [...this.state.foods];
     if (this.state.search) {
       foods = this.state.foods.filter(({ name }) =>
-        name.toLowerCase().includes(this.state.search)
+        name.toLowerCase().includes(this.state.search) 
+        || name.toUpperCase().includes(this.state.search)
       );
     }
 
@@ -83,13 +84,13 @@ class FoodsList extends Component {
         </h1>
         <form className="box">
           <input
+            placeholder="Search food"
             className="input mb-2"
-            value={this.state.searchInput}
+            value={this.state.search}
             type="search"
             onChange={this.onSearch}
           />
         </form>
-        <AddFood createFood={this.createFood} />
 
         <div className="ui-wrapper">
           <div className="allFoods">
@@ -109,6 +110,7 @@ class FoodsList extends Component {
             handleClickRemove={this.handleClickRemove}
           />
         </div>
+        <AddFood createFood={this.createFood} />
       </div>
     );
   }

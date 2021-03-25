@@ -27,7 +27,7 @@ class AddFood extends Component {
 
     render() {
         return (
-            <div className="box">
+            <div className="box mt-3">
             <h2><b>Create New Food</b></h2>
             <form onSubmit={this.handleSubmit}>
                 <input className="input mb-2" placeholder="Food Name" name="name" value={this.state.name} type="search" onChange={(e) => this.handleChange(e)}/>

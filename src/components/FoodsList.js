@@ -66,8 +66,9 @@ class FoodsList extends Component {
     let foods = [...this.state.foods];
     if (this.state.search) {
       foods = this.state.foods.filter(({ name }) =>
-        name.toLowerCase().includes(this.state.search) 
+        name.toLowerCase().includes(this.state.search)
         || name.toUpperCase().includes(this.state.search)
+        || name.includes(this.state.search)
       );
     }
 

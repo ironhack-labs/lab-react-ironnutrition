@@ -6,21 +6,22 @@ import FoodBox from './FoodBox'
 export default class Main extends Component {
     
     state = {
-        foods: [...foods]
+        foods: [...foods],
+        modalIsActive: false,
     }
 
     foods = this.state.foods
 
     openModal = () => {
-    
-        let buttonBtn = document.getElementById('modalBtn')
-        buttonBtn.classList.add("is-active");
+        this.setState({modalIsActive: true})
+        // let buttonBtn = document.getElementById('modalBtn')
+        // buttonBtn.classList.add("is-active");
     }
 
     closeModal = () => {
-    
-        let buttonBtn = document.getElementById('modalBtn')
-        buttonBtn.classList.remove("is-active");
+        this.setState({modalIsActive: false})
+        // let buttonBtn = document.getElementById('modalBtn')
+        // buttonBtn.classList.remove("is-active");
     }
 
     addFood = () => {
@@ -34,18 +35,16 @@ export default class Main extends Component {
                 "calories": foodCalories,
                 "image": foodImage,
                 "quantity": 0
-                }]
+                }],
+            modalIsActive: false,
         }))
-        console.log(this.state.foods)
-        let buttonBtn = document.getElementById('modalBtn')
-        buttonBtn.classList.remove("is-active");
     }
 
     render() {
         return (
         <div>
             <button className="button is-info modal-button" data-target="modal" aria-haspopup="true" onClick={() => this.openModal()}>Add food</button>
-            <div id="modalBtn" className="modal">
+            <div className={ this.state.modalIsActive ? "modal is-active" : "modal" }>
                 <div className="modal-background">    
                 </div>
                 <div className="modal-content">

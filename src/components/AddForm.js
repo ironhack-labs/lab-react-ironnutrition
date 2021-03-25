@@ -1,69 +1,44 @@
 import React from 'react'
 
-export default class AddForm extends React.Component {
-    state = {
-        formOn: false
-    }
-
-    handleForm = (e) => {
-        this.setState({
-        })
-    }
-
-    render() {
-        return (
-           
-
-            <div>
-                <form onSubmit={this.handleSubmit} className="container">
-                    <div className="form-row" />
-                    <label htmlFor="inputEmail4">Email</label>
-                    <input
-                        type="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        className="form-control"
-                        id="inputEmail4"
-                        name="email"
-                        placeholder="Email"
-                    />
-                    <label htmlFor="inputPassword4">Password</label>
-                    <input
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        className="form-control"
-                        id="inputPassword4"
-                        name="password"
-                        placeholder="Password"
-                    />
-                    <div className="form-group" />
-                    <label htmlFor="inputAddress">Address</label>
+const AddForm = ({ hideForm, addFood, handleChange, food }) => {
+    return (
+        <div>
+            <button onClick={hideForm}>x</button>
+            <div className="col-6">
+                <form onSubmit={addFood} >
+                    <label htmlFor="inputEmail4">Name</label>
                     <input
                         type="text"
-                        value={this.state.address}
-                        onChange={this.handleChange}
+                        value={food.name}
                         className="form-control"
-                        id="inputAddress"
-                        name="address"
-                        placeholder="1234 Main St"
+                        name="name"
+                        onChange={handleChange}
                     />
-                    <label htmlFor="inputCity">City</label>
+
+                    <label htmlFor="inputEmail4">calories</label>
                     <input
                         type="text"
-                        value={this.state.city}
-                        onChange={this.handleChange}
+                        value={food.calories}
                         className="form-control"
-                        id="inputCity"
-                        name="city"
-                        placeholder="Madriz"
+                        name="calories"
+                        onChange={handleChange}
                     />
+
+                    <label htmlFor="inputEmail4">image</label>
+                    <input
+                        type="text"
+                        value={food.image}
+                        className="form-control"
+                        name="image"
+                        onChange={handleChange}
+                    />
+
                     <button type="submit" className="btn btn-primary button">
-                        Fill it!
-        </button>
+                        Fill it!</button>
                 </form>
             </div>
-        )
-    }
-
+        </div>
+    )
 }
+
+export default AddForm

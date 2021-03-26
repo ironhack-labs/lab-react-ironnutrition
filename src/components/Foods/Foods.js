@@ -8,6 +8,7 @@ class Foods extends Component {
     state = {
         foods: [...data],
         search: '',
+        todayFood: []
     }
 
     addFood = (newFood) => {
@@ -27,8 +28,11 @@ class Foods extends Component {
         return this.state.foods
     }
 
-    onClick = () => {
-        console.log(this.state.quantity)
+    addFoodToday = (food) => {
+        let info = this.state.todayFood
+        info.push(food)
+        this.setState({ todayFood: info })
+        //console.log(this.state.todayFood)
     }
 
     //DUDA: Queremos traernos de FoodForm el objeto que creamos (this.state.newFood)
@@ -49,13 +53,13 @@ class Foods extends Component {
                         this.filteredFood().map((food) => {
                             return (
                             <div className="mb-5 pb-5" key={food.name}>
-                                    <Foodbox {...food} onClick={this.onClick}/>
+                                    <Foodbox {...food} addFoodToday={this.addFoodToday}/>
                             </div>
                             )
                         })}
                 </div>
                 <div className="column">
-                    <TodayFoods foods={this.state.foods} quantity={this.state.quantity}/>
+                    <TodayFoods foods={this.state.todayFood}/>
                 </div>
             </div>
 

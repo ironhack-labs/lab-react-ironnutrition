@@ -4,12 +4,19 @@ import './FoodBox.css'
 
 class FoodBox extends Component {
     state = {
+        name: this.props.name,
+        image: this.props.image,
+        calories: this.props.calories,
         quantity: 0
     }
 
     handleChange = (e) => {
         let value = e.target.value;
         this.setState({ quantity : value})
+    }
+
+    handleClick = () => {
+        this.props.addFoodToday(this.state)
     }
 
     render() {
@@ -30,14 +37,14 @@ class FoodBox extends Component {
                 </div>
                 <div className="media-right">
                     <div className="field has-addons">
-                        <div className="control">
-                            <input className="input" type="number" name="quantity" id="quantity" value={this.state.quantity} onChange={this.handleChange}/>
-                        </div>
-                        <div className="control">
-                            <button className="button is-info" onSubmit={this.props.onClick}>
-                                +
-                        </button>
-                        </div>
+                            <div className="control">
+                                <input className="input" type="number" name="quantity" id="quantity" value={this.state.quantity} onChange={this.handleChange}/>
+                            </div>
+                            <div className="control">
+                                <button className="button is-info" onClick={this.handleClick}>
+                                    +
+                                </button>
+                            </div>
                     </div>
                 </div>
             </article>

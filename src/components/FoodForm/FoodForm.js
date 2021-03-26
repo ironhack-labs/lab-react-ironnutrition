@@ -27,8 +27,8 @@ import './FoodForm.css'
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.addFood(this.state.newFood)
-        
     }
+    
 
     render() {
         return (

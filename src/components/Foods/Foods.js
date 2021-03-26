@@ -7,7 +7,8 @@ import TodayFoods from '../TodayFoods/TodayFoods'
 class Foods extends Component {
     state = {
         foods: [...data],
-        search: ''
+        search: '',
+        todayFood: []
     }
 
     addFood = (newFood) => {
@@ -25,6 +26,13 @@ class Foods extends Component {
             return this.state.foods.filter( food => food.name.toLowerCase().includes(this.state.search))
         }
         return this.state.foods
+    }
+
+    addFoodToday = (food) => {
+        let info = this.state.todayFood
+        info.push(food)
+        this.setState({ todayFood: info })
+        //console.log(this.state.todayFood)
     }
 
     //DUDA: Queremos traernos de FoodForm el objeto que creamos (this.state.newFood)
@@ -45,13 +53,13 @@ class Foods extends Component {
                         this.filteredFood().map((food) => {
                             return (
                             <div className="mb-5 pb-5" key={food.name}>
-                                <Foodbox {...food} />
+                                    <Foodbox {...food} addFoodToday={this.addFoodToday}/>
                             </div>
                             )
                         })}
                 </div>
                 <div className="column">
-                    <TodayFoods />
+                    <TodayFoods foods={this.state.todayFood}/>
                 </div>
             </div>
 

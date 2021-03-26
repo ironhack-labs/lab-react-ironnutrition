@@ -1,16 +1,17 @@
 import React from 'react';
 import './css/FoodBox.css'
 
-function handleChange() {
-    console.log('hola')
-}
+
 
 const FoodBox  = (props) => {
 const {
   name,
   calories,
   image,
-  quantity
+  quantity,
+  addFood,
+  id,
+  handleChange
 } = props;
 
     return (
@@ -32,10 +33,10 @@ const {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={quantity} onChange={handleChange} />
+                <input className="input" type="number" name={id} value={quantity} onChange={handleChange} />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button onClick={addFood} className="button is-info">
                   +
                 </button>
               </div>

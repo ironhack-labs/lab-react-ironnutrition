@@ -1,0 +1,10 @@
+.add__btn{
+    background-color: rgb(78, 231, 78);
+    color: white;
+    padding: 25px 30px;
+    border: none;
+    border-radius: 70%;
+    font-size: 20px;
+    position: absolute;
+    left: 100%;
+}

@@ -4,8 +4,8 @@ import React from "react";
 const FoodBox =({name,calories,image,quantity, onChangeQuantity})=>{
 
     const onAddQuantity =(event) => {
-            quantity+=1;
-        //onChangeQuantity({name,calories,image,quantity: event.target.value})
+        
+        onChangeQuantity({name,calories,image,quantity: event.target.value})
     }
 
     const onClick = () => {

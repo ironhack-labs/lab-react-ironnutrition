@@ -3,6 +3,7 @@ import React from "react";
 
 const FoodBox =({name,calories,image,quantity})=>{
     return(
+       
         <div className="box">
                 <article className="media">
                     <div className="media-left">

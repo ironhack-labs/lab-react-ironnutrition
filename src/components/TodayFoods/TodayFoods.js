@@ -5,7 +5,7 @@ const TodayFoods = ({ foods }) => {
  
   return (
       <div className="TodayFoods">{}
-      <h2>Today's Food </h2>
+      <h2><strong>Today's Food</strong></h2>
       {
         foods.map((food, index) => {
           return (

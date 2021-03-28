@@ -5,6 +5,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/Addfood';
+import TotalFood from './components/TotalFood';
 
 export default class App extends Component {
 
@@ -14,14 +15,14 @@ export default class App extends Component {
     showForm: false
   }
 
-  showForm =() =>{
-      this.setState({showForm: true})
-  
-    };
-  onAddFoodSubmit =(food) =>{
-    this.setState((old) => ({foods: [{...food, quantity: 0}, ...old.foods]})) 
-    this.setState({showForm: false})
-    
+  showForm = () => {
+    this.setState({ showForm: true })
+
+  };
+  onAddFoodSubmit = (food) => {
+    this.setState((old) => ({ foods: [{ ...food, quantity: 0 }, ...old.foods] }))
+    this.setState({ showForm: false })
+
   }
   //en la función handleSearch le pasamos un evento y al cambiar el state le pasaremos el valor del evento
   handleSearch = (e) => {
@@ -35,6 +36,19 @@ export default class App extends Component {
       return this.state.foods.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
     }
     return this.state.foods
+  }
+  onChangeQuantity = (food) => {
+    this.setState((old) => {
+      const index = old.foods.findIndex((oldFood) => oldFood.name === food.name);
+      return {
+        foods: [
+          ...old.foods.slice(0, index),
+          food,
+          ...old.foods.slice(index + 1),
+        ],
+      };
+    });
+
   }
 
   render() {//Metemos un input que contenga en el onChange la función anteriormente definida y en el value el search del state
@@ -52,18 +66,22 @@ export default class App extends Component {
           </button>
         </div>
 
-        {this.state.showForm && <AddFood addFoodSubmit={this.onAddFoodSubmit}/>}
+        {this.state.showForm && <AddFood addFoodSubmit={this.onAddFoodSubmit} />}
         <div className="Album ">
-          <div className="container ">
-
-            {// Muy importante......
-              //Ahora el map se lo hacemos a la array que nos devuelve el filter............
-              this.filterFood().map((food) => (
-                <div key={food.name}>
-                  <FoodBox {...food} />
-                </div>
-              ))
-            }
+          <div className="columns ">
+            <div className="column">
+              {// Muy importante......
+                //Ahora el map se lo hacemos a la array que nos devuelve el filter............
+                this.filterFood().map((food) => (
+                  <div key={food.name}>
+                    <FoodBox {...food} onChangeQuantity={this.onChangeQuantity} />
+                  </div>
+                ))
+              }
+            </div>
+            <div className="column">
+              <TotalFood foods={this.state.foods} />
+            </div>
           </div>
         </div>
       </div>

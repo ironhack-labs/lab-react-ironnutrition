@@ -65,10 +65,8 @@ export default class Main extends Component {
     }
 
     onFoodChange = (food) => {
-        console.log(food)
         this.setState((previous) => {
            const index = previous.foods.findIndex((element) => element.id === food.id )
-           console.log(index)
             return {
                 foods:[
                     ...previous.foods.slice(0, index),
@@ -79,6 +77,21 @@ export default class Main extends Component {
         })                
     }
     
+    onRemoveButton = (food) => {
+         this.setState((previous) => {
+           const index = previous.foods.findIndex(
+             (element) => element.id === food.id
+           );
+           return {
+             foods: [
+               ...previous.foods.slice(0, index),
+               { ...previous.foods[index], quiatity: 0 },
+               ...previous.foods.slice(index + 1),
+             ],
+           };
+         });
+         console.log("borrando")
+    }
 
 
     render() {
@@ -178,12 +191,23 @@ export default class Main extends Component {
                   <p className="is-size-4 mb-2">Today's foods:</p>
                   <ul className="mb-5">
                     {this.state.foods
-                        .filter((food) => food.quantity > 0)                    
-                        .map((food) => (
-                          <li className="is-size-6">{food.quantity} {food.name} = {food.quantity * food.calories} cal</li>                        
-                      ))}                   
+                      .filter((food) => food.quantity > 0)
+                      .map((food) => (
+                        <li className="is-size-6" key={ food.id }>
+                          { food.quantity } { food.name } ={' '}
+                          { food.quantity * food.calories} cal{' '}
+                          <span onClick={ this.onRemoveButton }>❌</span>
+                        </li>
+                      ))}
                   </ul>
-                  <strong className="is-size-5">Total: { this.state.foods.reduce((acc, food) => acc + food.quantity * food.calories, 0) } cal</strong>
+                  <strong className="is-size-5">
+                    Total:{' '}
+                    {this.state.foods.reduce(
+                      (acc, food) => acc + food.quantity * food.calories,
+                      0
+                    )}{' '}
+                    cal
+                  </strong>
                 </div>
               </div>
             </div>

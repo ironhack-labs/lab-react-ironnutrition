@@ -1,6 +1,16 @@
 import React from 'react'
 
 const FoodBox = (props) => {
+
+    const onQuantityChange = (event) => {
+        console.log(event.target.value)
+        props.onChange({ ...props, quantity: event.target.value });
+    }
+
+    const onClick = () => {
+        props.onChange({...props, quantity:  Number(props.quantity) + 1})
+    }
+
             return (
             <div className="box">
                 <article className="media">
@@ -20,10 +30,10 @@ const FoodBox = (props) => {
                     <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                        <input className="input" type="number" value="1" />
+                        <input className="input" type="number" value={ props.quantity } onChange={ onQuantityChange } />
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button className="button is-info" onClick={ onClick }>
                             +
                         </button>
                         </div>

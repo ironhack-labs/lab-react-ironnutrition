@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1 className="title">IronNutrition</h1>
+        <h1 className="title m-5">IronNutrition</h1>
         <FoodList />
       </div>
     </div>

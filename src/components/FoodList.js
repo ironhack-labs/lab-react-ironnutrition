@@ -28,9 +28,11 @@ export default class FoodList extends Component {
     deleteFoodDaily = (id) => {
         let cal = 0;
         const dailyEntry = this.state.dailyEntry.filter((f) => {
-            if (f.key !== id){
-            cal += f.calories
-            return f
+            if (f.key !== id) {
+                cal += f.calories
+                return f
+            } else {
+                return null
             }
         })
         this.setState({
@@ -86,8 +88,9 @@ export default class FoodList extends Component {
             formOff: s
         })
     }
+    
 
-    handleChange = (event) => {
+    handleChangeQuantity = (event) => {
         const foods = this.state.foods.map((f) => {
             if (f.key === event.target.name && event.target.value >= 0) {
                 f.quantity = parseFloat(event.target.value)
@@ -96,6 +99,19 @@ export default class FoodList extends Component {
         });
         this.setState({
             foods: foods
+        })
+    }
+
+    handleChange = (e) => {
+        console.log(e.target.name)
+        const food = {
+            name: e.target.name === 'name'? e.target.value : this.state.food.name,
+            calories: e.target.name === 'calories'? e.target.value : this.state.food.calories,
+            image: e.target.name === 'image'? e.target.value : this.state.food.image,
+            quantity: e.target.name === 'quantity'? e.target.value : this.state.food.quantity
+        }
+        this.setState({
+            food: food
         })
     }
 
@@ -109,6 +125,7 @@ export default class FoodList extends Component {
     }
 
     handleSubmit = (event) => {
+        console.log('entro en handlesubmit')
         event.preventDefault()
         const food = this.stateFood()
         food.key = uuidv4()
@@ -123,57 +140,58 @@ export default class FoodList extends Component {
     render() {
         const food = this.stateFood()
         return (
-            <div className='row'>
-                <div className='col'>
-                    {this.filterFoods().map((food, i) => {
-                        return (
-                            <FoodBox
-                                {...food}
-                                addFood={() => this.addFoodDaily(food.key)}
-                                handleChange={this.handleChange}
-                                id={food.key}
-                            />
-                        )
-                    })}
-                </div>
+            <div>
+                <Search
+                    handleSearch={this.handleSearch}
+                    search={this.state.search}
+                />
+                <div className='row'>
+                    <div className='col'>
+                        {this.filterFoods().map((food, i) => {
+                            return (
+                                <FoodBox
+                                    {...food}
+                                    addFood={() => this.addFoodDaily(food.key)}
+                                    handleChange={this.handleChangeQuantity}
+                                    id={food.key}
+                                />
+                            )
+                        })}
+                    </div>
 
-                <div className='col'>
-                    <Search
-                        handleSearch={this.handleSearch}
-                        search={this.state.search}
-                    />
-                    {
-                        this.state.formOff
-                            ? <button onClick={this.hideForm} className='btn btn-outline-success'>Create food</button>
-                            : <AddForm
-                                addFood={this.handleSubmit}
-                                handleChange={this.handleChange}
-                                food={food}
-                                hideForm={this.hideForm}
-                            />
-                    }
-                    <div className='my-4'>
-                        <h2 className='my-4'>Daily entry:</h2>
-                        <ul>
-                            {
+                    <div className='col'>
+                        <div className="column content">
+                            <h2 className="subtitle">Today's foods</h2>
+                            <ul>
+                                {
 
-                                this.state.dailyEntry[0]
-                                    ? this.state.dailyEntry.map((food) => (
-                                        <li key={food.key} >
-                                            <DailyEntry
-                                                {...food}
-                                                deleteFoodDaily={() => this.deleteFoodDaily(food.key)}
-                                            />
-                                        </li>
-                                    ))
-                                    : <h1>Add a food</h1>
-                            }
-                        </ul>
-                        <h1>Total: {this.state.cal} cal</h1>
+                                    this.state.dailyEntry[0]
+                                        ? this.state.dailyEntry.map((food) => (
+                                            <li key={food.key} >
+                                                <DailyEntry
+                                                    {...food}
+                                                    deleteFoodDaily={() => this.deleteFoodDaily(food.key)}
+                                                />
+                                            </li>
+                                        ))
+                                        : <h3>Add a food</h3>
+                                }
+                            </ul>
+                            <strong>Total: {this.state.cal} cal</strong>
+                        </div>
+                        {
+                            this.state.formOff
+                                ? <button onClick={this.hideForm} className='btn btn-outline-success'>Create food</button>
+                                : <AddForm
+                                    handleSubmit={this.handleSubmit}
+                                    handleChange={this.handleChange}
+                                    food={food}
+                                    hideForm={this.hideForm}
+                                />
+                        }
                     </div>
                 </div>
             </div>
-
         )
     }
 

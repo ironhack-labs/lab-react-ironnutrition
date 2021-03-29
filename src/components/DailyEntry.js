@@ -9,7 +9,7 @@ const DailyEntry = (props) => {
     } = props;
     return (
         <p>{quantity} {name} = {calories} cal 
-        <button onClick={deleteFoodDaily}>x</button></p>)
+        <button className='btn btn-outline-dark mx-3 py-1 px-2' onClick={deleteFoodDaily}>x</button></p>)
 }
 
 export default DailyEntry;

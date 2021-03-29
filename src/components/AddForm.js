@@ -1,11 +1,11 @@
 import React from 'react'
 
-const AddForm = ({ hideForm, addFood, handleChange, food }) => {
+const AddForm = ({ hideForm, handleSubmit, handleChange, food }) => {
     return (
         <div>
             <button className='btn btn-outline-dark' onClick={hideForm}>X</button>
             <div className="col-6">
-                <form onSubmit={addFood} >
+                <form onSubmit={handleSubmit} >
                     <label htmlFor="inputEmail4">Name</label>
                     <input
                         type="text"
@@ -34,7 +34,7 @@ const AddForm = ({ hideForm, addFood, handleChange, food }) => {
                     />
 
                     <button type="submit" className="btn btn-primary button my-4">
-                        Fill it!</button>
+                        Create!</button>
                 </form>
             </div>
         </div>

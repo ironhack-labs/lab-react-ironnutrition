@@ -88,6 +88,7 @@ export default class FoodList extends Component {
             formOff: s
         })
     }
+    
 
     handleChangeQuantity = (event) => {
         const foods = this.state.foods.map((f) => {

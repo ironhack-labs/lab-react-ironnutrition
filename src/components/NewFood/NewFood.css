@@ -1,0 +1,13 @@
+.NewFood {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #f1ece4;
+    padding: 20px 35px;
+}
+
+.fieldForm {
+    width: 30%;
+    margin-bottom: 20px;
+}

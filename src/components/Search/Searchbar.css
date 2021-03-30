@@ -1,0 +1,48 @@
+.Searchbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+    background-color: #f1ece4;
+}
+
+.btn-searchbar {
+    background-color: #f9f8f6;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    padding: 8px 10px;
+}
+
+.btn-searchbar:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+}
+
+.btn-searchbar:focus {
+    border: none;
+    outline: none;
+}
+
+input {
+    width: 80%;
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+    font-family: 'Kiwi Maru', serif;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+input:hover {
+    outline-width: 0;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+input:focus {
+    outline-width: 0;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}

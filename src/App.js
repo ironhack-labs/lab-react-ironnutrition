@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Navbar from './components/NavBar/Navbar';
 import Header from './components/Header/Header';
+import Searchbar from './components/Search/Searchbar';
 import FoodBox from './components/FoodBox/FoodBox';
 import foodsJson from './foods.json';
 import CartList from './components/CartList/CartList';
@@ -36,7 +38,9 @@ const App = () => {
   }
 
   const showFormComponent = () => {
-    setForm(true)
+    showForm
+    ? setForm(false)
+    : setForm(true)
   }
 
   const onSubmit = (food) => {
@@ -47,15 +51,18 @@ const App = () => {
 
   return (
       <div className="App">
-        
-        <Header 
+        <Navbar />
+
+        <Header />
+
+        <Searchbar 
           query={ searchQuery }
           onChange={ (e) => handleChange(e) }
+          showFormComponent={ showFormComponent }
         />
-        <button className="button is-info ml-2" onClick={ showFormComponent }>
-            +
-          </button>
-        {showForm && <NewFood onSubmit={ onSubmit } />}
+
+        { showForm && <NewFood onSubmit={ onSubmit }/> }
+
         <div className="columns">
           <div className="column">
             
@@ -74,7 +81,7 @@ const App = () => {
           </div>
           <div className="column">
 
-            <h3 className="title is-4"><b>Today´s Food</b></h3>
+            <h3 className="title is-4"><b>Today's Naked Food</b></h3>
 
             <div className="block content">
               { cart.length > 0 && <CartList list={ cart } onDelete={ handleDelete } /> }

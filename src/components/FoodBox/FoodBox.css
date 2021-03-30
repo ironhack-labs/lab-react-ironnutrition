@@ -1,0 +1,19 @@
+.FoodBox button {
+    background-color: #feae00 !important;
+}
+
+.FoodBox input {
+    border: none;
+}
+
+.FoodBox input:hover {
+    outline-width: 0;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.FoodBox input:focus {
+    outline-width: 0;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}

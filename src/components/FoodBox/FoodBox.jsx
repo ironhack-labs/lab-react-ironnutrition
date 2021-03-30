@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './FoodBox.css'
 
 const FoodBox = (props) => {
     const [ quantity, setQuantity ] = useState(1)
@@ -8,7 +9,7 @@ const FoodBox = (props) => {
     }
 
     return (
-    <div className="box">
+    <div className="FoodBox">
         <article className="media">
             <div className="media-left">
                 <figure className="image is-64x64">

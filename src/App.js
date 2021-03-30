@@ -79,15 +79,14 @@ const App = () => {
             }) }
 
           </div>
-          <div className="column">
+          <div className="column is-one-third has-text-centered	">
 
-            <h3 className="title is-4"><b>Today's Naked Food</b></h3>
-
-            <div className="block content">
+            <h3 className="subtitle is-4"><b>Today's food naked</b></h3>
+            <p><b>{ cart.reduce((acc, cur) => { return acc + (cur.calories * cur.quantity) }, 0) } cal</b></p>
+            <hr/>
+            <div>
               { cart.length > 0 && <CartList list={ cart } onDelete={ handleDelete } /> }
             </div>
-
-            <p><b>Total: { cart.reduce((acc, cur) => { return acc + (cur.calories * cur.quantity) }, 0) } cal</b></p>
           </div>
         </div>
         

@@ -1,16 +1,19 @@
 import React from 'react'
-
+import './Cardlist.css'
 const CartList = ({ list, onDelete }) => {
     return (
         <ul>
             { list.map(item =>{
-                return ( 
-                    <li 
-                        key={ item.name.split(' ').join('') } 
-                    >
-                        { item.quantity } { item.name } - { item.calories } cal
-                        <button className="button is-small is-danger is-inverted" onClick={ () => onDelete(item.name) }>Delete</button>
-                    </li> 
+                return (
+                    <div className="eachFood" key={ item.name.split(' ').join('') } >
+                    <p>
+                        { item.calories } cal
+                    </p> 
+                    <p>
+                        { item.quantity } { item.name } 
+                    </p> 
+                    <button className="button is-small is-danger is-inverted" onClick={ () => onDelete(item.name) }>Delete</button>
+                    </div>
                 )
             }) }
         </ul>

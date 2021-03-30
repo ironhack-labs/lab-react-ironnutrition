@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+export class Form extends Component {
   state = {
     name: '',
     calories: 0,
     image: '',
   };
 
-  handleInput = (event) => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     this.props.addFood({
       name: this.state.name,
       calories: this.state.calories,
       image: this.state.image,
+    });
+
+    this.setState({
+      name: '',
+      calories: 0,
+      image: '',
     });
   };
 
@@ -25,31 +32,36 @@ class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Name:</label>
+          <label htmlFor="name">Name</label>
           <input
+            className="input"
+            onChange={this.handleChange}
             type="text"
+            id="name"
             name="name"
             value={this.state.name}
-            onChange={this.handleInput}
           />
-
-          <label>Calories</label>
+          <label htmlFor="calories">Number of calories</label>
           <input
+            className="input"
+            onChange={this.handleChange}
             type="number"
+            id="calories"
             name="calories"
             value={this.state.calories}
-            onChange={this.handleInput}
           />
-
-          <label>Image:</label>
+          <label htmlFor="image">Image url</label>
           <input
+            className="input"
+            onChange={this.handleChange}
             type="text"
+            id="image"
             name="image"
             value={this.state.image}
-            onChange={this.handleInput}
           />
-
-          <button type="submit">Create food!</button>
+          <button className="button mb-4" type="submit">
+            Create food
+          </button>
         </form>
       </div>
     );

@@ -8,16 +8,15 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  padding: 5%;
 }
 
 .Header {
   margin: 20px;
-  
+}
+
+.Foods {
+  margin: 20px;
 }
 
 .App-link {

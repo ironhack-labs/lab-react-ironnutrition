@@ -36,7 +36,6 @@ export default class Main extends Component {
     handleSearch = (event) => {
         const target = event.target;
                 const value = target.value;
-                const name = target.name;
 
                 this.setState({
                 search: value
@@ -78,19 +77,19 @@ export default class Main extends Component {
     }
     
     onRemoveButton = (food) => {
+        let item = food.target.id
          this.setState((previous) => {
            const index = previous.foods.findIndex(
-             (element) => element.id === food.id
+             (element) => element.name === item
            );
            return {
              foods: [
                ...previous.foods.slice(0, index),
-               { ...previous.foods[index], quiatity: 0 },
+               { ...previous.foods[index], quantity: 0 },
                ...previous.foods.slice(index + 1),
              ],
            };
          });
-         console.log("borrando")
     }
 
 
@@ -196,7 +195,7 @@ export default class Main extends Component {
                         <li className="is-size-6" key={ food.id }>
                           { food.quantity } { food.name } ={' '}
                           { food.quantity * food.calories} cal{' '}
-                          <span onClick={ this.onRemoveButton }>❌</span>
+                          <span onClick={ this.onRemoveButton } id={food.name}>❌</span>
                         </li>
                       ))}
                   </ul>

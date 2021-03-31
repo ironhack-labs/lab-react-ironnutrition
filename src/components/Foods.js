@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import foods from '../foods.json';
 import FoodBox from '../components/FoodBox'
 import FoodForm from '../components/FoodForm'
+import TodayFood from '../components/TodayFood'
 import { v4 as uuidv4 } from 'uuid';
 
 class Foods extends Component {
@@ -19,6 +20,32 @@ class Foods extends Component {
         this.setState({search: e.target.value})
     }
 
+    onQuantityChange = (food) => {
+        this.setState((previous) => {
+            const index = previous.foods.findIndex((f) => f.id === food.id);
+            return {
+                foods: [
+                    ...previous.foods.slice(0, index),
+                    food,
+                    ...previous.foods.slice(index + 1),
+                ],
+            };
+        });
+    };
+
+    removeFood = (food) => {
+        this.setState((previous) => {
+            const index = previous.foods.findIndex((f) => f.id === food.id);
+            return {
+                foods: [
+                    ...previous.foods.slice(0, index),
+                    { ...previous.foods[index], quantity: 0 },
+                    ...previous.foods.slice(index + 1),
+                ],
+            };
+        });
+    };
+
     render() {
         return (
             <div className="FoodBox">
@@ -34,21 +61,14 @@ class Foods extends Component {
                     <div className="column">
                         {this.state.foods.filter((food) => food.name.toLowerCase().includes(this.state.search.toLocaleLowerCase())).map(food => (
                             <div className="row" key={food.id}>
-                                <FoodBox {...food}  />
+                                <FoodBox {...food} onChange={this.onQuantityChange} />
                             </div>
                         ))}
                     </div>
-                    <div className="column content">
-                        <h2 className="subtitle">Today's foods</h2>
-                        <ul>
-                            <li>1 Pizza = 400 cal</li>
-                            <li>2 Salad = 300 cal</li>
-                        </ul>
-                        <strong>Total: 700 cal</strong>
-                    </div>
-                </div>
-                
-                    <FoodForm createFood={this.createFood} />
+                    <TodayFood foods={this.state.foods} removeFood={this.removeFood}/>
+
+                 </div>
+                    <FoodForm createFood={this.createFood}  />
             </div>
             
         );

@@ -1,7 +1,17 @@
 import React from 'react'
 import '../assets/css/FoodBox.css'
 
-const FoodBox = ({ name, calories, image, quantity}) => {
+const FoodBox = (props) => {
+    const {name, calories, image, quantity, onChange} = props
+
+    const onQuantityChange = (event) => {
+        onChange({...props, quantity: Number(event.target.value)})
+    }
+
+    const onClick = (event) => {
+        onChange({ ...props, quantity: quantity +1 })
+    }
+
     return (
         <div className="FoodBox">
             <div className="container">
@@ -23,10 +33,10 @@ const FoodBox = ({ name, calories, image, quantity}) => {
                         <div className="media-right">
                             <div className="field has-addons">
                                 <div className="control">
-                                    <input className="input" type="number" value="1" />
+                                    <input className="input" type="number" value={quantity} onChange={onQuantityChange} />
                                 </div>
                                 <div className="control">
-                                    <button className="button is-info">
+                                    <button className="button is-info" onClick={onClick}>
                                         +
                                     </button>
                                 </div>

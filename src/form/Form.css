@@ -1,0 +1,9 @@
+#newfood-form{
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10px;
+}
+.field{
+    margin-bottom: 0px !important;
+    margin-right: 10px !important;
+}

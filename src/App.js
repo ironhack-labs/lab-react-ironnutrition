@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
-import FoodList from './components/foodlist/FoodList'
+import FoodList from './components/foodlist/FoodList';
 
 function App() {
   return (

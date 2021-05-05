@@ -1,0 +1,17 @@
+{
+    "workbench.editorAssociations": [
+        {
+            "viewType": "",
+            "filenamePattern": ""
+        }
+    ],
+    "emmet.excludeLanguages": [
+        
+
+
+        "markdown"
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+     }
+}

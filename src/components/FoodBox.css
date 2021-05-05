@@ -1,0 +1,10 @@
+.food-card img {
+    width: 100px;
+}
+
+.food-card {
+    border: 1px solid black;
+    display: flex;
+    width: 400px;
+    padding: 5px;
+}

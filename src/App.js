@@ -1,15 +1,36 @@
 import React from 'react';
-import foods from './foods.json';
-import Foods from './components/FoodBox/FoodBox';
+import foodList from './foods.json';
+import Foodbox from './components/FoodBox/FoodBox';
 import 'bulma/css/bulma.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Foods/>
-    </div>
-  );
+
+class App extends React.Component {
+  state = {
+    foods: foodList 
+  }
+
+  displayFoods = () => {
+    return this.state.foods.map((singleFood) => {
+
+      return (
+        
+          <Foodbox {...singleFood}/>
+        
+      )
+
+    })
+  }
+
+  render() {
+    return (
+      <div>
+      {
+      this.displayFoods()
+      }
+      </div>
+    )
+  }
 }
 
 export default App;

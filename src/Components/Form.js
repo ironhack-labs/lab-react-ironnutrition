@@ -13,15 +13,21 @@ export default class Form extends Component {
       },
     };
   }
+  componentDidMount(){
+
+  }
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.addFood(this.state.fields);
       this.setState({
-        name: "",
-        calories: "",
-        image: "",
-        quantity: "",
-        });
+        fields: {
+          name: '',
+          calories: '',
+          image: '',
+          quantity: '',
+        },
+      });
     }
 
 
@@ -36,9 +42,9 @@ export default class Form extends Component {
   }
 
   render() {
-    const { fields } = this.state;
+    const { name, claories, image } = this.state;
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)} style={{ marginBottom: 50 }}>
+      <form id="meal-form" className="meal-form" onSubmit={(e) => this.handleSubmit(e)} >
         <div className="form-item">
           <label htmlFor="name">Name: </label>
           <input
@@ -46,7 +52,7 @@ export default class Form extends Component {
             placeholder="Meal name.."
             type="text"
             name="name"
-            value={fields.name}
+            value={name}
             onChange={(e) => this.handleChange(e)}
           />
         </div>
@@ -82,7 +88,7 @@ export default class Form extends Component {
             onChange={(e) => this.handleChange(e)}
           />
         </div>
-        <button type="submit">Create Meal</button>
+        <button className="button" type="submit">Create Meal</button>
       </form>
     );
   }

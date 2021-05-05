@@ -8,11 +8,9 @@ export default class FoodList extends Component {
     super(props);
     this.state = {
         foods: this.props.foods,
-        display: false
+        display: false,
+        searchedFood: ""
     }
-  }
-  componentDidUpdate(){
-      
   }
 
   addFood = (food) => {
@@ -21,16 +19,28 @@ export default class FoodList extends Component {
       this.setState({foods: arrayCopy});
   }
 
+  displayFoods = () => {
+    const { foods } = this.state;
+    const foodsFiltered = foods.filter(food => food.name.includes(this.state.searchedFood));
+
+    return foodsFiltered.map((food) => {
+        return (
+            <FoodBox key={food.name} {...food} />
+        )
+    })
+  }
+  handleSearch(event) {
+    this.setState({searchedFood: event.target.value})
+  }
+
   render() {
-    const {foods} = this.state;
     return (
         <>
+            <input className="input my-2 ml-2" name="search" type="text" placeholder="Type a food..." onChange={(e) => this.handleSearch(e)}/>
             <button className="button is-info mt-2 mb-4 ml-2" onClick={() => {this.setState({display: !this.state.display})}}>Add a food</button>
             {this.state.display && <Form addMovie={(food) => this.addFood(food)} /> }
             <div id="foods-container">
-                {foods.map((food) => {
-                return <FoodBox key={food.name} {...food}></FoodBox>;
-                })}
+                {this.displayFoods()}
             </div>
         </>
     );

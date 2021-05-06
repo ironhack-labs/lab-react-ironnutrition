@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bulma/css/bulma.css';
 
 const SearchForm = ({ searchFood }) => {
     const searchQueryHandle = (event) => {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'bulma/css/bulma.css';
 
 const FoodBox = ({ food, addToToday }) => {
     const initialFoodCount = 1;

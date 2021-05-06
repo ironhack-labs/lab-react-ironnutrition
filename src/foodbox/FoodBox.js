@@ -1,7 +1,7 @@
 import React from 'react';
 import './FoodBox.css';
 
-export default function FoodBox({ name, calories, image, addTodaysFood }) {
+export default function FoodBox({ name, calories, image, addTodaysFood, removeFood }) {
   const handleSubmitTodaysFood = (event) => {
     event.preventDefault();
     const quantity = event.target.querySelector('input').value * 1;
@@ -40,7 +40,7 @@ export default function FoodBox({ name, calories, image, addTodaysFood }) {
                 <button className="button add is-info" type="submit">
                   +
                 </button>
-                <button className="button trash is-danger">
+                <button className="button trash is-danger" onClick={() => removeFood(name)}>
                   <i className="far fa-trash-alt"></i>
                 </button>
               </div>

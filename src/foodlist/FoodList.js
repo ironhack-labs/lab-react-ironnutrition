@@ -50,6 +50,13 @@ export default class FoodList extends Component {
     this.setState({ foods: arrayCopy });
   };
 
+  removeFood = (foodName) => {
+    let foodsListCopy = [...this.state.foods];
+    foodsListCopy = foodsListCopy.filter(food => food.name !== foodName);
+    
+    this.setState({foods: foodsListCopy});
+  }
+
   displayFoods = () => {
     const { foods } = this.state;
     const foodsFiltered = foods.filter((food) =>
@@ -58,7 +65,7 @@ export default class FoodList extends Component {
 
     return foodsFiltered.map((food) => {
       return (
-        <FoodBox key={food.name} {...food} addTodaysFood={this.addTodaysFood} />
+        <FoodBox key={food.name} {...food} addTodaysFood={this.addTodaysFood} removeFood={this.removeFood} />
       );
     });
   };

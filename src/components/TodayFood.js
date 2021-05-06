@@ -4,9 +4,9 @@ class TodayFood extends React.Component {
   render(){
     const foodToday = this.props.todayFoods.map((food, index)=>{
       const {quantity, name, calories} = food
-      return (
-        <li>{quantity} {name} = {quantity*calories} cal</li>
-      )
+      if(quantity > 0){
+        return <li>{quantity} {name} = {quantity*calories} cal  <button onClick={()=>this.props.deleteItem(index)}>Del</button></li>
+      }
     })
 
     const total = this.props.todayFoods.reduce((acc, food)=>{

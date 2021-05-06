@@ -25,7 +25,7 @@ class FoodBox extends React.Component {
                 <div className="media-right">
                 <div className="field has-addons">
                     <div className="control">
-                    <input className="input" type="number" placeholder='0' onChange={(e)=>this.props.updateQuantity(index, e)}/>
+                    <input className="input" type="number" placeholder='0' min='0' onChange={(e)=>this.props.updateQuantity(index, e)}/>
                     </div>
                     <div className="control">
                     <button className="button is-info" onClick={()=>this.props.addFood(name, calories, quantity)}>+</button>
@@ -45,7 +45,7 @@ class FoodBox extends React.Component {
                     </div>
                 </div>
                 <div className="column">
-                    <TodayFood todayFoods={this.props.todayFoods}/>
+                    <TodayFood todayFoods={this.props.todayFoods} deleteItem={(index)=>this.props.deleteItem(index)} />
                 </div>
             </div>
         )

@@ -1,38 +1,35 @@
-.App {
+form{
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 3rem !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.input-box{
+  display: block !important;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.green{
+  display: block !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.main-content{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: space-evenly;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.all-foods{
+  margin-right: 50px !important;
 }

@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import Form from './components/Form';
+import Search from './components/Search';
 
 class App extends React.Component {
   state = {
@@ -37,10 +38,20 @@ class App extends React.Component {
     this.setState({ foods: foodsCopy, displayForm: showForm });
   };
 
+  filterFoods(event){
+    const {value} = event.target;
+    const filteredFood = this.state.foods.filter((food)=>{
+      return food.name.toLowerCase().includes(value.toLowerCase())
+    })
+  
+    this.setState({...this.state, foods: filteredFood})
+  }
+
   render() {
     return (
       <div className="App">
         <h1>IronNutrition</h1>
+        <Search filterFoods={(event) => this.filterFoods(event)} />
 
         <button onClick={() => this.displayForm()} class="button is-primary">
           Add New Food

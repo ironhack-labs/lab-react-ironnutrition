@@ -1,6 +1,15 @@
 import React from 'react';
 
-export default function FoodBox({name, calories, image}) {
+export default function FoodBox({name, calories, image, addTodaysFood}) {
+
+  const handleSubmitTodaysFood = (event) => {
+    event.preventDefault();
+    const quantity = event.target.querySelector('input').value;
+    const newTodaysFood = {name, calories, quantity};
+    addTodaysFood(newTodaysFood);
+  }
+
+
   return (
     <div className="box">
       <article className="media">
@@ -18,14 +27,16 @@ export default function FoodBox({name, calories, image}) {
           </div>
         </div>
         <div className="media-right">
-          <div className="field has-addons">
-            <div className="control">
-              <input className="input" type="number" value="1" />
+          <form onSubmit={(e) => handleSubmitTodaysFood(e)}>
+            <div className="field has-addons">
+              <div className="control">
+                <input className="input" type="number" name="quantity" min="1" />
+              </div>
+              <div className="control">
+                <button className="button is-info" type="submit" >+</button>
+              </div>
             </div>
-            <div className="control">
-              <button className="button is-info">+</button>
-            </div>
-          </div>
+          </form>
         </div>
       </article>
     </div>

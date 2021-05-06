@@ -1,4 +1,8 @@
 #foods-container{
-    max-width: 500px;
+    min-width: 500px;
     margin-left: 10px;
+    margin-right: 100px;
+}
+#todaysfoods-container{
+    width: 100%;
 }

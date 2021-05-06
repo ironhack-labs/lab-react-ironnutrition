@@ -17,7 +17,7 @@ export default class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addMovie(this.state.fields);
+    this.props.addFood(this.state.fields);
     this.setState({
       fields: {
         name: '',

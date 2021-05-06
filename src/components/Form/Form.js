@@ -8,13 +8,11 @@ export default class Form extends Component {
         image: ""
     },
   };
-
   handleSubmit(event) {
     event.preventDefault();
     this.props.addFood(this.state.fields)
       
   }
-
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({

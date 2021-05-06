@@ -31,7 +31,7 @@ function App() {
     const index = todaysFoodCopy.findIndex(todaysDish => todaysDish.foodName === todaysFoodItem.foodName);
     if(index !== -1) {
       console.log('old item');
-      todaysFoodCopy[index].foodCount += todaysFoodItem.foodCount;
+      todaysFoodCopy[index].foodCount += Number(todaysFoodItem.foodCount);
       todaysFoodCopy[index].totCalories += todaysFoodItem.totCalories;
       setTodaysFood(todaysFoodCopy);
     } else {

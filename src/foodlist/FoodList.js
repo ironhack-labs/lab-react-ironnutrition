@@ -26,9 +26,10 @@ export default class FoodList extends Component {
   //Iteration 6 - Bonus - Attach Today's food per food
   attachFoods(foodsList){
     let attachedFoodList = [];
+    debugger
     foodsList.forEach(food => {
       if(!attachedFoodList.some(attachedFood => attachedFood.name === food.name)){
-        attachedFoodList.push({name: food.name, calories: food.calories * food.quantity, quantity:food.quantity});
+        attachedFoodList.push({name: food.name, calories: food.calories, quantity:food.quantity});
       } else {
         attachedFoodList.filter(attachedFood => attachedFood.name === food.name)[0].quantity += food.quantity;
         attachedFoodList.filter(attachedFood => attachedFood.name === food.name)[0].calories += food.calories;
@@ -50,6 +51,7 @@ export default class FoodList extends Component {
     this.setState({ foods: arrayCopy });
   };
 
+  //Iteration 7 - Bonus - Remove a food
   removeFood = (foodName) => {
     let foodsListCopy = [...this.state.foods];
     foodsListCopy = foodsListCopy.filter(food => food.name !== foodName);

@@ -40,7 +40,7 @@ export default function FoodBox({ name, calories, image, addTodaysFood, removeFo
                 <button className="button add is-info" type="submit">
                   +
                 </button>
-                <button className="button trash is-danger" onClick={() => removeFood(name)}>
+                <button className="button trash is-danger" type="button" onClick={() => removeFood(name)}>
                   <i className="far fa-trash-alt"></i>
                 </button>
               </div>

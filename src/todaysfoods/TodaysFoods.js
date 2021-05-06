@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import "./TodaysFoods.css";
 
 export default class TodaysFoods extends Component {
-    componentDidUpdate(){
-        //console.log(this.props.todaysFoodsList)
-    }
     
     render() {
         const { todaysFoodsList, totalCalories } = this.props;

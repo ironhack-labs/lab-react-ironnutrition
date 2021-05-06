@@ -31,6 +31,9 @@ const validators = {
     }
     return message;
   },
+  form: () => {
+    return 'Fill all the inputs!'
+  }
 };
 
 export default class FoodForm extends React.Component {
@@ -50,7 +53,7 @@ export default class FoodForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.isValid()) {
+    if (this.isValid() && this.hasContent()) {
       this.props.addFood(this.state.fields);
       this.setState({
         fields: {
@@ -65,12 +68,26 @@ export default class FoodForm extends React.Component {
           image: null,
         },
       });
+    } else {
+      this.setState({
+        fields: {
+          ...this.state.fields,
+        },
+        errors: {
+          ...this.state.errors,
+        },
+      });
     }
   }
 
   isValid() {
     const { errors } = this.state;
     return !Object.keys(errors).some((key) => errors[key]);
+  }
+
+  hasContent() {
+    const { fields } = this.state;
+    return Object.keys(fields).filter((key) => (fields[key].length > 0 ? true : false )).length >= 3;
   }
 
   handleInputChange(event) {

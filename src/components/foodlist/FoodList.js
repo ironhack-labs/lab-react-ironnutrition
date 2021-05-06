@@ -1,12 +1,11 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
-import foods from '../../foods.json';
 import FoodBox from '../foodbox/FoodBox';
 import FoodForm from '../FoodForm/FoodForm';
 
 export default class FoodList extends React.Component {
   state = {
-    foods: foods.map((food, index) => ({
+    foods: this.props.foods.map((food, index) => ({
       ...food,
       id: `${food.name}${index}`,
     })),
@@ -24,15 +23,20 @@ export default class FoodList extends React.Component {
           food,
           ...previous.foods.slice(index + 1),
         ],
+        showAddForm: this.state.showAddForm,
       };
     });
   };
 
   addFood = (food) => {
     const arrayCopy = [...this.state.foods];
-    arrayCopy.push(food);
+    const newFood = {
+      ...food,
+      id: `${food.name}${food.calories}`,
+    };
+    arrayCopy.push(newFood);
 
-    this.setState({ foods: arrayCopy });
+    this.setState({ foods: arrayCopy, showAddForm: this.state.showAddForm });
   };
 
   showAddForm() {
@@ -45,7 +49,9 @@ export default class FoodList extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.showAddForm()}>Add food</button>
+        <button onClick={() => this.showAddForm()}>
+          {!this.state.showAddForm ? 'Show add food form' : 'Hide form'}
+        </button>
         {this.state.showAddForm ? (
           <FoodForm addFood={(food) => this.addFood(food)} />
         ) : (

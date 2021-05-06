@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function FoodBox({ name, calories, image, addTodaysFood }) {
+export default function FoodBox({ name, calories, image, addTodaysFood }) {  
   const handleSubmitTodaysFood = (event) => {
     event.preventDefault();
-    const quantity = event.target.querySelector('input').value;
+    const quantity = event.target.querySelector('input').value * 1;
+    calories = calories * 1;
     quantity > 0 && addTodaysFood({ name, calories, quantity });
   };
 

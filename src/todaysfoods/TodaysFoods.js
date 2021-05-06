@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import "./TodaysFoods.css";
 
 export default class TodaysFoods extends Component {
+    componentDidUpdate(){
+        //console.log(this.props.todaysFoodsList)
+    }
     
     render() {
         const { todaysFoodsList, totalCalories } = this.props;
@@ -12,7 +15,7 @@ export default class TodaysFoods extends Component {
                     {
                         todaysFoodsList.map((todaysFood, i) =>{
                             const { name, calories, quantity } = todaysFood;
-                            return <li className="todaysfood-elem" key={`todayFoods-${i}`}>{`${quantity} ${name} = ${quantity * calories}cal`}</li>
+                            return <li className="todaysfood-elem" key={`todayFoods-${i}`}>{`${quantity} ${name} = ${calories}cal`}</li>
                         })
                     }
                 </ul>

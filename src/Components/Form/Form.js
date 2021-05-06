@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 const validators = {
     name: (value) => {
         let message;
         if (!value) {
         message = "Name is required";
-        } else if (value.length < 2) {
-        message = "Invalid name";
         }
 
         return message;
@@ -63,6 +61,7 @@ export default class Form extends Component {
                     image: null
                 }
             })
+            this.props.showForm()
         }
     }
 
@@ -85,7 +84,9 @@ export default class Form extends Component {
         return !Object.keys(errors).some(key => errors[key]);
     }
 
-
+    toggleFormShow = () => {
+        this.setState({ showForm: !this.state.showForm })
+        }
 
     render() {
 
@@ -114,3 +115,5 @@ export default class Form extends Component {
         )
     }
 }
+
+

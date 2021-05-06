@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import foodsData from '../../foods.json';
 import FoodBox from "../FoodBox/FoodBox";
 import Form from "../Form/Form";
+import SearchBar from "../SearchBar/SearchBar";
 
 const foodList = [...foodsData]
 
@@ -10,7 +11,7 @@ export default class Home extends Component {
 
     state = {
         food: foodList,
-        showForm: false
+        formButton: false
     };
 
     displayFood = () =>{
@@ -28,12 +29,9 @@ export default class Home extends Component {
     this.setState({ food: arrayCopy });
     }
 
-    toggleFormShow = () => {
-    this.setState({ showForm: !this.state.showForm })
+    toggleButton = () => {
+    this.setState({ formButton: !this.state.formButton })
     }
-
-
-
 
     render() {
         return (
@@ -41,14 +39,14 @@ export default class Home extends Component {
         <div>
             <h1>IronNutrition</h1>
             <div>
-                <button onClick={() => this.toggleFormShow()}>
-                {this.state.showForm ? "Ocultar" : "Añadir food"}
+                <button onClick={() => this.toggleButton()}>
+                {this.state.formButton ? "Hide" : "Add food"}
                 </button>
-                {this.state.showForm && <Form addFood={(food) => this.addFood(food)} />}
+                {this.state.formButton && <Form addFood={(food) => this.addFood(food)} showForm={this.toggleButton}/>}
             </div>
 
             <div>
-            { this.displayFood() }
+                <SearchBar />
             </div>
 
         </div>

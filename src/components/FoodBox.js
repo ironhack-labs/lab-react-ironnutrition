@@ -1,6 +1,7 @@
 import React from 'react';
 
 const FoodBox = (food) => {
+    
     return(
         <div>
             <div className="box">
@@ -21,7 +22,7 @@ const FoodBox = (food) => {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input id={food.name} className="input" type="number" name="sum" value="1" />
+                                <input id={food.name} className="input" type="number" name='quantity' value="1" />
                             </div>
                             <div className="control">
                                 <button  className="button is-info">

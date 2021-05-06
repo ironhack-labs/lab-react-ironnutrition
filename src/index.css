@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.FoodBox {
+  max-width: 500px;
+  margin: 5px auto;
+}
+
+.App-title {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Search {
+  text-align: center;
+}
+
+.Search input {
+  width: 400px;
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 20px
+}
+
+.App {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.TodayFood h3 {
+  margin: 20px 40px;
+  font-size: 25px;
+}

@@ -7,7 +7,8 @@ import Form from './components/Form/Form';
 
 class App extends React.Component {
   state = {
-    foods: foodList 
+    foods: foodList,
+    showForm: false 
   }
    
   addFood = (food) => {
@@ -24,16 +25,24 @@ class App extends React.Component {
     })
   }
 
+  //TODO:FIXME:TODO:FIXME:
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm})    
+  }
+
   render() {
     return (
       <div>
-      <Form addFood={(food) => this.addFood(food)} />
-      <button onClick={() => this.addFood()}>Add food</button>
-        <div>
-        {
-        this.displayFoods()
-        }
-        </div>
+      <button onClick={() => this.toggleForm()}>HABER </button>
+     
+      {this.state.showForm ? <Form patata={()=> this.toggleForm()} addFood={(food) => this.addFood(food)} /> : ""}      
+      
+      
+          <div>
+          {
+          this.displayFoods()
+          }
+          </div>
       </div>
     )
   }

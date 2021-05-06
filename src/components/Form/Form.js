@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./Form.css";
 
+
 export default class Form extends Component {
 
     constructor(props){
@@ -11,7 +12,7 @@ export default class Form extends Component {
                 calories: "",
                 image: "",
                 quantity: ""
-            }
+            }            
         }
     }
      handleSubmit(event){
@@ -26,6 +27,8 @@ export default class Form extends Component {
                     quantity: ""
                 }
              })
+             this.props.patata();
+            
          
      }
     
@@ -38,6 +41,11 @@ export default class Form extends Component {
             }
         });
     }
+
+    toggleForm = () => {
+      this.setState({ showForm: !this.state.showForm})    
+    }
+   
     //TODO:TODO:
     // isValid(){
     //     const { errors } = this.state;
@@ -50,22 +58,22 @@ export default class Form extends Component {
           <form onSubmit={(e) => this.handleSubmit(e)} style={{ marginBottom: 50 }} >
             <div className="form-item">
               <label htmlFor="name">Name: </label>
-              <input placeholder="Name.." type="text" name="name" value={fields.name} onChange={(e) => this.handleChange(e)} />              
+              <input placeholder="Name..." type="text" name="name" value={fields.name} onChange={(e) => this.handleChange(e)} />              
             </div>
             <div className="form-item">
               <label htmlFor="calories">Calories: </label>
-              <input type="text" name="calories" value={fields.calories} onChange={(e) => this.handleChange(e)} />              
+              <input placeholder="Calories..." type="text" name="calories" value={fields.calories} onChange={(e) => this.handleChange(e)} />              
             </div>
             <div className="form-item">
               <label htmlFor="image">Image: </label>
-              <input type="text" name="image" value={fields.image} onChange={(e) => this.handleChange(e)} />              
+              <input placeholder="Picture link"type="text" name="image" value={fields.image} onChange={(e) => this.handleChange(e)} />              
             </div>
             <div className="form-item">
               <label htmlFor="quantity">Quantity: </label>
-              <input type="text" name="quantity" value={fields.quantity} onChange={(e) => this.handleChange(e)} />              
+              <input placeholder="Quantity" type="text" name="quantity" value={fields.quantity} onChange={(e) => this.handleChange(e)} />              
             </div>
-            <button type="submit">Create food</button>
-            {/* <button disabled={!this.isValid()} type="submit">Create food</button> */}
+            
+            <button type="submit"> Add food </button>             
           </form>
         ) 
     }

@@ -22,7 +22,7 @@ class App extends React.Component {
 
   search(keyword) {
     const filteredArray = foods.filter((food) => {
-      return food.name.indexOf(keyword) === 0;
+      return food.name.toLowerCase().startsWith(keyword.toLowerCase());
     })
     this.setState({ foodList: filteredArray })
 
@@ -32,7 +32,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>IronNutrition</h1>
+        <h1 className='iron-header'>IronNutrition</h1>
         <Search search={(keyword) => this.search(keyword)}/>
         <Form addFood={(food) => this.addFood(food)}/>
         <div>

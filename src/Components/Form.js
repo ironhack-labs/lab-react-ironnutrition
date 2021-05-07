@@ -42,7 +42,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { name, claories, image } = this.state;
+    const { name, calories, image, quantity} = this.state.fields;
     return (
       <form id="meal-form" className="meal-form" onSubmit={(e) => this.handleSubmit(e)} >
         <div className="form-item">
@@ -63,7 +63,7 @@ export default class Form extends Component {
             placeholder="Meal calories.."
             type="text"
             name="calories"
-            value={fields.calories}
+            value={calories}
             onChange={(e) => this.handleChange(e)}
           />
         </div>
@@ -71,9 +71,9 @@ export default class Form extends Component {
           <label htmlFor="image">Image: </label>
           <input
             className="food-form"
-            type="image"
+            type="text"
             name="image"
-            value={fields.image}
+            value={image}
             onChange={(e) => this.handleChange(e)}
           />
         </div>
@@ -84,7 +84,7 @@ export default class Form extends Component {
             placeholder="Meal quantity.."
             type="text"
             name="quantity"
-            value={fields.quantity}
+            value={quantity}
             onChange={(e) => this.handleChange(e)}
           />
         </div>

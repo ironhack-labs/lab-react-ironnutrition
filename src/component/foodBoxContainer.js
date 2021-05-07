@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import foods from '../foods.json';
 import 'bulma/css/bulma.css';
-import FoodBox from './foodBox'
+import React, { Component } from 'react';
+import FoodBox from './foodBox';
 
 class FoodBoxContainer extends Component {
     constructor(props) {
@@ -11,7 +10,6 @@ class FoodBoxContainer extends Component {
 
     generateBox = (elements) => {
         let foodBoxes = [];
-
         elements.forEach(element => {
             foodBoxes.push(<FoodBox img={element.image} name={element.name} cal={element.calories} quan={element.quantity} />);
         });
@@ -19,7 +17,7 @@ class FoodBoxContainer extends Component {
     }
 
     render() {
-        const foodBoxing = this.generateBox(foods)
+        const foodBoxing = this.generateBox(this.props.foods)
         return (
             <>{foodBoxing}</>
         )

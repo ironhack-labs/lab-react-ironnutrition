@@ -1,21 +1,17 @@
 import React from 'react';
+import './Search.css'
 
 
 class Search extends React.Component {
 
-
-  inputChange(event) {
-    const value = event.target.value;
-    this.props.search(value);
-  }
-
   render() {
     return (
-      <label>
-        Search <input type="text" name="search" onChange={event => this.inputChange(event)} />
-      </label>)
-  }
+      <div className='search-input'>
+        <input placeholder='Search' className='input is-info' type="text" name="search" onChange={event => this.props.search(event.target.value)} />
+      </div>
 
+      )
+  }
 
 }
 

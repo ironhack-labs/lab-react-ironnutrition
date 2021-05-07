@@ -48,50 +48,54 @@ class Form extends React.Component {
       <div>
         <form className='food-form' onSubmit={(event) => this.submit(event)}>
           <div className='food-item'>
-            <label htmlFor='name'>Name: </label>
+
             <input
-              type='text'
-              className='food-input'
-              placeholder='Food name'
+              className="input is-info"
+              type="text"
+              placeholder="Name"
               name='name'
               value={ name }
               onChange={(event) => this.change(event)}
-            />
+              />
+
           </div>
           <div className='food-item'>
-            <label htmlFor='name'>Calories: </label>
+
             <input
-              type='text'
-              className='food-input'
-              placeholder='Food calories'
+              className="input is-info"
+              type="text"
+              placeholder="Calories"
               name='calories'
               value={ calories }
               onChange={(event) => this.change(event)}
             />
+
           </div>
           <div className='food-item'>
-            <label htmlFor='name'>Image: </label>
+
             <input
-              type='text'
-              className='food-input'
-              placeholder='Food image'
+              className="input is-info"
+              type="text"
+              placeholder="Image URL"
               name='image'
               value={ image }
               onChange={(event) => this.change(event)}
             />
+
           </div>
           <div className='food-item'>
-            <label htmlFor='name'>Quantity: </label>
+
             <input
-              type='text'
-              className='food-input'
-              placeholder='Food quantity'
+              className="input is-info"
+              type="text"
+              placeholder="Quantity"
               name='quantity'
               value={ quantity }
               onChange={(event) => this.change(event)}
             />
+
           </div>
-          <button type='submit'> Submit</button>
+          <button className="button is-info" type='submit'>Submit</button>
         </form>
       </div>
     );

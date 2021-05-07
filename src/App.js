@@ -12,7 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       foods,
-      formOpen: false
+      formOpen: false,
+      search: '',
     };
   }
 
@@ -25,9 +26,17 @@ class App extends Component {
     this.setState({ foods: newFoods, formOpen: false });
   }
 
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     const formOpen = this.state.formOpen;
-    const foods = this.state.foods
+    const search = this.state.search;
+    const foods = this.state.foods.filter(food => food.name.toLowerCase().indexOf(search.toLowerCase()) > -1);
     return (
       <div className="App">
         <div className='body'>
@@ -38,6 +47,7 @@ class App extends Component {
                 <button onClick={() => this.showFoodForm()}>Add food</button>
             }
           </div>
+          <input className='input' type='text' name='search' value={search} onChange={(e) => this.handleChange(e)} placeholder='Search food item...' />
           <FoodBoxContainer foods={foods} />
         </div>
       </div>

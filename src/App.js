@@ -5,13 +5,15 @@ import foods from './foods.json';
 import FoodBox from './components/foodBox/FoodBox.js';
 import FoodForm from './components/form/FoodForm.js';
 import Search from './components/search/Search.js';
+import TodaysFoods from './components/todaysFoods/TodaysFoods.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props) 
     this.state = {
       formVisible: false, 
-      filteredFoods: foods
+      filteredFoods: foods,
+      todaysFoods: []
     }
   }
 
@@ -37,11 +39,15 @@ class App extends React.Component {
     this.setState({filteredFoods: filteredFoods}) 
   }
 
+  addToTodaysFoods = (food) => {
+    this.setState({todaysFoods: this.state.todaysFoods.concat(food)})
+    console.log(food)
+  }
+
   render() {
     return (
       <div className="App container">
         <div className="columns">
-          <div className="column"></div>
           <div className="column is-half">
             <button className="button" onClick={this.handleFormVisibility}>Add new food</button>
             {this.state.formVisible && <FoodForm addFood={this.handleNewFood} />}
@@ -49,12 +55,14 @@ class App extends React.Component {
             <ul>
               {this.state.filteredFoods.map(food => (
                 <li className="food-item" key={food.name}>
-                  <FoodBox food={food} />
+                  <FoodBox addToTodaysFoods={this.addToTodaysFoods} food={food} />
                 </li>
               ))}
             </ul>
           </div>
-          <div className="column"></div>
+          <div className="column is-half mt-6">
+            <TodaysFoods items={this.state.todaysFoods}/>
+          </div>
         </div>
       </div>
     );

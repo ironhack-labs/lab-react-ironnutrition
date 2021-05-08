@@ -5,10 +5,17 @@ import './FoodBox.css';
 class FoodBox extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     foods: foods,
-        //     quantity: '1'
-        // }
+        this.state = {
+            quantity: 1
+        }
+    }
+
+    handleChange = (event) => {
+        let { name, value } = event.target;
+        if( name === "quantity" && value <= 0) {
+            return
+        }
+        this.setState({[name]: parseInt(value)});
     }
 
     render() {
@@ -31,10 +38,10 @@ class FoodBox extends React.Component {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number" value="1" />
+                                <input name="quantity" className="input" type="number" value={this.state.quantity} onChange={(e) => this.handleChange(e)}/>
                             </div>
                             <div className="control">
-                                <button className="button is-info">+</button>
+                                <button className="button is-info" onClick={() => this.props.addToTodaysFoods({ ...this.props.food, quantity: this.state.quantity})}>+</button>
                             </div>
                         </div>
                     </div>

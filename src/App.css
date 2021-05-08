@@ -66,3 +66,7 @@
   background-color: white;
   border-radius: 4px;
 }
+
+.columnContainer {
+  display: flex;
+}

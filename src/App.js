@@ -13,10 +13,12 @@ class App extends Component{
         this.state = {
             food: foodsArray,
             isFormVisible: false,
+            todaysFoods: [],
         };
 
         this.addNewFood = this.addNewFood.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
+        this.addFoodToList = this.addFoodToList.bind(this);
     };
 
     showForm() {
@@ -48,6 +50,27 @@ class App extends Component{
         });
     }
 
+    addFoodToList(item){
+        const newTodaysFoods = [...this.state.todaysFoods, item];
+        const newFoodObject = {};
+        [...newTodaysFoods].forEach((item) => {
+            if (!newFoodObject[item.name]) {
+                // If we have not visited this item yet we just put it as it is
+                newFoodObject[item.name] = item;
+            } else {
+                // If we have visited before we just add the quantity to its previous value
+                newFoodObject[item.name] = {
+                    ...newFoodObject[item.name],
+                    quantity: newFoodObject[item.name].quantity + item.quantity,
+                };
+            }
+        });
+
+        this.setState({
+            todaysFoods: Object.values(newFoodObject),
+        });
+    }
+
     render() {
         return (
             <div>
@@ -62,12 +85,23 @@ class App extends Component{
                 <div>
                     <SearchBar onChange={this.onSearchChange} />
                 </div>
-                <div>
-                    {this.state.food.map((item) => {
-                        return (
-                            <Foodbox food={item} />
-                        )
-                    })}
+                <div className="columnContainer">
+                    <div>
+                        {this.state.food.map((item) => {
+                            return (
+                                <Foodbox food={item} addFoodToList={this.addFoodToList} />
+                            )
+                        })}
+                    </div>
+                    <div>
+                        <h3>Today's foods</h3>
+                        <ul>
+                            {this.state.todaysFoods.map(item => (
+                                <li>{item.quantity} {item.name} = {parseInt(item.quantity) * parseInt(item.calories)} cal</li>
+                            ))}
+                        </ul>
+                        <div>Total: {this.state.todaysFoods.reduce((total, item) => (total + (parseInt(item.quantity) * parseInt(item.calories))), 0)} cal</div>
+                    </div>
                 </div>
             </div>
         )

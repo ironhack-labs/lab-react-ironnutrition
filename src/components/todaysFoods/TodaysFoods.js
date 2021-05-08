@@ -16,9 +16,9 @@ class TodaysFoods extends React.Component {
             <div>
                 <h2 className="title is-3">Today's foods</h2>
                 <ul>
-                    {this.props.items.map(food => (
-                    <li className="food-item" key={food.name}>
-                    {food.quantity} {food.name} = {food.calories*food.quantity} cal
+                    {this.props.items.map((food, index) => (
+                    <li className="food-item" key={index}>
+                    {food.quantity} {food.name} = {food.calories*food.quantity} cal <button onClick={() => this.props.removeItemByIndex(index)}>&#128465;</button>
                     </li>
                 ))}
             </ul>

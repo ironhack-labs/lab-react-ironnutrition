@@ -41,7 +41,13 @@ class App extends React.Component {
 
   addToTodaysFoods = (food) => {
     this.setState({todaysFoods: this.state.todaysFoods.concat(food)})
-    console.log(food)
+  }
+
+  deleteItemTodaysFoods = (index) => {
+    let todaysFoodsCopy = [...this.state.todaysFoods]
+
+    todaysFoodsCopy.splice(index, 1)
+    this.setState({todaysFoods: todaysFoodsCopy})
   }
 
   render() {
@@ -61,7 +67,7 @@ class App extends React.Component {
             </ul>
           </div>
           <div className="column is-half mt-6">
-            <TodaysFoods items={this.state.todaysFoods}/>
+            <TodaysFoods removeItemByIndex={this.deleteItemTodaysFoods} items={this.state.todaysFoods}/>
           </div>
         </div>
       </div>

@@ -9,7 +9,15 @@ function App() {
   return (
     <div className="App">
     <h1>IronNutrition</h1>
-     <FoodBox/>
+
+
+    {foods.map((foodItem, index) => {
+      return <FoodBox key={index} {...foodItem}/>;
+
+
+
+
+    })}
     </div>
   );
 }

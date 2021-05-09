@@ -29,6 +29,7 @@ export default function FoodBox({ name, calories, image, addTodaysFood, removeFo
           <form onSubmit={(e) => handleSubmitTodaysFood(e)}>
             <div className="field has-addons">
               <div className="control">
+              <input></input>
                 <input
                   className="input"
                   type="number"

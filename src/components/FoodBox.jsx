@@ -3,15 +3,12 @@ import React from 'react';
 
 const FoodBox = ({image, name, calories, quantity}) => {
 
-
-
-
     return(
 <div className="box">
   <article className="media">
     <div className="media-left">
       <figure className="image is-64x64">
-        <img src={image} alt='food-image' />
+        <img src={image} alt='food-pic' />
       </figure>
     </div>
     <div className="media-content">

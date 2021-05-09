@@ -11,7 +11,7 @@ function App() {
     <div className="App">
     <h1 style={{fontSize: '4rem'}}>IronNutrition</h1>
     <AddFood/>
-
+    
     {foods.map((foodItem, index) => {
       return <FoodBox key={index} {...foodItem}/>;
     })}

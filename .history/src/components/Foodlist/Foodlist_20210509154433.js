@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import FoodBox from '../Foodbox/Foodbox';
+import FoodBox from "../Foodbox/Foodbox"
 import Form from '../Form/Form';
-import TodaysFoods from '../TodaysFoods/TodaysFoods';
+import TodaysFoods from "../TodaysFoods/TodaysFoods";
+
 
 export default class FoodList extends Component {
   constructor(props) {
@@ -18,35 +19,24 @@ export default class FoodList extends Component {
   addTodaysFood = ({ name, calories, quantity }) => {
     let newTodaysFoodsList = [...this.state.todaysFoodsList];
     newTodaysFoodsList.push({ name, calories, quantity });
-    this.setState({ todaysFoodsList: this.attachFoods(newTodaysFoodsList) });
+    this.setState({ todaysFoodsList: this.attachFoods(newTodaysFoodsList)});
     this.updateTotalCalories(calories, quantity);
   };
 
-  attachFoods(foodsList) {
+ 
+  attachFoods(foodsList){
     let attachedFoodList = [];
-    debugger;
-    foodsList.forEach((food) => {
-      if (
-        !attachedFoodList.some(
-          (attachedFood) => attachedFood.name === food.name
-        )
-      ) {
-        attachedFoodList.push({
-          name: food.name,
-          calories: food.calories,
-          quantity: food.quantity,
-        });
+    debugger
+    foodsList.forEach(food => {
+      if(!attachedFoodList.some(attachedFood => attachedFood.name === food.name)){
+        attachedFoodList.push({name: food.name, calories: food.calories, quantity:food.quantity});
       } else {
-        attachedFoodList.filter(
-          (attachedFood) => attachedFood.name === food.name
-        )[0].quantity += food.quantity;
-        attachedFoodList.filter(
-          (attachedFood) => attachedFood.name === food.name
-        )[0].calories += food.calories;
+        attachedFoodList.filter(attachedFood => attachedFood.name === food.name)[0].quantity += food.quantity;
+        attachedFoodList.filter(attachedFood => attachedFood.name === food.name)[0].calories += food.calories;
       }
-    });
+    })
 
-    attachedFoodList.sort((a, b) => a.name.localeCompare(b.name));
+    attachedFoodList.sort((a,b) => a.name.localeCompare(b.name))
     return attachedFoodList;
   }
 
@@ -63,10 +53,10 @@ export default class FoodList extends Component {
 
   removeFood = (foodName) => {
     let foodsListCopy = [...this.state.foods];
-    foodsListCopy = foodsListCopy.filter((food) => food.name !== foodName);
+    foodsListCopy = foodsListCopy.filter(food => food.name !== foodName);
 
-    this.setState({ foods: foodsListCopy });
-  };
+    this.setState({foods: foodsListCopy});
+  }
 
   displayFoods = () => {
     const { foods } = this.state;
@@ -76,17 +66,12 @@ export default class FoodList extends Component {
 
     return foodsFiltered.map((food) => {
       return (
-        <FoodBox
-          key={food.name}
-          {...food}
-          addTodaysFood={this.addTodaysFood}
-          removeFood={this.removeFood}
-        />
+        <FoodBox key={food.name} {...food} addTodaysFood={this.addTodaysFood} removeFood={this.removeFood} />
       );
     });
   };
   handleSearch(event) {
-    this.setState({ searchedFood: event.target.value });
+    this.setState({ searchedFood: event.target.value});
   }
 
   render() {

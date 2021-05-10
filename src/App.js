@@ -4,9 +4,11 @@ import Foodbox from './components/FoodBox/FoodBox';
 import 'bulma/css/bulma.css';
 import './App.css';
 import Form from './components/Form/Form';
+import Search from './components/Search/Search';
 
 class App extends React.Component {
   state = {
+    filteredFood: foodList,
     foods: foodList,
     showForm: false 
   }
@@ -18,11 +20,19 @@ class App extends React.Component {
   }
 
   displayFoods = () => {
-    return this.state.foods.map((singleFood) => {
+    return this.state.filteredFood.map((singleFood) => {
       return (        
           <Foodbox {...singleFood}/>        
       )
     })
+  }
+
+  filterFoods = (event) => {
+    const { value } = event.target;    
+    const filteredFood = this.state.foods.filter((food) =>{
+      return food.name.includes(value)
+    })
+    this.setState({ ...this.state, filteredFood})
   }
 
   //TODO:FIXME:TODO:FIXME:
@@ -33,8 +43,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <button onClick={() => this.toggleForm()}>HABER </button>
-     
+      <button onClick={() => this.toggleForm()}>Add food </button>
+      <Search filterFoods = {(event) => this.filterFoods(event)}/>
       {this.state.showForm ? <Form patata={()=> this.toggleForm()} addFood={(food) => this.addFood(food)} /> : ""}      
       
       

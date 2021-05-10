@@ -38,6 +38,7 @@ export default class Form extends Component {
                 quantity: null
             }
         });
+        this.props.data();
     }
 
     handleChange(event) {
@@ -49,8 +50,6 @@ export default class Form extends Component {
             },
         })
     }
-
-    
 
     render() {
         const {fields, errors} = this.state;

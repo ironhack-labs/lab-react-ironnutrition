@@ -9,10 +9,11 @@ import Search from './components/Search';
 class App extends React.Component {
   state = {
     foods: foods,
+    filteredFoods: foods,
   };
 
   displayFoods = () => {
-    return this.state.foods.map((food) => {
+    return this.state.filteredFoods.map((food) => {
       return (
         <FoodBox
           name={food.name}
@@ -40,11 +41,11 @@ class App extends React.Component {
 
   filterFoods(event){
     const {value} = event.target;
-    const filteredFood = this.state.foods.filter((food)=>{
+    const filteredFoods = this.state.foods.filter((food)=>{
       return food.name.toLowerCase().includes(value.toLowerCase())
     })
   
-    this.setState({...this.state, foods: filteredFood})
+    this.setState({...this.state, filteredFoods})
   }
 
   render() {

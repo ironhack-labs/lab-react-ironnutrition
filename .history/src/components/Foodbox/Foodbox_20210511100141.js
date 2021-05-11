@@ -45,6 +45,8 @@ export default function FoodBox({
                 <button className="button add is-info" type="submit">
                   +
                 </button>
+          
+                </button>
               </div>
             </div>
           </form>

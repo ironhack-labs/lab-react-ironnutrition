@@ -61,7 +61,14 @@ export default class FoodList extends Component {
     this.setState({ foods: arrayCopy });
   };
 
- 
+  removeFood = (foodName) => {
+    let foodsListCopy = [...this.state.todaysFoodsList];
+    newTodaysFoodsList.pull({ name, calories, quantity });
+    this.setState({ todaysFoodsList: this.attachFoods(newTodaysFoodsList) });
+    this.updateTotalCalories(calories, quantity);
+
+    this.setState({ foods: foodsListCopy });
+  };
 
   displayFoods = () => {
     const { foods } = this.state;
@@ -75,7 +82,7 @@ export default class FoodList extends Component {
           key={food.name}
           {...food}
           addTodaysFood={this.addTodaysFood}
-        
+          removeFood={this.removeFood}
         />
       );
     });

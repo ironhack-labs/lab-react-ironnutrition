@@ -45,6 +45,13 @@ export default function FoodBox({
                 <button className="button add is-info" type="submit">
                   +
                 </button>
+                <button
+                  className="button trash is-danger"
+                  type="button"
+                  onClick={() => removeFood(name)}
+                >
+                  <i className="far fa-trash-alt">Remove Food from list</i>
+                </button>
               </div>
             </div>
           </form>

@@ -61,7 +61,12 @@ export default class FoodList extends Component {
     this.setState({ foods: arrayCopy });
   };
 
- 
+  removeFood = (foodName) => {
+    let foodsListCopy = [...this.state.foods];
+    foodsListCopy = foodsListCopy.filter((food) => food.name !== foodName);
+
+    this.setState({ foods: foodsListCopy });
+  };
 
   displayFoods = () => {
     const { foods } = this.state;

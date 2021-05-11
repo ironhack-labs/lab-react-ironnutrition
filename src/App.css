@@ -12,6 +12,10 @@ h1{
   font-size: 3rem !important;
 }
 
+h2{
+  font-size: 1.5rem !important;
+}
+
 .button{
   margin-left: auto;
   margin-right: auto;
@@ -19,16 +23,15 @@ h1{
 }
 
 .main-content{
+  width: 60%;
   display: flex;
   flex-direction: row;
-  margin: 50px;
-  justify-content: space-evenly;
+  margin-top: 30px;
+  justify-content: space-between;
 }
 
 .food-container{
   width: 50%;
+  margin-right: 200px !important;
 }
 
-.all-foods{
-  margin-right: 50px !important;
-}

@@ -5,31 +5,34 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import Form from './components/Form';
 import Search from './components/Search';
+import TodayFoods from './components/TodayFoods';
 
 class App extends React.Component {
   state = {
     foods: foods,
     filteredFoods: foods,
+    displayForm: false,
+    todaysfoods: [],
   };
 
   displayFoods = () => {
     return this.state.filteredFoods.map((food) => {
       return (
-        <FoodBox
-          name={food.name}
-          calories={food.calories}
-          image={food.image}
-          quantity={food.quantity}
-        />
+        <FoodBox addTodaysFoods = {(food) => this.addTodaysFoods(food)}
+          {...food}
+          />
       );
     });
   };
 
   addFood = (food) => {
-    const foodsCopy = [...this.state.foods];
-    foodsCopy.push(food);
+    const foodsCopy = [...this.state.filteredFoods];
+    const filteredfoodsCopy = [...this.state.foods];
 
-    this.setState({ foods: foodsCopy });
+    foodsCopy.push(food);
+    filteredfoodsCopy.push(food);
+
+    this.setState({ filteredFoods: foodsCopy, foods:filteredfoodsCopy });
   };
 
   displayForm = () => {
@@ -39,6 +42,7 @@ class App extends React.Component {
     this.setState({ foods: foodsCopy, displayForm: showForm });
   };
 
+
   filterFoods(event){
     const {value} = event.target;
     const filteredFoods = this.state.foods.filter((food)=>{
@@ -46,6 +50,13 @@ class App extends React.Component {
     })
   
     this.setState({...this.state, filteredFoods})
+  }
+
+  addTodaysFoods(food){
+    const todayfoodsCopy = [...this.state.todaysfoods];
+    todayfoodsCopy.push(food);
+
+    this.setState({...this.state, todaysfoods: todayfoodsCopy })
   }
 
   render() {
@@ -58,12 +69,15 @@ class App extends React.Component {
           Add New Food
         </button>
 
-        {this.state.displayForm ? (
-          <Form addFood={(food) => this.addFood(food)} />
-        ) : (
-          ''
-        )}
+        {this.state.displayForm ? <Form addFood={(food) => this.addFood(food)} /> : ""}
+
+      <div className="main-content">
         <div className="food-container">{this.displayFoods()}</div>
+        <div className="today-foods">
+          <h2>Today's Foods</h2>
+          <TodayFoods todaysfoods= {this.state.todaysfoods}/>
+        </div>
+      </div>
       </div>
     );
   }

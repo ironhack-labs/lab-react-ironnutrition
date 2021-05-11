@@ -38,7 +38,6 @@ export default class Form extends Component {
                 quantity: null
             }
         });
-        this.props.data();
     }
 
     handleChange(event) {

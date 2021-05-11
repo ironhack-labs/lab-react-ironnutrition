@@ -1,72 +1,88 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
+import './FoodList.css';
 import FoodBox from '../foodbox/FoodBox';
 import FoodForm from '../FoodForm/FoodForm';
+import Search from '../search/Search';
+import TodaysFoods from '../todaysFoods/TodaysFoods';
 
 export default class FoodList extends React.Component {
   state = {
-    foods: this.props.foods.map((food, index) => ({
-      ...food,
-      id: `${food.name}${index}`,
-    })),
-    showAddForm: false,
+    formVisible: false,
+    filteredFoods: this.props.foods,
+    todaysFoods: [],
   };
 
-  onFoodChange = (food) => {
-    this.setState((previous) => {
-      const index = previous.foods.findIndex(
-        (element) => element.id === food.id
-      );
-      return {
-        foods: [
-          ...previous.foods.slice(0, index),
-          food,
-          ...previous.foods.slice(index + 1),
-        ],
-        showAddForm: this.state.showAddForm,
-      };
+  handleFormVisibility = () => {
+    this.setState({ formVisible: !this.state.formVisible });
+  };
+
+  handleNewFood = (newFood) => {
+    this.props.foods.push(newFood);
+    this.handleFormVisibility();
+  };
+
+  handleSearch = (search) => {
+    const filteredFoods = this.props.foods.filter((food) => {
+      return food.name.toUpperCase().includes(search.toUpperCase());
     });
+    this.setState({ filteredFoods: filteredFoods });
   };
 
-  addFood = (food) => {
-    const arrayCopy = [...this.state.foods];
-    const newFood = {
-      ...food,
-      id: `${food.name}${food.calories}`,
-    };
-    arrayCopy.push(newFood);
-
-    this.setState({ foods: arrayCopy, showAddForm: this.state.showAddForm });
+  addToTodaysFoods = (food) => {
+    let repeated = false;
+    const todaysFoodsCopy = this.state.todaysFoods.map((f) => {
+      if (f.name === food.name) {
+        f.quantity = f.quantity + food.quantity
+        repeated = true;
+      } 
+      return f;
+    })
+    if (!repeated) {
+      todaysFoodsCopy.push(food)
+    }
+    this.setState({ todaysFoods: todaysFoodsCopy });
   };
 
-  showAddForm() {
-    const arrayCopy = [...this.state.foods];
-    const showForm = !this.state.showAddForm;
+  deleteItemTodaysFoods = (index) => {
+    let todaysFoodsCopy = [...this.state.todaysFoods];
 
-    this.setState({ foods: arrayCopy, showAddForm: showForm });
-  }
+    todaysFoodsCopy.splice(index, 1);
+    this.setState({ todaysFoods: todaysFoodsCopy });
+  };
 
   render() {
     return (
-      <div>
-        <button onClick={() => this.showAddForm()}>
-          {!this.state.showAddForm ? 'Show add food form' : 'Hide form'}
-        </button>
-        {this.state.showAddForm ? (
-          <FoodForm addFood={(food) => this.addFood(food)} />
-        ) : (
-          ''
-        )}
-        <div className="foods-container">
-          {this.state.foods.map((food, index) => {
-            return (
-              <FoodBox
-                {...food}
-                onChange={this.onFoodChange}
-                key={`${food.name}${index}`}
-              />
-            );
-          })}
+      <div className="container">
+        <div className="columns">
+          <div className="column is-half">
+            <button
+              className="button is-info"
+              onClick={this.handleFormVisibility}
+            >
+              Add new food
+            </button>
+            {this.state.formVisible && (
+              <FoodForm addFood={this.handleNewFood} />
+            )}
+            <Search search={this.handleSearch} />
+            <ul className="food-list">
+              {this.state.filteredFoods.map((food) => (
+                <li className="food-item" key={food.name}>
+                  <FoodBox
+                    addToTodaysFoods={this.addToTodaysFoods}
+                    food={food}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="column is-half mt-6">
+            <TodaysFoods
+              removeItemByIndex={this.deleteItemTodaysFoods}
+              items={this.state.todaysFoods}
+            />
+          </div>
         </div>
       </div>
     );

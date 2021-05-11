@@ -112,7 +112,7 @@ export default class FoodForm extends React.Component {
         <div className="form-item">
           <label htmlFor="name">Name:</label>
           <input
-            className={`${errors.name ? 'error-input' : ''}`}
+            className={`${errors.name ? 'error-input' : ''} input`}
             placeholder="Name..."
             type="text"
             name="name"
@@ -123,7 +123,7 @@ export default class FoodForm extends React.Component {
         <div className="form-item">
           <label htmlFor="name">Calories:</label>
           <input
-            className={`${errors.calories ? 'error-input' : ''}`}
+            className={`${errors.calories ? 'error-input' : ''} input`}
             placeholder="Introduce calories"
             type="text"
             name="calories"
@@ -134,7 +134,7 @@ export default class FoodForm extends React.Component {
         <div className="form-item">
           <label htmlFor="name">Image:</label>
           <input
-            className={`${errors.image ? 'error-input' : ''}`}
+            className={`${errors.image ? 'error-input' : ''} input`}
             placeholder="Add Image"
             type="text"
             name="image"
@@ -142,7 +142,7 @@ export default class FoodForm extends React.Component {
             onChange={(e) => this.handleInputChange(e)}
           />
         </div>
-        <button disabled={!this.isValid()} type="submit">
+        <button className="button is-primary submit-button" disabled={!this.isValid()} type="submit">
           Create food
         </button>
       </form>

@@ -1,0 +1,10 @@
+.food-list {
+    height:70vh;
+    overflow: auto;
+}
+
+.container{
+    margin: 20px auto;
+    height:100%;
+    overflow: hidden;
+}

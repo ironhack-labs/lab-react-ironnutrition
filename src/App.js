@@ -5,26 +5,41 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import Form from './components/Form/Form';
 import Search from './components/Search/Search';
+import TodaysFoods from './components/TodaysFoods/TodaysFoods';
 
 class App extends React.Component {
   state = {
     filteredFood: foodList,
     foods: foodList,
-    showForm: false 
+    showForm: false,
+    foodToAdd: [] 
   }
    
   addFood = (food) => {
+    const arrayCopy2 = [ ...this.state.filteredFood];
     const arrayCopy = [ ...this.state.foods ];
+
+    arrayCopy2.push(food);
     arrayCopy.push(food);
     this.setState({ foods: arrayCopy });
+    this.setState({ filteredFood: arrayCopy2});
   }
 
   displayFoods = () => {
     return this.state.filteredFood.map((singleFood) => {
       return (        
-          <Foodbox {...singleFood}/>        
+          <Foodbox addFoodToList={(food)=>this.addFoodToList(food)} {...singleFood}/>  
+
       )
     })
+  }
+ 
+  addFoodToList (food){
+      console.log("click")
+      const arrayCopy = [ ...this.state.foodToAdd];
+      arrayCopy.push(food);
+      this.setState({...this.state, foodToAdd: arrayCopy});
+
   }
 
   filterFoods = (event) => {
@@ -43,15 +58,22 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <button onClick={() => this.toggleForm()}>Add food </button>
-      <Search filterFoods = {(event) => this.filterFoods(event)}/>
-      {this.state.showForm ? <Form patata={()=> this.toggleForm()} addFood={(food) => this.addFood(food)} /> : ""}      
-      
-      
           <div>
-          {
-          this.displayFoods()
-          }
+          <button onClick={() => this.toggleForm()}>Add food </button>
+          </div>
+
+          <Search filterFoods = {(event) => this.filterFoods(event)}/>
+          {this.state.showForm ? <Form patata={()=> this.toggleForm()} addFood={(food) => this.addFood(food)} /> : ""}      
+          <div  className="display-foods">
+          <div>
+            {
+            this.displayFoods()
+            }
+          </div>
+          <div className="todays-foods">
+            <h2>Today's Foods</h2>
+            <TodaysFoods patata={this.state.foodToAdd}/>
+          </div>
           </div>
       </div>
     )

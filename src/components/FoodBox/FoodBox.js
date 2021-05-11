@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
+ 
 
-
-export default function FoodBox({ name, calories, image, quantity}) {
+export default function FoodBox({ name, calories, image, quantity, addFoodToList}) {
     return (
         <div>
             <div className="box">
@@ -16,17 +16,17 @@ export default function FoodBox({ name, calories, image, quantity}) {
                     <div className="content">
                         <p>
                         <strong>{name}</strong> <br />
-                        <small>{calories}</small>
+                        <small>{calories} calories</small>
                         </p>
                     </div>
                     </div>
                     <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                        <input className="input" type="number" value={quantity} />
+                        <input className="input" type="number" value={1} />
                         </div>
-                        <div className="control">
-                        <button className="button is-info">
+                        <div className="control" >
+                        <button className="button is-info" onClick={()=>addFoodToList({name, calories,quantity})}>
                             +
                         </button>
                         </div>

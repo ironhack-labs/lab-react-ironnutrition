@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import foods from './foods.json';
+import 'bulma/css/bulma.css';
+
+import FoodBox from './components/FoodBox/Foodbox';
+
 function App() {
+  const foodList = foods.map((item) => {
+    return <FoodBox food={item} />;
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div class="container">
+        <h1 class="title">IronNutrition</h1>
+        <div>
+          <input
+            type="text"
+            class="input search-bar"
+            name="search"
+            placeholder="Search"
+            value=""
+          />
+        </div>
+        <div class="columns">
+          <div class="column">{foodList}</div>
+        </div>
+      </div>
     </div>
   );
 }

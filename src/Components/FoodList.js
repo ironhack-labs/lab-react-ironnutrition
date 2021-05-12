@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import FoodBox from "./FoodBox";
-import Form from "../Components/Form";
+import Form from "./Form";
 
 
 class FoodList extends React.Component {

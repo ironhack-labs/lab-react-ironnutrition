@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Main.css';
 
 import FoodBox from '../FoodBox/FoodBox';
 import NewFood from '../NewFood/NewFood';
 
-export default class Main extends Component {
+import foods from '../../foods.json';
+
+export default class Main extends React.Component {
   state = {
-    foods: this.props.foods,
+    allFoods: foods,
   };
 
   handleNewFood = (food) => {};
@@ -15,10 +17,10 @@ export default class Main extends Component {
     return (
       <div>
         <h1>IronNutrition</h1>
-        {this.state.foods.map((food) => {
+        {this.state.allFoods.map((food) => {
           return <FoodBox key={food.name} {...food} />;
         })}
-        <NewFood newFood={this.handleNewFood} />
+        {/* <NewFood newFood={this.handleNewFood} /> */}
       </div>
     );
   }

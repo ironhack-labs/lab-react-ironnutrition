@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './NewFood.css';
 
-export default class NewFood extends Component {
+export default class NewFood extends React.Component {
   state = {
-    isEditing: false,
+    isEditing: true,
     food: {
       name: '',
       calories: 0,

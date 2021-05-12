@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import FoodBox from './components/FoodBox';
 import Form from './components/Form';
+import Search from './components/Search';
 
 class App extends React.Component {
   state = {
@@ -22,9 +23,18 @@ class App extends React.Component {
       return <FoodBox food={food} key={index} />;
     });
   };
+
+  toggleForm() {
+    this.setState({ showForm: !this.state.showForm })
+  }
+  findFood(query) {
+   return this.setState({foods: this.state.food.filter(food => food.name.includes(query))})
+
+  }
   render() {
     return (
       <div className="app">
+        <Search findFood={(query) => this.findFood(query)} />
         <Form addFood={(food) => this.addFood(food)} />
         {this.displayFood()}
       </div>

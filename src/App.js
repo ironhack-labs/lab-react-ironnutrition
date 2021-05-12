@@ -1,54 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import 'bulma/css/bulma.css';
 import foods from './foods.json';
+import 'bulma/css/bulma.css';
+import './App.css';
 import FoodBox from './components/FoodBox';
+import Form from './components/Form';
+import Search from './components/Search';
 
-function RealFood() {
-  return (
-    <div>
-      {foods.map((food, index) => {
-        return (
-          <div className="box">
-            <article className="media">
-              <div className="media-left">
-                <figure className="image is-64x64">
-                  <img src={food.image} />
-                </figure>
-              </div>
-              <div className="media-content">
-                <div className="content">
-                  <p>
-                    <strong>{food.name}</strong> <br />
-                    <small>{food.calories}</small>
-                  </p>
-                </div>
-              </div>
-              <div className="media-right">
-                <div className="field has-addons">
-                  <div className="control">
-                    <input className="input" type="number" value="1" />
-                  </div>
-                  <div className="control">
-                    <button className="button is-info">+</button>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+class App extends React.Component {
+  state = {
+    food: foods,
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <RealFood />
-    </div>
-  );
+  addFood = (food) => {
+    const arrayCopy = [...this.state.food];
+    arrayCopy.push(food);
+    this.setState({ food: arrayCopy });
+  };
+
+  displayFood = () => {
+    //esto es displayFood
+    return this.state.food.map((food, index) => {
+      return <FoodBox food={food} key={index} />;
+    });
+  };
+
+  toggleForm() {
+    this.setState({ showForm: !this.state.showForm })
+  }
+  findFood(query) {
+   return this.setState({foods: this.state.food.filter(food => food.name.includes(query))})
+
+  }
+  render() {
+    return (
+      <div className="app">
+        <Search findFood={(query) => this.findFood(query)} />
+        <Form addFood={(food) => this.addFood(food)} />
+        {this.displayFood()}
+      </div>
+    );
+  }
 }
 
 export default App;

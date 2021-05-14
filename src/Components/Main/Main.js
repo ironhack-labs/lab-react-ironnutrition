@@ -9,9 +9,14 @@ import foods from '../../foods.json';
 export default class Main extends React.Component {
   state = {
     allFoods: foods,
+    showingForm: false,
   };
 
   handleNewFood = (food) => {};
+
+  toggleForm = () => {
+    this.setState({ showingForm: !this.state.showingForm });
+  };
 
   render() {
     return (
@@ -20,7 +25,8 @@ export default class Main extends React.Component {
         {this.state.allFoods.map((food) => {
           return <FoodBox key={food.name} {...food} />;
         })}
-        {/* <NewFood newFood={this.handleNewFood} /> */}
+        <button onClick={this.toggleForm}>New Food</button>
+        {this.state.showingForm && <NewFood newFood={this.handleNewFood} />}
       </div>
     );
   }

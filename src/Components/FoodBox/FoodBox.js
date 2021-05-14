@@ -8,11 +8,9 @@ class FoodBox extends React.Component {
   };
 
   updateInput = (e) => {
-    console.log(this.state.quantity);
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log(this.state.quantity);
   };
 
   render() {
@@ -38,7 +36,7 @@ class FoodBox extends React.Component {
                 <input
                   className="input"
                   type="number"
-                  value="1"
+                  value={this.state.quantity}
                   onChange={this.updateInput}
                   name="quantity"
                 />

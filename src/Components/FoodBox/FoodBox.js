@@ -4,13 +4,24 @@ import './FoodBox.css';
 
 class FoodBox extends React.Component {
   state = {
-    quantity: 1,
+    quantity: 0,
   };
 
   updateInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  handleAddButtonClick = () => {
+    const { name, calories } = this.props;
+    this.props.addFoodListener({
+      name,
+      calories,
+      quantity: Number(this.state.quantity),
+      total: this.state.quantity * calories,
+    });
+    this.setState({ quantity: 0 });
   };
 
   render() {
@@ -42,7 +53,12 @@ class FoodBox extends React.Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button
+                  className="button is-info"
+                  onClick={this.handleAddButtonClick}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>

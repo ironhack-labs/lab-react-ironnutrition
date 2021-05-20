@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import foodsData from './foods.json';
 
@@ -49,25 +49,31 @@ function App() {
     setTodaysFood([...todaysFood])
   }
 
-  // useEffect(() => {
-  //   console.log('mounting todays foods')
-  // }, [])
-
-  // useEffect(() => {
-  //   console.log('updating todays foods')
-  // }, [todaysFood])
-
   return (
-    <div className="App">
-      <h1>IronNutrition</h1>
-      <input onChange={e => filterFoods(e.target.value)} />
-      <FoodCart deleteFromCart={deleteFromCart}>{todaysFood}</FoodCart>
-      <AddNewFood addNewFood={addNewFood} />
-      {
-        foods.map(food => <FoodBox {...food} addToCart={addToCart} key={food.name} />)
-      }
-
-      
+    <div className="outter container">
+      <h1 className="title">IronNutrition</h1>
+      <div className="search">
+        <input 
+          type="text"
+          placeholder="Search"
+          className="input search-bar"
+          onChange={e => filterFoods(e.target.value)} />
+      </div>
+      <div className="columns">
+        <div className="food-list column container">
+          {
+            foods.map((food, i) => <FoodBox {...food} addToCart={addToCart} key={food.name + i} />)
+          }
+        </div>
+        <div className="column container">
+          <div className="container">
+            <FoodCart deleteFromCart={deleteFromCart}>{todaysFood}</FoodCart>
+          </div>
+          <div className="container">
+                <AddNewFood addNewFood={addNewFood} />
+          </div>
+        </div>
+      </div>
     </div>
     
   );

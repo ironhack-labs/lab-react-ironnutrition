@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 
 const FoodBox = props => {
-    const [ quantity, setQuantity ] = useState(props.quantity);
+    const [ quantity, setQuantity ] = useState(1);
     const [ calories, setCalories ] = useState(props.calories);
 
     const handleChange = e => {

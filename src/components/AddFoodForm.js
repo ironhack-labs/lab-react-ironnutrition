@@ -9,6 +9,7 @@ const AddFoodForm = props => {
     const handleSubmition = e => {
         e.preventDefault();
 
+    if (name && calories && image) {
         props.addNewFood({
             name,
             calories,
@@ -20,6 +21,7 @@ const AddFoodForm = props => {
         setImage('');
 
         setShowForm(false);
+    }
 
     }
 
@@ -28,7 +30,11 @@ const AddFoodForm = props => {
             
             {
                 !showForm ? 
-                    <button onClick={() => setShowForm(true)}>Add new food</button>
+                    <button 
+                    className="button is-info is-large"
+                    onClick={() => setShowForm(true)}>
+                        Add new food
+                    </button>
                 :
                     (<form className="" onSubmit={e => handleSubmition(e)}>
                         <div className="field">
@@ -37,7 +43,7 @@ const AddFoodForm = props => {
                                 <input 
                                     className="input" 
                                     type="text" 
-                                    placeholder="Text input" 
+                                    placeholder="Apple"
                                     value={name}
                                     onChange={e => setName(e.target.value)} />
                             </div>
@@ -47,9 +53,9 @@ const AddFoodForm = props => {
                             <label className="label">Calories</label>
                             <div className="control">
                                 <input 
-                                className="input no-spinner" 
-                                type="number" 
-                                placeholder="Text input" 
+                                className="input" 
+                                type="number"
+                                placeholder="50"
                                 value={calories}
                                 onChange={e => setCalories(e.target.value)}/>
                             </div>
@@ -61,7 +67,7 @@ const AddFoodForm = props => {
                                 <input 
                                 className="input" 
                                 type="text" 
-                                placeholder="Text input"
+                                placeholder="A URL"
                                 value={image}
                                 onChange={ e => setImage(e.target.value)} />
                             </div>

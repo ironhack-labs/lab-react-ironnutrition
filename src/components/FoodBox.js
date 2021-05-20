@@ -1,15 +1,25 @@
 import { React, useState } from 'react'
 
 const FoodBox = props => {
-    const [ foodNumber, setFoodNumber ] = useState(1);
+    const [ quantity, setQuantity ] = useState(props.quantity);
     const [ calories, setCalories ] = useState(props.calories);
 
-    // console.log(props)
     const handleChange = e => {
-        console.log(e.target.value)
+        const { value } = e.target
+        const multiplier = value > 0 ? value : 1
 
-        setFoodNumber(e.target.value)
-        setCalories(props.calories * e.target.value)
+        setQuantity(value)
+        setCalories(props.calories * multiplier)
+    }
+
+    const sendToCart = e => {
+        const foodToAdd = {
+            name: props.name,
+            calories: props.calories,
+            quantity
+        }
+        
+        if (quantity > 0) props.addToCart(foodToAdd)
     }
 
     return (
@@ -31,10 +41,10 @@ const FoodBox = props => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value={foodNumber} min="1" onChange={e => handleChange(e)}/>
+                            <input className="input" type="number" value={quantity} min="0" onChange={e => handleChange(e)}/>
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" onClick={sendToCart}>
                                 +
                             </button>
                         </div>

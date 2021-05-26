@@ -32,6 +32,7 @@ class App extends React.Component {
     });
   };
 
+
   render() {
     const filteredFoods = this.state.foods.filter((food) => {
       return food.name
@@ -54,17 +55,26 @@ class App extends React.Component {
         </div>
       </div>
 
+      <div className="flex">
+        <div>
+          {filteredFoods.map((food) => {
+            return (
+              <FoodBox
+              name={food.name}
+              calories={food.calories}
+              image={food.image}
+              quantity={food.quantity}
+              />
+            );
+          })}
+        </div>
+        <div>
+          <h2>Today's Foods:</h2>
+          <p>Total: 0 cal</p>
+        </div>
+      </div>
+
       
-      {filteredFoods.map((food) => {
-        return (
-          <FoodBox 
-          name={food.name}
-          calories={food.calories}
-          image={food.image}
-          quantity={food.quantity}
-          />
-        );
-      })}
     </div>
     );
   }

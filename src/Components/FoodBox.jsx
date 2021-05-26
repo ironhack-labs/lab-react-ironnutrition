@@ -1,6 +1,13 @@
 import React from 'react';
 
 const FoodBox = (food) => {
+
+  function handleAddClick() {
+    const quantity = document.getElementById('quantity');
+    console.log(quantity.value);
+    return quantity.value
+  };
+
   return (
     <div>
       <div className="box">
@@ -21,10 +28,10 @@ const FoodBox = (food) => {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={food.quantity} />
+                <input id="quantity" className="input" type="number" placeholder="0" />
               </div>
               <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={handleAddClick}>
                   +
                 </button>
               </div>

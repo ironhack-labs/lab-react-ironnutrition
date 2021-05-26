@@ -4,11 +4,13 @@ import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './Components/FoodBox';
 import FoodForm from './Components/FoodForm';
+import Search from './Components/Search';
 
 
 class App extends React.Component {
   state = {
     foods: foods,
+    searchValue: "",
   };
 
   handleForm = () => {
@@ -24,9 +26,26 @@ class App extends React.Component {
     this.handleForm();
   };
 
+  handleSearchValue = (searchValue) => {
+    this.setState({
+      searchValue: searchValue,
+    });
+  };
+
   render() {
+    const filteredFoods = this.state.foods.filter((food) => {
+      return food.name
+        .toLowerCase()
+        .includes(this.state.searchValue.toLowerCase());
+    });
+
   return (
     <div className="App">
+
+        <Search
+          value={this.state.searchValue}
+          callbackFn={this.handleSearchValue}
+        />
 
       <div>
         <button onClick={this.handleForm}>Add New Food</button>
@@ -35,8 +54,8 @@ class App extends React.Component {
         </div>
       </div>
 
-
-      {this.state.foods.map((food) => {
+      
+      {filteredFoods.map((food) => {
         return (
           <FoodBox 
           name={food.name}

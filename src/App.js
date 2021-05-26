@@ -1,14 +1,42 @@
 import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json'
-import FoodBox from './Components/FoodBox'
+import foods from './foods.json';
+import FoodBox from './Components/FoodBox';
+import FoodForm from './Components/FoodForm';
 
 
-function App() {
+class App extends React.Component {
+  state = {
+    foods: foods,
+  };
+
+  handleForm = () => {
+    const foodForm = document.getElementById("foodForm");
+    foodForm.classList.toggle("hidden");
+  }
+
+  handleAddFood = (food) => {
+    this.setState({
+      foods: [food, ...this.state.foods],
+    });
+
+    this.handleForm();
+  };
+
+  render() {
   return (
     <div className="App">
-      {foods.map((food) => {
+
+      <div>
+        <button onClick={this.handleForm}>Add New Food</button>
+        <div id="foodForm" className="hidden" >
+          <FoodForm callbackFn={this.handleAddFood}/>
+        </div>
+      </div>
+
+
+      {this.state.foods.map((food) => {
         return (
           <FoodBox 
           name={food.name}
@@ -19,7 +47,8 @@ function App() {
         );
       })}
     </div>
-  );
+    );
+  }
 }
 
 export default App;

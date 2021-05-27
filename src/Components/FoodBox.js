@@ -23,15 +23,19 @@ export const FoodBox = (props) => {
 
     let suma = calorias.calorias * calorias.cantidad;
     console.log(suma);
-    setcalorias({
-      ...calorias,
-      calorias:suma
-    })
+   
 
     props.agregar({
       cantidad: calorias.cantidad,
       calorias: suma,
       nombre:calorias.nombre
+      
+    })
+    suma = 0
+    setcalorias({
+      cantidad: 1,
+      calorias: comida.calories,
+      nombre:comida.name
       
     })
 

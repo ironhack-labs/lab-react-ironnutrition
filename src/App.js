@@ -15,11 +15,7 @@ function App() {
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState(null);
   const [searchFood, setSearchFood] = useState('');
-  const [listItem, setListItem] = useState({
-    name: '',
-    calories: '',
-    quantity: 0
-  });
+  const [filteredArray, setFilteredArray] = useState([])
   const [allListItems, setAllListItems] = useState([]);
   //2.Form
   const inputChange = (event) => {
@@ -30,10 +26,10 @@ function App() {
   };
   const searchChange = (event) => {
     setSearchFood(event.target.value);
-    const newArray = foods.filter((item) => {
+    const newArray = allFoods.filter((item) => {
       return item.name.toLowerCase().includes(event.target.value.toLowerCase());
     });
-    setAllFoods(newArray);
+    setFilteredArray(newArray);
   };
 
   //3.Crud
@@ -61,10 +57,7 @@ function App() {
     setAdding(true);
   };
 
-  let total = 0
-  let list = []
   const addToList = (item, quant) =>{
-    list.push({name: item.name, calories: item.calories,quantity: quant})
     setAllListItems([...allListItems, {name: item.name, calories: item.calories,quantity: quant}])
   }
 
@@ -99,13 +92,14 @@ function App() {
                 value={newFood.image}
                 onChange={inputChange}
               />
-              <button>Add Food</button>
+              <button class="button is-info mb-3">Add Food</button>
               <p>{error ? error : null}</p>
             </form>
           ) : (
-            <button onClick={() => addMode()}>Add Food</button>
+            <button class="button is-info mb-3" onClick={() => addMode()}>Add Food</button>
           )}
-          {allFoods.map((e) => {
+          {searchFood === '' ?
+          ( allFoods.map((e) => {
             return (
               <FoodBox
                 name={e.name}
@@ -115,7 +109,19 @@ function App() {
                 addToList={addToList}
               />
             );
-          })}
+          })) :
+          ( filteredArray.map((e) => {
+            return (
+              <FoodBox
+                name={e.name}
+                calories={e.calories}
+                image={e.image}
+                quantity={e.quantity}
+                addToList={addToList}
+              />
+            );
+          }))
+          }
         </div>
         <div class="column content">
           <h2 class="subtitle">Today's foods</h2>

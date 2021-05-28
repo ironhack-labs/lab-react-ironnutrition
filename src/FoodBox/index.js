@@ -1,16 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export default function FoodBox(props) {
-
-    let quant = 0
-    // const changeQuantity = () => {
-    //     quant = Number(document.getElementById("number").value);
-    // }
+  const [number, setNumber] = useState(0);
     const changeQuantity = (event) => {
-        quant = event.target.value;
+        setNumber(event.target.value)
     }
     const addButton = () => {
-        props.addToList(props, quant)
+        props.addToList(props, number)
     }
 
   return (
@@ -32,7 +28,7 @@ export default function FoodBox(props) {
         <div class="media-right">
           <div class="field has-addons">
             <div class="control">
-              <input id="number" type="number" class="input" onChange={changeQuantity}/>
+              <input id="number" type="number" class="input" value={number} onChange={changeQuantity}/>
             </div>
             <div class="control">
               <button class="button is-info" onClick={addButton}>+</button>

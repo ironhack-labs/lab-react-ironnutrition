@@ -11,6 +11,8 @@ class App extends React.Component {
   state = {
     foods: foods,
     searchValue: "",
+    selectedFood: null,
+    todaysFood: [],
   };
 
   handleForm = () => {
@@ -32,6 +34,32 @@ class App extends React.Component {
     });
   };
 
+  handleSelectFood = (food) => {
+
+    let todaysFoodCopy = [...this.state.todaysFood]
+
+    let found = todaysFoodCopy.find((el) => el.name === food.name);
+
+    food.calories *= food.quantity;
+
+    if (found) {
+      const foundCopy = { ...found };
+      foundCopy.quantity += food.quantity;
+      foundCopy.calories += food.calories;
+
+      this.setState({
+        todaysFood: todaysFoodCopy.map((food) =>
+          food.name === foundCopy.name ? foundCopy : food
+        ),
+      });
+    } else {
+      todaysFoodCopy.push(food);
+      this.setState({
+        todaysFood: todaysFoodCopy,
+      });
+    }
+  };
+
 
   render() {
     const filteredFoods = this.state.foods.filter((food) => {
@@ -39,6 +67,13 @@ class App extends React.Component {
         .toLowerCase()
         .includes(this.state.searchValue.toLowerCase());
     });
+
+    const totalCalories = this.state.todaysFood.reduce(
+      (accumulator, currentFood) => {
+        return (accumulator += currentFood.calories);
+      },
+      0
+    );
 
   return (
     <div className="App">
@@ -56,22 +91,34 @@ class App extends React.Component {
       </div>
 
       <div className="flex">
-        <div>
-          {filteredFoods.map((food) => {
-            return (
-              <FoodBox
-              name={food.name}
-              calories={food.calories}
-              image={food.image}
-              quantity={food.quantity}
-              />
-            );
-          })}
-        </div>
-        <div>
-          <h2>Today's Foods:</h2>
-          <p>Total: 0 cal</p>
-        </div>
+
+        <div className="columns">
+          <div className="column">
+            {filteredFoods.map((food, index) => {
+              return (
+                <FoodBox
+                  handleSelect={this.handleSelectFood}
+                  key={index}
+                  food={food}
+                />
+              );
+            })}
+          </div>
+
+          <div className="column content">
+            <h2 className="subtitle">Today's foods</h2>
+
+            <ul>
+              {this.state.todaysFood.map((food, index) => (
+                <li key={index}>
+                  {food.quantity} {food.name} = {food.calories} cal
+                </li>
+              ))}
+            </ul>
+
+            <strong>Total: {totalCalories} cal</strong>
+          </div>
+        </div>     
       </div>
 
       

@@ -46,3 +46,7 @@
   display: flex;
   margin-top: 20px;
 }
+
+.box {
+  min-width: 600px;
+}

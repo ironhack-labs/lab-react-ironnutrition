@@ -7,15 +7,6 @@ import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 import FoodForm from './components/FoodForm';
 
-// function App() {
-//   return (
-//     <div>
-//       <FoodForm></FoodForm>
-//       <AddFood></AddFood>
-//       <FoodBox></FoodBox>
-//     </div>
-//   );
-// }
 const allFoodList = [...foods];
 
 class App extends Component {
@@ -27,16 +18,19 @@ class App extends Component {
     };
   }
   render() {
-    // const allFoodList = this.state.data;
-    console.log('allfood', allFoodList);
-    return allFoodList.map((item, index) => (
+    return (
+      //foodform and addfood has to be outside the second return cos otherwise will print the form each time there is a new food. form for each food printed
       <div>
-        <FoodBox key={index} food={item} index={index}></FoodBox>
         <FoodForm></FoodForm>
         <AddFood></AddFood>
+
+        {allFoodList.map((item, index) => {
+          //into the return i create the map for each element food in the array
+          return <FoodBox key={index} food={item} index={index}></FoodBox>;
+        })}
       </div>
-    ));
+    );
   }
-}
+} // class braket
 
 export default App;

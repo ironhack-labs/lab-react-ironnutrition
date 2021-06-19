@@ -11,27 +11,56 @@ class FoodForm extends Component {
       calories: 0,
     };
   }
+  handleChange = (event) => {
+    // const [name, calories, image, quantity] = event.target.value;
+
+    console.log(event.target.name);
+
+    // this.setState({
+    //   [event.target.name]:event.target.value
+    // })
+
+    this.setState({
+      [event.target.name]: event.target.value,
+      [event.target.calories]: event.target.value,
+      [event.target.image]: event.target.value,
+      [event.target.quantity]: event.target.value,
+      // });
+    });
+  };
+
   render() {
     return (
       <div>
         <form action="" method="get" onSubmit={this.handleSubmit}>
           <div>
             <label>Name</label>
-            <input onChange={this.handleTitleChange} type="text" name="name" />
+            <input onChange={this.handleChange} type="text" name="name" />
           </div>
           <div>
             <label>Calories</label>
             <input
-              onChange={this.handleTitleChange}
+              onChange={this.handleChange}
               type="text"
-              name="Calories"
+              name="calories"
+              value={this.state.calories}
             />
           </div>
           <label>Image</label>
-          <input type="checkbox" name="Image" />
+          <input
+            onChange={this.handleChange}
+            type="checkbox"
+            name="image"
+            value={this.state.image}
+          />
           <div>
             <label>Quantity</label>
-            <input type="text" name="Quantity" />
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="quantity"
+              value={this.state.quantity}
+            />
           </div>
           <button type="submit">Submit New Food</button>
         </form>

@@ -4,7 +4,7 @@ import './App.css';
 import { Component } from 'react';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
-import AddFood from './components/AddFood';
+// import AddFood from './components/AddFood';
 import FoodForm from './components/FoodForm';
 
 class App extends Component {
@@ -14,9 +14,24 @@ class App extends Component {
       foodList: [...foods],
       searchInput: ' ',
       addFood: [],
-      showform: false,
+      displayForm: false,
     };
-  }
+  } //costructor braket
+
+  handleFormDisplay = () => {
+    this.setState({
+      displayForm: true,
+    });
+  };
+  header = () => {
+    // create a header function, if state displayForm true , render the foodform, if false render the button
+
+    if (this.state.displayForm) {
+      return <FoodForm addFood={this.handleAddFood} />;
+    }
+    return <button onClick={this.handleFormDisplay}> Add Food</button>;
+  };
+
   handleAddFood = (foodToBeAdd) => {
     const { foodList } = this.state; //destructurization
     const copyOfFoodList = [...foodList]; //made copy of foodList
@@ -36,9 +51,10 @@ class App extends Component {
       <div>
         <input placeholder="Searching..." type="text" name="name" />
 
-        <FoodForm addFood={this.handleAddFood}></FoodForm>
+        {/* <button onClick={this.handleFormDisplay}> Add Food</button> */}
 
-        <AddFood></AddFood>
+        {/* <FoodForm addFood={this.handleAddFood}></FoodForm> */}
+        <div>{this.header()}</div>
 
         {foodList.map((item, index) => {
           //into the return i create the map for each element food in the array

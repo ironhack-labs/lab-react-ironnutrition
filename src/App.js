@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
+
 import { Component } from 'react';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
@@ -29,18 +30,23 @@ class App extends Component {
     if (this.state.displayForm) {
       return <FoodForm addFood={this.handleAddFood} />;
     }
-    return <button onClick={this.handleFormDisplay}> Add Food</button>;
+    return (
+      <button style={{ margin: '10px' }} onClick={this.handleFormDisplay}>
+        Add Food
+      </button>
+    );
   };
 
   handleAddFood = (foodToBeAdd) => {
     const { foodList } = this.state; //destructurization
     const copyOfFoodList = [...foodList]; //made copy of foodList
 
-    copyOfFoodList.push(foodToBeAdd); //, push of the parameter passed by callabck from FoodForm.jsx to the new array
+    copyOfFoodList.push(foodToBeAdd); //push of the parameter passed by callabck from FoodForm.jsx to the new array
 
     this.setState({
       // foodList: [foodToBeAdd, ...foodList],  // option 2: instead of making push, adding directly
       foodList: copyOfFoodList, // made new state equal to my new array with the pushed element
+      displayForm: false, // will hide the foodForm after submitting
     });
   };
 
@@ -49,7 +55,12 @@ class App extends Component {
     return (
       //foodform and addfood has to be outside the second return cos otherwise will print the form each time there is a new food. form for each food printed
       <div>
-        <input placeholder="Searching..." type="text" name="name" />
+        <input
+          style={{ width: '100%', height: '30px', margin: '10px' }}
+          placeholder="Searching..."
+          type="text"
+          name="name"
+        />
 
         {/* <button onClick={this.handleFormDisplay}> Add Food</button> */}
 

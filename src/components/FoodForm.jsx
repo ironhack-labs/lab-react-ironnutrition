@@ -8,25 +8,30 @@ class FoodForm extends Component {
     this.state = {
       name: '',
       image: '',
-      calories: 0,
+      calories: '',
     };
   }
   handleChange = (event) => {
-    // const [name, calories, image, quantity] = event.target.value;
-
+    //to every change in the input will capture the input valued insert and store it
     console.log(event.target.name);
-
-    // this.setState({
-    //   [event.target.name]:event.target.value
-    // })
-
     this.setState({
+      //the input store, through a setState become the new state from my object value.
       [event.target.name]: event.target.value,
-      [event.target.calories]: event.target.value,
-      [event.target.image]: event.target.value,
-      [event.target.quantity]: event.target.value,
-      // });
+      // [event.target.calories]: event.target.value,
+      // [event.target.image]: event.target.value,
+      // [event.target.quantity]: event.target.value,
     });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault(); //prevent page to reload when pressing the button submit
+    const foodToBeAdd = {
+      name: this.state.name,
+      calories: this.state.calories,
+      image: this.state.image,
+    };
+
+    this.props.addFood(foodToBeAdd);
   };
 
   render() {
@@ -35,7 +40,12 @@ class FoodForm extends Component {
         <form action="" method="get" onSubmit={this.handleSubmit}>
           <div>
             <label>Name</label>
-            <input onChange={this.handleChange} type="text" name="name" />
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="name"
+              value={this.state.name}
+            />
           </div>
           <div>
             <label>Calories</label>
@@ -46,23 +56,18 @@ class FoodForm extends Component {
               value={this.state.calories}
             />
           </div>
-          <label>Image</label>
-          <input
-            onChange={this.handleChange}
-            type="checkbox"
-            name="image"
-            value={this.state.image}
-          />
           <div>
-            <label>Quantity</label>
+            <label>Image</label>
             <input
               onChange={this.handleChange}
               type="text"
-              name="quantity"
-              value={this.state.quantity}
+              name="image"
+              value={this.state.image}
             />
           </div>
-          <button type="submit">Submit New Food</button>
+          <div>
+            <button type="submit">Submit New Food</button>
+          </div>
         </form>
       </div>
     );

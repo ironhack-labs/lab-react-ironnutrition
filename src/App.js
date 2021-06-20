@@ -16,6 +16,7 @@ class App extends Component {
       // searchValue: 'holahola ',
       addFood: [],
       displayForm: false,
+      todaysFood: [],
     };
   } //costructor braket
 
@@ -51,6 +52,7 @@ class App extends Component {
   };
 
   handleSearchBar = (event) => {
+    event = event.target.value;
     let newFoodList;
 
     if (event.length === 0) {
@@ -60,11 +62,24 @@ class App extends Component {
         food.name.toLowerCase().includes(event)
       );
     }
-    console.log('gg', newFoodList);
     this.setState({
       foodList: newFoodList,
     });
     console.log('newfoodlist', newFoodList);
+  };
+
+  handleSelectFood = (foodObject) => {
+    const todaysFoodCopy = [...this.state.todaysFood];
+    const foundSelectedFood = todaysFoodCopy.findIndex(
+      (element) => element.name === foodObject.name
+    );
+
+    console.log(foodObject);
+
+    todaysFoodCopy.push(foodObject);
+    this.setState({
+      todaysFood: [foundSelectedFood, todaysFoodCopy],
+    });
   };
 
   render() {
@@ -74,7 +89,7 @@ class App extends Component {
       <div>
         <input
           // value={this.event.target.value}
-          onChange={(e) => this.handleSearchBar(e.target.value)}
+          onChange={this.handleSearchBar}
           style={{ width: '100%', height: '30px', margin: '10px' }}
           placeholder="Search for your food..."
           type="text"
@@ -86,7 +101,14 @@ class App extends Component {
         <div>{this.header()}</div>
         {foodList.map((item, index) => {
           //into the return i create the map for each element food in the array
-          return <FoodBox key={index} food={item} index={index}></FoodBox>;
+          return (
+            <FoodBox
+              key={index}
+              food={item}
+              index={index}
+              handleSelect={this.handleSelectFood}
+            ></FoodBox>
+          );
         })}
       </div>
     );

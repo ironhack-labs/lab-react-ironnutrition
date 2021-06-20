@@ -19,6 +19,13 @@ class FoodBox extends Component {
       quantity: event.target.value,
     });
   };
+  handleClick = () => {
+    console.log('clickkkk');
+    const selectedFood = {
+      quantity: Number(this.state.quantity),
+    };
+    this.props.handleSelect(selectedFood);
+  };
   render() {
     const { name, calories, image } = this.props.food; //food it s the vaue i have assigned in app.js to item(of the map)
 
@@ -49,7 +56,9 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onclick={this.handleClick} className="button is-info">
+                  +
+                </button>
               </div>
             </div>
           </div>
@@ -60,34 +69,17 @@ class FoodBox extends Component {
 }
 export default FoodBox;
 
-// const FoodBox = (props) => {
-//   return allFoodList.map((item, index) => (
-//     <div className="box">
-//       <article className="media">
-//         <div className="media-left">
-//           <figure className="image is-64x64">
-//             <img src={item.image} alt="foodimage" />
-//           </figure>
-//         </div>
-//         <div className="media-content">
-//           <div className="content">
-//             <p>
-//               <strong>{item.name}</strong> <br />
-//               <small>{item.calories} cal</small>
-//             </p>
-//           </div>
-//         </div>
-//         <div className="media-right">
-//           <div className="field has-addons">
-//             <div className="control">
-//               <input className="input" type="number" value="1" />
-//             </div>
-//             <div className="control">
-//               <button className="button is-info">+</button>
-//             </div>
-//           </div>
-//         </div>
-//       </article>
-//     </div>
-//   ));
-// };
+/* <div class="columns">
+  <div class="column">
+    First column
+  </div>
+  <div class="column">
+    Second column
+  </div>
+  <div class="column">
+    Third column
+  </div>
+  <div class="column">
+    Fourth column
+  </div>
+</div> */

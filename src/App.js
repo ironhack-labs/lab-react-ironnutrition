@@ -13,7 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       foodList: [...foods],
-      searchInput: ' ',
+      // searchValue: 'holahola ',
       addFood: [],
       displayForm: false,
     };
@@ -50,23 +50,40 @@ class App extends Component {
     });
   };
 
+  handleSearchBar = (event) => {
+    let newFoodList;
+
+    if (event.length === 0) {
+      newFoodList = this.state.foodList;
+    } else {
+      newFoodList = this.state.foodList.filter((food) =>
+        food.name.toLowerCase().includes(event)
+      );
+    }
+    console.log('gg', newFoodList);
+    this.setState({
+      foodList: newFoodList,
+    });
+    console.log('newfoodlist', newFoodList);
+  };
+
   render() {
     const { foodList } = this.state;
     return (
       //foodform and addfood has to be outside the second return cos otherwise will print the form each time there is a new food. form for each food printed
       <div>
         <input
+          // value={this.event.target.value}
+          onChange={(e) => this.handleSearchBar(e.target.value)}
           style={{ width: '100%', height: '30px', margin: '10px' }}
-          placeholder="Searching..."
+          placeholder="Search for your food..."
           type="text"
-          name="name"
+          name="value"
         />
 
         {/* <button onClick={this.handleFormDisplay}> Add Food</button> */}
-
         {/* <FoodForm addFood={this.handleAddFood}></FoodForm> */}
         <div>{this.header()}</div>
-
         {foodList.map((item, index) => {
           //into the return i create the map for each element food in the array
           return <FoodBox key={index} food={item} index={index}></FoodBox>;

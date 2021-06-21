@@ -5,7 +5,7 @@ import './App.css';
 import { Component } from 'react';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
-// import AddFood from './components/AddFood';
+
 import FoodForm from './components/FoodForm';
 
 class App extends Component {
@@ -13,12 +13,11 @@ class App extends Component {
     super(props);
     this.state = {
       foodList: [...foods],
-      // searchValue: 'holahola ',
       addFood: [],
       displayForm: false,
       todaysFood: [],
     };
-  } //costructor braket
+  } //costructor bracket
 
   handleFormDisplay = () => {
     this.setState({
@@ -32,7 +31,11 @@ class App extends Component {
       return <FoodForm addFood={this.handleAddFood} />;
     }
     return (
-      <button style={{ margin: '10px' }} onClick={this.handleFormDisplay}>
+      <button
+        className="button is-info margin-bottom"
+        style={{ margin: '10px' }}
+        onClick={this.handleFormDisplay}
+      >
         Add Food
       </button>
     );
@@ -70,9 +73,6 @@ class App extends Component {
 
   handleSelectFood = (foodObject) => {
     const todaysFoodCopy = [...this.state.todaysFood];
-    // const foundSelectedFood = todaysFoodCopy.findIndex(
-    //   (element) => element.name === foodObject.name
-    // );
 
     console.log('hola', foodObject);
 
@@ -86,8 +86,10 @@ class App extends Component {
     const { foodList, todaysFood } = this.state;
     return (
       //foodform and addfood has to be outside the second return cos otherwise will print the form each time there is a new food. form for each food printed
-      <div>
+      <div className="App text-center">
+        <h1 className="title is-1">IronNutrition</h1>
         <input
+          className="input margin-bottom"
           // value={this.event.target.value}
           onChange={this.handleSearchBar}
           style={{ width: '100%', height: '30px', margin: '10px' }}
@@ -95,37 +97,36 @@ class App extends Component {
           type="text"
           name="value"
         />
-
-        <div>{this.header()}</div>
         <div>
-          <h1>Today Food</h1>
-        </div>
-        {todaysFood.map((foodItemToAdd, index) => (
-          <div class="columns">
-            <div class="column" key={index}>
-              {foodItemToAdd.quantity} {foodItemToAdd.name} =
-              {foodItemToAdd.calories * foodItemToAdd.quantity} cal
+          {this.header()}
+
+          <div class="column content">
+            <h1 class="subtitle">Today's Food</h1>
+            <div>
+              {todaysFood.map((foodItemToAdd, index) => (
+                <div key={index}>
+                  {foodItemToAdd.quantity} {foodItemToAdd.name} =
+                  {foodItemToAdd.calories * foodItemToAdd.quantity} cal
+                </div>
+              ))}
             </div>
           </div>
-        ))}
 
-        {foodList.map((item, index) => {
-          //into the return i create the map for each element food in the array
-          return (
-            <FoodBox
-              key={index}
-              food={item}
-              index={index}
-              addTodaysFood={this.handleSelectFood}
-            ></FoodBox>
-          );
-        })}
+          {foodList.map((item, index) => {
+            //into the return i create the map for each element food in the array
+            return (
+              <FoodBox
+                key={index}
+                food={item}
+                index={index}
+                addTodaysFood={this.handleSelectFood}
+              ></FoodBox>
+            );
+          })}
+        </div>
       </div>
     );
   }
 } // class braket
 
 export default App;
-
-/* <button onClick={this.handleFormDisplay}> Add Food</button> */
-/* <FoodForm addFood={this.handleAddFood}></FoodForm> */

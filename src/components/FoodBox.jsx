@@ -1,10 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-// import foods from '../foods.json';
-import 'bulma/css/bulma.css';
-// import AddFood from './AddFood';
 
-// const allFoodList = [...foods];
+import 'bulma/css/bulma.css';
 
 class FoodBox extends Component {
   constructor(props) {
@@ -32,11 +29,6 @@ class FoodBox extends Component {
         totalCalories,
       });
     }
-    // console.log('clickkkk');
-    // const selectedFood = {
-    //   quantity: Number(this.state.quantity),
-    // };
-    // this.props.handleSelect(selectedFood);
   };
   render() {
     const { name, calories, image } = this.props.food; //food it s the vaue i have assigned in app.js to item(of the map)
@@ -80,18 +72,3 @@ class FoodBox extends Component {
   }
 }
 export default FoodBox;
-
-/* <div class="columns">
-  <div class="column">
-    First column
-  </div>
-  <div class="column">
-    Second column
-  </div>
-  <div class="column">
-    Third column
-  </div>
-  <div class="column">
-    Fourth column
-  </div>
-</div> */

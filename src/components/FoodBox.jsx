@@ -10,7 +10,7 @@ class FoodBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 1,
+      quantity: 0,
     };
   }
   handleChangeQuantity = (event) => {
@@ -20,11 +20,23 @@ class FoodBox extends Component {
     });
   };
   handleClick = () => {
-    console.log('clickkkk');
-    const selectedFood = {
-      quantity: Number(this.state.quantity),
-    };
-    this.props.handleSelect(selectedFood);
+    const { name, calories } = this.props.food;
+    const { quantity } = this.state;
+    const totalCalories = quantity * calories;
+
+    if (quantity !== 0) {
+      this.props.addTodaysFood({
+        name,
+        calories,
+        quantity,
+        totalCalories,
+      });
+    }
+    // console.log('clickkkk');
+    // const selectedFood = {
+    //   quantity: Number(this.state.quantity),
+    // };
+    // this.props.handleSelect(selectedFood);
   };
   render() {
     const { name, calories, image } = this.props.food; //food it s the vaue i have assigned in app.js to item(of the map)
@@ -56,7 +68,7 @@ class FoodBox extends Component {
                 />
               </div>
               <div className="control">
-                <button onclick={this.handleClick} className="button is-info">
+                <button onClick={this.handleClick} className="button is-info">
                   +
                 </button>
               </div>

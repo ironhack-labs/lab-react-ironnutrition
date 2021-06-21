@@ -70,20 +70,20 @@ class App extends Component {
 
   handleSelectFood = (foodObject) => {
     const todaysFoodCopy = [...this.state.todaysFood];
-    const foundSelectedFood = todaysFoodCopy.findIndex(
-      (element) => element.name === foodObject.name
-    );
+    // const foundSelectedFood = todaysFoodCopy.findIndex(
+    //   (element) => element.name === foodObject.name
+    // );
 
-    console.log(foodObject);
+    console.log('hola', foodObject);
 
     todaysFoodCopy.push(foodObject);
     this.setState({
-      todaysFood: [foundSelectedFood, todaysFoodCopy],
+      todaysFood: todaysFoodCopy,
     });
   };
 
   render() {
-    const { foodList } = this.state;
+    const { foodList, todaysFood } = this.state;
     return (
       //foodform and addfood has to be outside the second return cos otherwise will print the form each time there is a new food. form for each food printed
       <div>
@@ -96,9 +96,19 @@ class App extends Component {
           name="value"
         />
 
-        {/* <button onClick={this.handleFormDisplay}> Add Food</button> */}
-        {/* <FoodForm addFood={this.handleAddFood}></FoodForm> */}
         <div>{this.header()}</div>
+        <div>
+          <h1>Today Food</h1>
+        </div>
+        {todaysFood.map((foodItemToAdd, index) => (
+          <div class="columns">
+            <div class="column" key={index}>
+              {foodItemToAdd.quantity} {foodItemToAdd.name} =
+              {foodItemToAdd.calories * foodItemToAdd.quantity} cal
+            </div>
+          </div>
+        ))}
+
         {foodList.map((item, index) => {
           //into the return i create the map for each element food in the array
           return (
@@ -106,7 +116,7 @@ class App extends Component {
               key={index}
               food={item}
               index={index}
-              handleSelect={this.handleSelectFood}
+              addTodaysFood={this.handleSelectFood}
             ></FoodBox>
           );
         })}
@@ -116,3 +126,6 @@ class App extends Component {
 } // class braket
 
 export default App;
+
+/* <button onClick={this.handleFormDisplay}> Add Food</button> */
+/* <FoodForm addFood={this.handleAddFood}></FoodForm> */

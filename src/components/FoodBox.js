@@ -1,4 +1,17 @@
+import { useState } from 'react';
+
 const FoodBox = ({ food }) => {
+  const [quantity, setQuantity] = useState(0);
+
+  const handleQuantityChange = (event) => {
+    const { value } = event.target;
+    setQuantity(value);
+  };
+
+  const addToDailyButton = () => {
+    food.addToDailyList(food, quantity);
+  };
+
   return (
     <div className="box">
       <article className="media">
@@ -11,17 +24,24 @@ const FoodBox = ({ food }) => {
           <div className="content">
             <p>
               <strong>{food.name}</strong> <br />
-              <small>{food.calories}</small>
+              <small>{food.calories} kcal</small>
             </p>
           </div>
         </div>
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value={food.quantity} />
+              <input
+                className="input is-primary"
+                type="number"
+                value={quantity}
+                onChange={handleQuantityChange}
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={addToDailyButton}>
+                +
+              </button>
             </div>
           </div>
         </div>

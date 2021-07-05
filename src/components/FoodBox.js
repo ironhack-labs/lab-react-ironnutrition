@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
-const FoodBox = ({ food }) => {
-  const [quantity, setQuantity] = useState(0);
+const FoodBox = ({ food, addToDailyList }) => {
+  const [amount, setAmount] = useState(0);
 
   const handleQuantityChange = (event) => {
     const { value } = event.target;
-    setQuantity(value);
+    food.quantity = value;
+    setAmount(value);
   };
 
   const addToDailyButton = () => {
-    food.addToDailyList(food, quantity);
+    addToDailyList(food);
   };
 
   return (
@@ -34,7 +35,7 @@ const FoodBox = ({ food }) => {
               <input
                 className="input is-primary"
                 type="number"
-                value={quantity}
+                value={amount}
                 onChange={handleQuantityChange}
               />
             </div>

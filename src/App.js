@@ -50,13 +50,13 @@ function App() {
     setSearchTerm(value);
   };
 
-  //creating daily intake list
+  //creating daily intake list - adding and deleting elements
   const [dailyList, setDailyList] = useState([]);
 
-  const addToDailyList = (item, value) => {
-    setDailyList((prev) => [
-      ...prev,
-      { name: item.name, calories: item.calories, quantity: value },
+  const addToDailyList = (food) => {
+    setDailyList([
+      ...dailyList,
+      { name: food.name, calories: food.calories, quantity: food.quantity },
     ]);
   };
 
@@ -141,22 +141,27 @@ function App() {
       <section>
         <h2>Daily Intake</h2>
         <ul>
-          {dailyList.map((event) => {
+          {dailyList.map((item, idx) => {
             return (
               <div>
-                <li>
-                  {event.quantity} {event.name} : {event.calories} kcal
+                <li key={idx}>
+                  {item.quantity} {item.name} : {item.calories * item.quantity}{' '}
+                  kcal
+                  <button
+                    className="button is-danger is-light"
+                    onClick={() => deleteDailyItem(item.name)}
+                  >
+                    Delete
+                  </button>
                 </li>
-                <button
-                  className="button is-danger is-light"
-                  onClick={() => deleteDailyItem(event.name)}
-                >
-                  Delete
-                </button>
               </div>
             );
           })}
         </ul>
+        <strong>
+          Total: {dailyList.reduce((a, b) => a + b.calories * b.quantity, 0)}{' '}
+          kcal
+        </strong>
       </section>
     </>
   );

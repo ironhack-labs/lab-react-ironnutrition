@@ -1,9 +1,6 @@
-body {
-  margin: 25px;
-}
-
-.header-container {
+.food-item-calculation-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 10px;
 }

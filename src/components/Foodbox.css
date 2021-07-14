@@ -1,0 +1,24 @@
+.foodbox-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  border-radius: 10px;
+  margin: 10px 0px;
+  height: 100px;
+}
+
+.food-box-img {
+  height: 64px;
+  width: auto;
+}
+
+.food-details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.foodbox-button {
+  height: 100% !important;
+}

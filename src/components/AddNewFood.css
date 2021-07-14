@@ -1,0 +1,12 @@
+.new-food-form {
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid;
+    padding: 10px;
+    margin: 30px;
+}
+
+.new-food-form input{
+    width: 100%;
+    margin-bottom: 30px;
+}

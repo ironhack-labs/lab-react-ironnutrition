@@ -1,20 +1,17 @@
 import { Component } from 'react';
 import AddForm from './AddForm';
 import FoodBox from './FoodBox';
-import foods from './foods.json';
 
 class FoodList extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
-      list: [...foods],
+      list: [...props.list],
     };
   }
 
   addFood = (food) => {
-    console.log(food);
-
     const { name, calories, image, quantity } = food;
     const list = [...this.state.list];
 
@@ -30,7 +27,7 @@ class FoodList extends Component {
       <>
         <div className="columns is-centered">
           <ul className="box column is-half">
-            {this.state.list.map((food, i) => (
+            {this.props.list.map((food, i) => (
               <li key={i}>
                 <FoodBox food={food} />
               </li>

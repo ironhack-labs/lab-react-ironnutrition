@@ -34,7 +34,6 @@ class AddForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(this.state);
     this.props.addFood(this.state);
 
     this.setState({

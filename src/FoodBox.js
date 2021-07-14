@@ -18,7 +18,7 @@ const FoodBox = ({ food }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" defaultValue="0" />
+              <input className="input" type="number" defaultValue="1" />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

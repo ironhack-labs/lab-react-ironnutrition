@@ -40,7 +40,7 @@ export default class FoodBox extends Component {
 
                 {
                 foods.map((food, i) => {
-                    return <form onSubmit={(event) => this.props.onFoodList(event, food)} key={i} className="media">
+                    return <form onClick={(event) => this.props.onFoodList(event, food)} okey={i} className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
                             <img src={food.image} alt='{foods.name}' />
@@ -57,10 +57,10 @@ export default class FoodBox extends Component {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number"  />
+                                <input className="input" type="number"/>
                             </div>
                             <div className="control">
-                                <button  className="button is-info">
+                                <button type="submit"  className="button is-info">
                                     +
                                 </button>
                             </div>

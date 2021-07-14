@@ -3,44 +3,24 @@ import React, { Component } from 'react'
 export default class Total extends Component {
     render() {
         const { list } = this.props
+        let sum = list.reduce((acc, food) => {
+            return acc + (food.quantity * food.calories)
+        }, 0)
         return (
-            <div>
-                Total
+            <div className="box">
+                <h1>Today's foods</h1>
                 {
-                    list.map((meal, i) => {
-                        return (
-                            <div className="box" key={i}>
-                                <article className="media">
-                                    <div className="media-left">
-                                        <figure className="image is-64x64">
-                                            <img src={meal.image} />
-                                        </figure>
-                                    </div>
-                                    <div className="media-content">
-                                        <div className="content">
-                                            <p>
-                                                <strong>{meal.name}</strong> <br />
-                                                <small>{meal.calories}</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="media-right">
-                                        <div className="field has-addons">
-                                            <div className="control">
-                                                <input className="input" type="number" value="1" />
-                                            </div>
-                                            <div className="control">
-                                                <button className="button is-info">
-                                                    +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                        )
-                    })
+                list.map((food, i) => {
+                    return  <div>
+                    {food.quantity} {food.name} = {food.quantity * food.calories}
+                </div>
+                })
                 }
+            
+                <h3>
+                    Total {sum} cal
+                </h3>
+
             </div>
         )
     }

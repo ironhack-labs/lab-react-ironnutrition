@@ -13,7 +13,7 @@ class App extends Component{
   state = {
     foods: foodsJson,
     filteredFoods: foodsJson,
-    total: []
+    total: [],
   };
 
   handleAddNewFood = (newFood) => {
@@ -24,7 +24,6 @@ class App extends Component{
 
   handleSearch = (event) => {
     let searchedFood = event.target.value;
-    console.log(searchedFood)
     const {foods} = this.state;
     let filteredFoods = foods.filter((food) => {
       return food.name.toLowerCase().includes(searchedFood.toLowerCase())
@@ -44,10 +43,28 @@ class App extends Component{
       quantity: Number(event.target.quantity.value),
       calories: food.calories
     }
-    this.setState({
-      total: [foodObj, ...this.state.total]
+    
+    let foundDuplicate = false;
+    const noDuplicatesList = this.state.total.map((existing) => {
+      if (existing.name.toLowerCase()  === foodObj.name.toLowerCase()){
+        foundDuplicate = true;
+        existing.quantity += foodObj.quantity
+        return existing;
+      }else{
+        return existing;
+      }
     })
 
+    if(foundDuplicate){
+      this.setState({
+        total: noDuplicatesList
+      })
+    }else{
+      this.setState({
+        total: [foodObj, ...this.state.total]
+      })
+    }
+    console.log(this.state.total)
 
   }
 

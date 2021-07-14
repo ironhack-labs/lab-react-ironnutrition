@@ -16,7 +16,7 @@ function TodaysFoods(props) {
                 foods.map((food) => {
                     return (
                         <div>
-                            {food.name} x {food.quantity} = {food.quantity * food.calories}
+                            {food.name} x {food.quantity} = {food.quantity * food.calories} calories
                         </div>
                     )
                 })
@@ -28,6 +28,5 @@ function TodaysFoods(props) {
         </div>    
     )   
 }
-
 
 export default TodaysFoods;

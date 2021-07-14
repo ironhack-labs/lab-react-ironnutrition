@@ -22,16 +22,16 @@ import '../App.css';
                             </div>
                         </div>
                         <div className="media-right">
-                        <div className="field has-addons">
-                            <div className="control">
-                            <input className="input" label="quantity" name="quantity" type="number"/>
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <input className="input" label="quantity" name="quantity" type="number"/>
+                                </div>
+                                <div className="control">
+                                    <button type="submit" className="button is-info">
+                                        +
+                                    </button>
+                                </div>
                             </div>
-                            <div className="control">
-                            <button type="submit" className="button is-info">
-                                +
-                            </button>
-                            </div>
-                        </div>
                         </div>
                     </article>
                 </div>

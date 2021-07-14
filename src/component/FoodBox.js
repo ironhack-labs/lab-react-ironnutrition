@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AddFood from './AddFood'
-import {Button} from '@material-ui/core'
+// import AddFood from './AddFood'
+// import {Button, TextField} from '@material-ui/core'
 
 export default class FoodBox extends Component {
     state = {
@@ -31,7 +31,7 @@ export default class FoodBox extends Component {
 
     render() {
         const {foods} = this.props
-        const {showForm} = this.state
+        // const {showForm} = this.state
         return (
             <div className="box">
                 {/* {
@@ -40,7 +40,7 @@ export default class FoodBox extends Component {
 
                 {
                 foods.map((food, i) => {
-                    return <form onClick={(event) => this.props.onFoodList(event, food)} okey={i} className="media">
+                    return <form key={i} onSubmit={(event) => this.props.onFoodList(event, food)}  className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
                             <img src={food.image} alt='{foods.name}' />
@@ -57,10 +57,10 @@ export default class FoodBox extends Component {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number"/>
+                                <input className="input" type="number" name='quantity'/>
                             </div>
                             <div className="control">
-                                <button type="submit"  className="button is-info">
+                                <button type='submit' className="button is-info">
                                     +
                                 </button>
                             </div>
@@ -69,7 +69,6 @@ export default class FoodBox extends Component {
                 </form>
                 })
                 }
-            </div>
-        )
+            </div>        )
     }
 }

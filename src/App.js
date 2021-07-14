@@ -26,9 +26,9 @@ class App extends Component {
     const { foods } = this.state
     console.log(searchedMeal)
 
-    let filteredFoods = foods.filter((food) =>
-      food.name.toLowerCase().includes(searchedMeal.toLowerCase()) ? food : null
-    )
+    let filteredFoods = foods.filter((food) => {
+      return food.name.toLowerCase().includes(searchedMeal.toLowerCase())
+    })
     console.log(filteredFoods)
     this.setState({
       filteredFoods
@@ -36,19 +36,19 @@ class App extends Component {
   }
 
   handelFoodList = (event, food) => {
-    
     event.preventDefault()
+    console.log(event.target.quantity.value)
+    console.log("event", event.target)
     let objMeal = {
       name: food.name,
       calories: food.calories,
       image: food.image,
-      quantity: event.target.value
+      quantity: Number(event.target.quantity.value)
     }
     console.log(objMeal)
     this.setState({
       listFood: [objMeal, ...this.state.listFood]
     })
-    console.log(this.state.listfood)
   }
 
   render() {

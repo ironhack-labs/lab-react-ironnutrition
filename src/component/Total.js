@@ -11,7 +11,7 @@ export default class Total extends Component {
                 <h1>Today's foods</h1>
                 {
                 list.map((food, i) => {
-                    return  <div>
+                    return  <div key={i}>
                     {food.quantity} {food.name} = {food.quantity * food.calories}
                 </div>
                 })

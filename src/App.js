@@ -2,20 +2,53 @@ import React, {Component} from 'react';
 import './App.css';
 import foodsJson from './foods.json';
 import Food from './components/Food';
+import Search from './components/Search';
 import { render } from '@testing-library/react';
+import TodaysFoods from './components/TodaysFoods'
 
 
 
 class App extends Component{
 
   state = {
-    foods: foodsJson
+    foods: foodsJson,
+    filteredFoods: foodsJson,
+    total: []
   };
 
   handleAddNewFood = (newFood) => {
     this.setState({
       foods: [newFood, ...this.state.foods]
     })
+  };
+
+  handleSearch = (event) => {
+    let searchedFood = event.target.value;
+    console.log(searchedFood)
+    const {foods} = this.state;
+    let filteredFoods = foods.filter((food) => {
+      return food.name.toLowerCase().includes(searchedFood.toLowerCase())
+    })
+
+    this.setState({
+      filteredFoods: filteredFoods
+    })
+  }
+
+  handleAddTotal = (event, food) => {
+    event.preventDefault();
+
+    let foodObj = {
+      name: food.name,
+      image: food.image,
+      quantity: Number(event.target.quantity.value),
+      calories: food.calories
+    }
+    this.setState({
+      total: [foodObj, ...this.state.total]
+    })
+
+
   }
 
   render(){
@@ -27,17 +60,15 @@ class App extends Component{
               </div>
               <div class="columns">
                 <div class="column">
+                  <Search onSearch = {this.handleSearch}/>
                   <Food 
-                    foods = {this.state.foods}
+                    foods = {this.state.filteredFoods}
                     onAddNewFood = {this.handleAddNewFood}
+                    handleAddTotal = {this.handleAddTotal}
                   />
                 </div>
                 <div class="column content">
-                  <h2 class="subtitle">Today's foods</h2>
-                  <ul>
-                    <li>1 Pizza = 400 cal</li>
-                  </ul>
-                  <strong>Total:</strong>
+                  <TodaysFoods foods = {this.state.total}/>
                 </div>
               </div>
       </div>

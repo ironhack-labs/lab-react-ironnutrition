@@ -3,9 +3,9 @@ import '../App.css';
 
  class FoodBox extends Component {
     render() {
-        const {myFood} = this.props
+        const {myFood, handleAddTotal} = this.props
         return (
-            <div>
+            <form onSubmit={(event) => {handleAddTotal(event, myFood)}} >
                 <div className="box">
                     <article className="media">
                         <div className="media-left">
@@ -24,10 +24,10 @@ import '../App.css';
                         <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                            <input className="input" type="number" value="1" />
+                            <input className="input" label="quantity" name="quantity" type="number"/>
                             </div>
                             <div className="control">
-                            <button className="button is-info">
+                            <button type="submit" className="button is-info">
                                 +
                             </button>
                             </div>
@@ -36,7 +36,7 @@ import '../App.css';
                     </article>
                 </div>
 
-            </div>
+            </form>
         )
     }
 }

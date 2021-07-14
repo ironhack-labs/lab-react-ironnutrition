@@ -33,7 +33,7 @@ class Foods extends Component {
 
     render() {
 
-        const {foods} = this.props;
+        const {foods, handleAddTotal} = this.props;
         const {showForm} = this.state;
         return (
             <div>
@@ -47,6 +47,7 @@ class Foods extends Component {
                     return <FoodBox 
                         key = {i}
                         myFood = {food}
+                        handleAddTotal = {handleAddTotal}
                     />
                 })
                 }

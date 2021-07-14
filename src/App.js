@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component, createRef } from 'react';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
 import './App.css';
+import FoodList from './FoodList';
+import Search from './Search';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      list: [...foods],
+    };
+  }
+
+  searchFilter = (state) => {
+    console.log(state.searchQuery);
+
+    const filteredFoods = foods.filter((el) =>
+      el.name.toLowerCase().startsWith(state.searchQuery.toLowerCase())
+    );
+
+    console.log(filteredFoods);
+
+    this.setState({
+      list: [...filteredFoods],
+    });
+  };
+
+  render = () => (
+    <>
+      <h1>IronNutrition</h1>
+
+      {this.state.list.length}
+
+      <Search searchFilter={this.searchFilter} />
+
+      <div className="box">
+        <FoodList list={this.state.list} />
+      </div>
+    </>
   );
 }
 

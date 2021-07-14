@@ -1,3 +1,5 @@
+import './AddForm.css';
+
 import { Component } from 'react';
 import Button from './Button';
 
@@ -20,32 +22,74 @@ class AddForm extends Component {
     });
   };
 
+  handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(this.state);
     this.props.addFood(this.state);
+
+    this.setState({
+      isPressed: false,
+      name: '',
+      calories: '',
+      image: '',
+      quantity: 0,
+    });
   };
 
   render() {
     return (
       <>
-        <Button switchForm={() => this.switchForm()} />
+        {!this.state.isPressed && (
+          <Button switchForm={() => this.switchForm()} />
+        )}
 
         {this.state.isPressed && (
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Name: <input type="text" name="name" />
+            <label className="column is-full is-centered">
+              Name:{' '}
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={this.handleChange}
+                name="name"
+              />
             </label>
 
-            <label>
-              Calories: <input type="text" name="calories" />
+            <label className="column is-full is-centered">
+              Calories:{' '}
+              <input
+                type="text"
+                value={this.state.calories}
+                onChange={this.handleChange}
+                name="calories"
+              />
             </label>
 
-            <label>
-              Image: <input type="text" name="image" />
+            <label className="column is-full is-centered">
+              Image:{' '}
+              <input
+                type="text"
+                value={this.state.image}
+                onChange={this.handleChange}
+                name="image"
+              />
             </label>
 
-            <input type="submit" value="Add food" />
+            <input
+              type="submit"
+              value="Add food"
+              className="button column is-centered"
+            />
           </form>
         )}
       </>

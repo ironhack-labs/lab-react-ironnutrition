@@ -1,6 +1,8 @@
+import './Button.css';
+
 const Button = ({ switchForm }) => (
-  <button onClick={switchForm} className="button">
-    Add food
+  <button onClick={switchForm} className="btn-add">
+    +
   </button>
 );
 

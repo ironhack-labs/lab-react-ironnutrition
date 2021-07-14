@@ -28,15 +28,19 @@ class FoodList extends Component {
   render() {
     return (
       <>
-        <ul>
-          {this.state.list.map((food, i) => (
-            <li key={i}>
-              <FoodBox food={food} />
-            </li>
-          ))}
-        </ul>
+        <div className="columns is-centered">
+          <ul className="box column is-half">
+            {this.state.list.map((food, i) => (
+              <li key={i}>
+                <FoodBox food={food} />
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <AddForm addFood={() => this.addFood()} />
+        <div className="columns is-centered">
+          <AddForm addFood={this.addFood} className="column is-centered" />
+        </div>
       </>
     );
   }

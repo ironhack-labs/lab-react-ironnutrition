@@ -34,7 +34,7 @@ function AddFood(props){
                 <label>Calories</label>
                 <input type="text" name="calories" value={formState.calories} onChange={handleChange} />
                 <label>Image</label>
-                <input type="image" name="image" alt="foodImage" value={formState.image} onChange={handleChange} />
+                <input type="url" name="image" alt="foodImage" value={formState.image} onChange={handleChange} />
                 <label>Quantity</label>
                 <input type="number" name="quantity" value={formState.quantity} onChange={handleChange} />
                 <button type="submit">Add Food</button>

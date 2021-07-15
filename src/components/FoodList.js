@@ -23,6 +23,14 @@ function FoodList(){
 
     }
 
+ /*    function addTodayFoods(foodindex){
+        const todayFoodsArray = foods.filter(food => food.index !== foodindex)
+
+
+
+
+    } */
+
     return(
         <div className='div'>
             <SearchBar searchHandler={searchFoods}/>

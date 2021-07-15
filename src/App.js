@@ -40,12 +40,17 @@ class App extends Component {
  handleAddNewFood = (newFood) => {
 
   this.setState({
-  foods: [newFood, ...this.state.foods]
+  allfoods: [newFood, ...this.state.foods]
 
 
   } )
 
+ }
 
+ //__________________________________
+ 
+ 
+ handleAddTotCalories = (event, food) => {
 
 
 

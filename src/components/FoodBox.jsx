@@ -22,9 +22,13 @@ class Foodbox extends Component {
     });
   };
 
+
+  
+
   render() {
-    const { foods } = this.props;
+    const { foods, handleAddTotCalories} = this.props;
     const {showForm}  = this.state
+    
 
     return (
       <div>
@@ -37,7 +41,10 @@ class Foodbox extends Component {
         {foods.map((food, i) => {
           //show image, name, calories,
 
-          return <FoodDetail myFood={food} key={i} />;
+          return <FoodDetail myFood={food}
+                              key={i} 
+                              handleAddTotCalories = {handleAddTotCalories} 
+                              />;
         })}
       </div>
     );

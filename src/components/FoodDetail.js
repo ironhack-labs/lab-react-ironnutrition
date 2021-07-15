@@ -6,12 +6,17 @@ class FoodDetail extends Component {
     const {myFood} = this.props
 
     return (
+     
+     
+
+
 
       <div className="box">
+      
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={myFood.image} />
+            <img src={myFood.image} alt="someFood" />
           </figure>
         </div>
         <div className="media-content">
@@ -28,7 +33,8 @@ class FoodDetail extends Component {
               <input className="input" type="number" value="1" />
             </div>
             <div className="control">
-              <button className="button is-info">
+            {/* pass func here? when user clicks, food added on right?? */}
+              <button className="button is-info" /*onClick= {this.handleAdd} */>
                 +
               </button>
             </div>

@@ -34,6 +34,13 @@ function App() {
     updateFoodState([...foodState])
   }
 
+  function deleteFunction (foodName) {
+    foodState.forEach(el => {
+      if (el.name === foodName) el.quantity -= 1;
+    })
+    updateFoodState([...foodState])
+  }
+
 
   return (
     <div className="App">
@@ -53,7 +60,7 @@ function App() {
         </div>
         <div className = "column">
           <h1 className="title is-1">Today's foods</h1>
-          <TodaysFoods foodState = {foodState} />
+          <TodaysFoods foodState = {foodState} deleteFunction = {deleteFunction}/>
         </div>
       </div>
     </div>

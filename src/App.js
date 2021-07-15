@@ -18,6 +18,9 @@ function App() {
   }
 
   function searchFunction (input) {
+
+    //updateFoodState(foods)
+
     if(input){
       let inputLower = input.toLowerCase();
       let filteredState = foodState.filter((item) => {

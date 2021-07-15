@@ -11,7 +11,7 @@ export default function Search (props) {
       function handleOnSubmit(event){
         event.preventDefault();
         props.searchFunction(formState.searchBar)
-        setFormState( "" )
+        formState.searchBar = "";
       }
 
     return (
@@ -19,7 +19,7 @@ export default function Search (props) {
           <br></br>
           <form onSubmit={handleOnSubmit} >
 
-            <input className = "input" type="text" name="searchBar" onChange={handleChange} /><br></br><br></br>
+            <input className = "input" type="text" name="searchBar" value= {formState.searchBar} onChange={handleChange} /><br></br><br></br>
             <button className="button is-primary" type="submit">Search</button><br></br><br></br>
           
           </form>

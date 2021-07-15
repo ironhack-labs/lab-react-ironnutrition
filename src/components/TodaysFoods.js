@@ -11,9 +11,15 @@ export default function TodaysFoods (props) {
     return <div>
         <ul>
             {
-                selectedFoods
-                  .map(food =>{
-                      return <li className = "panel">{food.quantity} {food.name} = {(food.quantity*food.calories)} cal</li>} )
+            selectedFoods.map(food =>{
+                    return <li className = "panel">
+
+                    {food.quantity} {food.name} = {(food.quantity*food.calories)} cal
+
+                    <img src="/trash.png" alt="trash" style={{width: 20, position: "absolute", right: 40}}/>
+                    
+                    </li>
+                    })
             }
         </ul>
         <br></br>

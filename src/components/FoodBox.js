@@ -5,6 +5,7 @@ export default function FoodBox(props) {
     const[formValue, updateFormValue] = useState(1)
 
     const {food} = props
+    
     function handleChange(event){
         updateFormValue(event.target.value)
       }

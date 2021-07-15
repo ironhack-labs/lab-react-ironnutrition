@@ -16,10 +16,11 @@ export default function Search (props) {
 
     return (
         <div className="SearchBar">
+          <br></br>
           <form onSubmit={handleOnSubmit} >
 
-            <input type="text" name="searchBar" onChange={handleChange} /><br></br><br></br>
-            <button type="submit">Search</button><br></br><br></br>
+            <input className = "input" type="text" name="searchBar" onChange={handleChange} /><br></br><br></br>
+            <button className="button is-primary" type="submit">Search</button><br></br><br></br>
           
           </form>
         </div>

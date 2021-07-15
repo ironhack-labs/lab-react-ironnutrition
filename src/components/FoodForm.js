@@ -23,19 +23,19 @@ function AddFood(props) {
   }
 
   return (
-    <div className="FoodForm">
+    <div className="field">
       <h4>Add a food item</h4><br></br><br></br>
       <form onSubmit={handleOnSubmit} >
-        <label>Name:</label>
-        <input type="text" name="name" value={formState.name} onChange={handleChange} /><br></br><br></br>
+        <label className="label" >Name:</label>
+        <input className="input" type="text" name="name" value={formState.name} onChange={handleChange} /><br></br><br></br>
 
-        <label>Calories:</label>
-        <input type="text" name="calories" value={formState.calories} onChange={handleChange} /><br></br><br></br>
+        <label className="label" >Calories:</label>
+        <input className="input" type="text" name="calories" value={formState.calories} onChange={handleChange} /><br></br><br></br>
 
-        <label>Image Url:</label>
-        <input type="text" name="image" value={formState.image} onChange={handleChange} /><br></br><br></br>
+        <label className="label" >Image Url:</label>
+        <input className="input" type="text" name="image" value={formState.image} onChange={handleChange} /><br></br><br></br>
 
-       <button type="submit">Add Food Item</button><br></br><br></br>
+       <button  className="button is-info" type="submit">Add Food Item</button><br></br><br></br>
       </form>
     </div>
   );

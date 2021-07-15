@@ -39,7 +39,7 @@ function App() {
       </div>
       <div>
         {isEditMode && <FoodForm addFoodHandler = {addFood} toggleEditMode = {toggleEditMode}/>}
-        <button onClick = {() => toggleEditMode(!isEditMode)}>{!isEditMode ? "Add new food" : "Cancel"}</button>
+        <button  className="button is-warning" onClick = {() => toggleEditMode(!isEditMode)}>{!isEditMode ? "Add new food" : "Cancel"}</button>
       </div>
       <br></br>
       <div className = "columns">
@@ -49,7 +49,7 @@ function App() {
           })}
         </div>
         <div className = "column">
-          <h1>Today's foods</h1>
+          <h1 className="title is-1">Today's foods</h1>
           <TodaysFoods foodState = {foodState} />
         </div>
       </div>

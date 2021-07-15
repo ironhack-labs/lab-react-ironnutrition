@@ -6,7 +6,7 @@ import 'bulma/css/bulma.css';
 
     render() {
 
-        const { foods } = this.props
+        const { foods, onPlus } = this.props
 
         return (
             <div>
@@ -14,7 +14,7 @@ import 'bulma/css/bulma.css';
                     foods.map((food) => {
                         
                         return (
-
+                            <form onSubmit={(event) => {onPlus(event) }} noValidate autoComplete="off">
                                 <div className="box">
                                     <article className="media">
                                     <div className="media-left">
@@ -24,12 +24,18 @@ import 'bulma/css/bulma.css';
                                     </div>
                                     <div className="media-content">
                                         <div className="content">
-                                        <p>
-                                            <strong>{food.name}</strong> <br />
-                                            <small>{food.calories}</small>
+                                        <p className="name">
+                                            <strong >{food.name}</strong> <br />
+                                    
+                                        </p>
+
+                                        <p className="calories">
+                                            <small >{food.calories}</small>
                                         </p>
                                         </div>
                                     </div>
+
+
                                     <div className="media-right">
                                         <div className="field has-addons">
                                         <div className="control">
@@ -41,9 +47,11 @@ import 'bulma/css/bulma.css';
                                             </button>
                                         </div>
                                         </div>
+
                                     </div>
                                     </article>
                                 </div>
+                            </form>
 
                         );
 

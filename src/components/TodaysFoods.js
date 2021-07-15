@@ -1,18 +1,18 @@
+import React from "react";
+
 export default function TodaysFoods (props) {
 
-    const {foodState} = props
-    let finalCal = 0;
-
+    const {foodState } = props
+    const selectedFoods = foodState.filter((food) => food.quantity > 0)
+    const calCount = selectedFoods.reduce((calCount, food)=>{return calCount+=food.quantity*food.calories}, 0)
     return <div>
         <ul>
-            {foodState.map((el) => {
-                if(el.quantity > 0){
-                    let totalCal = el.quantity * el.calories;
-                    finalCal += totalCal;
-                    return <li>{el.quantity} {el.name} = {totalCal}</li>
-                }
-            })}
+            {
+                selectedFoods
+                  .map(food =>{
+                      return <li>{food.quantity} {food.name} = {(food.quantity*food.calories)} cal</li>} )
+            }
         </ul>
-        <p>Total: {finalCal} cal</p>
+        <p>Total: {calCount} cal</p>
     </div>
 }

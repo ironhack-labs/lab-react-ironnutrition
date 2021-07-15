@@ -18,14 +18,19 @@ function App() {
   }
 
   function searchFunction (input) {
-    
-    let inputLower = input.toLowerCase();
-    
-    let filteredState = foodState.filter((item) => {
-      return item.name.toLowerCase().includes(inputLower);
-    })
-    updateFoodState(filteredState)
+    if(input){
+      let inputLower = input.toLowerCase();
+      let filteredState = foodState.filter((item) => {
+        return item.name.toLowerCase().includes(inputLower);
+      })
+      updateFoodState(filteredState)
+    }
   }
+
+  function handleTodaysFood(){
+    updateFoodState([...foodState])
+  }
+
 
   return (
     <div className="App">
@@ -40,12 +45,12 @@ function App() {
       <div className = "columns">
         <div className = "column">
           {foodState.map((food) => {
-          return <FoodBox food = {food} foodState = {foodState}/>
+          return <FoodBox food = {food} handleTodaysFood={handleTodaysFood}/>
           })}
         </div>
         <div className = "column">
           <h1>Today's foods</h1>
-          <TodaysFoods foodState = {foodState}/>
+          <TodaysFoods foodState = {foodState} />
         </div>
       </div>
     </div>

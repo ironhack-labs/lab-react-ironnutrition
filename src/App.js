@@ -23,7 +23,7 @@ function App() {
 
     if(input){
       let inputLower = input.toLowerCase();
-      let filteredState = foodState.filter((item) => {
+      let filteredState = foods.filter((item) => {
         return item.name.toLowerCase().includes(inputLower);
       })
       updateFoodState(filteredState)

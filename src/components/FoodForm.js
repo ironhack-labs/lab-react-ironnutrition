@@ -5,7 +5,8 @@ function AddFood(props) {
   const initialState =   {
     name: '',
     calories: "",
-    image: ""
+    image: "",
+    quantity: 0
   }
 
   const [formState, setFormState] = useState( initialState )

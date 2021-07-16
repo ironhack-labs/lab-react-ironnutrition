@@ -1,7 +1,24 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { StyleSheetManager } from 'styled-components'
 
-function Foodcontainer({ foodsArr }) {
+function Foodcontainer({ foodsArr, inputKey, addHandler }) {
+  const [count, setCount] = useState(0)
+
+  const onChange = (e) => {
+    setCount(e.target.value)
+  }
+
+  const submithandler = (e) => {
+    const listItem = {
+      inputKey,
+      count,
+      name: foodsArr.name,
+      calories: foodsArr.calories,
+    }
+    console.log(e.target.name)
+    addHandler(listItem)
+  }
+
   return (
     <FoodContainer>
       <FoodImg>
@@ -13,8 +30,13 @@ function Foodcontainer({ foodsArr }) {
         {foodsArr.calories}
       </FoodDescrip>
       <FoodInput>
-        <InputDiv type="number" value="1"></InputDiv>
-        <AdditionSign>+</AdditionSign>
+        <InputDiv
+          id={inputKey}
+          onChange={onChange}
+          type="number"
+          value={count}
+        ></InputDiv>
+        <AdditionSign onClick={submithandler}>+</AdditionSign>
       </FoodInput>
     </FoodContainer>
   )
@@ -27,7 +49,7 @@ const InputDiv = styled.input`
   font-size: 1rem;
 `
 
-const AdditionSign = styled.div`
+const AdditionSign = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,6 +57,8 @@ const AdditionSign = styled.div`
   background-color: #209cee;
   color: white;
   font-weight: 400;
+  border: none;
+  cursor: pointer;
 `
 
 const FoodDescrip = styled.div`

@@ -52,7 +52,7 @@ function App() {
     } else {
       let sum = 0
       collection.map((item) => {
-        sum += item.calories
+        sum += item.calories * item.count
       })
       setSum(sum)
     }
@@ -90,9 +90,6 @@ function App() {
                     const foodItem = FoodArray.filter((item) =>
                       item.id === eachItem.key ? item : null
                     )
-                    const sum = foodItem.reduce((total, current) => {
-                      total = +current.calories
-                    })
 
                     return (
                       <ListItem key={eachItem.key}>

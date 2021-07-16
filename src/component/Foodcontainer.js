@@ -11,7 +11,7 @@ function Foodcontainer({ foodsArr, inputKey, addHandler }) {
   const submithandler = (e) => {
     const listItem = {
       inputKey,
-      count,
+      count: +count,
       name: foodsArr.name,
       calories: foodsArr.calories,
     }

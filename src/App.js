@@ -21,9 +21,10 @@ function App() {
 
   useEffect(() => {
     const newArr = FoodArray.filter((item) => {
-      if (item.name.toLowerCase().indexOf(search.toLowerCase()) != -1) {
+      if (item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
         return true
       }
+      return false
     })
 
     setFilteredArr([...newArr])
@@ -34,10 +35,10 @@ function App() {
   }
 
   const addHandler = (listItem) => {
-    console.log(listItem)
     setCollection((prevState) => [
       ...prevState,
       {
+        id: uuidv4(),
         key: listItem.inputKey,
         count: listItem.count,
         name: listItem.name,
@@ -51,7 +52,7 @@ function App() {
       return
     } else {
       let sum = 0
-      collection.map((item) => {
+      collection.forEach((item) => {
         sum += item.calories * item.count
       })
       setSum(sum)
@@ -92,7 +93,7 @@ function App() {
                     )
 
                     return (
-                      <ListItem key={eachItem.key}>
+                      <ListItem key={eachItem.id}>
                         {Number(eachItem.count)} {foodItem[0].name} ={' '}
                         {foodItem[0].calories * Number(eachItem.count)} cal
                       </ListItem>

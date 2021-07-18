@@ -1,15 +1,52 @@
 import React, { Component } from 'react'
 import 'bulma/css/bulma.css';
+import AddForm from './AddForm'
 
 
  class FoodBox extends Component {
 
+    state = {
+        showForm: false
+    }
+
+    handleButton = () => {
+        this.setState({
+            showForm: true
+        })
+    }
+
+    handleAddFood = (event) => {
+        event.preventDefault()
+
+        this.setState({
+            showForm: false
+        })
+
+        let newFood = {
+            name: event.target.name.value,
+            quantity: event.target.quantity.value,
+            calories: event.target.calories.value
+        }
+    
+        this.props.onAddNewFoot(newFood)
+    }
+
+
     render() {
 
         const { foods, onPlus } = this.props
+        const { showForm } = this.state
+
+       
 
         return (
             <div>
+
+                {
+                    showForm ?  <AddForm onAddFood={this.handleAddFood} /> : <button onClick={this.handleButton} >Show Form</button>
+                }
+                
+
                 {
                     foods.map((food) => {
                         

@@ -4,6 +4,8 @@ import 'bulma/css/bulma.css';
 import foodsJson from './foods.json';
 import FootBox from './components/FoodBox'
 import TodaysFood from './components/TodaysFood'
+import Search from './components/Search'
+
 
 
 class App extends Component {
@@ -11,13 +13,14 @@ class App extends Component {
 
   state = {
     foods: foodsJson,
+    cloneFoods: foodsJson,
     list: []
+
   }
 
   handlePlus = (event) => {
     event.preventDefault()
 
-    
     console.log(event.target.querySelector('.input').value)
 
     let todayList = {
@@ -31,13 +34,39 @@ class App extends Component {
     })
   }
 
+  handleAddNewFoot = (newFood) => {
+
+    this.setState({
+      foods: [newFood, ...this.state.foods]
+    })
+
+  }
+
+  handleSearch = (event) => {
+
+    let { foods } = this.state
+
+    let searchFood = event.target.value
+
+    let filteredFood = foods.filter((food) => {
+      return food.name.toLowerCase().includes(searchFood.toLowerCase())
+    })
+
+    this.setState({
+      cloneFoods: filteredFood
+    })
+
+  }
+
   render() {
     return (
       <div>
         <h1>This is the Ironnutriation Lab</h1>
+       <Search onSearch={this.handleSearch} />
         <FootBox 
-        foods={ this.state.foods } 
+        foods={ this.state.cloneFoods } 
         onPlus={this.handlePlus}
+        onAddNewFoot={this.handleAddNewFoot}
         />
         <TodaysFood list={ this.state.list } />
 

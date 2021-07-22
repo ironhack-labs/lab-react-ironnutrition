@@ -1,38 +1,79 @@
-.App {
+
+
+#page-name{
+  color:black;
+  margin-top: 5vh;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+#form-food-page{
+  text-align: center;
+  font-size: 1.5rem;
+  color:black;
+  margin-bottom: 5vh;
+  
+}
+
+#form-food{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-food form {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#btns-form{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
+  margin-top: 5vh;
 }
 
-.App-link {
-  color: #61dafb;
+#search-food{
+  width: 80vw;
+  margin-left: 10vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#btn-addFood{
+  position: relative;
+  left:20vw;
+  width: 120px;
+  height: 40px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#container-part{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5vh;
+
+}
+
+#food-part{
+  width: 50vw;
+  border:3px solid rgb(22, 22, 194);
+  border-radius: 10px;
+}
+
+#addFood-part{
+  width: 30vw;
+}
+
+#title-today{
+  color: black;
+  font-size: 1.5rem;
+  margin-bottom: 3vh;
+}
+
+#food-part-total-calories{
+  margin-top: 2vh;
+}
+
+.list-addedFood{
+  list-style-type:disc;
 }

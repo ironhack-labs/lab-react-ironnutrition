@@ -10,7 +10,7 @@ class FoodBox extends Component {
             <article className="media">
                 <div className="media-left">
                 <figure className="image is-64x64">
-                    <img src={food.image} />
+                    <img src={food.image} alt={food.name}/>
                 </figure>
                 </div>
                 <div className="media-content">
@@ -27,9 +27,7 @@ class FoodBox extends Component {
                     <input className="input" type="number" value="1" />
                     </div>
                     <div className="control">
-                    <button className="button is-info">
-                        +
-                    </button>
+                    <button className="button is-info">+</button>
                     </div>
                 </div>
                 </div>

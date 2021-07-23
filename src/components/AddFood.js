@@ -4,13 +4,13 @@ import 'bulma/css/bulma.css';
 
 class AddFood extends Component {
     state = {
-        name: "",
-        calories: "",
-        image: "",
+        name: '',
+        calories: 0,
+        image: '',
     };
 
     handleChange = (event) => {
-        let { name, value, type } = event.target;
+        let { name, value} = event.target;
         this.setState({
             [name]: value,
         });
@@ -20,9 +20,9 @@ class AddFood extends Component {
         event.preventDefault();
         this.props.addFood(this.state);
         this.setState({
-            name: "",
-            calories: "",
-            image: "",
+            name: '',
+            calories: '',
+            image: '',
         });
     };
     
@@ -35,9 +35,9 @@ class AddFood extends Component {
                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
         
                 <label>Calories:</label>
-                <input type="text" name="calories" value={this.state.calories} onChange={this.handleChange} />
+                <input type="number" name="calories" value={this.state.calories} onChange={this.handleChange} />
         
-                <label>Image:</label>
+                <label>Image URL:</label>
                 <input type="text" name="image" checked={this.state.image} onChange={this.handleChange} />
               
                 <button type='submit' className="button is-info">Submit</button>

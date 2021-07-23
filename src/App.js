@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Box from './components/Box.js';
 import 'bulma/css/bulma.css'
+import Foods from './components/Foods.js'
 
 function App() {
   return (
     <div className="App">
-      <Box/>
+      <Foods/>
     </div>
   );
 }

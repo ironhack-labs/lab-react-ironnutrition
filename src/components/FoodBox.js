@@ -36,11 +36,14 @@ class FoodBox extends Component {
         const filtered = this.state.ifoods.filter(food => {
             return food.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())
         })
-        this.setState({
-            filterFood: filtered,
-            
-   
-        })
+     
+            this.setState({
+                filterFood: filtered,
+                
+       
+            })
+        
+        
 
     }
 

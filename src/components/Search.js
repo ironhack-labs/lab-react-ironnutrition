@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import foods from '../foods.json';
 
 class Search extends Component {
 
     state ={
+        food : foods,
         input : ""
     }
 

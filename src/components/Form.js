@@ -7,7 +7,7 @@ class Form extends Component {
         name: "",
         calories: "",
         image: "",
-        
+
     }
 
     onChange = (event) => {
@@ -28,33 +28,37 @@ class Form extends Component {
 
 
     render() {
-        return (<div className="form-table">
-                <form onSubmit= {this.onSubmit} >
-                    <input
-                        name="name"
-                        value={this.state.name}
-                        type="text"
-                        placeholder="Foods Name"
-                        onChange={this.onChange}
-                    />
-                    <input
-                        name="calories"
-                        value={this.state.calories}
-                        type="number"
-                        placeholder="Calories"
-                        onChange={this.onChange}
-                    />
-                    <input
-                        name="image"
-                        onChange={this.onChange}
-                        value={this.state.image}
-                        type="text"
-                        placeholder="Imagem Url"
-                    />
-                    <button className = "bt-submit" type="submit">Submit</button>
-                </form>
+        return (<div>
+            <div className="form-flex">
+                <div className="form-table">
+                    <form onSubmit={this.onSubmit} >
+                        <input
+                            name="name"
+                            value={this.state.name}
+                            type="text"
+                            placeholder="Foods Name"
+                            onChange={this.onChange}
+                        />
+                        <input
+                            name="calories"
+                            value={this.state.calories}
+                            type="number"
+                            placeholder="Calories"
+                            onChange={this.onChange}
+                        />
+                        <input
+                            name="image"
+                            onChange={this.onChange}
+                            value={this.state.image}
+                            type="text"
+                            placeholder="Imagem Url"
+                        />
+
+                        <button className="bt-submit" type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
-        
+        </div>
         )
     }
 }

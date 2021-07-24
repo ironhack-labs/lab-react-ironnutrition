@@ -1,16 +1,20 @@
 
-.form-table{
-  display: flex;
-  flex-direction: column;
-}
+
 .form-table input{
   height: 3rem;
   width: 30rem;
   margin-top: 5rem;
 }
+.form-flex{
+  display: flex;
+  justify-content: center;
+
+}
 .bt-submit{
-  height: 2rem;
-  
+  height: 3rem;
+ margin-right: -1rem;
+  margin-left: 1rem;
+
 }
 
 

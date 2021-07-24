@@ -1,3 +1,9 @@
 .title{
     text-align: center;
 }
+.box{
+    width: 600px;
+}
+#table{
+    display: flex;
+}

@@ -4,12 +4,14 @@ import FoodBox from "./FoodBox";
 import AddFood from './AddFood';
 import SearchBar from './SearchBar';
 import './Main.css';
+import TodaysFood from './TodaysFood';
 
 class Main extends Component {
     state = {
         foodList: foods,
         form: false,
         filteredFoods: foods,
+        todaysFood: [],
     }
 
     handleAddFood = (food) => {
@@ -17,6 +19,7 @@ class Main extends Component {
         this.setState({
           foodList: newFoods,
           form: false,
+          filteredFoods: newFoods,
         });
     };
 
@@ -35,6 +38,13 @@ class Main extends Component {
         })
     }   
 
+    handleAddToday = (food) => {
+        const newTodaysFood = [...this.state.todaysFood, food];
+        this.setState({
+            todaysFood: newTodaysFood,
+        })
+    }
+
 
     render() {
         return (
@@ -49,11 +59,16 @@ class Main extends Component {
                 {this.state.form ? <AddFood addFood={this.handleAddFood} /> : null}
                 
             </div>
-            <div className='food-cards'>
-                {this.state.filteredFoods.map((item, index) => (
-                      <FoodBox key={index} food={item}/>
-                    )
-                )}
+            <div className='main-div'>
+                <div className='food-cards'>
+                    {this.state.filteredFoods.map((item, index) => (
+                        <FoodBox key={index} food={item} onAddClick={() => {this.handleAddToday(item)}}/>
+                        )
+                    )}
+                </div>
+                <div className='todays-div'>
+                        <TodaysFood foodList={this.state.todaysFood}/>
+                </div>
             </div>
           </>
         )

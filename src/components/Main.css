@@ -52,3 +52,12 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.main-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todays-div {
+    margin-right: 500px;
+}

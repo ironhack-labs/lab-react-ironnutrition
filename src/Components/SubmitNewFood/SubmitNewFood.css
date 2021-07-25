@@ -1,0 +1,14 @@
+.form-new-food{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.field {
+    width: 1000px;
+    margin-right: 10px;
+}
+
+#container-buttons button{
+    margin: 33px;
+}

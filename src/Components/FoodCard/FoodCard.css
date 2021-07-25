@@ -1,0 +1,16 @@
+.box{
+    width: auto;
+}
+
+.content{
+    margin-right: 40px;
+    white-space: nowrap;
+}
+
+.control{
+    width: auto;
+}
+
+.control button{
+    margin-left: 20px;
+}

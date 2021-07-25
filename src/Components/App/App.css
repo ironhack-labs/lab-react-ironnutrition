@@ -1,0 +1,17 @@
+.input-and-button {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.input-and-button button{
+    margin-left: 10px;
+}
+
+.column-food{
+    width: 600px;
+    margin-right: 40px;
+}
+
+form{
+    margin-bottom: 40px;
+}

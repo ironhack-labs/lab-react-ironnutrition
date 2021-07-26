@@ -35,8 +35,6 @@ class FoodList extends Component {
         this.setState(( { foodSelected }) => ({
             foodSelected: [food, ...foodSelected]
         }))
-        console.log( this.state.foodSelected )
-
     }
     
     render(){
@@ -59,13 +57,17 @@ class FoodList extends Component {
                 <div>
                     <h3>Today's food</h3>
                     <ul>
+
+                    
                     {foodSelected.map(item =>
                          <FoodResume 
                          {...item}
                          />
                     )}
                    </ul>
-                    <h5>Total Calories</h5>
+                    <h5>Total Calories{             
+                    foodSelected.reduce(
+                        (acc, food) => acc + food.calories, 0 )}</h5>
                 </div>
             
             </div>

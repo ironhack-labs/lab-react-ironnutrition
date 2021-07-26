@@ -10,7 +10,8 @@ class FoodItem extends Component {
         food: {
             name: this.props.name,
             calories: this.props.calories ,
-            quantity: 1},
+            quantity: this.props.quantity
+        },
     }
 
     handleAddUnits() {
@@ -30,7 +31,7 @@ class FoodItem extends Component {
 
     render(){
 
-        const {name, calories, image,} = this.props;
+        const {name, calories, image, quantity} = this.props;
 
         return (
             <div className="box m-3">
@@ -51,7 +52,7 @@ class FoodItem extends Component {
                         <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number"  />
+                                <input className="input" type="number" name="quantity" />
                             </div>
                             <div className="control">
                                 <form onSubmit={(event) => this.handleSubmitList(event)}>

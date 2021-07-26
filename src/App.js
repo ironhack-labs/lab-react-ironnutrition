@@ -6,12 +6,15 @@ import FoodList from './components/food/FoodList';
 function App() {
   return (
    
-    <div className="container">
-      <h1>Hello</h1>
-      <div className="d-flex">
-        <div>
+    <div className="">
+      <nav>
+      <h1><i class="fas fa-apple-alt"></i> Iron Nutrition</h1>
+      </nav>
+      <hr/>
+      <div className="container is-vcentered">
+        
         <FoodList />
-        </div>
+       
         
      </div>
     </div>

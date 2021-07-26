@@ -1,7 +1,4 @@
-.container {
-    max-width: 900px;
-    margin-top: 30px;
-  }
+
 
   .search-bar {
     margin-bottom: 30px;
@@ -9,7 +6,7 @@
 
   .box {
     padding: 0;
-    max-width: 400px;
+    max-width: 800px;
   }
 
   .box .media {
@@ -34,6 +31,7 @@
   .box .button {
     width: 64px;
     font-size: 1.3em;
+    height: 100%;
   }
 
   .box input,

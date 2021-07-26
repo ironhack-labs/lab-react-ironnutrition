@@ -14,11 +14,17 @@ class FoodItem extends Component {
         },
     }
 
-    handleAddUnits() {
-        this.setState(({units}) => ({
-            units: units +1
+    handleAddUnits(event) {
+        const { name, value } = event.target
+        this.setState((prevState) => ({
+           
+            food: {
+                ...prevState.food,
+                [name] : value
+            }
         }))
     }
+
 
     handleSubmitList(event) {
         event.preventDefault();        
@@ -27,44 +33,44 @@ class FoodItem extends Component {
         
      }
 
-     
 
     render(){
 
         const {name, calories, image, quantity} = this.props;
 
         return (
-            <div className="box m-3">
-                <article className="media">
-                    <div className="media-left">
+            <div className="box m-6 columns">
+                
+                    <div className="column media-left">
                         <figure className="image is-64x64">
                             <img src={image} />
                         </figure>
-                        </div>
-                        <div className="media-content">
+                    </div>
+                    <div className="column media-content">
                         <div className="content">
                             <p>
                             <strong>{name}</strong> <br />
                             <small>{calories}</small>
                             </p>
                         </div>
-                        </div>
-                        <div className="media-right">
+                    </div>
+                    <div className="column media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input" type="number" name="quantity" />
-                            </div>
-                            <div className="control">
+                                <input className="input" type="number" name="quantity" value={quantity} onChange={(event) => this.handleAddUnits(event)}/>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div className="column media-right">
+                    <div className="control">
                                 <form onSubmit={(event) => this.handleSubmitList(event)}>
-                                    {/* <input value={name} /><input value={calories} /> */}
                                 <button type="submit" className="button is-info">
                                     +
                                 </button>
                                 </form>
                             </div>
-                        </div>
                     </div>
-                </article>
+               
             </div>
         )}
     }

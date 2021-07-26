@@ -35,8 +35,8 @@ class FoodForm extends Component {
     state = {
         food: {
         name : '',
-        image: '',
-        calories : '',
+        image: 'https://static.vecteezy.com/system/resources/previews/002/165/527/non_2x/line-icon-for-pizza-vector.jpg',
+        calories : 0,
         quantity: 0 },
 
         errors: {
@@ -47,7 +47,7 @@ class FoodForm extends Component {
     }
 
     handleInputChange(event) {
-        const {name, value, image} = event.target;
+        const {name, value} = event.target;
         this.setState((prevState) => ({
             food: {
                 ...prevState.food, 
@@ -81,22 +81,22 @@ class FoodForm extends Component {
 
         return(
             <form onSubmit={(event) => this.handleSubmitItem(event)}>
-                <div className="is-flex-direction-row">
-                    <div>
-                        <img src={food.image} alt={food.name} />
+                <h2>Fill the form an add a new food to the list</h2>
+                <div className="columns is-desktop">
+                    <div className="column">
+                        <img src={food.image} alt={food.name} className="image is-128x128" />
                     </div>
 
-                    <div> 
+                    <div className="column is-three-quarters-desktop"> 
                         <div className="field">
                             <label className="label">Food Name </label>
                             <div className="control has-icons-left has-icons-right">
-                                <input name="name" className="input is-success" type="text" placeholder="Text input" value={food.name} onChange={(event) => this.handleInputChange(event)}/>
+                                <input name="name" className={errors.name? "input is-danger" : "input is-success"} type="text" placeholder="Text input" value={food.name} onChange={(event) => this.handleInputChange(event)}/>
                                 <span className="icon is-small is-left">
                                 <i className="fas fa-pizza-slice fa-fw"></i>
                                 </span>
                                 {errors.name?<span className="icon is-small is-right"><i className="fas fa-exclamation-triangle"></i></span>:<span className="icon is-small is-right"><i className="fas fa-check"></i>
-                                </span>}
-                                
+                                </span>}                                
                             </div>
                             {errors.name?<p className="help is-danger">{errors.name}</p>:''}
                         </div>
@@ -104,7 +104,7 @@ class FoodForm extends Component {
                         <div className="field">
                             <label className="label">Calories </label>
                             <div className="control has-icons-left has-icons-right">
-                                <input name="calories" className="input is-danger`" type="text" placeholder="Email input" value={food.calories} onChange={(event) => this.handleInputChange(event)} />
+                                <input name="calories" className={errors.calories? "input is-danger" : "input is-success"} type="number" placeholder="Email input" value={food.calories} onChange={(event) => this.handleInputChange(event)} />
                                 <span className="icon is-small is-left">
                                 <i className="fas fa-weight-hanging"></i>
                                 </span>
@@ -117,7 +117,7 @@ class FoodForm extends Component {
                         <div className="field">
                             <label className="label">Image </label>
                             <div className="control has-icons-left has-icons-right">
-                                <input name="image" className="input is-danger`" type="text" placeholder="Your url image" value={food.image} onChange={(event) => this.handleInputChange(event)} />
+                                <input name="image" className={errors.image? "input is-danger" : "input is-success"} type="text" placeholder="Your url image" value={food.image} onChange={(event) => this.handleInputChange(event)} />
                                 <span className="icon is-small is-left">
                                 <i className="fa fa-picture-o fa-fw"></i>
                                 </span>
@@ -135,6 +135,8 @@ class FoodForm extends Component {
                     </div>
                 </div>  
             </form>
+
+            
         )
     }
 

@@ -9,10 +9,10 @@ class FoodResume extends Component {
             <div>
                 
                     <li>
-                        <ul>
-                            <li><strong>{name}</strong></li> 
-                            <li><small>{quantity}</small></li>
-                            <li><small>{calories}</small></li>
+                        <ul className="columns is-desktop">
+                            <li className="column"><strong>{name}</strong></li> 
+                            <li className="column"><small>{quantity}</small></li>
+                            <li className="column"><small>{calories}</small></li>
                         </ul>                       
                    </li>
 

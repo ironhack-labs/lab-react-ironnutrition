@@ -42,8 +42,8 @@ class FoodList extends Component {
         const { foodListed, foodSelected } = this.state
 
         return(
-            <div className="d-flex">
-                <div>
+            <div className="columns is-desktop">
+                <div className="column is-half-desktop">
                     <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} />
 
                     {foodListed.map(item => 
@@ -54,7 +54,7 @@ class FoodList extends Component {
                     />
                     )}
                 </div>
-                <div>
+                <div className="column">
                     <h3>Today's food</h3>
                     <ul>
 
@@ -65,9 +65,10 @@ class FoodList extends Component {
                          />
                     )}
                    </ul>
-                    <h5>Total Calories{             
-                    foodSelected.reduce(
-                        (acc, food) => acc + food.calories, 0 )}</h5>
+                   <div className="d-flex justify-content-around">
+                    <h5>Total Calories</h5> 
+                    <h5>{foodSelected.reduce((acc, food) => acc + food.calories, 0 )}</h5>
+                   </div>
                 </div>
             
             </div>

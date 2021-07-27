@@ -2,35 +2,35 @@ import React, {Component} from 'react'
 
 class SearchBar extends Component {
 
-    state = {
-
-        searchbar: ''
-    }
+        state = {
+            food: {
+            name : '',
+            }
+        }
+   
 
     handleSearchBar(event) {
-
+     
         const {name, value} = event.target
         this.setState((prevState) => ({
             ...prevState,
-            [name]:value
+            [name]:value,         
         }))
+
     }
+
 
     render() {
 
-        const {searchbar} = this.state
+        const {name, onClickSearch} = this.props
 
         return (
 
             <div className="field is-grouped">
-            <p className="control is-expanded">
-                <input name="searchbar" className="input" type="text" placeholder="Search for a food" onChange={(event) => this.handleSearchBar(event)} />
-            </p>
-            <p className="control">
-                <a className="button is-info">
-                Search
-                </a>
-            </p>
+                <p className="control has-icons-left has-icons-right">           
+                    <input name="searchbar" className="input" type="text" placeholder="Search for a food" value={name} onChange = {(event) => this.handleSearchBar(event), onClickSearch} />
+                    <span className="icon is-small is-right"><i class="fas fa-search"></i></span>
+                </p>            
             </div>
 
         )

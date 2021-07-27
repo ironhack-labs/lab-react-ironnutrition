@@ -29,7 +29,7 @@ class FoodList extends Component {
 
     handleCreateListItem(food) {
         this.setState(( { foodSelected }) => ({
-            foodSelected: [food, ...foodSelected]
+            foodSelected: [...foodSelected, food]
         })) 
     }
 
@@ -59,9 +59,19 @@ class FoodList extends Component {
         }))
     }
 
-    handleSearchItems() {
-       
+    handleSearchItems(event) {
+        const { value } = event.target  
+        if(value){
+        this.setState(({foodListed}) => ({           
+            foodListed: foodListed.filter(food => food.name.toLowerCase().includes(value)),
+              
+        }))} else {
+            this.setState(({foodListed}) => ({           
+                foodListed: foodListed
+        }))}
+      
     }
+
     
     render(){
 
@@ -69,24 +79,25 @@ class FoodList extends Component {
 
         return(
             <div>
-            <div>
-                <div><AddButton onShowForm = {() => this.handleShowForm()} /></div>
-                <div><SearchBar /></div>
-            </div>
-            <div className="columns is-desktop">
+             
+           
+            <div className="columns is-desktop">                
                 <div className="column is-half-desktop">
+                <SearchBar onClickSearch = {(event) => this.handleSearchItems(event)}/>
+                <div className="text-center"><AddButton onShowForm = {() => this.handleShowForm()} /></div>                
                  {showForm && <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
                     {foodListed.map(item => 
                     <FoodItem 
                         {...item}
                         key={item.name}
                         onCreateListItem={(food) => this.handleCreateListItem(food)}
+                        
                     />
                     )}
                 </div>
 
                 <div className="column">
-                    <h3>Today's food</h3>
+                    <h3 className="text-center mb-3">Today's food</h3>
                     <table className="table">                  
                     {foodSelected.map(item =>
                          <FoodResume 
@@ -98,12 +109,10 @@ class FoodList extends Component {
                     <tr>
                         <td>Total Calories</td>
                         <td></td>
-                        <td>{foodSelected.reduce((acc, food) => acc + Number(food.calories), 0 )}</td>
+                        <td>{foodSelected.reduce((acc, food) => acc + Number(food.calories*food.quantity), 0 )}</td>
                         <td></td>
-                    </tr>
-                    
-                    </table>
-                  
+                    </tr>                    
+                    </table>                  
                    
                 </div>
             

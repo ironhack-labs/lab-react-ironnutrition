@@ -73,6 +73,7 @@ class FoodForm extends Component {
        if(this.isFormValid()) {
             const { food } = this.state;
             this.props.onCreateItem(food)
+            this.props.onHideForm()
        }
     }
 

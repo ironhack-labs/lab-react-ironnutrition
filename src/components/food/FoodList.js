@@ -4,14 +4,15 @@ import FoodItem from "./FoodItem";
 import FoodForm from "./FoodForm";
 import FoodResume from './FoodResume';
 import 'bulma/package.json'
-
+import AddButton from "./AddButton";
 
 
 class FoodList extends Component {
 
     state = {
         foodListed: [],
-        foodSelected: []
+        foodSelected: [],
+        showForm: false
     }
 
     componentDidMount() {
@@ -36,16 +37,33 @@ class FoodList extends Component {
             foodSelected: [food, ...foodSelected]
         }))
     }
+
+    handleHideForm() {
+        this.setState(( PrevState ) => ({
+            ...PrevState,
+            showForm: false
+        }))
+    }
+
+    handleShowForm() {
+        this.setState(( PrevState ) => ({
+            ...PrevState,
+            showForm: true
+        }))
+    }
     
     render(){
 
-        const { foodListed, foodSelected } = this.state
+        const { foodListed, foodSelected, showForm } = this.state
 
         return(
+            <div>
+            <div>
+                <div><AddButton onShowForm = {() => this.handleShowForm()} /></div>
+            </div>
             <div className="columns is-desktop">
                 <div className="column is-half-desktop">
-                    <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} />
-
+                 {showForm && <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
                     {foodListed.map(item => 
                     <FoodItem 
                         {...item}
@@ -54,11 +72,10 @@ class FoodList extends Component {
                     />
                     )}
                 </div>
+
                 <div className="column">
                     <h3>Today's food</h3>
-                    <ul>
-
-                    
+                    <ul>                    
                     {foodSelected.map(item =>
                          <FoodResume 
                          {...item}
@@ -71,6 +88,7 @@ class FoodList extends Component {
                    </div>
                 </div>
             
+            </div>
             </div>
         )
     }

@@ -5,6 +5,7 @@ import FoodForm from "./FoodForm";
 import FoodResume from './FoodResume';
 import 'bulma/package.json'
 import AddButton from "./AddButton";
+import SearchBar from "./SearchBar";
 
 
 class FoodList extends Component {
@@ -51,6 +52,16 @@ class FoodList extends Component {
             showForm: true
         }))
     }
+
+    handleDeleteItem(name) {
+        this.setState(({foodSelected}) => ({
+            foodSelected: foodSelected.filter(food => food.name !== name)
+        }))
+    }
+
+    handleSearchItems() {
+       
+    }
     
     render(){
 
@@ -60,6 +71,7 @@ class FoodList extends Component {
             <div>
             <div>
                 <div><AddButton onShowForm = {() => this.handleShowForm()} /></div>
+                <div><SearchBar /></div>
             </div>
             <div className="columns is-desktop">
                 <div className="column is-half-desktop">
@@ -75,17 +87,24 @@ class FoodList extends Component {
 
                 <div className="column">
                     <h3>Today's food</h3>
-                    <ul>                    
+                    <table className="table">                  
                     {foodSelected.map(item =>
                          <FoodResume 
                          {...item}
+                         onClickDelete = {(name) => this.handleDeleteItem(name)}
                          />
                     )}
-                   </ul>
-                   <div className="d-flex justify-content-around">
-                    <h5>Total Calories</h5> 
-                    <h5>{foodSelected.reduce((acc, food) => acc + Number(food.calories), 0 )}</h5>
-                   </div>
+
+                    <tr>
+                        <td>Total Calories</td>
+                        <td></td>
+                        <td>{foodSelected.reduce((acc, food) => acc + Number(food.calories), 0 )}</td>
+                        <td></td>
+                    </tr>
+                    
+                    </table>
+                  
+                   
                 </div>
             
             </div>

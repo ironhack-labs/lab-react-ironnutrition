@@ -67,7 +67,7 @@ class FoodList extends Component {
                    </ul>
                    <div className="d-flex justify-content-around">
                     <h5>Total Calories</h5> 
-                    <h5>{foodSelected.reduce((acc, food) => acc + food.calories, 0 )}</h5>
+                    <h5>{foodSelected.reduce((acc, food) => acc + Number(food.calories), 0 )}</h5>
                    </div>
                 </div>
             

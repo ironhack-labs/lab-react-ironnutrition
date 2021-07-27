@@ -36,7 +36,7 @@ class FoodForm extends Component {
         food: {
         name : '',
         image: 'https://static.vecteezy.com/system/resources/previews/002/165/527/non_2x/line-icon-for-pizza-vector.jpg',
-        calories : 0,
+        calories : parseInt(''),
         quantity: 0 },
 
         errors: {
@@ -48,10 +48,11 @@ class FoodForm extends Component {
 
     handleInputChange(event) {
         const {name, value} = event.target;
-        this.setState((prevState) => ({
+        this.setState((prevState) => ({            
+
             food: {
                 ...prevState.food, 
-                [name] : value
+                [name]: value 
             },
             errors: {
                 ...prevState.errors,

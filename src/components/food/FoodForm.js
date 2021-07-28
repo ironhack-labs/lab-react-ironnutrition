@@ -77,13 +77,23 @@ class FoodForm extends Component {
        }
     }
 
+    handleCloseForm(event) {
+        event.preventDefault();        
+        this.props.onHideForm()
+    
+     }
+
+    
+
     render(){
 
         const { food, errors } = this.state
 
         return(
+            <div className="form">
+                <div><i class="far fa-window-close" role="button" onClick={(event) => this.handleCloseForm(event)}></i></div>
             <form onSubmit={(event) => this.handleSubmitItem(event)}>
-                <h2>Fill the form an add a new food to the list</h2>
+                <h2>Fill the form an add a new food to the list</h2> 
                 <div className="columns is-desktop">
                     <div className="column">
                         <img src={food.image} alt={food.name} className="image is-128x128" />
@@ -137,6 +147,7 @@ class FoodForm extends Component {
                     </div>
                 </div>  
             </form>
+            </div>
 
             
         )

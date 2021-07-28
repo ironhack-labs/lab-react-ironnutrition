@@ -78,14 +78,15 @@ class FoodList extends Component {
         const { foodListed, foodSelected, showForm } = this.state
 
         return(
-            <div>
-             
+            <>
+            {showForm && <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
+            <div>           
            
             <div className="columns is-desktop">                
                 <div className="column is-half-desktop">
                 <SearchBar onClickSearch = {(event) => this.handleSearchItems(event)}/>
                 <div className="text-center"><AddButton onShowForm = {() => this.handleShowForm()} /></div>                
-                 {showForm && <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
+                 
                     {foodListed.map(item => 
                     <FoodItem 
                         {...item}
@@ -118,6 +119,7 @@ class FoodList extends Component {
             
             </div>
             </div>
+            </>
         )
     }
 }

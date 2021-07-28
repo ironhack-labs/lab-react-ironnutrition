@@ -2,6 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
-    document.querySelectorAll('default-quantity').defaultValue = "1"
+    document.querySelectorAll('.default-quantity').forEach(card => {card.defaultValue = "1"})
 
 })

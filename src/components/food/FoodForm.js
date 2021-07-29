@@ -117,7 +117,7 @@ class FoodForm extends Component {
                         <div className="field">
                             <label className="label">Calories </label>
                             <div className="control has-icons-left has-icons-right">
-                                <input name="calories" className={errors.calories? "input is-danger" : "input is-success"} type="number" placeholder="Calories portion" value={food.calories} onChange={(event) => this.handleInputChange(event)} />
+                                <input name="calories" className={errors.calories? "input is-danger" : "input is-success"} type="text" placeholder="Calories portion" value={food.calories} onChange={(event) => this.handleInputChange(event)} />
                                 <span className="icon is-small is-left">
                                 <i className="fas fa-weight-hanging"></i>
                                 </span>

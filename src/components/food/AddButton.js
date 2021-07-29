@@ -11,7 +11,7 @@ class AddButton extends Component {
     render(){
         return(
             <form onSubmit={(event) => this.handleOpenForm(event)}>
-            <button type="submit" className="button is-link">Add an Item</button>
+            <button type="submit" className="button is-link Button m-6">Add an Item</button>
             </form>
         )}
 }

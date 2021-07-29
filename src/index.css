@@ -23,16 +23,27 @@ h1 {
   font-size: 5rem;
   font-weight: lighter;
   padding-bottom: 2%;
-  color: #3e8ed0;
+  color: #fff;
+  background-color: #CBD12A;
+  padding: 2%;
+  margin: 0;
 }
 
 h2 {
   color: #CBD12A;
   text-align: center;
+  font-weight: lighter;
+  font-size: 3rem;
 }
 
 h5 {
   text-align: center;
+}
+
+.Resume {
+  color: #CBD12A;
+  font-weight: bold;
+  padding-top: 2%;
 }
 
 .container {

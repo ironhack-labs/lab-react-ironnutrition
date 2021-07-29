@@ -79,45 +79,46 @@ class FoodList extends Component {
 
         return(
             <>
-            {showForm && <FoodForm onCreateItem={(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
-            <div>           
-           
-            <div className="columns is-desktop">                
-                <div className="column is-half-desktop">
+            {showForm && <FoodForm onCreateItem = {(food) => this.handleCreateItem(food)} onHideForm = {() => this.handleHideForm()} />}
+            <div className="FoodList">           
                 <SearchBar onClickSearch = {(event) => this.handleSearchItems(event)}/>
-                <div className="text-center"><AddButton onShowForm = {() => this.handleShowForm()} /></div>                
-                 
-                    {foodListed.map(item => 
-                    <FoodItem 
-                        {...item}
-                        key={item.name}
-                        onCreateListItem={(food) => this.handleCreateListItem(food)}
-                        
-                    />
-                    )}
-                </div>
+                <div className="columns is-desktop"> 
 
-                <div className="column">
-                    <h3 className="text-center mb-3">Today's food</h3>
-                    <table className="table">                  
-                    {foodSelected.map(item =>
-                         <FoodResume 
-                         {...item}
-                         onClickDelete = {(name) => this.handleDeleteItem(name)}
-                         />
-                    )}
+                    <div className="column is-half-desktop">                    
+                        <div className="text-center">
+                            <AddButton onShowForm = {() => this.handleShowForm()} />
+                        </div>                
+                    
+                        {foodListed.map(item => 
+                        <FoodItem 
+                            {...item}
+                            key={item.name}
+                            onCreateListItem={(food) => this.handleCreateListItem(food)}
+                            
+                        />
+                        )}
+                    </div>
 
-                    <tr>
-                        <td>Total Calories</td>
-                        <td></td>
-                        <td>{foodSelected.reduce((acc, food) => acc + Number(food.calories*food.quantity), 0 )}</td>
-                        <td></td>
-                    </tr>                    
-                    </table>                  
-                   
+                    <div className="column">
+                        <h3 className="text-center mb-3">Today's food</h3>
+                        <table className="table"> 
+
+                            {foodSelected.map(item =>
+                                <FoodResume 
+                                {...item}
+                                onClickDelete = {(name) => this.handleDeleteItem(name)}
+                                />
+                            )}
+
+                            <tr className="Resume">
+                                <td>Total Calories</td>
+                                <td></td>
+                                <td>{foodSelected.reduce((acc, food) => acc + Number(food.calories*food.quantity), 0 )}</td>
+                                <td></td>
+                            </tr>                    
+                        </table>                 
+                    </div>            
                 </div>
-            
-            </div>
             </div>
             </>
         )

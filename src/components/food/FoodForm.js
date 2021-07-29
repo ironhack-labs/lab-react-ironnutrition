@@ -93,7 +93,8 @@ class FoodForm extends Component {
             <div className="form">
                 <div><i class="far fa-window-close" role="button" onClick={(event) => this.handleCloseForm(event)}></i></div>
             <form onSubmit={(event) => this.handleSubmitItem(event)}>
-                <h2>Fill the form an add a new food to the list</h2> 
+                <h2>Fill the form an add a new item to the list</h2> 
+                <hr />
                 <div className="columns is-desktop">
                     <div className="column">
                         <img src={food.image} alt={food.name} className="image is-128x128" />

@@ -81,3 +81,32 @@
     margin: 2%;
 
   }
+
+  .Searchbar {
+    padding: 2%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .Searchbar > div {
+    max-width: 900px;
+  }
+
+  .Button {
+    width: 100%;
+    background-color: #3e8ed0 !important;
+    max-width: 550px;
+    min-height: 100px;
+    margin-bottom: 0 !important;
+    border-radius: 5px;
+  }
+
+  .Button:hover {   
+    background-color: #CBD12A !important;    
+  }
+
+  .FoodList {
+    margin-top: 3%;
+  }

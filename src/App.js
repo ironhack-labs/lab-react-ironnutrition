@@ -8,9 +8,9 @@ function App() {
    
     <div className="">
       <nav>
-      <h1><i class="fas fa-apple-alt"></i> Iron Nutrition</h1>
+      <h1>- Iron Nutrition -</h1>
       </nav>
-      <hr/>
+     
       <div className="container is-vcentered">
         
         <FoodList />

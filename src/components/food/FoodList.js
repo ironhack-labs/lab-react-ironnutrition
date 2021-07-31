@@ -28,9 +28,13 @@ class FoodList extends Component {
     }
 
     handleCreateListItem(food) {
-        this.setState(( { foodSelected }) => ({
-            foodSelected: [...foodSelected, food]
-        })) 
+
+        const itemFoodSelected = this.state.foodSelected.find(e => e.name === food.name)
+        const foodItem = { ...food, quantity: itemFoodSelected ? itemFoodSelected.quantity + food.quantity : food.quantity}
+        this.setState(({ foodSelected }) => ({
+            foodSelected: [...foodSelected.filter(e => e.name != foodItem.name), foodItem]
+        }))
+    
     }
 
     handleResumeCalories(food) {

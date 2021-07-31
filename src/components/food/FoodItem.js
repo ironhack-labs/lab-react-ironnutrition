@@ -15,12 +15,11 @@ class FoodItem extends Component {
     }
 
     handleAddUnits(event) {
-        const { name, value } = event.target
-        this.setState((prevState) => ({
-           
+        const { value } = event.target
+        this.setState((prevState) => ({           
             food: {
                 ...prevState.food,
-                [name] : value
+                quantity : Number(value)
             }
         }))
     }
@@ -36,7 +35,8 @@ class FoodItem extends Component {
 
     render(){
 
-        const {name, calories, image, quantity} = this.props;
+        const {name, calories, image,} = this.props;
+        const { quantity } = this.state
 
         return (
             <div className="box m-6 columns">
@@ -57,7 +57,7 @@ class FoodItem extends Component {
                     <div className="column media-right">
                         <div className="field has-addons">
                             <div className="control">
-                                <input className="input default-quantity" type="number" name="quantity" min="1" max="100" onChange={(event) => this.handleAddUnits(event)}/> 
+                                <input className="input default-quantity" type="number" value={quantity} min="1" max="100" onChange={(event) => this.handleAddUnits(event)}/> 
                             </div>                            
                         </div>
                     </div>

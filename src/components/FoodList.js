@@ -10,6 +10,16 @@ function FoodList (){
     const [newName, setName] = useState("")
     const [calories, setCalories] = useState(0)
     const [image, setImage] = useState("")
+    const [addFood, setAddFood] = useState([])
+    const [total, setTotal] = useState(0)
+
+    const handleAdd = (newFood) => {
+        addFood.push(newFood)
+        setAddFood(addFood)
+        let sum = total
+        addFood.forEach(food => sum = total + food.calories)
+        setTotal(sum)
+    }
 
     const handleForm = () => {
         if(display){
@@ -107,12 +117,21 @@ function FoodList (){
                             name={food.name}
                             calories={food.calories}
                             image={food.image}
+                            handleAdd={handleAdd}
                         />
                     ))
                 }
                 </div>
-                <div className="column">
-                    Todays Foods
+                <div className="column content">
+                    <h2>Today´s Foods</h2>
+                    <ul>
+                        {
+                            addFood.map((data, index) => (
+                                <li key={index}>{data.quantity} {data.name} = {data.calories} cal</li>
+                            ))
+                        }  
+                    </ul>
+                    <span>Total:{total} cal</span>
                 </div>
             </div>
         </section>

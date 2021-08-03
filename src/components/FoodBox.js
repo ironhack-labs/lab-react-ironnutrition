@@ -3,6 +3,8 @@ import 'bulma/css/bulma.css';
 
 function FoodBox (props){
     const [counter, setCounter] = useState(0)
+
+
     const handleChange = (e) => {
         const {value} = e.target
         setCounter(value)
@@ -30,7 +32,7 @@ function FoodBox (props){
                     <input className="input" type="number" min="0" onClick={handleChange}/>
                 </div>
                 <div className="control">
-                <button className="button is-info">
+                <button className="button is-info" onClick={() => props.handleAdd({name: props.name, calories: props.calories*counter, quantity: counter})}>
                     +
                 </button>
                 </div>

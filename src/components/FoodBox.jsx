@@ -1,8 +1,8 @@
-import { Avatar, Badge, Box, Button, Flex, FormControl, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Text } from "@chakra-ui/react"
-
+import { Avatar, Badge, Box, Flex, FormControl, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Text } from "@chakra-ui/react"
 
 export const FoodBox = (props) => {
-    const {index, food: {name, calories, image, quantity}} = props
+    const {name, image, calories, quantity} = props
+
     return(
         <section>
           <Flex flexDirection="column">
@@ -24,7 +24,6 @@ export const FoodBox = (props) => {
                             <NumberDecrementStepper />
                             </NumberInputStepper>
                         </NumberInput>
-                        <Button>Add</Button>
                         </FormControl>
                 </Flex>
           </Flex>

@@ -7,10 +7,16 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 
 export const SearchBar = (props) => {
 
-    const [inputValue, setSearchText] = useState("")
+    const[formState, setFormState] = useState('')
+    const{filterFood} = props
 
     const onSearch = (event) => {
-        setSearchText(event.target.value)
+        setFormState(event.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        filterFood(formState)
     }
 
     return(
@@ -21,12 +27,15 @@ export const SearchBar = (props) => {
                 pointerEvents="none"
                 color="gray.300"
                 fontSize="1.2em"
-                children={<Search2Icon color="gray.500" />}
+                children={<Search2Icon color="gray.500"
+                onSubmit={handleSubmit}
+                />}
                 />
                 <Input
                 type="text"
+                name="formState"
                 placeholder="Type your food"
-                value={inputValue}
+                value={formState}
                 onChange={onSearch}
                 />
             </InputGroup>

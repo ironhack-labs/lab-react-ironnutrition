@@ -51,10 +51,10 @@ function Foodbox (props){
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input style={{width:50, height:40, marginLeft:50 }}onClick={handleChange} className="input" type="number" value="0" />
+          <input style={{width:50, height:40, marginLeft:50 }} onClick={()=>onPressCount(1)} className="input" type="number" value={count} />
         </div>
         <div className="control">
-          <button   className="button is-info" onClick={()=>onPressCount(1)}>
+          <button   className="button is-info" >
             +
           </button>
         </div>

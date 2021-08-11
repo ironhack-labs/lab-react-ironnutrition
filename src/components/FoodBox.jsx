@@ -1,3 +1,5 @@
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { Component } from 'react'
 
 export class FoodBox extends Component {
@@ -27,16 +29,21 @@ export class FoodBox extends Component {
             </div>
             </div>
             <div className="media-right">
-            <div className="field has-addons">
-                <div className="control">
-                    <input className="input" type="number" value={this.state.quantity} onChange={e => this.setState({quantity: e.target.value})}/>
+                <div className="field has-addons">
+                    <div className="control">
+                        <input className="input" type="number" value={this.state.quantity} onChange={e => this.setState({quantity: e.target.value})}/>
+                    </div>
+                    <div className="control">
+                        <button onClick={() => this.props.addToCart({name: this.props.name, calories: this.props.calories, quantity: this.state.quantity})} className="button is-info">
+                            +
+                        </button>
+                    </div>
+                    <div className="control">
+                        <button onClick={() => this.props.deleteFood(this.props.name)} className="button is-danger">
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                    </div>
                 </div>
-                <div className="control">
-                <button onClick={() => this.props.addToCart({name: this.props.name, calories: this.props.calories, quantity: this.state.quantity})} className="button is-info">
-                    +
-                </button>
-                </div>
-            </div>
             </div>
         </article>
         </div>

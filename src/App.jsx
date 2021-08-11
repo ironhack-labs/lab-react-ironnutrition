@@ -14,14 +14,14 @@ export class App extends Component {
       foods,
       displayedModal: false,
       foodList: [],
-      foodFilter: []
+      foodFilter: ''
     }
 
-    this.foodsRef = this.state.foods
     this.toggleModal = this.toggleModal.bind(this)
     this.addFood = this.addFood.bind(this)
     this.filterFood = this.filterFood.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.deleteFood = this.deleteFood.bind(this)
   }
 
   addToCart(value){
@@ -38,12 +38,19 @@ export class App extends Component {
   }
 
   filterFood(value){
-    this.setState({foods: this.foodsRef.filter(f => f.name.toLowerCase().includes(value.toLowerCase()))})
+    this.setState({foodFilter: value})
   }
 
-  addFood(form){
+  addFood(value){
     const foodsCopy = [...this.state.foods]
-    foodsCopy.push(form)
+    foodsCopy.push(value)
+    this.setState({foods: foodsCopy} )
+  }
+
+  deleteFood(value){
+    const foodsCopy = [...this.state.foods]
+    const index = foodsCopy.findIndex(f => f.name === value)
+    foodsCopy.splice(index, 1)
     this.setState({foods: foodsCopy} )
   }
 
@@ -62,6 +69,9 @@ export class App extends Component {
   }
 
   render() {
+
+    const filteredFood =  this.state.foods.filter(f => f.name.toLowerCase().includes(this.state.foodFilter.toLowerCase()))
+
     return (
       <div style={{margin: 50, width: 800}}>
         <h1 className='title'>Nutrition App</h1>
@@ -70,7 +80,7 @@ export class App extends Component {
           {this.state.displayedModal && <Modal toggleModal={this.toggleModal} addFood={this.addFood}/>}
           <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems: 'flex-start'}}>
             <div className="foodBoxes-wrapper">
-              {this.state.foods.map((food, i) => <FoodBox key={i} {...food} addToCart={this.addToCart}/>)}
+              {filteredFood.map((food, i) => <FoodBox key={i} {...food} addToCart={this.addToCart} deleteFood={this.deleteFood}/>)}
             </div> 
             <TodaysFood foodList={this.state.foodList}/>
           </div>

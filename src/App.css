@@ -5,3 +5,19 @@
 #search {
   width: 500px;
 }
+
+.divisor {
+  display: flex;
+}
+
+.today-container {
+  margin: 30px;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 20px;
+}

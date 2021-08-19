@@ -183,33 +183,37 @@ To take care of the food you eat, you decided to create a nutrition app that wil
 
 ### Iteration 0 | Setup
 
-#### Ant Design installation
+#### Ant Design Installation
 
-We will use [Ant Design](https://bulma.io/) component library for the design :)
+We will use [Ant Design](https://bulma.io/) component library for the design. :)
 
 ```sh
 $ npm install antd
 ```
 
-To make the component styles available in the entire app, import Ant Design css in `index.js`:
+To make the Ant Design styles available in the entire app, import Ant Design stylesheet in `index.js`:
 
 ```javascript
+// src/index.js
 import "antd/dist/antd.css";
 ```
 
+#### Ant Design Components
+
 During the LAB we will be using a set of simple Ant Design components that provide basic styling.
 
-Before using a component, you will have to import from the `antd` package, in the file where you intend to use it. Example:
+Before using any Ant Design component you will first have to import it from the `antd` package. You must import a component in each file where you intend to use it. Example:
 
 ```jsx
-// Example
-// We import several pre-made Ant Design components
+// EXAMPLE
+// To start using the pre-made Ant Design components we must first import them:
 import { Card, Row, Col, Divider, Input, Button } from "antd";
 
 function App() {
-  // After importing the components, we can start using them:
+  // After importing the components we can render them directly:
   return (
     <div>
+      
       <Row>
         <Col>
           <Divider>Fancy Input</Divider>
@@ -222,6 +226,7 @@ function App() {
           </Card>
         </Col>
       </Row>
+      
     </div>
   );
 }

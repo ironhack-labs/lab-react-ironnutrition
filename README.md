@@ -8,22 +8,14 @@ You just realized that since the beginning of the bootcamp, your diet is not hea
 
 To take care of the food you eat, you decided to create a nutrition app that will track everything you eat!
 
-![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
-
 ## Setup
 
 - Fork this repo
 - Clone this repo
 
-```shell
-$ cd lab-react-ironnutrution
-$ npm install
-$ npm start
-```
-
 ## Submission
 
-- Upon completion, run the following commands:
+- Upon completion, run the following commands
 
   ```
   git add .
@@ -31,116 +23,330 @@ $ npm start
   git push origin master
   ```
 
-- Create Pull Request so your TAs can check up your work.
+- Create a Pull Request so that your TAs can check your work.
+
+## Getting Started
+
+1. After forking and cloning, open the LAB in VS Code.
+
+2. In the terminal, navigate to the root folder of the LAB.
+
+   ```bash
+   $ cd lab-react-ironnutrition
+   ```
+
+3. Create a new React app _in the current folder_:
+
+   ```bash
+   $ npx create-react-app .
+   ```
+
+4. Clean the `App.js` component so that it has the following structure:
+
+   ```jsx
+   // src/App.js
+   import "./App.css";
+
+   function App() {
+     return <div className="App"></div>;
+   }
+   export default App;
+   ```
+
+5. Run the React app:
+
+   ```bash
+   $ npm start
+   ```
+
+6. Create a file `src/foods.json` using the code provided below:
+
+   <details>
+     <summary>Click here for the code</summary>
+
+   > **`src/foods`**
+
+   > ```json
+   > [
+   >   {
+   >     "name": "Pizza",
+   >     "calories": 400,
+   >     "image": "https://i.imgur.com/eTmWoAN.png",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Salad",
+   >     "calories": 150,
+   >     "image": "https://i.imgur.com/DupGBz5.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Sweet Potato",
+   >     "calories": 120,
+   >     "image": "https://i.imgur.com/hGraGyR.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Gnocchi",
+   >     "calories": 500,
+   >     "image": "https://i.imgur.com/93ekwW0.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Pot Roast",
+   >     "calories": 350,
+   >     "image": "https://i.imgur.com/WCzJDWz.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Lasagna",
+   >     "calories": 750,
+   >     "image": "https://i.imgur.com/ClxOafl.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Hamburger",
+   >     "calories": 400,
+   >     "image": "https://i.imgur.com/LoG39wK.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Pad Thai",
+   >     "calories": 475,
+   >     "image": "https://i.imgur.com/5ktcSzF.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Almonds",
+   >     "calories": 75,
+   >     "image": "https://i.imgur.com/JRp4Ksx.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Sarma",
+   >     "calories": 200,
+   >     "image": "https://i.imgur.com/yOlf4Fj.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Bacon",
+   >     "calories": 175,
+   >     "image": "https://i.imgur.com/7GlqDsG.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Hot Dog",
+   >     "calories": 275,
+   >     "image": "https://i.imgur.com/QqVHdRu.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Chocolate Cake",
+   >     "calories": 490,
+   >     "image": "https://i.imgur.com/yrgzA9x.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Wheat Bread",
+   >     "calories": 175,
+   >     "image": "https://i.imgur.com/TsWzMfM.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Orange",
+   >     "calories": 85,
+   >     "image": "https://i.imgur.com/abKGOcv.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Banana",
+   >     "calories": 175,
+   >     "image": "https://i.imgur.com/BMdJhu5.jpg",
+   >     "servings": 1
+   >   },
+   >   {
+   >     "name": "Yogurt",
+   >     "calories": 125,
+   >     "image": "https://i.imgur.com/URhdrAm.png",
+   >     "servings": 1
+   >   }
+   > ]
+   > ```
+
+   <hr>
+
+   </details>
+
+   <br>
 
 ## Instructions
 
 ### Iteration 0 | Setup
 
-#### Bulma installation
+#### Ant Design installation
 
-We will use [Bulma](https://bulma.io/) for the design :)
+We will use [Ant Design](https://bulma.io/) component library for the design :)
 
 ```sh
-$ npm install bulma --save
+$ npm install antd
 ```
 
+To make the component styles available in the entire app, import Ant Design css in `index.js`:
+
 ```javascript
-import 'bulma/css/bulma.css';
+import "antd/dist/antd.css";
+```
+
+During the LAB we will be using a set of simple Ant Design components that provide basic styling.
+
+Before using a component, you will have to import from the `antd` package, in the file where you intend to use it. Example:
+
+```jsx
+// Example
+// We import several pre-made Ant Design components
+import { Card, Row, Col, Divider, Input, Button } from "antd";
+
+function App() {
+  // After importing the components, we can start using them:
+  return (
+    <div>
+      <Row>
+        <Col>
+          <Divider>Fancy Input</Divider>
+          <Input value={""} onChange={() => {}} />
+        </Col>
+
+        <Col>
+          <Card title={"Fancy Card"}>
+            <Button onClick={() => {}}>Fancy Button</Button>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  );
+}
 ```
 
 #### Import a JSON
 
-Import the foods from the `foods.json`.
+For now, we will be working in the `App.js`. In the later steps, you can refactor the app and split it into multiple components. Import the array of foods from the `foods.json` file to `App.js`.
 
 ```js
-import foods from './foods.json';
+import foods from "./foods.json";
 ```
 
 #### About the design
 
-If you struggle with the design, you can find a static example of what is expected inside file `style-guides.html`.
+If you struggle with the design, you can find a static example of what is expected inside file `style-guide.js`.
 
 So let's start!
 
-### Iteration 1 | Create `FoodBox` component
+### Iteration 1| Render a Simple List
 
-Create a `FoodBox` component that takes at least `food` as a prop and displays a box with all the information about an ingredient.
+Now that you have the `foods.json` imported in `App.js` it is time to save it in a state variable. Once you have saved the food array in the state, map over the state variable and render a simple list (without styles) that displays food names. You can use the following snippet for the list items:
 
-You can use this HTML snippet to display properly the `FoodBox`:
-
-```html
-<div className="box">
-  <article className="media">
-    <div className="media-left">
-      <figure className="image is-64x64">
-        <img src="https://i.imgur.com/eTmWoAN.png" />
-      </figure>
-    </div>
-    <div className="media-content">
-      <div className="content">
-        <p>
-          <strong>Pizza</strong> <br />
-          <small>400 cal</small>
-        </p>
-      </div>
-    </div>
-    <div className="media-right">
-      <div className="field has-addons">
-        <div className="control">
-          <input className="input" type="number" value="1" />
-        </div>
-        <div className="control">
-          <button className="button is-info">
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-  </article>
-</div>
+```jsx
+{
+  /* Simple list Item */
+}
+<div>
+  <p> FOOD_NAME_HERE </p>
+  <img src="FOOD_IMAGE_HERE" width={0} />
+</div>;
 ```
 
-![](https://i.imgur.com/bY9i5Rw.png)
+![Example - Simple Food List](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-1.png)
 
-### Iteration 2 | Display food
+<br>
 
-In your `App` component (your main component), display as many `FoodBox` as elements inside the variable `foods`.
+### Iteration 2 | Create the `FoodBox` component
 
-![](https://i.imgur.com/3TVQJDO.png)
+Create a new component named `FoodBox` that takes the `food` object as a prop. It should display the card with all the information about the food coming from the `food` prop. The component should render the following content:
 
-### Iteration 3 | Add new food
+```jsx
+{
+  /* FoodBox component */
+}
+<Col>
+  <Card
+    title={"FOOD_NAME_HERE"}
+    style={{ width: 230, height: 300, margin: 10 }}
+  >
+    <img src={"FOOD_IMAGE_HERE"} height={60} />
+    <p>Calories: FOOD_CALORIES_HERE</p>
+    <p>Servings: FOOD_SERVINGS_HERE</p>
+    <p>
+      <b>Total Calories: FOOD_CALORIES * FOOD_SERVINGS </b> kcal
+    </p>
+    <Button type="primary"> Delete </Button>
+  </Card>
+</Col>;
+```
 
-Create a button to add new foods.
+Remember to import the Ant Design components `Card`, `Col`, `Divider` and `Button` before using them:
 
-When a user clicks the button, a form will appear with fields for a name, number of calories, and an image.
+```jsx
+import { Card, Col, Divider, Button } from "antd";
+```
 
-When the user clicks submit, the food will be added to the list.
+![Example - Single "FoodBox" Component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-2.png)
 
-The form should disappear when the user clicks the submit button.
+### Iteration 3 | Render a List of `FoodBox` Components
 
-### Iteration 4 | Implement search bar
+After creating the `FoodBox` component, use it in the `App.js` to render the food list. Instead of mapping over the foods array and renderign only the food names, render the `<FoodBox />` component. When rendering `FoodBox` remember to pass the food object as a prop.
 
-Create a `Search` component to perform a search that updates the list of all meal.
+Once you are done rendering the `FoodBox` in the list, your app should display the following content:
 
-![](https://i.imgur.com/XaOpAx8.png)
+![Example - render FoodBox component in a list](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-3.gif)
 
-### Iteration 5 | Create add buttons
+### Iteration 4 | Add new food
 
-On your `FoodBox`, you have an input an "+" button. Use them so that when a user clicks on the button, it adds them on a list on the right called "_Today's foods_".
+Create a new controlled component named `AddFoodForm`, used to add new foods. The component should contain a form with four input elements for `name` , `image` , `calories` and `servings`.
 
-You will also need to display the total amount of calories at the bottom of the list as a recap.
+The component should render use the AntDesign component `Input` instead of the the `input` tag. The AntDesign `Input` component uses the same syntax as the regular `input` tag. Example:
 
-![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
+```jsx
+// HTML <input /> tag
+<input value={} type="text" onChange={} />
+```
 
-If you don't remember how to create responsive columns with Bulma, you can check the [documentation](https://bulma.io/documentation/columns/basics/).
+```jsx
+// Ant Design <Input /> component
+<Input value={} type="text" onChange={} />
+```
 
-### Iteration 6 | Bonus | Group ingredients
+The component should be rendered in the `App.js`.
 
-You made an awesome application, but you have found a little problem in the UX. For example, if you click twice on "Pizza", it will display 2 lines "_1 Pizza = 400 cal_" instead of 1 line "_2 Pizza = 800 cal_". Fix that problem.
+When the user clicks submit, the food should be added to the list.
 
-### Iteration 7 | Bonus | Allow the user to remove an ingredient
+**Hint:** To add new food to the food array in `App.js` you will need to pass a function through the props.
 
-On the "_Today's food_", add a trash icon to let users removing one of their items.
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-4.gif)
 
-Happy coding! :heart:
+### Iteration 5 | Implement search bar
+
+Create a `Search` component to perform a search and filter the list of food items displayed.
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-5.gif)
+
+### Iteration 6 | Create a delete button
+
+Your `FoodBox` component has a delete button. Implement the delete functionality so that when a user clicks on the button, the item gets removed from the food list.
+
+**Hint:** To update the food array from `App.js` you will need to pass a function through the props.
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-6.gif)
+
+If you are not sure how to create responsive columns with Ant Design, you can check the example provided in the Ant Design [documentation](https://ant.design/components/grid/#components-grid-demo-playground).
+
+### Iteration 7 | Bonus | Hide the Add Food Form
+
+There are quite a few components displaying in the app. Implement a hide/show button that when clicked, hides/shows the `AddFoodForm`. When the form is showing the button should display the message <kbd>Hide Form</kbd>` and when the form is hidden it shoud display <kbd>Add New Food</kbd>.
+
+![Example - Hide Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-7.gif)
+
+### Iteration 8 | Bonus | Display a Feedback Message
+
+Update the component displaying the food list to display a Feedback message to the user when the food array is empty. For example, once all of the items are deleted from the list user should see the a message that looks like this:
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-8.gif)

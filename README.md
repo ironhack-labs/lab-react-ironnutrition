@@ -347,6 +347,6 @@ There are quite a few components displaying in the app. Implement a hide/show bu
 
 ### Iteration 8 | Bonus | Display a Feedback Message
 
-Update the component displaying the food list to display a Feedback message to the user when the food array is empty. For example, once all of the items are deleted from the list user should see the a message that looks like this:
+Display a Feedback message to the user when the food array is empty. For example, once all of the items are deleted from the list the user should see the a message that looks like this:
 
 ![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-8.gif)

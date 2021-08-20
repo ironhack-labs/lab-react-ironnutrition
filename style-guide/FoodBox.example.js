@@ -8,19 +8,15 @@ import { Card, Col, Button } from "antd";
 function FoodBox(props) {
   return (
     <Col>
-      
-      <Card title={"SHOW_FOOD_NAME_HERE"} style={{ width: 230, height: 300, margin: 10 }} >
-        
-        <img src={"SHOW_FOOD_IMAGE_HERE"} alt="food" height={60} />
-        <p> Calories: SHOW_FOOD_CALORIES_HERE </p>
-        <p> Servings: <b>SHOW_FOOD_SERVINGS_HERE</b> </p>
+      <Card title={"FOOD_NAME_HERE"} style={{ width: 230, height: 300, margin: 10 }} >
+        <img src={"FOOD_IMAGE_HERE"} height={60} alt="food" />
+        <p>Calories: FOOD_CALORIES_HERE</p>
+        <p>Servings: FOOD_SERVINGS_HERE</p>
         <p>
-          <b>Total Calories: FOOD_SERVINGS * FOOD_CALORIES</b> kcal
+          <b>Total Calories: FOOD_CALORIES * FOOD_SERVINGS </b> kcal
         </p>
-        <Button type="primary" onClick={() => { }}> Delete </Button>
-        
+        <Button type="primary"> Delete </Button>
       </Card>
-
     </Col>
   );
 }

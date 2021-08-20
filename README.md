@@ -84,7 +84,7 @@ Before using any Ant Design component you will first have to import it from the 
 // To start using the pre-made Ant Design components we must first import them:
 import { Card, Row, Col, Divider, Input, Button } from "antd";
 
-function App() {
+function Example() {
   // After importing the components we can render them directly:
   return (
     <div>
@@ -132,7 +132,7 @@ Now that you have the `foods.json` imported in `App.js` it is time to save it in
 <div>
   <p> FOOD_NAME_HERE </p>
   <img src="FOOD_IMAGE_HERE" width={0} />
-</div>;
+</div>
 ```
 
 ![Example - Simple Food List](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-1.png)
@@ -160,7 +160,7 @@ Create a new component named `FoodBox` that takes the `food` object as a prop. I
     </p>
     <Button type="primary"> Delete </Button>
   </Card>
-</Col>;
+</Col>
 ```
 
 Remember to import the Ant Design components `Card`, `Col`, `Divider` and `Button` before using them:

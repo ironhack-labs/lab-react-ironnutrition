@@ -13,6 +13,7 @@ class App extends React.Component {
       id: uuidv4(),
     })),
     showForm: false,
+    search: '',
   };
 
   onAddItem = (food) => {
@@ -28,6 +29,10 @@ class App extends React.Component {
     });
   };
 
+  updateInputValue = (event) => {
+    this.setState({ search: event.target.value });
+  };
+
   toggleShowForm = () => {
     this.setState((prevState) => ({
       showForm: !prevState.showForm,
@@ -41,13 +46,23 @@ class App extends React.Component {
           <strong>IronNutrition</strong>
         </h1>
         <div className="App-button">
+          <input
+            value={this.state.search}
+            onChange={this.updateInputValue}
+            className="form-control"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+          ></input>
           <button onClick={this.toggleShowForm}>Add Food</button>
           {this.state.showForm && <AddFood onAddFood={this.onAddItem} />}
         </div>
         <div className="App-foodBox">
-          {this.state.foods.map((food) => {
-            return <FoodBox {...food} key={food.id} />;
-          })}
+          {this.state.foods
+            .filter((food) => food.name.indexOf(this.state.search) >= 0)
+            .map((food) => {
+              return <FoodBox {...food} key={food.id} />;
+            })}
         </div>
       </div>
     );

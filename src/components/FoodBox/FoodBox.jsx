@@ -3,7 +3,8 @@ import './FoodBox.css';
 
 export default class FoodBox extends React.Component {
   render() {
-    const { name, calories, image, quantity } = this.props;
+    const { id, name, calories, image, quantity, onChange, onAddList } =
+      this.props;
     return (
       <div className="FoodBox">
         <article className="media">
@@ -23,10 +24,22 @@ export default class FoodBox extends React.Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input
+                  className="input"
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => onChange(id, Number(e.target.value))}
+                />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button
+                  className="button is-info"
+                  value={quantity}
+                  name={name}
+                  onClick={onAddList}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>

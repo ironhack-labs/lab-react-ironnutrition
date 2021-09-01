@@ -10,10 +10,12 @@ class App extends React.Component {
   state = {
     foods: foods.map((food) => ({
       ...food,
+      quantity: 0,
       id: uuidv4(),
     })),
     showForm: false,
     search: '',
+    list: [],
   };
 
   onAddItem = (food) => {
@@ -29,6 +31,17 @@ class App extends React.Component {
     });
   };
 
+  onChangeQuantity = (id, quantity) => {
+    if (quantity < 0) {
+      return;
+    }
+    const newFoodsState = [...this.state.foods];
+    const foodToModifyIndex = newFoodsState.findIndex((food) => food.id === id);
+    newFoodsState[foodToModifyIndex].quantity = quantity;
+
+    this.setState({ foods: newFoodsState });
+  };
+
   updateInputValue = (event) => {
     this.setState({ search: event.target.value });
   };
@@ -37,6 +50,17 @@ class App extends React.Component {
     this.setState((prevState) => ({
       showForm: !prevState.showForm,
     }));
+  };
+
+  onAddFoodList = (event) => {
+    const { value, name } = event.target;
+    const duplicateFoodList = [...this.state.foods];
+    const foodFinded = duplicateFoodList.findIndex(
+      (food) => food.name === name
+    );
+    const newListItem = duplicateFoodList[foodFinded];
+    const finalList = [...this.state.list, newListItem];
+    this.setState({ list: finalList });
   };
 
   render() {
@@ -61,7 +85,21 @@ class App extends React.Component {
           {this.state.foods
             .filter((food) => food.name.indexOf(this.state.search) >= 0)
             .map((food) => {
-              return <FoodBox {...food} key={food.id} />;
+              return (
+                <FoodBox
+                  {...food}
+                  key={food.id}
+                  onAddList={this.onAddFoodList}
+                  onChange={this.onChangeQuantity}
+                />
+              );
+            })}
+        </div>
+        <div className="App-todaysFood">
+          <h1>Todays Food</h1>
+          {this.state.list.length > 1 &&
+            this.state.list.map((food) => {
+              return <li key={food.id}>{food.name} {food.quantity}</li>;
             })}
         </div>
       </div>

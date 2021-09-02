@@ -58,15 +58,19 @@
 .App-data {
   display: flex;
   flex-direction: row;
+  justify-content:space-between
 }
 
 .App-foodBox {
-  margin: 20px;
+  margin: 3vh 0 0 16vh;
 }
 
 
 .App-todaysFood {
-  margin-left: 10vh;
-  margin-top: 2vh;
+  margin: 3vh 50vh 0 0
   
+}
+
+.App-todaysFood h2 {
+  margin-bottom: 2vh
 }

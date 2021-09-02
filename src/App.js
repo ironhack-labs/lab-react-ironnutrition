@@ -128,7 +128,7 @@ class App extends React.Component {
               })}
           </div>
           <div className="App-todaysFood">
-            <h2>Todays Food</h2>
+            <h2><strong>Today's Food</strong></h2>
             {this.state.list.length >= 1 &&
               this.state.list.map((food) => {
                 return (

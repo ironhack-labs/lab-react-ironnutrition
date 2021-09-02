@@ -95,10 +95,16 @@ class App extends React.Component {
     );
   };
 
+  onDelete = (foodId) => {
+    this.setState({
+      list: this.state.list.filter((food) => food.id !== foodId),
+    });
+  };
+
   render() {
     return (
       <div className="App container">
-        <h1>
+        <h1 className="is-size-1">
           <strong>IronNutrition</strong>
         </h1>
         <div className="App-button">
@@ -109,7 +115,9 @@ class App extends React.Component {
             type="text"
             placeholder="Search"
           ></input>
-          <button onClick={this.toggleShowForm} className="button is-info">Add Food</button>
+          <button onClick={this.toggleShowForm} className="button is-info">
+            Add Food
+          </button>
           {this.state.showForm && <AddFood onAddFood={this.onAddItem} />}
         </div>
         <div className="App-data container">
@@ -128,17 +136,35 @@ class App extends React.Component {
               })}
           </div>
           <div className="App-todaysFood">
-            <h2><strong>Today's Food</strong></h2>
+            <h2 className="is-size-3">
+              <strong>
+                <u>Today's Food</u>
+              </strong>
+            </h2>
             {this.state.list.length >= 1 &&
               this.state.list.map((food) => {
                 return (
-                  <li key={food.id}>
-                    {food.quantity} {food.name} = {this.calculateSubtotal(food)}{' '}
-                    cal
-                  </li>
+                  <div className="App-todayFood-list">
+                    <li key={food.id}>
+                      {food.quantity} {food.name} ={' '}
+                      {this.calculateSubtotal(food)} cal
+                    </li>
+                    <button
+                      class="button is-danger is-inverted"
+                      onClick={() => this.onDelete(food.id)}
+                    >
+                      X
+                    </button>
+                  </div>
                 );
               })}
-            <p>Total: {this.calculateTotal()} cal</p>
+            {this.state.list.length >= 1 && (
+              <p className="is-size-5">
+                <strong>
+                  <u>Total: {this.calculateTotal()} cal</u>
+                </strong>
+              </p>
+            )}
           </div>
         </div>
       </div>

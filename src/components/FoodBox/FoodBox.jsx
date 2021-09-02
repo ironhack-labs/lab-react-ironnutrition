@@ -9,7 +9,7 @@ export default class FoodBox extends React.Component {
       <div className="FoodBox">
         <article className="media">
           <div className="media-left">
-            <figure className="image is-64x64">
+            <figure className="image is-128x128">
               <img src={image} alt={name} />
             </figure>
           </div>

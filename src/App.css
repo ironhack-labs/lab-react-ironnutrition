@@ -38,39 +38,57 @@
 }
 
 .App h1 {
-  margin: 30px;
-  font-size: 30px;
+  margin: 2rem;
+  font-size: 2rem;
 }
 
 .App-button {
-  margin: 30px 0px 0px 50px;
+  margin: 2rem 0px 0px 3rem;
 }
 
-.App-button input {
+.App-button > input {
   width: 65vw;
+  margin: 0 0.7rem 1rem 0;
 }
 
 .App-button button {
   width: 10vw;
-  margin-left: 10px;
 }
 
 .App-data {
   display: flex;
   flex-direction: row;
-  justify-content:space-between
+  justify-content: space-between;
+  width: 100vw;
 }
 
 .App-foodBox {
-  margin: 3vh 0 0 16vh;
+  width: 35%;
+  margin: 3rem 0 0 9rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-
 .App-todaysFood {
-  margin: 3vh 50vh 0 0
-  
+  width: 30%;
+  margin: 2rem 10rem 0 0;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 }
 
 .App-todaysFood h2 {
-  margin-bottom: 2vh
+  margin-bottom: 2rem;
+}
+
+.App-todaysFood p {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.App-todayFood-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

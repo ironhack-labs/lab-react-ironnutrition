@@ -1,5 +1,7 @@
-
-
 .add-button {
   margin-top: 0.5vh;
+}
+
+.control input{
+  width: 7vw;
 }

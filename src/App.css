@@ -37,6 +37,36 @@
   }
 }
 
-h1{
-  margin:30px
+.App h1 {
+  margin: 30px;
+  font-size: 30px;
+}
+
+.App-button {
+  margin: 30px 0px 0px 50px;
+}
+
+.App-button input {
+  width: 65vw;
+}
+
+.App-button button {
+  width: 10vw;
+  margin-left: 10px;
+}
+
+.App-data {
+  display: flex;
+  flex-direction: row;
+}
+
+.App-foodBox {
+  margin: 20px;
+}
+
+
+.App-todaysFood {
+  margin-left: 10vh;
+  margin-top: 2vh;
+  
 }

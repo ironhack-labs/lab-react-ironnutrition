@@ -1,0 +1,12 @@
+.AddFood {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.AddFood-input {
+  width: 65vw;
+}
+.AddFood-button {
+  width: 10vw;
+  margin-left: 5px;
+}

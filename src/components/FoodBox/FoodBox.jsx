@@ -10,7 +10,7 @@ export default class FoodBox extends React.Component {
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={image} alt={name} />
+              <img className='is-large' src={image} alt={name} />
             </figure>
           </div>
           <div className="media-content">
@@ -25,7 +25,7 @@ export default class FoodBox extends React.Component {
             <div className="field has-addons">
               <div className="control">
                 <input
-                  className="input"
+                  className="input is-small"
                   type="number"
                   value={quantity}
                   onChange={(e) => onChange(id, Number(e.target.value))}
@@ -33,7 +33,7 @@ export default class FoodBox extends React.Component {
               </div>
               <div className="control">
                 <button
-                  className="button is-info"
+                  className="button is-info is-small"
                   value={quantity}
                   name={name}
                   onClick={onAddList}

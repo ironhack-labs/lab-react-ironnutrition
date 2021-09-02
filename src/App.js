@@ -54,13 +54,45 @@ class App extends React.Component {
 
   onAddFoodList = (event) => {
     const { value, name } = event.target;
-    const duplicateFoodList = [...this.state.foods];
-    const foodFinded = duplicateFoodList.findIndex(
+    if (value <= 0) {
+      return;
+    }
+    let finalList = [];
+    const duplicateFoodState = [...this.state.foods];
+    const duplicateFoodList = [...this.state.list];
+    const foodFinded = duplicateFoodState.findIndex(
       (food) => food.name === name
     );
-    const newListItem = duplicateFoodList[foodFinded];
-    const finalList = [...this.state.list, newListItem];
-    this.setState({ list: finalList });
+    const newListItem = duplicateFoodState[foodFinded];
+    if (duplicateFoodList.find((food) => food.name === name)) {
+      const indexList = duplicateFoodList.findIndex(
+        (food) => food.name === name
+      );
+      const prevValue = duplicateFoodList[indexList].quantity;
+      const newValue = prevValue + Number(value);
+      duplicateFoodList[indexList].quantity = newValue;
+      finalList = [...duplicateFoodList];
+    } else {
+      finalList = [...duplicateFoodList, newListItem];
+    }
+    return this.setState({
+      list: [...finalList],
+      foods: duplicateFoodState.map((food) => ({
+        ...food,
+        quantity: 0,
+      })),
+    });
+  };
+
+  calculateSubtotal = (food) => {
+    return food.quantity > 0 ? food.quantity * food.calories : 0;
+  };
+
+  calculateTotal = () => {
+    return this.state.list.reduce(
+      (total, food) => total + this.calculateSubtotal(food),
+      0
+    );
   };
 
   render() {
@@ -73,34 +105,41 @@ class App extends React.Component {
           <input
             value={this.state.search}
             onChange={this.updateInputValue}
-            className="form-control"
+            className="input"
             type="text"
             placeholder="Search"
-            aria-label="Search"
           ></input>
-          <button onClick={this.toggleShowForm}>Add Food</button>
+          <button onClick={this.toggleShowForm} className="button is-info">Add Food</button>
           {this.state.showForm && <AddFood onAddFood={this.onAddItem} />}
         </div>
-        <div className="App-foodBox">
-          {this.state.foods
-            .filter((food) => food.name.indexOf(this.state.search) >= 0)
-            .map((food) => {
-              return (
-                <FoodBox
-                  {...food}
-                  key={food.id}
-                  onAddList={this.onAddFoodList}
-                  onChange={this.onChangeQuantity}
-                />
-              );
-            })}
-        </div>
-        <div className="App-todaysFood">
-          <h1>Todays Food</h1>
-          {this.state.list.length > 1 &&
-            this.state.list.map((food) => {
-              return <li key={food.id}>{food.name} {food.quantity}</li>;
-            })}
+        <div className="App-data container">
+          <div className="App-foodBox">
+            {this.state.foods
+              .filter((food) => food.name.indexOf(this.state.search) >= 0)
+              .map((food) => {
+                return (
+                  <FoodBox
+                    {...food}
+                    key={food.id}
+                    onAddList={this.onAddFoodList}
+                    onChange={this.onChangeQuantity}
+                  />
+                );
+              })}
+          </div>
+          <div className="App-todaysFood">
+            <h2>Todays Food</h2>
+            {this.state.list.length >= 1 &&
+              this.state.list.map((food) => {
+                return (
+                  <li key={food.id}>
+                    {food.quantity} {food.name} = {this.calculateSubtotal(food)}{' '}
+                    cal
+                  </li>
+                );
+              })}
+            <p>Total: {this.calculateTotal()} cal</p>
+          </div>
         </div>
       </div>
     );

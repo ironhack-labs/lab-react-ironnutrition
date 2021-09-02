@@ -25,6 +25,7 @@ class App extends React.Component {
         ...this.state.foods,
         {
           ...food,
+          quantity:0,
           id: uuidv4(),
         },
       ],

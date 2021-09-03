@@ -17,7 +17,6 @@ class FoodBox extends Component {
         let selectedFood = foodsArr.filter( (foodItem) => {
             return foodItem.name === food
         })
-        console.log(selectedFood)
         return (
             <div className="box">
                 <article className="media">

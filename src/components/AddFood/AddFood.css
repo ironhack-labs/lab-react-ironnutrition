@@ -1,22 +1,20 @@
 .AddFood {
+  margin: 3rem 0 3rem 0;
+  padding-right: 1.4rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 3vh 0;
+  flex-direction: column;
   align-items: center;
-}
-.AddFood-input {
-  width: 66vw;
-}
-.AddFood-input input{
-  width: 21vw;
-  margin-right: 0.7rem;
+  justify-content: flex-start;
+  text-align: center;
 }
 
-.AddFood-button {
+.AddFood-input input {
+  width: 21.3vw;
+  margin: 0.6rem 0.6rem 1rem 0;
+}
+
+.AddFood-input button {
   width: 10vw;
-  display: flex;
-  justify-content: flex-start;
 }
 
 .input {

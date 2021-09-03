@@ -25,7 +25,7 @@ class App extends React.Component {
         ...this.state.foods,
         {
           ...food,
-          quantity:0,
+          quantity: 0,
           id: uuidv4(),
         },
       ],
@@ -145,13 +145,13 @@ class App extends React.Component {
             {this.state.list.length >= 1 &&
               this.state.list.map((food) => {
                 return (
-                  <div className="App-todayFood-list">
+                  <div key={food.id} className="App-todayFood-list">
                     <li key={food.id}>
                       {food.quantity} {food.name} ={' '}
                       {this.calculateSubtotal(food)} cal
                     </li>
                     <button
-                      class="button is-danger is-inverted"
+                      className="button is-danger is-inverted"
                       onClick={() => this.onDelete(food.id)}
                     >
                       X

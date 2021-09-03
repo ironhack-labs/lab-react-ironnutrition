@@ -3,7 +3,7 @@ import './AddFood.css';
 
 const initialState = {
   name: '',
-  calories: 0,
+  calories: "",
   image: '',
 };
 
@@ -29,8 +29,8 @@ export default class AddFood extends React.Component {
 
   render() {
     return (
-      <div>
-        <form className="AddFood" onSubmit={this.onSubmit}>
+      <div className="AddFood">
+        <form onSubmit={this.onSubmit}>
           <div className="AddFood-input">
             <input
               className="input"
@@ -57,10 +57,8 @@ export default class AddFood extends React.Component {
               onChange={this.onChange}
             />
           </div>
-          <div className="AddFood-button">
             <button className="button is-info">Add new food</button>
-          </div>
-      </form>
+        </form>
       </div>
       
     );

@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'bulma/css/bulma.css';
 import './App.css';
+import { v4 as uuidv4 } from 'uuid';
+import FoodBox from './components/foodbox/FoodBox';
+import NewFood from './components/newfood/NewFood';
+import foods from './foods.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  state = {
+    foods: foods.map((food) => ({
+      ...food, quantity: 0
+    })),
+    showForm: false,
+    id: uuidv4()
+  }
+
+  render() {
+    return(
+      <div className='App'>
+      <h1>Iron Nutrition</h1>
+      <div>
+      {this.state.foods.map((food) => {
+            return <FoodBox {...food} key={food.id} />;
+          })}
+      </div>
+      <NewFood />
+      </div>
+    )
+  }
 }
-
-export default App;

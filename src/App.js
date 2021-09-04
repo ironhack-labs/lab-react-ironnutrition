@@ -124,7 +124,12 @@ class App extends React.Component {
         <div className="App-data container">
           <div className="App-foodBox">
             {this.state.foods
-              .filter((food) => food.name.indexOf(this.state.search) >= 0)
+              .filter(
+                (food) =>
+                  food.name
+                    .toLowerCase()
+                    .indexOf(this.state.search.toLocaleLowerCase()) >= 0
+              )
               .map((food) => {
                 return (
                   <FoodBox

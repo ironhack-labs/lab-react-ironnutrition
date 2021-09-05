@@ -7,8 +7,12 @@ class FoodBox extends Component {
         super(props)
 
         this.state = {
-            quantity: 0,
+            quantity: 1,
         }
+    }
+
+    handleQuantity = (e) => {
+        this.setState({quantity: Number(e.target.value)})
     }
 
     render() {
@@ -16,6 +20,9 @@ class FoodBox extends Component {
         let selectedFood = this.props.foodsArr.filter( (foodItem) => {
             return foodItem.name === food
         })
+
+        const { name, calories } = this.props.foodObj
+
         return (
             <div className="box">
                 <article className="media">
@@ -36,10 +43,10 @@ class FoodBox extends Component {
                     <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                        <input className="input" type="number" value={this.state.quantity} />
+                        <input className="input" type="number" value={this.state.quantity} onChange={this.handleQuantity}/>
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button className="button is-info" onClick={this.props.today(this.state.quantity, name, calories)}>
                             +
                         </button>
                         </div>

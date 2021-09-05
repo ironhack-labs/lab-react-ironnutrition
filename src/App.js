@@ -16,6 +16,7 @@ class App extends React.Component{
       ...product
       })),
       search: "",
+      today: []
     } 
   }
 
@@ -25,13 +26,19 @@ class App extends React.Component{
       {
         ...product,
         id: uuidv4(),
-        quantity: 0
+        quantity: 1
       }
     ] })
   }
 
   onFilter = (value) => {
     this.setState({search: value})
+  }
+
+  onToday = (quantity, name, calories) => {
+    const newToday = [...this.state.today, quantity, name, calories];
+
+    this.setState({today: newToday})
   }
 
 
@@ -43,11 +50,21 @@ class App extends React.Component{
       <div className="App">
         <h1>Iron Nutrition</h1>
         <Search onSearch={this.onFilter}/>
-        {
-          filteredList.map(foodItem => <FoodBox foodsArr={this.state.foods} food={foodItem.name} key={`${foodItem.name}-${foodItem.calories}`}/>)
-        }
-       
-        <Form onAddProduct={this.onAddItem} />
+        <div className="box">
+          <div>
+            {
+              filteredList.map(foodItem => <FoodBox today={this.onToday} foodObj={foodItem} foodsArr={this.state.foods} food={foodItem.name} key={`${foodItem.name}-${foodItem.calories}`}/>)
+            }
+          
+            <Form onAddProduct={this.onAddItem} />
+          </div>
+          <div className="list">
+            <h1>Today's Food</h1>
+            <ul>
+
+            </ul>
+          </div>
+        </div>
       </div>
     );}
   }

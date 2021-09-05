@@ -45,7 +45,6 @@ class Form extends Component {
       }
 
     onAddProduct = (e) => {
-        console.log("Ha entrado!")
         e.preventDefault();
     
         if (!this.state.image || !this.state.name || !this.state.calories) {
@@ -86,7 +85,7 @@ class Form extends Component {
         }
         return (
             <div className="Form">
-                <button className="button is-info" onClick={this.toggleShowForm}>Add Food</button>
+                <button className="button is-info" onClick={this.toggleShowForm}>Show form</button>
                 {form()}
             </div>
         )

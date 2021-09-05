@@ -1,5 +1,4 @@
 import React,{ Component } from "react"
-import foodsArr from '../../foods.json';
 
 import "./FoodBox.css"
 

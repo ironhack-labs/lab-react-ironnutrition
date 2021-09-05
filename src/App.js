@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import foods from './foods.json';
 import Form from './components/Form/Form';
+import Search from './components/Search/Search';
 import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component{
@@ -13,7 +14,8 @@ class App extends React.Component{
     this.state = {
       foods: foods.map(product => ({
       ...product
-      }))
+      })),
+      search: "",
     } 
   }
 
@@ -28,12 +30,23 @@ class App extends React.Component{
     ] })
   }
 
+  onFilter = (value) => {
+    this.setState({search: value})
+  }
+
 
   render() {
+    let filteredList = this.state.foods.filter(food => food.name.toLowerCase().includes(this.state.search.toLowerCase()))
+
+
     return (
       <div className="App">
         <h1>Iron Nutrition</h1>
-        {this.state.foods.map(foodItem => <FoodBox foodsArr={this.state.foods} food={foodItem.name} key={`${foodItem.name}-${foodItem.calories}`}/>)}
+        <Search onSearch={this.onFilter}/>
+        {
+          filteredList.map(foodItem => <FoodBox foodsArr={this.state.foods} food={foodItem.name} key={`${foodItem.name}-${foodItem.calories}`}/>)
+        }
+       
         <Form onAddProduct={this.onAddItem} />
       </div>
     );}

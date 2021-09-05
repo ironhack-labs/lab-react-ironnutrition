@@ -14,7 +14,7 @@ class FoodBox extends Component {
 
     render() {
         const { food } = this.props
-        let selectedFood = foodsArr.filter( (foodItem) => {
+        let selectedFood = this.props.foodsArr.filter( (foodItem) => {
             return foodItem.name === food
         })
         return (

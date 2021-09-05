@@ -44,12 +44,26 @@ class Form extends Component {
         this.setState({...initialState})
       }
 
+    onAddProduct = (e) => {
+        console.log("Ha entrado!")
+        e.preventDefault();
+    
+        if (!this.state.image || !this.state.name || !this.state.calories) {
+            return
+        }
+    
+        // llamar a la prop de añadir un item del padre
+        this.props.onAddProduct(this.state);
+        // resetear state
+        this.setState({...initialState})
+    }
+
     render () {
         let form = () => {
             if(this.state.showForm) {
                 return (
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onAddProduct}>
                             <div>
                                 <label htmlFor="image"> Image Link</label>
                                 <input type="text" name="image" value={this.state.image} onChange={this.onChange}/>
@@ -62,8 +76,8 @@ class Form extends Component {
                                 <label htmlFor="calories"> Calories</label>
                                 <input type="number" name="calories" value={this.state.calories} onChange={this.onChange}/>
                             </div>
+                            <button type="submit" className="button is-primary">Add</button>
                         </form>
-                        <button className="button is-primary">Add Food</button>
                     </div>
                 )
             } else {

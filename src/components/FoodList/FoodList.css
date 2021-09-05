@@ -1,0 +1,12 @@
+.FoodList {
+    width: 50vw;
+}
+
+.FoodList .box{
+    padding: 0;
+    margin: 0;
+}
+
+.FoodList .box img {
+    height: 50px;
+}

@@ -3,10 +3,12 @@ import "./FoodList.css"
 import foods from "../../foods.json"
 import FoodBox from "../FoodBox/FoodBox"
 import NewFood from '../NewFood/NewFood'
+import SearchBar from "../SearchBar/SearchBar";
 
 class FoodList extends React.Component {
     state = {
-        foods: foods
+        foods: foods,
+        search: ""
     }
 
     onAdd = (food) => {
@@ -14,11 +16,20 @@ class FoodList extends React.Component {
             foods: [food, ...this.state.foods]
         })
     }
+
+    onSearch = (search) => {
+        console.log("entro2")
+        this.setState({
+            search: search
+        })
+    }
+
     render() {
         return(
             <div className="FoodList">
             <NewFood onAdd={this.onAdd}/>
-            {this.state.foods.map((food)=> (
+            <SearchBar onSearch={this.onSearch}/>
+            {this.state.foods.filter((food)=> food.name.toLowerCase().includes(this.state.search.toLowerCase())).map((food)=> (
 
                 <FoodBox {...food}/>
             ))}

@@ -2,14 +2,8 @@ import React from 'react';
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
-
-
   searchFood = (event) => {
-    console.log('entro1');
-
-    this.props.onSearch(
-      event.target.value
-    );
+    this.props.onSearch(event.target.value);
   };
 
   render() {

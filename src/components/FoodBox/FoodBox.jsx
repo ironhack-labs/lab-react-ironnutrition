@@ -1,7 +1,13 @@
 import React from 'react';
 import './FoodBox.css';
 
+
+
 class FoodBox extends React.Component {
+  today = (food) => {
+    this.props.onAddToday(food)
+  }
+
   render() {
     const { name, image, calories, quantity } = this.props;
 
@@ -25,7 +31,7 @@ class FoodBox extends React.Component {
                 <input className="input" type="number" value="1" />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onClick={() => this.today({name, quantity, calories})} className="button is-info">+</button>
               </div>
             </div>
           </div>

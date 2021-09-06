@@ -35,6 +35,7 @@ class NewFood extends React.Component {
   };
 
   onChangeImage = (event) => {
+    console.log(event.target.value)
     this.setState({
       image: event.target.value,
     });
@@ -47,6 +48,9 @@ class NewFood extends React.Component {
         calories: this.state.calories,
         image: this.state.image
     });
+    this.setState({
+      clicked: false
+    })
   };
 
   render() {
@@ -69,7 +73,7 @@ class NewFood extends React.Component {
                 onChange={this.onChangeCalories}
               ></input>
               <input
-                type="file"
+                type="text"
                 placeholder="Insert URL"
                 value={this.state.image}
                 onChange={this.onChangeImage}

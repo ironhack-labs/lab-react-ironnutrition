@@ -30,6 +30,15 @@
 #title {
   font-size: 2rem;
   margin: 20px 0 10px 0;
+  width: fit-content;
+  position: relative;
+  left: 600px
+}
+
+.App #search-top {
+  width: fit-content;
+  position: relative;
+  left: 600px
 }
 
 #today-title {

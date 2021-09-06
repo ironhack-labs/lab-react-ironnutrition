@@ -11,7 +11,7 @@ class Search extends Component {
 
     render () {
         return (
-            <form>
+            <form id="search-top">
                 <input type="text" onChange={(event) => this.props.onSearch(event.target.value)} />
             </form>
         )

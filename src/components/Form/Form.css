@@ -6,3 +6,11 @@
     margin-left: 10px;
     margin-top: 10px;
 }
+
+#add-button {
+    margin-top: 10px;
+}
+
+#form-items label {
+    width: 100px;
+}

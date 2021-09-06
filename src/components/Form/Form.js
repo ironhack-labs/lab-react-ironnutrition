@@ -63,7 +63,7 @@ class Form extends Component {
                 return (
                     <div>
                         <form onSubmit={this.onAddProduct}>
-                            <div>
+                            <div id="form-items">
                                 <label htmlFor="image"> Image Link</label>
                                 <input type="text" name="image" value={this.state.image} onChange={this.onChange}/>
                             </div>
@@ -75,7 +75,7 @@ class Form extends Component {
                                 <label htmlFor="calories"> Calories</label>
                                 <input type="number" name="calories" value={this.state.calories} onChange={this.onChange}/>
                             </div>
-                            <button type="submit" className="button is-primary">Add</button>
+                            <button type="submit" id="add-button" className="button is-primary">Add</button>
                         </form>
                     </div>
                 )

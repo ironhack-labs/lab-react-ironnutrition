@@ -48,7 +48,7 @@ class App extends React.Component{
 
     return (
       <div className="App">
-        <h1>Iron Nutrition</h1>
+        <h1 id="title">Iron Nutrition</h1>
         <Search onSearch={this.onFilter}/>
         <div className="box">
           <div>
@@ -59,11 +59,11 @@ class App extends React.Component{
             <Form onAddProduct={this.onAddItem} />
           </div>
           <div className="list">
-            <h1>Today's Food</h1>
-            <ul>
-              {this.state.today.map((food) => <li> {`${food.quantity} ${food.name} = ${food.calories * food.quantity}` }</li>)}
+            <h1 id="today-title">Today's Food</h1>
+            <ul id="list-father">
+              {this.state.today.map((food) => <li class="list-items"> <p>{`${food.quantity} ${food.name} = ${food.calories * food.quantity}`}</p></li>)}
             </ul>
-            <p>{`Total: ${this.state.today.reduce((acc, value) => {
+            <p id="sum">{`Total: ${this.state.today.reduce((acc, value) => {
               return acc + value.calories * value.quantity
             }, 0)}`}</p>
           </div>

@@ -36,7 +36,7 @@ class App extends React.Component{
   }
 
   onToday = (quantity, name, calories) => {
-    const newToday = [...this.state.today, quantity, name, calories];
+    const newToday = [...this.state.today, {quantity, name, calories}];
 
     this.setState({today: newToday})
   }
@@ -61,8 +61,11 @@ class App extends React.Component{
           <div className="list">
             <h1>Today's Food</h1>
             <ul>
-
+              {this.state.today.map((food) => <li> {`${food.quantity} ${food.name} = ${food.calories * food.quantity}` }</li>)}
             </ul>
+            <p>{`Total: ${this.state.today.reduce((acc, value) => {
+              return acc + value.calories * value.quantity
+            }, 0)}`}</p>
           </div>
         </div>
       </div>

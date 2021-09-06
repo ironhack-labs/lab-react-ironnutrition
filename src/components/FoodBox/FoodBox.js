@@ -46,7 +46,7 @@ class FoodBox extends Component {
                         <input className="input" type="number" value={this.state.quantity} onChange={this.handleQuantity}/>
                         </div>
                         <div className="control">
-                        <button className="button is-info" onClick={this.props.today(this.state.quantity, name, calories)}>
+                        <button className="button is-info" onClick={() => this.props.today(this.state.quantity, name, calories)}>
                             +
                         </button>
                         </div>

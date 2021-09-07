@@ -9,13 +9,13 @@ class FoodBox extends React.Component {
   }
 
   render() {
-    const {id, name, image, calories, quantity, onChange, onAddToday } = this.props;
+    const {name, image, calories, quantity } = this.props;
 
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
-            <img src={image} />
+            <img src={image} alt={name} />
           </div>
           <div className="media-content">
             <div className="content">
@@ -28,10 +28,10 @@ class FoodBox extends React.Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={quantity} onChange={(e) => onChange(id, Number(e.target.value))} />
+              <input className="input" type="number" value={quantity} />
               </div>
               <div className="control">
-                <button value={quantity} name={name} onClick={() => this.today({name, quantity, calories})} className="button is-info">+</button>
+              <button onClick={() => this.today({name, quantity, calories})} className="button is-info">+</button>
               </div>
             </div>
           </div>

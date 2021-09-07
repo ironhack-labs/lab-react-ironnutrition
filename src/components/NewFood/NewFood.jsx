@@ -1,4 +1,3 @@
-import { extend } from 'lodash';
 import React from 'react';
 import './NewFood.css';
 

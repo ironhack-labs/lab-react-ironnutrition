@@ -1,6 +1,6 @@
 .FoodList {
     width: 50vw;
-    display: flex;
+    /* display: flex; */
 }
 
 .FoodList .box{
@@ -12,7 +12,7 @@
     height: 50px;
 }
 
-.todayFood {
+/* .todayFood {
     padding-right: 1.4rem;
     margin: 3rem ;
     display: flex;
@@ -20,4 +20,4 @@
     align-items:flex-end;
     justify-content: flex-start;
     text-align: center;
-}
+} */

@@ -8,18 +8,14 @@ import SearchBar from '../SearchBar/SearchBar';
 
 class FoodList extends React.Component {
   state = {
-    foods: foods.map((food) => ({
-      ...food,
-      id: uuidv4(),
-      quantity: 0,
-    })),
+    foods: foods,
     search: '',
     todayFood: [],
   };
 
   onAdd = (food) => {
     this.setState({
-      foods: [...this.state.foods, { ...food, id: uuidv4() }],
+      foods: [food, ...this.state.foods],
     });
   };
 
@@ -29,34 +25,41 @@ class FoodList extends React.Component {
     });
   };
 
-  onChangeQuantity = (id, quantity) => {
-    if (quantity < 0) {
-      return;
-    }
-    const newFoodState = [...this.state.foods];
-    const foodToModifyIndex = newFoodState.findIndex((food) => food.id === id);
-    newFoodState[foodToModifyIndex].quantity = quantity;
+  // onChangeQuantity = (id, quantity) => {
+  //   if (quantity < 0) {
+  //     return;
+  //   }
+  //   const newFoodState = [...this.state.foods];
+  //   const foodToModifyIndex = newFoodState.findIndex((food) => food.id === id);
+  //   newFoodState[foodToModifyIndex].quantity = quantity;
 
-    this.setState({ foods: newFoodState });
-  };
+  //   this.setState({ foods: newFoodState });
+  // };
 
-  onAddToday = (food) => {
-    // const { value, name } = event.target;
-    // const duplicateFoodToday = [this.state.foods];
-    // const foodFinded = duplicateFoodToday.findIndex(
-    //   (food) => food.name === name
-    // );
-    // const newListItem = duplicateFoodToday[foodFinded];
-    // const finalList = [...this.state.todayFood, newListItem];
+  onAddToday = (tFood) => {
     this.setState({
-      todayFood: [food, this.state.todayFood],
+      todayFood: [tFood, ...this.state.todayFood],
     });
+    // console.log('array todaFood', this.state.todayFood);
   };
+
+  calculateFoodQuantity = (foodName) => {
+      let foodQuantity = 0
+      console.log(foodName)
+      console.log(this.state.todayFood)
+      for(let i = 0; i <= this.state.todayFood; i++){
+        if(this.state.todayFood[i] === foodName){
+          foodQuantity = foodQuantity + 1
+        }
+      }
+      console.log(foodQuantity)
+      return foodQuantity
+    }
 
   render() {
+   
     return (
       <div className="FoodList">
-        <div>
         <NewFood onAdd={this.onAdd} />
         <SearchBar onSearch={this.onSearch} />
         {this.state.foods
@@ -64,31 +67,17 @@ class FoodList extends React.Component {
             food.name.toLowerCase().includes(this.state.search.toLowerCase())
           )
           .map((food) => (
-            <FoodBox
-              {...food}
-              onAddToday={this.onAddToday}
-              onChange={this.onChangeQuantity}
-            />
+            <FoodBox onAddToday={this.onAddToday} {...food} />
           ))}
-        </div>
-        <div className="todayFood">
-          <h1>
-            <strong>Today's foods</strong>
-          </h1>
-          <ul>
-            {this.state.todayFood.length > 1 &&
-              this.state.todayFood.map((food) => {
-                let totalCalories = Number(food.calories*food.quantity)
-                return (
-                  <li key={food.id}>
-                    {food.quantity} {food.name} = {totalCalories}
-                    cal
-                  </li>
-                );
-              })}
-          </ul>
-          <span>Total: cal</span>
-        </div>
+        <ul>
+          {this.state.todayFood.map((tFood) => {
+            return (
+              <li>
+                {this.calculateFoodQuantity(tFood)}{tFood.name} = {tFood.calories} cal
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }

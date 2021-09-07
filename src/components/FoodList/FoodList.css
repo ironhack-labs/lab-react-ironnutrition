@@ -1,5 +1,6 @@
 .FoodList {
     width: 50vw;
+    display: flex;
 }
 
 .FoodList .box{
@@ -9,4 +10,14 @@
 
 .FoodList .box img {
     height: 50px;
+}
+
+.todayFood {
+    padding-right: 1.4rem;
+    margin: 3rem ;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: flex-start;
+    text-align: center;
 }

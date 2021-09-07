@@ -9,7 +9,7 @@ class FoodBox extends React.Component {
   }
 
   render() {
-    const { name, image, calories, quantity } = this.props;
+    const {id, name, image, calories, quantity, onChange, onAddToday } = this.props;
 
     return (
       <div className="box">
@@ -28,10 +28,10 @@ class FoodBox extends React.Component {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value="1" />
+                <input className="input" type="number" value={quantity} onChange={(e) => onChange(id, Number(e.target.value))} />
               </div>
               <div className="control">
-                <button onClick={() => this.today({name, quantity, calories})} className="button is-info">+</button>
+                <button value={quantity} name={name} onClick={() => this.today({name, quantity, calories})} className="button is-info">+</button>
               </div>
             </div>
           </div>

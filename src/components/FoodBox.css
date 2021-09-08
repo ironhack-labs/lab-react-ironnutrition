@@ -1,0 +1,42 @@
+.food-box-container {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 !important;
+  margin: 20px;
+  height: 60px;
+}
+
+.food-info-container {
+  text-align: left;
+}
+
+.food-box-container > button {
+  border: none;
+  border-radius: 10px;
+  width: 64px;
+  font-size: 1.5em;
+  border-radius: 5px;
+}
+
+.food-box-container input {
+  text-align: right;
+  width: 64px;
+  border: none;
+  box-shadow: none;
+}
+
+.food-box-container input::placeholder {
+  text-align: left;
+}
+
+.food-image-info {
+  align-items: center;
+}
+
+.food-image-info figure {
+  margin: 10px;
+}
+
+.food-info-container {
+  width: 100px;
+}

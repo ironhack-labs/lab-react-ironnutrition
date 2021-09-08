@@ -1,0 +1,17 @@
+.today-food-container h2 {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.today-food-container li {
+  list-style-type: disc;
+  color: black;
+}
+
+.today-food-container h4 {
+  margin-top: -20px;
+  margin-right: 20px;
+  text-align: right;
+}

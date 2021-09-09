@@ -4,6 +4,7 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import FoodBox from './components/foodbox/FoodBox';
 import NewFood from './components/newfood/NewFood';
+import Search from './components/search/Search';
 import foods from './foods.json';
 
 export default class App extends React.Component {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
       <div className='App'>
       <h1>Iron Nutrition</h1>
       <div>
+      <Search />
       {this.state.foods.map((food) => {
             return <FoodBox {...food} key={food.id} />;
           })}

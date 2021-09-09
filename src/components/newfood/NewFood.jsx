@@ -29,7 +29,7 @@ export default class NewFood extends React.Component {
         if (!this.state.name || !this.state.calories || !this.state.image) {
           return
         }
-        this.props.onAddFood(this.state);
+        this.props.onNewFood(this.state);
         this.setState({ ...initialState });
     };
 

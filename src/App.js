@@ -9,14 +9,14 @@ const App = () => {
   const [foodList, setFoodList] = useState(foods);
   const [showForm, setShowForm] = useState(false);
 
-  const willShow = () => {
+  const showHideForm = () => {
     setShowForm(!showForm);
   };
 
   return (
     <div className="App">
-      <button onClick={willShow}>Add New Foods</button>
-      {showForm ? <Form foodList={foodList} setFoodList={setFoodList} willShow={willShow}/> : ''}
+      <button onClick={showHideForm}>Add New Foods</button>
+      {showForm ? <Form foodList={foodList} setFoodList={setFoodList} showHideForm={showHideForm}/> : ''}
 
       {foodList.map((element) => {
         return (

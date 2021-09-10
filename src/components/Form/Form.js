@@ -4,7 +4,6 @@ const Form = ({ foodList, setFoodList, showHideForm }) => {
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');
   const [image, setImage] = useState('');
-  
   const handleSubmit = (event) => {
     event.preventDefault();
 

@@ -5,7 +5,7 @@ const Form = ({ foodList, setFoodList, willShow }) => {
   const [calories, setCalories] = useState('');
   const [image, setImage] = useState('');
   
-  const handleCreateFood = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const newFood = {
@@ -22,7 +22,7 @@ const Form = ({ foodList, setFoodList, willShow }) => {
   };
 
   return (
-    <form onSubmit={handleCreateFood} className="create-food-container">
+    <form onSubmit={handleSubmit} className="create-food-container">
       <div>
         <input
           type="text"

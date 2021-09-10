@@ -30,10 +30,6 @@ const AddFood = ({allFood, setFood}) => {
   };
   return (
     <div>
-      {showButton &&  <button onClick={onClick} className="button">
-        Add new food here!
-      </button>}
-
       {showButton && (
         <button onClick={onClick} className="button">
           Add new food here!

@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import 'bulma/css/bulma.css';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox/FoodBox';
+import Form from './components/Form/Form';
 
-function App() {
+const App = () => {
+  const [foodList, setFoodList] = useState(foods);
+  const [showForm, setShowForm] = useState(false);
+
+  const willShow = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={willShow}>Add New Foods</button>
+      {showForm ? <Form foodList={foodList} setFoodList={setFoodList} willShow={willShow}/> : ''}
+
+      {foodList.map((element) => {
+        return (
+          <FoodBox
+            name={element.name}
+            calories={element.calories}
+            image={element.image}
+          />
+        );
+      })}
     </div>
   );
-}
+};
 
 export default App;

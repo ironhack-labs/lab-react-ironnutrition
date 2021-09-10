@@ -16,6 +16,7 @@ const Form = ({ foodList, setFoodList, willShow }) => {
     };
 
     setFoodList([...foodList, newFood]);
+    willShow();
     setName('');
     setCalories('');
     setImage('');

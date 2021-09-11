@@ -15,13 +15,35 @@
   margin-top: 10px;
 }
 
-.form-container input {
-  width: 300px;
-}
-
 .form-buttons {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   margin: 10px;
+}
+
+.error-field {
+  border: 2px solid red !important;
+}
+
+.error-text {
+  display: block;
+  color: red;
+  width: 300px !important;
+  text-align: left;
+}
+
+.correct-field {
+  border: 2px solid green !important;
+}
+
+.correct-text {
+  display: block;
+  color: green;
+  width: 300px !important;
+  text-align: left;
+}
+
+.hide-text {
+  display: none;
 }

@@ -10,7 +10,8 @@ import FoodsCart from './Components/FoodsCart';
 function App() {
   const [allFood, setFood] = useState(foods);
   const [keyWord, setKeyword] = useState('');
-  const [cliked, setCliked] = useState(false);
+  const [cliked, setThis] = useState([]);
+  /* const [cart, setCarted] = useState('')  */
 
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
       <div className="sideBySide">
         <div>
           {allFood
+            // eslint-disable-next-line array-callback-return
             .filter((food) => {
               if (keyWord === '') {
                 return food;
@@ -33,11 +35,19 @@ function App() {
               }
             })
             .map((food, i, array) => {
-              return <FoodBox key={i} foods={array} theOne={food.name} cliked={cliked} setCliked={setCliked} />;
+              return (
+                <FoodBox
+                  key={i}
+                  foods={array}
+                  theOne={food.name}
+                  setCliked={setThis}
+                  cliked={cliked}
+                />
+              );
             })}
         </div>
         <div>
-        <FoodsCart />
+          <FoodsCart foodsInfo={cliked} setCart={setThis} cart={cliked} />
         </div>
       </div>
     </div>

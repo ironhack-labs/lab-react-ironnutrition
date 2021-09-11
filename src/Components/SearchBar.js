@@ -7,7 +7,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
     border: 'none',
     padding: '0.5rem',
   };
-  console.log(keyword);
+  
   return (
     <input
       style={BarStyling}

@@ -1,20 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'bulma/css/bulma.css';
-import FoodsCart from './FoodsCart'
 
-
-
-const FoodBox = ({ foods, theOne }) => {
+const FoodBox = ({ foods, theOne, setCliked, cliked }) => {
   let theItem = foods.find((x) => x.name === theOne);
-/*   let initial = 1;
+  const [atualQuantity, setQuantity] = useState(theItem.quantity);
 
-const onClick = () => {
-  theItem.quantity += 1;
-  setCliked(true)
-  console.log(theItem.quantity + theItem.name + cliked)
-    
-}
-console.log(initial) */
+  const addCart = () => {
+    let theclicked = foods.find((x) => x.name === theOne);
+    theclicked.quantity = atualQuantity;
+    console.log(theclicked)
+    setCliked([...cliked, theclicked]);
+     };
 
   return (
     <div className="foodbox">
@@ -36,10 +32,12 @@ console.log(initial) */
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value='1'/>
+                <input className="input" type="number" onChange={(event) => setQuantity(event.target.value)}  />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onClick={addCart} className="button is-info" >
+                  +
+                </button>
               </div>
             </div>
           </div>

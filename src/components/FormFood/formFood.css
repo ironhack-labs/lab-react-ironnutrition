@@ -1,0 +1,17 @@
+form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form div{
+    padding: 5px;
+    width: 370px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form div label{
+    padding: 0 10px;
+}

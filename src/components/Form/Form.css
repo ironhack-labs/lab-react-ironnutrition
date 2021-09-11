@@ -1,0 +1,7 @@
+.create-food-container {
+    margin-top: 5px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

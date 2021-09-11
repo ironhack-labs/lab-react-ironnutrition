@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Form.css";
 
 const Form = ({ foodList, setFoodList, showHideForm }) => {
   const [name, setName] = useState('');

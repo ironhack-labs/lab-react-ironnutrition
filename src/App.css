@@ -6,3 +6,36 @@ h1 {
   text-align: center;
   font-size: 3rem;
 }
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;  
+}
+
+body {
+  display: flex;
+}
+
+.nav {
+  width: 450px;
+  margin: 20px 0;;
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.lists {
+  display: flex;
+  justify-content: space-between;  
+}
+
+.today {
+  width: 450px;
+  padding: 10px;
+  margin-left: 30px;  
+}

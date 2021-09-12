@@ -8,24 +8,22 @@ import SearchBar from './components/SearchBar/searchBar';
 import ListBox from './components/ListBox/listBox';
 
 
-const listFoodToday = [];
+const listFoodToDisplay = [];
 
 function App() {
   
-  const [foodListState, setFoodListState] = React.useState([]);
+  
+
+  const [foodListState, setFoodListState] = React.useState(listFoodToDisplay);
 
   const handleCreateListFood = (list)=>{
-    console.log('elemento que esta sendo passado --->', list);
-    console.log('foodlistsate dentro do handle--->', foodListState);
-
-    console.log('list food today dentro do handle ---->',listFoodToday);
-
-    setFoodListState([...foodListState, list]);
-    console.log('apos o push e o ser state -----', foodListState, 'list ---> ', list, 'elemento desfrag,entado----', ...foodListState);
+    
+    //Primeiro array de foods a ser criado, ainda sem processamento
+    listFoodToDisplay.push(list);
+    setFoodListState([...listFoodToDisplay]);
+    
 
   }
-  
-// useEffect(()=>{setFoodListState(listFoodToday);},[listFoodToday])
 
   const arrayFood =  foods.map( (elem,index) => <FoodBox 
   name = {elem.name} 
@@ -33,8 +31,11 @@ function App() {
   image = {elem.image} 
   key = {index}
   quantity = {elem.quantity}
-  createListFood = {handleCreateListFood}
+  createListFood = {handleCreateListFood} 
   />); 
+  
+// useEffect(()=>{setFoodListState(listFoodToday);},[listFoodToday])
+
 
 
   const [form, setForm] = React.useState(true);
@@ -55,7 +56,16 @@ function App() {
         quantity: 0
       }
     )
-    const newFoodBox = <FoodBox name = {food.name} calories = {food.calories} image = {food.image} key = {new Date()} quantity = {food.quantity} createListFood = {handleCreateListFood}/>
+
+    const newFoodBox = <FoodBox 
+      name = {food.name} 
+      calories = {food.calories} 
+      image = {food.image} 
+      key = {new Date() + food.name} 
+      quantity = {food.quantity} 
+      createListFood = {handleCreateListFood}     
+    />
+
     setFoodsState([...foodsState, newFoodBox]);
   }
 
@@ -70,7 +80,7 @@ function App() {
         name = {elem.name} 
         calories = {elem.calories} 
         image = {elem.image} 
-        key = {new Date()}
+        key = {index}
         quantity = {elem.quantity}
         createListFood = {handleCreateListFood}
       />);
@@ -82,6 +92,7 @@ function App() {
       name = {elem.name} 
       calories = {elem.calories} 
       image = {elem.image} 
+      key = {index}
       quantity = {elem.quantity}
       createListFood = {handleCreateListFood}
     />));
@@ -122,11 +133,11 @@ function App() {
 
           <ul className = "title is-4">
             
-             {console.log('foodliststate ===>',foodListState)}
+       
              <ListBox list = {foodListState}  />
-            
+            {console.log('array que estou procurando =---=-->>', foodListState)}
           </ul>
-          <p> TOTAL CALORIES</p>
+          <p> TOTAL CALORIES = {foodListState.reduce((ac,elem)=>ac+elem.calories*elem.quantity,0)}  </p>
         </div>
       
       

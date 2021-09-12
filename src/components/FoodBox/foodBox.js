@@ -5,21 +5,23 @@ import 'bulma/css/bulma.css';
 function FoodBox(props){
 
   const [quantityState, setquantityState] = useState(1)
-
-
+  
   const setQuantity = (event)=>{
       setquantityState(event.target.value)
   }
   
+
+  
   function AddToList(){
-  console.log('entrei no add list -------', props)
+    console.log('entrei no add list -------', props)
     const newList = {
       name: props.name,
       calories: props.calories,
       quantity: Number(quantityState)
     };
+   
     console.log('depois que eu entrei eu criei----', newList);
-    props.createListFood(newList)
+    props.createListFood(newList);
   }
 
 

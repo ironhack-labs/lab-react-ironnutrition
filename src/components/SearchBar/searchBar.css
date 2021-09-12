@@ -1,10 +1,11 @@
 form{
    
-    width: 370px;
+    width: 600px;
+    height: 80px;
    
 }
 
 input{
-   
+   height: 100%;
     width: 100%;
 }

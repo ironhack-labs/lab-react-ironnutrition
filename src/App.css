@@ -10,3 +10,16 @@
 .todays-food ul{
     margin: 15px;
 }
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-create-food{
+    height: 210px;
+}
+

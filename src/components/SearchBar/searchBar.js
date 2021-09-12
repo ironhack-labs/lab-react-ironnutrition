@@ -15,7 +15,7 @@ const SearchBar = (props) => {
     return(
         <form>
        
-            <input type = 'text' name="search" value={searchState}  onChange={(e) => handleSearch(e)} />
+            <input placeholder= 'Pesquise aqui...'type = 'text' name="search" value={searchState}  onChange={(e) => handleSearch(e)} />
         </form>
     )
 }

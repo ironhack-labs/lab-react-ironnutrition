@@ -34,7 +34,6 @@ function FormFood(props){
         setImageState("");
         setCaloriesState("");
         setNameState("");
-
         
         props.formView();
        
@@ -43,7 +42,7 @@ function FormFood(props){
 
     return(
         <form onSubmit={handleFormsubmit} >
-            <div>
+            <div className="form-div">
                 <label>Name:</label>
                 <input type="text" name="name" value={nameState} onChange={(e) => handleName(e)} />
             </div>
@@ -56,7 +55,7 @@ function FormFood(props){
                 <input type="text" name="imageURL"  value={imageState} onChange={(e) => handleImage(e)} />
             </div>
 
-          <button className = "button is-small is-rounded is-info">Add Food</button>
+          <button className = "button is-medium is-rounded is-info" id="button-add">Add Food</button>
         </form>
 
 

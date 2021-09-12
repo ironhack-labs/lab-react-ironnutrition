@@ -116,9 +116,9 @@ function App() {
       </button>
       :
       (
-        <div>
-          <button onClick = {()=> addForm(form, setForm)} className = "button is-medium is-rounded is-danger">
-          Form
+        <div className="form-create-food">
+          <button onClick = {()=> addForm(form, setForm)} className = "button is-small is-rounded is-danger">
+          Return
           </button>
           <FormFood createFoods = {handleCreateFood} formView = {handleForm} />
         </div>
@@ -128,16 +128,15 @@ function App() {
         <div>
           {foodsState}
         </div>
-        <div className = "todays-food title is-2">
+        <div className = "todays-food title is-3">
           <h2>Today's foods</h2>
 
-          <ul className = "title is-4">
+          <ul className = "subtitle is-5">
             
-       
              <ListBox list = {foodListState}  />
-            {console.log('array que estou procurando =---=-->>', foodListState)}
+       
           </ul>
-          <p> TOTAL CALORIES = {foodListState.reduce((ac,elem)=>ac+elem.calories*elem.quantity,0)}  </p>
+          <p className="subtitle is-4"> Total:  {foodListState.reduce((ac,elem)=>ac+elem.calories*elem.quantity,0)} calories. </p>
         </div>
       
       

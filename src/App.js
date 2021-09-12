@@ -25,6 +25,10 @@ function App() {
 
   }
 
+  const refreshList = (allList)=>{
+    setFoodListState([...allList]);
+  }
+
   const arrayFood =  foods.map( (elem,index) => <FoodBox 
   name = {elem.name} 
   calories = {elem.calories} 
@@ -34,8 +38,6 @@ function App() {
   createListFood = {handleCreateListFood} 
   />); 
   
-// useEffect(()=>{setFoodListState(listFoodToday);},[listFoodToday])
-
 
 
   const [form, setForm] = React.useState(true);
@@ -133,7 +135,7 @@ function App() {
 
           <ul className = "subtitle is-5">
             
-             <ListBox list = {foodListState}  />
+             <ListBox list = {foodListState} createList = {refreshList} />
        
           </ul>
           <p className="subtitle is-4"> Total:  {foodListState.reduce((ac,elem)=>ac+elem.calories*elem.quantity,0)} calories. </p>

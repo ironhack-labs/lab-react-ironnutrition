@@ -13,15 +13,16 @@ function FoodBox(props){
 
   
   function AddToList(){
-    console.log('entrei no add list -------', props)
-    const newList = {
-      name: props.name,
-      calories: props.calories,
-      quantity: Number(quantityState)
-    };
-   
-    console.log('depois que eu entrei eu criei----', newList);
-    props.createListFood(newList);
+    if(Number(quantityState)>0){
+      const newList = {
+        name: props.name,
+        calories: props.calories,
+        quantity: Number(quantityState)
+      };
+      
+      props.createListFood(newList);
+      
+    }
   }
 
 

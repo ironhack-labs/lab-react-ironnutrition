@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
 import foods from './foods.json';
@@ -11,7 +11,12 @@ const App = () => {
   const [foodList, setFoodList] = useState(foods);
   const [showForm, setShowForm] = useState(false);
   const [itemList, setItems] = useState([]);
-
+  const [totalCal, setCal] = useState(0);
+  
+  useEffect(() => {
+    sumAllCalories();
+  }, [itemList]);
+  
   const showHideForm = () => {
     setShowForm(!showForm);
   };
@@ -24,14 +29,25 @@ const App = () => {
     );
   };
 
-  const addToday = () => {
-    
+  const addToday = ( quantity, name, calories ) => {
+    const newItem = {
+      quantity: quantity,
+      name: name,
+      calories: calories
+    };
+    setItems([...itemList, newItem]);    
   }
-
+  
+  const sumAllCalories = () => {
+    setCal(itemList.reduce((acc, present) => {
+      return acc + present.calories;      
+    }, 0))    
+  }
+  
   return (
     <div className="App">
       <h1>IronNutrition</h1>
-      <div class="nav">
+      <div className="nav">
         <div>
           <button onClick={showHideForm}>Add New Foods</button>
           {showForm ? (
@@ -48,8 +64,8 @@ const App = () => {
           <SearchBar filterFoods={filterFoods} />
         </div>
       </div>
-      <div class="lists">
-        <div class="boxes">
+      <div className="lists">
+        <div className="boxes">
           {foodList.map((element) => {
             return (
               <FoodBox
@@ -57,16 +73,28 @@ const App = () => {
                 calories={element.calories}
                 image={element.image}
                 key={element.name}
+                addToday={addToday}
+                sumAllCalories={sumAllCalories}
+                setCal={setCal}
               />
             );
           })}
         </div>
-        <div class="today">
+        <div className="today">
           <h2>Today's Foods</h2>
           <ul>
-            <TodaysItem />
+          {itemList.map((element) => {
+            return (
+              <TodaysItem 
+                quantity={element.quantity}
+                name={element.name}
+                calories={element.calories}                
+                // key={new Date().parse()}
+              />
+            );
+          })}            
           </ul>
-          <p>Total: 0 cal</p>
+          <p className="total">Total: {totalCal} cal</p>
         </div>
       </div>
     </div>

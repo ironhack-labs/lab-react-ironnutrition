@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FoodBox.css';
 
-const FoodBox = ({ name, calories, image }) => {
+const FoodBox = ({ name, calories, image, addToday, sumAllCalories, setCal }) => {
   const [quantity, setQuantity] = useState(0);
+  
+  useEffect(() => {
+    setQuantity(quantity);
+  }, [quantity]);
 
   const handleChange = event => {
     const { value } = event.target;
     setQuantity(value);
   }
   
-  const handleClick = event => {
-    
+  const handleClick = () => {   
+    if (quantity < 1) return;
+    addToday(quantity, name, calories * quantity);    
   }
-
+  
   return (
     <div className="box">
       <article className="media">
@@ -25,7 +30,7 @@ const FoodBox = ({ name, calories, image }) => {
           <div className="content">
             <p>
               <strong>{name}</strong> <br />
-              <small>{calories}</small>
+              <small>{calories} cal</small>
             </p>
           </div>
         </div>
@@ -34,9 +39,10 @@ const FoodBox = ({ name, calories, image }) => {
             <div className="control">
               <input 
                 className="input" 
-                type="number" 
+                type="number"
+                min="0"
                 value={quantity}
-                onChange={handleChange}
+                onChange={handleChange}                
               />
             </div>
             <div className="control">

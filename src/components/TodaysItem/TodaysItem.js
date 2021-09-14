@@ -1,11 +1,9 @@
-import React , { useEffect } from 'react';
+import React from 'react';
 import './TodaysItem.css';
 
 const TodaysItem = ({ quantity, name, calories }) => {
     return (
-        <li>
-
-        </li>
+        <li>{quantity} {name} = {calories} cal</li>
     )
 }
 

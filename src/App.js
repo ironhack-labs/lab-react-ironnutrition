@@ -73,9 +73,7 @@ const App = () => {
                 calories={element.calories}
                 image={element.image}
                 key={element.name}
-                addToday={addToday}
-                sumAllCalories={sumAllCalories}
-                setCal={setCal}
+                addToday={addToday}                
               />
             );
           })}
@@ -88,8 +86,7 @@ const App = () => {
               <TodaysItem 
                 quantity={element.quantity}
                 name={element.name}
-                calories={element.calories}                
-                // key={new Date().parse()}
+                calories={element.calories}
               />
             );
           })}            

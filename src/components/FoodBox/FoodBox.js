@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FoodBox.css';
 
-const FoodBox = ({ name, calories, image, addToday, sumAllCalories, setCal }) => {
+const FoodBox = ({ name, calories, image, addToday }) => {
   const [quantity, setQuantity] = useState(0);
   
   useEffect(() => {

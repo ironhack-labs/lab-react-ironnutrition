@@ -1,7 +1,53 @@
 .create-food-container {
     margin-top: 5px;
-    height: 110px;
+    height: 210px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.create-food-container input,
+button {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.create-food-container button:hover {
+    background-color: blue;
+    color: #fff;
+}
+
+.create-food-container div {
+    margin-top: 12px;
+}
+
+.name,
+.image,
+.calories {
+    position: relative;
+}
+
+.message {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.error-border {
+    border: 1px solid red !important;
+}
+
+.success-border {
+    border: 1px solid green !important;
 }

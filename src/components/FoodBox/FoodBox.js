@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const FoodBox = ({food}) => {
+class FoodBox extends Component {
+
+  state = {
+
+  }
+
+  render() {
+    const {food} = this.props;
+    
     return (
         <div className="box">
   <article className="media">
@@ -31,8 +39,8 @@ const FoodBox = ({food}) => {
     </div>
   </article>
 </div>
-
     );
+   };
 };
 
 export default FoodBox;

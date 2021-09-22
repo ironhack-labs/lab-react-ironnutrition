@@ -1,24 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+import Foodbox from './Components/Foodbox/Foodbox';
+import AddFoodForm from './Components/AddFoodForm/AddFoodForm';
+import SearchBar from './Components/SearchBar/SearchBar'
 
-function App() {
-  return (
+class App extends React.Component {
+ 
+    state = {
+      foods,
+      showFoodForm: false
+  }
+  addFood = (food) => {
+
+    const foodCopy = [...this.state.foods];
+
+    foodCopy.push(food)
+
+
+      this.setState(
+        {
+          foods: foodCopy
+        }
+      )
+  }
+
+  toggleShowFoodForm = () => {
+
+    this.setState({
+        showFoodForm: !this.state.showFoodForm
+
+    })
+
+
+  }
+
+  filterFoods = (text) => {
+
+    const foodCopy = [...this.state.foods];
+
+    foodCopy.includes(text)
+
+
+  }
+
+
+  render = () => (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {this.state.showFoodForm ? <AddFoodForm addFood={this.addFood}/> : null}
+
+      <button onClick={()=> this.toggleShowFoodForm()}>Add new food</button>
+      <SearchBar  filterFoods={this.filterFoods} />
+      {this.state.foods.map((food, idx) => {
+        return <Foodbox {...food} key={`${idx}-${food.name}`} />;
+      })}
     </div>
   );
 }

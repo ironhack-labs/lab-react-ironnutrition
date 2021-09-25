@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
+import 'bulma/css/bulma.css';
+import foods from './foods.json';
+
+import FoodBoxList from './FoodBoxList';
+import AddFoodForm from './AddFoodForm';
 
 function App() {
+  const [foodsObject, setFoods] = useState(foods);
+  const [isAdding, setIsAdding] = useState(false);
+
+  const displayFoodForm = () => {
+    setIsAdding(true);
+  };
+
+  //* remember to ask about this
+  const updateFoods = (addedFood) => {
+    //const foodsCopy = foods.slice();
+    //foodsCopy.push(addedFood);
+    setFoods([
+      ...foods,
+      {
+        name: addedFood.name,
+        calories: addedFood.calories,
+        image: addedFood.image,
+        quantity: 0,
+      },
+    ]);
+    console.log('this is the foods array after updating it ' + foods);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isAdding && <AddFoodForm foodFormHandler={updateFoods} />}
+      {!isAdding && <button onClick={displayFoodForm}>Add New Food</button>}
+      <FoodBoxList foods={foodsObject} />;
     </div>
   );
 }

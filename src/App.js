@@ -12,7 +12,7 @@ function App() {
   const [isAdding, setIsAdding] = useState(false);
 
   const displayFoodForm = () => {
-    setIsAdding(true);
+    setIsAdding(!isAdding);
   };
 
   //* remember to ask about this
@@ -32,7 +32,9 @@ function App() {
   };
   return (
     <div>
-      {isAdding && <AddFoodForm foodFormHandler={updateFoods} />}
+      {isAdding && (
+        <AddFoodForm hideForm={displayFoodForm} foodFormHandler={updateFoods} />
+      )}
       {!isAdding && <button onClick={displayFoodForm}>Add New Food</button>}
       <FoodBoxList foods={foodsObject} />;
     </div>

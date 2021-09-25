@@ -26,6 +26,7 @@ const AddFoodForm = (props) => {
     };
 
     props.foodFormHandler(foodData);
+    props.hideForm();
   };
   return (
     <form onSubmit={formSubmitHandler}>

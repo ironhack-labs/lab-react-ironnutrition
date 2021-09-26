@@ -6,6 +6,7 @@ import foods from './foods.json';
 
 import FoodBoxList from './FoodBoxList';
 import AddFoodForm from './AddFoodForm';
+import Search from './Search';
 
 function App() {
   const [foodsObject, setFoods] = useState(foods);
@@ -27,10 +28,24 @@ function App() {
           quantity: 0,
         },
       ]);
-    console.log('this is the foods array after updating it ' + foods);
+    //console.log('this is the foods array after updating it ' + foods);
   };
+
+  const searchFoods = (event) => {
+    setFoods(foodsObject);
+    console.log(event.target.value);
+    // if (event.target.value === '') {
+    //   setFoods(foodsObject);
+    // }
+    const filteredFoods = foodsObject.filter((food) => {
+      return food.name.toLowerCase().includes(event.target.value);
+    });
+    setFoods(filteredFoods);
+  };
+
   return (
     <div>
+      <Search searchFoods={searchFoods} />
       {isAdding && (
         <AddFoodForm hideForm={displayFoodForm} foodFormHandler={updateFoods} />
       )}

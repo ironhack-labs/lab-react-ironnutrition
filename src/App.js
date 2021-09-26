@@ -17,17 +17,16 @@ function App() {
 
   //* remember to ask about this
   const updateFoods = (addedFood) => {
-    //const foodsCopy = foods.slice();
-    //foodsCopy.push(addedFood);
-    setFoods([
-      ...foods,
-      {
-        name: addedFood.name,
-        calories: addedFood.calories,
-        image: addedFood.image,
-        quantity: 0,
-      },
-    ]);
+    addedFood &&
+      setFoods([
+        ...foods,
+        {
+          name: addedFood.name,
+          calories: addedFood.calories,
+          image: addedFood.image,
+          quantity: 0,
+        },
+      ]);
     console.log('this is the foods array after updating it ' + foods);
   };
   return (

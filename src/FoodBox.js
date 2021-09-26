@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 
 function FoodBox(props) {
-  const [quantity, setQuantity] = useState('0');
+  const [quantity, setQuantity] = useState(0);
 
   const quantityChangeHandler = (event) => {
     setQuantity(event.target.value);
+  };
+
+  const addOne = () => {
+    setQuantity(quantity + 1);
   };
 
   return (
@@ -35,7 +39,7 @@ function FoodBox(props) {
               />
             </div>
             <div className="control">
-              <button type="button" className="button is-info">
+              <button onClick={addOne} type="button" className="button is-info">
                 +
               </button>
             </div>

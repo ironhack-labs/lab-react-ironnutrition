@@ -23,16 +23,17 @@ function App() {
   //* remember to ask about this
   const updateFoods = (addedFood) => {
     addedFood &&
-      setFoods([
-        ...foods,
-        {
-          name: addedFood.name,
-          calories: addedFood.calories,
-          image: addedFood.image,
-          quantity: 0,
-        },
-      ]);
-    //console.log('this is the foods array after updating it ' + foods);
+      setFoods((previousState) => {
+        return [
+          ...previousState,
+          {
+            name: addedFood.name,
+            calories: addedFood.calories,
+            image: addedFood.image,
+            quantity: 0,
+          },
+        ];
+      });
   };
 
   const searchFoods = (value) => {
@@ -49,7 +50,12 @@ function App() {
   };
 
   const addToMenu = (food) => {
-    setTodaysFoods([...todaysFoods, { food }]);
+    setTodaysFoods((previousState) => {
+      return [
+        ...previousState,
+        { name: food.name, calories: food.calories, quantity: food.quantity },
+      ];
+    });
   };
 
   return (

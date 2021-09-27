@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 
 function FoodBox(props) {
-  console.log(props);
   const [quantity, setQuantity] = useState(0);
 
   const quantityChangeHandler = (event) => {
     setQuantity(event.target.value);
   };
 
-  const foodToPass = () => {
-    console.log(props);
-    const calories = props.food.calories * quantity;
-    const food = {
-      name: props.food.name,
-      quantity: quantity,
-      calories: calories,
-    };
-    props.onAddToMenu(food);
+  const onAddFoodToToday = () => {
+    if (quantity !== 0) {
+      const calories = props.food.calories * quantity;
+      const food = {
+        name: props.food.name,
+        calories: calories,
+        quantity: quantity,
+      };
+
+      props.onAddToMenu(food);
+    } else {
+      return;
+    }
   };
 
   return (
@@ -48,7 +51,7 @@ function FoodBox(props) {
             </div>
             <div className="control">
               <button
-                onClick={foodToPass}
+                onClick={onAddFoodToToday}
                 type="button"
                 className="button is-info"
               >

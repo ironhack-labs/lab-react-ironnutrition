@@ -3,9 +3,9 @@ import React from 'react';
 const TodaysFoods = (props) => {
   const foods = props.todaysFoods.map((food) => {
     return (
-      <ul>
+      <ul key={food.name}>
         <li>
-          {food.name}x{food.quantity}
+          {food.name} x {food.quantity}
         </li>
         <li>{food.calories}</li>
       </ul>
@@ -14,7 +14,7 @@ const TodaysFoods = (props) => {
 
   return (
     <div>
-      <h3>Todays foods are:</h3>
+      <h1>Todays foods are:</h1>
       {foods}
     </div>
   );

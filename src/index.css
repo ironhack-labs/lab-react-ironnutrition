@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.float-left {
+  width: 45%;
+  float: left;
+  display: inline;
+}
+.float-left div {
+}
+.input-field {
+  width: 50px;
+  background-color: red;
+}
+
+.float-right {
+  border: 1px solid black;
+  width: 45%;
+  float: right;
+}
+.searchbar input {
+  width: 80%;
+}
+
+.searchbar {
+  margin-bottom: 100px;
+}

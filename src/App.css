@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .App-logo {
@@ -35,4 +38,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.foodList {
+  border: 2px solid green;
+}
+
+.nutritionPage {
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid blue;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  border: 2px solid red;
 }

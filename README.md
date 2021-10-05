@@ -60,7 +60,7 @@ export default App;
 
 #### Ant Design Installation
 
-We will use [Ant Design](https://bulma.io/) component library for the design. :)
+We will use [Ant Design](https://ant.design/) component library for the design. :)
 
 ```sh
 $ npm install antd

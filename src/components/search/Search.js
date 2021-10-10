@@ -10,7 +10,6 @@ export default class Search extends Component {
     const { name, value } = event.target;
     const { allTheFoods } = this.props;
 
-    console.log('My value', value, this.state);
     this.setState(
       {
         [name]: value,

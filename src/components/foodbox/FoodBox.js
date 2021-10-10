@@ -1,7 +1,28 @@
 import React from 'react';
 import './FoodBox.css';
+import AddFoodButton from '../addfoodbutton/AddFoodButton';
 
 class FoodBox extends React.Component {
+  state = {
+    quantity: 0,
+    name: '',
+    calories: '',
+  };
+
+  handleSelectedFood = (inputValue) => {
+    this.setState(
+      {
+        quantity: inputValue,
+        name: this.props.name,
+        calories: this.props.calories,
+      },
+      () => {
+        console.log('in the food box', this.state);
+        this.props.addFooodToList(this.state);
+      }
+    );
+  };
+
   render() {
     const { name, calories } = this.props;
     return (
@@ -21,14 +42,7 @@ class FoodBox extends React.Component {
             </div>
           </div>
           <div className='media-right'>
-            <div className='field has-addons'>
-              <div className='control'>
-                <input className='input' type='number' value='1' />
-              </div>
-              <div className='control'>
-                <button className='button is-info'>+</button>
-              </div>
-            </div>
+            <AddFoodButton addFoodToList={this.handleSelectedFood} />
           </div>
         </article>
       </div>

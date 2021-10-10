@@ -11,6 +11,21 @@ class App extends React.Component {
     allTheFoods: foods,
     invisibleList: foods.slice(5),
     filteredList: foods,
+    selectedFood: [],
+  };
+
+  addSelectedFoodToTheList = (selectedFoodFromBox) => {
+    const tempCopy = [...this.state.selectedFood, selectedFoodFromBox];
+    const arrayUniqueByKey = [
+      ...new Map(tempCopy.map((item) => [item['name'], item])).values(),
+    ].filter((notZeroFood) => +notZeroFood.quantity !== 0);
+
+    this.setState(
+      {
+        selectedFood: [...arrayUniqueByKey],
+      },
+      () => console.log('in the app', this.state.selectedFood)
+    );
   };
 
   addFoodHandler = (food) => {
@@ -32,6 +47,9 @@ class App extends React.Component {
   render = () => {
     return (
       <div className='App'>
+        <h1>
+          <b>IronNutrition</b>
+        </h1>
         <AddFood addFoodItem={this.addFoodHandler} />
         <Search
           onChangeSearchHandler={this.searchFoodHandler}
@@ -45,6 +63,7 @@ class App extends React.Component {
               name={food.name}
               calories={food.calories}
               image={food.image}
+              addFooodToList={this.addSelectedFoodToTheList}
             />
           );
         })}

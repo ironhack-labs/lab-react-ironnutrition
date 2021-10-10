@@ -1,0 +1,29 @@
+.form-container {
+    position: relative;
+
+}
+
+.form-add-new-food {
+    top: 0;
+    background-color: pink;
+    display: flex;
+    border-radius: 1rem;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    padding: 2rem;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 5;
+}
+
+.form-add-new-food input {
+    padding: .5rem;
+}
+
+form button {
+    height: 2rem;
+    width: 50%;
+    margin: 1rem auto 0;
+}

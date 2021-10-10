@@ -1,4 +1,17 @@
+.search-contianer {
+    display: flex;
+    justify-content: start;
+    width: 75%;
+    margin: 1rem 0 0 2rem;
+}
+
 .search-contianer input {
-    width: 97%;
-    height: 2rem;
+    padding-left: 1rem;
+    font-size: 1.15rem;
+    height: 2.5rem;
+    width: 55%;
+    border-radius: .2rem;
+    border-color: grey;
+    border-width: 1px;
+    outline: none;
 }

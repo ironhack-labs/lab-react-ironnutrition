@@ -19,7 +19,9 @@ export default class Search extends Component {
           this.props.onChangeSearchHandler(allTheFoods);
         } else {
           const filteredList = allTheFoods.filter((food) =>
-            food.name.includes(this.state.inputValue)
+            food.name
+              .toLowerCase()
+              .includes(this.state.inputValue.toLowerCase())
           );
           this.props.onChangeSearchHandler(filteredList);
         }
@@ -34,6 +36,7 @@ export default class Search extends Component {
           name='inputValue'
           value={this.state.inputValue}
           onChange={this.onInputChangeHandler}
+          placeholder='Search for food...'
         />
       </div>
     );

@@ -78,7 +78,9 @@ class AddFood extends React.Component {
   render = () => {
     return (
       <div className='form-container'>
-        <button onClick={this.addNewFoodButton}>Add New Food</button>
+        <button onClick={this.addNewFoodButton} className='addNewFoodButton'>
+          Add New Food
+        </button>
         {this.state.formDisplayed && (
           <form onSubmit={this.onSubmitHandler} className='form-add-new-food'>
             <label>Name</label>
@@ -97,7 +99,7 @@ class AddFood extends React.Component {
               onChange={this.onChangeHandler}
             />
 
-            <label>Image:</label>
+            <label>Image</label>
             <input
               type='text'
               name='image'

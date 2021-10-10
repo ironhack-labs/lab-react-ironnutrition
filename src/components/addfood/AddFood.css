@@ -1,29 +1,46 @@
 .form-container {
+    display: flex;
+    justify-content: end;
     position: relative;
-
 }
 
 .form-add-new-food {
     top: 0;
-    background-color: pink;
+    background-color: #F0F0F0;
     display: flex;
-    border-radius: 1rem;
+    border-radius: .5rem;
     flex-direction: column;
     position: absolute;
-    left: 0;
     padding: 2rem;
-    right: 0;
-    margin: 0 auto;
-    width: 100%;
+    top: 4rem;
+    left: 70%;
+    width: 25%;
     z-index: 5;
 }
 
 .form-add-new-food input {
     padding: .5rem;
+    border: none;
+    outline: none;
 }
 
 form button {
     height: 2rem;
     width: 50%;
     margin: 1rem auto 0;
+}
+
+.addNewFoodButton {
+    font-size: .9rem;
+    position: absolute;
+    left: 72%;
+    top: 4.5rem;
+    width: 13rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+}
+
+label {
+    margin-top: .3rem;
 }

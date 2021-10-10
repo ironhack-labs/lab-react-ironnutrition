@@ -1,0 +1,18 @@
+.box {
+    width: 65%;
+    margin: 1rem 0 0 2rem;
+    height: 6rem;
+    position: relative;
+}
+
+/* .media-left {
+    height: 100px;
+}
+*/
+.mainImg {
+    height: 30px;
+    position: absolute;
+    min-height: 75%;
+    left: 0.5rem;
+    top: .5rem;
+}

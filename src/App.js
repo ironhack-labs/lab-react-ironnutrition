@@ -14,6 +14,7 @@ class App extends React.Component {
     selectedFood: [],
   };
 
+  // Getting rid of dupes by name and remove food of 0 quantity
   addSelectedFoodToTheList = (selectedFoodFromBox) => {
     const tempCopy = [...this.state.selectedFood, selectedFoodFromBox];
     const arrayUniqueByKey = [
@@ -44,6 +45,12 @@ class App extends React.Component {
     });
   };
 
+  getCaloriesOfSelectedFoods = () => {
+    return this.state.selectedFood.reduce((acc, item, index, arr) => {
+      return (acc += +item.calories * item.quantity);
+    }, 0);
+  };
+
   render = () => {
     return (
       <div className='App'>
@@ -56,17 +63,40 @@ class App extends React.Component {
           allTheFoods={[...this.state.allTheFoods, ...this.state.invisibleList]}
           filteredList={this.state.filteredList}
         />
-        {this.state.filteredList.map((food, index) => {
-          return (
-            <FoodBox
-              key={index}
-              name={food.name}
-              calories={food.calories}
-              image={food.image}
-              addFooodToList={this.addSelectedFoodToTheList}
-            />
-          );
-        })}
+        <div className='content-container'>
+          <div className='food-list'>
+            {this.state.filteredList.map((food, index) => {
+              return (
+                <FoodBox
+                  key={index}
+                  name={food.name}
+                  calories={food.calories}
+                  image={food.image}
+                  addFooodToList={this.addSelectedFoodToTheList}
+                />
+              );
+            })}
+          </div>
+          <div className='right-col'>
+            <p>Today's foods:</p>
+            <ul>
+              {this.state.selectedFood.map((selection) => {
+                const { name, calories, quantity } = selection;
+                return (
+                  <li>
+                    {quantity} {name} = {quantity * calories} cal
+                  </li>
+                );
+              })}
+            </ul>
+            <div>
+              <hr />
+              <p>
+                Total Calories: <b>{this.getCaloriesOfSelectedFoods()} cal</b>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   };

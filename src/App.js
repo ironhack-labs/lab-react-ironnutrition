@@ -51,6 +51,21 @@ class App extends React.Component {
     }, 0);
   };
 
+  removeItemFromTodayFood = (foodName) => {
+    const objIndex = this.state.selectedFood.find((food, index) => {
+      if (food.name === foodName) {
+        return index;
+      }
+      return -1;
+    });
+
+    const cloneSelectedFood = [...this.state.selectedFood];
+    cloneSelectedFood.splice(objIndex, 1);
+    this.setState({
+      selectedFood: cloneSelectedFood,
+    });
+  };
+
   render = () => {
     return (
       <div className='App'>
@@ -85,6 +100,9 @@ class App extends React.Component {
                 return (
                   <li>
                     {quantity} {name} = {quantity * calories} cal
+                    <button onClick={() => this.removeItemFromTodayFood(name)}>
+                      Remove Item
+                    </button>
                   </li>
                 );
               })}

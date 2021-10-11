@@ -45,9 +45,8 @@
   justify-content: space-evenly;
 }
 
-.box {
-
-  /* width: 200px; */
+.control input {
+  width: 5rem;
 }
 
 .food-list {

@@ -9,8 +9,8 @@ import Search from './components/search/Search';
 class App extends React.Component {
   state = {
     allTheFoods: foods,
-    invisibleList: foods.slice(5),
     filteredList: foods,
+    invisibleList: foods.slice(5),
     selectedFood: [],
   };
 
@@ -98,7 +98,7 @@ class App extends React.Component {
               {this.state.selectedFood.map((selection) => {
                 const { name, calories, quantity } = selection;
                 return (
-                  <li>
+                  <li key={name}>
                     {quantity} {name} = {quantity * calories} cal
                     <button onClick={() => this.removeItemFromTodayFood(name)}>
                       Remove Item

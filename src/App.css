@@ -45,6 +45,17 @@
   justify-content: space-evenly;
 }
 
+.content-container li {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
+}
+
+.content-container li button {
+  margin: .1rem;
+  border: none;
+}
+
 .control input {
   width: 5rem;
 }

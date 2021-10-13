@@ -15,16 +15,10 @@ export default class Search extends Component {
         [name]: value,
       },
       () => {
-        if (this.state.inputValue.length === 0) {
-          this.props.onChangeSearchHandler(allTheFoods);
-        } else {
-          const filteredList = allTheFoods.filter((food) =>
-            food.name
-              .toLowerCase()
-              .includes(this.state.inputValue.toLowerCase())
-          );
-          this.props.onChangeSearchHandler(filteredList);
-        }
+        const filteredList = allTheFoods.filter((food) =>
+          food.name.toLowerCase().includes(this.state.inputValue.toLowerCase())
+        );
+        this.props.onChangeSearchHandler(filteredList);
       }
     );
   };

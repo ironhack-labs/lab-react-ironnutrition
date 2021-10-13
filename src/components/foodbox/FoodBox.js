@@ -17,7 +17,6 @@ class FoodBox extends React.Component {
         calories: this.props.calories,
       },
       () => {
-        console.log('in the food box', this.state);
         this.props.addFooodToList(this.state);
       }
     );

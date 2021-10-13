@@ -1,8 +1,10 @@
 .search-contianer {
-    display: flex;
-    justify-content: start;
+    /* display: flex; */
+    /* justify-content: start; */
     width: 75%;
     margin: 1rem 0 0 2rem;
+    text-align: left;
+    margin-left: 10%;
 }
 
 .search-contianer input {

@@ -1,10 +1,14 @@
-/*import React from 'react';
+import React, { useState } from 'react';
+import foods from '../foods.json';
+
+const foodList = foods.slice();
 
 function FoodBox() {
-  const { name, calories, image, quantity } = props;
+  const [initialState, setInitialState] = useState(foodList);
+  console.log('init:', initialState);
 
   function handleFormChange(event) {
-    setQuantity(event.target.value);
+    setInitialState(event.target.value);
   }
 
   return (
@@ -13,14 +17,14 @@ function FoodBox() {
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={image} alt={name} />
+              <img src={initialState.image} alt={initialState.name} />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>{name}</strong> <br />
-                <small>{calories} cal</small>
+                <strong>{initialState.name}</strong> <br />
+                <small>{initialState.calories} cal</small>
               </p>
             </div>
           </div>
@@ -31,7 +35,7 @@ function FoodBox() {
                   onChange={handleFormChange}
                   className="input"
                   type="number"
-                  value={quantity}
+                  value={initialState.quantity}
                 />
               </div>
               <div className="control">
@@ -45,4 +49,4 @@ function FoodBox() {
   );
 }
 
-export default FoodBox;*/
+export default FoodBox;

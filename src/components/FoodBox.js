@@ -4,6 +4,7 @@ import foods from '../foods.json';
 const foodList = foods.slice();
 
 function FoodBox(props) {
+  const { food } = props;
   const [initialState, setInitialState] = useState(foodList);
 
   function handleFormChange(event) {
@@ -14,19 +15,19 @@ function FoodBox(props) {
     <div>
       <div
         className="box"
-        style={{ margin: '20px', height: '100px', width: '550px' }}
+        style={{ margin: '20px', height: '130px', width: '550px' }}
       >
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={props.image} alt={props.name} />
+              <img src={food.image} alt={food.name} />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>{props.name}</strong> <br />
-                <small>{props.calories} cal</small>
+                <strong>{food.name}</strong> <br />
+                <small>{food.calories} cal</small>
               </p>
             </div>
           </div>
@@ -37,7 +38,7 @@ function FoodBox(props) {
                   onChange={handleFormChange}
                   className="input"
                   type="number"
-                  value={props.quantity}
+                  value={food.quantity}
                 />
               </div>
               <div className="control">

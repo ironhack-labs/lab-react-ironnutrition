@@ -14,7 +14,14 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
         {foodList.map((food) => {
-          return <FoodBox />;
+          return (
+            <FoodBox
+              name={food.name}
+              image={food.image}
+              calories={food.calories}
+              quantity={food.quantity}
+            />
+          );
         })}
 
         <p>

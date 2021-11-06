@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FoodBox from './components/FoodBox'
+import foods from './foods.json';
 
-function App() {
+class App extends React.Component {
+
+  state = {
+    foodToDisplay: foods 
+  }
+
+
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Iron-Nutrition</h1>
+      <div className='foodbox-container'>
+        {this.state.foodToDisplay.map((food) => (
+          <FoodBox key={food.id} {...food} />
+        ))}
+      </div>
     </div>
   );
+  }
+
 }
 
 export default App;

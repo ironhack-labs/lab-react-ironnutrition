@@ -1,0 +1,16 @@
+.search-bar{
+  margin: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.search-bar label {
+  margin: auto;
+}
+
+.search-bar input {
+    border: cornflowerblue 2px solid;
+    width: 30vw;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+}

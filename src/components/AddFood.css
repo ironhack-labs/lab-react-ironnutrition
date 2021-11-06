@@ -1,0 +1,54 @@
+h3 {
+    color:cornflowerblue
+}
+
+.main-btn {
+    margin: 2rem auto;
+    display: block;
+    background-color: cornflowerblue;
+    border: cornflowerblue 2px solid;
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: 1.2rem;
+    padding: 0.3rem 1.5rem;
+}
+
+.main-btn:hover {
+    background-color: white;
+    color: cornflowerblue;
+}
+
+.form {
+    margin: 2rem auto;
+    padding: 1rem;
+    border: cornflowerblue 1px solid;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form label {
+    padding: 0.5rem;
+}
+
+.form input {
+    width: 20vw;
+    margin: 0 0.5rem;
+}
+
+.form button {
+    margin: 0.5rem auto;
+    display: block;
+    background-color: cornflowerblue;
+    border: cornflowerblue 1px solid;
+    color: white;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+}
+
+.form button:hover {
+        background-color: white;
+    color: cornflowerblue;
+}

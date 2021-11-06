@@ -1,4 +1,5 @@
 import React from "react";
+import './AddFood.css'
 
 class AddFood extends React.Component {
   state = {
@@ -22,6 +23,7 @@ class AddFood extends React.Component {
     };
 
     this.props.addFoodHandler(FoodInfo);
+    this.props.handleFormVisibility();
 
     this.setState({
       name: '',
@@ -33,8 +35,7 @@ class AddFood extends React.Component {
   render() {
     return (
       <div>
-        <h3>Add new food here:</h3>
-        <form onSubmit={this.handleFormSubmit}>
+        <form className='form' onSubmit={this.handleFormSubmit}>
           <label>
             Name:
             <input

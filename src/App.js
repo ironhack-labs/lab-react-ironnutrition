@@ -3,6 +3,7 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 import SearchBar from './components/SearchBar';
+import TodayFood from './components/TodayFood';
 import foods from './foods.json';
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
     foodToDisplay: foods,
     formVisible: false,
     searchInputState: '',
+    todayFood: [],
   };
 
   handleFormVisibility = () => {
@@ -24,6 +26,12 @@ class App extends React.Component {
   setSearchField = (searchInput) => {
     this.setState({ searchInputState: searchInput });
   };
+
+addTodayFoodHandler = (FoodInfo) => {
+  const todayFoodCopy = [...this.state.todayFood, FoodInfo]
+  this.setState({ todayFood: todayFoodCopy });
+}
+
   render() {
     let filteredProducts = this.state.foodToDisplay.filter((product) => {
       return product.name
@@ -47,10 +55,31 @@ class App extends React.Component {
         <div>
           <SearchBar setSearchField={this.setSearchField} />
         </div>
-        <div className="foodbox-container">
-          {filteredProducts.map((food) => (
-            <FoodBox key={food.id} {...food} />
-          ))}
+        <div className="main-section">
+          <div className="foodbox-container">
+            {filteredProducts.map((food) => (
+              <FoodBox
+                key={food.id}
+                {...food}
+                addTodayFoodHandler={this.addTodayFoodHandler}
+              />
+            ))}
+          </div>
+          <div className="chosen-food-container">
+            <h2>Today's foods:</h2>
+            <ul>
+              {this.state.todayFood.map((food) => {
+                return <TodayFood {...food} />;
+              })}{' '}
+            </ul>
+            <h3>
+              Total:{' '}
+              {this.state.todayFood.reduce(function(a, b){
+        return a + (b.calories * b.quantity);
+    }, 0)}{' '}
+              cal
+            </h3>
+          </div>
         </div>
       </div>
     );

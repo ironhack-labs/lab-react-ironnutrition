@@ -9,11 +9,32 @@ h1 {
   font-size: 3rem;
   margin: 2rem;
   color: cornflowerblue;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.76);
 }
 
 .foodbox-container {
-  width: 80vw;
-  margin: 0 auto;
+  width: 50vw;
   border: cornflowerblue 2px solid;
+
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-section > div {
+    margin: 0 2rem;
+}
+
+.chosen-food-container {
+  width: 40vw;
+}
+
+.chosen-food-container h2 {
+    color: cornflowerblue;
+font-size: 2rem;
+  text-shadow: 2px 2px  rgba(0, 0, 0, 0.637);
+
 }

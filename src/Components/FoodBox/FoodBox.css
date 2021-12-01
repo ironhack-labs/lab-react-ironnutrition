@@ -1,0 +1,48 @@
+.card {
+    width: 400px;
+    border-radius: 10px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgb(200, 201, 206) 0px 0px 20px;
+    margin-bottom: 30px;
+}
+
+
+.card img {
+    height: 40px;
+}
+
+
+.add-btn {
+    height: 60px;
+    width: 60px;
+    background-color: blueviolet;
+    border: 0px;
+    border-radius: 0px 10px 10px 0px;
+    color: white;
+    font-weight: 900;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.quantity-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.input {
+    border:0px;
+    background-color: #d9d9df;
+    height: 30px;
+    width:  90px;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-right: 15px;
+}

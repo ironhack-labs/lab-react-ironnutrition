@@ -4,7 +4,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import Foodbox from './Foodbox';
 import AddFoodBtn from './addFoodBtn';
-import AddFood from './AddFood';
+import AddFoodForm from './AddFood';
 import foods from './foods.json';
 
 
@@ -13,6 +13,7 @@ function App() {
     <div>
     <div>
         <AddFoodBtn />
+        {/* <AddFoodForm /> */}
     </div>
       <div>
         { foods.map((oneFood ,index) => 

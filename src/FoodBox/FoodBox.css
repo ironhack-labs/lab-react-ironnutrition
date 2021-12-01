@@ -1,0 +1,41 @@
+
+.media {
+    display: flex
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+p strong {
+    font-size: 23px;
+    margin-right: 20px;
+}
+
+p small {
+    font-size: 18px;
+}
+
+.media-left img {
+    width: 200px;
+    border-radius: 40px;
+}
+
+.control {
+    margin-left: 30px;
+}
+
+.field-has-addons {
+    display: flex;
+    justify-content: center;
+}
+
+.button-is-info {
+    height: 40px;
+    width: 50px;
+}
+
+

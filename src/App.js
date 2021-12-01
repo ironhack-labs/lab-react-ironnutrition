@@ -1,26 +1,82 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+
+import foods from './foods.json';
+import FoodBox from './FoodBox';
+import AddNewFood from './AddFood';
+import Search from './Search';
+import List from './List';
+
+import 'bulma/css/bulma.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      food: foods,
+      isClicked: false,
+      newFood: []
+    }
+
+  }
+
+  addFood = (newFood) => {
+    const foodCopy = [...this.state.food]
+    foodCopy.push(newFood)
+
+    this.setState({
+      food: foodCopy
+    })
+  }
+
+  filterSearch = (searchFood) => {
+    const { food } = this.state
+
+    const newFood = food.filter(eachFood => eachFood.name === searchFood)
+
+    this.setState({
+      food: newFood
+    })
+  }
+
+
+  changeState() {
+    this.setState({
+      isClicked: true,
+    })
+  }
+
+
+
+
+  render() {
+    return (
+      <div className="app-body">
+        <div className="lista">
+          <Search filterSearch={this.filterSearch} /> <br />
+        </div>
+
+        <div className="left">
+          <button onClick={() => this.changeState()}>
+            Add Food
+          </button> <br />
+
+          {this.state.isClicked ? <AddNewFood addFood={this.addFood} /> : null}  <br />
+
+          {
+            this.state.food.map(eachFood => <FoodBox key={eachFood.id} {...eachFood} />)
+          }
+        </div>
+
+        <div className="lista">
+          <h1>Today's picks</h1>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
+

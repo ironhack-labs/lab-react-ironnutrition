@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
 }
-
+.AddContainer {
+  align-self: flex-start;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,7 +32,16 @@
 .App-link {
   color: #61dafb;
 }
-
+.addForm {
+  display: flex;
+  gap: 1rem;
+}
+.AddContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

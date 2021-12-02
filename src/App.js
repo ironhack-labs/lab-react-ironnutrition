@@ -32,9 +32,10 @@ export default function App() {
 
     let newFood = {
       name: event.target.name.value,
-      number: event.target.number.value,
+      calories: event.target.calories.value,
       image: event.target.image.value,
     };
+    console.log(newFood);
 
     setFoods([newFood, ...foods]);
     setFoodsCopy([newFood, ...foods]);
@@ -61,7 +62,7 @@ export default function App() {
 
       <br />
       <br />
-      {foodsJS.map((elem, i) => {
+      {foodsCopy.map((elem, i) => {
         return <FoodBox key={i} food={elem} btnClick={handleClick} />;
       })}
     </>

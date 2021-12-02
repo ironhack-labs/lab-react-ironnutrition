@@ -20,10 +20,10 @@ function AddForm(props) {
         </div>
 
         <div className="field">
-          <label className="label">Number of calories</label>
+          <label className="label">Calories</label>
           <div className="control has-icons-left has-icons-right">
             <input
-              name="number"
+              name="calories"
               className="input is-success"
               type="number"
               placeholder="Enter the number of calories"

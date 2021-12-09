@@ -12,16 +12,8 @@ function App() {
   <>
 
       <Form />
-      {Foods.map((elem)=>{
-      return(
-        <FoodBox
-          name={elem.name}
-          calories={elem.calories}
-          image={elem.image}
-          quantity={elem.quantity}
-         />
-      )
-      })}
+      <FoodBox />
+
    
   </>
 )}

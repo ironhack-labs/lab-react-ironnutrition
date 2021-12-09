@@ -17,6 +17,9 @@ import React, { useState } from 'react';
         console.log("yes")
         setShowForm(true);
     }
+    const closeForm = () => {
+      setShowForm(false);
+  }
     //3.1 Captura de Datos
     const capturaDatos = (e) =>{
       console.log(e) // {..target: input value: "Rodrigo"}
@@ -79,7 +82,7 @@ import React, { useState } from 'react';
                 value={dataFood.image}
                 onChange={(event) => { capturaDatos(event) }}
                 />
-              <button className="button is-info" onClick={!showForm}> Añadir
+              <button className="button is-info" onClick={openForm}> Añadir
               </button>
               </div>
             </form>

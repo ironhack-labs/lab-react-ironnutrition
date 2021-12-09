@@ -9,6 +9,7 @@ function App() {
   const [searchTerm, setsearchTerm] = useState('');
   return (
     <>
+      <h1 className="title-app">IronFood</h1>
       <div className="navBar">
         <input
           type="text"

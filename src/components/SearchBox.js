@@ -13,6 +13,8 @@ const SearchBox = () => {
     });
   };
 
+
+
   return (
     <>
       <form onSubmit={(e) => {searchFood(e)}}>

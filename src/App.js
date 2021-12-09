@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import datos from './foods.json';
+import Food from './components/Food';
+import Formulario from './components/Formulario';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [searchTerm, setsearchTerm] = useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="navBar">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(event) => {
+            setsearchTerm(event.target.value);
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'flex' }}>
+        <Food datos={datos.filter((val) => {
+          if(searchTerm === ''){
+            return val
+          } else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+            return val;
+          }
+        })} />
+        <Formulario />
+      </div>
+    </>
   );
 }
 
 export default App;
+

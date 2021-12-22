@@ -231,7 +231,7 @@ If you are not sure how to create responsive columns with Ant Design, you can ch
 
 ### Iteration 7 | Bonus | Hide the Add Food Form
 
-There are quite a few components displaying in the app. Implement a hide/show button that when clicked, hides/shows the `AddFoodForm`. When the form is showing the button should display the message <kbd>Hide Form</kbd>` and when the form is hidden it shoud display <kbd>Add New Food</kbd>.
+There are quite a few components displaying in the app. Implement a hide/show button that when clicked, hides/shows the `AddFoodForm`. When the form is showing the button should display the message <kbd>Hide Form</kbd> and when the form is hidden it shoud display <kbd>Add New Food</kbd>.
 
 ![Example - Hide Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-7.gif)
 

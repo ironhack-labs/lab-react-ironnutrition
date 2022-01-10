@@ -5,12 +5,16 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import TodayFood from './components/TodayFood';
-
-
+import SearchBar from './components/SearchBar';
 
 function App() {
   // starts with an empty array
   const [ addFood, setAddFood ] = useState([]);
+  // search bar
+  // default value is all the foods from foods.json--> useState(foods) 
+  // if there is onChange on Search bar, it's going to update only with the filter value
+  // and render <FoodBox /> with the input value
+  const [ foodToDisplay, setFoodToDisplay ] = useState(foods);
 
   // this function fires when the btn inside <FoodBox/> component is clicked
   // takes the food and number because of -> onClick that passed 2 arguments -> btnAddFood(food, number)
@@ -65,15 +69,25 @@ function App() {
     setAddFood(foodAfterRemovedItem);
   }
 
+  const handleSearchBar = (event) => {
+    const inputToCompare =  (event.target.value).toLocaleLowerCase();
+    const searchItem = foods.filter(item => item.name.toLocaleLowerCase().includes(inputToCompare))
+    console.log(searchItem)
+    setFoodToDisplay(searchItem);
+  }
+
   return (
     <div className="container">
       <h1 className="title">IronNutrition</h1>
       <div>
-        {/* <input type="text" className="input search-bar" name="search" placeholder="Search" value=""/> */}
+      <SearchBar inputSearchBar={handleSearchBar}/>
       </div>
       <div className="columns">
         <div className="column">
-          { foods.map((item, index) => {
+          { // initial value is --> 'foods' from foods.json
+            // if there is typing inside the Search bar, this value will change
+            // because we update the useState with --> setFoodToDisplay
+            foodToDisplay.map((item, index) => {
             return (
               <FoodBox // props.food -> props.food.name, props.food.image, props.food.calories
               food={item} 
@@ -89,9 +103,6 @@ function App() {
         </div>
       </div>
     </div>
-   
-        
-      
   );
 }
 

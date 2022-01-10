@@ -14,8 +14,8 @@ function App() {
 
   // this function fires when the btn inside <FoodBox/> component is clicked
   // takes the food and number because of -> onClick that passed 2 arguments -> btnAddFood(food, number)
-  // because App.js -->  btnAddFood={handleFood}--> this refers to 'handleFood' and fires this method here in App.js
-  const handleFood = (number, food) => {
+  // because App.js -->  btnAddFood={handleAddFood}--> this refers to 'handleAddFood' and fires this method here in App.js
+  const handleAddFood = (number, food) => {
     console.log('food', food)
     console.log('number', number) // string
     // the food element clicked with its properties ->name, image, calories is available
@@ -50,7 +50,19 @@ function App() {
       // <TodayFood foodItems={addFood}/>
       setAddFood([...foodFiltered, newFood]); 
     }
-    
+  }
+
+  // when in <TodayFood /> component the 'delete' button is clicked:
+  // 1 - it's going to pass the 'item' or food from child to the parent -> from <TodayFood/> to App.js
+  // 2 - Here, in App.js, the btnRemoveFood --> triggers this function {handleRemoveFood}
+  const handleRemoveFood = (food) => {
+    console.log(food);
+    // to remove an item, we make a filter to 'addFood'
+    console.log(addFood)
+    const foodAfterRemovedItem = addFood.filter(item => item.name !== food.name)
+    console.log(foodAfterRemovedItem)
+    // update state without the removed food
+    setAddFood(foodAfterRemovedItem);
   }
 
   return (
@@ -66,14 +78,14 @@ function App() {
               <FoodBox // props.food -> props.food.name, props.food.image, props.food.calories
               food={item} 
               key={index} // each child in a list need a 'key'
-              btnAddFood={handleFood}// when the btn is clicked, it grabs food and number in input, and call-> handleFood here in App.js
+              btnAddFood={handleAddFood}// when the btn is clicked, it grabs food and number in input, and call-> handleAddFood here in App.js
               />
             )
             }) 
           }
         </div>
         <div className="column">
-          <TodayFood foodItems={addFood}/>
+          <TodayFood foodItems={addFood} btnRemoveFood={handleRemoveFood}/>
         </div>
       </div>
     </div>

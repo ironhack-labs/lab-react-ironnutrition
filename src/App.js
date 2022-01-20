@@ -1,10 +1,11 @@
 
 import './App.css';
 import 'bulma/css/bulma.css';
-import foods from './foods.json';
 import FoodBox from './components/foodbox/FoodBox';
 import NewFoods from './components/newfoods/NewFoods';
 import { useState } from "react";
+import foodsList from './foods.json';
+import AddNewFood from './components/addnewfood/AddNewFood';
 
 
 
@@ -12,18 +13,24 @@ import { useState } from "react";
 
 function App() {
   
-  const [setFoods] = useState([])
+  const [foods, setFoods] = useState(foodsList);
+  const[showAddFood, setShowAddFood] = useState(false);
 
-//Add Food
-const addFood =(foodAdded) =>{
- const newList = [...foods, foodAdded]
+  //Add Food
+  const addFood =(foodAdded) =>{
+  const newList = [...foods, foodAdded]
    setFoods(newList)
   }
 
 
   return (
     <div className="App">
-    <NewFoods onAdd={addFood} />
+    <AddNewFood 
+    onAdd={() => setShowAddFood(!showAddFood)}
+    showAdd={showAddFood} />
+    <>
+    {showAddFood && <NewFoods onAdd={addFood} />}
+    </>
     {foods.map((item, index) => <FoodBox key={index} food={item}/>)}
 
      

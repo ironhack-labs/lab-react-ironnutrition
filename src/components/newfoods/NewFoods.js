@@ -21,29 +21,34 @@ const NewFoods = ({onAdd}) =>{
     }
 return(
     <form className="add-new-food" onSubmit={onSubmit}>
-    <div>
+    
         <div className="form">
         <label>Name</label>
-        <input type='text' placeholder="Add Food Name"
+        <input 
+            type='text' 
+            placeholder="Add Food Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
         />
         </div>
         <div className="form">
         <label>Number Of Calories</label>
-        <input type='text' placeholder="Add The Number of Calories"
+        <input 
+            type='text' 
+            placeholder="Add The Number of Calories"
             value={calories}
             onChange={(e) => setCalories(e.target.value)}
         />
         </div>
         <div className="image">
-        <input type='text' placeholder="Add The Image URL"
+        <input 
+            type='text' 
+            placeholder="Add The Image URL"
              value={image}
             onChange={(e) => setImage(e.target.value)}
         />
         </div>
         <input type='submit' value='Save Food'/>
-        </div>
 
     </form>
 )

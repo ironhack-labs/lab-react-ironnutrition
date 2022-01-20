@@ -5,11 +5,12 @@ import foods from './foods.json';
 import FoodBox from './foodbox/FoodBox';
 import NewFood from './newfood/NewFood';
 import TodayList from './todaylist/TodayList.js';
+import Searchbar from './searchbar/Searchbar';
 
 function App() {
   const [allFoods, setAllFoods] = useState(foods);
   const [openForm, setOpenForm] = useState(false);
-  const [search, setSearch] = useState('');
+  const [searchName, setSearchName] = useState('');
   const [searchFoods, setSearchFoods] = useState([]);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [totalCalories, setTotalCalories] = useState(0);
@@ -67,10 +68,10 @@ function App() {
 
   useEffect(() => {
     const searchResults = allFoods.filter((food) =>
-      food.name.toLowerCase().includes(search.toLowerCase())
+      food.name.toLowerCase().includes(searchName.toLowerCase())
     );
     setSearchFoods(searchResults);
-  }, [search, allFoods]);
+  }, [searchName, allFoods]);
 
   return (
     <section className="container px-3 py-5">
@@ -84,14 +85,7 @@ function App() {
           </button>
         )}
       </div>
-      <input
-        className="input mb-5"
-        type="text"
-        name="search"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <Searchbar setSearchName={setSearchName} />
       <div className="columns">
         <div className="column">
           {searchFoods ? mapList(searchFoods) : mapList(allFoods)}
@@ -100,7 +94,7 @@ function App() {
           <h2 className="subtitle">Today's foods</h2>
           {selectedFoods.length > 0 ? (
             selectedFoods.map((food, index) => {
-              const { name, calories, image, quantity } = food;
+              const { name, calories, quantity } = food;
               return (
                 <TodayList
                   key={index}

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import 'bulma/css/bulma.css';
+import React from 'react';
 
 const TodayList = ({ name, calories, image, quantity, removeTodayFood }) => {
   const handleDelete = (e) => {

@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 
-const FoodBox = ({ name, calories, image, quantity }) => {
-  const [newQuantity, setNewQuantity] = useState(0);
+const FoodBox = ({ name, calories, image, quantity, todayFood }) => {
+  const [newQuantity, setNewQuantity] = useState(1);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    todayFood({
+      name,
+      calories: newQuantity * calories,
+      image,
+      quantity: newQuantity,
+    });
+    setNewQuantity(1);
+  };
 
   return (
     <div className="box">
@@ -27,11 +38,14 @@ const FoodBox = ({ name, calories, image, quantity }) => {
                 className="input"
                 type="number"
                 value={newQuantity}
-                onChange={(e) => setNewQuantity(e.target.value)}
+                min={1}
+                onChange={(e) => setNewQuantity(parseInt(e.target.value))}
               />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button className="button is-info" onClick={handleSubmit}>
+                +
+              </button>
             </div>
           </div>
         </div>

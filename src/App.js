@@ -4,15 +4,17 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './foodbox/FoodBox';
 import NewFood from './newfood/NewFood';
+import TodayList from './todaylist/TodayList.js';
 
 function App() {
   const [allFoods, setAllFoods] = useState(foods);
   const [openForm, setOpenForm] = useState(false);
   const [search, setSearch] = useState('');
   const [searchFoods, setSearchFoods] = useState([]);
+  const [selectedFoods, setSelectedFoods] = useState([]);
+  const [totalCalories, setTotalCalories] = useState(0);
 
   const handleForm = () => {
-    console.log(openForm);
     setOpenForm(openForm ? false : true);
   };
 
@@ -21,6 +23,29 @@ function App() {
     foodList.push(food);
     setAllFoods(foodList);
     setOpenForm(false);
+  };
+
+  const todayFood = (today) => {
+    const foodList = [...selectedFoods];
+    if (foodList.some((food) => food.name === today.name)) {
+      const existingFood = foodList.find((food) => food.name === today.name);
+      existingFood.quantity += today.quantity;
+      existingFood.calories += today.calories;
+    } else {
+      foodList.push(today);
+    }
+    setTotalCalories(
+      foodList.map((food) => food.calories).reduce((acc, num) => acc + num, 0)
+    );
+    setSelectedFoods(foodList);
+  };
+
+  const removeTodayFood = (today) => {
+    const foodList = selectedFoods.filter((food) => food.name !== today.name);
+    setTotalCalories(
+      foodList.map((food) => food.calories).reduce((acc, num) => acc + num, 0)
+    );
+    setSelectedFoods(foodList);
   };
 
   const mapList = (list) => {
@@ -33,6 +58,7 @@ function App() {
           calories={calories}
           image={image}
           quantity={quantity}
+          todayFood={todayFood}
         />
       );
     });
@@ -43,7 +69,6 @@ function App() {
     const searchResults = allFoods.filter((food) =>
       food.name.toLowerCase().includes(search.toLowerCase())
     );
-    console.log(search);
     setSearchFoods(searchResults);
   }, [search, allFoods]);
 
@@ -71,7 +96,35 @@ function App() {
         <div className="column">
           {searchFoods ? mapList(searchFoods) : mapList(allFoods)}
         </div>
-        <div className="column">Test</div>
+        <div className="column">
+          <h2 className="subtitle">Today's foods</h2>
+          {selectedFoods.length > 0 ? (
+            selectedFoods.map((food, index) => {
+              const { name, calories, image, quantity } = food;
+              return (
+                <TodayList
+                  key={index}
+                  name={name}
+                  calories={calories}
+                  quantity={quantity}
+                  removeTodayFood={removeTodayFood}
+                />
+              );
+            })
+          ) : (
+            <p>Add your meals to see your daily calories</p>
+          )}
+          {totalCalories > 0 && (
+            <div className="block">
+              <span
+                class="tag is-primary is-light is-medium"
+                style={{ gap: 4 }}
+              >
+                Total: <b>{totalCalories}</b> cal
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

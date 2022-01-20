@@ -1,9 +1,10 @@
-
+import './AddNewFood.css'
 const AddNewFood  = ({onAdd, showAdd}) =>{
    
     return(
-        <button onClick={onAdd} style={showAdd ? 'red' : 'green'}>{showAdd ? 'Close' : 'Add'}</button>
-    
+        <div className="add-new-food">
+        <button onClick={onAdd}>{showAdd ? 'Close' : 'Add'}</button>
+        </div>
     )
 }
 

@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import './NewFoods.css'
 
 const NewFoods = ({onAdd}) =>{
     const [name, setName] = useState('');
@@ -32,7 +33,7 @@ return(
         />
         </div>
         <div className="form">
-        <label>Number Of Calories</label>
+        <label>Calories</label>
         <input 
             type='text' 
             placeholder="Add The Number of Calories"
@@ -40,7 +41,8 @@ return(
             onChange={(e) => setCalories(e.target.value)}
         />
         </div>
-        <div className="image">
+        <div className="form">
+        <label>Picture</label>
         <input 
             type='text' 
             placeholder="Add The Image URL"
@@ -48,7 +50,7 @@ return(
             onChange={(e) => setImage(e.target.value)}
         />
         </div>
-        <input type='submit' value='Save Food'/>
+        <input type='submit' value='Save Food'className="form-btn"/>
 
     </form>
 )

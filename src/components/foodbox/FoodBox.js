@@ -3,20 +3,21 @@ import './FoodBox.css'
 
 
 const FoodBox = (props) => {
+  const food = props.food;
 
 return(
     <div className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src={props.image} alt="" />
+          <img src={food.image} alt="" />
         </figure>
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{props.name}</strong> <br />
-            <small>{props.calories}</small>
+            <strong>{food.name}</strong> <br />
+            <small>{food.calories}</small>
           </p>
         </div>
       </div>

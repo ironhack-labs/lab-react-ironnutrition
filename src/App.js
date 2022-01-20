@@ -20,9 +20,7 @@ function App() {
   };
 
   const addFood = (food) => {
-    const foodList = [...allFoods];
-    foodList.push(food);
-    setAllFoods(foodList);
+    setAllFoods([...allFoods, food]);
     setOpenForm(false);
   };
 

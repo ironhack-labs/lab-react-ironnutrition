@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+.foodList img {
+  height: 100px;
+  width: 100px;
+}

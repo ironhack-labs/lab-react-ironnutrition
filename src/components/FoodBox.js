@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const FoodBox = (props) => {
+  const { food } = props;
+  const numberOfFoods = useRef();
   return (
     <div className="box">
       <article className="media">
@@ -20,10 +22,22 @@ const FoodBox = (props) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" />
+              <input
+                ref={numberOfFoods}
+                className="input"
+                type="number"
+                defaultValue="1"
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button
+                className="button is-info"
+                onClick={() =>
+                  props.addTodaysFoods(food, numberOfFoods.current.value)
+                }
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

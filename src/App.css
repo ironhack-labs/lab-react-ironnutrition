@@ -44,3 +44,7 @@
 .hide-button {
   display: none;
 }
+
+.foodContainer {
+  display: flex;
+}

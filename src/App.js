@@ -25,6 +25,12 @@ function App() {
     }
   };
 
+  const deleteTodaysFoods = (food) => {
+    setTodaysFoods((todaysFoods) =>
+      todaysFoods.filter((el) => el.name !== food.name)
+    );
+  };
+
   let foodBoxes = filteredFoodList.map((food) => (
     <FoodBox
       food={food}
@@ -63,7 +69,7 @@ function App() {
       <Search onInput={searchHandler} />
       <div className="foodContainer">
         <div>{foodBoxes}</div>
-        <TodaysFood foods={todaysFoods} />
+        <TodaysFood foods={todaysFoods} onDelete={deleteTodaysFoods} />
       </div>
     </Fragment>
   );

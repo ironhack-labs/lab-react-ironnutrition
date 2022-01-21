@@ -9,6 +9,7 @@
     "bulma": "^0.9.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^4.3.1",
     "react-scripts": "4.0.0"
   },
   "scripts": {

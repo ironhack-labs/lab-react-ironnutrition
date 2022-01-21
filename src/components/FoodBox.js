@@ -1,9 +1,32 @@
 import React from 'react';
 
 const FoodBox = (props) => {
-  const { food } = props;
-//   console.log(food)
-    return (
+  // btnAddFood -> comes from App.js 
+  // when onClick on the button, the <TodayFood/> component is added in App.js
+  const { food, btnAddFood } = props;
+
+  // set state for the calories input
+  const [ number, setNumber ] = React.useState(0);//initial value of number
+
+  const [onFocusNumber, setOnFocusNumber ] = React.useState("");
+
+  // set 0 afterblur
+  //const [ numberOnBlur, setnumberOnBlur ] = React.useState(0)
+  
+  // onChange -> every time the number changes we update the setNumber
+  const handleInputChange = (event) => {
+    console.log(event.target.value)
+    setNumber(event.target.value) // set the new state
+  }
+
+  // empty the input when onFocus
+  const handleOnFocus = (event) => {
+    console.log(event.target.value)
+    event.target.value = onFocusNumber; // it's not a good practice
+    setOnFocusNumber(onFocusNumber);
+  }
+
+  return (
       <div className="box">
         <article className="media">
           <div className="media-left">
@@ -25,13 +48,14 @@ const FoodBox = (props) => {
                 <input 
                   className="input" 
                   type="number" 
-                  placeholder='Number of calories'
+                  placeholder='Number of items'
                   // value=0
-                  onChange={(e) => {console.log(e.target.value)}}
+                  onFocus={handleOnFocus}
+                  onChange={handleInputChange} 
                 />
               </div>
               <div className="control">
-                <button className="button is-info">
+              <button onClick={()=> {btnAddFood(number, food)}} className="button is-info">
                 +
                 </button>
               </div>

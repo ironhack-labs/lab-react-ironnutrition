@@ -47,23 +47,6 @@ function App() {
     setSelectedFoods(foodList);
   };
 
-  const mapList = (list) => {
-    const listReturn = list.map((food, index) => {
-      const { name, calories, image, quantity } = food;
-      return (
-        <FoodBox
-          key={index}
-          name={name}
-          calories={calories}
-          image={image}
-          quantity={quantity}
-          todayFood={todayFood}
-        />
-      );
-    });
-    return listReturn;
-  };
-
   useEffect(() => {
     const searchResults = allFoods.filter((food) =>
       food.name.toLowerCase().includes(searchName.toLowerCase())
@@ -86,7 +69,19 @@ function App() {
       <Searchbar setSearchName={setSearchName} />
       <div className="columns">
         <div className="column">
-          {searchFoods ? mapList(searchFoods) : mapList(allFoods)}
+          {searchFoods.map((food, index) => {
+            const { name, calories, image, quantity } = food;
+            return (
+              <FoodBox
+                key={index}
+                name={name}
+                calories={calories}
+                image={image}
+                quantity={quantity}
+                todayFood={todayFood}
+              />
+            );
+          })}
         </div>
         <div className="column">
           <h2 className="subtitle">Today's foods</h2>

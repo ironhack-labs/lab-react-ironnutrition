@@ -1,3 +1,12 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+   appearance: auto;
+   width: 20px;
+   height: 40px;
+
+}
 
 .mg {
   margin-left: 1rem;
@@ -12,16 +21,13 @@
   margin-bottom: 30px;
 }
 
-/* .box {
+ /* .box {
   padding: 0;
   max-width: 400px;
-}
+} */
 
-.box .media {
-  -ms-flex-align: center;
-  align-items: center;
-}
 
+/*
 .box img {
   height: 100%;
   border-top-left-radius: 5px;

@@ -48,3 +48,7 @@
 .foodContainer {
   display: flex;
 }
+
+h1 {
+  font-size: 5em;
+}

@@ -4,12 +4,12 @@ import classes from './TodaysFood.module.css';
 
 const TodaysFood = ({ foods, onDelete }) => {
   const todaysFoodsList = foods.map((food) => (
-    <li key={food.name}>
-      <h3>{food.name}</h3>
-      <p>{food.calories}</p>
-      <p>{food.quantity}</p>
+    <li key={food.name} className={classes.foodListElement}>
+      <h3> {food.name} </h3>
+      <p> Calories: {food.calories} </p>
+      <p> Quantity: {food.quantity} </p>
       <p onClick={() => onDelete(food)}>
-        <IoIosTrash />
+        <IoIosTrash className={classes.trashIcon} />
       </p>
     </li>
   ));
@@ -25,7 +25,7 @@ const TodaysFood = ({ foods, onDelete }) => {
   console.log(totalCalories);
   return (
     <div className={classes.container}>
-      <h1 className={classes.tfHeading}>Today's Foods</h1>
+      <h2 className={classes.tfHeading}>Today's Foods</h2>
       <ul>{todaysFoodsList}</ul>
       <p>Total calories: {totalCalories}</p>
     </div>

@@ -7,6 +7,8 @@ import Form from './components/Form';
 import Search from './components/Search';
 import TodaysFood from './components/TodaysFood';
 
+import classes from './App.module.css';
+
 function App() {
   const [foodList, setFoodList] = useState(foods);
   const [showForm, setShowForm] = useState(false);
@@ -62,6 +64,7 @@ function App() {
 
   return (
     <Fragment>
+      <h1 className={classes.appHeading}>Nutrition Application</h1>
       <Form onSubmit={formSubmitHandler} showForm={showForm} />
       <button onClick={showFormHandler} className={showFormClass}>
         Add New Food

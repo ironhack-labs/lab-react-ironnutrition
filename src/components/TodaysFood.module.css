@@ -8,3 +8,16 @@
 .tfHeading {
   font-size: 3em;
 }
+
+.foodListElement {
+  display: flex;
+  justify-content: center;
+}
+
+.foodListElement p {
+  margin: 0 5px;
+}
+
+.trashIcon {
+  font-size: 1.5em;
+}

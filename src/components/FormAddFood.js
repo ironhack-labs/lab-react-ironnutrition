@@ -5,7 +5,6 @@ const FormAddFood = (props) => {
 
     return (
         <>
-          {console.log(props)}
           <form onSubmit={onSubmitHandle}>
             <label>Name of the food
             <input 

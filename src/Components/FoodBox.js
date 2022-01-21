@@ -3,7 +3,7 @@ import 'bulma/css/bulma.css';
 
 const FoodBox = (props) => {
   return (
-    <div className="FoodBox">
+    <div key={props.name} className="FoodBox">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">

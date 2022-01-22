@@ -47,8 +47,6 @@ function App() {
 
   const handleSearchChange = ({ target }) => setSeardchTerm(target.value);
 
- 
-
   const handleRemoveSelectedFood = (foodName) => {
     const newState = new Map([...selectedFoods]);
     newState.delete(foodName);
@@ -102,14 +100,22 @@ function App() {
           </div>
           {[...selectedFoods].map(([_, food]) => {
             return (
-              <div className='selected-food-list'>
+              <div
+                className="selected-food-list"
+                style={{ backgroundImage: `url(${food.image}` }}
+              >
                 <div>
-                  <div>
-                    <p className='food-name'>{food.name}</p>
-                    <img src={food.image} alt={food.name} style={{height: '40px'}}/>
+                  <div className='food-list-content'>
+                    <p className="food-name">{food.name}</p>
+
                     <p>Cal: {Number(food.calories) * Number(food.quantity)}</p>
                     <p>Qty: {food.quantity}</p>
-                    <button className='button is-danger is-small' onClick={() => handleRemoveSelectedFood(food.name)}>delete</button>
+                    <button
+                      className="button is-danger is-small"
+                      onClick={() => handleRemoveSelectedFood(food.name)}
+                    >
+                      delete
+                    </button>
                   </div>
                 </div>
               </div>

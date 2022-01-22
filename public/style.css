@@ -29,14 +29,32 @@
   height: max-content;
   align-content: center;
   flex-direction: column;
-  background-color: #002e6959;
-  color: #e8f8ff;
-  padding: 20px;
+  position: relative;
+  top: -180px;
+  background-color: black;
+  color: #ffffff;
   font-size: 1.8em;
   border-radius: 10px;
 }
 .ctn-total h3 {
-  margin-bottom: 50px;
-  font-size: 2em;
-  color: #080168;
+  margin-bottom: 10px;
+  font-size: 1.7em;
+  text-decoration: underline;
+  padding: 10px;
+}
+.ctn-total p {
+  font-size: 0.8em;
+  font-weight: 100;
+}
+.ctn-total button {
+  margin-top: 10px;
+}
+.ctn-total .food-name {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.selected-food-list {
+  border-top: 1px solid white;
+  padding: 10px;
 }

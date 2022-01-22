@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FoodForm = ({ onClick}) => {
-  const initialState = { name: '', calories: 0, image: '' };
+  const initialState = { name: '', calories: 0, image: '', quantity: 0 };
   const [state, setState] = React.useState(initialState);
   const handleChange = ({ target }) => {
     setState({ ...state, [target.name]: target.value });

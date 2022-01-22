@@ -11,9 +11,9 @@ function App() {
   const [searchTerm, setSeardchTerm] = React.useState('');
 
   const handleNewFood = (newFood) => {
-  setShow(!show)
-  setFoods([...foods, newFood]);
-}
+    setShow(!show);
+    setFoods([...foods, newFood]);
+  };
 
   const handleSearchChange = ({ target }) => setSeardchTerm(target.value);
 
@@ -49,10 +49,28 @@ function App() {
       )}
 
       {show && <FoodForm onClick={handleNewFood} />}
-      {foods.filter(bySearchTerm).map((entry) => (
-        // ...entry = entry.name entry.image entry.calories
-        <FoodBox key={entry.name} {...entry} />
-      ))}
+      <div className="section">
+        <div className="food-list">
+          {foods.filter(bySearchTerm).map((entry) => (
+            // ...entry = entry.name entry.image entry.calories
+            <FoodBox key={entry.name} {...entry} />
+          ))}
+        </div>
+
+        <div className="ctn-total container">
+          <div>
+            <h3>Total Food</h3>
+          </div>
+          <div>
+            <div>
+              <p>Name</p>
+              <img src="" alt="" />
+              <p>Calories: </p>
+            </div>
+    
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

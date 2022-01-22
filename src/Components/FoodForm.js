@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FoodForm = ({ onClick }) => {
+const FoodForm = ({ onClick}) => {
   const initialState = { name: '', calories: 0, image: '' };
   const [state, setState] = React.useState(initialState);
   const handleChange = ({ target }) => {
@@ -8,14 +8,19 @@ const FoodForm = ({ onClick }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const newFood = { ...state };
-    console.log(newFood)
+
     if (state.calories) {
       onClick(newFood);
     }
     setState(initialState);
   };
+
+  // const handleShow = (event) => {
+  //   event.preventDefault();
+  //   console.log(event.target)
+  //   onClick({state: event.target.value})
+  // }
   return (
     <form className="form" onSubmit={handleSubmit}>
       <label className="label" htmlFor="name">
@@ -49,9 +54,12 @@ const FoodForm = ({ onClick }) => {
         value={state.calories}
         onChange={handleChange}
       />
-      <button className="button is-dark" type="submit">
+      <button className="button is-link" type="submit">
         ADD
       </button>
+      {/* <button className='button is-link is-light' value='false' type='submit' onClick={handleShow}>
+        Cancel
+      </button> */}
     </form>
   );
 };

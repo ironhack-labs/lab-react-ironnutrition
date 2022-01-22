@@ -3,7 +3,7 @@ const AddNewFood  = ({onAdd, showAdd}) =>{
    
     return(
         <div className="add-new-food">
-        <button onClick={onAdd}>{showAdd ? 'Close' : 'Add'}</button>
+        <button onClick={onAdd}>{showAdd ? 'Close' : 'Add Food'}</button>
         </div>
     )
 }

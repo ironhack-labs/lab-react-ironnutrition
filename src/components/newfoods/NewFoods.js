@@ -38,7 +38,7 @@ return(
             type='text' 
             placeholder="Add The Number of Calories"
             value={calories}
-            onChange={(e) => setCalories(e.target.value)}
+            onChange={(e) => setCalories(Number(e.target.value))}
         />
         </div>
         <div className="form">

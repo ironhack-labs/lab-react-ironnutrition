@@ -1,33 +1,33 @@
 import 'bulma/css/bulma.css';
-import './FoodBox.css'
+import { useState } from 'react';
 
-
-const FoodBox = (props) => {
-  const food = props.food;
+const FoodBox = ({image, name, calories, quantity, addTodaysFood}) => {
+  
+  const [quantityInput, setQuantityInput] = useState(quantity);
 
 return(
     <div className="box">
     <article className="media">
       <div className="media-left">
         <figure className="image is-64x64">
-          <img src={food.image} alt="" />
+          <img src={image} alt="" />
         </figure>
       </div>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{food.name}</strong> <br />
-            <small>{food.calories}</small>
+            <strong>{name}</strong> <br />
+            <small>{calories}</small>
           </p>
         </div>
       </div>
       <div className="media-right">
         <div className="field has-addons">
           <div className="control">
-            <input className="input" type="number" value="1" />
+            <input className="input" type="number" value={quantityInput} onChange={(e) => {setQuantityInput(Number(e.target.value))}} />
           </div>
           <div className="control">
-            <button className="button is-info">
+            <button className="button is-info" onClick={() => {addTodaysFood({name, quantity: quantityInput, calories})}}>
               +
             </button>
           </div>

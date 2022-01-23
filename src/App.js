@@ -38,9 +38,9 @@ function App() {
     let todayCopy = [...today]
     let found = today.find(food => food.name === novaFood.name) 
     if(found) {
-      found.quantity += novaFood.quantity
+      found.quantity += novaFood.quantity;
     } else {
-      todayCopy.push(novaFood)
+      todayCopy.push(novaFood);
     }
     setToday(todayCopy);
   }

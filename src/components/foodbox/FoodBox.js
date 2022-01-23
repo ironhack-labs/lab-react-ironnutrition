@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const FoodBox = ({image, name, calories, quantity, addTodaysFood}) => {
   
-  const [quantityInput, setQuantityInput] = useState(quantity);
+const [quantityInput, setQuantityInput] = useState(quantity);
 
 return(
     <div className="box">

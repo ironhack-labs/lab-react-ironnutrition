@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+const FoodCard = ({ name, image, quantity, calories, addTodayFood }) => {
+  const [quantityInput, setQuantityInput] = useState(quantity);
 
-const FoodCard = ({ name, image, quantity, calories }) => {
   return (
     <div className="box">
       <article className="media">
@@ -21,19 +22,28 @@ const FoodCard = ({ name, image, quantity, calories }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              {/* <input className="input" type="number" value={quantity} /> */}
+              <input
+                className="input"
+                type="number"
+                value={quantityInput}
+                onChange={(e) => setQuantityInput(Number(e.target.value))}
+              />
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button
+                className="button is-info"
+                onClick={() => {
+                  addTodayFood({ name, quantity: quantityInput, calories });
+                }}
+              >
                 +
               </button>
             </div>
           </div>
         </div>
       </article>
-    </div>  
-  )
+    </div>
+  );
 };
 
 export default FoodCard;
-

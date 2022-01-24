@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchFood = ({ searchedFoods, search }) => {
+const SearchFood = ({ searchedFood }) => {
   
+  const [keyword, setKeyword] = useState('')
+
+  const handleChange = (e) => {
+    setKeyword(e.target.value)
+    searchedFood(e.target.value)
+  }
+
   return (
     <>
       <input
         className="input"
         type="text"
         placeholder="Search food..."
-        value={search}
-        onChange={(e) => searchedFoods(e.target.value)}
+        value={keyword}
+        onChange={handleChange}
       ></input>
     </>
   );

@@ -11,7 +11,8 @@ import FoodForm from './components/FoodForm';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [foods, setFoods] = useState(foodList);
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState(foods)
+  const [todayFood, setTodayFood] = useState([])
 
   const toogleShowForm = () => {
     setShowForm(!showForm);
@@ -23,14 +24,28 @@ function App() {
     setFoods([...foods, newFood]);
   };
 
-  const searchedFoods = (foodName) => {
-    let foodsCopy = [...foods];
-    let filtered = foodsCopy.filter(
+  const searchFoods = (foodName) => {
+    const filtered = foods.filter(
       (food) =>
-        food.name.toLocaleLowerCase().includes(foodName.name.toLocaleLowerCase())
+        food.name.toLowerCase().includes(foodName.toLowerCase())
     );
     setSearch(filtered)
   };
+
+  const addTodayFood = (newTodayFood) => {
+    const todayCopy = [...todayFood] 
+
+    let found = todayCopy.find(food => food.name === newTodayFood.name)
+
+    if(found) {
+      found.quantity += newTodayFood.quantity
+    } else {
+      todayCopy.push(newTodayFood)
+    }
+    setTodayFood(todayCopy)
+    console.log(todayFood)
+
+  }
 
   return (
     <div className="App">
@@ -38,20 +53,16 @@ function App() {
         <h1 className="title">IronNutrition</h1>
       </section>
       <section className="section">
-        {showForm ? null : (
-          <AddButton showForm={showForm} toogleShowForm={toogleShowForm} />
-        )}
-        {showForm && (
-          <FoodForm addNewFood={addNewFood} toogleShowForm={toogleShowForm} />
-        )}
-        <SearchFood searchedFoods={searchedFoods} search={search}/>
+        {!showForm && <AddButton toogleShowForm={toogleShowForm} />}
+        {showForm && <FoodForm addNewFood={addNewFood} toogleShowForm={toogleShowForm} />}
+        <SearchFood searchedFood={searchFoods} />
       </section>
       <section className="section columns">
         <div className="column is-three-qurters">
-          <FoodBox foods={search} />
+          <FoodBox foods={search} addTodayFood={addTodayFood}/>
         </div>
         <div className="column is-one-quarter ">
-          <TodayFood />
+          <TodayFood todayFood={todayFood}/>
         </div>
       </section>
     </div>
@@ -60,9 +71,4 @@ function App() {
 
 export default App;
 
-// {
-//   "name": "Gnocchi",
-//   "calories": 500,
-//   "image": "https://i.imgur.com/93ekwW0.jpg",
-//   "quantity": 0
-// },
+

@@ -59,11 +59,11 @@ const FoodForm = ({ addNewFood, toogleShowForm }) => {
         </div>
         <div className="field is-grouped is-justify-content-flex-end">
           <div className="control">
-            <button className="button is-link is-small">Submit</button>
+            <button className="button is-info is-small">Submit</button>
           </div>
           <div className="control">
             <button
-              className="button is-link is-small is-light"
+              className="button is-info is-small is-light"
               onClick={cancelAction}
             >
               Cancel

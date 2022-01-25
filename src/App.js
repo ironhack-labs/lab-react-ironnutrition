@@ -17,6 +17,7 @@ function App() {
 
   const pushNewFood = ((newFood) => {setAddNewFood([...foods, newFood]);
     newFood.quantity = 0;  //quantidade inicial da nova comida add
+    setShowForm(false);
    
  })
 

@@ -13,6 +13,9 @@ const FoodForm = ({pushNewFood}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         pushNewFood({name, calories, image});
+        setName('');
+        setImage('');
+        setCalories(0);
     }
 
     return (

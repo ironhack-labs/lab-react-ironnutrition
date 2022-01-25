@@ -5,8 +5,8 @@ const SearchFood = ({ searchedFood }) => {
   const [keyword, setKeyword] = useState('')
 
   const handleChange = (e) => {
-    setKeyword(e.target.value)
     searchedFood(e.target.value)
+    setKeyword(e.target.value)
   }
 
   return (
@@ -16,7 +16,7 @@ const SearchFood = ({ searchedFood }) => {
         type="text"
         placeholder="Search food..."
         value={keyword}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
       ></input>
     </>
   );

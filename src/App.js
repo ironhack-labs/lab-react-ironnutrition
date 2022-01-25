@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import foodList from './foods.json';
 import 'bulma/css/bulma.css';
 import './App.css';
-import FoodBox from './components/FoodBox';
+// import FoodBox from './components/FoodBox';
+import FoodCard from './components/FoodCard'
 import SearchFood from './components/SearchFood';
 import TodayFood from './components/TodayFood';
 import AddButton from './components/AddButton';
@@ -10,7 +11,7 @@ import FoodForm from './components/FoodForm';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [foods, setFoods] = useState(foodList);
+  const [foods, setFoods] = useState([...foodList]);
   const [search, setSearch] = useState(foods)
   const [todayFood, setTodayFood] = useState([])
 
@@ -20,9 +21,10 @@ function App() {
 
   const addNewFood = (newFood) => {
     newFood.quantity = 0;
-
     setFoods([...foods, newFood]);
   };
+
+  useEffect(() => {setSearch([...foods])}, [foods]) 
 
   const searchFoods = (foodName) => {
     const filtered = foods.filter(
@@ -36,15 +38,19 @@ function App() {
     const todayCopy = [...todayFood] 
 
     let found = todayCopy.find(food => food.name === newTodayFood.name)
-
+    if (!newTodayFood.quantity) return
     if(found) {
       found.quantity += newTodayFood.quantity
     } else {
       todayCopy.push(newTodayFood)
     }
     setTodayFood(todayCopy)
-    console.log(todayFood)
+  }
 
+  const deleteTodayFood = (id) => {
+    let todayCopy = [...todayFood]
+    // let deletedFood = todayCopy.filter((food) => {return food.name !== id})
+    setTodayFood(todayCopy.filter((food) => {return food.name !== id}))
   }
 
   return (
@@ -59,10 +65,10 @@ function App() {
       </section>
       <section className="section columns">
         <div className="column is-three-qurters">
-          <FoodBox foods={search} addTodayFood={addTodayFood}/>
+          {search.map((food) => (<FoodCard key={food.name} {...food} addTodayFood={addTodayFood} />))}
         </div>
         <div className="column is-one-quarter ">
-          <TodayFood todayFood={todayFood}/>
+          <TodayFood todayFood={todayFood} deleteTodayFood={deleteTodayFood} />
         </div>
       </section>
     </div>

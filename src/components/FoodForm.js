@@ -3,27 +3,28 @@ import React, { useState } from 'react';
 const FoodForm = ({ addNewFood, toogleShowForm }) => {
   const [name, setName] = useState('');
   const [calories, setCalories] = useState(0);
-  const [url, setUrl] = useState('');
+  const [image, setImage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !calories) return alert('Fill all the information, please')
-    addNewFood({ name, calories, url });
+    addNewFood({ name, calories, image });
     setName('');
     setCalories(0);
-    setUrl('');
+    setImage('');
+    toogleShowForm();
   };
 
-  const cancelAction = () => {
+  const cancelClick = () => {
     setName('');
     setCalories(0);
-    setUrl('');
+    setImage('');
     toogleShowForm();
   };
 
   return (
     <>
-      <form className="section" onSubmit={handleSubmit}>
+      <form className="section" onSubmit={(e) =>handleSubmit(e)}>
         <div className="field">
           <label className="label">Food</label>
           <div className="control">
@@ -52,8 +53,8 @@ const FoodForm = ({ addNewFood, toogleShowForm }) => {
             <input
               className="input"
               placeholder="Image url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
             />
           </div>
         </div>
@@ -64,7 +65,7 @@ const FoodForm = ({ addNewFood, toogleShowForm }) => {
           <div className="control">
             <button
               className="button is-info is-small is-light"
-              onClick={cancelAction}
+              onClick={cancelClick}
             >
               Cancel
             </button>

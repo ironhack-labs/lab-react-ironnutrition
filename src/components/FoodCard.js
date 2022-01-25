@@ -33,7 +33,8 @@ const FoodCard = ({ name, image, quantity, calories, addTodayFood }) => {
               <button
                 className="button is-info"
                 onClick={() => {
-                  addTodayFood({ name, quantity: quantityInput, calories });
+                  addTodayFood({ name, quantity: quantityInput, calories })
+                  setQuantityInput(0);
                 }}
               >
                 +

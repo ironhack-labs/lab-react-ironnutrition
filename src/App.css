@@ -5,3 +5,22 @@
 h1 {
   margin-bottom: -2.6rem;
 }
+
+.today-org{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.today-li {
+  width: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.delete {
+  margin-left: 4px;
+}
+.delete:hover {
+  background-color: red;
+}

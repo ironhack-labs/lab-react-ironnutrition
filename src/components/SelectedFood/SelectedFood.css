@@ -1,4 +1,11 @@
-h2 {
+.food-selection-container h2 {
   font-size: 2.5rem;
   font-weight: bold;
+}
+
+.food-selection-container ul {
+  padding-left: 25px;
+}
+.food-selection-container ul li {
+  list-style-type: circle;
 }

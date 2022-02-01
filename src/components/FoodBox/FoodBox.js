@@ -2,12 +2,14 @@ import { useState } from 'react';
 import SelectedFood from '../SelectedFood/SelectedFood';
 
 function FoodBox({ foods, handleOnClick }) {
-  const [foodName, setFoodName] = useState('');
-  const [foodCal, setFoodCal] = useState(0);
-  const [numberOfFood, setNumberOfFood] = useState(1);
+  const [foodQuantity, setFoodQuantity] = useState(1);
 
-  const handleClickFuck = (e) => {
-    console.log(e.target);
+  const handleQuantity = (e, food) => {
+    setFoodQuantity((prevState) => prevState + 1);
+  };
+
+  const getFoodElements = (food) => {
+    handleOnClick(food);
   };
 
   return (
@@ -31,10 +33,18 @@ function FoodBox({ foods, handleOnClick }) {
             <div className="media-right">
               <div className="field has-addons">
                 <div className="control">
-                  <input className="input" type="number" value="1" />
+                  <input
+                    className="input"
+                    type="number"
+                    defaultValue={food.quantity}
+                    onChange={(e) => handleQuantity(e, food)}
+                  />
                 </div>
                 <div className="control">
-                  <button className="button is-info" onClick={handleOnClick}>
+                  <button
+                    className="button is-info"
+                    onClick={(event) => getFoodElements(food)}
+                  >
                     +
                   </button>
                 </div>

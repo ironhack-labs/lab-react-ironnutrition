@@ -7,10 +7,10 @@ import SelectedFood from './components/SelectedFood/SelectedFood';
 import AddNewFood from './components/AddNewFood/AddNewFood';
 
 function App() {
-  console.log(foods);
   const [allFoods, setFoods] = useState(foods);
   const [foodsData, setFoodData] = useState(foods);
   const [searchField, setSearchField] = useState('');
+  const [foodSelection, setFoodSelection] = useState([]);
 
   const filteredFoods = foodsData.filter((food) => {
     return food.name.toLowerCase().includes(searchField.toLowerCase());
@@ -20,10 +20,10 @@ function App() {
     setSearchField(e.target.value);
   };
 
-  const handleClick = (e) => {
-    const foodsArraySelection = {
-      element: e.target.parentNode.parentNode.parentNode.parentNode.innerHTML,
-    };
+  const handleClick = (foodElements) => {
+    const updatedFoodSelection = [...foodSelection, foodElements];
+    setFoodSelection(updatedFoodSelection);
+    console.log('FOOD SELECTIONNNNN', foodSelection);
   };
 
   const addNewFood = (newFood) => {
@@ -32,8 +32,6 @@ function App() {
     const updatedFoodsData = [...foodsData, newFood];
     setFoods(updatedAllFoods);
     setFoodData(updatedFoodsData);
-
-    console.log('FOODSDATA AFTER ADDING NEW FOOW', foodsData);
   };
 
   return (
@@ -42,7 +40,7 @@ function App() {
       <AddNewFood addNewFood={addNewFood}></AddNewFood>
       <div className="main-container">
         <FoodBox foods={filteredFoods} handleOnClick={handleClick} />
-        <SelectedFood></SelectedFood>
+        <SelectedFood foodList={foodSelection}></SelectedFood>
       </div>
     </div>
   );

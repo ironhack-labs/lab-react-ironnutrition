@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function AddNewFood(props) {
-  console.log(props.addNewFood);
   const [name, setName] = useState('');
   const [calories, setCalories] = useState(0);
   const [image, setImage] = useState('');

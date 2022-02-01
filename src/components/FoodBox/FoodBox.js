@@ -1,6 +1,7 @@
-function FoodBox({ foods }) {
-  console.log('PROPssS', foods);
+import { useState } from 'react';
+import SelectedFood from '../SelectedFood/SelectedFood';
 
+function FoodBox({ foods, handleOnClick }) {
   return (
     <div className="box">
       {foods.length ? (
@@ -25,7 +26,9 @@ function FoodBox({ foods }) {
                   <input className="input" type="number" value="1" />
                 </div>
                 <div className="control">
-                  <button className="button is-info">+</button>
+                  <button className="button is-info" onClick={handleOnClick}>
+                    +
+                  </button>
                 </div>
               </div>
             </div>

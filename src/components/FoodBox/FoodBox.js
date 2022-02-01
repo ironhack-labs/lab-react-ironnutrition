@@ -2,6 +2,14 @@ import { useState } from 'react';
 import SelectedFood from '../SelectedFood/SelectedFood';
 
 function FoodBox({ foods, handleOnClick }) {
+  const [foodName, setFoodName] = useState('');
+  const [foodCal, setFoodCal] = useState(0);
+  const [numberOfFood, setNumberOfFood] = useState(1);
+
+  const handleClickFuck = (e) => {
+    console.log(e.target);
+  };
+
   return (
     <div className="box">
       {foods.length ? (

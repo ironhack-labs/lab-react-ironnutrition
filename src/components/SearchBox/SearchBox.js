@@ -1,12 +1,14 @@
 import './SearchBox.css';
+import { useState } from 'react';
 
 function SearchBox(props) {
   return (
     <div>
       <input
         className="search"
-        type="search"
-        placeholder="Find your favorite food"
+        type="text"
+        placeholder="Search..."
+        // value={searchValue}
         onChange={props.handleChange}
       />
     </div>

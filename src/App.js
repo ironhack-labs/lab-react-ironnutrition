@@ -4,16 +4,15 @@ import FoodBox from './components/FoodBox/FoodBox';
 import './App.css';
 import foods from './foods.json';
 import SelectedFood from './components/SelectedFood/SelectedFood';
+import AddNewFood from './components/AddNewFood/AddNewFood';
 
 function App() {
   console.log(foods);
   const [allFoods, setFoods] = useState(foods);
+  const [foodsData, setFoodData] = useState(foods);
   const [searchField, setSearchField] = useState('');
-  const [selectedFood, setSelectedFood] = useState([]);
 
-  console.log('selectedFood', selectedFood);
-
-  const filteredFoods = allFoods.filter((food) => {
+  const filteredFoods = foodsData.filter((food) => {
     return food.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
@@ -21,21 +20,29 @@ function App() {
     setSearchField(e.target.value);
   };
 
-  const arrayOfSelectedFoods = [];
-
   const handleClick = (e) => {
     const foodsArraySelection = {
       element: e.target.parentNode.parentNode.parentNode.parentNode.innerHTML,
     };
-    setSelectedFood((prevState) => prevState.push(foodsArraySelection));
+  };
+
+  const addNewFood = (newFood) => {
+    console.log('NEWFOOD IN APPJS', newFood);
+    const updatedAllFoods = [...allFoods, newFood];
+    const updatedFoodsData = [...foodsData, newFood];
+    setFoods(updatedAllFoods);
+    setFoodData(updatedFoodsData);
+
+    console.log('FOODSDATA AFTER ADDING NEW FOOW', foodsData);
   };
 
   return (
     <div className="container">
       <SearchBox handleChange={handleChange} />
-      <div class="main-container">
+      <AddNewFood addNewFood={addNewFood}></AddNewFood>
+      <div className="main-container">
         <FoodBox foods={filteredFoods} handleOnClick={handleClick} />
-        <SelectedFood foodSelected={selectedFood}></SelectedFood>
+        <SelectedFood></SelectedFood>
       </div>
     </div>
   );

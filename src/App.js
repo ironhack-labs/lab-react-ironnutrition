@@ -9,6 +9,7 @@ function App() {
   
   const [displayForm, setDisplayForm] = useState(false);
   const [foods, setFoods] = useState(foodsArray);
+  const [displayFoods, setDisplayFoods] = useState(foodsArray);
   const [selectedFoods, setSelectedFoods] = useState([]);
 
   function toggleFormDisplay() {
@@ -21,13 +22,13 @@ function App() {
   
   function filterByName(subString) {
     if (subString !== '') {
-      setFoods((prevFoods) => {
-        // this will only reduce selections, not 
-        return prevFoods.filter(food => food.name.includes(subString))
-      });
+      const filteredFoods = [...foods].filter(food => {
+        const lowerCaseName = food.name.toLowerCase();
+        return lowerCaseName.includes(subString.toLowerCase());
+      })
+      setDisplayFoods(filteredFoods);
     } else {
-      // this will not take into account added foods!
-      setFoods(foodsArray);
+      setDisplayFoods(foods);
     }
   }
 
@@ -55,7 +56,7 @@ function App() {
       />
 
       <Main 
-        foods={ foods }
+        foods={ displayFoods }
         selectFood = { selectFood }
         selectedFoods={ selectedFoods }
       />

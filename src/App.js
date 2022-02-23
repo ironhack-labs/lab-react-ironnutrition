@@ -20,7 +20,6 @@ function App() {
   }
   
   function filterByName(subString) {
-    console.log('substring: ', subString);
     if (subString !== '') {
       setFoods((prevFoods) => {
         // this will only reduce selections, not 

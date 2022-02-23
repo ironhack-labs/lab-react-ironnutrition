@@ -12,8 +12,9 @@ function FoodBox(props) {
     }
     
     function clickHandler(evnt) {
-        food.quantity=parseInt(quantity);
-        selectFood(food);
+        const newFood = {...food};
+        newFood.quantity=parseInt(quantity);
+        selectFood(newFood);
     }
 
     return (

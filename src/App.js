@@ -42,7 +42,19 @@ function App() {
   // }
 
   function selectFood(newFood) {
-    setSelectedFoods((prevSelection) => [...prevSelection, newFood])
+
+    if (selectedFoods.some(food => food.name === newFood.name)) {
+      
+      setSelectedFoods((currentSelection) => {
+        const arrayCopy = [...selectedFoods];
+        arrayCopy.forEach(food => {
+          if (food.name === newFood.name) food.quantity += newFood.quantity;
+        });
+        return arrayCopy;
+      })
+    } else {
+      setSelectedFoods((currentSelection) => [...currentSelection, newFood])
+    }
   }
 
   return (

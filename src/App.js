@@ -60,7 +60,7 @@ function App() {
             <h3>Today's Food</h3>
         </div>
         <div className="column">
-            {showTodaysFood && <TodaysFood foods={allFoods}/>}
+            {showTodaysFood && <TodaysFood allFoods={allFoods} setQuantity={setQuantity}/>}
         </div>
       </div>
     </div>

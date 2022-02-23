@@ -7,6 +7,7 @@ function FoodBox(props) {
 
     function handleInputQty (inputQty) {
         setQuantity(food.name, inputQty);
+        setSelectedQuantity(inputQty);
     }
 
   return (
@@ -28,7 +29,7 @@ function FoodBox(props) {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" onChange={e => handleInputQty(e.target.value)} defaultValue={selectedQuantity} />
+              <input className="input" type="number" onChange={e => handleInputQty(e.target.value)} value={food.quantity} />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

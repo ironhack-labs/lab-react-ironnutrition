@@ -1,19 +1,25 @@
 import React from "react";
 
 function TodaysFood(props) {
-    const { foods } = props;
-    const selectedFoods = [...foods].filter(food => food.quantity > 0);
+    const { allFoods, setQuantity } = props;
+    const selectedFoods = [...allFoods].filter(food => food.quantity > 0);
     const totalCalories = selectedFoods.reduce((acc, curr)=> {
         return acc + (curr.calories)*(curr.quantity);
     }, 0);
-    console.log("totalCalories: ", totalCalories);
+
+    function handleDelete(deletedFood) {
+        setQuantity(deletedFood, 0);
+    }
 
     return (
             <div>
                 <ul>
                     { selectedFoods.map(food => {
                         return (
-                            <li key={food.name}>{food.quantity} {food.name}</li>
+                            <div className="selectedFood">
+                                <li display="inline"key={food.name}>{food.quantity} {food.name}</li>
+                                <button onClick={()=> handleDelete(food.name)}>Delete</button>
+                            </div>
                         )
                     })}   
                 </ul>

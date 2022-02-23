@@ -1,0 +1,30 @@
+.AddFood-div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px;
+}
+
+.AddFood-btn {
+  background-color: #3e8ed0;
+  border-color: transparent;
+  color: #fff;
+  margin-left: 10px;
+  border-radius: 4px;
+  width: 7rem;
+  height: 2.5rem;
+  margin-top: 20px;
+}
+
+.AddFood-form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.AddFood-input {
+  margin-left: 10px;
+  border: #dbdbdb solid 1.75px;
+  border-radius: 3px;
+  box-shadow: 3px 5px #f2f2f2;
+}

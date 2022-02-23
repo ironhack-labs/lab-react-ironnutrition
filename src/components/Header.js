@@ -7,8 +7,8 @@ function Header(props) {
     const { filterByName, displayForm, toggleFormDisplay, addFood } = props;
 
     return (
-      <div>
-        <h1 className="title mt-5">IronNutrition</h1>
+      <div className="mx-5">
+        <h1 className="title mt-5 has-text-left">IronNutrition</h1>
 
         <Search filterByName={ filterByName } />
 

@@ -4,12 +4,14 @@ import foodsArray from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddForm from './components/AddForm';
 import Search from './components/Search';
+import FoodSelection from './components/FoodSelection';
 import { useState } from 'react';
 
 function App() {
   
   const [displayForm, setDisplayForm] = useState(false);
   const [foods, setFoods] = useState(foodsArray);
+  const [selectedFoods, setSelectedFoods] = useState([]);
 
   function toggleFormDisplay() {
     setDisplayForm(!displayForm);
@@ -31,6 +33,19 @@ function App() {
     }
   }
 
+  // function updateFoodQuantity(foodName, value) {
+  //   setFoods((prevFoods) => {
+  //     prevFoods.forEach((food) => {
+  //       if (food.name === foodName) food.quantity = value;
+  //     })
+  //   })
+  //   console.log("foods: ", foods);
+  // }
+
+  function selectFood(newFood) {
+    setSelectedFoods((prevSelection) => [...prevSelection, newFood])
+  }
+
   return (
     <div className="App">
       
@@ -46,8 +61,16 @@ function App() {
 
       <hr />
 
-      { foods.map(food => <FoodBox food={ food } />) }
-      
+      <div className="is-flex is-flex-direction-row mx-5">
+        <div>
+          { foods.map((food, index) => <FoodBox key={ index } food={ food } selectFood={ selectFood }/>) }
+        </div>
+        
+        <div className="mx-5">
+          <FoodSelection selectedFoods={ selectedFoods }/>
+        </div>
+
+      </div>
 
     </div>
   );

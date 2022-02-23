@@ -1,10 +1,8 @@
 import React from 'react';
 import './App.css';
 import foodsArray from './foods.json';
-import FoodBox from './components/FoodBox';
-import AddForm from './components/AddForm';
-import Search from './components/Search';
-import FoodSelection from './components/FoodSelection';
+import Header from './components/Header';
+import Main from './components/Main';
 import { useState } from 'react';
 
 function App() {
@@ -49,29 +47,19 @@ function App() {
   return (
     <div className="App">
       
-      <h1 className="title mt-5">IronNutrition</h1>
+      <Header 
+        filterByName={ filterByName } 
+        displayForm={ displayForm } 
+        toggleFormDisplay={ toggleFormDisplay } 
+        addFood={ addFood } 
+      />
 
-      <Search filterByName={ filterByName } />
-
-      <hr />
-
-      <button className="button is-info" onClick={ toggleFormDisplay }> { (displayForm ? 'Hide Form' : 'Add Food') } </button>
-
-      { displayForm && (<AddForm addFood={ addFood } toggleFormDisplay = { toggleFormDisplay } />) }
-
-      <hr />
-
-      <div className="is-flex is-flex-direction-row mx-5">
-        <div>
-          { foods.map((food, index) => <FoodBox key={ index } food={ food } selectFood={ selectFood }/>) }
-        </div>
-        
-        <div className="mx-5">
-          <FoodSelection selectedFoods={ selectedFoods }/>
-        </div>
-
-      </div>
-
+      <Main 
+        foods={ foods }
+        selectFood = { selectFood }
+        selectedFoods={ selectedFoods }
+      />
+      
     </div>
   );
 }

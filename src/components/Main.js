@@ -4,7 +4,7 @@ import FoodSelection from "./FoodSelection";
 
 function Main(props) {
 
-    const { foods, selectFood, selectedFoods } = props;
+    const { foods, selectFood, selectedFoods, unselectFood } = props;
 
     return(
         <div className="is-flex is-flex-direction-row mx-5">
@@ -13,7 +13,7 @@ function Main(props) {
         </div>
         
         <div className="mx-5">
-          <FoodSelection selectedFoods={ selectedFoods }/>
+          <FoodSelection selectedFoods={ selectedFoods } unselectFood={ unselectFood }/>
         </div>
 
       </div>

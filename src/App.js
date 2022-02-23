@@ -57,6 +57,10 @@ function App() {
     }
   }
 
+  function unselectFood(foodName) {
+    setSelectedFoods((currentSelection) => currentSelection.filter((food) => food.name !== foodName));
+  }
+
   return (
     <div className="App">
       
@@ -71,6 +75,7 @@ function App() {
         foods={ displayFoods }
         selectFood = { selectFood }
         selectedFoods={ selectedFoods }
+        unselectFood={ unselectFood }
       />
       
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 function FoodSelection(props) {
 
-    const { selectedFoods } = props;
+    const { selectedFoods, unselectFood } = props;
 
     return(
         <div className="has-text-left content">
@@ -12,7 +12,8 @@ function FoodSelection(props) {
                     selectedFoods.map((food, index) => {
                         return (
                             <li key={ index } className="list-item">
-                                { food.quantity } { food.name } = { food.calories * food.quantity } kcal
+                                { food.quantity } { food.name } = { food.calories * food.quantity } kcal 
+                                <button className="button is-small ml-2" onClick={ () => unselectFood(food.name) }>  <span role="img" aria-label="trophy">🗑</span> </button>
                             </li>
                         ) 
                     }) 
@@ -24,3 +25,4 @@ function FoodSelection(props) {
 }
 
 export default FoodSelection;
+

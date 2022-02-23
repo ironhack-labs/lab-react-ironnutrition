@@ -1,20 +1,20 @@
+import 'bulma/css/bulma.css';
 
+export default function Foodbox(props) {
 
-export default function Foodbox() {
   return (
-      
     <div className="box">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src="https://i.imgur.com/eTmWoAN.png" />
+            <img src={props.image} alt={props.name} />
           </figure>
         </div>
         <div className="media-content">
           <div className="content">
             <p>
-              <strong>Pizza</strong> <br />
-              <small>400 cal</small>
+              <strong>{props.name}</strong> <br />
+              <small>{props.calories} cal</small>
             </p>
           </div>
         </div>

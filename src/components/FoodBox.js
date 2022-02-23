@@ -1,3 +1,5 @@
+import React from "react";
+
 function FoodBox(props) {
 
     const { food } = props;
@@ -7,7 +9,7 @@ function FoodBox(props) {
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={ food.image } />
+                        <img src={ food.image } alt={ food.name }/>
                     </figure>
                 </div>
                 <div className="media-content">

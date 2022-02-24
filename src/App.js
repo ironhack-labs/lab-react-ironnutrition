@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import 'bulma/css/bulma.css';
+import foodsArr from './foods.json';
+import Foodbox from './components/Foodbox';
+import AddFood from './components/AddFood';
+import Search from './components/Search';
 
 function App() {
+  const [foods, setFoods] = useState(foodsArr);
+  const [displayForm, setDisplayForm] = useState(false);
+
+  const addNewFood = (food) => {
+    const updatedFoods = [...foods, food];
+    setFoods(updatedFoods);
+  };
+
+  const toggleForm = () => {
+    setDisplayForm(!displayForm);
+  };
+
+  const searchFor = (search) => {
+    const searchResults = foods.filter((food) => food.name.includes(search))
+    console.log(searchResults)
+    setFoods(searchResults);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>IronNutritions</h1>
+
+      <Search searchFor={searchFor} />      
+
+      <button className='button is-info' onClick={toggleForm}>{displayForm ? 'Hide form' : 'Add food'}</button>
+      {displayForm && <AddFood addNewFood={addNewFood} />}
+
+      {foods.map((food, index) => (
+        <Foodbox key={index} food={food} />
+      ))}
     </div>
   );
 }

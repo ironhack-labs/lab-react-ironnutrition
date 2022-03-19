@@ -78,7 +78,7 @@ function App() {
         </div>
 
         <div className="column">
-
+          <h1>Today+'s foods</h1>
           {anySelected &&
             selecteds.map((food) => {
               total += parseInt(food.calories) * parseInt(food.quantity);

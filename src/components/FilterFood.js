@@ -12,14 +12,20 @@ export const FilterFood = (props) => {
   return (
     <div
       style={{
-        margin: '30px 0 30px',
+        margin: '20px 30px',
         width: '50%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
       }}
     >
-      <label>Show food by first letter:</label>
-      <select value={firstLetter} onChange={handleSelect}>
+      <label for="filter" style={{ fontSize: '1.2rem', margin: '5px 10px' }}>
+        Filter by first letter:
+      </label>
+      <select
+        value={firstLetter}
+        onChange={handleSelect}
+        className="button is-primary is-rounded"
+      >
         <option value="All">All</option>
         <option value="P">P</option>
         <option value="B">B</option>

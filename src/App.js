@@ -6,6 +6,7 @@ import { FoodBox } from './components/FoodBox';
 import { useState } from 'react';
 import { AddFood } from './components/AddFood';
 import { FilterFood } from './components/FilterFood';
+import { TodaysFood } from './components/TodaysFood';
 
 function App() {
   const [food, setFood] = useState(foods);
@@ -20,32 +21,33 @@ function App() {
   };
 
   const filterFoodList = (str) => {
-    let filteredFood;
-
-    if (str === 'All') {
-      filteredFood = filterFood;
-    } else {
-      filteredFood = filterFood.filter((food) => {
-        return food.name[0].toLowerCase() === str.toLowerCase();
-      });
-    }
+    let filteredFood =
+      str === 'All'
+        ? filterFood
+        : filterFood.filter(
+            (food) => food.name[0].toLowerCase() === str.toLowerCase()
+          );
 
     setFood(filteredFood);
   };
 
   return (
-    <div className="App">
-      <h1>
-        <strong>IronNutrition</strong>
-      </h1>
+    <div className="App columns">
+      <div className="column">
+        <h1 style={{ fontSize: '6rem', marginLeft: '30px' }}>
+          <strong>Iron</strong>Nutrition
+        </h1>
 
-      <AddFood addFood={addNewFood} />
+        <AddFood addFood={addNewFood} />
 
-      <FilterFood filterFood={filterFoodList} />
+        <FilterFood filterFood={filterFoodList} />
 
-      {food.map((dish, index) => {
-        return <FoodBox key={index} {...dish} />;
-      })}
+        {food.map((dish, index) => {
+          return <FoodBox key={index} {...dish} />;
+        })}
+      </div>
+
+      <TodaysFood />
     </div>
   );
 }

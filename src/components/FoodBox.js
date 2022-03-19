@@ -2,7 +2,7 @@ import React from 'react';
 
 export const FoodBox = ({ name, calories, image, quantity }) => {
   return (
-    <div className="box" style={{ width: '50%' }}>
+    <div className="box" style={{ width: '80%', marginLeft: '30px' }}>
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">

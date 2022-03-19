@@ -25,12 +25,18 @@ export const AddFood = (props) => {
     <div
       style={{
         margin: '80px 0 30px',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'flex-start',
+        width: '60%',
       }}
     >
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          marginLeft: '30px',
+          paddingLeft: '25px',
+          width: '50%',
+        }}
+        className="box"
+      >
         <label for="name">Name: </label>
         <input
           type="text"
@@ -38,7 +44,7 @@ export const AddFood = (props) => {
           vale={name}
           onChange={handleNameInput}
         ></input>
-
+        <br />
         <label for="calories">Calories: </label>
         <input
           type="number"
@@ -46,7 +52,7 @@ export const AddFood = (props) => {
           value={calories}
           onChange={handleCaloriesInput}
         ></input>
-
+        <br />
         <label for="image">Image URL: </label>
         <input
           type="text"
@@ -55,7 +61,13 @@ export const AddFood = (props) => {
           onChange={handleImageInput}
         ></input>
 
-        <button type="submit">Add food</button>
+        <button
+          className="button is-primary is-rounded"
+          type="submit"
+          style={{ width: '50%', margin: '35px' }}
+        >
+          Add food
+        </button>
       </form>
     </div>
   );

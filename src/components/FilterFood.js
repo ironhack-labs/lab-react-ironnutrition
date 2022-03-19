@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export const FilterFood = (props) => {
   const [firstLetter, setFirstLetter] = useState('All');
+  const [query, setQuery] = useState('');
 
   const handleSelect = (e) => {
     setFirstLetter(e.target.value);
@@ -18,9 +19,17 @@ export const FilterFood = (props) => {
         justifyContent: 'flex-start',
       }}
     >
+      <input
+        value={query}
+        type="text"
+        placeholder="search..."
+        onChange={(e) => setQuery(e.target.value)}
+      ></input>
+
       <label for="filter" style={{ fontSize: '1.2rem', margin: '5px 10px' }}>
         Filter by first letter:
       </label>
+
       <select
         value={firstLetter}
         onChange={handleSelect}

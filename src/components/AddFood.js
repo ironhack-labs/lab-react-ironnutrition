@@ -15,6 +15,7 @@ export const AddFood = (props) => {
     setName('');
     setCalories('');
     setImage('');
+    setQuantity(0);
   };
 
   const handleNameInput = (e) => setName(e.target.value);

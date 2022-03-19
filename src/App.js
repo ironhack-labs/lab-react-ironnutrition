@@ -6,7 +6,6 @@ import { FoodBox } from './components/FoodBox';
 import { useState } from 'react';
 import { AddFood } from './components/AddFood';
 import { FilterFood } from './components/FilterFood';
-import { TodaysFood } from './components/TodaysFood';
 
 function App() {
   const [food, setFood] = useState(foods);
@@ -35,7 +34,7 @@ function App() {
     <div className="App columns">
       <div className="column">
         <h1 style={{ fontSize: '6rem', marginLeft: '30px' }}>
-          <strong>Iron</strong>Nutrition
+          <strong style={{ color: 'lightgrey' }}>Iron</strong>nutrition
         </h1>
 
         <AddFood addFood={addNewFood} />
@@ -47,7 +46,26 @@ function App() {
         })}
       </div>
 
-      <TodaysFood />
+      <div
+        className="column"
+        style={{
+          backgroundColor: 'lightgreen',
+        }}
+      >
+        <article
+          className="message is-link"
+          style={{ width: '50%', marginTop: '50px', marginLeft: '5%' }}
+        >
+          <div className="message-body" style={{ backgroundColor: 'white' }}>
+            <h1 style={{ fontSize: '1.2rem' }}>
+              <strong>Today's foods</strong>
+            </h1>
+            <ul>
+              <li></li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </div>
   );
 }

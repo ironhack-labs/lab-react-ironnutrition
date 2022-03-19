@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 
 export const AddNewFood = (props) => {
+    
     const [name, setName] = useState("");
     const [calories, setCalories] = useState(null);
     const [image, setImage] = useState("https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/05/manga.jpg");

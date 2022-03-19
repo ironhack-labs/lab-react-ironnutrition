@@ -1,8 +1,18 @@
-// jshint esversion:8
+// jshint esversion:9
 
 import React from "react";
+import { useState } from "react";
 
-export const FoodBox = ({food}) => {
+export const FoodBox = ({food, addSelectedFood}) => {
+
+    const [name, setName] = useState(food.name);
+    const [calories, setCalories] = useState(food.calories);
+    const [quantity, setQuantity] = useState(food.quantity);
+
+    const handleSelectedFood = () => {
+
+        addSelectedFood({...food, quantity: quantity});
+    };
 
     return (
         <div key={food.name} className="box">
@@ -23,10 +33,10 @@ export const FoodBox = ({food}) => {
                     <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                        <input className="input" type="number" value={food.quantity} />
+                        <input className="input" type="number" min={1} onChange={(e)=> setQuantity(e.target.value)} value={quantity} />
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button onClick={handleSelectedFood} className="button is-info" >
                             +
                         </button>
                         </div>

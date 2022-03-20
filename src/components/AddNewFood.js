@@ -34,7 +34,7 @@ export const AddNewFood = (props) => {
                 <input  onChange={(e)=> setQuantity(e.target.value)} value={quantity} type="number" id="quantity"/>
             </label> <br/>
             
-            <button type="submit"> Add Food</button>
+            <button type="submit">Create Food</button>
 
         </form>
     )

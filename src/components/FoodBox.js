@@ -5,12 +5,11 @@ import { useState } from "react";
 
 export const FoodBox = ({food, addSelectedFood}) => {
 
-    const [name, setName] = useState(food.name);
-    const [calories, setCalories] = useState(food.calories);
-    const [quantity, setQuantity] = useState(food.quantity);
-
+    const [quantity, setQuantity] = useState(1);
+    
+    
     const handleSelectedFood = () => {
-
+        //lifted up function
         addSelectedFood({...food, quantity: quantity});
     };
 

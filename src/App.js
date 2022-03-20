@@ -1,26 +1,27 @@
-//jshint esversion:8
+//jshint esversion:9
 
 import React from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
 import allFoodData from './foods.json';
-import { FoodBox } from './components/FoodBox';
 import { useState } from 'react';
+
+import { FoodBox } from './components/FoodBox';
 import { AddNewFood } from './components/AddNewFood';
 import { Search } from './components/Search';
-
 
 function App() {
   let [foods, setFoods] = useState(allFoodData);
   let [foodsData, setFoodsData] = useState(allFoodData);
   let [showForm, setShowFrom] = useState(false);
   let [selecteds, setSelecteds] = useState([]);
-  let [anySelected, setAnySelected] = useState(false);
-  let total = 0;
+  let [filtering, setFiltering] = useState(false);
+  let totalCalories = 0;
 
   const addFood = (food) => {
     const updatedFoods = [...foods, food];
     setFoods(updatedFoods);
+    setFoodsData(updatedFoods);
     handleShowForm();
   };
 
@@ -33,12 +34,15 @@ function App() {
   };
 
   const handleFilter = (str) => {
+    
     let filteredFoods;
 
     if (str === '') {
       filteredFoods = foodsData;
+      setFiltering(false);
     } else {
       filteredFoods = foodsData.filter((food) => {
+        setFiltering(true);
         return food.name.toLocaleLowerCase().includes(str.toLocaleLowerCase());
       });
     }
@@ -46,12 +50,29 @@ function App() {
   };
 
   const selectedFood = (food) => {
-    let selectedFoods;
-    selectedFoods = [...selecteds, food];
 
-    setSelecteds(selectedFoods);
-    setAnySelected(true);
+    let todaysFood = selecteds.slice();
+
+    const foundFood = todaysFood.find(oldFood => oldFood.name === food.name);
+
+    food.calories *= food.quantity;
+
+    if (foundFood) {
+      foundFood.quantity += food.quantity;
+      /* foundFood.calories += food.calories; */ //<= already being done down there
+    } else {
+      todaysFood.push(food);
+    }
+
+    setSelecteds(todaysFood);
+
   };
+
+  const deleteSelected = (foodName) => {
+    const filteredFood = selecteds.filter(food => food.name !== foodName);
+    setSelecteds(filteredFood);
+  };
+
 
   return (
     <div className="App">
@@ -63,34 +84,32 @@ function App() {
         <div className="column">
           {foods.map((food, index) => {
             return (
-              <FoodBox
-                key={index.toString()}
-                food={food}
-                addSelectedFood={selectedFood}
-              />
+              <FoodBox key={index.toString()} food={food} addSelectedFood={selectedFood} />
             );
           })}
           {showForm && <AddNewFood handleAddFood={addFood} />}
 
-          <button onClick={handleShowForm}>
-            {showForm ? 'Hide Form' : 'Show Form'}
-          </button>
+          {!filtering && <button onClick={handleShowForm}>
+            {showForm?"Cancel":"Add Food"}
+          </button>}
         </div>
 
         <div className="column">
-          <h1>Today+'s foods</h1>
-          {anySelected &&
-            selecteds.map((food) => {
-              total += parseInt(food.calories) * parseInt(food.quantity);
+          <h1>Today's foods</h1>
+
+          {selecteds.length !== 0 &&
+            selecteds.map((food, index) => {
+              totalCalories += parseInt(food.calories) * parseInt(food.quantity);
 
               return (
-                <div>
-                  <span>{food.quantity} {food.name} = {food.calories * food.quantity} cal</span> 
+                <div key={index.toString()}>
+                  <span>{food.quantity} {food.name} = {food.calories * food.quantity} cal </span> 
+                  <button onClick={() => deleteSelected(food.name)}>Delete</button>
                 </div>
               );
             })}
 
-          <div>Total: {total}</div>
+          <div>Total Calories: {totalCalories}</div>
         </div>
       </div>
     </div>

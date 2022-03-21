@@ -4,9 +4,8 @@ const AddFoodForm = ({ addFoodToList }) => {
     name: '',
     calories: 0,
     image: '',
+    quantity: 0,
   });
-
-  console.log(formInfo);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -14,14 +13,14 @@ const AddFoodForm = ({ addFoodToList }) => {
   };
 
   const handleOnChange = (event) => {
-    const { value, name } = event.target;
-
-    setFormInfo({ ...formInfo, [name]: value });
+    let { value, name } = event.target;
+    let finalVal = name === 'calories' ? Number(value) : value;
+    setFormInfo({ ...formInfo, [name]: finalVal });
   };
 
   return (
     <div className="box">
-      <form onSubmit={() => handleForm()}>
+      <form onSubmit={(e) => handleForm(e)}>
         <input
           className="input mb-3"
           type="text"

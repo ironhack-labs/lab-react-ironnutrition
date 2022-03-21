@@ -8,8 +8,10 @@ function App() {
   const [foodList, setFoodList] = useState(foods);
   const [showForm, setShowForm] = useState(true);
 
+  console.log(foodList);
   const addFoodToList = (form) => {
-    console.log('add food');
+    console.log(form);
+    setFoodList([...foodList, form]);
   };
 
   return (

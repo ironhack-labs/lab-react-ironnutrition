@@ -67,7 +67,7 @@ export const AddFood = (props) => {
           type="submit"
           style={{ width: '50%', margin: '35px' }}
         >
-          Add food
+          Add
         </button>
       </form>
     </div>

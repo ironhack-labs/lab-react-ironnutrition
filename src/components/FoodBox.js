@@ -36,14 +36,11 @@ export const FoodBox = ({ name, calories, image, quantity }) => {
                 value={newQuantity}
                 className="input"
                 type="number"
-                min="1"
+                min={1}
               />
             </div>
             <div className="control">
-              <button
-                onClick={() => handleSelected()}
-                className="button is-info"
-              >
+              <button onClick={handleSelected} className="button is-info">
                 +
               </button>
             </div>

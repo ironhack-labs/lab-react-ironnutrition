@@ -9,8 +9,20 @@ import { FilterFood } from './components/FilterFood';
 
 function App() {
   const [food, setFood] = useState(foods);
-  const [filterFood, setFilterFood] = useState(foods);
 
+  //Todays food
+  // const [select, setSelect] = useState([]);
+  // const [anySelected, setAnySelected] = useState(false);
+  // let totalCal = 0;
+
+  // const selectedFood = (food) => {
+  //   let selectFood = [...select, food];
+
+  //   setSelect(selectFood);
+  //   setAnySelected(true);
+  // };
+
+  //Add food
   const [form, setForm] = useState(false);
 
   const addNewFood = (newFood) => {
@@ -25,6 +37,9 @@ function App() {
   const handleForm = () => {
     form ? setForm(false) : setForm(true);
   };
+
+  //Search food
+  const [filterFood, setFilterFood] = useState(foods);
 
   const filterFoodList = (str) => {
     let filteredFood =
@@ -54,7 +69,7 @@ function App() {
           }}
           onClick={handleForm}
         >
-          {form ? 'Hide' : 'Add new food'}
+          {form ? 'Cancel' : 'Add new food'}
         </button>
         {form && <AddFood handleForm={addNewFood} />}
 
@@ -79,7 +94,17 @@ function App() {
               <strong>Today's foods</strong>
             </h1>
             <ul>
-              <li></li>
+              {/* {anySelected &&
+                select.map((food) => {
+                  totalCal += parseInt(food.calories) * parseInt(food.quantity);
+
+                  return (
+                    <li>
+                      {food.quantity} {food.name} =
+                      {food.calories * food.quantity} cal
+                    </li>
+                  );
+                })} */}
             </ul>
           </div>
         </article>

@@ -10,7 +10,7 @@ export const AddFood = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newFood = { name, calories, image, quantity };
-    props.addFood(newFood);
+    props.handleForm(newFood);
 
     setName('');
     setCalories('');
@@ -25,7 +25,7 @@ export const AddFood = (props) => {
   return (
     <div
       style={{
-        margin: '80px 0 30px',
+        margin: '20px 0 30px',
         width: '60%',
       }}
     >

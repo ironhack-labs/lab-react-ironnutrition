@@ -11,12 +11,19 @@ function App() {
   const [food, setFood] = useState(foods);
   const [filterFood, setFilterFood] = useState(foods);
 
+  const [form, setForm] = useState(false);
+
   const addNewFood = (newFood) => {
     const updatedFood = [...food, newFood];
     const updatedFilterFood = [...filterFood, newFood];
 
     setFood(updatedFood);
     setFilterFood(updatedFilterFood);
+    handleForm();
+  };
+
+  const handleForm = () => {
+    form ? setForm(false) : setForm(true);
   };
 
   const filterFoodList = (str) => {
@@ -37,10 +44,21 @@ function App() {
           <strong style={{ color: 'lightgrey' }}>Iron</strong>nutrition
         </h1>
 
-        <AddFood addFood={addNewFood} />
+        <button
+          className="button is-primary is-rounded"
+          style={{
+            marginLeft: '30px',
+            paddingLeft: '25px',
+            width: '30%',
+            marginTop: '80px',
+          }}
+          onClick={handleForm}
+        >
+          {form ? 'Hide' : 'Add new food'}
+        </button>
+        {form && <AddFood handleForm={addNewFood} />}
 
         <FilterFood filterFood={filterFoodList} />
-
         {food.map((dish, index) => {
           return <FoodBox key={index} {...dish} />;
         })}

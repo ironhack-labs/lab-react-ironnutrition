@@ -13,7 +13,7 @@ export const FilterFood = (props) => {
     <div
       style={{
         margin: '20px 30px',
-        width: '50%',
+        width: '90%',
         display: 'flex',
         justifyContent: 'flex-start',
       }}
@@ -23,9 +23,9 @@ export const FilterFood = (props) => {
         className="button is-primary is-rounded"
         value={query}
         type="text"
-        placeholder="search..."
+        placeholder="search food ..."
         onChange={handleFilter}
-        style={{ fontSize: '1.2rem' }}
+        style={{ fontSize: '1.2rem', width: '88%' }}
       />
       {/* 
       <label for="filter" style={{ fontSize: '1.2rem', margin: '5px 10px' }}>

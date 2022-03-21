@@ -6,18 +6,17 @@ const AddFoodForm = ({ addFoodToList }) => {
     image: '',
   });
 
+  console.log(formInfo);
+
   const handleForm = (e) => {
     e.preventDefault();
     addFoodToList(formInfo);
   };
-  const handleName = (e) => {
-    setFormInfo({ ...formInfo, name: e.target.value });
-  };
-  const handleCalories = (e) => {
-    setFormInfo({ ...formInfo, calories: Number(e.target.value) });
-  };
-  const handleImage = (e) => {
-    setFormInfo({ ...formInfo, image: e.target.value });
+
+  const handleOnChange = (event) => {
+    const { value, name } = event.target;
+
+    setFormInfo({ ...formInfo, [name]: value });
   };
 
   return (
@@ -29,7 +28,7 @@ const AddFoodForm = ({ addFoodToList }) => {
           placeholder="Food name"
           name="name"
           onChange={(e) => {
-            handleName(e);
+            handleOnChange(e);
           }}
         />
         <input
@@ -38,7 +37,7 @@ const AddFoodForm = ({ addFoodToList }) => {
           placeholder="number of calories"
           name="calories"
           onChange={(e) => {
-            handleCalories(e);
+            handleOnChange(e);
           }}
         />
 
@@ -48,7 +47,7 @@ const AddFoodForm = ({ addFoodToList }) => {
           placeholder="image"
           name="image"
           onChange={(e) => {
-            handleImage(e);
+            handleOnChange(e);
           }}
         />
         <div className="control">

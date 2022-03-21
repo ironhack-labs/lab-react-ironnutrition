@@ -10,7 +10,19 @@ import { FilterFood } from './components/FilterFood';
 function App() {
   const [food, setFood] = useState(foods);
 
+  const [todayFood, setTodayFood] = useState([]);
+
   //Todays food
+  const todaysFood = (name) => {
+    const todaysFoodList = foods.filter((food) => {
+      return food.name === name;
+    });
+
+    let list = [...todayFood, todaysFoodList];
+
+    setTodayFood(list);
+    console.log(todayFood);
+  };
   // const [select, setSelect] = useState([]);
   // const [anySelected, setAnySelected] = useState(false);
   // let totalCal = 0;
@@ -75,7 +87,7 @@ function App() {
 
         <FilterFood filterFood={filterFoodList} />
         {food.map((dish, index) => {
-          return <FoodBox key={index} {...dish} />;
+          return <FoodBox key={index} {...dish} todaysFood={todaysFood} />;
         })}
       </div>
 
@@ -94,6 +106,13 @@ function App() {
               <strong>Today's foods</strong>
             </h1>
             <ul>
+              {todayFood.map((food) => {
+                return (
+                  <li>
+                    {food.name} {food.calories}
+                  </li>
+                );
+              })}
               {/* {anySelected &&
                 select.map((food) => {
                   totalCal += parseInt(food.calories) * parseInt(food.quantity);

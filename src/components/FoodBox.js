@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-export const FoodBox = ({ name, calories, image, quantity }) => {
+export const FoodBox = ({ name, calories, image, quantity, todaysFood }) => {
   const [newQuantity, setQuantity] = useState(0);
   const handleQuantityInput = (e) => setQuantity(e.target.value);
 
@@ -40,7 +40,10 @@ export const FoodBox = ({ name, calories, image, quantity }) => {
               />
             </div>
             <div className="control">
-              <button onClick={handleSelected} className="button is-info">
+              <button
+                onClick={() => todaysFood(name)}
+                className="button is-info"
+              >
                 +
               </button>
             </div>

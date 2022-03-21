@@ -21,10 +21,10 @@ function App() {
 
   const filterFoodList = (str) => {
     let filteredFood =
-      str === 'All'
+      str === ''
         ? filterFood
-        : filterFood.filter(
-            (food) => food.name[0].toLowerCase() === str.toLowerCase()
+        : filterFood.filter((food) =>
+            food.name.toLocaleLowerCase().includes(str.toLocaleLowerCase())
           );
 
     setFood(filteredFood);

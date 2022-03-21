@@ -2,11 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 
 export const FilterFood = (props) => {
-  const [firstLetter, setFirstLetter] = useState('All');
   const [query, setQuery] = useState('');
 
-  const handleSelect = (e) => {
-    setFirstLetter(e.target.value);
+  const handleFilter = (e) => {
+    setQuery(e.target.value);
     props.filterFood(e.target.value);
   };
 
@@ -19,13 +18,16 @@ export const FilterFood = (props) => {
         justifyContent: 'flex-start',
       }}
     >
+      <label for="filter"></label>
       <input
+        className="button is-primary is-rounded"
         value={query}
         type="text"
         placeholder="search..."
-        onChange={(e) => setQuery(e.target.value)}
-      ></input>
-
+        onChange={handleFilter}
+        style={{ fontSize: '1.2rem' }}
+      />
+      {/* 
       <label for="filter" style={{ fontSize: '1.2rem', margin: '5px 10px' }}>
         Filter by first letter:
       </label>
@@ -40,7 +42,7 @@ export const FilterFood = (props) => {
         <option value="B">B</option>
         <option value="S">S</option>
         <option value="O">O</option>
-      </select>
+      </select> */}
     </div>
   );
 };

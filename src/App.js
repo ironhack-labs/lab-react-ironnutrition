@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import foods from './foods.json';
 import foodArr from './foods.json';
-import FoodBox from './components/FoodBox';
+import FoodBox from './components/FoodBox/FoodBox';
 import { useState } from 'react';
-import AddFood from './components/AddFood';
+import AddFood from './components/AddFood/AddFood';
+import SearchBar from './components/SearchBar/SearchBar';
+import FoodCartList from './components/FoodCartList/FoodCartList';
 
 function App() {
   const [foods, setFoods] = useState(foodArr);
   const [displayForm, setDisplayForm] = useState(false);
+  const [foodsSelection, setFoodsSelection] = useState([]);
 
   function toggleFormDisplay() {
     setDisplayForm(!displayForm);
@@ -18,8 +20,28 @@ function App() {
     setFoods([newFood, ...foods]);
   }
 
+  function filterByProduct(productName) {
+    if (productName !== '') {
+      setFoods((foodSetted) => {
+        return foodSetted.filter((food) =>
+          food.name.toLowerCase().includes(productName.toLowerCase())
+        );
+      });
+    } else {
+      setFoods(foodArr);
+    }
+  }
+
+  function foodSelect(newFood) {
+    setFoodsSelection((foodSetted) => [...foodSetted, newFood]);
+  }
+
   return (
     <div className="App">
+      <div><h1>IRON NUTRITION</h1></div>
+      <SearchBar filterByProduct={filterByProduct} />
+
+      {/* toggleForm */}
       <button className="button is-info m-3" onClick={toggleFormDisplay}>
         {displayForm ? 'CloseForm' : 'AddFood'}
       </button>
@@ -29,9 +51,17 @@ function App() {
       )}
 
       {/* realizamos un .map de foods, añadimos componente con atributo valor food */}
-      {foods.map((food, index) => (
-        <FoodBox key={ index } food={food} />
-      ))}
+      <div className="is-flex mx-3">
+        <div>
+          {foods.map((food, index) => (
+            <FoodBox key={index} food={food} foodSelect={foodSelect} />
+          ))}
+        </div>
+
+        <div className="mx-5">
+          <FoodCartList foodsSelection={foodsSelection} />
+        </div>
+      </div>
     </div>
   );
 }

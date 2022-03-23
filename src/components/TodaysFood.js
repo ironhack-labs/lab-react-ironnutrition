@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const TodaysFood = ({ foodsSelection }) => {
+export const TodaysFood = ({ foodsSelection, deleteFood }) => {
   return (
     <>
       <ul style={{ marginTop: '20px' }}>
@@ -12,6 +12,17 @@ export const TodaysFood = ({ foodsSelection }) => {
                 {food.calories * food.quantity}
                 cal
               </i>
+              <button
+                className="button is-danger is-outlined"
+                style={{
+                  width: '10px',
+                  height: '20px',
+                  margin: '4px 0 0 30px',
+                }}
+                onClick={() => deleteFood(food.name)}
+              >
+                Del
+              </button>
               <hr />
             </li>
           );

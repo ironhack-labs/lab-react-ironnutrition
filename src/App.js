@@ -15,8 +15,21 @@ function App() {
   const [foodsSelection, setFoodsSelection] = useState([]);
 
   function foodSelect(newFood) {
-    setFoodsSelection((foodSetted) => [...foodSetted, newFood]);
+    let todaysFood = foodsSelection.slice();
+    let name = newFood.name;
+    const foundFood = foodsSelection.find((food) => food.name === name);
+
+    foundFood
+      ? (foundFood.quantity += newFood.quantity)
+      : todaysFood.push(newFood);
+
+    setFoodsSelection(todaysFood);
   }
+
+  const deleteFood = (name) => {
+    const newFoodList = foodsSelection.filter((food) => food.name !== name);
+    setFoodsSelection(newFoodList);
+  };
 
   //Add food
   const [form, setForm] = useState(false);
@@ -89,7 +102,10 @@ function App() {
             <h1 style={{ fontSize: '1.2rem' }}>
               <strong>Today's foods</strong>
             </h1>
-            <TodaysFood foodsSelection={foodsSelection} />
+            <TodaysFood
+              foodsSelection={foodsSelection}
+              deleteFood={deleteFood}
+            />
           </div>
         </article>
       </div>

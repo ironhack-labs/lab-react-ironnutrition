@@ -1,15 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 
-export const FoodBox = ({ name, calories, image, quantity, todaysFood }) => {
-  const [newQuantity, setQuantity] = useState(0);
+export const FoodBox = ({ name, calories, image, quantity, foodSelect }) => {
+  const [newQuantity, setQuantity] = useState(1);
   const handleQuantityInput = (e) => setQuantity(e.target.value);
 
-  const [selectFood, setSelectFood] = useState([]);
-
   function handleSelected() {
-    setSelectFood({ ...selectFood, quantity: newQuantity });
-    console.log(newQuantity, selectFood);
+    quantity = parseInt(newQuantity);
+    foodSelect({ name, calories, image, quantity });
   }
 
   return (
@@ -36,14 +34,11 @@ export const FoodBox = ({ name, calories, image, quantity, todaysFood }) => {
                 value={newQuantity}
                 className="input"
                 type="number"
-                min={1}
+                min="1"
               />
             </div>
             <div className="control">
-              <button
-                onClick={() => todaysFood(name)}
-                className="button is-info"
-              >
+              <button onClick={handleSelected} className="button is-info">
                 +
               </button>
             </div>

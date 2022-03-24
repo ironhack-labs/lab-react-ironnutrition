@@ -6,7 +6,7 @@ class FoodBox extends Component {
   state = {
   }
 
-  addNewFood = () => {
+  addFood = () => {
 
   }
   
@@ -30,7 +30,7 @@ class FoodBox extends Component {
           <div className="content">
             <p>
               <strong>{name}</strong> <br />
-              <small>{calories}</small>
+              <small>{calories} cal</small>
             </p>
           </div>
         </div>

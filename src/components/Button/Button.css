@@ -1,0 +1,18 @@
+.drop-button{
+  background-color: #3e8ed0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+/* Botón hover y focus */
+.drop-button:hover, drop-buttton:hover{
+  background-color: #3b89c9;
+  border-color: transparent;
+  color: #fff;
+}

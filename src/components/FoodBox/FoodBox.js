@@ -2,32 +2,28 @@ import './FoodBox.css';
 import React from 'react';
 
 const FoodBox = (props) => {
+    const {name, calories, image, quantity} = props.food;
+
     return(
         <div className="box">
           <article className="media">
-            <div className="media-left">
-              <figure className="image is-64x64">
-                <img className="w-25" src="https://i.imgur.com/eTmWoAN.png" alt="" />
-              </figure>
+            <div className="image">
+                <img className="food-image" src={image} alt="" />
             </div>
-            <div className="media-content">
-              <div className="content">
-                <p>
-                  <strong>Pizza</strong> <br />
-                  <small>400 cal</small>
-                </p>
+            <div className="content">
+              <p>
+                <strong>{name}</strong> <br />
+                <small>{calories} cal</small>
+              </p>
+              <div className="control">
+                <input className="input" type="number" value={quantity} onChange={() => console.log('hola')} />
               </div>
             </div>
             <div className="media-right">
-              <div className="field has-addons">
-                <div className="control">
-                  <input className="input" type="number" value="1" />
-                </div>
-                <div className="control">
-                  <button className="btn is-info">
-                    +
-                  </button>
-                </div>
+              <div className="control">
+                <button className="btn is-info">
+                  +
+                </button>
               </div>
             </div>
           </article>

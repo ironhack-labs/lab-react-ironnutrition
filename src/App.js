@@ -36,30 +36,35 @@ function App() {
     setFoodsSelection((foodSetted) => [...foodSetted, newFood]);
   }
 
+  //Utilizamos un filter como en el lab anterior para eliminar 
+  function foodToTrash(productName){
+    setFoodsSelection((foodSetted) => foodSetted.filter((food) => food.name !== productName))
+  }
+
   return (
     <div className="App">
       <div><h1>IRON NUTRITION</h1></div>
       <SearchBar filterByProduct={filterByProduct} />
 
       {/* toggleForm */}
-      <button className="button is-info m-3" onClick={toggleFormDisplay}>
+      <button className="button is-info m-3" onClick={ toggleFormDisplay }>
         {displayForm ? 'CloseForm' : 'AddFood'}
       </button>
 
       {displayForm && (
-        <AddFood addFood={addFood} toggleFormDisplay={toggleFormDisplay} />
+        <AddFood addFood={addFood} toggleFormDisplay={ toggleFormDisplay } />
       )}
 
       {/* realizamos un .map de foods, añadimos componente con atributo valor food */}
       <div className="is-flex mx-3">
         <div>
           {foods.map((food, index) => (
-            <FoodBox key={index} food={food} foodSelect={foodSelect} />
+            <FoodBox key={index} food={food} foodSelect={ foodSelect } />
           ))}
         </div>
 
         <div className="mx-5">
-          <FoodCartList foodsSelection={foodsSelection} />
+          <FoodCartList foodsSelection={foodsSelection} foodToTrash={ foodToTrash }/>
         </div>
       </div>
     </div>

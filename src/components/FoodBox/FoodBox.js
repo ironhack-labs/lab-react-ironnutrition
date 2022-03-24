@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState} from 'react'
+import toast, { Toaster } from 'react-hot-toast';
 
 function FoodBox(props) {
 
@@ -13,10 +14,12 @@ function FoodBox(props) {
 
   function clickHandler(){
     food.quantity=parseInt(quantity)
+    toast(`${food.name}, added`)
     foodSelect(food)
   }
 
   return (
+    <>
     <div className="box">
       <article className="media">
         <div className="media-left">
@@ -44,6 +47,8 @@ function FoodBox(props) {
         </div>
       </article>
     </div>
+    <Toaster/>
+    </>
   );
 }
 

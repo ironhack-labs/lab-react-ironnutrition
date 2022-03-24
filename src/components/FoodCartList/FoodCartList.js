@@ -1,7 +1,7 @@
 import React from 'react';
 
 function FoodCartList(props) {
-  const { foodsSelection } = props;
+  const { foodsSelection, foodToTrash } = props;
 
   return (
     <div className="has-text-left content">
@@ -11,6 +11,12 @@ function FoodCartList(props) {
           return (
             <li key={index} className="list-item">
               {food.quantity} {food.name} = {food.calories * food.quantity} kcal
+              <button
+                className="button is-danger ml-2"
+                onClick={() => foodToTrash(food.name)}
+              >
+                X
+              </button>
             </li>
           );
         })}

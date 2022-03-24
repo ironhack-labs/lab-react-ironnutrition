@@ -5,13 +5,14 @@
     "image": "https://i.imgur.com/eTmWoAN.png",
     "quantity": 0
   },
-  {
+  { 
     "name": "Salad",
     "calories": 150,
     "image": "https://i.imgur.com/DupGBz5.jpg",
     "quantity": 0
   },
   {
+
     "name": "Sweet Potato",
     "calories": 120,
     "image": "https://i.imgur.com/hGraGyR.jpg",

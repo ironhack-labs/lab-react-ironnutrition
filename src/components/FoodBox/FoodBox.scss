@@ -1,0 +1,53 @@
+@import '../../assets/styles/general.scss';
+
+.box {
+  @include flex(flex, row, nowrap, space-between, stretch);
+  border: solid 1px $primary-color;
+  height: 75px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 4px;
+
+  &__img {
+    display: flex;
+    align-items: center;
+    width: auto;
+    max-width: 20%;
+    height: 100%;
+  }
+
+  &__photo {
+    max-width: 80%;
+  }
+
+  &__info {
+    @include flex(flex, column, wrap, center, flex-start);
+    width: 60%;
+  }
+
+  &__controls {
+    @include flex(flex, row, nowrap, space-evenly, center);
+    width: 20%;
+  }
+
+  &__input {
+    width: 50%;
+    text-align: center;
+    border: none;
+    font-size: 1.8rem;
+
+  }
+
+  &__btn {
+    width: 50%;
+    background-color: $secondary-color;
+    padding: 20px;
+    height: 100%;
+    text-align: center;
+    color: $white-color;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+}

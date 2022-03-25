@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 import './App.css';
 import foods from './foods.json';
 import { v4 as uuidv4 } from 'uuid';
-import Col1 from './components/col1/Col1';
-import NewForm from './components/Form/NewForm';
-import Calcounter from './components/col2/CalCounter';
+import Col1 from './components/Col1';
+import NewForm from './components/NewForm';
+import Calcounter from './components/CalCounter';
 
 // add an Id to each element of the array
 const newFoodArray = foods.map(el => {return{...el, id : uuidv4()};});
@@ -63,6 +63,7 @@ class App extends Component {
     console.log(calToday)
   }
 
+  
   render() {
     const { search, formState , calToday} = this.state
     const list = this.getDishBySearchFilter();

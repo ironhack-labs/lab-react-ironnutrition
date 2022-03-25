@@ -3,17 +3,17 @@ import React from 'react';
 const Calcounter = ({calToday}) => {
 
     const calculateCal = () => {
-        return calToday.reduce((acc, curr) => acc + (curr.calories * 1), 0)
-    }
+        return calToday.reduce((acc, curr) => acc + (curr.calories * 1), 0);
+    };
 
     return (
         <ul className='list-group '>
-            <h2>Todays Meals</h2>
-            {calToday && calToday.length > 0 ? (
-                calToday.map((el) => {
+            <h2>Today's Meals</h2>
+            {calToday && calToday.length > 0 ? 
+                (calToday.map((el) => {
                     return <li key={el.id}>
-                        {el.quantity} {el.name} {el.calories}
-                        </li>} ) 
+                            {el.quantity} {el.name} {el.calories}
+                            </li>} ) 
             ) : (
                 <p className="text-muted">Add some dishes!!</p>
             )}

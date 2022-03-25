@@ -6,6 +6,8 @@ const initialState = {
   calories: '',
   error: false
 }
+
+
 class Newform extends Component {
 
   state = { ...initialState }

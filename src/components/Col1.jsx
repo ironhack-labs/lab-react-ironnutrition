@@ -1,5 +1,5 @@
 import React from 'react';
-import Foodbox from '../FoodBox/FoodBox'
+import Foodbox from './FoodBox'
 
 const Col1 = ({foodList, addItem, quantityChange}) => {
     return (

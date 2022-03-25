@@ -10,7 +10,7 @@ class FoodForm extends Component {
     }
 
     onSubmit = (event) => {
-        const { name, calories, image, formState } = this.state
+        const { name, calories, image} = this.state
 
         event.preventDefault()
         
@@ -27,14 +27,19 @@ class FoodForm extends Component {
             })
         }
     }
-
+    // onCancel = (event) =>{
+    //     const { formState } = this.state
+    //     if( formState === true){
+    //         this.setState({
+    //             formState: false
+    //         })
+    //     }
+    // }
     onHandleChange = (event) => {
         const { name, value } = event.target
         this.setState({
             [name]: value
         })
-
-
     }
 
     render() {
@@ -109,11 +114,11 @@ class FoodForm extends Component {
                                     Submit
                                 </button>
                             </p>
-                            <p className="control">
-                                <button className="button is-light">
+                            {/* <p className="control">
+                                <button className="button is-light" onClick={this.onCancel}>
                                     Cancel
                                 </button>
-                            </p>
+                            </p> */}
                         </div>
                     </form>
                 </div>

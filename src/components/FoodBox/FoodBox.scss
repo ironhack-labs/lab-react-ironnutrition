@@ -2,22 +2,23 @@
 
 .box {
   @include flex(flex, row, nowrap, space-between, stretch);
-  border: solid 1px $primary-color;
+  border: solid 1px #dddfe0;
   height: 75px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 50px auto;
   border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 
   &__img {
     display: flex;
     align-items: center;
-    width: auto;
-    max-width: 20%;
-    height: 100%;
+    width: 20%;
+    overflow: hidden;
   }
 
   &__photo {
     max-width: 80%;
+    height: 100%;
   }
 
   &__info {

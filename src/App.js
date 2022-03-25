@@ -11,6 +11,7 @@ foods.map(food => food.id = uuidv4());
 class App extends React.Component {
   state = {
     foods: [...foods],
+    todaysFood: [],
     formDisplayed: false,
     search: ''
   };
@@ -21,6 +22,7 @@ class App extends React.Component {
   addFood = (food) => {
     const newFood = {
       id: uuidv4(),
+      quantity: 0,
       ...food
     };
 
@@ -56,6 +58,30 @@ class App extends React.Component {
     }
   }
 
+  /* incrementQuantity = (food) => {
+    this.foodPrint = this.foodsToPrint
+      .filter(f => f.id === food.id)
+      .map(f => f.quantity = food.quantity)
+  } */
+
+  addToTodaysFood = (food) => {
+    this.setState(prevState => {
+      if(prevState.todaysFood.some(f => f.id === food.id)){
+        const newTodaysFood = prevState.todaysFood;
+        const index = newTodaysFood.findIndex((f => f.id === food.id))
+
+        newTodaysFood[index].quantity += food.quantity;
+        return {
+          todaysFood: newTodaysFood
+        }
+      } else {
+        return {
+          todaysFood: [food, ...prevState.todaysFood]
+        }
+      }
+    })
+  }
+
   render(){
     return (
       <div className="App container">
@@ -64,16 +90,31 @@ class App extends React.Component {
           <Search search={this.state.search} searchFood={this.searchFood} />
           <button className="btn btn-success" onClick={() => this.displayForm()}>Add new Food</button>
         </div>
-        <div className="food-items-div">
-         {
-           this.foodsToPrint.map(food => {
-             return (
-               <div className="food-item" key={food.id}>
-                 <FoodBox food={food} />
-               </div>
-             )
-           })
-         } 
+        <div className="main-content-div">
+          <div className="food-items-div">
+          {
+            this.foodsToPrint.map(food => {
+              return (
+                <div className="food-item" key={food.id}>
+                  <FoodBox food={food} addToTodaysFood={this.addToTodaysFood}/>
+                </div>
+              )
+            })
+          } 
+          </div>
+          <div className="todays-food-div">
+            <h3>Today's Food</h3>
+            <ul className="todays-food-list">
+              {
+                this.state.todaysFood.map(food => {
+                  return (
+                    <li key={food.id}>{`${food.quantity} ${food.name} = ${food.calories * food.quantity} cal`}</li>
+                  )
+                })
+              }
+            </ul>
+            <p className="text-muted">{`Total: ${this.state.todaysFood.reduce((acc, curr) => acc + curr.calories * curr.quantity, 0)}`} cal</p>
+          </div>
         </div>
           {
             this.state.formDisplayed && <Form addFood={this.addFood} hideForm={() => this.hideForm()}/>

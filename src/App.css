@@ -27,3 +27,13 @@ p {
   align-items: center;
   width: 100%;
 }
+
+.main-content-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.todays-food-div {
+  margin: 20px 0 0 50px;
+}

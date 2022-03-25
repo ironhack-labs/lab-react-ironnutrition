@@ -2,7 +2,9 @@ import './FoodBox.css';
 import React from 'react';
 
 const FoodBox = (props) => {
-    const {name, calories, image, quantity} = props.food;
+    const {id, name, calories, image, quantity} = props.food;
+
+    let quantityChanged = quantity;
 
     return(
         <div className="box">
@@ -16,12 +18,28 @@ const FoodBox = (props) => {
                 <small>{calories} cal</small>
               </p>
               <div className="control">
-                <input className="input" type="number" value={quantity} onChange={() => console.log('hola')} />
+                <input
+                  className="input"
+                  type="number"
+                  value={quantityChanged}
+                  onChange={() => {
+                    quantityChanged += 1;
+                  }}
+                />
               </div>
             </div>
             <div className="media-right">
               <div className="control">
-                <button className="btn is-info">
+                <button
+                  className="btn is-info"
+                  onClick={() => props.addToTodaysFood({
+                    id,
+                    image,
+                    name,
+                    calories,
+                    quantity: quantityChanged
+                  })}
+                >
                   +
                 </button>
               </div>

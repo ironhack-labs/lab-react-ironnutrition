@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import FoodBox from './components/FoodBox/FoodBox';
+import FoodList from './components/FoodList/FoodList';
+import food from './foods.json'
 
 class App extends Component {
   render(){
     return (
       <div className="App container">
         <div className='row'>
-        <FoodBox />
+          <FoodList food={ food } />
         </div>
       </div>
     );

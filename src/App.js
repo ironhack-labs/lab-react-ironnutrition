@@ -6,6 +6,7 @@ import { useState } from 'react';
 import AddFood from './components/AddFood/AddFood';
 import SearchBar from './components/SearchBar/SearchBar';
 import FoodCartList from './components/FoodCartList/FoodCartList';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [foods, setFoods] = useState(foodArr);
@@ -38,10 +39,13 @@ function App() {
 
   //Utilizamos un filter como en el lab anterior para eliminar 
   function foodToTrash(productName){
-    setFoodsSelection((foodSetted) => foodSetted.filter((food) => food.name !== productName))
+    setFoodsSelection((foodSetted) => foodSetted.filter((food) => food.name !== productName));
+    toast("Food deleted")
+    
   }
 
   return (
+    <>
     <div className="App">
       <div><h1>IRON NUTRITION</h1></div>
       <SearchBar filterByProduct={filterByProduct} />
@@ -68,6 +72,8 @@ function App() {
         </div>
       </div>
     </div>
+    <Toaster/>
+    </>
   );
 }
 

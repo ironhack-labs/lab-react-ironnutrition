@@ -14,7 +14,7 @@ function FoodBox(props) {
 
   function clickHandler(){
     food.quantity=parseInt(quantity)
-    toast(`${food.name}, added`)
+    toast(`${food.name}, added to list`)
     foodSelect(food)
   }
 

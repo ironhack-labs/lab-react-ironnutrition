@@ -1,5 +1,6 @@
 import FoodBox from './components/FoodBox/FoodBox.js';
 import Form from './components/Form/Form.jsx';
+import Search from './components/Search/Search.jsx';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import foods from './foods.json';
@@ -10,8 +11,12 @@ foods.map(food => food.id = uuidv4());
 class App extends React.Component {
   state = {
     foods: [...foods],
-    formDisplayed: false
+    formDisplayed: false,
+    search: ''
   };
+
+  foodsToPrint = [...this.state.foods];
+
 
   addFood = (food) => {
     const newFood = {
@@ -19,7 +24,7 @@ class App extends React.Component {
       ...food
     };
 
-    console.log(food, newFood);
+    this.foodsToPrint = [newFood, ...this.foodsToPrint]
 
     this.setState(prevState => {
       return {
@@ -40,20 +45,34 @@ class App extends React.Component {
     }
   }
 
+  searchFood = (event) => {
+    const foodsFiltered = [...this.state.foods];
+    this.setState({search: event.target.value});
+
+    if(event.target.value !== ''){
+      this.foodsToPrint = foodsFiltered.filter(f => f.name.toLowerCase().includes(event.target.value.toLowerCase()));
+    } else {
+      this.foodsToPrint = [...this.state.foods];
+    }
+  }
+
   render(){
     return (
       <div className="App container">
         <h1>IronNutrition</h1>
-        <button className="btn btn-primary" onClick={() => this.displayForm()}>Add new Food</button>
-        <div className="food-items-div container">
+        <div className='add-plus-search'>
+          <Search search={this.state.search} searchFood={this.searchFood} />
+          <button className="btn btn-success" onClick={() => this.displayForm()}>Add new Food</button>
+        </div>
+        <div className="food-items-div">
          {
-            this.state.foods.map(food => {
-              return (
-                <div className="food-item" key={food.id}>
-                  <FoodBox food={food} />
-                </div>
-              )
-            })
+           this.foodsToPrint.map(food => {
+             return (
+               <div className="food-item" key={food.id}>
+                 <FoodBox food={food} />
+               </div>
+             )
+           })
          } 
         </div>
           {

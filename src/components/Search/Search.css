@@ -1,0 +1,14 @@
+.add-plus-search input {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    height: 2.25em;
+    line-height: 1.5;
+    padding: calc(.375em - 1px);
+    vertical-align: top;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    color: #363636;
+    box-shadow: inset 0 1px 2px rgba(10,10,10,.1);
+    width: 700px;
+    margin-right: 10px;
+}

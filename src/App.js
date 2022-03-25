@@ -4,6 +4,7 @@ import foods from './foods.json';
 import { v4 as uuidv4 } from 'uuid';
 import Col1 from './components/col1/Col1';
 import NewForm from './components/Form/NewForm';
+import Calcounter from './components/col2/CalCounter';
 
 // add an Id to each element of the array
 const newFoodArray = foods.map(el => {return{...el, id : uuidv4()};});
@@ -14,7 +15,8 @@ class App extends Component {
   state = {
     foodList : [...newFoodArray],
     formState : false,
-    search : ''
+    search : '',
+    calToday : []
   }
 
   // while the input form is filled, the value is stored in the state search 
@@ -51,9 +53,18 @@ class App extends Component {
   }
 
 
+  addItemToCalToday = (el) => {
+    const { calToday } = this.state
+    const canAdd = !calToday.some(({ id }) => el.id === id)
+
+    if (canAdd) {
+      this.setState({ calToday : [el, ...calToday] })
+    }
+    console.log(calToday)
+  }
 
   render() {
-    const { search, formState } = this.state
+    const { search, formState , calToday} = this.state
     const list = this.getDishBySearchFilter();
 
     return (
@@ -70,9 +81,20 @@ class App extends Component {
           : <button onClick={this.setFormStateToTrue}>add dishes</button>
         }
         
-        {/* list of dishes */}
-        <Col1 foodList={list}/>
-        
+        <div className='row'>
+          <div className='col'>
+            {/* list of dishes */}
+            <Col1 className="col"  
+                  foodList={list} 
+                  addItem={this.addItemToCalToday} 
+                  /> 
+          </div>
+          
+          <div className='col d-flex flex-column align-items-center'>
+          <Calcounter calToday={calToday}/>
+          </div>
+        </div>
+
       </div>
     );
   }

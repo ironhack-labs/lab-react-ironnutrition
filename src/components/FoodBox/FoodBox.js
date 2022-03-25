@@ -2,21 +2,22 @@ import React, { Component }  from 'react';
 import './FoodBox.scss'
 
 class FoodBox extends Component {
+
   render() {
-    const foods  = this.props.food;
+    const foods = this.props.foods;
 
     return (
       <div>
-        {foods.map((food) => {
+        {foods.map(({ image, name, calories, id }) => {
           return (
-            <div className="box">
+            <div className="box" key={id}>
               <div className="box__img">
-                <img src={food.image} className="box__photo" />
+                <img src={image} className="box__photo" alt="food" />
               </div>
 
               <div className="box__info">
-                <h3>{food.name}</h3>
-                <p>{food.calories} cal</p>
+                <h3>{name}</h3>
+                <p>{calories} cal</p>
               </div>
 
               <div className="box__controls">
@@ -24,8 +25,9 @@ class FoodBox extends Component {
                 <button className="box__btn">+</button>
               </div>
             </div>
-          )
-        })}
+            )
+          }
+        )}
       </div>
     )
   }

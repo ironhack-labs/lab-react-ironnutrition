@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   const [foodList, setFoodList] = useState(foods);
+  const [filteredFoodList, setFilteredFoodList] = useState(foodList);
   const [showForm, setShowForm] = useState(false);
 
   const addFoodToList = (formData) => {
@@ -23,7 +24,7 @@ function App() {
             el.name.toLowerCase().includes(value.toLowerCase())
           );
 
-    setFoodList(filteredList);
+    setFilteredFoodList(filteredList);
   };
 
   return (
@@ -42,8 +43,8 @@ function App() {
         </button>
       </div>
 
-      {foodList &&
-        foodList.map((food, i) => {
+      {filteredFoodList &&
+        filteredFoodList.map((food, i) => {
           return (
             <div key={i}>
               <FoodBox food={food} />

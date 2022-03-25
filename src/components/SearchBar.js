@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 const SearchBar = ({ searchForFood }) => {
   return (
     <div className="box">

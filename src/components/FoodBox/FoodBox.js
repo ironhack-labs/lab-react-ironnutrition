@@ -3,13 +3,6 @@ import foods from '../../foods.json';
 
 class FoodBox extends Component {
 
-  state = {
-  }
-
-  addFood = () => {
-
-  }
-  
   render() {
     return (
       <div>

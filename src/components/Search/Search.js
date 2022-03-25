@@ -1,6 +1,37 @@
 import React, {Component} from 'react';
 
 class Search extends Component{
+  constructor(props){
+    super(props);
+      this.state = {
+      search: ""
+    }
+    this.props = this.getBooksBySearchFilter 
+
+  }
+
+  getBooksBySearchFilter = () => {
+    const { books, search } = this.state
+
+    // return books.filter(book => book.title.toLowerCase().includes(search.toLowerCase()))
+    return books.filter(book => {
+      if (book.title.toLowerCase().includes(search.toLowerCase())) {
+        return true
+      }
+
+      if (book.description.toLowerCase().includes(search.toLowerCase())) {
+        return true
+      }
+
+      return false
+    })
+  }
+
+  toFilter = (event) => {
+    this.setState({
+      search: event.target.value 
+    })
+  }
   render(){
     return (
       <div className="field is-grouped">

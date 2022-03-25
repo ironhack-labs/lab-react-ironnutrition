@@ -4,14 +4,14 @@ import './FormDown.css';
 const initialState = {
   name: '',
   image: '',
-  calories: ''
+  calories: '',
+  error: false
 }
 
 class FormDown extends Component {
     state = {
       ...initialState
     }
-
 
   onSubmit = (event) => {
     const { name, image, calories } = this.state
@@ -24,8 +24,11 @@ class FormDown extends Component {
         calories: Number(calories)
       })
         this.resetForm()
+    } else {
+      this.setState({ error: true })
     }
-  }
+    }
+  
 
   resetForm = () => {
     this.setState({ ...initialState })
@@ -37,10 +40,19 @@ class FormDown extends Component {
     this.setState({
       [name]: value
     })
+    console.log(name)
+  }
+
+  onFocus = () => {
+    const {error} = this.state
+
+    if(error) {
+      this.setState({ error: false})
+    }
   }
 
   render(){
-    const { name, image, calories} = this.state
+    const { name, image, calories, error} = this.state
     return (
       <div 
       className="dropdown" > 
@@ -57,6 +69,7 @@ class FormDown extends Component {
               value={name}
               name="name"
               onChange={this.onHandleChange}
+              onFocus={this.onFocus}
               id="name"
               />
           </div>
@@ -72,6 +85,7 @@ class FormDown extends Component {
               placeholder="select a file"
               value={image}
               onChange={this.onHandleChange}
+              onFocus={this.onFocus}
               name="image"
               id="image"
               />
@@ -88,12 +102,17 @@ class FormDown extends Component {
               placeholder="0 cal"
               value={calories}
               onChange={this.onHandleChange}
+              onFocus={this.onFocus}
               min={1}
               name="calories"  
               id="calories"
               />
           </div>
           </div>
+
+          {error && (
+            <p className="is-danger">Invalid form</p>
+          )}
 
           <div>
           <button className="button is-info">Submit</button>

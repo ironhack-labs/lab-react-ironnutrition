@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import 'bulma/css/bulma.css';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox/FoodBox';
+import NewFoodForm from './components/NewFoodForm/NewFoodForm';
+import Search from './components/Search/Search';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  state = {
+    foods: [...foods],
+    showForm: false,
+    addFoodButton: true,
+    filter: ''
+  }
+
+  showForm() {
+    if (!this.state.showForm && this.state.addFoodButton) {
+      this.setState({
+        showForm: true,
+        addFoodButton: false
+      })
+    } else {
+      this.setState({
+        showForm: false,
+        addFoodButton: true
+      })
+    }
+  }
+
+  addFood = (food) => {
+    const newFood = {
+      ...food
+    }
+    console.log(newFood)
+    this.setState({ foods: [newFood, ...this.state.foods] })
+  }
+
+  filterFoods = (event) => {
+    console.log(event.target.value)
+
+    this.setState({
+      filter: event.target.value,
+      foods: this.state.foods.filter(food => food.name.toUpperCase().includes(event.target.value.toUpperCase()))
+    })
+  }
+
+  render() {
+    return(
+      <div className="App">
+        <button 
+        className={`button ${this.state.addFoodButton ? "is-info" : "is-danger"} mb-4 mt-4`} 
+        onClick={() => this.showForm()}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          {this.state.addFoodButton ? "Add new food" : "Cancel"}
+        </button>
+        {this.state.showForm && <NewFoodForm showForm={() => this.showForm()} addFood={this.addFood} foods={this.state.foods}/>}
+        <Search filterFoods={this.filterFoods} filter={this.state.filter}/>
+        <FoodBox foods={this.state.foods}/>
+
+      </div>
+    )
+  }
 }
 
 export default App;

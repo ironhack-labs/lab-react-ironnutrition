@@ -1,8 +1,16 @@
-import React from 'react';
-const FoodBox = ({ food }) => {
+import React, { useState } from 'react';
+const FoodBox = ({ food, calculateCalories }) => {
   const { calories, image, name, quantity } = food;
+
+  const [newQuantitiy, setNewQuantitiy] = useState(food);
+
+  const handleOnChange = (data) => {
+    const { value } = data.target;
+    setNewQuantitiy({ ...newQuantitiy, quantity: Number(value) });
+  };
+
   return (
-    <div className="box">
+    <div className="box mb-3">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
@@ -17,13 +25,24 @@ const FoodBox = ({ food }) => {
             </p>
           </div>
         </div>
-        <div className="media-right">
-          <div className="field has-addons">
+        <div className="media-right ">
+          <div className="field has-addons ">
             <div className="control">
-              <input className="input" type="number" value={quantity} />
+              <input
+                className="input"
+                type="number"
+                min={0}
+                value={newQuantitiy.quantity}
+                onChange={(e) => handleOnChange(e)}
+              />
             </div>
             <div className="control">
-              <button className="button is-info">+</button>
+              <button
+                className="button is-info"
+                onClick={() => calculateCalories(newQuantitiy)}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

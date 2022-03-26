@@ -32,6 +32,8 @@ class NewForm extends Component {
   };
 
   onHandleChange = (event) => {
+    console.log(this);
+
     const { name, value } = event.target;
 
     this.setState({

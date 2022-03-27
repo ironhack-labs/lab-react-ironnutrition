@@ -64,9 +64,10 @@ class App extends React.Component {
     if(food.quantity > 0){
       if (todaysFood.some(f => f.id === food.id)) {
         const newTodaysFood = [...todaysFood];
-        const index = newTodaysFood.findIndex((f => f.id === food.id))
-  
-        newTodaysFood[index].quantity += food.quantity;
+        newTodaysFood.map(f => f.quantity = Number(f.quantity));
+
+        const index = newTodaysFood.findIndex((f => f.id === food.id));
+        newTodaysFood[index].quantity += Number(food.quantity);
   
         this.setState({ todaysFood: newTodaysFood })
       } else {
@@ -85,7 +86,6 @@ class App extends React.Component {
   }
 
   render(){
-
     return (
       <div className="App container">
         <h1>IronNutrition</h1>
@@ -114,7 +114,7 @@ class App extends React.Component {
                     <li className="todays-food-item mt-3" key={food.id}>
                       {`${food.quantity} ${food.name} = ${food.calories * food.quantity} cal`}
                       <button className="remove-todays-food" onClick={() => this.removeTodaysFood(food.id)}>
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                       </button>
                     </li>
                   )

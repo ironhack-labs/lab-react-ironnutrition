@@ -5,7 +5,7 @@ import React from 'react';
 
 const FoodList = ({ food }) => {
     return(
-        <div className="col-6">
+        <div className=" container col-12 card-list">
         {
             food.map((food, index) => {
                 return <FoodBox key={index} {...food }/>

@@ -9,15 +9,18 @@ const initialState = {
 }
 
 class FormDown extends Component {
-    state = {
+  constructor(props){
+    super(props);
+    this.state = {
       ...initialState
     }
+  }
 
   onSubmit = (event) => {
     const { name, image, calories } = this.state
     event.preventDefault()
 
-    if (name && image && calories && Number(calories) > 1) {
+    if (name && image && Number(calories) > 0) {
       this.props.addNewFood({
         name,
         image,
@@ -115,7 +118,8 @@ class FormDown extends Component {
           )}
 
           <div>
-          <button className="button is-info">Submit</button>
+          <button type="submit" 
+            className="button is-info">Submit</button>
           </div>
           </form>
           </div>

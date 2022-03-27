@@ -25,7 +25,7 @@ class Button extends Component {
       <div>
         {(formActive) ? 
             <div>
-              <FormDown 
+              <FormDown  
               onFocus={() => this.setState({formActive:false})}
               />
             </div> 

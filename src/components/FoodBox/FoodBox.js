@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import foods from '../../foods.json';
+import React from "react";
+import foods from '../../foods.json'
 
-class FoodBox extends Component {
 
-  render() {
+const FoodBox = () => {
+
     return (
       <div>
       <div className="box">
         {
-        foods.map(( {image, name, calories, quantity}, index ) => {
+        foods.map(( {image, name, calories, quantity, id} ) => {
        return (
-      <article className="media" key={index} >
+      <article className="media" key={id} >
         <div className="media-left">
           <figure
             className="image is-64x64">
@@ -47,6 +47,6 @@ class FoodBox extends Component {
       </div>
     )
   }
-}
+
 
 export default FoodBox;

@@ -4,9 +4,9 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
-// import FormDown from './components/FormDown/FormDown';
 import Button from './components/Button/Button';
 import Search from './components/Search/Search';
+
 
 class App extends Component {
   state = {
@@ -23,12 +23,18 @@ class App extends Component {
       this.setState({ foods: [newFood, ...this.state.foods] })
     }
 
-    getFoodsBySearchFilter = () => {
+    toFilter = (event) => {
+      this.setState({
+        search: event.target.value 
+      })
+    }
+
+    searchFood = () => {
       const { foods, search } = this.state
   
-      // return foods.filter(book => book.title.toLowerCase().includes(search.toLowerCase()))
+      // return foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
       return foods.filter(food => {
-        if (food.title.toLowerCase().includes(search.toLowerCase())) {
+        if (food.name.toLowerCase().includes(search.toLowerCase())) {
           return true
         }
         return false
@@ -41,7 +47,7 @@ class App extends Component {
       <div className="App">
       <h1 className="title">Iron Nutrition</h1>
       <div>
-        <Search />
+        <Search search={this.state.search} searchFood={this.searchFood}  />
       </div>
       <div>
         <Button />

@@ -37,3 +37,13 @@ p {
 .todays-food-div {
   margin: 20px 0 0 50px;
 }
+
+.todays-food-item i {
+  margin-left: 15px;
+  color: rgb(189, 52, 52);
+}
+
+.todays-food-item button {
+  border: none;
+  background-color: transparent;
+}

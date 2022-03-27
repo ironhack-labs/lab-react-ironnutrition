@@ -58,31 +58,34 @@ class App extends React.Component {
     }
   }
 
-  /* incrementQuantity = (food) => {
-    this.foodPrint = this.foodsToPrint
-      .filter(f => f.id === food.id)
-      .map(f => f.quantity = food.quantity)
-  } */
-
   addToTodaysFood = (food) => {
-    this.setState(prevState => {
-      if(prevState.todaysFood.some(f => f.id === food.id)){
-        const newTodaysFood = prevState.todaysFood;
-        const index = newTodaysFood.findIndex((f => f.id === food.id))
+    const { todaysFood } = this.state;
 
+    if(food.quantity > 0){
+      if (todaysFood.some(f => f.id === food.id)) {
+        const newTodaysFood = [...todaysFood];
+        const index = newTodaysFood.findIndex((f => f.id === food.id))
+  
         newTodaysFood[index].quantity += food.quantity;
-        return {
-          todaysFood: newTodaysFood
-        }
+  
+        this.setState({ todaysFood: newTodaysFood })
       } else {
-        return {
-          todaysFood: [food, ...prevState.todaysFood]
-        }
+        this.setState({ todaysFood: [food, ...todaysFood] })
       }
+    }
+
+  };
+
+  removeTodaysFood = (id) => {
+    const { todaysFood } = this.state;
+
+    this.setState({
+      todaysFood: todaysFood.filter(f => f.id !== id)
     })
   }
 
   render(){
+
     return (
       <div className="App container">
         <h1>IronNutrition</h1>
@@ -108,7 +111,12 @@ class App extends React.Component {
               {
                 this.state.todaysFood.map(food => {
                   return (
-                    <li key={food.id}>{`${food.quantity} ${food.name} = ${food.calories * food.quantity} cal`}</li>
+                    <li className="todays-food-item mt-3" key={food.id}>
+                      {`${food.quantity} ${food.name} = ${food.calories * food.quantity} cal`}
+                      <button className="remove-todays-food" onClick={() => this.removeTodaysFood(food.id)}>
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </li>
                   )
                 })
               }

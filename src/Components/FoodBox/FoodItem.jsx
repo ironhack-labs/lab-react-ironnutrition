@@ -1,6 +1,7 @@
 import React from "react"
 
-function  FoodItem({name, image, calories }){
+
+function  FoodItem({name, image, calories, addItem }){
 
 
     return (
@@ -27,7 +28,8 @@ function  FoodItem({name, image, calories }){
                             <input className="input" type="number" value="1" />
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info"
+                            onClick={addItem}>
                                 +
                             </button>
                         </div>

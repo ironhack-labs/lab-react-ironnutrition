@@ -1,0 +1,18 @@
+.FoodBox {
+  width: 500px;
+  border: 1px solid #000;
+}
+
+.box img {
+  width: 100px;
+  object-fit: cover;
+}
+
+.media {
+  display: flex;
+  justify-content: space-around;
+}
+
+.media .field {
+  display: flex;
+}

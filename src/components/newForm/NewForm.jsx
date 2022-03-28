@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-
 const initialState = {
   name: '',
   calories: '',
@@ -9,17 +8,17 @@ const initialState = {
 };
 
 class NewForm extends Component {
-    state = { ...initialState };
-      
+ state = { ...initialState }
+
   onSubmit = (event) => {
-      const { name, calories, image } = this.state;
+    const { name, calories, image } = this.state;
 
     event.preventDefault();
 
-    if (name && calories && image > 1) {
+    if (name && Number(calories) && image > 0) {
       this.props.onAddFood({
         name,
-        calories,
+        calories: Number(calories),
         image,
       });
 
@@ -37,63 +36,67 @@ class NewForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      [name]: value,
+      [name]: value, // no recuerdo exactamente por qué los []
     });
   };
 
   render() {
-    const { name, calories, image } = this.state;
+    const { name, calories, image, error } = this.state;
 
     return (
-      <form className="NewForm" onSubmit={this.onSubmit}>
-        <div className="mt-3 ml-4 newForm">
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                value={name}
-                name="name"
-                id="name"
-                onChange={this.onHandleChange}
-                className="input"
-                type="text"
-                placeholder="Death by Chocolate Cake"
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Calories</label>
-            <div className="control">
-              <input
-                value={calories}
-                name="calories"
-                id="calories"
-                onChange={this.onHandleChange}
-                className="input"
-                type="text"
-                placeholder="1500"
-              />
-            </div>
-
+      <div>
+        <form className="NewForm" onSubmit={this.onSubmit}>
+          <div className="mt-3 ml-4 newForm">
             <div className="field">
-              <label className="label">Upload image</label>
+              <label htmlFor="name" className="label">Name</label>
               <div className="control">
                 <input
-                  value={image}
-                  name="image"
-                  id="image"
+                  value={name}
+                  name="name"
+                  id="name"
                   onChange={this.onHandleChange}
                   className="input"
                   type="text"
-                  placeholder="image.png"
+                  placeholder="Death by Chocolate Cake"
                 />
               </div>
             </div>
+
+            <div className="field">
+              <label htmlFor="calories" className="label">Calories</label>
+              <div className="control">
+                <input
+                  value={calories}
+                  name="calories"
+                  id="calories"
+                  onChange={this.onHandleChange}
+                  className="input"
+                  type="number"
+                  placeholder="1500"
+                />
+              </div>
+
+              <div className="field">
+                <label htmlFor="image" className="label">Upload image</label>
+                <div className="control">
+                  <input
+                    value={image}
+                    name="image"
+                    id="image"
+                    onChange={this.onHandleChange}
+                    className="input"
+                    type="text"
+                    placeholder="image.png"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <button className="mt-3 button is-success">Submit</button>
-      </form>
+          {error && <p className="mt-3 ml-4 help is-danger">Invalid fields</p>}
+          <button 
+          className="mt-3 ml-4 button is-success">Submit</button>
+        </form>
+      </div>
     );
   }
 }

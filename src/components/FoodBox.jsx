@@ -1,11 +1,18 @@
 import FoodItem from './FoodItem';
+import TodayFood from './todayFood/TodayFood';
 
-const FoodBox = ({ foods }) => {
+const FoodBox = ({ foods, addTodayFood }) => {
   return (
+    <div className="columns">
     <div className="box">
       {foods.map((food) => (
-        <FoodItem key={foods.index} {...food} />
+        <FoodItem key={foods.index} addTodayFood={ ()=> addTodayFood(food) } {...food} />
       ))}
+    </div>
+    <div className="box">
+<TodayFood/>
+    </div>
+
     </div>
   );
 };

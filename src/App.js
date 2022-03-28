@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './model/App.css';
-import initialFoods from '../../lab-react-ironnutrition/src/foods.json';
+import initialFoods from '../src/foods.json';
 import Box from './Components/Box';
 import Form from './Components/Form';
 

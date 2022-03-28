@@ -1,13 +1,18 @@
 @import '../../assets/styles/general.scss';
 
-.box {
-  @include flex(flex, row, nowrap, space-between, stretch);
-  border: solid 1px #dddfe0;
-  height: 75px;
-  max-width: 800px;
-  margin: 50px auto;
-  border-radius: 4px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+.foods{
+  @include flex(flex, row, wrap, center, flex-start);
+  
+
+  &__single{
+    @include flex(flex, row, nowrap, space-between, stretch);
+    border: solid 1px #dddfe0;
+    height: 75px;
+    max-width: 800px;
+    margin: 50px auto;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
 
   &__img {
     display: flex;
@@ -49,6 +54,19 @@
     border: none;
     font-size: 2rem;
     cursor: pointer;
+  }
+
+  &__recipes {
+    width: 60%;
+    margin-right: 5%;
+  }
+
+  &__today {
+    width: 35%;
+  }
+
+  &__calories {
+    margin-top: 50px;
   }
 
 }

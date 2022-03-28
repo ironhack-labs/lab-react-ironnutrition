@@ -12,16 +12,15 @@ class App extends Component {
     state = {
       foods: [...foods],
       showForm: false,
-      search: ''
+      search: '',
+      today: []
     }
-
 
   searchFood = (event) => {
     this.setState({
       search: event.target.value
     })
   }
-
 
   showForm = () => {
     (this.state.showForm === false ?
@@ -46,6 +45,14 @@ class App extends Component {
     this.setState({ foods: [newFood, ...this.state.foods] })
   }
 
+  onAddToday = (food) => {
+    const { today } = this.state
+
+    this.setState({
+      today: [food, ...today]
+    })
+  }
+
   getFoodsBySearchFilter = () => {
     const { foods, search } = this.state
 
@@ -60,14 +67,14 @@ class App extends Component {
 
 
   render() {
-    const { showForm } = this.state
+    const { showForm, today } = this.state
     const foods = this.getFoodsBySearchFilter()
   
     return (
       <div className="wrapper">
 
         <div>
-          <Search search={this.state.search} searchFood={this.searchFood}  />        
+          <Search search={this.state.search} searchFood={this.searchFood} />        
         </div>
 
         <div>
@@ -77,7 +84,7 @@ class App extends Component {
         </div>
         
         <div>
-          <FoodBox foods={foods} />
+            <FoodBox foods={foods} today={today} addToday={this.onAddToday} />
         </div>
         
       </div>

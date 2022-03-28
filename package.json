@@ -9,7 +9,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "4.0.0",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "uuidv4": "^6.2.13"
   },
   "scripts": {
     "start": "react-scripts start",

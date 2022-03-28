@@ -17,7 +17,7 @@ const FoodBox = ({ name, image, calories }) => {
                             </div>
 
                             <div className='actions'>
-                                    <p>12</p>
+                                    <p>1</p>
                                     <button className='btn btn-primary'>+</button>
                             </div>
 

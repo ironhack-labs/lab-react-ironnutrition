@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './model/index.css';
+import App from './App.js';
 import * as serviceWorker from './serviceWorker';
+import 'bulma/css/bulma.css';
 
 ReactDOM.render(
   <React.StrictMode>

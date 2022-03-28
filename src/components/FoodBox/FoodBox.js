@@ -21,7 +21,7 @@ class FoodBox extends Component {
               </div>
 
               <div className="box__controls">
-                <input className="box__input" type="number" value="1" />
+                <input className="box__input" type="number" defaultValue="1" />
                 <button className="box__btn">+</button>
               </div>
             </div>

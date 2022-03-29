@@ -14,7 +14,6 @@ class NewForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      // aquí falta algo?? -->> lo que recoge el formulario
       [name]: value,
     });
   };
@@ -28,9 +27,9 @@ class NewForm extends Component {
         name,
         calories: Number(calories),
         image,
-      });
+      })
 
-      this.resetForm();
+      this.resetForm()
     } else {
       this.setState({ error: true });
     }

@@ -11,13 +11,19 @@ class App extends Component {
     foods: [...foods],
     todayFood: [],
     newForm: false,
+    search: '',
   };
+  // create a copy of foods.json and use it later
+
+  foundFood = [...this.state.foods];
 
   onAddFood = (food) => {
     const newFood = {
       ...food,
       id: uuidv4(),
     };
+
+    this.foundFood = [newFood, ...this.foundFood];
     this.setState({ foods: [newFood, ...this.state.foods] });
   };
 
@@ -40,7 +46,7 @@ class App extends Component {
 
   // searching for food
 
-  getFoodBySearchFilter = () => {
+  /*   getFoodBySearchFilter = () => {
     const { foods, search } = this.state;
 
     return foods.filter((food) => {
@@ -49,10 +55,29 @@ class App extends Component {
       }
       return false;
     });
+  }; */
+
+  onSearchFood = (event) => {
+    const filteredFoods = [...this.state.foods];
+    this.setState({ search: event.target.value });
+
+    if (!event.target.value) {
+      this.foundFood = [...this.state.foods];
+       
+    } else {
+      this.foundFood = filteredFoods.filter((food) =>
+        food.name.toLowerCase().includes(event.target.value.toLowerCase()))
+       
+    }
   };
+  /*   handleOnChange = (event) => {
+    const { value, name } = event.target
+    this.setState({ [name]: value })
+  } */
 
   render() {
     const { foods } = this.state;
+
     return (
       <div className="IronNutrition">
         <div>
@@ -64,7 +89,8 @@ class App extends Component {
           </button>
         </div>
         <div>
-          <Search getFoodBySearchFilter={this.getFoodBySearchFilter} />
+          <Search search={this.state.search} onSearchFood={this.onSearchFood} />
+        
         </div>
         <div>
           <div>

@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 
 
-function  FoodItem({name, image, calories, quantityChanged, addItem, quantity}){
-
-
-
+function  FoodItem({name, image, calories, addItem, quantity, id}){
+    
+    const [qty, setQty] = useState(quantity)
+    
+    const handleChange = (event) => {
+        setQty(event.target.value) 
+    }
     return (
         
         <div className="box">
@@ -27,15 +30,20 @@ function  FoodItem({name, image, calories, quantityChanged, addItem, quantity}){
                     <div className="field has-addons">
                         <div className="control">
                             <input className="input" type="number" 
-                            value={quantity}
-                            onChange= {quantityChanged}
+                            value={qty}
+                            onChange={handleChange}
                             min={1} 
                             name="quantity"
                             id="quantity"/>
                         </div>
                         <div className="control">
                             <button className="button is-info"
-                            onClick={addItem}>
+                            onClick={() => addItem({
+                                name,
+                                calories,
+                                id,
+                                quantity: qty
+                            })}>
                                 +
                             </button>
                         </div>

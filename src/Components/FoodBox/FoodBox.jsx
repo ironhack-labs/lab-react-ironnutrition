@@ -3,13 +3,12 @@ import FoodItem from "./FoodItem"
 
 
 
-const FoodBox = ({ foods, addItem, quantityChanged }) => {
+const FoodBox = ({ foods, addItem }) => {
     return (   
       <div className="FoodBox list-group">
         {foods.map( food  => {
           return <FoodItem {...food} key={food.id} 
-          addItem = {() => addItem(food)}
-          quantityChanged = {() => quantityChanged(food)}
+          addItem={addItem}
           />
       })}
       </div>
@@ -18,4 +17,3 @@ const FoodBox = ({ foods, addItem, quantityChanged }) => {
   
 
  export default FoodBox
-

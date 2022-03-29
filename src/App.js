@@ -14,8 +14,7 @@ class App extends Component {
     foods: [...foods],
     formStatus: false,
     search: '',
-    todayMenu: [],
-    newQuantity:0
+    todayMenu: []
   }
 
 
@@ -38,22 +37,13 @@ class App extends Component {
 
 
   addTodayMenu = (food) => {
-
     const { todayMenu } = this.state
     const canAdd = !todayMenu.some(({ id }) => food.id === id)
 
-    if (canAdd) {
+    if (canAdd && food.quantity>0) {
       this.setState({ todayMenu: [food, ...todayMenu] })
     }
   }
-
-//   isQuantityChanged = (event) => {
-//     const { name, value } = event.target
-
-//     this.setState({
-//         [name]: value
-//     })
-// }
 
 
   setFormStatus = () => {
@@ -75,12 +65,19 @@ class App extends Component {
 
   }
 
+  deleteFood = (id) => {
+    const { todayMenu } = this.state;
+
+    this.setState({
+      todayMenu: todayMenu.filter(food => food.id !== id)
+    })
+  }
+
 
 
   render() {
     const { formStatus, search, todayMenu } = this.state
     const listedFood = this.getSearchByName()
-
    
 
     return (
@@ -119,12 +116,12 @@ class App extends Component {
         <div className='is-flex'>
           <div style={{ width: 500 }} className='mx-4 mt-5 is-flex-direction-row'>
             <FoodBox foods={listedFood}
-              //quantityChanged={this.isQuantityChanged}
               addItem={this.addTodayMenu}
+              
             />
           </div>
           <div className='mx-6 mt-5 is-flex-direction-row'>
-            <TodayMenuBox foods={todayMenu} />
+            <TodayMenuBox foods={todayMenu} deleteFood={this.deleteFood} />
           </div>
         </div>
       </div>

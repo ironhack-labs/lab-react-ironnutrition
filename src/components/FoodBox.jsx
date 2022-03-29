@@ -4,7 +4,7 @@ import TodayFood from './todayFood/TodayFood';
 const FoodBox = ({ foods, addTodayFood }) => {
   return (
     <div className="columns">
-    <div className="box">
+    <div className="column">
       {foods.map((food) => (
         <FoodItem key={foods.index} addTodayFood={ ()=> addTodayFood(food) } {...food} />
       ))}

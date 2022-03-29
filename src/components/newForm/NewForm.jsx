@@ -8,15 +8,22 @@ const initialState = {
 };
 
 class NewForm extends Component {
- state = { ...initialState }
+  state = { ...initialState };
 
+  onHandleChange = (event) => {
+    const { name, value } = event.target;
+
+    this.setState({
+      // aquí falta algo?? -->> lo que recoge el formulario
+      [name]: value,
+    });
+  };
   onSubmit = (event) => {
     const { name, calories, image } = this.state;
-    console.log(this.props);
-    event.preventDefault();
-    console.log(name, calories, image)
-    if (name && Number(calories) && image.length > 0) {
 
+    event.preventDefault();
+
+    if (name && Number(calories) && image.length > 0) {
       this.props.onAddFood({
         name,
         calories: Number(calories),
@@ -33,24 +40,17 @@ class NewForm extends Component {
     this.setState({ ...initialState });
   };
 
-  onHandleChange = (event) => {
-    const { name, value } = event.target;
-
-    this.setState({
-      // aquí falta algo?? -->> lo que recoge el formulario 
-      [name]: value, 
-    });
-  };
-
   render() {
     const { name, calories, image, error } = this.state;
-    console.log(this.props)
+
     return (
       <div>
         <form className="NewForm" onSubmit={this.onSubmit}>
           <div className="mt-3 ml-4 newForm">
             <div className="field">
-              <label htmlFor="name" className="label">Name</label>
+              <label htmlFor="name" className="label">
+                Name
+              </label>
               <div className="control">
                 <input
                   value={name}
@@ -65,7 +65,9 @@ class NewForm extends Component {
             </div>
 
             <div className="field">
-              <label htmlFor="calories" className="label">Calories</label>
+              <label htmlFor="calories" className="label">
+                Calories
+              </label>
               <div className="control">
                 <input
                   value={calories}
@@ -79,7 +81,9 @@ class NewForm extends Component {
               </div>
 
               <div className="field">
-                <label htmlFor="image" className="label">Upload image</label>
+                <label htmlFor="image" className="label">
+                  Upload image
+                </label>
                 <div className="control">
                   <input
                     value={image}
@@ -95,8 +99,9 @@ class NewForm extends Component {
             </div>
           </div>
           {error && <p className="mt-3 ml-4 help is-danger">Invalid fields</p>}
-          <button 
-          className="mt-3 ml-4 button is-success" type='submit'>Submit</button>
+          <button className="mt-3 ml-4 button is-success" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

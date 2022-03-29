@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
-import Button from './components/misc/Button';
 import NewForm from './components/newForm/NewForm';
 import Search from './components/search/Search';
-import TodayFood from './components/todayFood/TodayFood'
+import TodayFood from './components/todayFood/TodayFood';
 
 class App extends Component {
   state = {
     foods: [...foods],
     todayFood: [],
-    newForm: false
+    newForm: false,
   };
 
   onAddFood = (food) => {
-    console.log('holaaa: ', food)
     const newFood = {
       ...food,
       id: uuidv4(),
@@ -23,20 +21,22 @@ class App extends Component {
     this.setState({ foods: [newFood, ...this.state.foods] });
   };
 
-// adding food item to Today Foods
+  // adding food item to Today Foods
 
-addTodayFood = (food) => {
-  const { todayFood } = this.state
-  const canAdd = !todayFood.some(({ id }) => food.id === id)
+  addTodayFood = (food) => {
+    const { todayFood } = this.state;
+    const canAdd = !todayFood.some(({ id }) => food.id === id);
 
-  if (canAdd) {
-    this.setState({ todayFood: [food, ...TodayFood] })
-  }
-};
+    if (canAdd) {
+      this.setState({ todayFood: [food, ...TodayFood] });
+    }
+  };
 
-deleteItemFromTodayFood = (id) => {
-  this.setState({ todayFood: this.state.todayFood.filter(food => food.id !==id) })
-}
+  deleteItemFromTodayFood = (id) => {
+    this.setState({
+      todayFood: this.state.todayFood.filter((food) => food.id !== id),
+    });
+  };
 
   // searching for food
 
@@ -56,24 +56,26 @@ deleteItemFromTodayFood = (id) => {
     return (
       <div className="IronNutrition">
         <div>
-          <Button />
+          <button
+            className="mt-3 ml-4 button is-primary"
+            onClick={() => this.setState({ newForm: true })}
+          >
+            Add new food
+          </button>
         </div>
         <div>
           <Search getFoodBySearchFilter={this.getFoodBySearchFilter} />
         </div>
         <div>
           <div>
-            {this.state.newForm ? 
-              <NewForm onAddFood={this.onAddFood}/>
-            :
-              null}
+            {this.state.newForm ? <NewForm onAddFood={this.onAddFood} /> : null}
           </div>
         </div>
-        <FoodBox foods={foods} onAddFood={this.addTodayFood}/>
+        <FoodBox foods={foods} onAddFood={this.addTodayFood} />
         <TodayFood
-          foods={this.state.todayFood} deleteFood={this.deleteItemFromTodayFood}
-          >
-        </TodayFood>
+          foods={this.state.todayFood}
+          deleteFood={this.deleteItemFromTodayFood}
+        ></TodayFood>
       </div>
     );
   }

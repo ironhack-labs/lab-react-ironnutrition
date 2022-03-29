@@ -14,7 +14,8 @@ class App extends Component {
     foods: [...foods],
     formStatus: false,
     search: '',
-    todayMenu: []
+    todayMenu: [],
+    newQuantity:0
   }
 
 
@@ -46,12 +47,19 @@ class App extends Component {
     }
   }
 
+//   isQuantityChanged = (event) => {
+//     const { name, value } = event.target
 
+//     this.setState({
+//         [name]: value
+//     })
+// }
 
 
   setFormStatus = () => {
     this.setState({ formStatus: !this.state.formStatus });
   }
+
 
 
   onAddFood = (food) => {
@@ -68,9 +76,12 @@ class App extends Component {
   }
 
 
+
   render() {
     const { formStatus, search, todayMenu } = this.state
     const listedFood = this.getSearchByName()
+
+   
 
     return (
 
@@ -79,7 +90,7 @@ class App extends Component {
         <div className='is-flex '>
           <div className='is-flex-direction-row is-justify-content-flex-start'>
             <div className='is-flex-direction-row mx-3'
-              style={{ width: 900}}>
+              style={{ width: 1000 }}>
               <label className="label is-align-self-flex-start mx-4 has-text-left		"
                 htmlFor='search'
               >Search</label>
@@ -92,13 +103,14 @@ class App extends Component {
                   onChange={this.handleSearchOnChange} />
               </div>
             </div>
+            <br></br>
             <div className='is-flex-direction-row has-text-left	mx-3'>
               {formStatus &&
                 <CreateFoodForm onAddFood={this.onAddFood} />
               }
               <br />
               <button onClick={this.setFormStatus}
-                className="button is-info"
+                className={`button ${formStatus ? 'is-danger' : 'is-info'}`}
               > {formStatus ? 'Close menu' : 'add New Dish'}
               </button>
             </div>
@@ -107,6 +119,7 @@ class App extends Component {
         <div className='is-flex'>
           <div style={{ width: 500 }} className='mx-4 mt-5 is-flex-direction-row'>
             <FoodBox foods={listedFood}
+              //quantityChanged={this.isQuantityChanged}
               addItem={this.addTodayMenu}
             />
           </div>

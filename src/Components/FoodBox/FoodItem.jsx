@@ -1,7 +1,8 @@
 import React from "react"
 
 
-function  FoodItem({name, image, calories, addItem }){
+function  FoodItem({name, image, calories, quantityChanged, addItem, quantity}){
+
 
 
     return (
@@ -11,7 +12,7 @@ function  FoodItem({name, image, calories, addItem }){
                 <div className="media-left">
                     <figure className="image is-64x64">
                         <img src={image}
-                        alt=''/>
+                        alt={name}/>
                     </figure>
                 </div>
                 <div className="media-content">
@@ -25,7 +26,12 @@ function  FoodItem({name, image, calories, addItem }){
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value="1" />
+                            <input className="input" type="number" 
+                            value={quantity}
+                            onChange= {quantityChanged}
+                            min={1} 
+                            name="quantity"
+                            id="quantity"/>
                         </div>
                         <div className="control">
                             <button className="button is-info"

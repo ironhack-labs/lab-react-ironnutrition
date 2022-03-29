@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 const initialState = {
   name: '',
@@ -12,10 +12,11 @@ class NewForm extends Component {
 
   onSubmit = (event) => {
     const { name, calories, image } = this.state;
-
+    console.log(this.props);
     event.preventDefault();
+    console.log(name, calories, image)
+    if (name && Number(calories) && image.length > 0) {
 
-    if (name && Number(calories) && image > 0) {
       this.props.onAddFood({
         name,
         calories: Number(calories),
@@ -36,13 +37,14 @@ class NewForm extends Component {
     const { name, value } = event.target;
 
     this.setState({
-      [name]: value, // no recuerdo exactamente por qué los []
+      // aquí falta algo?? -->> lo que recoge el formulario 
+      [name]: value, 
     });
   };
 
   render() {
     const { name, calories, image, error } = this.state;
-
+    console.log(this.props)
     return (
       <div>
         <form className="NewForm" onSubmit={this.onSubmit}>
@@ -94,7 +96,7 @@ class NewForm extends Component {
           </div>
           {error && <p className="mt-3 ml-4 help is-danger">Invalid fields</p>}
           <button 
-          className="mt-3 ml-4 button is-success">Submit</button>
+          className="mt-3 ml-4 button is-success" type='submit'>Submit</button>
         </form>
       </div>
     );

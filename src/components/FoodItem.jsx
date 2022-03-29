@@ -1,4 +1,4 @@
-const FoodItem = ({ name, calories, image, addTodayFood }) => {
+const FoodItem = ({ name, calories, image, quantity, addTodayFood }) => {
   return (
     <div className="box">
       <article className="media">
@@ -18,7 +18,7 @@ const FoodItem = ({ name, calories, image, addTodayFood }) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" defaultValue={0} type="number" />
+              <input className="input" defaultValue={quantity} type="number" />
             </div>
             <div className="control">
               <button className="button is-info" onClick={addTodayFood}>+</button>

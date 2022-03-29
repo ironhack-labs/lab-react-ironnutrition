@@ -5,16 +5,20 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox/FoodBox';
 import NewFoodForm from './components/NewFoodForm/NewFoodForm';
 import Search from './components/Search/Search';
+import List from './components/List/List';
 
 class App extends Component {
   state = {
     foods: [...foods],
     showForm: false,
     addFoodButton: true,
-    filter: ''
+    filter: '',
+    todaysFoods: []
   }
 
-  showForm() {
+  filteredFoods = [...foods]
+
+  showForm = () => {
     if (!this.state.showForm && this.state.addFoodButton) {
       this.setState({
         showForm: true,
@@ -32,7 +36,7 @@ class App extends Component {
     const newFood = {
       ...food
     }
-    console.log(newFood)
+
     this.setState({ foods: [newFood, ...this.state.foods] })
   }
 
@@ -41,9 +45,26 @@ class App extends Component {
 
     this.setState({
       filter: event.target.value,
-      foods: this.state.foods.filter(food => food.name.toUpperCase().includes(event.target.value.toUpperCase()))
+      foods: this.filteredFoods.filter(food => food.name.toUpperCase().includes(event.target.value.toUpperCase()))
     })
   }
+
+  addToList = (food) => {
+    const newFood = {
+      ...food
+    }
+
+    this.setState({ todaysFoods: [newFood, ...this.state.todaysFoods] })
+  }
+
+  removeFromList = (food) => {
+    const foodToRemove = {
+      ...food
+    }
+
+    this.setState({ todaysFoods: [...this.state.todaysFoods.filter(food => food.name !== foodToRemove.name)] })
+}
+
 
   render() {
     return(
@@ -54,10 +75,20 @@ class App extends Component {
         >
           {this.state.addFoodButton ? "Add new food" : "Cancel"}
         </button>
-        {this.state.showForm && <NewFoodForm showForm={() => this.showForm()} addFood={this.addFood} foods={this.state.foods}/>}
+        {this.state.showForm && <NewFoodForm showForm={this.showForm} addFood={this.addFood} foods={this.state.foods}/>}
         <Search filterFoods={this.filterFoods} filter={this.state.filter}/>
-        <FoodBox foods={this.state.foods}/>
+        
+        <div className='foodbox-list'>
+          <div>
+            {this.state.foods.map((food, index) => {
+              return <FoodBox key={index} food={food} addToList={this.addToList}/>
+            })}
+          </div>
 
+          {this.state.todaysFoods.length && 
+          <List foods={this.state.todaysFoods} removeFromList={this.removeFromList}/>
+          }
+        </div>
       </div>
     )
   }

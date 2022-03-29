@@ -1,0 +1,13 @@
+ul {
+    list-style: disc;
+}
+
+.x-button {
+    width: 10px;
+    max-height: 20px;
+    margin-left: 10px;
+}
+
+.list-item {
+    display: flex;
+}

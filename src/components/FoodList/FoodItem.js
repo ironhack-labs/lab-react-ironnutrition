@@ -1,12 +1,12 @@
-import React, { createRef, forwardRef, useRef } from 'react';
-import InputField from '../InputField/InputField';
+import React, { useRef } from 'react';
+// import InputField from '../InputField/InputField';
 
 const FoodItem = ({ uuid, name, calories, image, onAdd }) => {
   const inputRef = useRef(null);
 
   const handleAddItem = () => {
     const { value } = inputRef.current;
-    onAdd(uuid, + value);
+    onAdd(uuid, +value);
   };
 
   return (

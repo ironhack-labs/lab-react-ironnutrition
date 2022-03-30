@@ -1,4 +1,6 @@
-[
+import { v4 as uuidv4 } from 'uuid';
+
+const foods = [
   {
     "name": "Pizza",
     "calories": 400,
@@ -97,3 +99,4 @@
   }
 ]
 
+export const data = [...foods].map((item) => ({ ...item, uuid: uuidv4() }));

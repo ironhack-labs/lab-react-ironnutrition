@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Basket = ({ basket, calories }) => {
   return (
@@ -7,7 +7,7 @@ const Basket = ({ basket, calories }) => {
       <ul>
         {basket.map((item) => (
           <li key={item.uuid}>
-            {item.quantity} {item.name} = {item.calories} cal
+            {item.quantity} {item.name} = {item.calories * item.quantity} cal
           </li>
         ))}
       </ul>

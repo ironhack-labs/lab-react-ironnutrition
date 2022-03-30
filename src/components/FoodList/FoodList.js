@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FoodItem from './FoodItem';
 
 const FoodList = ({ foodItems, onAdd}) => {

@@ -12,7 +12,7 @@ const TodayMenuBox = ({ foods, deleteFood}) => {
 
     return (
         <div className="TodayMenu list-group">
-            <h1><strong>Today's Food</strong></h1>
+            <h1 className="is-size-3"><strong>Today's Food</strong></h1>
             <br />
             <ul>
                 {foods && foods.length > 0 && (

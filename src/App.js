@@ -83,7 +83,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <h1 className='title'>Iron Nutrition</h1>
+        <h1 className='is-size-1'><strong>Iron Nutrition</strong></h1>
         <div className='is-flex '>
           <div className='is-flex-direction-row is-justify-content-flex-start'>
             <div className='is-flex-direction-row mx-3'

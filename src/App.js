@@ -50,19 +50,26 @@ class App extends Component {
   }
 
   addToList = (food) => {
-    const newFood = {
-      ...food
+    const { todaysFoods } = this.state
+    const newFood = { ...food }
+    const foodIndex = todaysFoods.findIndex(el => el.name === food.name)
+
+    if (foodIndex > -1) {
+      let newTodaysFoods = [...todaysFoods]
+      newTodaysFoods[foodIndex].quantity += newFood.quantity
+      this.setState({ todaysFoods: newTodaysFoods })  
+    } else {
+      this.setState({ todaysFoods: [newFood, ...todaysFoods] })
     }
 
-    this.setState({ todaysFoods: [newFood, ...this.state.todaysFoods] })
   }
 
   removeFromList = (food) => {
-    const foodToRemove = {
-      ...food
-    }
+    const { todaysFoods } = this.state
+    const foodToRemove = { ...food }
 
-    this.setState({ todaysFoods: [...this.state.todaysFoods.filter(food => food.name !== foodToRemove.name)] })
+
+    this.setState({ todaysFoods: [...todaysFoods.filter(food => food.name !== foodToRemove.name)] })
 }
 
 

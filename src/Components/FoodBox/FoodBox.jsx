@@ -17,3 +17,4 @@ const FoodBox = ({ foods, addItem }) => {
   
 
  export default FoodBox
+

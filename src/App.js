@@ -117,7 +117,6 @@ class App extends Component {
           <div style={{ width: 500 }} className='mx-4 mt-5 is-flex-direction-row'>
             <FoodBox foods={listedFood}
               addItem={this.addTodayMenu}
-              
             />
           </div>
           <div className='mx-6 mt-5 is-flex-direction-row'>

@@ -9,7 +9,7 @@ const FoodBox = (props) => {
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                        <img src={ image } />
+                        <img src={ image } alt={ name } />
                     </figure>
                 </div>
                 <div className="media-content">
@@ -23,7 +23,7 @@ const FoodBox = (props) => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value={ quantity } />
+                            <input className="input" type="number" value="1" />
                         </div>
                         <div className="control">
                             <button className="button is-info">

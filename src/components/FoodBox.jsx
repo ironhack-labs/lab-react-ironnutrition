@@ -23,14 +23,17 @@ const FoodBox = (props) => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value="1" />
+                            <input className="input" type="number" value={ quantity } onChange={ ( event ) => props.onChangeQuantityHandler(event, name) } />
                         </div>
                         <div className="control">
-                            <button className="button is-info">
+                            <button className="button is-info" onClick={ ( event ) => props.onClickAddFoodHandler( event, name ) } >
                                 +
                             </button>
+                            <button className="button is-danger" onClick={ ( event ) => props.onClickRemoveFoodHandler( event, name ) } >
+                                -
+                            </button>
                         </div>
-                    </div>
+                    </div>   
                 </div>
             </article>
         </div>

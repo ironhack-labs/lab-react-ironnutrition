@@ -65,11 +65,21 @@ class App extends Component {
 
   onClickAddFoodHandler = ( event, name ) => {
     const newTodaysFoodItem = this.state.foods.filter( ( food ) => food.name === name )[0];
-    console.log(newTodaysFoodItem);
+    const itemExists = this.state.todaysFoods.some( (food) => food.name === name );
+    let newTodaysFoods;
+    if (itemExists) {
+      const indexItemOnTodaysFoods = this.state.todaysFoods.findIndex ( (food) => food.name === name );
+      const newDestructuredItem = { ...newTodaysFoodItem };
+      newTodaysFoods = [ ...this.state.todaysFoods ];
+      newTodaysFoods[ indexItemOnTodaysFoods ].quantity = Number(newTodaysFoods[ indexItemOnTodaysFoods ].quantity) + Number(newDestructuredItem.quantity);
+    } else {
+      newTodaysFoods = [ ...this.state.todaysFoods, { ...newTodaysFoodItem } ];
+    }
+    
     this.setState (
       {
         ...this.state,
-        todaysFoods: [ ...this.state.todaysFoods, { ...newTodaysFoodItem } ]
+        todaysFoods: newTodaysFoods
       }
     )
   }

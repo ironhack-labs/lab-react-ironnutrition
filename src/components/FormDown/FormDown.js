@@ -1,131 +1,86 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
+import { v4 as uuidv4} from 'uuid';
 import './FormDown.css';
 
 const initialState = {
   name: '',
   image: '',
-  calories: '',
-  error: false
+  calories: 0,
+  quantity: 0
 }
 
-class FormDown extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      ...initialState
-    }
-  }
 
-  onSubmit = (event) => {
-    const { name, image, calories } = this.state
-    event.preventDefault()
+const FormDown = ({ onSubmit, onClose }) => {
+  const [data, setData] = useState(initialState);
+  const [showErrors, setShowErrors] = useState(false)
 
-    if (name && image && Number(calories) > 0) {
-      this.props.addNewFood({
-        name,
-        image,
-        calories: Number(calories)
-      })
-        this.resetForm()
-    } else {
-      this.setState({ error: true })
-    }
-    }
-  
-
-  resetForm = () => {
-    this.setState({ ...initialState })
-  } 
-
-  onHandleChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target
-
-    this.setState({
+    setShowErrors(false)
+    setData({
+      ...data,
       [name]: value
     })
-    console.log(name)
   }
 
-  onFocus = () => {
-    const {error} = this.state
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const { name, calories, image } = data
 
-    if(error) {
-      this.setState({ error: false})
+    if (name && calories && image) {
+      onSubmit({
+        ...data,
+        id: uuidv4()
+      })
+      onClose()
+    } else {
+      setShowErrors(true)
     }
   }
 
-  render(){
-    const { name, image, calories, error} = this.state
-    return (
-      <div 
-      className="dropdown" > 
-          <div id="myDropdown">
-          <form onSubmit={this.onSubmit}>
+  return (
+      <form className='mt-4 mx-3' onSubmit={handleSubmit}>
           <div className="field">
-          <label 
-            htmlFor='name'
-            className="label"
-            >Name</label>
+          <label className="label">Name</label>
           <div className="control">
-            <input className="input" 
-              type="text" placeholder="name of food"
-              value={name}
-              name="name"
-              onChange={this.onHandleChange}
-              onFocus={this.onFocus}
-              id="name"
+            <input className="input" type="text"
+             placeholder="name of food" name="name"
+              onChange={handleChange}
               />
           </div>
           </div>
 
           <div className="field">
-          <label
-            htmlFor='image' 
-            className="label">Image</label>
+          <label className="label">Image</label>
           <div className="control">
-            <input className="input" 
-              type="file" 
-              placeholder="select a file"
-              value={image}
-              onChange={this.onHandleChange}
-              onFocus={this.onFocus}
-              name="image"
-              id="image"
+            <input className="input" type="text"
+              onChange={handleChange} name="image"
               />
           </div>
           </div>
 
           <div className="field">
-          <label
-            htmlFor='calories' 
-            className="label">Calories</label>
+          <label className="label">Calories</label>
           <div className="control">
-            <input className="input" 
-              type="number" 
-              placeholder="0 cal"
-              value={calories}
-              onChange={this.onHandleChange}
-              onFocus={this.onFocus}
-              min={1}
-              name="calories"  
-              id="calories"
+            <input className="input" type="number" 
+              placeholder="0 cal" onChange={handleChange}
+              min={1} name="calories"  
               />
           </div>
           </div>
 
-          {error && (
+          {showErrors && (
             <p className="is-danger">Invalid form</p>
           )}
 
-          <div>
+          <div className="field is-grouped">
+          <div className="control">
           <button type="submit" 
-            className="button is-info">Submit</button>
+            className="button is-info ml-5">Submit</button>
+          </div>
           </div>
           </form>
-          </div>
-      </div>
     )
-  }
-}
+   }
 
 export default FormDown;

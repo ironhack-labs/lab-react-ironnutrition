@@ -70,13 +70,13 @@ const FormDown = ({ onSubmit, onClose }) => {
           </div>
 
           {showErrors && (
-            <p className="is-danger">Invalid form</p>
+            <p className="has-text-danger">Invalid form</p>
           )}
 
           <div className="field is-grouped">
           <div className="control">
           <button type="submit" 
-            className="button is-info ml-5">Submit</button>
+            className="button is-info text-center">Submit</button>
           </div>
           </div>
           </form>

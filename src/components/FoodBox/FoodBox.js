@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const FoodBox = ({ name, image, calories, quantity, id }) => {
+const FoodBox = ({ name, image, calories, quantity, id, addFood }) => {
+  const [qty, setQty] = useState(quantity);
+
+  const handleSubmit = () => {
+    if (qty <= 0) return;
+
+    const food = { id, name, calories, image, quantity: Number(qty) };
+
+    addFood(food);
+    setQty(0);
+  };
 
   return (
-    <div className='my-4'>
+    <div className="my-4">
       <div className="box">
-        <article className="media" key={id}>
+        <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
               <img src={image} alt={name} />
@@ -22,10 +32,18 @@ const FoodBox = ({ name, image, calories, quantity, id }) => {
           <div className="media-right">
             <div className="field has-addons">
               <div className="control">
-                <input className="input" type="number" value={quantity} />
+                <input
+                  onChange={(event) => setQty(event.target.value)}
+                  className="input"
+                  type="number"
+                  min={0}
+                  value={qty}
+                />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button onClick={handleSubmit} className="button is-info">
+                  +
+                </button>
               </div>
             </div>
           </div>

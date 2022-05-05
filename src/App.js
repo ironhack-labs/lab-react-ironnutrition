@@ -28,7 +28,7 @@ function App() {
   }  
 
   const searchFoodList = (q) => {
-    const newFoodList = (q === '' ? foodData : foodData.filter(f=>f.name.toLowerCase().includes(q)))
+    const newFoodList = (q === '' ? foodData : foodData.filter(f=>f.name.toLowerCase().includes(q.toLowerCase())))
     setFoods(newFoodList);
   }
 
@@ -38,7 +38,7 @@ function App() {
     setFoods(newFoods);
     setFoodData(newFoods);
   }
-  
+
   return (
     <div className="app">
       <div className="container">

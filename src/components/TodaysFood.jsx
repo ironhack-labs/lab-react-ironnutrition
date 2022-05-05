@@ -12,7 +12,7 @@ function TodaysFood(props) {
         <div className="column content">        
             <h2 className="subtitle">Today's foods</h2>
             <ul>
-            {todaysFoodList.map(f=><li key={f.id}> {f.quantity} {f.name} {"="} {f.quantity * f.calories} cal <span onClick={() => removeFood(f.id,0)}>🚮</span></li> )}
+            {todaysFoodList.map(f=><li key={f.id}> {f.quantity} {f.name} {"="} {f.quantity * f.calories} cal <button className="button" onClick={() => removeFood(f.id,0)}>🚮</button></li> )}
             </ul>
             <strong>Total: {calTotal} cal</strong>
         </div>            

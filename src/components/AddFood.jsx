@@ -15,11 +15,8 @@ function AddFood(props) {
       image,
       quantity,
     };
- 
     console.log("Submitted", newFood);
-    // props.addMovie(newMovie);          // <== ADD
     props.addFood(newFood);
- 
     // Reset the state
     setName("");
     setCalories("");

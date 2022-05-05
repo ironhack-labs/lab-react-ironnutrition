@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from "react";
 
 function FoodBox(props) {
-    const { name, calories, image, quantity  } = props;
+    const { name, calories, image, quantity, id } = props;
+    const quantVal = (quantity === 0 ? 1 : quantity)
+    const [ quantityInput, setQuantityInput ] = useState(quantVal);
+
+    const handlePlusBtn = e => {
+      // setQuery(e.target.value);
+      props.plusBtn(e,quantityInput);
+    }
+
+    const handleQuantInput = e => setQuantityInput(e.target.value);
 
 return (
 <div className="box">
@@ -22,10 +31,10 @@ return (
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="number" value={quantity} />
+          <input className="input" type="number" name="quantity" value={quantityInput} onChange={handleQuantInput} />
         </div>
         <div className="control">
-          <button className="button is-info">
+          <button className="button is-info" onClick={() => handlePlusBtn(id)} >
             +
           </button>
         </div>

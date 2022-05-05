@@ -15,7 +15,6 @@ function AddFood(props) {
       image,
       quantity,
     };
-    console.log("Submitted", newFood);
     props.addFood(newFood);
     // Reset the state
     setName("");
@@ -25,7 +24,7 @@ function AddFood(props) {
     setToggleForm(false);
 }
 
-const displayForm = (e)=>(toggleForm ? setToggleForm(false) : setToggleForm(true));
+const displayForm = ()=>setToggleForm(!toggleForm);
 
     // e -> short-hand for 'event', passed automatically by input(s)
   const handleNameInput     = e => setName(e.target.value);
@@ -50,20 +49,22 @@ if(toggleForm){
                 </label>
             </div>
             <div className="field">
-                <label className="label">Calories: 
-                <div className="control">
-                    <input type="number" className="input is-small" name="calories" value={calories} onChange={handleCaloriesInput} />
-                </div>
-                </label>
-            </div>
-            <div className="field">
                 <label className="label">Image: 
                 <div className="control">
                     <input type="text" className="input is-small" name="image" value={image} onChange={handleImageInput} />
                 </div>
                 </label>
             </div>
-            <div className="field">
+
+            <div className="field is-grouped">
+                <label className="label">Calories: 
+                <div className="control">
+                    <input type="number" className="input is-small" name="calories" value={calories} onChange={handleCaloriesInput} />
+                </div>
+                </label>
+            {/* </div>
+
+            <div className="field"> */}
                 <label className="label">Quantity: 
                 <div className="control">
                     <input type="number" className="input is-small" name="quantity" value={quantity} onChange={handleQuantityInput} />

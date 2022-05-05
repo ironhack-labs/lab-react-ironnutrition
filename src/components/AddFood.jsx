@@ -36,7 +36,7 @@ const displayForm = (e)=>(toggleForm ? setToggleForm(false) : setToggleForm(true
 if(toggleForm){
     return (
     <div className="new-food">
-        <div className="message is-info is-light">
+        <div className="message is-info is-light is-small">
             <div className="message-header">
                 New Food <button className="delete" onClick={displayForm}></button>
             </div>
@@ -45,41 +45,35 @@ if(toggleForm){
             <div className="field">
                 <label className="label">Name: 
                 <div className="control">
-                    <input type="text" className="input" name="name" value={name} onChange={handleNameInput} />
+                    <input type="text" className="input is-small" name="name" value={name} onChange={handleNameInput} />
                 </div>    
                 </label>
             </div>
             <div className="field">
                 <label className="label">Calories: 
                 <div className="control">
-                    <input type="number" className="input" name="calories" value={calories} onChange={handleCaloriesInput} />
+                    <input type="number" className="input is-small" name="calories" value={calories} onChange={handleCaloriesInput} />
                 </div>
                 </label>
             </div>
             <div className="field">
                 <label className="label">Image: 
                 <div className="control">
-                    <input type="text" className="input" name="image" value={image} onChange={handleImageInput} />
+                    <input type="text" className="input is-small" name="image" value={image} onChange={handleImageInput} />
                 </div>
                 </label>
             </div>
             <div className="field">
                 <label className="label">Quantity: 
                 <div className="control">
-                    <input type="number" className="input" name="quantity" value={quantity} onChange={handleQuantityInput} />
+                    <input type="number" className="input is-small" name="quantity" value={quantity} onChange={handleQuantityInput} />
                 </div>
                 </label>                    
             </div>
-            <div className="field is-grouped">
-            <div className="field is-grouped">
-                <div className="control">
-                    <button className="button is-primary" type="submit">Add</button>
-                </div>
-                <div className="control">
-                    <button className="button is-light is-pulled-right" onClick={displayForm}>Cancel</button>
-                </div>
-                </div>            
-            </div>
+            <div className="buttons is-centered">
+                    <button className="button is-primary is-medium is-outlined" type="submit">Add</button>
+                    <button className="button is-light is-medium is-outlined is-inverted is-pulled-right" onClick={displayForm}>Cancel</button>
+            </div>            
           </form>
           </div>  
          </div>
@@ -88,7 +82,7 @@ if(toggleForm){
 }else{
     return (
         <div className="new-food">
-            <button className="button is-primary is-large is-pulled-right" onClick={displayForm}>New Food</button>
+            <button className="button is-primary is-medium is-pulled-right" onClick={displayForm}>New Food</button>
         </div>
       );    
 }  

@@ -11,7 +11,8 @@ const handleSearch = event => {
 
     return(
         <div>
-            <input type="text"  value={searchTerm} onChange="handleSearch" />
+            <label htmlFor=''>Search Foods</label>
+            <input type="text"  value={searchTerm} onChange={handleSearch} />
         </div>
     );
 }

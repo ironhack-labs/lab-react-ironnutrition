@@ -14,7 +14,12 @@ function AddFood(props) {
     const handleSubmit = event => {
         event.preventDefault();
 
-        const newFoodObject = { 'name' : foodName, 'calories' : calCount, 'image' : imageUrl, 'quantity' : 1 };
+        const newFoodObject = { 
+            'name' : foodName, 
+            'calories' : calCount, 
+            'image' : imageUrl, 
+            'quantity' : 1 
+        };
 
         props.handleAddFood(newFoodObject);
 

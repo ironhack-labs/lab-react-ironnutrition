@@ -2,13 +2,13 @@ import React from 'react';
 
 const FoodBox = (props) => {
   const { food } = props;
-  const { image, name, calories } = food;
+  const { image, name, calories, quantity } = food;
   return (
     <div className="box">
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={image} />
+            <img src={image} alt="food" />
           </figure>
         </div>
         <div className="media-content">
@@ -22,7 +22,7 @@ const FoodBox = (props) => {
         <div className="media-right">
           <div className="field has-addons">
             <div className="control">
-              <input className="input" type="number" value="1" />
+              <input className="input" type="number" value={quantity} />
             </div>
             <div className="control">
               <button className="button is-info">+</button>

@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import FoodList from './components/FoodList';
+import SearchFoods from './components/SearchFoods';
 
 function App() {
   return (

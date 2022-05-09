@@ -5,6 +5,7 @@ const SearchFoods = (props) => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
+    props.handleSearch(e.target.value)
   };
 
   return (

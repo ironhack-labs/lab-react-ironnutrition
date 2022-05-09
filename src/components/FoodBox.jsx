@@ -2,7 +2,7 @@ import React from 'react';
 
 const FoodBox = (props) => {
   const { food } = props;
-  const { image, name, calories, quantity } = food;
+  const { name, calories, image, quantity } = food;
   return (
     <div className="box">
       <article className="media">

@@ -13,12 +13,12 @@ const AddFood = (props) => {
 
   // another way
   // this is an object
-  const [foodState, setFoodState] = useState({
-    food: '',
-    image: '',
-    calories: 0,
-    quantity: 0,
-  });
+  // const [foodState, setFoodState] = useState({
+  //   food: '',
+  //   image: '',
+  //   calories: 0,
+  //   quantity: 0,
+  // });
 
   // use this fucntion for all handlers for fast way. and shift all values to foodstate.foood / foodstate.calories
   // const handleFoodState = (e) => {
@@ -46,18 +46,18 @@ const AddFood = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newFood = {
-      name: foodName,
-      calories: foodCalories,
-      image: imageURL,
-      quantity: 1,
+      'name': foodName,
+      'calories': Number(foodCalories),
+      'image': imageURL,
+      'quantity': 1
     };
 
     // set     props.handleFood(foodState) here for the shorter wway;
-    props.handleFood(newFood);
-
+    props.addFood(newFood);
+    console.log(newFood);
     // then here we can copy the setfoodstate from the above shorter one to pass in all the states.
     setFoodName('');
-    setFoodCalories('');
+    setFoodCalories(0);
     setImageURL('');
 
     setIsShown(false);
@@ -67,47 +67,41 @@ const AddFood = (props) => {
     setIsShown(!isShown);
   };
   return (
-    <div className="AddMovie">
+    <div>
       <button onClick={isShownButton}>{isShown ? 'Hide' : 'Show'}</button>
-      <h4>Add new food </h4>
+
       {/* form doesnt need action cause thats the old fashioned way */}
       {isShown ? (
         <form onSubmit={handleSubmit}>
-          <label htmlFor="foodName">Food:</label>
-          <input
-            name="food"
-            type="text"
-            value={foodName}
-            id="foodName"
-            onChange={handleFoodNameInput}
-          />
+          <div>
+            <label htmlFor="foodName">Food:</label>
+            <input
+              name="food"
+              type="text"
+              id="foodName"
+              value={foodName}
+              onChange={handleFoodNameInput}
+            />
 
-          <label htmlFor="foodCalories">Calories:</label>
-          <input
-            name="calories"
-            type="text"
-            value={foodCalories}
-            id="foodCalories"
-            onChange={handleFoodCaloriesInput}
-          />
+            <label htmlFor="foodCalories">Calories:</label>
+            <input
+              name="calories"
+              type="number"
+              id="foodCalories"
+              value={foodCalories}
+              onChange={handleFoodCaloriesInput}
+            />
 
-          <label htmlFor="imageURL">Image:</label>
-          <input
-            //  these have to match uptop to pull the event value
-            name="image"
-            type="text"
-            value={imageURL}
-            id="imageURL"
-            onChange={handleImageURLInput}
-          />
-
-          {/* <label htmlFor="foodQuan">Quantity:</label>
-          <input
-            type="number"
-            value={foodQuan}
-            id="foodQuan"
-            onChange={handleQuantityInput}
-          /> */}
+            <label htmlFor="imageURL">Image:</label>
+            <input
+              //  these have to match uptop to pull the event value
+              name="image"
+              type="text"
+              id="imageURL"
+              value={imageURL}
+              onChange={handleImageURLInput}
+            />
+          </div>
           <button type="submit">Add Food</button>
         </form>
       ) : null}

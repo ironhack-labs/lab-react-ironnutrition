@@ -11,7 +11,7 @@ function App() {
 
   const [filteredFoodArray, setFilteredFoodArray] = useState(foodsData);
 
-  // const [foodListArray, setFoodListArray] = useState(foodsData);
+  const [foodListArray, setFoodListArray] = useState([]);
   // add function that adds foods from add button to food list then updates the state.
 
   // ALT SYNTAX addFoodToFoodArray = foodObject => setFoodArray([...foodArray, foodObject]);
@@ -33,13 +33,35 @@ function App() {
     setFilteredFoodArray(filteredFoods);
   }
 
+  const addFoodToFoodListArray = foodListObject => {
+    const copyFoodArray = [...foodListArray];
+    copyFoodArray.push(foodListObject);
+    setFoodListArray(copyFoodArray);
+  }
+
   return (
     <div className='App'>
-    <AddFood handleAddFood={addFoodToFoodArray} />
-    <SearchFoods handleSearch={filterFoodsByString} />
-    {filteredFoodArray.map((foodElement, index) => {
-      return <FoodBox  food={foodElement} key={index} />;
-    })}
+      <AddFood handleAddFood={addFoodToFoodArray} />
+      <SearchFoods handleSearch={filterFoodsByString} />
+      <div style={{ display: 'flex'}}>
+        <div style={{ flex: '1'}}>
+          {filteredFoodArray.map((foodElement, index) => {
+            return <FoodBox  addButton={addFoodToFoodListArray} food={foodElement} key={index} />;
+          })}
+        </div>
+        <div style={{ flex: '1'}}>
+          <h1 style={{ fontSize: '25px', fontWeight: '800'}}>Today's foods</h1>
+          <ul>
+          {foodListArray.map((foodListObject) => {
+            return (
+
+                <li>{foodListObject.name}</li>
+            )
+          })}
+          </ul>
+      </div>
+    </div>
+
 
     </div>
   );

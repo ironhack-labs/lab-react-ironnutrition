@@ -4,6 +4,11 @@ function FoodBox(props) {
    
     const { name, calories, image, quantity } = props.food;
    
+
+    const handleAddToList = () => {
+        props.addButton(props.food)
+    }
+
    return (
    <div className="box">
         <article className="media">
@@ -26,7 +31,7 @@ function FoodBox(props) {
                 <input className="input" type="number" value={quantity} />
                 </div>
                 <div className="control">
-                <button className="button is-info">
+                <button onClick={handleAddToList} className="button is-info">
                     +
                 </button>
                 </div>

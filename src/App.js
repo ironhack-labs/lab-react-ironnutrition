@@ -14,21 +14,58 @@ function App() {
   const addFoodToArray = (newFoodObject) => {
     setFoodArray([...foodArray, newFoodObject]);
   };
+
+  const [foodListArray, setFoodListArray] = useState([]);
+  // make third array for iteration 5 and display them on other side of screen // make function that updates state then pass it to component as prop, into foodbox
   const filterFoodsByString = stringToSearch =>{
   const filteredFoods =  foodArray.filter(foodElement=> {
       return foodElement.name.toLowerCase().includes(stringToSearch.toLowerCase())
     })
     setFilteredFoodArray(filteredFoods);
   }
-  console.log(foodArray);
+
+
+  const addFoodToListFoodArray = (newFood) => {
+    setFoodListArray([...foodListArray, newFood]);
+    
+  };
+
+
+
+
 
   return (
     <div className="App">
       <AddFood addFood={addFoodToArray} />
       <SearchFoods handleSearch={filterFoodsByString}/>
+      <div style={{display:'flex'}}>
+        <div style={{flex:'1'}}>
       {filteredFoodArray.map((foodElement, index) => {
-        return <FoodBox food={foodElement} key={index} />;
+      
+        return <FoodBox food={foodElement} key={index} addNewFood={addFoodToListFoodArray} />;
       })}
+        </div>
+        <div style={{flex:'1'}}>
+          <h3>Today's Food</h3>
+        <ul>
+        {foodListArray.map((newFoodObject)=>{
+           console.log(newFoodObject)
+        return(
+            <li>
+             {newFoodObject.quantity}   {newFoodObject.name} = {newFoodObject.calories}
+              
+            </li>
+        )
+        })}
+        {/* 0 is prev */}
+       <p>Total: {foodListArray.reduce((prev,curr)=>{
+return prev + curr.calories * curr.quantity
+        },0)}</p> 
+     
+        </ul>
+
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 function FoodBox(props) {
    
+    const [quantityNumber, setQuantityNumber] = useState(0);
+
     const { name, calories, image, quantity } = props.food;
    
 
@@ -9,6 +12,16 @@ function FoodBox(props) {
         props.addButton(props.food)
     }
 
+    const handleButton = () => {
+        props.addNewFood({...props.food, 'quantity': quantityNumber})
+
+        setQuantityNumber(0)
+    }
+
+    const handleQuantityInput = (e) => {
+        setQuantityNumber(e.target.value)
+    }
+    
    return (
    <div className="box">
         <article className="media">
@@ -21,14 +34,14 @@ function FoodBox(props) {
             <div className="content">
                 <p>
                 <strong>{name}</strong> <br />
-                <small>{calories}</small>
+                <small>{calories} Cal</small>
                 </p>
             </div>
             </div>
             <div className="media-right">
             <div className="field has-addons">
                 <div className="control">
-                <input className="input" type="number" value={quantity} />
+                <input className="input" type="number" value={quantityNumber} onChange={handleQuantityInput} />
                 </div>
                 <div className="control">
                 <button onClick={handleAddToList} className="button is-info">

@@ -54,10 +54,15 @@ function App() {
           <ul>
           {foodListArray.map((foodListObject) => {
             return (
-
-                <li>{foodListObject.name}</li>
+                <li>
+                {foodListObject.quantity} {foodListObject.name} = {foodListObject.calories}
+                </li>
             )
           })}
+          <p>Total: {foodListArray.reduce((prev, curr) => {
+            return prev + curr.calories * curr.quantity;
+          })}
+          </p>
           </ul>
       </div>
     </div>

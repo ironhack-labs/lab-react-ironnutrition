@@ -26,7 +26,22 @@ function App() {
 
 
   const addFoodToListFoodArray = (newFood) => {
-    setFoodListArray([...foodListArray, newFood]);
+
+    const copyOfArray = [...foodListArray];
+
+    const foundIndex=  foodListArray.findIndex(foodEl=> {
+      return foodEl.name === newFood.name
+    })
+
+    if(foundIndex === -1){
+      copyOfArray.push(newFood)
+    }
+    else{
+      copyOfArray[foundIndex].quantity =  Number(copyOfArray[foundIndex].quantity) + Number(newFood.quantity)
+    }
+
+
+    setFoodListArray(copyOfArray);
     
   };
 

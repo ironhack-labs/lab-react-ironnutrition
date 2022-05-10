@@ -10,6 +10,7 @@ const FoodBox = (props) => {
 // add total calories, update quantity, make the button usable
 
 
+
     props.addNewFood({...props.food, 'quantity':quantityNumber})
     
   setQuantity(0)

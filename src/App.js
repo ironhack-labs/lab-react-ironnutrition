@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bulma/css/bulma.css'
+import foods from './foods.json';
+import Foodbox from './components/Foodbox';
+import NewFoodForm from './components/NewFoodForm'
+import Searchbar from './components/Searchbar'
+import {useState} from "react";
 
 function App() {
+  
+  let foodArr = foods;
+
+  const [updatedFoodArr, setNewFoodArr ] = useState([...foodArr])
+
+  
+
+  console.log(foodArr.length);
+  console.log("New food arr", updatedFoodArr)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <NewFoodForm foodArr={updatedFoodArr} setNewFoodArr={setNewFoodArr}/>
+    <Searchbar foodArr={updatedFoodArr} setNewFoodArr={setNewFoodArr}/>
+    {updatedFoodArr.map((food, index) => {
+      return (
+         <Foodbox
+           key={index}
+           img={food.image}
+           food={food.name}
+           cals={food.calories}
+
+         />
+      )
+    })}
+     
     </div>
   );
 }

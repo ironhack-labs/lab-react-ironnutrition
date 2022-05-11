@@ -1,0 +1,7 @@
+.off {
+    visibility: hidden;
+}
+
+.on {
+    visibility: visible;
+}

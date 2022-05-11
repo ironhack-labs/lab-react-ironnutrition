@@ -3,6 +3,7 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import foodsArr from './foods.json';
 import AddFood from "./components/AddFood";
+import Search from "./components/Search";
 
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
       <section>
         <AddFood foods={foods} setFoods={setFoods}/>
       </section>
+      <section>
+      <Search foods={foods} setFoods={setFoods}/>
+    </section>
       <section>
         {
           foods.map((food, index) => {

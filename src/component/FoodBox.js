@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './FoodBox.css'
 
 
 function FoodBox(props) {
@@ -7,7 +8,10 @@ function FoodBox(props) {
 
 
     return (
+
+       
         <div className="box" key={props.key}>
+             
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">

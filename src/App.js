@@ -3,6 +3,8 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
+import Add from './components/Add';
+import Search from './components/Search';
 
 function App() {
 
@@ -16,7 +18,9 @@ function App() {
 
   return (
     <div className="App">
-    <FoodBox item={foods} />
+      <Add />
+      <FoodBox item={foods} />
+      <Search list={foodState}/>
     </div>
   );
 }

@@ -6,9 +6,22 @@ import foods from './foods.json';
 import Foodbox from './components/Foodbox';
 
 function App() {
+
   return (
-    <Foodbox foods={foods} />
-  );
+    <>
+      {foods.map((element) => {
+        return (
+          <Foodbox
+            name={element.name}
+            calories={element.calories}
+            image={element.image}
+            quantity={element.quantity}
+          />
+        )
+      })
+      }
+    </>
+  )
 }
 
 export default App;

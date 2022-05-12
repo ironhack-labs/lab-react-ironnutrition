@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import FoodBox from './components/FoodBox';
+import foodArr from './foods.json';
+import 'bulma/css/bulma.css';
+import AddFood from './components/AddFood';
+import Search from './components/Search';
+
+
 
 function App() {
+  const [food, setFood] = useState(foodArr);
+  
+  // const [showForm, setShowForm] = useState();
+
+  const addFood = (newFood) => {
+    setFood((prevFood) => {
+      const copy =[newFood, ...prevFood]
+      return copy
+    });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>IronNutrition</h1>
+      <button >Add new Food</button>  
+
+      <AddFood callBackAddFood={addFood} />
+      <Search food={food} setFood={setFood}/>
+      <FoodBox foodList={food} />
+
     </div>
   );
 }

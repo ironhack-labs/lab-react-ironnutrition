@@ -1,7 +1,7 @@
-import React, {useState} from "react"
+import React from "react"
 
 function FoodBox(props) {
-    const [countQty, setcountQty] = useState(1)
+
     return (
         <>
             {props.foodData.map((food,index) => {
@@ -23,7 +23,7 @@ function FoodBox(props) {
                         <div className="media-right">
                             <div className="field has-addons">
                                 <div className="control">
-                                    <input className="input" type="number" value={food.quantity} onChange={(e) => { setcountQty(e.target.value) }} />
+                                    <input className="input" type="number" value="1" />
                                 </div>
                                 <div className="control">
                                     <button className="button is-info">

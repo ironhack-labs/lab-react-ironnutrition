@@ -11,29 +11,31 @@ import Search from './Components/Search';
 
 function App() {
   const [food, setFood] = useState(foods);
-  const [showFood, setShowFood] = useState([])
+  const [showFood, setShowFood] = useState({})
 
 const addNewFood=(newFood)=>{
   setFood(preFood=>{
     return [newFood, ...preFood];
   })
 }
+const showOrder=(newFood)=>{
+  setShowFood(preFood=>{
+    return [newFood, ...preFood];
+  })
+}
+
   return (
     <div className="App">
       <Controller addNewFood={addNewFood} />
       <Search foods={food} setFood={setFood} />
+
       <ul>food
-     
-     
-      {food.map((fd,i)=>{ 
-        return(
-          <>
-          <li>is {fd.quantity}</li>
-          <FoodBox key={i} setShowFood={setShowFood} setFood={setFood} foods={fd} />
-          </>
-        )
-      })}
+      <li>is {showOrder} </li>
       </ul>
+     
+      {food.map((fd,i)=><FoodBox key={i} setShowFood={setShowFood} setFood={setFood} foods={fd} />  
+      )}
+     
     </div>
   );
 }

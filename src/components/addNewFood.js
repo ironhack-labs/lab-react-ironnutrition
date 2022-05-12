@@ -38,6 +38,7 @@ const showForm = () => {
         <button onClick={showForm}>Add New Food</button>
             {isVisible ? 
             <form onSubmit={handleSubmit}>
+                <br></br>
                 <label>Name:<input type='text' name='name' value={name} onChange={(e) => {setName(e.target.value)}}></input> </label>
                 <label>Calories: <input type='number' name='calories' value={calories} onChange={(e) => {setCalories(e.target.value)}}></input></label>
                 <label>Image: <input type='text' name='image' value={image} onChange={(e) => {setImage(e.target.value)}}></input></label>

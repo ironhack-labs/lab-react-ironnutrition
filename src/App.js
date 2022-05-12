@@ -11,6 +11,7 @@ import Search from './Components/Search';
 
 function App() {
   const [food, setFood] = useState(foods);
+  const [showFood, setShowFood] = useState([])
 
 const addNewFood=(newFood)=>{
   setFood(preFood=>{
@@ -21,9 +22,18 @@ const addNewFood=(newFood)=>{
     <div className="App">
       <Controller addNewFood={addNewFood} />
       <Search foods={food} setFood={setFood} />
+      <ul>food
      
-      {food.map((fd,i)=> <FoodBox key={i} foods={fd} />)}
-      
+     
+      {food.map((fd,i)=>{ 
+        return(
+          <>
+          <li>is {fd.quantity}</li>
+          <FoodBox key={i} setShowFood={setShowFood} setFood={setFood} foods={fd} />
+          </>
+        )
+      })}
+      </ul>
     </div>
   );
 }

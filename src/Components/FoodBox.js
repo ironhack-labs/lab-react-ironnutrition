@@ -1,12 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 
-const FoodBox = ({ foods }) => {
-  const [count, setcount] = useState(1)
-  const [showFood, setShowFood] = useState([])
+const FoodBox = ({ foods , setFood, setShowFood}) => {
+  const [count, setcount] = useState(foods.quantity)
 
+
+  console.log(setFood)
   const increaseCount = () => {
-    setcount(count +1)
+   const newOrder={
+      name:foods.name,
+      quantity : count
+
+    }
+    setShowFood(newOrder)
+    setcount(0)
+  
   }
 
 

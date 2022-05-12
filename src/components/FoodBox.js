@@ -1,15 +1,14 @@
 import React from 'react';
 
-function FoodBox(props) {
-  console.log(props);
+function FoodBox({listOfFoods, addTodaysFood}) {
 
-  return props.listOfFoods.map((food) => {
+  return listOfFoods.map((food) => {
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={food.image} />
+              <img src={food.image} alt={food.name}/>
             </figure>
           </div>
           <div className="media-content">
@@ -26,7 +25,7 @@ function FoodBox(props) {
                 <input className="input" type="number" value="1" />
               </div>
               <div className="control">
-                <button className="button is-info">+</button>
+                <button className="button is-info" value={food} onClick={e => {addTodaysFood(food)}}>+</button>
               </div>
             </div>
           </div>

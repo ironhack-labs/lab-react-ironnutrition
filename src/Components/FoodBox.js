@@ -5,28 +5,26 @@ const FoodBox = ({ foods }) => {
   const [count, setcount] = useState(1)
   const [showFood, setShowFood] = useState([])
 
-  const increaseCount = (id) => {
-  
+  const increaseCount = () => {
+    setcount(count +1)
   }
 
 
 
   return (
-    <>
-      {foods.map((food ,index)=> {
-        return (
-          <div key={index} className="box">
+    
+          <div  className="box">
             <article className="media">
               <div className="media-left">
                 <figure className="image is-64x64">
-                  <img src={food.image ? food.image : "https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/02/0/0/generic.jpg"} />
+                  <img src={foods.image ? foods.image : "https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/02/0/0/generic.jpg"} />
                 </figure>
               </div>
               <div className="media-content">
                 <div className="content">
                   <p>
-                    <strong>{food.name}</strong> <br />
-                    <small>{food.calories}</small>
+                    <strong>{foods.name}</strong> <br />
+                    <small>{foods.calories}</small>
                   </p>
                 </div>
               </div>
@@ -36,7 +34,7 @@ const FoodBox = ({ foods }) => {
                     <input className="input" type="number" value={count} onChange={(e)=>setcount(e.target.value)} />
                   </div>
                   <div className="control">
-                    <button className="button is-info">
+                    <button onClick={increaseCount} className="button is-info">
                       +
                     </button>
                   </div>
@@ -44,16 +42,6 @@ const FoodBox = ({ foods }) => {
               </div>
             </article>
           </div>
-        )
-      }
-      )}
-
-      <h3>Todays Food</h3>
-      <ul>
-        { }
-      </ul>
-    </>
-
 
 
   )

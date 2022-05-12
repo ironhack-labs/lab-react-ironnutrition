@@ -21,7 +21,9 @@ const addNewFood=(newFood)=>{
     <div className="App">
       <Controller addNewFood={addNewFood} />
       <Search foods={food} setFood={setFood} />
-      <FoodBox foods={food} />
+     
+      {food.map((fd,i)=> <FoodBox key={i} foods={fd} />)}
+      
     </div>
   );
 }

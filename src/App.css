@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.search{
+  margin-bottom: 50px;
+}
+
+.create-food{
+  padding: 20px;
+  margin: 1rem;
+}

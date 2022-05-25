@@ -10,8 +10,8 @@ function SearchFood(props) {
 
   return (
     <div>
-      <label htmlFor="">Search Food</label>
-      <input type="text" onChange={handleSearch} value={searchTip} />
+      <label htmlFor=""></label>
+      <input className='inputSearch' type="text" onChange={handleSearch} value={searchTip} />
     </div>
   );
 }

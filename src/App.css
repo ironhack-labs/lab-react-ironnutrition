@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+.search {
+  display: inline-block;
+  width: 100vh;
+}
+
+.inputSearch {
+  display: inline-block;
+  border-color: #61dafb;
+  width: 100%;
+}
+
+.container{
+  display: inline-flex;
+  border: 1px solid #282c34;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.divName{
+  width:200px;
+}
+
+.divQty{
+  display: flex;
+  justify-content: end;
+  width: 200px;
+}
+
+.inputQty{
+  border: none;
+  text-align: left!important;
+}
+
+.btnAdd{
+  background-color:rgb(71, 71, 255);
+  color:aliceblue;
+  border-radius: 5px;
+}

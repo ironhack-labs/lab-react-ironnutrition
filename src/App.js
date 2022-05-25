@@ -34,7 +34,10 @@ function App() {
   return (
     <div className="App">
       <AddFood handleAddFood = {addFoodShow} />
-      <SearchFood handleSearch = {filterByString} />
+      <div className='search'>
+        <SearchFood handleSearch = {filterByString} />
+      </div>
+      
       <div>
         {
           filteredArr.map((elem, index) =>{

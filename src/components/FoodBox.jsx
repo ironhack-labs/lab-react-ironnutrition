@@ -26,16 +26,20 @@ function FoodBox(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <div>
         <img src={image} alt={image} width={100} />
       </div>
-      <strong>{name}</strong>
-      <small>{calories}</small>
-      <div>
-        <input type="number" onChange={handleChangeQty} value={countQty} />
+      <div className='divName'>
+        <strong>{name}</strong>
+        <br />
+        <small>{calories} cal</small>
       </div>
-      <button onClick={addToFoodList}>+</button>
+
+      <div className='divQty'>
+        <input className='inputQty' type="number" onChange={handleChangeQty} value={countQty} />
+      </div>
+      <button className='btnAdd' onClick={addToFoodList}>+</button>
     </div>
   );
 }

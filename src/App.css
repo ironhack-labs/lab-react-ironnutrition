@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-color: bisque;
+  padding-bottom: 1000px;
+
+}
+.App{
+  background-color: rgba(255,255,255, 0.6);
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1{
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+.App > button{
+  margin-bottom: 20px;
+}
+.columns{
+  padding: 20px 20px;
+}
+.btnMove{
+  margin-left: 15px;
+}
+.todayFoodHeading{
+  margin-bottom: 15px;
+}
+.todayFoodFooter{
+  margin-top: 15px;
+}

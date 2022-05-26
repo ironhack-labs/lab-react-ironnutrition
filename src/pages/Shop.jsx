@@ -32,13 +32,9 @@ export default function Shop() {
         }
     };
     const removeTodayFood = (response) => {
-        if(todayFood.length === 1){
-            setTodayFood([]);
-            return;
-        }
-        const indexToFind = todayFood.findIndex(elem => elem.name === response.name);         
-        const copyFood = JSON.parse(JSON.stringify(todayFood)).splice(indexToFind, 1);
-        setTodayFood(copyFood);
+        const copyFood = JSON.parse(JSON.stringify(todayFood));
+        const filteredArr = copyFood.filter(elem => elem.name !== response);
+        setTodayFood(filteredArr);
     }
 
   return (

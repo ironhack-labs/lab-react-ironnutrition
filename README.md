@@ -8,50 +8,104 @@ You just realized that since the beginning of the bootcamp, your diet is not hea
 
 To take care of the food you eat, you decided to create a nutrition app that will track everything you eat!
 
-![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
+<p align="center">
+  <img src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-3.gif" alt="Example - render FoodBox component in a list" />
+</p>
 
 ## Setup
 
 - Fork this repo
 - Clone this repo
+- Open the LAB and start:
 
-```shell
-$ cd lab-react-ironnutrution
-$ npm install
-$ npm start
-```
+  ```bash
+  $ cd lab-react-ironnutrition
+  $ npm install
+  $ npm start
+  ```
 
 ## Submission
 
 - Upon completion, run the following commands:
 
-  ```
+  ```bash
   git add .
   git commit -m "done"
   git push origin master
   ```
 
-- Create Pull Request so your TAs can check up your work.
+- Create a Pull Request so that your TAs can check your work.
+
+## Getting Started
+
+Clean the `App.js` component so that it has the following structure:
+
+```jsx
+// src/App.js
+import './App.css';
+
+function App() {
+  return <div className="App"></div>;
+}
+export default App;
+```
+
+<br>
 
 ## Instructions
 
 ### Iteration 0 | Setup
 
-#### Bulma installation
+#### Ant Design Installation
 
-We will use [Bulma](https://bulma.io/) for the design :)
+We will use [Ant Design](https://ant.design/) component library for the design. :)
 
 ```sh
-$ npm install bulma --save
+$ npm install antd
 ```
 
+To make the Ant Design styles available in the entire app, import Ant Design stylesheet in `index.js`:
+
 ```javascript
-import 'bulma/css/bulma.css';
+// src/index.js
+import 'antd/dist/antd.css';
+```
+
+#### Ant Design Components
+
+During the LAB, we will be using a set of simple Ant Design components that provide basic styling.
+
+Before using any Ant Design component, you first have to import it from the `antd` package. You must import a component in each file where you intend to use it. Example:
+
+```jsx
+// EXAMPLE
+// To start using the pre-made Ant Design components we must first import them:
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
+
+function Example() {
+  // After importing the components we can render them directly:
+  return (
+    <div>
+      <Row>
+        <Col>
+          <Divider>Fancy Input</Divider>
+          <Input value={''} onChange={() => {}} />
+        </Col>
+
+        <Col>
+          <Card title={'Fancy Card'}>
+            <Button onClick={() => {}}>Fancy Button</Button>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  );
+}
 ```
 
 #### Import a JSON
 
-Import the foods from the `foods.json`.
+For now, we will be working on the `App.js` file. In the later steps, you can refactor the app and split it into multiple components. Import the array of foods from the `foods.json` file to `App.js`.
 
 ```js
 import foods from './foods.json';
@@ -59,88 +113,120 @@ import foods from './foods.json';
 
 #### About the design
 
-If you struggle with the design, you can find a static example of what is expected inside file `style-guides.html`.
+If you struggle with the design, you can find static examples of what is expected inside the `style-guide/` folder.
 
 So let's start!
 
-### Iteration 1 | Create `FoodBox` component
+### Iteration 1| Render a Simple List
 
-Create a `FoodBox` component that takes at least `food` as a prop and displays a box with all the information about an ingredient.
+Now that you have the `foods.json` imported in `App.js` it is time to save it in a state variable. Once you have done that, map over the state variable and render a simple list that displays food names. Use the following snippet for the list items:
 
-You can use this HTML snippet to display properly the `FoodBox`:
-
-```html
-<div className="box">
-  <article className="media">
-    <div className="media-left">
-      <figure className="image is-64x64">
-        <img src="https://i.imgur.com/eTmWoAN.png" />
-      </figure>
-    </div>
-    <div className="media-content">
-      <div className="content">
-        <p>
-          <strong>Pizza</strong> <br />
-          <small>400 cal</small>
-        </p>
-      </div>
-    </div>
-    <div className="media-right">
-      <div className="field has-addons">
-        <div className="control">
-          <input className="input" type="number" value="1" />
-        </div>
-        <div className="control">
-          <button className="button is-info">
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-  </article>
+```jsx
+<div>
+  <p> FOOD_NAME_HERE </p>
+  <img src="FOOD_IMAGE_HERE" width={0} />
 </div>
 ```
 
-![](https://i.imgur.com/bY9i5Rw.png)
+![Example - Simple Food List](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-1.png)
 
-### Iteration 2 | Display food
+<br>
 
-In your `App` component (your main component), display as many `FoodBox` as elements inside the variable `foods`.
+### Iteration 2 | Create the `FoodBox` component
 
-![](https://i.imgur.com/3TVQJDO.png)
+Create a new component named `FoodBox` that takes the prop `food`, which is an object. It should display the card with food information coming from the `food` prop. To render the content, use the structure provided in the file `style-guide/FoodBox.example.js`.
 
-### Iteration 3 | Add new food
 
-Create a button to add new foods.
 
-When a user clicks the button, a form will appear with fields for a name, number of calories, and an image.
+Once done, test it by rendering a single instance of the component in `App.js`. You can pass it the object with food info like this:
 
-When the user clicks submit, the food will be added to the list.
+```jsx
+<FoodBox food={ {
+  name: "Orange",
+  calories: 85,
+  image: "https://i.imgur.com/abKGOcv.jpg",
+  servings: 1
+}} />
+```
 
-The form should disappear when the user clicks the submit button.
+**Expected result:**
 
-### Iteration 4 | Implement search bar
+![Example - Single "FoodBox" Component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-2.png)
 
-Create a `Search` component to perform a search that updates the list of all meal.
+<br>
 
-![](https://i.imgur.com/XaOpAx8.png)
+### Iteration 3 | Render a List of `FoodBox` Components
 
-### Iteration 5 | Create add buttons
+After creating the `FoodBox` component, use it in `App.js` to render the food *list*. Instead of mapping over the foods array and rendering only the food names, render the `<FoodBox />` component. When rendering the `FoodBox`  component, remember to pass the food object as a prop.
 
-On your `FoodBox`, you have an input an "+" button. Use them so that when a user clicks on the button, it adds them on a list on the right called "_Today's foods_".
+Once you are done rendering the `FoodBox` in the list, your app should display the following content:
 
-You will also need to display the total amount of calories at the bottom of the list as a recap.
+![Example - render FoodBox component in a list](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-3.gif)
 
-![](https://media.giphy.com/media/fH0dyqpPJRvTbiF5rJ/giphy.gif)
+<br>
 
-If you don't remember how to create responsive columns with Bulma, you can check the [documentation](https://bulma.io/documentation/columns/basics/).
+### Iteration 4 | Add new food
 
-### Iteration 6 | Bonus | Group ingredients
+Create a new controlled component named `AddFoodForm`, used to add new foods. The component should contain a form with four input elements for `name` , `image` , `calories` and `servings`.
 
-You made an awesome application, but you have found a little problem in the UX. For example, if you click twice on "Pizza", it will display 2 lines "_1 Pizza = 400 cal_" instead of 1 line "_2 Pizza = 800 cal_". Fix that problem.
+The component should render use the AntDesign component `Input` instead of the the `input` tag. The AntDesign `Input` component uses the same syntax as the regular `input` tag. Example:
 
-### Iteration 7 | Bonus | Allow the user to remove an ingredient
+```jsx
+// HTML <input /> tag
+<input value={} type="text" onChange={} />
+```
 
-On the "_Today's food_", add a trash icon to let users removing one of their items.
+```jsx
+// Ant Design <Input /> component
+<Input value={} type="text" onChange={} />
+```
 
-Happy coding! :heart:
+The component should be rendered in the `App.js`.
+
+The food should be added to the list when the user clicks submit.
+
+**Hint:** To add new food to the food array that is in the state of the App component, you must pass a function through the props.
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-4.gif)
+
+<br>
+
+### Iteration 5 | Implement search bar
+
+Create a `Search` component to search through and filter the list of food items displayed.
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-5.gif)
+
+<br>
+
+### Iteration 6 | Create a delete button
+
+Your `FoodBox` component has a delete button. Implement the delete functionality so that the item gets removed from the food list when a user clicks on the delete button.
+
+**Hint:** To update the food array that is in the state of the `App` component, you will need to pass a function through the props.
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-6.gif)
+
+If you are not sure how to create responsive columns with Ant Design, you can check the example provided in the Ant Design [documentation](https://ant.design/components/grid/#components-grid-demo-playground).
+
+<br>
+
+### Iteration 7 | Bonus | Hide the Add Food Form
+
+There are quite a few components displaying in the app. Implement a hide/show button that, when clicked, hides/shows the `AddFoodForm`. 
+
+When the form is showing, the button should display the message <kbd>Hide Form</kbd>`. When the form is hidden it shoud display <kbd>Add New Food</kbd>.
+
+![Example - Hide Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-7.gif)
+
+<br>
+
+### Iteration 8 | Bonus | Display a Feedback Message
+
+Display a Feedback message to the user when the food array is empty. Once the user deletes all of the items from the list, the following message should be displayed:
+
+![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-8.gif)
+
+
+
+Happy coding! ❤️

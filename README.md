@@ -117,7 +117,7 @@ If you struggle with the design, you can find static examples of what is expecte
 
 So let's start!
 
-### Iteration 1| Render a Simple List
+### Iteration 1 | Render a Simple List
 
 Now that you have the `foods.json` imported in `App.js` it is time to save it in a state variable. Once you have done that, map over the state variable and render a simple list that displays food names. Use the following snippet for the list items:
 

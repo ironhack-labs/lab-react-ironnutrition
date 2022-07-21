@@ -29,6 +29,21 @@ const handleSubmit =(event) => {
   setFoodArray(foodArray => [...foodArray, newFood]); 
 }
 
+const handleRemove = (event) =>{
+  event.preventDefault();
+
+}
+const deleteFood=(name) =>{
+  setFoodArray(foodArray.filter((foodArray) =>foodArray.name !==name))
+  setFilterFoodArray(foodArray.filter((foodArray) =>foodArray.name !==name))
+}
+
+// function handleRemove ({value}, index) {
+//   const newFoodArr=[...value]
+//   newFoodArr.splice(index,1)
+//   return newFoodArr;
+// }
+
  return (
     <div>
       <label>Search movie titles</label>
@@ -46,10 +61,12 @@ const handleSubmit =(event) => {
      setServings={setServings}
      setImage={setImage}
      handleSubmit={handleSubmit}
+     handleRemove={handleRemove}
      />
   
 <FoodBox
   foods={filterFoodArray}
+  deleteFood={deleteFood}
 />
 
     </div>

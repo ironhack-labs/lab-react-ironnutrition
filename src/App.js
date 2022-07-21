@@ -1,23 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm'; 
+// import Search from './components/Search';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+ const [filterFoodArray, setFilterFoodArray] = useState(foods);
+ const [foodArray, setFoodArray] = useState(foods); 
+ const [name, setName] = useState('');
+ const [calories, setCalories] = useState(0);
+ const [servings, setServings] = useState(0);
+ const [image, setImage] = useState('');
+
+ const updateSearch = event =>{
+    const newFoodArray = foodArray.filter(eachFood =>{
+      return (
+      eachFood.name.toLowerCase().includes(event.currentTarget.value.toLowerCase())
+)
+    })
+    setFilterFoodArray(newFoodArray);
+ };
+
+const handleSubmit =(event) => {
+  event.preventDefault();
+  const newFood = {name, calories, servings, image};
+  setFoodArray(foodArray => [...foodArray, newFood]); 
+}
+
+ return (
+    <div>
+      <label>Search movie titles</label>
+        <input
+          type="text"
+          onChange={updateSearch}
+        />
+    <AddFoodForm
+     name={name}
+     calories={calories}
+     servings={servings}
+     image={image} 
+     setName={setName}  
+     setCalories={setCalories}
+     setServings={setServings}
+     setImage={setImage}
+     handleSubmit={handleSubmit}
+     />
+  
+<FoodBox
+  foods={filterFoodArray}
+/>
+
     </div>
   );
 }

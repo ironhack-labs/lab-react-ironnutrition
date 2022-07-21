@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+img{
+  width: 150px;
+  height: 100px;
+}
+
+.tabla{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}

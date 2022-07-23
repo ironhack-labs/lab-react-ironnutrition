@@ -9,9 +9,13 @@ function Search(props) {
   return (
     <>
       <Divider>Search</Divider>
+      <div>
+        <p> FOOD_NAME_HERE </p>
+        <img src="FOOD_IMAGE_HERE" width={0} />
+      </div>
 
       <label>Search</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
+      <Input value={undefined} type="text" onChange={() => { }} />
     </>
   );
 }

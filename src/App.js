@@ -63,9 +63,7 @@ function App() {
    
         )})}
         </div>
-        {
-          comidas.length === 0 && <img src={Empty} alt=""/>
-        }
+        {comidas.length === 0 && <img src={Empty} alt=""/>}
         
     </div>
   )

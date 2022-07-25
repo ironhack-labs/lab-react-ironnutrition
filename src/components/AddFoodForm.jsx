@@ -13,6 +13,11 @@ function AddFoodForm(props) {
         e.preventDefault()
         props.agregarComida({name, image, calories, servings})
 
+        setName('')
+        setImage('')
+        setCalories('')
+        setServings('')
+
     }
 
   return (
@@ -44,7 +49,7 @@ function AddFoodForm(props) {
         setServings(e.target.value)
       }} />
 
-      <button type="submit">Create</button>
+      <button type="submit" className="button">Create</button>
     </form>
   );
 }

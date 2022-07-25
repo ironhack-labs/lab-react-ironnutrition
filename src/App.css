@@ -1,5 +1,5 @@
 .App {
-
+  margin: 4em; 
 }
 .tabla{
   display: flex;
@@ -9,4 +9,14 @@
 img {
   height: 100px;
   width: 150px;
+}
+.button{
+  margin-top: 2em;
+  padding: 0.7em 0.8em;
+  background-color: white;
+  color:rgb(3, 149, 149);
+  font-weight: 700;
+  font-size: 1.1em;
+  border: 2px solid rgb(3, 149, 149);
+
 }

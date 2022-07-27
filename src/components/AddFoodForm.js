@@ -4,11 +4,9 @@
 // Remember to import Ant Design components before using them.
 import { Divider, Input } from 'antd';
 import { useState } from 'react';
-import foodsArrDB from '../foods.json';
 
 // Iteration 4
 function AddFoodForm(props) {
-  const [food, setFood] = useState(foodsArrDB);
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [calories, setCalories] = useState('');
@@ -26,11 +24,11 @@ function AddFoodForm(props) {
     props.setFood((prevFood) => {
       return [newFood, ...prevFood]; // this is an alternative way to do push/unshift
     });
-    // clear form
     setName('');
     setImage('');
     setCalories('');
     setServings('');
+    // clear form
   };
 
   return (
@@ -42,7 +40,7 @@ function AddFoodForm(props) {
         required
         type="text"
         name="name"
-        value={props.name}
+        value={name}
         placeholder="enter that dish name"
         onChange={(e) => {
           setName(e.target.value); //using useState to show the text being typed
@@ -51,10 +49,9 @@ function AddFoodForm(props) {
 
       <label>Image</label>
       <Input
-        required
         type="text"
         name="image"
-        value={props.image}
+        value={image}
         placeholder="enter the image URL"
         onChange={(e) => {
           setImage(e.target.value); //using useState to show the text being typed
@@ -65,7 +62,7 @@ function AddFoodForm(props) {
       <Input
         type="number"
         name="calories"
-        value={props.calories}
+        value={calories}
         placeholder="bring those calories up"
         onChange={(e) => {
           setCalories(e.target.value); //using useState to show the text being typed
@@ -76,7 +73,7 @@ function AddFoodForm(props) {
       <Input
         type="number"
         name="servings"
-        value={props.servings}
+        value={servings}
         placeholder="any amount servings?"
         onChange={(e) => {
           setServings(e.target.value); //using useState to show the text being typed

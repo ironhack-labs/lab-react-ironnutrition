@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.wrapper {
+  
+  padding-left: 130px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+}
+.formAdd{
+margin: 20px;
+text-align: left;
+width: 600px;
+height: 600px;
+}

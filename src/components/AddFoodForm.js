@@ -28,7 +28,6 @@ function AddFoodForm(props) {
     setImage('');
     setCalories('');
     setServings('');
-    // clear form
   };
 
   return (

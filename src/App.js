@@ -4,7 +4,7 @@ import foodArrDB from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
-import Search from 'antd/lib/transfer/search';
+import Search from './components/Search';
 
 function App() {
   const [foodArray, setFood] = useState(foodArrDB);
@@ -14,18 +14,11 @@ function App() {
   return (
     <div className="App">
       {/* Display Add Food component here */}
-      <AddFoodForm
-        setFood={setFood}
-        setName=""
-        setImage=""
-        setCalories=""
-        setServings=""
-      />
+      <AddFoodForm setFood={setFood} />
 
       <Button> Hide Form / Add New Food </Button>
 
-      {/* Display Search component here */}
-      <Search />
+      <Search setArr={setFood} />
 
       <Divider>Food List</Divider>
 

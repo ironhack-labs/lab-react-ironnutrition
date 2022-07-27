@@ -19,6 +19,10 @@ function App() {
     setSearchResults(food.filter((item) => item.name.trim().toLowerCase().includes(value.trim().toLowerCase())))
   }
 
+  const deleteHandler = (index) => {
+    setFood(food.filter((item, i) => index !== i))
+  }
+
   return (
     <Wrapper>
       <AddFoodForm addFood={addFoodHandler} />
@@ -48,13 +52,13 @@ function App() {
       {!searchResults[0] ? (
         <Row style={{ width: '100%', justifyContent: 'center' }}>
           {food.map((item, i) => (
-            <FoodBox key={i} food={item} />
+            <FoodBox key={i} index={i} food={item} remove={deleteHandler} />
           ))}
         </Row>
       ) : (
         <Row style={{ width: '100%', justifyContent: 'center' }}>
           {searchResults.map((item, i) => (
-            <FoodBox key={i} food={item} />
+            <FoodBox key={i} index={i} food={item} remove={deleteHandler} />
           ))}
         </Row>
       )}

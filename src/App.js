@@ -1,17 +1,19 @@
 import { Button, Divider, Row } from 'antd';
 import './App.css';
-import foods from './foods.json';
+import foodArrDB from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
-  const [foodArray, setFood] = useState(foods);
+  const [foodArray, setFood] = useState(foodArrDB);
 
   //useEffect
 
   return (
     <div className="App">
       {/* Display Add Food component here */}
+      <AddFoodForm setFood={setFood} />
 
       <Button> Hide Form / Add New Food </Button>
 

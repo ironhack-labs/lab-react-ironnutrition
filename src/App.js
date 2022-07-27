@@ -15,11 +15,7 @@ function App() {
     setFood(newFoods)
   }
 
-  const handleSearch = (value) => {
-    
-  }
-
-  
+  const handleSearch = () => {}
 
   return (
     <div className="App">
@@ -35,13 +31,17 @@ function App() {
       <div>
         <Divider> Food List </Divider>
         {foods.map((food, index) => (
-          <div key={index} >
-              <FoodBox 
-              food={{name: food.name, calories: food.calories, image: food.image, servings: food.servings}} 
-              foods={foods} 
-              handleDelete = {handleDelete}
-              />
-          </div>
+          <Row key={index} >
+            <Col >
+              <div  >
+                <FoodBox 
+                food={{name: food.name, calories: food.calories, image: food.image, servings: food.servings}} 
+                foods={foods} 
+                handleDelete = {handleDelete}
+                />
+              </div>
+            </Col>
+          </Row>
         ))}
       </div>
 

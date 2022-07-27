@@ -9,7 +9,14 @@ import Search from './components/Search';
 function App() {
   const [foodArray, setFood] = useState(foodArrDB);
 
-  //useEffect
+  const deleteFood = (foodName) => {
+    setFood((prevFood) => {
+      const newList = prevFood.filter((food) => {
+        return foodName !== food.name;
+      });
+      return newList;
+    });
+  };
 
   return (
     <div className="App">
@@ -24,7 +31,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {foodArray.map((food) => {
-          return <FoodBox {...food} />;
+          return <FoodBox {...food} callbackToDelete={deleteFood} />;
         })}
         {/* Render the list of Food Box components here */}
       </Row>

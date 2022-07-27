@@ -10,6 +10,7 @@ import Search from './components/Search'
 function App() {
   const [food, setFood] = useState(foodList)
   const [searchResults, setSearchResults] = useState([])
+  const [isVisible, setIsVisible] = useState(false)
 
   const addFoodHandler = (item) => {
     setFood((prevList) => [item, ...prevList])
@@ -25,9 +26,9 @@ function App() {
 
   return (
     <Wrapper>
-      <AddFoodForm addFood={addFoodHandler} />
+      {isVisible && <AddFoodForm addFood={addFoodHandler} />}
 
-      <Button> Hide Form / Add New Food </Button>
+      <Button onClick={() => setIsVisible(!isVisible)}> Hide Form / Add New Food </Button>
 
       <Search listFilter={filterHandler} />
 

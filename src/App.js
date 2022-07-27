@@ -17,23 +17,27 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <FoodBox
+      {/* <FoodBox
         food={{
           name: 'Orange',
           calories: 85,
           image: 'https://i.imgur.com/abKGOcv.jpg',
           servings: 1,
         }}
-      />
+      /> */}
 
-      {food.map((item, i) => (
+      {/* {food.map((item, i) => (
         <div key={i}>
           <p>{item.name}</p>
           <img src={item.image} width={100} alt={item.name} />
         </div>
-      ))}
+      ))} */}
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>{/* Render the list of Food Box components here */}</Row>
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {food.map((item, i) => (
+          <FoodBox food={item} />
+        ))}
+      </Row>
     </Wrapper>
   )
 }

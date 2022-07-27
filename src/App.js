@@ -1,9 +1,9 @@
 import './App.css';
 import foods from './foods.json';
-import React, { Component } from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
 import FoodBox from './Components/FoodBox';
 import AddFoodForm from './Components/AddFoodForm';
+import SearchBar from './Components/SearchBar';
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
     <div className="App">
       {/* i am the Minion Bob and like {foods[0].name} and Banana */}
       <AddFoodForm setFood={setFood} />
+      <SearchBar   setFood={setFood}/>
       <h1>Food List</h1>
       <FoodBox foodsArr={foodsArr}/>
     </div>

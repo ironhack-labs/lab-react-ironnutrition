@@ -68,7 +68,7 @@ To make the Ant Design styles available in the entire app, import Ant Design sty
 
 ```javascript
 // src/index.js
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 ```
 
 #### Ant Design Components

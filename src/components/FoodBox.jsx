@@ -1,7 +1,7 @@
 import { Card, Col, Button } from 'antd';
 
 // Iteration 2 name image calories servings
-function FoodBox(props) {
+function FoodBox(props , foods) {
   return (
     <Col>
       <Card

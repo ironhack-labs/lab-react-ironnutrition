@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import React, { Component } from 'react';
+import { useState } from "react";
+import FoodBox from './Components/FoodBox';
+
 
 function App() {
+
+  const [foodsArr, setFoods] = useState(foods);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      i am the Minion Bob and like {foods[0].name} and Banana
+      <h1>Food List</h1>
+      <FoodBox foodsArr={foodsArr}/>
     </div>
   );
 }

@@ -10,7 +10,8 @@ import Search from './components/Search';
 function App() {
 
   const [food, setFood] = useState(foods)
-  const [results, setResults] = useState([])
+  const [searchResults, setSearchResults] = useState([])
+  const [searchInput, setSearchInput] = useState("")
 
   const [showForm, setShowForm] = useState(false);
 
@@ -24,7 +25,8 @@ function App() {
   }
 
   const searchFood = (str) => {
-    setResults(food.filter((element) => element.name.trim().toLowerCase().includes(str.trim().toLowerCase())))
+    setSearchInput(str)
+    setSearchResults(food.filter((element) => element.name.trim().toLowerCase().includes(str.trim().toLowerCase())))
    }
 
   const deleteFood = foodIndex => {
@@ -45,7 +47,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
 
-      {(results.length === 0)
+      {(searchResults.length === 0 && !searchInput)
       ?
       <>        
       {(food.length > 0) 
@@ -56,9 +58,9 @@ function App() {
       </>
       : 
       <>
-        {(food.length > 0)
+        {(searchResults.length !== 0)
         ? 
-        results.map((food, index) => <FoodBox food={food} key={index} index={index} deleteFood={deleteFood}/>)
+        searchResults.map((food, index) => <FoodBox food={food} key={index} index={index} deleteFood={deleteFood}/>)
         :
         <p>Oops! There is no content matching your search.</p>}
       </>

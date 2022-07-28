@@ -5,11 +5,13 @@ import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 import 'antd/dist/antd.css';
 // To start using the pre-made Ant Design components we must first import them:
-import foods from './foods.json';
+import foodsArray from './foods.json';
 import { useState } from 'react';
 
 function App() {
-  const [food, setFoods] = useState(foods);
+  const [allFoods, setAllFoods] = useState(foodsArray);
+  const [viewedFoods, setViewedFoods] = useState(foodsArray);
+  const [searched, setSearched] = useState('');
 
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
@@ -17,11 +19,26 @@ function App() {
   const [servings, setServings] = useState('');
 
   const deleteFood = (foodName) => {
-    setFoods((prevFoods) => {
+    setViewedFoods((prevFoods) => {
       const newList = prevFoods.filter((element) => {
         return element.name !== foodName;
       });
       return newList;
+    });
+    setAllFoods((prevFoods) => {
+      const newList = prevFoods.filter((element) => {
+        return element.name !== foodName;
+      });
+      return newList;
+    });
+  };
+
+  const searchFoods = (searched) => {
+    setViewedFoods((prevFoods) => {
+      const results = allFoods.filter((element) => {
+        return element.name.toLowerCase().includes(searched.toLowerCase());
+      });
+      return results;
     });
   };
 
@@ -34,7 +51,10 @@ function App() {
       servings: servings,
     };
     // update list of foods
-    setFoods((prevFoods) => {
+    setAllFoods((prevFoods) => {
+      return [newFood, ...prevFoods];
+    });
+    setViewedFoods((prevFoods) => {
       return [newFood, ...prevFoods];
     });
     // clear form
@@ -46,10 +66,18 @@ function App() {
 
   return (
     <div className="App">
-      <Search food={food} setFoods={setFoods} />
+      <Search
+        allFoods={allFoods}
+        setAllFoods={setAllFoods}
+        viewedFoods={viewedFoods}
+        setViewedFoods={setViewedFoods}
+        searchFoods={searchFoods}
+        setSearched={setSearched}
+        searched={searched}
+      />
       <AddFoodForm
-        food={food}
-        setFoods={setFoods}
+        allFoods={allFoods}
+        setAllFoods={setAllFoods}
         name={name}
         setName={setName}
         image={image}
@@ -60,7 +88,7 @@ function App() {
         setServings={setServings}
         handleSubmit={handleSubmit}
       />
-      {food.map((foodObj) => {
+      {viewedFoods.map((foodObj) => {
         return (
           <div key={foodObj.name}>
             {/* <p>{foodObj.name}</p>

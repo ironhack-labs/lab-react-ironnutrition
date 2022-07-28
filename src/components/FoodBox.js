@@ -1,5 +1,5 @@
 import { Card, Col, Button,Row } from 'antd';
-function FoodBox ({name,image,calories,servings}){
+function FoodBox ({name,image,calories,servings,hadndleDelete}){
     
     const result =calories * servings
     
@@ -15,7 +15,7 @@ function FoodBox ({name,image,calories,servings}){
           <p>
             <b>Total Calories: {result} </b> kcal
           </p>
-          <Button type="primary"> Delete </Button>
+          <Button type="primary" onClick={()=>hadndleDelete(name)}> Delete </Button>
         </Card>
       </Col>
      

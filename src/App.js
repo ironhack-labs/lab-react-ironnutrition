@@ -5,13 +5,30 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from 'antd/lib/transfer/search';
+import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 
  
 function App() {
 
   const [foods,setFood] = useState(foodsData)
- 
 
+  //add
+  const [foodData,setFoodData]= useState(foodsData)
+
+  const addFoods = food=>{
+    const updateFoodData =[...foodData,food]
+    const updateFood=[...foods,food]
+
+    setFoodData(updateFoodData)
+    setFood(updateFood)
+  }
+
+  const hadndleDelete =(name)=>{
+    const newFoods= foods.filter(food=>food.name !== name)
+    setFood(newFoods)
+  }
+ 
+  
 
 
 
@@ -50,6 +67,8 @@ function App() {
        
           <FoodBox 
           name={food.name} image={food.image} calories={food.calories} servings={food.servings}
+          foods={foods}
+          hadndleDelete={hadndleDelete}
           />
          
         )
@@ -57,7 +76,7 @@ function App() {
     </div>
 
       <div className='formAdd'>
-      <AddFoodForm></AddFoodForm>
+      <AddFoodForm addFood={addFoods} ></AddFoodForm>
       </div>
 
       

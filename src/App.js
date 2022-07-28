@@ -28,12 +28,20 @@ function App() {
     });
   };
 
+  const [counter, setCounter] = useState(0);
+
   return (
     <div className="App">
       {/* Display Add Food component here */}
-      <AddFoodForm setFood={setFood} />
+      <Button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        {counter % 2 ? 'Hide Form' : 'Add New Food'}
+      </Button>
 
-      <Button> Hide Form / Add New Food </Button>
+      {counter % 2 ? '' : <AddFoodForm setFood={setFood} />}
 
       <Search setArr={setFood} callbackToSearch={handleSearch} />
 

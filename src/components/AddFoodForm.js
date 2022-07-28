@@ -8,6 +8,7 @@ function AddFoodForm(props) {
     const [image, setImage] = useState("")
     const [calories, setCalories] = useState("")
     const [servings, setServings] = useState("")
+    const [showForm, setShowForm] = useState(true)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,8 +16,20 @@ function AddFoodForm(props) {
         props.callbackToAddFoodEntry(newFoodEntry);
     }
 
+    const hideOrShowForm = () => {
+        // console.log(showForm);
+        if (showForm === true) {
+            // buttonDisplay = "Show Form"
+            setShowForm(false);
+        }
+        else {
+            setShowForm(true);
+        }
+    }
+
   return (
     <>
+    { showForm === true &&
     <form onSubmit={handleSubmit}>
         <label> Name
             <Input value={name} type="text" onChange={(e) => {setName(e.target.value)}} />
@@ -30,8 +43,14 @@ function AddFoodForm(props) {
         <label> Servings
             <Input value={servings} type="number" onChange={(e) => {setServings(e.target.value)}} />
         </label>
-        <button>Add this</button>
-    </form>
+        <button  >Add this</button>
+    </form> }
+    { showForm === true &&
+        <Button onClick={() => {hideOrShowForm()}}>Hide Form</Button>
+    }
+    { showForm === false &&
+        <Button onClick={() => {hideOrShowForm()}}>Show Form</Button>
+    }
     </>
   );
 }

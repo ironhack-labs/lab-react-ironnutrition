@@ -2,7 +2,7 @@ import { Card, Col, Button } from 'antd';
 
 // Iteration 2
 function FoodBox(props) {
-    console.log(props);
+    // console.log(props.index);
   return (
     <Col>
       <Card
@@ -15,7 +15,7 @@ function FoodBox(props) {
         <p>
           <b>Total Calories: {props.food.calories * props.food.servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button onClick={() => {props.callbackToDeleteFoodEntry(props.index)}} type="primary"> Delete </Button>
       </Card>
     </Col>
   );

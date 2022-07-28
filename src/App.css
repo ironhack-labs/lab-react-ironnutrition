@@ -48,4 +48,8 @@ margin: 20px;
 text-align: left;
 width: 600px;
 height: 600px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+
 }

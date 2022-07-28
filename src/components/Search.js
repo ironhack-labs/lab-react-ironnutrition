@@ -10,26 +10,16 @@ import foodArrDB from '../foods.json';
 function Search(props) {
   const [name, setName] = useState('');
 
-  const handleSearch = (e) => {
-    props.setArr(() => {
-      const resultArr = foodArrDB.filter((food) => {
-        return food.name.toLocaleLowerCase().includes(e.target.value);
-      });
-      return resultArr;
-    });
-    // clear form
-  };
-
   return (
     <>
       <Divider>Search</Divider>
-      <form onChange={handleSearch}>
+      <form onChange={props.callbackToSearch}>
         <label>Search</label>
         <Input
           required
           type="text"
           name="name"
-          value={name}
+          value={props.name}
           placeholder="what are you looking for?"
           onChange={(e) => {
             setName(e.target.value);

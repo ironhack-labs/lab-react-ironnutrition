@@ -9,6 +9,16 @@ import Search from './components/Search';
 function App() {
   const [foodArray, setFood] = useState(foodArrDB);
 
+  const handleSearch = (e) => {
+    setFood(() => {
+      const resultArr = foodArray.filter((food) => {
+        return food.name.toLocaleLowerCase().includes(e.target.value);
+      });
+      return resultArr;
+    });
+    // clear form
+  };
+
   const deleteFood = (foodName) => {
     setFood((prevFood) => {
       const newList = prevFood.filter((food) => {
@@ -25,7 +35,7 @@ function App() {
 
       <Button> Hide Form / Add New Food </Button>
 
-      <Search setArr={setFood} />
+      <Search setArr={setFood} callbackToSearch={handleSearch} />
 
       <Divider>Food List</Divider>
 

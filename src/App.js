@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FoodBox, AddFood, Search } from './components';
-import './App.css';
 import foods from './foods.json';
 import {
   Row,

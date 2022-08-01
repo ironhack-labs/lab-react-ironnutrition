@@ -3,6 +3,7 @@ import {Card, Col, Button} from 'antd'
 
 const FoodBox = (props) => {
     const {name, servings, calories, image, deleteFood} = props
+    console.log("Props: ", props)
     // const sumaCalories = calories * servings;
     return (
       /* ITERATION 1 */

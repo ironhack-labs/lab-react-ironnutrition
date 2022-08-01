@@ -25,6 +25,10 @@ function App() {
   const foodFiltered = foodList.filter((food) => 
   food.name.toLocaleLowerCase().includes(filtro.toLocaleLowerCase())
   );
+  const deleteFood = (name) => {
+    const foodChanged = foodList.filter(food => food.name !== name);
+    setFoodList(foodChanged);
+  }
 
   return (
     <Col>
@@ -104,11 +108,11 @@ function App() {
       <Row gutter={[16, 16]}>
         {filtro !== '' ? foodFiltered.map((food, idx) => (
            <Col span={6}>
-           <FoodBox key={idx} {...food} />
+           <FoodBox key={idx} {...food}  deleteFood={deleteFood}/>
          </Col>
         )) : foodList.map((food, idx) => (
           <Col span={6}>
-            <FoodBox key={idx} {...food} />
+            <FoodBox key={idx} {...food} deleteFood={deleteFood}/>
           </Col>
           ))
         }

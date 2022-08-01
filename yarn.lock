@@ -2464,10 +2464,10 @@ ansi-styles@^5.0.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
-antd@^4.22.1:
-  version "4.22.1"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.22.1.tgz#c6faded93b79d25386eecb319c2f440fdc024303"
-  integrity sha512-DmIMwoC4g7n1Z7z2fPSQkcXSZHzO7uWqVen/9N3SaqGjkqyj8ho0PnZNf/mut4+yhhuIBQ+Xg25yDPy5KFGZvg==
+antd@^4.22.3:
+  version "4.22.3"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.22.3.tgz#c6d4ced17e9c21b55c6234595d962c5f9d6768db"
+  integrity sha512-Nay1tO+G5Z9szmshK9TinOWclJnxOtSe7cr15EX64NGkZZyRoHX2xXOFQoYtBt4qfVfFvLf97m9on7fwgy1Svg==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -2483,7 +2483,7 @@ antd@^4.22.1:
     rc-checkbox "~2.3.0"
     rc-collapse "~3.3.0"
     rc-dialog "~8.9.0"
-    rc-drawer "~5.0.0-alpha.8"
+    rc-drawer "~5.1.0-alpha.1"
     rc-dropdown "~4.0.0"
     rc-field-form "~1.27.0"
     rc-image "~5.7.0"
@@ -7364,10 +7364,10 @@ rc-dialog@~8.9.0:
     rc-motion "^2.3.0"
     rc-util "^5.21.0"
 
-rc-drawer@~5.0.0-alpha.8:
-  version "5.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-5.0.0-alpha.8.tgz#de8f7ed5a1e2b4c1bc60a29f82edd75eb2fa9083"
-  integrity sha512-4ZhW8iZ7PDAnTRzprZv3zI8XEW/jQJkf+gvfnXXpx7Ik4TjKqzlf1yg33qEUm7uJgO1BQVITKGzlLUQlTSfrcQ==
+rc-drawer@~5.1.0-alpha.1:
+  version "5.1.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-5.1.0-alpha.3.tgz#a516131bd36f36b886c00ece027837050cbd3c68"
+  integrity sha512-8SR6VD3ms0KhfwGa0KIhCUr/3p8iIuxIqo8cqizZzQKUjSGU0IcB/fteDV3IVRGMqVHhSSQp4hzvYfZsOI+kOA==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.6"

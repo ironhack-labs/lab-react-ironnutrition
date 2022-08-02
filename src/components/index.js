@@ -1,2 +1,3 @@
 export * from './FoodBox';
-export * from './Section';
+export * from './AddFood';
+export * from './Search';

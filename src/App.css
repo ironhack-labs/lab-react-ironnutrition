@@ -40,4 +40,11 @@
 .food-list {
   text-align: left;
   font-size: 25px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: center;
+  margin: 60px;
 }

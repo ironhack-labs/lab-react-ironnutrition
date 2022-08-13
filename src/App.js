@@ -29,11 +29,11 @@ function App() {
   // Funciona, mas se outra coisa tiver a mesma letra na mesma posição, ele mostra também.
   // A solução seria se ele verificasse a letra anterior tb
 
-  const filterFoods = (string) => {
+  const filterFoods = (str) => {
     let filteredFoods;
 
     console.log('IIIIIIIII', letter);
-    if (!string) {
+    if (!str) {
       filteredFoods = foodsData;
       letter = 0;
       console.log('All');
@@ -41,17 +41,29 @@ function App() {
       filteredFoods = foodsData.filter((eachFood) => {
         return (
           eachFood.name[letter].toLocaleLowerCase() ===
-          string[letter].toLocaleLowerCase()
+          str[letter].toLocaleLowerCase()
         );
       });
       console.log('filteredFoods: ', filteredFoods);
       {
-        console.log('string: ', string);
+        console.log('string: ', str);
       }
       letter += 1;
     }
 
     setFoodsArr(filteredFoods);
+  };
+
+  // deletar
+
+  const deleteFood = (name) => {
+    foodsData.map((eachFood, index) => {
+      if (eachFood.name === name) {
+        foodsData.splice(index, 1);
+        console.log(foodsData);
+        setFoodsData(foodsData);
+      }
+    });
   };
 
   return (
@@ -62,8 +74,10 @@ function App() {
       <hr />
       <Search filterFoods={filterFoods} />
 
-      {foods.map((fruit) => {
-        return <FoodBox key={fruit._id} food={fruit} />;
+      {foods.map((eachFood) => {
+        return (
+          <FoodBox key={eachFood._id} food={eachFood} deleteFood={deleteFood} />
+        );
       })}
     </div>
   );

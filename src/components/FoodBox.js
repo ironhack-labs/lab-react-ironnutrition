@@ -1,8 +1,19 @@
 import { Card, Col, Button } from 'antd';
+import { useState } from 'react';
 
 // Iteration 2
-function FoodBox(food) {
-  const { name, calories, image, servings } = food.food;
+function FoodBox(eachFood) {
+  const [food, setFood] = useState();
+  const { name, calories, image, servings, _id } = eachFood.food;
+
+  // console.log('_id de cima', _id);
+  // console.log(eachFood.food._id);
+  const handleDeleteFood = (event) => {
+    // console.log(name);
+    setFood(name);
+    eachFood.deleteFood(name);
+  };
+
   return (
     <Col>
       <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
@@ -15,7 +26,10 @@ function FoodBox(food) {
           </b>{' '}
           kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button id={_id} type="primary" onClick={handleDeleteFood}>
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

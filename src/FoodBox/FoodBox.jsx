@@ -4,6 +4,7 @@ import { Card, Row, Col, Divider, Input, Button } from 'antd';
 function FoodBox(props) {
     const {foodInfo, deleteFunc} = props;
 
+    if(foodInfo.length > 1){
   return (
     foodInfo.map((elem) => {
         return (
@@ -25,6 +26,16 @@ function FoodBox(props) {
         )
       })
   )
+    }
+    else{
+      return (
+        <div>
+        <h1>Ops, you deleted everything! </h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/43/43533.png" height={60} alt="" />
+        </div>
+      )
+
+    }
 }
 
 export default FoodBox

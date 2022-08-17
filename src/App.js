@@ -35,7 +35,9 @@ function App() {
   return (
     <div className="App">
     <Search searchQuery={searchFunc}/>
+    <Row style={{ width: '100%', justifyContent: 'center' }}>
     <FoodBox foodInfo={displayFoods} deleteFunc={deleteFood} />
+      </Row>
     <AddFoodForm createFoodFunc={createFood} />
     </div>
   );

@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import foods from './foods.json';
+import FoodBox from './FoodBox/FoodBox';
+import AddFoodForm from './AddFoodForm/AddFoodForm';
+import Search from './Search/Search';
+import {useState} from 'react'
+
+const allFoods = foods;
 
 function App() {
+  const [foodArr, setFoodArr] = useState(allFoods)
+  const [displayFoods, setDisplayFoods] = useState(allFoods);
+
+
+  const createFood = (newFood) => {
+    console.log(newFood)
+    const newFoodArray = [newFood, ...foodArr];
+    setFoodArr(newFoodArray);
+    console.log(newFoodArray)
+    setDisplayFoods(newFoodArray);
+  }
+
+  const searchFunc = (foodName) => {
+    let filteredFoods = foodArr.filter((elem) => elem.name.toLowerCase().includes(foodName.toLowerCase()))
+    setDisplayFoods(filteredFoods)
+  }
+
+  const deleteFood = (foodName) => {
+    let filteredfoods = foodArr.filter((elem) => elem.name !== foodName)
+    setFoodArr(filteredfoods)
+    setDisplayFoods(filteredfoods)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Search searchQuery={searchFunc}/>
+    <FoodBox foodInfo={displayFoods} deleteFunc={deleteFood} />
+    <AddFoodForm createFoodFunc={createFood} />
     </div>
   );
 }

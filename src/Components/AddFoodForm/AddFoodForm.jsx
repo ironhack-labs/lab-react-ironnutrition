@@ -5,28 +5,28 @@ import { Divider, Input } from 'antd';
 function AddFoodForm(props) {
     const { createdFood } = props;
 
-    const [foodName, setFoodName] = useState('');
-    const [foodCalories, setFoodCalories] = useState(0);
-    const [foodImage, setFoodImage] = useState('');
-    const [foodServings, setFoodServings] = useState(0);
+    const [name, setName] = useState('');
+    const [calories, setCalories] = useState(0);
+    const [image, setImage] = useState('');
+    const [servings, setServings] = useState(0);
 
 
-    const handleFoodName = (e) => { setFoodName(e.target.value); }
-    const handleFoodCalories = (e) => { setFoodCalories(e.target.value); }
-    const handleFoodImage = (e) => { setFoodImage(e.target.value); }
-    const handleFoodServings = (e) => { setFoodServings(e.target.value); }
+    const handleFoodName = (e) => { setName(e.target.value); }
+    const handleFoodCalories = (e) => { setCalories(e.target.value); }
+    const handleFoodImage = (e) => { setImage(e.target.value); }
+    const handleFoodServings = (e) => { setServings(e.target.value); }
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        const newFood = { foodName, foodCalories, foodImage, foodServings };
+        const newFood = { name, calories, image, servings };
         createdFood(newFood);
 
-        setFoodName('');
-        setFoodCalories(0);
-        setFoodImage('');
-        setFoodServings(0);
+        setName('');
+        setCalories(0);
+        setImage('');
+        setServings(0);
     }
 
 

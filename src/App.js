@@ -17,7 +17,7 @@ function App() {
   }
 
   const searchFood = (search) => {
-    const filteredFood = foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()));
+    const filteredFood = displayFood.filter(food => food.name.toLowerCase().includes(search.toLowerCase()));
     setDisplayFood(filteredFood);
   }
 
@@ -29,7 +29,7 @@ function App() {
   
   return (
     <div className="App">
-    <Search searchFood={searchFood} />
+    <Search searchResults={searchFood} />
       <AddFoodForm createdFood={createdFood} />
       <Divider>Food Log</Divider>
       {displayFood.map((foods, index) => {

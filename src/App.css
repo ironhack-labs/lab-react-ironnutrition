@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.foodcss {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width:750px;
+  }
+  
+  .Card {
+    text-align: left;
+  }

@@ -38,7 +38,7 @@ function App() {
        
     }
 
-    const deleteMovie = (foodName) => {
+    const deleteFood = (foodName) => {
       let filteredFood = foods.filter((food) => food.name !== foodName);
       setFoods(filteredFood);
      
@@ -62,7 +62,7 @@ function App() {
 <div className='food-list'> 
 {displayFoods.map((food, index) => {
  console.log(displayFoods)
-return <FoodBox  key={index} food = {food}/>
+return <FoodBox  key={index} food = {food} clickToDelete={deleteFood}/>
 })}
 
 </div>

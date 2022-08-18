@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Col, Button } from 'antd';
 
 function FoodBox(props) {
-  const {food} = props  
+  const {food, clickToDelete} = props  
   
   let totalCalories = props.food.calories*props.food.servings
 
@@ -19,7 +19,7 @@ function FoodBox(props) {
         <p>
           <b>Total Calories: {totalCalories} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={()=> {clickToDelete(food.name)}} > Delete </Button>
       </Card>
     </Col>
 

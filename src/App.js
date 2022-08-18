@@ -1,23 +1,73 @@
 import logo from './logo.svg';
 import './App.css';
+import foodsData from './foods.json';
+import FoodBox from './components/FoodBox/FoodBox';
+import AddFoodForm from './components/AddFoodForm/AddFoodForm';
+import React, { useState } from "react";
+import Search from './components/Search/Search';
+
+
 
 function App() {
+
+  const [foods, setFoods] = useState(foodsData);
+  const [displayFoods, setDisplayFoods] = useState(foodsData);
+
+  const createFood = (food) => {
+    const updatedFoods = [food, ...foodsData];
+    setFoods(updatedFoods);
+    setDisplayFoods(updatedFoods);
+  };
+
+  /* const searchResults = (queryString) => {
+    let filteredFoods = foods.filter((food) => {
+        return food.name.toLowerCase().includes(queryString.toLowerCase())
+      }
+    );
+    
+    setDisplayFoods(filteredFoods);
+    setFoods(filteredFoods);
+    console.log(filteredFoods);
+  }; */
+  const searchFoodList = (queryString) => {
+        let searchedFoods = foods.filter((food) => {
+            return food.name.toLowerCase().includes(queryString.toLowerCase());
+        })
+
+        setDisplayFoods(searchedFoods);
+       
+    }
+
+    const deleteMovie = (foodName) => {
+      let filteredFood = foods.filter((food) => food.name !== foodName);
+      setFoods(filteredFood);
+     
+      setDisplayFoods(filteredFood);
+    };
+  
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+<div className='food-form'>
+  <Search results={searchFoodList} />
+</div>
+
+<div>
+  <AddFoodForm createFood={createFood}/>
+</div>
+
+
+
+<div className='food-list'> 
+{displayFoods.map((food, index) => {
+ console.log(displayFoods)
+return <FoodBox  key={index} food = {food}/>
+})}
+
+</div>
+
+
     </div>
   );
 }

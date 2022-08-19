@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, Col, Button } from 'antd';
 
 function FoodBox(props) {
@@ -25,3 +26,4 @@ return (
 )
   }
 
+export default FoodBox

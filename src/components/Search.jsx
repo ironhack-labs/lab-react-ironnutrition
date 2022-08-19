@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Searchbar(props) {
+function SearchBar(props) {
   const { searchResults } = props;
   const [query, setQuery] = useState('');
 
@@ -17,4 +17,4 @@ function Searchbar(props) {
   );
 }
 
-export default Searchbar;
+export default SearchBar;

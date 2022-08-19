@@ -6,12 +6,12 @@ import { useState } from 'react';
 function AddFoodForm (props) {
     const { createFood } = props;
 
-    const [title, setTitle] = useState('');
+    const [name, setName] = useState('');
     const [calories, setCalories] = useState('');
     const [servings, setServings] = useState('');
     const [totalCalories, setTotalCalories] = useState('');
 
-    const handleTitle = (e) => setTitle(e.target.value);
+    const handleName = (e) => setName(e.target.value);
     const handleCalories = (e) => setCalories(e.target.value);
     const handleServings = (e) => setServings(e.target.value);
     const handleTotalCalories = (e) => setTotalCalories(e.target.checked);
@@ -20,11 +20,11 @@ function AddFoodForm (props) {
     
         e.preventDefault();
     
-        const newFood = { title, calories, servings, totalCalories };
+        const newFood = { name, calories, servings, totalCalories };
         createFood(newFood);
     
     
-        setTitle('');
+        setName('');
         setCalories('');
         setServings('');
         setTotalCalories('');
@@ -33,9 +33,9 @@ function AddFoodForm (props) {
       return (
         <div>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor="name">Name:</label>
           
-            <input type="text" name="title" value={title} onChange={handleTitle} />
+            <input type="text" name="name" value={name} onChange={handleName} />
     
             <label htmlFor="calories">Calories;</label>
             <input type="text" name="calories" value={calories} onChange={handleCalories} />

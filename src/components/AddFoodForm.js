@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Divider, Input } from 'antd';
 import { useState } from "react";
 import './AddFoodForm.css'
 
@@ -11,7 +11,7 @@ function AddFoodForm (props) {
     return (
         
         <div className="AddFood">
-            <h4 className="title">Add Food Entry</h4>
+            <Divider>Add Food Entry</Divider>'
                 <form className="form-list">
                     <label>Name: </label>
                     <Input 

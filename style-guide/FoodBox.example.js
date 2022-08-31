@@ -11,7 +11,7 @@ function FoodBox(props) {
       <Card
         title={'FOOD_NAME_HERE'}
         style={{ width: 230, height: 300, margin: 10 }}
-      >
+        >
         <img src={'FOOD_IMAGE_HERE'} height={60} alt="food" />
         <p>Calories: FOOD_CALORIES_HERE</p>
         <p>Servings: FOOD_SERVINGS_HERE</p>

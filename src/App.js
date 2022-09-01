@@ -1,5 +1,5 @@
 import './App.css';
-import foods from './foods.json';
+import Foods from './foods.json';
 import { useState } from "react";
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -7,7 +7,7 @@ import Search from './components/Search';
 import { Result, Row, Divider, Button } from 'antd';
 
 function App() {
-  const[foods, setFoods] = useState(foods);
+  const[foods, setFoods] = useState(Foods);
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);  
 

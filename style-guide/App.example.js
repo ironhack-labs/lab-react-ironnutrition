@@ -15,9 +15,7 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {/* Render the list of Food Box components here */}
-      </Row>
+      <Row style={{ width: '100%', justifyContent: 'center' }}></Row>
     </div>
   );
 }

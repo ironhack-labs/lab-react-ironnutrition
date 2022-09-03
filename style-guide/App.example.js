@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       {/* Display Add Food component here */}
 
-      <Button> Hide Form / Add New Food </Button>
+       <Button> Hide Form / Add NewFood </Button>
 
       {/* Display Search component here */}
 

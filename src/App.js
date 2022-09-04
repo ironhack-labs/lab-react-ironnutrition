@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { Row } from 'antd';
+import FoodBox from '../src/components/food-box/FoodBox';
 import './App.css';
+import foods from "./data/foods.json"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Row style={{ width: "100%", justifyContent: "center"}} >
+        {foods.map((food) => (
+          <FoodBox {...food}/>
+        ))}
+      </Row>
+        hola
+      
     </div>
   );
 }

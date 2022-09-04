@@ -18,7 +18,7 @@ function App() {
       {hide ? <div className="d-flex"><button className="btn btn-outline-success" onClick={handleHide}>Add new food</button></div> : <NewFood foods={foods} setFoods={setFoods} hide={hide} setHide={setHide}/>}
       <SearchBar setSearch={setSearch} search={search}/>
       <h2 className="text-center">Food List</h2>
-      <FoodList foods={foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))} setFoods={setFoods}/>
+      <FoodList foods={foods.filter(food => food.name.includes(search))} setFoods={setFoods}/>
     </div>
   );
 }

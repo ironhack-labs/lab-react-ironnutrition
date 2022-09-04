@@ -7,7 +7,7 @@ function FoodBox({ name, image, calories, servings }) {
         title={name}
         style={{ width: 230, height: 300, margin: 10 }}
       >
-        <img src={image} height={60} alt={name} />
+        <img src={image} height={70} alt={name} />
         <p>Calories: {calories}</p>
         <p>Servings: {servings}</p>
         <p>

@@ -1,8 +1,10 @@
 import foodsData from '../foods.json';
 import FoodBox from './FoodBox';
 import AddFoodForm from './AddFoodForm';
+import Search from "./Search";
 import { Divider, Row } from 'antd';
 import { useState } from "react";
+
 
 function NutritionPage() {
   const [name, setName] = useState('');
@@ -11,6 +13,9 @@ function NutritionPage() {
   const [servings, setServings] = useState(1);
   const [foodList, setFoodList] = useState(foodsData);
 
+  const [search, setSearch] = useState("");
+
+
   const handleCreateFood = (event) => {
     event.preventDefault()
     foodList.push({ name, image, calories, servings });
@@ -18,9 +23,10 @@ function NutritionPage() {
   };
 
   console.log(foodList)
-
+  
   return (
     <div className="NutritionPage">
+      <Divider>Add Food Entry</Divider>
       <AddFoodForm
         name={name}
         setName={setName}
@@ -32,9 +38,11 @@ function NutritionPage() {
         setServings={setServings}
         handleCreateFood={handleCreateFood}
       />
+      <Divider>Search</Divider>
+      <Search search={search} setSearch={setSearch} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {foodList.map((food) => (
+        {foodList.filter((food) => food.name.toLowerCase().includes(search.toLowerCase())).map((food) => (
           <FoodBox key={food.name} {...food} />
         ))}
       </Row>

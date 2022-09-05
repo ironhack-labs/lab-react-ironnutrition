@@ -9,7 +9,7 @@ import NewFood from './components/NewFodd';
 function App() {
   const [foods, setFoods] = useState(foodsData);
   const [search, setSearch] = useState('');
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   const createFood = (food) => {
     const updatedFoods = [food, ...foodsData];

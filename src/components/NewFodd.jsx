@@ -53,7 +53,7 @@ function AddFoodForm({ createFood }) {
         />
 
         <button className="btn btn-outline-secondary mt-2" type="submit">
-          Create food
+          Add New Food
         </button>
       </form>
     </>

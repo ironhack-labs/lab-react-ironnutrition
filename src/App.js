@@ -5,16 +5,36 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import { List } from 'antd';
 import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
 
 function App() {
     const [dishes, setDishes] = useState(foods);
+    const [backup, setBackup] = useState(foods);
+
     function addNewDishes(newDishes){
         const updateDishes=[...dishes, newDishes]
         setDishes(updateDishes)
+        setBackup([...updateDishes])
     }
-    console.log(dishes)
+
+    function filterDishes(event) {
+        console.log(backup);
+        const searchInputString = event.target.value;
+
+        if (searchInputString === "") {
+            //console.log(searchInputString);
+            setDishes(backup);
+        } else {
+
+            const updateDishes = dishes.filter(dish => dish.name.includes(searchInputString));
+
+            setDishes(updateDishes);
+        }
+    }
+
     return (
         <div className="App">
+            <SearchBar filter={filterDishes} />
             <AddFoodForm addNewDishes={addNewDishes}/>
             <List
                 itemLayout="vertical"

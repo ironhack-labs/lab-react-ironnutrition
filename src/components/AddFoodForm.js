@@ -28,7 +28,7 @@ function AddFoodForm(props){
         setServings(0);
     }
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>Name</label>
             <Input name="name" type='text' value={name} onChange={handleAddName}/>
             <label>image</label>
@@ -37,7 +37,7 @@ function AddFoodForm(props){
             <Input name="calories" type='number' value={calories} onChange={handleAddCalories}/>
             <label>Servings</label>
             <Input name="servings" type='servings' value={servings} onChange={handleAddServings}/>
-            <Button type='default' onSubmit={handleSubmit}>Create</Button>
+            <button>Create</button>
         </form>
     )
 }

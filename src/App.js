@@ -4,12 +4,14 @@ import foods from './foods.json';
 import './App.css';
 import FoodBox from './components/FoodBox';
 import { List } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
     const [dishes, setDishes] = useState(foods);
 
     return (
         <div className="App">
+            <AddFoodForm />
             <List
                 itemLayout="vertical"
                 dataSource={dishes}

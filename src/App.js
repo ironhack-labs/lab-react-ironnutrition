@@ -1,6 +1,7 @@
 import './App.css';
 import FoodBox from './components/FoodBox';
 import foods from './foods.json';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
   return (

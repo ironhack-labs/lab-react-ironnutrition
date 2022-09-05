@@ -5,14 +5,27 @@ import foods from './foods.json';
 function App() {
   return (
     <div className="App">
-      <FoodBox
+      {foods.map((el) => {
+        return (
+          <FoodBox
+            food={{
+              name: el.name,
+              calories: el.calories,
+              image: el.image,
+              servings: el.servings,
+            }}
+          />
+        );
+      })}
+
+      {/* <FoodBox
         food={{
           name: 'Orange',
           calories: 85,
           image: 'https://i.imgur.com/abKGOcv.jpg',
           servings: 1,
         }}
-      />
+      /> */}
     </div>
   );
 }

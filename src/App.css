@@ -1,0 +1,23 @@
+.App{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.food{
+    padding: 20px;
+    width: 250px;
+    border: solid 1px lightgray;
+    
+}
+
+.food img{
+    height: 65px;
+}
+
+.food button{
+    background-color: rgb(87, 128, 226);
+    color: white;
+    border-radius: 5px;
+    border-color: none;
+}

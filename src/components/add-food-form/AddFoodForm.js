@@ -1,4 +1,4 @@
-import { Divider, Input } from "antd"
+import { Input } from "antd"
 
 function AddFoodForm({ 
   name, setName, 
@@ -8,7 +8,6 @@ function AddFoodForm({
   handleSubmit}) {
   return(
     <form  onSubmit={handleSubmit}>
-      <Divider>Add Food Entry</Divider>
 
       <label>Name</label>
       <Input value={name} type="text" onChange={(event) => {setName(event.target.value)}} />

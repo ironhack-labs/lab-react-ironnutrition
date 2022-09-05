@@ -1,4 +1,4 @@
-import { Divider, Row, Button } from 'antd';
+import { Divider, Row } from 'antd';
 import FoodBox from './components/food-box/FoodBox';
 import './App.css';
 import AddFoodForm from './components/add-food-form/AddFoodForm';
@@ -13,6 +13,7 @@ function App() {
   const [servings, setServings] = useState(1);
   const [foodArray, setFoodArray] = useState(foods);
   const [search, setSearch] = useState('');
+  const [show, setShow] = useState(true)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,19 +27,32 @@ function App() {
 
   return (
     <div className="App container">
-      <AddFoodForm
-        handleSubmit={handleSubmit}
-        name={name}
-        setName={setName}
-        image={image}
-        setImage={setImage}
-        calories={calories}
-        setCalories={setCalories}
-        servings={servings}
-        setServings={setServings}
-      />
+    
+    <Divider>Add Food Entry</Divider>
 
-      <Button>Search / Hide</Button>
+      {show ? (
+        <div>
+          <AddFoodForm
+          handleSubmit={handleSubmit}
+          name={name}
+          setName={setName}
+          image={image}
+          setImage={setImage}
+          calories={calories}
+          setCalories={setCalories}
+          servings={servings}
+          setServings={setServings}
+          />
+          <div className='show-hide-buttons'>
+            <button onClick={() => {setShow(!show)}}>Hide Form</button>
+          </div>
+          
+        </div> ) : (
+          <div className='show-hide-buttons'>
+            <button onClick={() => {setShow(!show)}}>Show Form</button>
+          </div>
+      )}
+      
 
       <Divider> Search </Divider>
 

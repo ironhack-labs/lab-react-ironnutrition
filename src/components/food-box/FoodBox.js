@@ -1,3 +1,5 @@
+import './FoodBox.css'
+
 function FoodBox({ name, calories, image, servings, setFoods, foods }) {
   const handleDelete = (foodName) => setFoods(foods.filter(food => food.name !== foodName))
   return (

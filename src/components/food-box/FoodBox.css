@@ -1,0 +1,7 @@
+.food-box img{
+  width: 100%;
+  max-width: 150px;
+  height: 190px;
+  object-fit: contain;
+  margin-left: 5px;
+}

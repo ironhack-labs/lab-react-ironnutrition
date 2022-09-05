@@ -16,6 +16,10 @@ function NewFood({ foods, setFoods, hide, setHide }) {
     const arrFood = [...foods];
     arrFood.push({name, image, calories, servings});
     setFoods(arrFood);
+    setName('');
+    setImage('');
+    setCalories(0);
+    setServings(1);
   }
 
   const handleHide = e => setHide(!hide);

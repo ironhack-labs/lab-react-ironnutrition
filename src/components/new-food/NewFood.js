@@ -13,9 +13,7 @@ function NewFood({ foods, setFoods, hide, setHide }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const arrFood = [...foods];
-    arrFood.push({name, image, calories, servings});
-    setFoods(arrFood);
+    setFoods([{name, image, calories, servings}, ...foods]);
     setName('');
     setImage('');
     setCalories(0);

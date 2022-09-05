@@ -34,7 +34,7 @@ function App() {
           .filter((food) => food.name.toLowerCase().includes(search.toLowerCase()))
           .map((foods, index) => {
             return (
-              <div key={index} className="me-5">
+              <div key={index} className="me-5 mb-4">
                 <BoxFood food={foods} deleteFood={deleteFood} />
               </div>
             );

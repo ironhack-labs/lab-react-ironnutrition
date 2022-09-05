@@ -1,12 +1,22 @@
+import React from 'react';
+import { useState } from 'react';
 import foods from './foods.json';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
+    const [dishes, setDishes] = useState(foods);
 
-    </div>
-  );
+    return (
+        <div className="App">
+            {dishes.map(dish => (
+                <div>
+                    <p>{dish.name}</p>
+                    <img src={dish.image} width={60} />
+                </div>
+                )
+            )}
+        </div>
+    );
 }
 
 export default App;

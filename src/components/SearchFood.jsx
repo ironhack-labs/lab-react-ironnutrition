@@ -4,6 +4,7 @@ function SearFood({ search, setSearch }) {
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
+
   return (
     <div>
       <Divider>Search</Divider>

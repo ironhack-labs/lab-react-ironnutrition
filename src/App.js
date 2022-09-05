@@ -8,10 +8,14 @@ import AddFoodForm from './components/AddFoodForm';
 
 function App() {
     const [dishes, setDishes] = useState(foods);
-
+    function addNewDishes(newDishes){
+        const updateDishes=[...dishes, newDishes]
+        setDishes(updateDishes)
+    }
+    console.log(dishes)
     return (
         <div className="App">
-            <AddFoodForm />
+            <AddFoodForm addNewDishes={addNewDishes}/>
             <List
                 itemLayout="vertical"
                 dataSource={dishes}

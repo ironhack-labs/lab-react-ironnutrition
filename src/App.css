@@ -1,3 +1,10 @@
+h2{
+    text-align: center;
+    font-style: italic;
+    width: 100vw;
+    border-top: solid 1px lightgrey;
+}
+
 .Foodlist{
     display:flex;
     flex-wrap: wrap;
@@ -41,5 +48,17 @@
     width: 25%;
     display: flex;
     justify-content: center;
+    margin-bottom: 35px;
 }
-    
+
+.Search{
+    width: 75vw;
+    margin-inline: auto;
+}
+
+.Search label{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 35px;
+}

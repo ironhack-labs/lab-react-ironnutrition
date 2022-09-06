@@ -6,6 +6,7 @@ import AddFoodForm from './components/AddFoodForm';
 function App() {
   return (
     <div className="App">
+      <AddFoodForm />
       {foods.map((el) => {
         return (
           <FoodBox

@@ -1,7 +1,9 @@
 .Foodlist{
     display:flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
 }
 
 .food{
@@ -22,10 +24,22 @@
     border-color: none;
 }
 
+.addFood{
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    margin-inline: auto;
+}
 .addFood label{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin:1rem;
+}
 
+.addFood button{
+    width: 25%;
+    display: flex;
+    justify-content: center;
 }
     

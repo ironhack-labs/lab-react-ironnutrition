@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <AddFoodForm />
+      <div className="Foodlist"></div>
       {foods.map((el) => {
         return (
           <FoodBox

@@ -1,9 +1,8 @@
-import React from 'react';
 import { useState } from 'react';
 import { Divider, Input } from 'antd';
 
-function AddFoodForm({ createFood }) {
-  const [name, setName] = useState('');
+function NewFood({ createFood }) {
+  const [name, setName] = useState('Food');
   const [image, setImage] = useState(
     'https://www.sinrumbofijo.com/wp-content/uploads/2016/05/default-placeholder.png'
   );
@@ -60,4 +59,4 @@ function AddFoodForm({ createFood }) {
   );
 }
 
-export default AddFoodForm;
+export default NewFood;

@@ -12,13 +12,17 @@ function App() {
   const [show, setShow] = useState(false);
 
   const createFood = (food) => {
-    const updatedFoods = [food, ...foodsData];
-    setFoods(updatedFoods);
+    if (window.confirm(`¿Desea crear el producto`)){
+      const updatedFoods = [food, ...foodsData];
+      setFoods(updatedFoods);
+    }
   };
 
   const deleteFood = (foodName) => {
-    let filterFood = foods.filter((food) => food.name !== foodName);
-    setFoods(filterFood);
+    if(window.confirm(`¿Desea borrar el producto ${foodName}?`)){
+      let filterFood = foods.filter((food) => food.name !== foodName);
+      setFoods(filterFood);
+    }
   };
   return (
     <div className="mt-4">
@@ -28,22 +32,20 @@ function App() {
         </div>
 
         {show ? (
-          <div className="m-3">
-            <>
-              <button
-                className="btn btn-outline-primary mt-3"
-                onClick={() => {
-                  setShow(!show);
-                }}
-              >
-                Hide Form
-              </button>
-            </>
+          <div className="m-4">
+            <button
+              className="btn btn-outline-primary mt-3"
+              onClick={() => {
+                setShow(!show);
+              }}
+            >
+              Hide Form
+            </button>
             <NewFood createFood={createFood} />
           </div>
         ) : (
           <button
-            className="btn btn-outline-primary mt-3"
+            className="btn btn-outline-primary mt-4"
             onClick={() => {
               setShow(!show);
             }}

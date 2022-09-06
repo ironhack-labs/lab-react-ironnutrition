@@ -6,7 +6,7 @@ function BoxFood({ food, deleteFood }) {
   return (
     <Col>
       <Card title={food.name}>
-        <img src={food.image} width={150} height={100} alt="img" />
+        <img src={food.image} width={150} height={100} alt="img" className='mb-3' />
         <p>Calories: {food.calories} </p>
         <p>
           Servings: <b> {food.servings} </b>{' '}
@@ -14,7 +14,7 @@ function BoxFood({ food, deleteFood }) {
         <p>
           <b>Total Calories: {totalCalories} </b> kcal
         </p>
-        <Button onClick={() => deleteFood(food.name)} type="primary">
+        <Button onClick={() => deleteFood(food.name)} type="danger">
           Delete
         </Button>
       </Card>

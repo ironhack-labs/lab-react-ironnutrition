@@ -1,12 +1,16 @@
 import { Divider, Input } from 'antd';
 const Search = (props) => {
   return (
-    <>
-      <Divider>Search</Divider>
+    <div className='flex'>
+      <div className='input-search'>
 
-      <label>Search</label>
-      <Input type="text" onChange={(e)=> props.search(e.target.value)} />
-    </>
+        <Divider>Search</Divider>
+
+        <label>Search</label>
+        <Input type="text" placeholder='Enter search query' onChange={(e) => props.search(e.target.value)} />
+
+      </div>
+    </div>
   );
 }
 

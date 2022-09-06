@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Row, Divider, Button } from 'antd';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -46,7 +46,7 @@ function App() {
       <Search search={SearchFood} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredProducts.length === 0 ? <PageNoContent/> :filteredProducts.map((product) => {
+        {filteredProducts.length === 0 ? <PageNoContent /> : filteredProducts.map((product) => {
           return (
             <FoodBox
               food={{

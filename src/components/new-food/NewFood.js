@@ -13,9 +13,8 @@ const validations = {
   },
   calories: value => {
     let message = '';
-    if (!value) {
-      message = 'The calories is required';
-    } else if (value < 1) {
+    const number = parseInt(value)
+    if (number < 1) {
       message = 'The calories cannot be negative or zero';
     }
     return message;
@@ -113,8 +112,8 @@ function NewFood({ onFoodCreate, hide, onHide }) {
         </div>
         <div className="mb-3">
           <label className="form-label">Calories</label>
-          <input name="calories" value={food.calories} type="number" className={`form-control ${errors.calories && touch.calories ? 'is-invalid' : ''}`} placeholder="Calories" onChange={handleChange} onBlur={handleBlur}/>
-          {errors.calories && touch.calories && (
+          <input name="calories" value={food.calories} type="number" className={`form-control ${errors.calories ? 'is-invalid' : ''}`} placeholder="Calories" onChange={handleChange} onBlur={handleBlur}/>
+          {errors.calories && (
             <div className="invalid-feedback">{errors.calories}</div>
           )}
         </div>

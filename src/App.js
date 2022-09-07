@@ -17,16 +17,23 @@ function App() {
         setBackup([...updateDishes])
     }
 
+    function deleteDish(dishName) {
+        const updatedDishes = dishes.filter(dish => !(dish.name === dishName));
+        const updatedBackup = backup.filter(dish => !(dish.name === dishName));
+        
+        setDishes(updatedDishes);
+        setBackup(updatedBackup);
+    }
+
     function filterDishes(event) {
-        console.log(backup);
-        const searchInputString = event.target.value;
+        const searchInputString = event.target.value.toLowerCase();
 
         if (searchInputString === "") {
             //console.log(searchInputString);
             setDishes(backup);
         } else {
 
-            const updateDishes = dishes.filter(dish => dish.name.includes(searchInputString));
+            const updateDishes = backup.filter(dish => dish.name.toLowerCase().includes(searchInputString));
 
             setDishes(updateDishes);
         }
@@ -43,7 +50,7 @@ function App() {
                 header="Food List"
                 renderItem={(item) => (
                     <List.Item>
-                        <FoodBox name={item.name} calories={item.calories} image={item.image} servings={item.servings} />
+                        <FoodBox delete={deleteDish} name={item.name} calories={item.calories} image={item.image} servings={item.servings} />
                     </List.Item>
                 )}
 

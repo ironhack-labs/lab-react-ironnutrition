@@ -46,6 +46,16 @@ function App() {
     }
   }
 
+  const $notFood = document.querySelector('.notFood');
+  ifNotfoods();
+  function ifNotfoods() {
+    if (foods === []) {
+      $notFood.style.display = 'block';
+    } else {
+      $notFood.style.display = 'none';
+    }
+  }
+
   return (
     <div className="App">
       <div className="addNewFood">
@@ -76,6 +86,9 @@ function App() {
             />
           );
         })}
+      </div>
+      <div className="notFood">
+        <p>ddddddddddd</p>
       </div>
     </div>
   );

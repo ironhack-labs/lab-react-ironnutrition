@@ -22,8 +22,10 @@ function NutritionPage() {
     setFoodList([...foodList]); 
   };
 
-  console.log(foodList)
-  
+  const handleDelete = (name) => { 
+    setFoodList(foodList.filter((food) => food.name !== name))  
+  }
+
   return (
     <div className="NutritionPage">
       <Divider>Add Food Entry</Divider>
@@ -43,7 +45,7 @@ function NutritionPage() {
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {foodList.filter((food) => food.name.toLowerCase().includes(search.toLowerCase())).map((food) => (
-          <FoodBox key={food.name} {...food} />
+          <FoodBox key={food.name} {...food} handleDelete={handleDelete} />
         ))}
       </Row>
     </div>

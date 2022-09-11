@@ -15,7 +15,7 @@ function AddFoodForm({ name, setName, image, setImage, calories, setCalories, se
       <label>Servings</label>
       <Input value={servings} type="text" onChange={(event) => {setServings(event.target.value)}} />
 
-      <button type="submit">Add a new food</button>
+      <button type="submit" className='btn btn-sm btn-primary mt-2'>Add a new food</button>
   </form>
   );
 };

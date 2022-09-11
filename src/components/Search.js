@@ -1,6 +1,6 @@
 function Search({ search, setSearch }) {
   return (
-    <div className="mb-2">
+    <div className="container mb-2">
         <input
           value={search}
           onChange={(event) => {

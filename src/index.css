@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App ´{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foodList {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.addForm form {
+  align-self:center;
+  width: 40%;
+}
+
+.searchBar {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.searchBar input{
+  width: 40%;
+}

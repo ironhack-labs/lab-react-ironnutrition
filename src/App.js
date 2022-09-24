@@ -1,7 +1,8 @@
 import './App.css';
 import foods from './foods.json';
 import { useEffect, useState } from 'react';
-import { Row, Divider, Card, Col, Button, Input } from 'antd';
+import { Row, Divider, Card, Col, Button, Input, Image } from 'antd';
+import feedbackMsgImg from './FeedbackMsgImg.png';
 
 function App() {
   const [foodList, setFoodList] = useState([...foods]);
@@ -17,19 +18,26 @@ function App() {
       <Search filterFoodList={setFilter}></Search>
 
       <Divider>Food List</Divider>
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {foodList
-          .filter((food) => food.name.toLowerCase().includes(filter))
-          .map((food) => {
-            return (
-              <FoodBox
-                key={food.name}
-                food={food}
-                removeFoodOnDelete={setFoodList}
-              />
-            );
-          })}
-      </Row>
+      {foodList.length === 0 ? (
+        <div>
+          <h2>Oops! There is no more content to show.</h2>
+          <img style={{ width: '400px' }} src={feedbackMsgImg}></img>
+        </div>
+      ) : (
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
+          {foodList
+            .filter((food) => food.name.toLowerCase().includes(filter))
+            .map((food) => {
+              return (
+                <FoodBox
+                  key={food.name}
+                  food={food}
+                  removeFoodOnDelete={setFoodList}
+                />
+              );
+            })}
+        </Row>
+      )}
     </div>
   );
 }
@@ -115,7 +123,7 @@ function AddFoodForm({ addFoodFunction }) {
       <button
         type="submit"
         onClick={() => {
-          console.log('New Food: ', newFood);
+          // console.log('New Food: ', newFood);
           addFoodFunction((kira) => [newFood, ...kira]);
           setNewFood({ name: '', image: '', calories: 0, servings: 0 });
         }}

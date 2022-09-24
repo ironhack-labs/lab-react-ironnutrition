@@ -6,8 +6,10 @@ import { Row, Divider, Card, Col, Button, Input } from 'antd';
 
 function App() {
   const [foodList, setFoodList] = useState([...foods]);
+  const [filter, setFilter] = useState('');
 
   console.log('ARRAY: ', foods);
+  console.log('filter: ', filter);
 
   // const [count, setCount] = useState(0)
 
@@ -22,13 +24,16 @@ function App() {
 
   return (
     <div className="App">
-      <Divider>Food List</Divider>
       <AddFoodForm addFoodFunction={setFoodList} />
+      <Search filterFoodList={setFilter}></Search>
 
+      <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {foodList.map((food) => {
-          return <FoodBox food={food} />;
-        })}
+        {foodList
+          .filter((food) => food.name.toLowerCase().includes(filter))
+          .map((food) => {
+            return <FoodBox food={food} />;
+          })}
       </Row>
     </div>
   );
@@ -117,6 +122,26 @@ function AddFoodForm({ addFoodFunction }) {
         Create
       </button>
     </form>
+  );
+}
+
+function Search({ filterFoodList }) {
+  const [search, setSearch] = useState('');
+  console.log('SEARCH: ', search);
+  return (
+    <>
+      <Divider>Search</Divider>
+
+      <label>Search</label>
+      <Input
+        value={search}
+        type="text"
+        onChange={(event) => {
+          setSearch(event.target.value.toLowerCase());
+        }}
+      />
+      {filterFoodList(search)}
+    </>
   );
 }
 

@@ -2,30 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
 import { useState } from 'react';
-import { Card, Col, Button } from 'antd';
+import { Row, Divider, Card, Col, Button } from 'antd';
 
 function App() {
-  const [foodsArr, setFoodsArr] = useState(foods);
+  // const [foodsArr, setFoodsArr] = useState(foods);
 
   return (
     <div className="App">
-      <h1>Food List</h1>
-      <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      />
-      {foodsArr.map((food) => {
-        return (
-          <div>
-            <p>{food.name}</p>
-            <img src={food.image} width={100} />
-          </div>
-        );
-      })}
+      <Divider>Food List</Divider>
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {foods.map((food) => {
+          return <FoodBox food={food} />;
+        })}
+      </Row>
     </div>
   );
 }

@@ -1,30 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Divider, Card, Col, Button, Input } from 'antd';
 
 function App() {
   const [foodList, setFoodList] = useState([...foods]);
   const [filter, setFilter] = useState('');
-
-  console.log('ARRAY: ', foods);
-  console.log('filter: ', filter);
-
-  // const [count, setCount] = useState(0)
-
-  // function incremenet() {
-  //   setCount(count + 1)
-  //   setCount(currentCount => currentCount + 1)
-  // }
-
-  // const addFood = (newDish) => {
-  //   setFoodList(...foodList, newDish);
-  // };
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <div className="App">
-      <AddFoodForm addFoodFunction={setFoodList} />
+      {showForm ? <AddFoodForm addFoodFunction={setFoodList} /> : null}
+      <Button type="primary" ghost onClick={() => setShowForm(!showForm)}>
+        {showForm ? 'Hide Form' : 'Add New Food'}
+      </Button>
       <Search filterFoodList={setFilter}></Search>
 
       <Divider>Food List</Divider>
@@ -80,7 +69,7 @@ function AddFoodForm({ addFoodFunction }) {
     calories: 0,
     servings: 0,
   });
-  console.log('NEW FOOD: ', newFood);
+  // console.log('NEW FOOD: ', newFood);
 
   return (
     <form
@@ -139,7 +128,7 @@ function AddFoodForm({ addFoodFunction }) {
 
 function Search({ filterFoodList }) {
   const [search, setSearch] = useState('');
-  console.log('SEARCH: ', search);
+  // console.log('SEARCH: ', search);
   return (
     <>
       <Divider>Search</Divider>

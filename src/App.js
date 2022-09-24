@@ -1,23 +1,60 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import { useState } from 'react';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import FoodBox from './Components/FoodBox';
+import AddFoodForm from './Components/AddFoodForm';
+import Search from './Components/Search';
 
 function App() {
+  const [foodList, setFoodList] = useState(foods);
+  const [filteredList, setFilteredList] = useState(foods);
+
+  function searchFood(input) {
+    let newFilteredList;
+    if (input === '') {
+      newFilteredList = [...foodList];
+    } else {
+      newFilteredList = foodList.filter((food) => {
+        return food.name.toLowerCase().includes(input.toLowerCase());
+      });
+    }
+
+    setFilteredList(newFilteredList);
+  }
+
+  function addNewFood(newFood) {
+    const updatedFoods = [newFood, ...foodList];
+    setFoodList(updatedFoods);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Search */}
+      <Divider>Search</Divider>
+      <Search search={searchFood} />
+
+      {/* Add food */}
+      <Divider>Add Food Entry</Divider>
+      <AddFoodForm addFood={addNewFood} />
+
+      {/* Render the food list */}
+      <Divider>Food List</Divider>
+      <Row>
+        {filteredList.map((food) => {
+          return (
+            <FoodBox
+              key={food.name}
+              food={{
+                name: food.name,
+                calories: food.calories,
+                image: food.image,
+                servings: food.servings,
+              }}
+            />
+          );
+        })}
+      </Row>
     </div>
   );
 }

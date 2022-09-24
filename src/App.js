@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 
 import './App.css';
-import List from './components/List/List';
+import FoodBox from './components/Foodbox/FoodBox';
+// import FoodList from './components/FoodList/FoodList';
 import foods from './foods.json';
 
 function App() {
-  const [foodList, setFoodList] = useState(foods);
+  const [food, setFood] = useState(foods);
 
-  console.log(foodList);
+  console.log(food);
   return (
     <div className="App">
-      {foodList.map((recipe) => {
-        return <List key={recipe.name} recipe={recipe} />;
+      {food.map((food) => {
+        return <FoodBox key={food.name} food={food} />;
       })}
-      {/* <List /> */}
+      {/* <FoodBox /> */}
     </div>
   );
 }

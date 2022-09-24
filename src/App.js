@@ -32,30 +32,42 @@ function App() {
         {foodList
           .filter((food) => food.name.toLowerCase().includes(filter))
           .map((food) => {
-            return <FoodBox food={food} />;
+            return (
+              <FoodBox
+                key={food.name}
+                food={food}
+                removeFoodOnDelete={setFoodList}
+              />
+            );
           })}
       </Row>
     </div>
   );
 }
 
-function FoodBox({ food }) {
+function FoodBox({ food, removeFoodOnDelete }) {
   const { name, calories, image, servings } = food;
 
   return (
     <Col>
-      <Card
-        key={name}
-        title={name}
-        style={{ width: 230, height: 300, margin: 10 }}
-      >
+      <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
         <img src={image} height={60} alt="food" />
         <p>Calories: {calories}</p>
         <p>Servings: {servings}</p>
         <p>
           <b>Total Calories: {calories * servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            removeFoodOnDelete((arr) =>
+              arr.filter((dish) => dish.name !== name)
+            );
+          }}
+        >
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

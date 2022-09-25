@@ -59,22 +59,26 @@ function App() {
 
       {/* Render the food list */}
       <Divider>Food List</Divider>
-      <Row>
-        {filteredList.map((food) => {
-          return (
-            <FoodBox
-              key={food.name}
-              food={{
-                name: food.name,
-                calories: food.calories,
-                image: food.image,
-                servings: food.servings,
-              }}
-              deleteFood={deleteFood}
-            />
-          );
-        })}
-      </Row>
+      {filteredList.length ? (
+        <Row>
+          {filteredList.map((food) => {
+            return (
+              <FoodBox
+                key={food.name}
+                food={{
+                  name: food.name,
+                  calories: food.calories,
+                  image: food.image,
+                  servings: food.servings,
+                }}
+                deleteFood={deleteFood}
+              />
+            );
+          })}
+        </Row>
+      ) : (
+        <h3>Oops! There is no more content to show.</h3>
+      )}
     </div>
   );
 }

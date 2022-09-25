@@ -1,7 +1,7 @@
 import './App.css';
 import foods from './foods.json';
 import { useState } from 'react';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Row, Divider, Button } from 'antd';
 import FoodBox from './Components/FoodBox';
 import AddFoodForm from './Components/AddFoodForm';
 import Search from './Components/Search';
@@ -9,6 +9,7 @@ import Search from './Components/Search';
 function App() {
   const [foodList, setFoodList] = useState(foods);
   const [filteredList, setFilteredList] = useState(foods);
+  const [showForm, setShowForm] = useState(true);
 
   function searchFood(input) {
     let newFilteredList;
@@ -28,6 +29,15 @@ function App() {
     setFoodList(updatedFoods);
   }
 
+  function deleteFood(foodId) {
+    console.log('deletinggg');
+    const copyList = [...filteredList];
+    const newFoodList = copyList.filter((food) => {
+      return food.name !== foodId;
+    });
+    setFilteredList(newFoodList);
+  }
+
   return (
     <div className="App">
       {/* Search */}
@@ -36,7 +46,16 @@ function App() {
 
       {/* Add food */}
       <Divider>Add Food Entry</Divider>
-      <AddFoodForm addFood={addNewFood} />
+      <AddFoodForm addFood={addNewFood} showForm={showForm} />
+
+      {/* Toggle Show/Hide Form */}
+      <Button
+        htmlType="submit"
+        style={{ display: 'flex', textAlign: 'left', margin: '0 3rem' }}
+        onClick={() => setShowForm(!showForm)}
+      >
+        Hide Form
+      </Button>
 
       {/* Render the food list */}
       <Divider>Food List</Divider>
@@ -51,6 +70,7 @@ function App() {
                 image: food.image,
                 servings: food.servings,
               }}
+              deleteFood={deleteFood}
             />
           );
         })}

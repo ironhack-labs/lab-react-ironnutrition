@@ -1,5 +1,8 @@
-import { Input, Row, Col } from 'antd';
+import { Input, Row, Col,Button } from 'antd';
 import React from 'react';
+const style = {
+  margin: '8px 0',
+};
 const INITIAL_STATE = {
   name: '',
   servings: '',
@@ -12,16 +15,14 @@ class AddFoodForm extends React.Component {
   state = {...INITIAL_STATE }
 
   handleOnChange = (event) => {
-    console.log(event)
     const { value, name } = event.target // name- calories-servings-images
-
     this.setState({ [name]: value }) // meter entre corchetes una variable para hacer el key dinamico
   }
 
   onSubmit = (event) => {
     event.preventDefault() // Para evitar el comportamiento por defecto de un form, que seria hacer peticion get y nos refrescaria la pagina
     this.props.createDish(this.state)
-    this.setState({...INITIAL_STATE})
+    this.setState({...INITIAL_STATE})//para volver al estado inicial y q no aparezca nada en los inputs
   }
 
   render () {
@@ -30,7 +31,7 @@ class AddFoodForm extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <Row>
+        <Row >
           <Col span={24}>
             <label>Name of the dish: </label>
             <input
@@ -38,6 +39,7 @@ class AddFoodForm extends React.Component {
               value={name} onChange={this.handleOnChange}
               placeholder="Name of the dish"
               required
+              style={style}
             />
           </Col>
           <Col span={24}>
@@ -46,6 +48,7 @@ class AddFoodForm extends React.Component {
               name="calories" id="calories"
               value={calories} onChange={this.handleOnChange}
               placeholder="Calories of the dish"
+              style={style}
             />
           </Col>
           <Col span={24} >
@@ -54,6 +57,7 @@ class AddFoodForm extends React.Component {
               name="servings" id="servings"
               value={servings} onChange={this.handleOnChange}
               placeholder="Servings of the dish"
+              style={style}
             />
           </Col>
           <Col span={24}>
@@ -62,10 +66,11 @@ class AddFoodForm extends React.Component {
               name="image" id="image"
               value={image} onChange={this.handleOnChange}
               placeholder="Image url of the dish"
+              style={style}
             />
           </Col>
           <Col span={24}>
-            <button>Submit</button>
+            <Button type="dashed">Submit</Button>
           </Col>
           </Row>
       </form>

@@ -3,14 +3,14 @@ import { DeleteFilled } from '@ant-design/icons'; // iconos de ant design -> ver
 
 const { Meta } = Card;
 
-function FoodCard ({name, image, calories, servings}) {
+function FoodCard ({name, image, calories, servings, onDelete}) {
   return (
     <Card style={{ width: 250 }} 
     title= <h2>{name}</h2>
     cover={ <img alt="dishImg" src={image}/>}
-    // actions={[
-    //   <SettingOutlined key="setting" />,
-    // ]}
+    actions={[
+      <DeleteFilled  onClick={onDelete}/>,
+    ]}
   >
     <Meta
        description=

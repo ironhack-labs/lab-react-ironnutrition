@@ -5,14 +5,14 @@ const style = {
   padding: '8px 0',
 };
 
-function FoodList ({foodList}) {
+function FoodList ({foodList, onDeletDish}) {
   return (
     <Row gutter={16}>
       { foodList.map( dish => {
         return ( 
           <Col className="gutter-row" span={6}  key={dish.image}>
             <div style={style}>
-              <FoodCard {...dish}/>
+              <FoodCard  onDelete={() => onDeletDish(dish.image)} {...dish}/>
             </div>
           </Col>        
         )

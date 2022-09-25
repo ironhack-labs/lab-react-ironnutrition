@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Typography, Button, Row } from 'antd'
+import { Layout, Typography } from 'antd'
 import './App.css';
 import foodsJSON from './foods.json';
 import FoodList from './components/FoodList/FoodList';
@@ -24,6 +24,16 @@ class App extends Component {
     this.setState({ foodList: [dishToCreate, ...this.state.foodList] })
   }
 
+  onDeletDish = (image) => {
+    console.log(image);
+    this.setState((prevState) => {
+      return {
+        foodList: prevState.foodList.filter(dish => dish.image !== image )
+      } 
+    })
+  }
+  
+
   render() {
     const { foodList } = this.state
     
@@ -35,7 +45,7 @@ class App extends Component {
         </div>
 
         <h1>Food List: </h1>
-        <FoodList foodList={foodList}/>
+        <FoodList foodList={foodList} onDeletDish={this.onDeletDish}/>
       </div>
     );
   }

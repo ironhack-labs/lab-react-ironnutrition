@@ -1,0 +1,10 @@
+.order{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.buttonFormat{
+    background-color: red;
+}

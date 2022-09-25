@@ -41,10 +41,13 @@ class App extends Component {
     return foods
   }
 
-  onDeleteFood = (id) => {
+  onDeleteFood = (name) => {
+    console.log(name)
     this.setState(prevState => ({
-      foods: prevState.foods.filter(food => food.id !== id)
+      foods: prevState.foods.filter(food => food.name !== name)
     }))
+    console.log(foods)
+
   }
 
   toggleShowForm = () => {

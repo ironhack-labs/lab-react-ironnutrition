@@ -8,7 +8,7 @@ function FoodList({foods, onDeleteFood}) {
             <Row align="center">
                 {foods.map(food => (
                     <Col align="center" span={6}  key={food.name}>
-                        <FoodCard onDelete={() => onDeleteFood(food.id)}  {...food}
+                        <FoodCard onDelete={() => onDeleteFood(food.name)}  {...food}
                         />
                     </Col>
                     ))}

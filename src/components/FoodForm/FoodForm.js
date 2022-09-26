@@ -13,9 +13,10 @@ const INITIAL_STATE = {
     handleOnChange = (event) => {
         console.log(event)
         const { value, name } = event.target 
-    
+       //para recibir lo que esta en el form
         this.setState({ [name]: value }) // meter entre corchetes una variable para hacer el key dinamico
-      }
+      //y actualizar el estafo
+    }
     
       onSubmit = (event) => {
         event.preventDefault() 

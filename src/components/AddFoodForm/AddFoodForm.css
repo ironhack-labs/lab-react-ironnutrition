@@ -1,0 +1,33 @@
+.Form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.Form-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.Form-item label {
+    width: 50px;
+}
+
+.Form-item input {
+    border: 1px solid rgba(204, 204, 204, 0.897);
+    border-radius: 8px;
+    height: 30px;
+}
+
+.Form-container button {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 15px;
+}

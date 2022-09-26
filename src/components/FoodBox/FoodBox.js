@@ -9,7 +9,7 @@ function FoodBox({ name, image, calories, servings }) {
     <Card
       style={{ width: 250 }}
       title=<h2><strong>{name}</strong></h2>
-      cover={<img src={image} alt={name} height={200}/>}
+      cover={<img src={image} alt={name} width={150}height={150}/>}
     >
       <Meta
         description=

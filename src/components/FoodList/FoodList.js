@@ -1,16 +1,21 @@
-function FoodList({ foods }) {
-    console.log(foods)
+import { Row, Col } from 'antd'
+import FoodBox from '../FoodBox/FoodBox';
 
-  return (
-    <div>
-      {foods.map(({ name, image }, i) => (
-        <div key={i}>
-          <p>{name}</p>
-          <img src={image} alt={name} />
-        </div>
-      ))}
-    </div>
+
+function FoodList({ foods }) {
+ return (
+    <Row>
+        {foods.map(food =>(
+            <Col span={8} key={food.image}>
+                <FoodBox {...food}/> 
+            </Col>
+        ))}
+    </Row>     
   );
 }
 
 export default FoodList;
+
+
+// el FoodBox es la card tengo que hacer esto =  {...food} para que pueda ir iterando sino no encuentra nada
+// span = {8} es el son 8 filas y 3 columnas

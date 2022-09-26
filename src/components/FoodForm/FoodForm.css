@@ -1,0 +1,26 @@
+.white {
+    color: white
+}
+
+.input {
+    width: 50%
+}
+
+.app-input-container {
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+}
+
+.add-btn {
+    background-color: rgb(129, 255, 129);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.add-btn:hover {
+    background-color: rgb(184, 255, 184);
+    cursor: pointer;
+}

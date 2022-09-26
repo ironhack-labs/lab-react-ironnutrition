@@ -1,9 +1,9 @@
 import './FoodCard.css';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import { Card, Col, Row } from 'antd';
 const { Meta } = Card;
 
-function FoodCards({ foods }) {
+function FoodCards({ foods, deleteFood }) {
   
     return (
       <Row>
@@ -21,9 +21,7 @@ function FoodCards({ foods }) {
                       />
                   }
                   actions={[
-                      <SettingOutlined key="setting" />,
-                      <EditOutlined key="edit" />,
-                      <EllipsisOutlined key="ellipsis" />,
+                    <DeleteOutlined key="delete" onClick={() => deleteFood(food.name)}/>
                   ]}
                   >
                   <Meta

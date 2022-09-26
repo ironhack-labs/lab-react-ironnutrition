@@ -4,7 +4,7 @@ import FoodList from './components/FoodList/FoodList';
 import FoodForm from './components/FoodForm/FoodForm';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Layout, Typography } from 'antd';
+import { Layout, Typography, Button  } from 'antd';
 const { Content } = Layout;
 const { Title } = Typography;
 
@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     foods: [...foods],
     searchText: '',
+    showForm: true,
   };
 
   createFood = (newFood) => {
@@ -46,9 +47,13 @@ class App extends Component {
     }))
   }
 
+  toggleShowForm = () => {
+    this.setState(prevState => ({ showForm: !prevState.showForm }))
+  }
+
   render() {
 
-    const { searchText } = this.state
+    const { searchText, showForm } = this.state
 
     const foods = this.getFoodsToRender()
 
@@ -63,8 +68,14 @@ class App extends Component {
 
 
             <h2>Add food Entery</h2>
+            { showForm && (
             <FoodForm createFood={this.createFood} />
-            
+            )}
+
+            <Button onClick={this.toggleShowForm}>
+              {showForm ? 'Hide Form' : 'Add New Food'} 
+            </Button>
+
             <Title>Food list</Title>
            
             <FoodList foods={foods} DeleteFood={this.DeleteFood}/>

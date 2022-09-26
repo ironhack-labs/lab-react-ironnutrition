@@ -40,6 +40,12 @@ class App extends Component {
     return foods
   }
 
+  DeleteFood = (name) => {
+    this.setState(prevState => ({
+      foods: prevState.foods.filter(food => food.name !== name)
+    }))
+  }
+
   render() {
 
     const { searchText } = this.state
@@ -61,7 +67,7 @@ class App extends Component {
             
             <Title>Food list</Title>
            
-            <FoodList foods={foods} />;
+            <FoodList foods={foods} DeleteFood={this.DeleteFood}/>
          
           </Content>
         </Layout>

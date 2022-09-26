@@ -2,12 +2,12 @@ import { Row, Col } from 'antd'
 import FoodBox from '../FoodBox/FoodBox';
 
 
-function FoodList({ foods }) {
+function FoodList({ foods, DeleteFood }) {
  return (
     <Row>
         {foods.map(food =>(
             <Col span={8} key={food.image}>
-                <FoodBox {...food}/> 
+                <FoodBox onDelete={() => DeleteFood (food.name)} {...food}/> 
             </Col>
         ))}
     </Row>     

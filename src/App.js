@@ -10,17 +10,14 @@ function App() {
   const [food, setFood] = useState(foods);
   const [searchInput, setSearchInput] = useState('');
 
-  // const deleteFood = (foodName) => {
-  //   // Traer la lista de comida actualizada
-  //   setFood((updatedFoods) => {
-  //     // Filtra la comida de la lista y devuelve una list actualizada
-  //     const updatedList = updatedFoods.filter((food) => {
-  //       // Devuelve las comidas que no sean iguales a lo filtrad
-  //       return food.name !== foodName;
-  //     });
-  //     return updatedList;
-  //   });
-  // };
+  const deleteFood = (foodName) => {
+    setFood((updatedFoods) => {
+      const updatedList = updatedFoods.filter((food) => {
+        return food.name !== foodName;
+      });
+      return updatedList;
+    });
+  };
 
   return (
     <div className="App">
@@ -35,7 +32,9 @@ function App() {
           return item.name.toLowerCase().includes(searchInput.toLowerCase());
         })
         .map((item) => {
-          return <FoodBox key={item.name} food={item} />;
+          return (
+            <FoodBox key={item.name} food={item} deleteFood={deleteFood} />
+          );
         })}
     </div>
   );

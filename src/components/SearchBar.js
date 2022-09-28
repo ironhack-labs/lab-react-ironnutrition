@@ -2,10 +2,10 @@ import React from 'react';
 import { Divider, Input } from 'antd';
 
 function SearchBar({ searchInput, setSearchInput }) {
-  console.log(searchInput);
+  // console.log(searchInput);
   return (
     <form>
-      <Divider> Search</Divider>
+      <Divider>Search</Divider>
       <label>Search</label>
       <Input
         value={searchInput}

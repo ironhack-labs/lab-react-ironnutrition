@@ -1,6 +1,6 @@
 import { Card, Col, Button } from 'antd';
 
-function FoodBox({ food }) {
+function FoodBox({ food, deleteFood }) {
   return (
     <div>
       <Col>
@@ -17,7 +17,9 @@ function FoodBox({ food }) {
           <p>Calories:{food.calories}</p>
           <p>Servings:{food.servings}</p>
           <p>Total Calories:{food.calories * food.servings}</p>
-          <Button type="primary">Delete</Button>
+          <Button type="primary" onClick={() => deleteFood(food.name)}>
+            Delete
+          </Button>
         </Card>
       </Col>
     </div>

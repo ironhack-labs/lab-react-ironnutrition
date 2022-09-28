@@ -19,6 +19,10 @@ const AddFoodForm = ({ setFood, food }) => {
       }}
       onSubmit={(event) => {
         event.preventDefault();
+        setName('');
+        setImage('');
+        setCalories(0);
+        setServings(0);
       }}
     >
       <Divider>Add Food Entry</Divider>

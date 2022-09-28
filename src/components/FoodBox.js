@@ -7,7 +7,7 @@ function FoodBox({ food }) {
         <Card
           title={food.name}
           style={{
-            justifyContent: 'flex-start',
+            display: 'inline-block',
             width: 300,
             height: 300,
             margin: 10,

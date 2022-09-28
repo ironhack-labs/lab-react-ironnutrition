@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.food-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+label {
+  display: block;
+  margin-top: 20px;
+}
+form button {
+  margin: 20px 0;
+}
+.search-container {
+  width: 50%;
+  margin: 0 auto 30px auto;
+}
+.form-visibility-button {
+  margin-top: 20px;
+}

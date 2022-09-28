@@ -33,3 +33,5 @@ const FoodBox = ({ food, deleteFoodCard }) => {
 };
 
 export default FoodBox;
+
+// add a onClick listener to the btn and add the deleteFoodCard function to it, and pass the key you want to use to delete.

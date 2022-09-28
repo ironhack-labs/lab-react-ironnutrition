@@ -4,9 +4,11 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import { Divider } from 'antd';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [food, setFood] = useState(foods);
+  const [searchInput, setSearchInput] = useState('');
 
   // const deleteFood = (foodName) => {
   //   // Traer la lista de comida actualizada
@@ -23,15 +25,18 @@ function App() {
   return (
     <div className="App">
       <AddFoodForm setFood={setFood}></AddFoodForm>
-
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+      ></SearchBar>
       <Divider>Food list</Divider>
-      {food.map((item) => {
-        return (
-          <div key={item.name}>
-            <FoodBox food={item}></FoodBox>
-          </div>
-        );
-      })}
+      {food
+        .filter((item) => {
+          return item.name.toLowerCase().includes(searchInput.toLowerCase());
+        })
+        .map((item) => {
+          return <FoodBox key={item.name} food={item} />;
+        })}
     </div>
   );
 }

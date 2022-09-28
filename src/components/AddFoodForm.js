@@ -1,7 +1,7 @@
 import { Divider, Form, Input, Button } from 'antd';
 import { useState } from 'react';
 
-function AddFoodForm({ setFood, food }) {
+function AddFoodForm({ setFood }) {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [calories, setCalories] = useState();
@@ -10,7 +10,7 @@ function AddFoodForm({ setFood, food }) {
     <form>
       <Divider> Add Food Entry</Divider>
       <Form>
-        <label htmlFor="name">Name</label>
+        <label>Name</label>
         <Input
           value={name}
           type="text"
@@ -18,7 +18,7 @@ function AddFoodForm({ setFood, food }) {
             setName(event.target.value);
           }}
         />
-        <label htmlFor="image">Image</label>
+        <label>Image</label>
         <Input
           value={image}
           type="text"
@@ -26,7 +26,7 @@ function AddFoodForm({ setFood, food }) {
             setImage(event.target.value);
           }}
         />
-        <label htmlFor="calories">Calories</label>
+        <label>Calories</label>
         <Input
           value={calories}
           type="text"
@@ -34,7 +34,7 @@ function AddFoodForm({ setFood, food }) {
             setCalories(event.target.value);
           }}
         />
-        <label htmlFor="servings">Servings</label>
+        <label>Servings</label>
         <Input
           value={servings}
           type="text"

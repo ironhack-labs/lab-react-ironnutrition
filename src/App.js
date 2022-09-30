@@ -1,23 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import foodsJson from './foods.json';
+import { useState } from 'react';
+import FoodBox from './FoodBox';
 
 function App() {
+  const [foods, setFoods] = useState(foodsJson);
+
+  const listFoods = () => {
+    return foods.map((food) => {
+      return (
+        <div>
+          <p> {food.name} </p>
+          <img src={food.image} width={40} />
+        </div>
+      );
+    });
+  };
+
+  const addFood = () => {
+    const newFood = {
+      name: 'Orange',
+      calories: 85,
+      image: 'https://i.imgur.com/abKGOcv.jpg',
+      servings: 1,
+    };
+
+    setFoods([...foods, newFood]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() => {
+          addFood();
+        }}
+      >
+        Add food
+      </button>
+      {listFoods()}
     </div>
   );
 }

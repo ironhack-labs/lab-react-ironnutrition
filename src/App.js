@@ -15,7 +15,15 @@ function App() {
   const searchFood = (foodArray) => {
     setNewFoodsArray(foodArray)
   }
-
+    const deleteFood = (foodName) => { 
+        console.log(foodName)
+        const filteredArray = newFoodsArray.filter(element => {
+            return (
+                element.name !== foodName
+            )
+    })
+    setNewFoodsArray(filteredArray)
+    }
   return (
     <div className="App">
       <AddFoodForm addNewFood={addNewFood}/>
@@ -24,7 +32,7 @@ function App() {
       <Row style={{width: '100%', justifyContent: 'center'}}>
       {newFoodsArray.map(element => {
         return (
-          <FoodBox food={element}/>
+          <FoodBox food={element} deleteFood={deleteFood}/>
         )
     })}
     </Row>

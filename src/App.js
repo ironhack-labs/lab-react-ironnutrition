@@ -2,19 +2,32 @@ import logo from './logo.svg';
 import './App.css';
 import foodsJson from './foods.json';
 import { useState } from 'react';
-import FoodBox from './FoodBox';
+import FoodBox from './components/FoodBox.js';
+import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
   const [foods, setFoods] = useState(foodsJson);
 
+  function deleteFoodByFoodName(foodName) {
+    let filteredFoods = foods.filter((food) => food.name !== foodName);
+    setFoods(filteredFoods);
+  }
+
+  function addFoodByFood(food) {
+    setFoods([...foods, food]);
+  }
+
+  function searchFoodContains(searchTerm) {
+    let filteredFoods = foodsJson.filter((food) =>
+      food.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFoods(filteredFoods);
+  }
+
   const listFoods = () => {
     return foods.map((food) => {
-      return (
-        <div>
-          <p> {food.name} </p>
-          <img src={food.image} width={40} />
-        </div>
-      );
+      return <FoodBox food={food} onDeleteFood={deleteFoodByFoodName} />;
     });
   };
 
@@ -31,13 +44,8 @@ function App() {
 
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          addFood();
-        }}
-      >
-        Add food
-      </button>
+      <AddFoodForm onAddFood={(food) => addFoodByFood(food)} />
+      <Search onSearchFood={(searchTerm) => searchFoodContains(searchTerm)} />
       {listFoods()}
     </div>
   );

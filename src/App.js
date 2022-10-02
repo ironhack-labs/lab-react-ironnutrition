@@ -1,23 +1,54 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
+  const [foodList, setFoodList] = useState(foods);
+  const [input, setInput] = useState('');
+  const [showForm, setShowForm] = useState(true);
+
+  // const deleteFoodItem = () => {
+  //   setFoodList((current) =>
+  //     current.filter((foodItem) => {
+  //       return foodItem.name !== current.name;
+  //     })
+  //   );
+  // };
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <label>Search by Food Name: </label>
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <hr />
+      {showForm && (
+        <AddFoodForm foodList={foodList} setFoodList={setFoodList} />
+      )}
+      <div>
+        <button onClick={toggleForm}>
+          {showForm ? 'Hide Form' : 'Add New Food'}
+        </button>
+      </div>
+
+      <hr />
+      {foodList
+        .filter((foodItem) => {
+          return foodItem.name
+            .toLocaleLowerCase()
+            .includes(input.toLocaleLowerCase());
+        })
+        .map((foodItem) => {
+          return (
+            <div key={foodItem.name}>
+              <FoodBox food={foodItem} setFoodList={setFoodList} />
+            </div>
+          );
+        })}
     </div>
   );
 }

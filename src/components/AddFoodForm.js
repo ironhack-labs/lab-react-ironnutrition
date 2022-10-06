@@ -1,37 +1,62 @@
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 import { useState } from 'react';
 
-function AddFoodForm({ name, image, calories, servings }) {
-  const [newFood, setNewFood] = useState({});
-  //   const [nameo, setName] = useState('');
-  //   const [image, setImage] = useState('');
-  //   const [calories, setCalories] = useState(0);
-  //   const [servings, setServings] = useState(0);
+function AddFoodForm({ addFood }) {
+  const [newFood, setNewFood] = useState({
+    name: '',
+    image: '',
+    calories: 0,
+    servings: 0,
+  });
 
-  // const newName = (e) => newFood.name(e.target.value);
-  //   const newImage = (e) => setImage(e.target.value);
-  //   const newCalories = (e) => setCalories(e.target.value);
-  //   const newServings = (e) => setServings(e.target.value);
-
-  console.log('Name:', newFood.name);
+  // console.log('Name:', newFood.name);
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       <Divider>Add Food Entry</Divider>
 
       <label>Name</label>
-      <Input value={name} type="text" onChange={() => {}} />
+      <Input
+        value={newFood.name}
+        type="text"
+        onChange={(e) => setNewFood({ ...newFood, name: e.target.value })}
+      />
 
       <label>Image</label>
-      <Input value={image} type="text" onChange={() => {}} />
+      <Input
+        value={newFood.image}
+        type="text"
+        onChange={(e) => setNewFood({ ...newFood, image: e.target.value })}
+      />
 
       <label>Calories</label>
-      <Input value={calories} type="text" onChange={() => {}} />
+      <Input
+        value={newFood.calories}
+        type="text"
+        onChange={(e) => setNewFood({ ...newFood, calories: e.target.value })}
+      />
 
       <label>Servings</label>
-      <Input value={servings} type="text" onChange={() => {}} />
+      <Input
+        value={newFood.servings}
+        type="text"
+        onChange={(e) => setNewFood({ ...newFood, servings: e.target.value })}
+      />
+      <Button
+        type="submit"
+        onClick={() => {
+          // console.log('New Food: ', newFood);
+          addFood((newItem) => [newFood, ...newItem]);
 
-      <button type="submit">Create</button>
+          setNewFood({ name: '0', image: '', calories: 0, servings: 0 });
+        }}
+      >
+        Create
+      </Button>
     </form>
   );
 }

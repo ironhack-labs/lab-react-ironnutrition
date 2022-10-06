@@ -3,7 +3,7 @@ import { Divider, Input } from 'antd';
 
 function Search({ filterFood }) {
   const [search, setSearch] = useState('');
-  console.log('Search:', search);
+  // console.log('Search:', search);
   return (
     <div>
       <Divider> Search </Divider>

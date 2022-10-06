@@ -18,7 +18,7 @@ function App() {
     .map((food) => {
       return (
         <Row key={food.name}>
-          <FoodBox food={food} />
+          <FoodBox food={food} deleteFood={setFoodList} />
         </Row>
       );
     });

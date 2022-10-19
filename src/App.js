@@ -1,20 +1,21 @@
+import { OmitProps } from 'antd/lib/transfer/ListBody';
 import './App.css';
-import foods from "./foods.json"
+import FoodBox from './components/FoodBox';
+import food from "./foods.json"
 
 
 function App() {
   return (<div className="App">
 
-    {foods.map(food =>
+    {food.map(banana =>
       <div>
-        <p>Food_name_here</p>
-        <img src={food.image} width={100} alt={food.n}/>
+      <FoodBox food={banana}/>
    
     </div> )}
    </div>
   );
-    }
-    
+
+}
     
 export default App;
 

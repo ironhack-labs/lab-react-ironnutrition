@@ -9,6 +9,7 @@ import AddFoodForm from './component/AddFoodForm';
 
 function App() {
   const [listOfFood, setListOfFood] = useState(foods);
+  const [displayForm, setDisplayForm] = useState(true);
   
   const createFood = (foodDetails) => {
     //e.preventDefault();

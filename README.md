@@ -136,17 +136,17 @@ Now that you have the `foods.json` imported in `App.js` it is time to save it in
 
 Create a new component named `FoodBox` that takes the prop `food`, which is an object. It should display the card with food information coming from the `food` prop. To render the content, use the structure provided in the file `style-guide/FoodBox.example.js`.
 
-
-
 Once done, test it by rendering a single instance of the component in `App.js`. You can pass it the object with food info like this:
 
 ```jsx
-<FoodBox food={ {
-  name: "Orange",
-  calories: 85,
-  image: "https://i.imgur.com/abKGOcv.jpg",
-  servings: 1
-}} />
+<FoodBox
+  food={{
+    name: 'Orange',
+    calories: 85,
+    image: 'https://i.imgur.com/abKGOcv.jpg',
+    servings: 1,
+  }}
+/>
 ```
 
 **Expected result:**
@@ -157,7 +157,7 @@ Once done, test it by rendering a single instance of the component in `App.js`. 
 
 ### Iteration 3 | Render a List of `FoodBox` Components
 
-After creating the `FoodBox` component, use it in `App.js` to render the food *list*. Instead of mapping over the foods array and rendering only the food names, render the `<FoodBox />` component. When rendering the `FoodBox`  component, remember to pass the food object as a prop.
+After creating the `FoodBox` component, use it in `App.js` to render the food _list_. Instead of mapping over the foods array and rendering only the food names, render the `<FoodBox />` component. When rendering the `FoodBox` component, remember to pass the food object as a prop.
 
 Once you are done rendering the `FoodBox` in the list, your app should display the following content:
 
@@ -213,7 +213,7 @@ If you are not sure how to create responsive columns with Ant Design, you can ch
 
 ### Iteration 7 | Bonus | Hide the Add Food Form
 
-There are quite a few components displaying in the app. Implement a hide/show button that, when clicked, hides/shows the `AddFoodForm`. 
+There are quite a few components displaying in the app. Implement a hide/show button that, when clicked, hides/shows the `AddFoodForm`.
 
 When the form is showing, the button should display the message <kbd>Hide Form</kbd>`. When the form is hidden it shoud display <kbd>Add New Food</kbd>.
 
@@ -226,7 +226,5 @@ When the form is showing, the button should display the message <kbd>Hide Form</
 Display a Feedback message to the user when the food array is empty. Once the user deletes all of the items from the list, the following message should be displayed:
 
 ![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-8.gif)
-
-
 
 Happy coding! ❤️

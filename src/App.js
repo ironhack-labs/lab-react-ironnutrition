@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
-import { Row, Divider, Button } from 'antd';
+import { Row, Col, Divider, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 
 
@@ -16,24 +16,19 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {/* Render the list of Food Box components here */}
-        <div className="App">
-          {foods.map(food =>
-            <FoodBox details={food}/>
+        <Col style={{ width: '100%', justifyContent: 'center' }}>
+          {/* Render the list of Food Box components here */}
+          
+          <Row>
+            {foods.map(food =>
+              <FoodBox details={food}/>
+            )}
+          </Row>
+        </Col>
 
-          )}
-        </div>
-      </Row>
     </div>
   );
 }
 
 
 export default App;
-
-
-            {/* <div>
-              <p> {food.name} </p>
-              <img src={food.image} width={150} alt={food.name} />
-            </div> */}

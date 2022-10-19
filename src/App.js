@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
 import { Row, Divider, Button } from 'antd';
+import FoodBox from './components/FoodBox';
 
 
 function App() {
@@ -19,10 +20,8 @@ function App() {
         {/* Render the list of Food Box components here */}
         <div className="App">
           {foods.map(food =>
-            <div>
-              <p> {food.name} </p>
-              <img src={food.image} width={150} alt={food.name} />
-            </div>
+            <FoodBox details={food}/>
+
           )}
         </div>
       </Row>
@@ -32,3 +31,9 @@ function App() {
 
 
 export default App;
+
+
+            {/* <div>
+              <p> {food.name} </p>
+              <img src={food.image} width={150} alt={food.name} />
+            </div> */}

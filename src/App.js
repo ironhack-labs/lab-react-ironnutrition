@@ -19,6 +19,13 @@ function App() {
    
   }
 
+  const deleteFood = (foodName) => {
+    const newList = listOfFood.filter((food) => {
+      return food.name !== foodName;
+    });
+    setListOfFood(newList);
+  };
+
   return (
     <div className="App">
       <AddFoodForm callBackToAddFood={createFood} />
@@ -32,7 +39,7 @@ function App() {
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {listOfFood.map((element) => {
     return (
-      <FoodBox food ={element} />
+      <FoodBox food ={element} callbackToDelete={deleteFood} />
     );
   })}
         

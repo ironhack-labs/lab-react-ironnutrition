@@ -1,16 +1,27 @@
 .App {
   text-align: center;
+  background-color: #cfd6d8;
 }
-
+img {
+  height: 70px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+.container {
+  background-color: #61dafb;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+#del-Btn {
+  background-color: red;
+  color: aliceblue;
+  border: none;
+  border-radius: 5%;
 }
 
 .App-header {

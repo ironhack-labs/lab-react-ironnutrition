@@ -3,9 +3,15 @@ import './App.css';
 import React, { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import { Row, Divider } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
   const [food, setFood] = useState(foods);
+
+  const foodEntry = (newFood) => {
+    const arr = [...food, newFood];
+    setFood(arr);
+  };
 
   const deleteFood = (index) => {
     console.log(index);
@@ -18,6 +24,8 @@ function App() {
   return (
     <div className="App">
       <Divider>Food List</Divider>
+      <AddFoodForm foodEntry={foodEntry} />
+
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {food.map((oneFood, index) => {
           return (

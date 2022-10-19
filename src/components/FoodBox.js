@@ -5,7 +5,7 @@
 import { Card, Col, Button } from 'antd';
 
 // Iteration 2
-function FoodBox({ food }) {
+function FoodBox({ food, callbackToDelete }) {
   return (
     <Col>
       <Card title={food.name} style={{ width: 230, height: 300, margin: 10 }}>
@@ -15,7 +15,15 @@ function FoodBox({ food }) {
         <p>
           <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
-        <Button type="danger"> Delete </Button>
+        <Button
+          type="danger"
+          onClick={() => {
+            callbackToDelete(food.name);
+          }}
+        >
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

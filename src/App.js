@@ -3,6 +3,7 @@ import './App.css';
 import FoodBox from './components/FoodBox';
 import food from "./foods.json"
 import { Row, Divider, Button } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
   return (<div className="App">
@@ -11,10 +12,10 @@ function App() {
    {food.map(banana =>
       <div>
       <FoodBox food={banana}/>
-      
    
     </div> )}
       </Row>
+      <AddFoodForm />
     
    </div>
   );

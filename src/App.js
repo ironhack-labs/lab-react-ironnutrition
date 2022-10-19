@@ -5,6 +5,7 @@ import { Row, Col, Divider, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import { useState } from 'react';
+import Search from './components/Search';
 
 
 
@@ -20,11 +21,19 @@ function App() {
       return newList;
     });
   }
+
+  const deleteFood = (foodName) => {
+    const newList = listOfFoods.filter((food) => {
+      return food.name !== foodName;
+    });
+    setListOfFoods(newList);
+  }
   
   return (
     <div className="App">
       {/* Display Add Food component here */}
       <AddFoodForm callbackToCreate={createFood}/>
+      {/* <Search /> */}
 
       <Button> Hide Form / Add New Food </Button>
 
@@ -37,7 +46,12 @@ function App() {
 
           <Row>
             {listOfFoods.map(food =>
-              <FoodBox details={food} key={food.name}/>
+            /* <FoodBox details={food} key={food.name}/> */
+              <FoodBox 
+              details={food} 
+              key={food.name}
+              callbackToDelete={deleteFood}  
+              />
             )}
           </Row>
         </Col>

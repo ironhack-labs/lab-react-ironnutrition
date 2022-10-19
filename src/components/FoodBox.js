@@ -1,20 +1,23 @@
 import { Card, Col, Button } from 'antd';
 
 // Iteration 2
-function FoodBox(props) {
+function FoodBox({details, callbackToDelete}) {
   return (
     <Col>
       <Card
-        title={props.details.name}
+        title={details.name}
         style={{ width: 230, height: 300, margin: 10 }}
       >
-        <img src={props.details.image} height={60} alt={props.details.name} />
-        <p>Calories: {props.details.calories}</p>
-        <p>Servings: {props.details.servings}</p>
+        <img src={details.image} height={60} alt={details.name} />
+        <p>Calories: {details.calories}</p>
+        <p>Servings: {details.servings}</p>
         <p>
-          <b>Total Calories: {props.details.calories * props.details.servings} </b> kcal
+          <b>Total Calories: {details.calories * details.servings} </b> kcal
         </p>
-        <Button type="danger"> Delete </Button>
+        <Button 
+          type="danger"
+          onClick={()=>{callbackToDelete(details.name)}}
+        > Delete </Button>
       </Card>
     </Col>
   );

@@ -1,13 +1,20 @@
 import { Divider, Input } from 'antd';
 
 // Iteration 5
-function Search(props) {
-  return (
+function Search({callbackToSearch}) {
+
+   return (
     <>
       <Divider>Search</Divider>
 
       <label>Search</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
+      <Input 
+        placeholder="Search by the title ..."
+        type="text" 
+        onChange={(e) => { 
+            callbackToSearch(e.target.value);
+        }}
+      />
     </>
   );
 }

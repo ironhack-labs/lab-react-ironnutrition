@@ -28,16 +28,27 @@ function App() {
     });
     setListOfFoods(newList);
   }
+
+  const searchFood = (query) => {
+    setListOfFoods(() => {
+      return query !== ''
+        ? foods.filter((food) =>
+            food.name.toLowerCase().includes(query.toLowerCase())
+          )
+        : foods;
+    });
+  };
   
   return (
     <div className="App">
       {/* Display Add Food component here */}
       <AddFoodForm callbackToCreate={createFood}/>
-      {/* <Search /> */}
+      <Search callbackToSearch={searchFood} />
 
       <Button> Hide Form / Add New Food </Button>
 
       {/* Display Search component here */}
+      
 
       <Divider>Food List</Divider>
 

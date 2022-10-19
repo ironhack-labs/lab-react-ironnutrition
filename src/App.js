@@ -3,6 +3,7 @@ import './App.css';
 import AddFoodForm from './components/AddFoodForm';
 import FoodBox from './components/Foodbox';
 import foods from './foods.json';
+import Search from './components/Search'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <div className="App">
+    <Search/>
       <AddFoodForm callbackToAdd={addNewFood} />
       {food.map((element, index) => {
         return (

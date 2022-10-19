@@ -1,20 +1,19 @@
-import Foods from '..foods.json'
-import { useState } from "react"
+import { useState } from 'react';
 
-export default function Search(){
-
-const [search, setSearch] = useState("")
-
-    return(
-        <div>
-        <form>
-        <label> Search </label>
-            <input type="text" name="search" value="" onChange={(e)=>{setSearch(e.target.value)}}/>
-        </form>
-        {Foods.map((food,index)=>{
-           return(<p>{food.name}</p>) 
-        })}
-        </div>
-    )
+// Iteration 5
+function Search({ callbackToSearch }) {
+  return (
+    <>
+      <label>Search</label>
+      <input
+        placeholder="Enter search query"
+        type="text"
+        onChange={(e) => {
+          callbackToSearch(e.target.value);
+        }}
+      />
+    </>
+  );
 }
 
+export default Search;

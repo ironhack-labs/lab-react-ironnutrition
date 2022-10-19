@@ -46,6 +46,10 @@ function App() {
       }
       <Search callbackToSearch={searchFood} />
 
+      {food.length === 0 
+      ?
+      <h1>There is no more content to show.</h1>
+      :
       <div className="foodsList">
         {food.map((element, index) => {
           return (
@@ -54,7 +58,7 @@ function App() {
             </div>
           );
         })}
-      </div>
+      </div>}
     </div>
   );
 }

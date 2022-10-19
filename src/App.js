@@ -3,11 +3,12 @@ import foodsArray from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
-import { Row, Col, Radio } from 'antd';
+import { Divider, Row, Col, Radio } from 'antd';
 import { useState } from 'react';
 
 function App() {
   const [foods, setFoods] = useState(foodsArray);
+  const [showForm, setShowForm] = useState(false);
 
   const addNewFood = (newFood) => {
     setFoods((prevFoods) => [newFood, ...prevFoods]);
@@ -27,11 +28,26 @@ function App() {
     });
   };
 
+  const showHideForm = () => setShowForm((prevState) => !prevState);
+
   return (
     <div className="App">
+      {showForm && (
+        <>
+          <Row>
+            <Col span={6} offset={8}>
+              <AddFoodForm callbackAddFood={addNewFood} />
+            </Col>
+          </Row>
+          <br />
+        </>
+      )}
+
       <Row>
         <Col span={6} offset={8}>
-          <AddFoodForm callbackAddFood={addNewFood} />
+          <Radio.Button value="large" onClick={showHideForm}>
+            {showForm ? 'Hide Form' : 'Add New Food'}
+          </Radio.Button>
         </Col>
       </Row>
       <br />
@@ -43,11 +59,8 @@ function App() {
       </Row>
 
       <br />
-      <Row>
-        <Col span={6} offset={8}>
-          <Radio.Button value="large">Large</Radio.Button>
-        </Col>
-      </Row>
+
+      <Divider>Food List</Divider>
       <Row gutter={[16, 16]}>
         {foods.map((food) => {
           return (

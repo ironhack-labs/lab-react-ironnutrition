@@ -11,7 +11,7 @@ function FoodBox({food}) {
           <p>Calories: {food.calories}</p>
           <p>Servings: {food.servings}</p>
           <p>
-            <b>Total Calories: FOOD_CALORIES * FOOD_SERVINGS </b> kcal
+            <b>Total Calories: {food.servings * food.calories} </b> kcal
           </p>
           <Button type="primary"> Delete </Button>
         </Card>

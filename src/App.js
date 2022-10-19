@@ -1,22 +1,33 @@
 import './App.css';
 import { Card, Row, Col, Divider, Input, Button } from 'antd';
 import FoodBox from './components/FoodBox';
-import foodsArr from './foods.json';
+import AddFoodForm from './components/AddFoodForm';
+import foods from './foods.json';
 import { useState } from 'react';
 
 function App() {
+  const [listOfFoods, setListOfFoods] = useState(foods);
 
-  const [listOfFoods, setListOfFoods] = useState(foodsArr);
+  const createFood = (foodDetails) => {
+    setListOfFoods( (prevListOfFoods) => {
+      const newList = [foodDetails, ...prevListOfFoods];
+      return newList;
+    });
+  }
+
 
   return (
     <div className="App">
-      <Divider>Food List</Divider>
+    <Row style={{ width: '100%', justifyContent: 'center' }}>
 
+      <AddFoodForm callbackToCreate={createFood} />
+      </Row>
+      
+      <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
-        {foodsArr.map((food) => (
-          <FoodBox foods={listOfFoods} food={food} />
-
+        {listOfFoods.map((food) => (
+          <FoodBox food={food} />
         ))}
       </Row>
       </div>

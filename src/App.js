@@ -24,9 +24,20 @@ function App() {
     setFood(foodList)
   }
 
+// const searchFood = () => {
+//   food.filter(searchFood=>{
+//     if(search === ""){
+//       return searchFood;
+//     } else if(searchFood.name.toLowerCase().includes(search.toLowerCase())){
+//       return searchFood;
+//     }
+//   })
+// }
+
+
   return (
     <div className="App">
-    <Search/>
+    {/* <Search/> */}
       <AddFoodForm callbackToAdd={addNewFood} />
       {food.map((element, index) => {
         return (

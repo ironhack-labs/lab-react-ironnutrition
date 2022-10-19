@@ -1,5 +1,4 @@
 import { Card, Col, Button } from 'antd';
-import '../App.css';
 
 function FoodBox({ foodBox, callbackToDelete }) {
   return (
@@ -15,14 +14,12 @@ function FoodBox({ foodBox, callbackToDelete }) {
           <b>Total Calories: {foodBox.calories * foodBox.servings} </b> kcal
         </p>
         <Button
-          className="btn-red"
-          type="primary"
+          type="danger"
           onClick={() => {
             callbackToDelete(foodBox.name);
           }}
         >
-          {' '}
-          Delete{' '}
+          Delete
         </Button>
       </Card>
     </Col>

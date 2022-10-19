@@ -8,6 +8,8 @@ import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function App() {
   const [food, setFood] = useState(foods);
+  const [displayForm, setDisplayForm] = useState(false)
+
 
   const addNewFood = (newFood) => {
     setFood((prevFoodList) => {
@@ -33,11 +35,17 @@ function App() {
     });
   };
 
+
+  const shiftForm = () => {setDisplayForm((currentState) => !currentState);}
+
   return (
     <div className="App">
+      <button onClick={shiftForm} >{displayForm ? "Hide the Form" : "Add a New Food"}</button>
+      {displayForm &&
+        <AddFoodForm callbackToAdd={addNewFood} />
+      }
       <Search callbackToSearch={searchFood} />
 
-      <AddFoodForm callbackToAdd={addNewFood} />
       <div className="foodsList">
         {food.map((element, index) => {
           return (

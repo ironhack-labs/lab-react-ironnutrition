@@ -62,15 +62,21 @@ function App() {
 
       <Divider>Food List</Divider>
       <Row gutter={[16, 16]}>
-        {foods.map((food) => {
-          return (
-            <FoodBox
-              key={food.name}
-              food={food}
-              callbackDeleteFood={deleteFood}
-            />
-          );
-        })}
+        {foods.length > 0 ? (
+          foods.map((food) => {
+            return (
+              <FoodBox
+                key={food.name}
+                food={food}
+                callbackDeleteFood={deleteFood}
+              />
+            );
+          })
+        ) : (
+          <Col span={12} offset={4}>
+            <h3>'Oops! There is no more content to show'</h3>
+          </Col>
+        )}
       </Row>
     </div>
   );

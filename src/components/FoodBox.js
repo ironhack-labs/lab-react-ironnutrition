@@ -2,11 +2,8 @@ import { Card, Col, Button } from 'antd';
 
 
 
-function FoodBox({foods}) {
-    console.log(foods);
+function FoodBox({foods, food}) {
     return (
-        foods.map((food, index) => {
-            return(
       <Col key={food.name}>
         <Card
           title={food.name}
@@ -21,9 +18,8 @@ function FoodBox({foods}) {
           <Button type="primary"> Delete </Button>
         </Card>
                 </Col>
-                )
-    })
-    );
+                
+    )
   }
   
   export default FoodBox;

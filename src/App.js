@@ -15,7 +15,7 @@ function App() {
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
         {foodsArr.map((food) => (
-          <FoodBox foods={listOfFoods} />
+          <FoodBox foods={listOfFoods} food={food} />
 
         ))}
       </Row>

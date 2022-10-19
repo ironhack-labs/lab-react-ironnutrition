@@ -1,10 +1,12 @@
+import { useState } from "react";
 import './App.css';
 import FoodBox from './components/FoodBox';
 import { Row, Divider, Button } from 'antd';
-
 import foods from './foods.json';
 
 function App() {
+  const [foodList, setFoodList] = useState(foods);
+
   return (
     <div className="App">
       {/* Display Add Food component here */}
@@ -17,21 +19,12 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
-        {foods.map((food) => (
-          <div>
-            <p> {food.name} </p>
-            <img src={food.image} width={100} alt={food.name} />
-          </div>
-        ))}
 
-        <FoodBox
-          food={{
-            name: 'Orange',
-            calories: 85,
-            image: 'https://i.imgur.com/abKGOcv.jpg',
-            servings: 1,
-          }}
-        />
+        {foods.map((food) => (
+          <FoodBox
+            food={food}
+          />
+        ))}
       </Row>
     </div>
   );

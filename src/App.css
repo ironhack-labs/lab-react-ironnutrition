@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 50px 10%;
 }
 
 .App-logo {
@@ -35,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.foodsList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-red {
+  background-color: red !important;
 }

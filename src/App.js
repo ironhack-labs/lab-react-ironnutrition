@@ -4,6 +4,7 @@ import AddFoodForm from './components/AddFoodForm';
 import FoodBox from './components/Foodbox';
 import foods from './foods.json';
 import Search from './components/Search';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function App() {
   const [food, setFood] = useState(foods);
@@ -35,14 +36,17 @@ function App() {
   return (
     <div className="App">
       <Search callbackToSearch={searchFood} />
+
       <AddFoodForm callbackToAdd={addNewFood} />
-      {food.map((element, index) => {
-        return (
-          <div key={index}>
-            <FoodBox foodBox={element} callbackToDelete={deleteFood} />
-          </div>
-        );
-      })}
+      <div className="foodsList">
+        {food.map((element, index) => {
+          return (
+            <div key={index}>
+              <FoodBox foodBox={element} callbackToDelete={deleteFood} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

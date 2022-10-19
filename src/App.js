@@ -3,23 +3,25 @@ import foods from './foods.json';
 
 import { Row, Divider, Button } from 'antd';
 import FoodBox from './component/FoodBox';
+import { useState } from 'react';
+import AddFoodForm from './component/AddFoodForm';
 
 
 function App() {
   const [listOfFood, setListOfFood] = useState(foods);
   
-  const foodList =(prevFoodList)=>{
-    
-
+  const createFood = (foodDetails) => {
+    //e.preventDefault();
+    setListOfFood( (prevListOfFood) => {
+      const newList = [foodDetails, ...prevListOfFood];
+      return newList;
+    });
+   
   }
-  listOfFood.map((food) => {
-    return (
-      <FoodBox food ={foodList} />
-    );
-  })
+
   return (
     <div className="App">
-      {/* Display Add Food component here */}
+      <AddFoodForm callBackToAddFood={createFood} />
 
       <Button> Hide Form / Add New Food </Button>
 
@@ -28,7 +30,11 @@ function App() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {/* Render the list of Food Box components here */}
+        {listOfFood.map((element) => {
+    return (
+      <FoodBox food ={element} />
+    );
+  })}
         
       </Row>
     </div>

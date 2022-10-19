@@ -55,9 +55,15 @@ function App() {
 
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
+      {foodElements.length === 0 ? (
+        <h1>YOU ARE ON DIET TODAY</h1>
+      ) : (
+        <> 
         {foodElements.map((food, index) => (
           <FoodBox callbackDelete={deleteFood} food={food} key={index} />
         ))}
+        </>
+      )}
       </Row>
     </div>
   );

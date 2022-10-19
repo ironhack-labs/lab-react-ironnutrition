@@ -1,69 +1,64 @@
-import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Row, Divider, Input, Button } from 'antd';
 import FoodBox from './FoodBox';
 import AddFoodForm from './AddFoodForm';
 import { useState } from 'react';
 
-
-
 function App() {
-  const [query, setQuery] = useState("")
+  const newFoodArray = [...foods];
+  const [foodElements, setFoodElements] = useState(newFoodArray);
+  const [query, setQuery] = useState('');
 
-  foodElements(food=>{
+  const createFood = (newFood) => {
+    setFoodElements((prevFoodElements) => {
+      const copyFood = [newFood, ...prevFoodElements];
+      return copyFood;
+    });
+  };
 
-  })
-  
+  const deleteFood = (gnochi) => {
+    const newList = foodElements.filter((food) => {
+      return food.name !== gnochi;
+    });
+    setFoodElements(newList);
+  };
 
-const newFoodArray = [...foods]
-const [foodElements, setFoodElements] = useState(newFoodArray)
+  const search = (e) => {
+    setQuery(e.target.value);
+    if (e.target.value === '') {
+      setFoodElements(newFoodArray);
+    } else {
+      const searchingFood = foodElements.filter((food) => {
+        return food.name.toLowerCase().includes(query);
+      });
+      setFoodElements(searchingFood);
+    }
+  };
 
-const createFood = (newFood) => {
-  setFoodElements((prevFoodElements)=>{
-    const copyFood=[newFood,...prevFoodElements]
-    return copyFood
-  })
-  
-}
-const deleteFood =(gnochi) => {
-  const newList= foodElements.filter((food)=>{
-    return food.name !== gnochi
-  })
-  setFoodElements(newList)
-
-}
   return (
-<div className="App">
-
-<>
-    
-      <Divider>Search</Divider>
-
-      <label>Search</label>
-      <Input placeholder="Search here" value={query} type="text" onChange={e => setQuery(e.target.value)} />
-    
-    </>
-
-      <AddFoodForm callbackToCreate={createFood}/>
+    <div className="App">
+      <AddFoodForm callbackToCreate={createFood} />
 
       <Button> Hide Form / Add New Food </Button>
 
-   
+      <div>
+        <Divider>Search</Divider>
+        <Input
+          style={{ width: '30%', justifyContent: 'center' }}
+          placeholder="Search here"
+          value={query}
+          type="text"
+          onChange={search}
+        />
+      </div>
 
       <Divider>Food List</Divider>
-
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {/* Render the list of Food Box components here */}
-
-  
-
-   
-      {foodElements.map(food => 
-     <FoodBox callbackDelete={deleteFood} food= {food}/>
-    
-     )}
-     </Row>
+        {foodElements.map((food, index) => (
+          <FoodBox callbackDelete={deleteFood} food={food} key={index} />
+        ))}
+      </Row>
     </div>
   );
 }

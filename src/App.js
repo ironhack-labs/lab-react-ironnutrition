@@ -28,8 +28,8 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
-        {foods.map((food) => (
-          <FoodBox food={food} foods={foodList} />
+        {foodList.map((food, index) => (
+          <FoodBox food={food} key={index} />
         ))}
       </Row>
     </div>

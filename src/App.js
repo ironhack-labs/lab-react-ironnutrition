@@ -1,5 +1,5 @@
 //imports css
-import { Row, Divider, Button } from 'antd';
+import { Row, Divider, Button, Collapse } from 'antd';
 
 import './App.css';
 import AddFoodForm from './components/AddFoodForm';
@@ -10,10 +10,13 @@ import FoodBox from './components/FoodBox';
 
 
 import { useState } from 'react';
+const { Panel } = Collapse;
+
 
 function App() {
   const [list, setList] = useState(foods);
   const [listShowed, setListShowed] = useState(foods);
+  const [formIsShowing, setFormIsShowing] = useState(false)
 
 
   const addFood = (product) => {
@@ -24,6 +27,18 @@ function App() {
     const copy2 = [...listShowed];
     copy2.unshift(product);
     setListShowed(copy2);
+ }
+
+  const toggleForm = () => {
+    setFormIsShowing(true);
+    setFormIsShowing(!formIsShowing);
+  };
+
+  const filterList = (filterQuery)=>{
+    const filterArr = list.filter((eachElement)=> {
+      return eachElement.name.startsWith(filterQuery)
+    })
+    setListShowed(filterArr)
   }
 
 
@@ -33,11 +48,15 @@ function App() {
     <div className="App">
       <Divider>Food List</Divider>
       
-      <Button> Hide Form / Add New Food </Button>
+      
 
-      <AddFoodForm addFoods={addFood}/>
+      <Collapse in={formIsShowing} onChange={toggleForm}>
+          <Panel>
+            <AddFoodForm addFoods={addFood}/>
+          </Panel>
+      </Collapse>
 
-      <Search/>
+      <Search filterList = {filterList}/>
 
 
       <Row style={{ width: '100%', justifyContent: 'center', display: 'flex', flexWrap: 'wrap'}}>

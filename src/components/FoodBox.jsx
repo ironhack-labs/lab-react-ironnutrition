@@ -1,20 +1,20 @@
 // Css imports
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Card, Col, Button } from 'antd';
 
 function FoodBox(props) {
   const { name, image, calories, servings } = props.eachItem;
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Img variant="top" src={image} />
-        <Card.Text>Calories: {calories}</Card.Text>
-        <Card.Text>Servings: {servings}</Card.Text>
-        <Card.Title>Total Calories: {calories}Kcal</Card.Title>
-        <Button variant="primary">Delete</Button>
-      </Card.Body>
-    </Card>
+    <Col>
+      <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
+        <img src={image} height={60} alt="food" />
+        <p>Calories: {calories}</p>
+        <p>Servings: {servings}</p>
+        <p>
+          <b>Total Calories: {calories * servings} </b> kcal
+        </p>
+        <Button type="primary"> Delete </Button>
+      </Card>
+    </Col>
   );
 }
 

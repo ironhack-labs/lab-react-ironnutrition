@@ -4,7 +4,6 @@ import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import { v4 as uuidv4 } from 'uuid';
 import SearchBar from './components/SearchBar';
-import { Col, Divider, Row } from 'antd';
 
 import { Collapse } from 'antd';
 import FeedbackMessage from './components/FeedbackMessage';
@@ -35,7 +34,8 @@ function App() {
 
   return (
     <>
-      <Collapse accordion style={{ width: '35%', marginTop: '20px' }}>
+      <h1 className="flex">Food List</h1>
+      <Collapse accordion style={{ width: '35%' }}>
         <Panel header="Add Food" key="1">
           <AddFoodForm setFood={setFood} addNewFood={addNewFood} />
         </Panel>
@@ -43,12 +43,8 @@ function App() {
           <SearchBar {...{ handleSearch, searchInput }} />
         </Panel>
       </Collapse>
-      <Divider />
-      <Divider style={{ fontSize: '32px' }} orientation="center">
-        Food List
-      </Divider>
       {food.length === 0 && <FeedbackMessage />}
-      <Row justify="space-evenly">
+      <div className="flex">
         {food
           // eslint-disable-next-line array-callback-return
           .filter((food) => {
@@ -74,7 +70,7 @@ function App() {
               />
             );
           })}
-      </Row>
+      </div>
     </>
   );
 }

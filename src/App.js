@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import SearchBar from './components/SearchBar';
 
 import { Collapse } from 'antd';
+import FeedbackMessage from './components/FeedbackMessage';
 const { Panel } = Collapse;
 
 let foodsWithIds = rawFoods.map((food) => ({ ...food, _id: uuidv4() }));
@@ -42,7 +43,7 @@ function App() {
           <SearchBar {...{ handleSearch, searchInput }} />
         </Panel>
       </Collapse>
-
+      {food.length === 0 && <FeedbackMessage />}
       <div className="flex">
         {food
           // eslint-disable-next-line array-callback-return

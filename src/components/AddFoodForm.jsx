@@ -1,4 +1,4 @@
-import { Form, Input, InputNumber, Button, Collapse } from 'antd';
+import { Form, Input, InputNumber, Button } from 'antd';
 
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -37,18 +37,34 @@ function AddFoodForm({ addNewFood }) {
     setServings(1);
   };
 
+  /* eslint-disable no-template-curly-in-string */
+  const validateMessages = {
+    required: '${label} is required!',
+    types: {
+      number: '${label} is not a valid number!',
+    },
+    number: {
+      range: '${label} must be between ${min} and ${max}',
+    },
+  };
+
   return (
     <>
-      <Form name="someForm" onFinish={handleSubmit}>
-        <Form.Item label="Name">
+      <Form
+        name="someForm"
+        validateMessages={validateMessages}
+        onFinish={handleSubmit}
+      >
+        <Form.Item name="name" label="Name" rules={[{ required: true }]}>
           <Input value={name} type="text" onChange={handleNameInput} />
         </Form.Item>
-        <Form.Item label="Image">
+        <Form.Item name="image" label="Image" rules={[{ required: true }]}>
           <Input value={image} type="text" onChange={handleImageInput} />
         </Form.Item>
         <Form.Item
+          name="calories"
           label="Calories"
-          rules={[{ type: 'number', min: 1, max: 1000 }]}
+          rules={[{ required: true }, { type: 'number', min: 1, max: 3000 }]}
         >
           <InputNumber
             value={calories}
@@ -57,8 +73,9 @@ function AddFoodForm({ addNewFood }) {
           />
         </Form.Item>
         <Form.Item
+          name="servings"
           label="Servings"
-          rules={[{ type: 'number', min: 1, max: 12 }]}
+          rules={[{ required: true }, { type: 'number', min: 1, max: 12 }]}
         >
           <InputNumber
             value={servings}

@@ -1,7 +1,6 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
-import { red } from '@ant-design/colors';
-function FeedbackMessage() {
+function FeedbackMessage({ getFoodBack }) {
   return (
     <>
       <div
@@ -16,6 +15,7 @@ function FeedbackMessage() {
           hoverable
           title="Ooops"
           style={{ width: '30vw', textAlign: 'center' }}
+          onClick={getFoodBack}
         >
           <LoadingOutlined
             style={{
@@ -23,7 +23,7 @@ function FeedbackMessage() {
               marginBottom: '20px',
             }}
           />
-          <h3>There is no more content to show</h3>
+          <h4>There is no more content to show</h4>
         </Card>
       </div>
     </>

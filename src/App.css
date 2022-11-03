@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+ul {
+  display: flex;
+  list-style-type:none;
+  flex-wrap: wrap;
+}

@@ -8,6 +8,14 @@ function AddFoodForm(props) {
   const [caloriesInput, setCaloriesInput] = useState(0);
   const [servingsInput, setServingsInput] = useState(0);
 
+
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   calories: '',
+  //   image: 0,
+  //   servings: 0,
+  // })
+
   const addFood = (event) => {
     event.preventDefault();
 
@@ -19,16 +27,12 @@ function AddFoodForm(props) {
     };
     console.log(newFood);
 
-
     props.addFoods(newFood)
-
-
 
   };
 
   const handleChangeName = (event) => {
-    let input = event.target.value;
-    setNameInput(input);
+    setNameInput(event.target.value);
   };
 
   const handleChangeImage = (event) => {
@@ -36,8 +40,7 @@ function AddFoodForm(props) {
   };
 
   const handleChangeCalorie = (event) => {
-    let input = event.target.value;
-    setCaloriesInput(input);
+    setCaloriesInput(event.target.value);
   };
 
   const handleChangeServings = (event) => {

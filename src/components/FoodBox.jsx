@@ -6,13 +6,9 @@ function FoodBox(props) {
   const {listDelete} = props
   // console.log(listDelete);
 
-  const deleteCard = (event) => {
-    console.log(event.target)
-    // const filteredList = listDelete.filter((eachCard) => {
-    //   if (eachCard === event.target){
-    //     return false
-    //   }else return true
-    // })
+  const deleteCard = () => {
+    props.listDelete(name)
+    
   }
 
   return (

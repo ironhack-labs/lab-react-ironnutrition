@@ -17,7 +17,6 @@ function App() {
   const [list, setList] = useState(foods);
   const [listShowed, setListShowed] = useState(foods);
   const [formIsShowing, setFormIsShowing] = useState(false);
-  const [listDelete, setListDelete] = useState(foods);
 
 
 
@@ -41,6 +40,14 @@ function App() {
       return eachElement.name.startsWith(filterQuery)
     })
     setListShowed(filterArr)
+  }
+
+  const deleteFood = (name) => {
+    console.log(name);
+     const filteredList = listShowed.filter((eachCard) => {
+      return eachCard.name !== name
+    })
+    setListShowed(filteredList)
   }
 
 
@@ -68,7 +75,7 @@ function App() {
           <FoodBox 
         key={eachElement.name + index} 
         eachItem={eachElement} 
-        listDelete={listDelete}
+        listDelete={deleteFood}
 
         />)
       })}

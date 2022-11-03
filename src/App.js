@@ -1,3 +1,5 @@
+import { Row, Divider } from 'antd';
+
 import { useState } from 'react';
 import './App.css';
 import { FoodBox } from './components/FoodBox';
@@ -8,21 +10,13 @@ function App() {
 
   return (
     <div className="App">
-      {/* {foodList.map((food) => (
-        <div key={food.name}>
-          <p>{food.name}</p>
-          <img src={food.image} width={100} alt={food.name} />
-        </div>
-      ))} */}
+      <Divider>Food List</Divider>
 
-      <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      />
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {foodList.map((food) => (
+          <FoodBox food={food} key={food.name} />
+        ))}
+      </Row>
     </div>
   );
 }

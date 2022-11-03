@@ -1,4 +1,4 @@
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Card, Col, Button } from 'antd';
 
 export const FoodBox = ({ food }) => {
   return (

@@ -16,7 +16,9 @@ const { Panel } = Collapse;
 function App() {
   const [list, setList] = useState(foods);
   const [listShowed, setListShowed] = useState(foods);
-  const [formIsShowing, setFormIsShowing] = useState(false)
+  const [formIsShowing, setFormIsShowing] = useState(false);
+  const [listDelete, setListDelete] = useState(foods);
+
 
 
   const addFood = (product) => {
@@ -44,6 +46,7 @@ function App() {
 
 
 
+
   return (
     <div className="App">
       <Divider>Food List</Divider>
@@ -61,7 +64,13 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center', display: 'flex', flexWrap: 'wrap'}}>
       {listShowed.map((eachElement, index) => {
-        return <FoodBox key={eachElement.name + index} eachItem={eachElement} />;
+        return (
+          <FoodBox 
+        key={eachElement.name + index} 
+        eachItem={eachElement} 
+        listDelete={listDelete}
+
+        />)
       })}
       </Row>
     </div>

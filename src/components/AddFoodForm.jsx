@@ -1,4 +1,5 @@
-import { Form, Input, InputNumber, Button, Card } from 'antd';
+import { Form, Input, InputNumber, Button, Collapse } from 'antd';
+
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,6 +17,9 @@ function AddFoodForm({ addNewFood }) {
     setImage(e.target.value);
   };
 
+  // ok, this got me confused... somehow the InputNumber-Component from AntDesign
+  // has another event fired then the normal Input-Component
+  // e.target.value = undefined because e is already the number | e = 1(2,3,4,5,6,7,8,9)
   const handleCaloriesInput = (e) => {
     setCalories(e);
   };
@@ -34,7 +38,7 @@ function AddFoodForm({ addNewFood }) {
   };
 
   return (
-    <Card title="Add Food" style={{ width: 'fit-content' }}>
+    <>
       <Form name="someForm" onFinish={handleSubmit}>
         <Form.Item label="Name">
           <Input value={name} type="text" onChange={handleNameInput} />
@@ -66,7 +70,7 @@ function AddFoodForm({ addNewFood }) {
           <Button htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
-    </Card>
+    </>
   );
 }
 export default AddFoodForm;

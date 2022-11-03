@@ -18,3 +18,7 @@ code {
   justify-content: center;
   flex-wrap: wrap;
 }
+.flex2 {
+  display: flex;
+  justify-content: space-around;
+}

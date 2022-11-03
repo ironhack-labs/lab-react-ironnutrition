@@ -20,8 +20,15 @@ function App() {
 
   const addNewFood = (newFood) => {
     const updatedFood = [...food, newFood];
-
     setFood(updatedFood);
+  };
+
+  // Delete Food
+  const handleClickDelete = (id) => {
+    const foodToDelete = food.findIndex((obj) => obj.id === id);
+    const foodMinusOne = [...food];
+    foodMinusOne.splice(foodToDelete, 1);
+    setFood(foodMinusOne);
   };
 
   return (
@@ -39,21 +46,20 @@ function App() {
       <div className="flex">
         {food
           // eslint-disable-next-line array-callback-return
-          .filter((product) => {
+          .filter((food) => {
             if (searchInput === '') {
-              return product;
+              return food;
             } else if (
-              product.name
-                .toLowerCase()
-                .includes(searchInput.trim().toLowerCase())
+              food.name.toLowerCase().includes(searchInput.trim().toLowerCase())
             ) {
-              return product;
+              return food;
             }
           })
           .map((food) => {
             return (
               <FoodBox
                 key={food._id}
+                handleClickDelete={handleClickDelete}
                 food={{
                   name: food.name,
                   calories: food.calories,

@@ -1,4 +1,4 @@
-import { Button, Card, Col } from "antd";
+import { Button, Card, Col } from 'antd';
 
 export function FoodBox({ food, handleClickDelete }) {
   return (
@@ -10,7 +10,10 @@ export function FoodBox({ food, handleClickDelete }) {
         <p>
           <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
-        <Button onClick={handleClickDelete} type="primary"> Delete </Button>
+        <Button onClick={handleClickDelete} type="primary">
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

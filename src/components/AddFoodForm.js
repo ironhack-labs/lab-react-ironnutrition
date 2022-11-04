@@ -26,62 +26,63 @@ export function AddFoodForm({ setFoodsList }) {
     setFoodsList((old) => [...old, newFood]);
     setState(defaultState);
   }
-  
+
   // Tried this with a variable "buttonMessage" first and a boolean
   // as hideState. And the variable should changed based on that, but somehow
-  // while the boolean changed, the variable stayed. 
-  const [hideState, setHideState] = useState("Hide Form") 
+  // while the boolean changed, the variable stayed.
+  const [hideState, setHideState] = useState('Hide Form');
 
-  function handleClickHide() {  
-    if (hideState === "Hide Form") setHideState("Add New Food");
-    else setHideState("Hide Form")
-    console.log(hideState)    
+  function handleClickHide() {
+    if (hideState === 'Hide Form') setHideState('Add New Food');
+    else setHideState('Hide Form');
+    console.log(hideState);
   }
 
   useEffect(() => console.log(state), [state]);
 
-
   return (
     <>
-      <form onSubmit={handleSubmit} style={ (hideState === "Add New Food") ? { display:'none' } : {}}>
-      <Divider>Add Food Entry</Divider>
+      <form
+        onSubmit={handleSubmit}
+        style={hideState === 'Add New Food' ? { display: 'none' } : {}}
+      >
+        <Divider>Add Food Entry</Divider>
 
-      <label>Name</label>
-      <Input
-        name="name"
-        value={state.name}
-        type="text"
-        onChange={handleChange}
-      />
+        <label>Name</label>
+        <Input
+          name="name"
+          value={state.name}
+          type="text"
+          onChange={handleChange}
+        />
 
-      <label>Image</label>
-      <Input
-        name="image"
-        value={state.image}
-        type="text"
-        onChange={handleChange}
-      />
+        <label>Image</label>
+        <Input
+          name="image"
+          value={state.image}
+          type="text"
+          onChange={handleChange}
+        />
 
-      <label>Calories</label>
-      <Input
-        name="calories"
-        value={state.calories}
-        type="number"
-        onChange={handleChange}
-      />
+        <label>Calories</label>
+        <Input
+          name="calories"
+          value={state.calories}
+          type="number"
+          onChange={handleChange}
+        />
 
-      <label>Servings</label>
-      <Input
-        name="servings"
-        value={state.servings}
-        type="number"
-        onChange={handleChange}
-      />
+        <label>Servings</label>
+        <Input
+          name="servings"
+          value={state.servings}
+          type="number"
+          onChange={handleChange}
+        />
 
-      <button type="submit">Create</button>
-    </form>
-    <button onClick={handleClickHide}>{hideState}</button>
+        <button type="submit">Create</button>
+      </form>
+      <button onClick={handleClickHide}>{hideState}</button>
     </>
-    
   );
 }

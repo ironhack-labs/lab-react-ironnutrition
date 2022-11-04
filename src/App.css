@@ -11,3 +11,7 @@ ul {
 .hidden {
   display: none;
 }
+
+.nullSymbol {
+  font-size: 100px;
+}

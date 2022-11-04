@@ -1,6 +1,40 @@
 import { Divider, Input } from 'antd';
+import { useEffect, useState } from 'react';
 
-export const AddFoodForm = ({ formState, handleChange, handleSubmitBtn }) => {
+const defaultFormState = {
+  name: '',
+  image: '',
+  calories: '',
+  servings: '',
+};
+
+export const AddFoodForm = ({ addFoodItem }) => {
+  const [formState, setFormState] = useState(defaultFormState);
+
+  const handleChange = (e) => {
+    setFormState((old) => {
+      let newValue = e.target.value;
+      return { ...old, [e.target.name]: newValue };
+    });
+  };
+
+  const handleSubmitBtn = (event) => {
+    event.preventDefault();
+    const newFoodItem = {
+      name: formState.name,
+      image: formState.image,
+      calories: formState.calories,
+      servings: formState.servings,
+    };
+    addFoodItem(newFoodItem);
+    setFormState(defaultFormState);
+    console.log(newFoodItem);
+  };
+
+  useEffect(() => {
+    console.log(formState);
+  }, [formState]);
+
   return (
     <form>
       <Divider>Add Food Entry</Divider>
@@ -32,7 +66,7 @@ export const AddFoodForm = ({ formState, handleChange, handleSubmitBtn }) => {
         value={formState.servings}
         onChange={handleChange}
       />
-      <button type="submit" onChange={handleSubmitBtn}>
+      <button type="submit" onClick={handleSubmitBtn}>
         Create
       </button>
     </form>

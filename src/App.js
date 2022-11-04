@@ -14,14 +14,30 @@ function App() {
     console.log('Search Value: ', searchValue);
   }
 
+  //usually this works, but at times you have to click multiple times for the item to be deleted - not sure why
+  function handleClickDelete(event) {
+    const nameOfElemToDelete =
+      event.target.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+    const indexToDelete = foodsList.findIndex(
+      (elem) => elem.name === nameOfElemToDelete
+    );
+    const items = [...foodsList];
+    const item = { ...items[indexToDelete], delete: true };
+    items[indexToDelete] = item;
+    setFoodsList(items);
+  }
+
   return (
     <div className="mainDiv">
       <AddFoodForm setFoodsList={setFoodsList} />
       <SearchBar searchValue={searchValue} handleSearch={handleSearch} />
       <List
-        foodsList={foodsList.filter((elem) =>
-          elem.name.toLowerCase().includes(searchValue.toLowerCase().trim())
-        )}
+        handleClickDelete={handleClickDelete}
+        foodsList={foodsList
+          .filter((elem) =>
+            elem.name.toLowerCase().includes(searchValue.toLowerCase().trim())
+          )
+          .filter((elem) => !elem.delete)}
       />
     </div>
   );

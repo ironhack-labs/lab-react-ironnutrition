@@ -23,9 +23,27 @@ function App() {
     });
   };
 
+  const handleSubmitBtn = (e) => {
+    e.preventDefault();
+    const newFoodItem = {
+      name: defaultFormState.name,
+      image: defaultFormState.image,
+      calories: defaultFormState.calories,
+      servings: defaultFormState.servings,
+    };
+    addFoodItem(newFoodItem);
+    setFormState(defaultFormState);
+  };
+
+  const addFoodItem = (newFoodItem) => {
+    setFoods((old) => {
+      return [...old, newFoodItem];
+    });
+  };
+
   return (
     <div className="App">
-      <AddFoodForm {...{ formState, handleChange }} />
+      <AddFoodForm {...{ formState, handleChange, handleSubmitBtn }} />
       <h1>Food List</h1>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>

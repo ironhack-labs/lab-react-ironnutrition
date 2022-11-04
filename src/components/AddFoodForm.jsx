@@ -1,9 +1,8 @@
 import { Divider, Input } from 'antd';
 
-export const AddFoodForm = ({ formState, handleChange }) => {
+export const AddFoodForm = ({ formState, handleChange, handleSubmitBtn }) => {
   return (
     <form>
-    
       <Divider>Add Food Entry</Divider>
       <label>Name</label>
       <Input
@@ -33,7 +32,9 @@ export const AddFoodForm = ({ formState, handleChange }) => {
         value={formState.servings}
         onChange={handleChange}
       />
-      <button type="submit">Create</button>
+      <button type="submit" onChange={handleSubmitBtn}>
+        Create
+      </button>
     </form>
   );
 };

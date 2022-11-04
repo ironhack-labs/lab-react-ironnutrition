@@ -26,11 +26,24 @@ export function AddFoodForm({ setFoodsList }) {
     setFoodsList((old) => [...old, newFood]);
     setState(defaultState);
   }
+  
+  // Tried this with a variable "buttonMessage" first and a boolean
+  // as hideState. And the variable should changed based on that, but somehow
+  // while the boolean changed, the variable stayed. 
+  const [hideState, setHideState] = useState("Hide Form") 
+
+  function handleClickHide() {  
+    if (hideState === "Hide Form") setHideState("Add New Food");
+    else setHideState("Hide Form")
+    console.log(hideState)    
+  }
 
   useEffect(() => console.log(state), [state]);
 
+
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+      <form onSubmit={handleSubmit} style={ (hideState === "Add New Food") ? { display:'none' } : {}}>
       <Divider>Add Food Entry</Divider>
 
       <label>Name</label>
@@ -67,5 +80,8 @@ export function AddFoodForm({ setFoodsList }) {
 
       <button type="submit">Create</button>
     </form>
+    <button onClick={handleClickHide}>{hideState}</button>
+    </>
+    
   );
 }

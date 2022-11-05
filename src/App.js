@@ -16,6 +16,9 @@ function App() {
   const [allFood, setFoods] = useState(foods)
   const [foodsData, setFoodsData] = useState(foods)
   console.log({ALLFOOD: allFood}) 
+  //hide (collaspe section)
+  const [show, setShow] = useState(true);
+
 
 const addNewFood = (newFood) => {
   //BRACKETS HAVE TO MATCH THE STATES ABOE OUR YOU CAN ONLY ADD 1 NEW FOOD EVER
@@ -30,7 +33,12 @@ const addNewFood = (newFood) => {
     <div className="App">
 
 <div className="addFoodField">
+<button onClick={() => setShow(!show)}>
+  {show ? "Hide FORM" : "Add New Food"}
+</button>
+{show  && <div className="addFoodField">
 <AddFoodForm addFood={addNewFood} />
+</div>}
 </div>
 
 <div className='SearchBar'> 

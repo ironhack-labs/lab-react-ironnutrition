@@ -42,8 +42,9 @@ const handleChange = (e) => {
       </div>
 
         {console.log({STATE: props.queryState.query})}
-
-        {props.queryState.query === "goku" && <p>goku is real!!!</p>}
+        {console.log({CHECKINGLISt: props.queryState.list})}
+        {/* props.queryState.list holds the results of the search query. if there are not result the array will be zero; if its zero then you can desplay a mesage */}
+        {props.queryState.list.length === 0  && <h1> ^_^; Sorry No Results for That Search</h1>}
 
       </form>
 

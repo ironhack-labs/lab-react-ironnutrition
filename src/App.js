@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import foods from './foods.json';
+import FoodBox from './components/FoodBox';
 
 function App() {
   const [allFood, setFoods] = foods
@@ -19,6 +20,12 @@ return <div>
 </div>
 })}
 
+  <FoodBox food={{
+    name:"Orange",
+    calories: 85,
+    image: "https://i.imgur.com/abKGOcv.jpg",
+    servings: 1
+  }}/>
  
     </div>
   );

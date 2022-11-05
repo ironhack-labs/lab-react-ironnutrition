@@ -4,6 +4,8 @@ import { Card, Col, Button } from 'antd';
 function FoodBox(props) {
   return (
     <Col>
+{/* adding conditional display. that will filter out based on the search bar input */}
+
       <Card
         title={props.food.name}
         style={{ width: 230, height: 300, margin: 10 }}

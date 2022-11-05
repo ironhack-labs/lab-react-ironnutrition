@@ -3,10 +3,16 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
 import { useState } from 'react';
 
 
 function App() {
+  //SEARCH BAR 部分
+  const [state, setstate] = useState({
+    query: '',
+    list: []
+  })
   const [allFood, setFoods] = useState(foods)
   const [foodsData, setFoodsData] = useState(foods)
   console.log({ALLFOOD: allFood}) 
@@ -27,22 +33,49 @@ const addNewFood = (newFood) => {
 <AddFoodForm addFood={addNewFood} />
 </div>
 
+<div className='SearchBar'> 
+<SearchBar foods={allFood} queryState={state} setState={setstate}/>
+</div>
+
 
 <div className="foodBox">
-{allFood.map((food) => {
+{(state.query === "" ? allFood.map((food) => {
 
-console.log({QUICKTES:food.image})
+
 return <div >
   <FoodBox  food={{
     name: food.name,
     calories: food.calories,
     image: food.image,
     servings: food.servings
-  }}/>
+  }} queryState={state} setState={setstate}/>
+  
 </div>
-})}
+}):
+
+
+state.list.map((food) => {
+
+
+  return <div >
+    <FoodBox  food={{
+      name: food.name,
+      calories: food.calories,
+      image: food.image,
+      servings: food.servings
+    }} queryState={state} setState={setstate}/>
+    
+  </div>
+  })
+
+
+)}
+
 </div>
 
+
+{/* checking if the array length increases */}
+{console.log({ALLTHEFOOD: allFood})}
 
  
     </div>

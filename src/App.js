@@ -48,7 +48,7 @@ return <div >
     calories: food.calories,
     image: food.image,
     servings: food.servings
-  }} queryState={state} setState={setstate}/>
+  }} queryState={state} setState={setstate} allFoodForDelBtn={allFood} setFoodsForDelBtn={setFoods}/>
   
 </div>
 }):

@@ -28,7 +28,6 @@ export const AddFoodForm = ({ addFoodItem }) => {
     };
     addFoodItem(newFoodItem);
     setFormState(defaultFormState);
-    console.log(newFoodItem);
   };
 
   useEffect(() => {

@@ -1,12 +1,6 @@
 import { Card, Col, Button } from 'antd';
 
-// function uuid() {
-//   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (a) =>
-//     (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
-//   );
-// }
-
-export const FoodBox = ({ foodsList, searchString }) => {
+export const FoodBox = ({ foodsList, searchString, handleDelete }) => {
   let filteredFoods = foodsList.filter((food) =>
     food.name.toLowerCase().includes(searchString.toLowerCase())
   );
@@ -27,7 +21,9 @@ export const FoodBox = ({ foodsList, searchString }) => {
                 <b>Total Calories: {food.calories * food.servings}</b>
                 kcal
               </p>
-              <Button type="primary"> Delete </Button>
+              <Button type="primary" onClick={handleDelete} id={food.id}>
+                Delete
+              </Button>
             </Card>
           </Col>
         );

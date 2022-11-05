@@ -21,7 +21,7 @@ export const FoodBox = ({ foodsList, searchString, handleDelete }) => {
                 <b>Total Calories: {food.calories * food.servings}</b>
                 kcal
               </p>
-              <Button type="primary" onClick={handleDelete} id={food.id}>
+              <Button type="primary" onClick={handleDelete} id={food.key}>
                 Delete
               </Button>
             </Card>

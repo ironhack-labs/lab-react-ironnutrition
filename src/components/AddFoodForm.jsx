@@ -1,5 +1,5 @@
 import { Divider, Input } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const defaultFormState = {
   name: '',
@@ -29,10 +29,6 @@ export const AddFoodForm = ({ addFoodItem }) => {
     addFoodItem(newFoodItem);
     setFormState(defaultFormState);
   };
-
-  useEffect(() => {
-    console.log(formState);
-  }, [formState]);
 
   return (
     <form>

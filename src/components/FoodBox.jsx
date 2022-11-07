@@ -6,7 +6,7 @@ function FoodBox({ food }) {
     <Col>
       <Card
         title={food.name}
-        style={{ width: 230, height: 300, margin: 10 }}
+        style={{ width: 230, height: 320, margin: 10 }}
       >
         <img src={food.image} height={70} alt="" />
         <p>Calories: {food.calories}</p>
@@ -14,7 +14,7 @@ function FoodBox({ food }) {
         <p>
           <b>Total Calories: {food.calories} * {food.servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button value="large" type="primary"> Delete </Button>
       </Card>
     </Col>
   );

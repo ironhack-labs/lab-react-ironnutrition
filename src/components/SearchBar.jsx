@@ -1,23 +1,19 @@
 import React from 'react'
 
-function SearchBar({ filterText,
-  onFilterTextChange }) {
+function SearchBar({ searchStringChange, searchString }) {
 
-
-    function onFilterTextChange(event) {
-        console.log(event);
-        onFilterTextChange(event.target.value);
-    }
     return (
         <div>
             <form>
                 <input
-                    onChange={onFilterTextChange}
-                    value={filterText}
+                    type="text"
+                    placeholder="Search..."
+                    onChange={searchStringChange}
+                    value={searchString}
                 />
             </form>
         </div>
-)
+    )
 }
 
 export default SearchBar;

@@ -31,7 +31,6 @@ function App() {
  }
 
   const toggleForm = () => {
-    setFormIsShowing(true);
     setFormIsShowing(!formIsShowing);
   };
 
@@ -58,9 +57,7 @@ function App() {
     <div className="App">
       <Divider>Food List</Divider>
       
-      
-
-      <Collapse in={formIsShowing} onChange={toggleForm}>
+      <Collapse onChange={toggleForm}>
           <Panel>
             <AddFoodForm addFoods={addFood}/>
           </Panel>

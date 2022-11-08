@@ -1,7 +1,10 @@
 import React from 'react'
 import { Card, Col, Button } from 'antd';
 
-function FoodBox({ food, foods }) {
+function foodBox({ food, onRemove }) {
+
+  
+
   return (
     <Col>
       <Card
@@ -14,10 +17,10 @@ function FoodBox({ food, foods }) {
         <p>
           <b>Total Calories: {food.calories} * {food.servings} </b> kcal
         </p>
-        <Button value="large" type="primary"> Delete </Button>
+        <Button value="large" type="primary" onClick={() => onRemove(food.name)}> Delete </Button>
       </Card>
     </Col>
   );
 }
 
-export default FoodBox;
+export default foodBox;

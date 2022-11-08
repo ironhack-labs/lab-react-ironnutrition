@@ -6,10 +6,15 @@
 }
 
 .Form {
-  width: 200px;;
+  width: 200px;
+  margin-bottom: 20px;
 }
 
 .ant-btn.ant-btn-default {
   background-color: #2548e7;
   color: white;
+}
+
+.hidden {
+  display: none;
 }

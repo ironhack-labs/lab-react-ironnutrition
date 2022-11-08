@@ -7,8 +7,9 @@ import { Divider, Button } from 'antd';
 import FoodList from './components/FoodList';
 
 function App() {
-  const [foods, setFoods] = useState(foodsFromJson)
+  const [foods, setFoods] = useState(foodsFromJson);
   const [searchString, setSearchString] = useState('');
+  const [displayAddFoodForm, setDisplayAddFoodForm] = useState(true);
 
   const addNewFoodItem = (newFoodItem) => {
     setFoods(oldFoods => [...oldFoods, newFoodItem]);
@@ -25,11 +26,16 @@ function App() {
     setFoods(filteredFoods);
   };
 
+  const handleToggle = () => {
+    return setDisplayAddFoodForm(!displayAddFoodForm);
+  };
 
   return <div className="App">
     <Divider>Add food entry</Divider>
+    <div className={displayAddFoodForm ? "hidden" : null}>
     <AddFoodForm addNewFoodItem={addNewFoodItem} />
-    <Button> Hide Form / Add New Food </Button>
+    </div>
+    <Button onClick={handleToggle}>{displayAddFoodForm ? "Add New Food": "Hide Form" }</Button>
     <Divider>Search</Divider>
     <SearchBar {...{ searchString, searchStringChange }}/>
     <Divider>Food List</Divider>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Row } from 'antd';
 import FoodBox from './FoodBox';
 
-export default function FoodList({ foods, onRemove }) {
+ function FoodList({ foods, onRemove }) {
     return (
         <>
             <Row style={{ width: '100%', justifyContent: 'center' }}>
@@ -13,3 +13,6 @@ export default function FoodList({ foods, onRemove }) {
         </>
     )
 }
+
+
+export default FoodList;

@@ -78,8 +78,11 @@ export function AddFoodForm({ setFoodsList }) {
 
         <button type="submit">Create</button>
       </form>
-      {hideState && <button onClick={handleClickHide}>Add New Food</button>}
-      {!hideState && <button onClick={handleClickHide}>Hide Form</button>}
+      {hideState ? (
+        <button onClick={handleClickHide}>Add New Food</button>
+      ) : (
+        <button onClick={handleClickHide}>Hide Form</button>
+      )}
     </>
   );
 }

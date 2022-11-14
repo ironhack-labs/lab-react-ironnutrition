@@ -10,7 +10,7 @@ export function FoodBox({ food, handleClickDelete }) {
         <p>
           <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
-        <Button onClick={handleClickDelete} type="primary">
+        <Button id={food.name} onClick={handleClickDelete} type="primary">
           {' '}
           Delete{' '}
         </Button>

@@ -1,23 +1,53 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json'
+import FoodBox from "./FoodBox"
+import { useState } from 'react';
+import AddFoodForm from './AddFoodForm';
+import Search from './Search'
 
 function App() {
+  const [items, setItems] = useState(foods)
+  const [deletedFood, setDeletedFood] = useState(foods)
+
+  const deadFood = (name) => {
+    const suuperSearch = items.filter((bananas) => bananas.name !== name)
+    setItems(suuperSearch);
+    setDeletedFood(suuperSearch);
+  }
+
+  const newForm = (bananas) => {
+    const newFood = [bananas, ...items]
+    setItems(newFood)
+  }
+
+  const searchFood = (searchFoods) => {
+    const suuperSearch = items.filter((bananas) =>
+      bananas.name.toLowerCase().includes(searchFoods.toLowerCase()))
+    setItems(suuperSearch)
+  }
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+    <div className='App'>
+
+      <Search searchFood={searchFood} />
+      {items.map((bananas) => {
+        return <FoodBox food={{
+          name: bananas.name,
+          calories: bananas.calories,
+          image: bananas.image,
+          servings: bananas.servings
+        }} 
+        deadFood = {deadFood}
+        />
+      })}
+    
+
+      <AddFoodForm newForm={newForm} />
+
     </div>
   );
 }

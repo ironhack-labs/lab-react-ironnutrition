@@ -31,7 +31,8 @@ const [servings, setServings] = useState(0);
   };
 
 return (
-   <div>
+   <div class='container'>
+    <div class='form'>
     <form onSubmit={handleSubmit}>
       <Divider>Add Food Entry</Divider>
 
@@ -49,6 +50,7 @@ return (
 
       <button type="submit">Create</button>
      </form>
+   </div>
    </div>
 
   );

@@ -1,4 +1,5 @@
 import './App.css';
+import { Row, Divider, Button } from 'antd';
 import React, { useState } from 'react'
 import foods from './foods.json';
 import FoodBox from './Components/FoodBox';
@@ -31,6 +32,7 @@ const filteredItens = (searchQuery) => {
 return (
   <div className='App'>
   <SearchBar filteredItens={filteredItens}/>
+  <Divider>Food List</Divider>
   { itens.map ((allFoods) => {  
     return <FoodBox food={{
         name: allFoods.name,

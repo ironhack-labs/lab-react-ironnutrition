@@ -11,11 +11,13 @@ function SearchBar({ filteredItens }) {
   };
 
   return (
-    <div>
-        <Divider>Food List</Divider>
+    <div class='container'>
+    <div class='search'>
+        <Divider>Search</Divider>
         <label>Search</label>
         <Input type="text" value={query} onChange={handleQuery} />
     </div>
+  </div>
   );
 }
 

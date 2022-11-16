@@ -34,7 +34,7 @@ function App() {
     <Searchbar filterFood={filterFood}/>
     <AddFoodForm createFood={createFood}/>
 
-      {items.map((cibo) => {
+      {showCibo.map((cibo) => {
 
         return (<div>
         

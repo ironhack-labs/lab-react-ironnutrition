@@ -10,6 +10,7 @@ function App() {
   
   const [foods, setFoods] = useState(allFoods);
   const [showFoods, setShowFoods] = useState(allFoods);
+  const [show, setShow] = useState(true)
 
   const createFood = (food) => {
 
@@ -32,10 +33,16 @@ function App() {
     setShowFoods(eraseFood);
   };
 
+  const toggleVisibility = () => {
+     setShow(!show);
+  }
+
   return (
     <div className="App">
        
-      <AddFoodForm createFood = {createFood} />
+      {show && <AddFoodForm createFood = {createFood} />}
+
+      <button onClick={toggleVisibility} >{show ? 'Hide Form' : 'Add New Food'}</button>
       
       <Search filteredFood= {filteredFood}/>
 

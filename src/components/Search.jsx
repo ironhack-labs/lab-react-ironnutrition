@@ -17,7 +17,6 @@ function Search(props) {
     <>
       <Divider>Search</Divider>
 
-      <label>Search</label>
       <Input value={query} type="text" onChange={handleQuery} />
     </>
   );

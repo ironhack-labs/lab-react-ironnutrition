@@ -9,6 +9,7 @@ import Search from './components/Search';
 function App() {
   const [foods, setFood] = useState(allFoods);
   const [showFood, setShowFood] = useState(allFoods);
+  const [show, setShow] = useState(false);
 
   const deleteFood = (name) => {
     const filteredFood = foods.filter((comida) => comida.name !== name);
@@ -29,9 +30,21 @@ function App() {
     setShowFood(filteredFood);
   };
 
+  const visibility = () => {
+    setShow(!show);
+  };
+
   return (
     <div className="App">
-      <AddFoodForm createFood={createFood} />
+      <div>
+        {show && <AddFoodForm createFood={createFood} />}
+        <div className="App">
+          <Button onClick={visibility} style={{ margin: '10px' }}>
+            {show ? 'Hide Form' : 'Add New Food'}
+          </Button>
+        </div>
+      </div>
+
       <Search filterFood={filterFood} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>

@@ -1,25 +1,67 @@
-import logo from './logo.svg';
+
 import './App.css';
+import foods from './foods.json';
+import { useState } from 'react';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
+import Searchbar from './components/Search';
 
 function App() {
+  const [items, setItems] = useState(foods);
+  const [showCibo, setShowCibo] = useState(foods);
+
+  const createFood = (newFood) => {
+    const cibo = [newFood, ...items]
+    setItems(cibo)
+    setShowCibo(cibo)
+  }
+  const filterFood = (searchQuery) => {
+    
+    let filteredFood = items.filter((cibo) => 
+    cibo.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    setShowCibo(filteredFood);
+  };
+
+  const deleteFood = (foodName) => {
+    let deletedFood = foods.filter((cibo) => cibo.name !== foodName)
+
+    setItems(deletedFood)
+    setShowCibo(deleteFood)
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Searchbar filterFood={filterFood}/>
+    <AddFoodForm createFood={createFood}/>
+
+      {items.map((cibo) => {
+
+        return (<div>
+        
+        <FoodBox food ={cibo} deleteFood={deleteFood}/>
+        
+        
+        </div>
+        );
+        
+      })}
+
+      
+
+      
+
+     {/* <FoodBox food={ {
+  name: "Orange",
+  calories: 85,
+  image: "https://i.imgur.com/abKGOcv.jpg",
+  servings: 1
+}} /> */}
+
+
     </div>
   );
 }
 
 export default App;
+
+

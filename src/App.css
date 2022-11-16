@@ -1,6 +1,15 @@
 .App {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+}
+.tlt{
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;

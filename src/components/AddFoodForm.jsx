@@ -5,12 +5,10 @@ import React from 'react';
 function AddFoodForm(newFood) {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const [calories, setCalories] = useState('');
-  const [servings, setServings] = useState('');
+  const [calories, setCalories] = useState(0);
+  const [servings, setServings] = useState(0);
 
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
+  const handleName = (e) => {setName(e.target.value)};
   const handleImage = (e) => setImage(e.target.value);
   const handleCalories = (e) => setCalories(e.target.value);
   const handleServings = (e) => setServings(e.target.value);
@@ -23,28 +21,28 @@ function AddFoodForm(newFood) {
 
     setName('');
     setImage('');
-    setCalories('');
-    setServings('');
+    setCalories(0);
+    setServings(0);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h4>Add Food Entry</h4>
+        <Divider>Add Food Entry</Divider>
 
-        <label htmlFor="name">Name</label>
-        <Input value={name} type="text" onChange={handleName} />
+        <label>Name</label>
+        <input value={name} type="text" onChange={handleName} />
 
-        <label htmlFor="image">Image</label>
-        <Input value={image} type="text" onChange={handleImage} />
+        <label>Image</label>
+        <input value={image} type="text" onChange={handleImage} />
 
-        <label htmlFor="calories">Calories</label>
-        <Input value={calories} type="text" onChange={handleCalories} />
+        <label>Calories</label>
+        <input value={calories} type="number" onChange={handleCalories} />
 
-        <label htmlFor="servings">Servings</label>
-        <Input value={servings} type="text" onChange={handleServings} />
+        <label>Servings</label>
+        <input value={servings} type="number" onChange={handleServings} />
 
-        <button>Create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );

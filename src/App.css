@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.text-bold {
+  font-weight: bold;
+}
+
+.small-image {
+  width: 100px;
+  height: 50px;
+}
+
+.giant-div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+
+}
+
+.border {
+  border: 2px solid black;
+  margin: 5px;
+}

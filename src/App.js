@@ -9,6 +9,11 @@ import Searchbar from "./components/Searchbar";
 function App() {
   const[displayItems, setDisplayItems] = useState(foods);
   const[showFoods, setShowFoods] = useState(foods);
+  const [statement, setStatement] = useState(true);
+  const hideFood = () => {
+    console.log(statement)
+    setStatement(!statement)
+  }
 
   const deletedFood = (name) => {
     const filteredFood = displayItems.filter((food) => food.name !== name);
@@ -40,10 +45,13 @@ function App() {
        )
     })} 
     
+    <Button onClick = {hideFood} type="submit">Hide</Button>
+    { statement && <AddFoodForm createFood={createFood}/>} 
     
-    <AddFoodForm createFood={createFood}/>
     
 
+    {showFoods.length === 0 && <p>OOPSS, There is no more content to show!</p>}  
+      
     
     
   </div>;

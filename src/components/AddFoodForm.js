@@ -37,17 +37,17 @@ function AddFoodForm({createFood}) {
         <h3>Add New Food</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <Input name='name' type="text" onChange={{handleName}}/>
+        <Input name='name' type="text" onChange={handleName}/>
          
 
         <label htmlFor="image">Image</label>
-        <Input name='image' type="text" onChange={{handleImage}}/>
+        <Input name='image' type="text" onChange={handleImage}/>
 
         <label htmlFor="calories">Calories</label>
-        <Input name='calories' type="number"  onChange={{handleCalories}} />
+        <Input name='calories' type="number"  onChange={handleCalories} />
 
         <label htmlFor="servings">Servings</label>
-        <Input name='servings' type="number" onChange={{handleServings}} />
+        <Input name='servings' type="number" onChange={handleServings}/>
 
         <button type='submit'>Create Food</button>
       </form>

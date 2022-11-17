@@ -13,6 +13,7 @@ function App() {
   const createFood = (newDishes) => {
     const updatedDishes = [newDishes, ...dishes]
     setDishes(updatedDishes)
+    setSearch(updatedDishes)
   }
 
   const searchFood = (searchQuery) => {

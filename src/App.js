@@ -19,7 +19,7 @@ function App() {
     const filteredFood = dishes.filter((food) => 
     food.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setDishes(filteredFood);
+    setShowDishes(filteredFood);
   }
 
   const deleteFood = (name) => {
@@ -34,7 +34,7 @@ function App() {
       <AddFoodForm createFood = {createFood} className='crtForm'/>
       <h1 className='tlt'>Food List</h1>
       <div className="App">
-        {dishes.map((dish) => {
+        {showDishes.map((dish) => {
         return (
         <FoodBox food = {dish} deleteFood={deleteFood}/>)
         })}

@@ -19,14 +19,20 @@ function App() {
 
     setFood(newFood);
     setShowFoods(newFood)
-
   }
 
   const filterFoods = (searchQuery) => {
-    let filteredFood = food.filter((dish) =>
-      dish.name.toLowerCase().includes(searchQuery.toLowerCase())
+    let filteredFood = foods.filter((food) =>
+      food.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setShowFoods(filteredFood)
+  }
+
+  const deleteFood = (name) => {
+    const filteredFood = food.filter((food) => food.name !== name);
+    console.log(filteredFood)
+    setFood(filteredFood);
+    setShowFoods(filteredFood);
   }
 
   return (
@@ -54,14 +60,19 @@ function App() {
 
       <Searchbar filterFoods={filterFoods} />
       <Row>
-        {showFoods.map((eachFood) => {
+        {showFoods.map((dish) => {
           return (
-            <FoodBox food={eachFood} />
+            <FoodBox food={dish}
+              deleteFood={deleteFood} />
           )
         })}
       </Row>
 
       <AddFoodForm createFood={createFood} />
+
+
+
+
 
     </div>
   );

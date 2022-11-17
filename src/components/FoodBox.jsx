@@ -3,22 +3,22 @@ import { Card, Col, Button } from 'antd';
 
 
 function FoodBox(props) {
-  const { name, calories, image, servings } = props.food
+  const { food, deleteFood } = props
+
   return (
     <div>
       
       <Col>
         <Card
-          title={name}
-          style={{ width: 230, height: 300, margin: 10 }}
-        >
-          <img src={image} height={60} alt="food" />
-          <p>Calories: {calories}</p>
-          <p>Servings: {servings}</p>
+          title={food.name}
+          style={{ width: 230, height: 300, margin: 10 }}>
+          <img src={food.image} height={60} alt="dish" />
+          <p>Calories: {food.calories}</p>
+          <p>Servings: {food.servings}</p>
           <p>
-            <b>Total Calories: {calories * servings} </b> kcal
+            <b>Total Calories: {food.calories * food.servings} </b> kcal
           </p>
-          <Button type="primary"> Delete </Button>
+          <Button onClick={() => deleteFood(food.name)}> Delete </Button>
         </Card>
       </Col>
 

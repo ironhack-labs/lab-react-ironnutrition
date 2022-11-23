@@ -9,3 +9,21 @@ form {
 .hideAdd {
   margin: 0 10rem;
 }
+
+.search {
+  margin: 0 10rem;
+}
+
+.createFood {
+  margin: 1rem 0;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #cecece;
+  padding: 7px 15px;
+  color: rgba(0,0,0,0.88)
+}
+
+.createFood:hover {
+  color: #4096ff;
+  border-color: #4096ff;
+}

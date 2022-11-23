@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button, Space, InputNumber } from 'antd';
+import { Input } from 'antd';
 import './AddFoodForm.css'
 
 const AddFoodForm = (props) => {

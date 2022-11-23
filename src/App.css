@@ -35,4 +35,27 @@ legend {
   font-weight: 500;
 }
 
+.hide-btn {
+  width: 100px;
+  color: rgb(72, 72, 201);
+  display: flex;
+  justify-content: center;
+  border-color: rgb(72, 72, 201);
+  margin-top: 15px;
+}
+
+.add-new-food {
+  width: 150px;
+  color: rgb(72, 72, 201);
+  display: flex;
+  justify-content: center;
+  border-color: rgb(72, 72, 201);
+  margin-top: 15px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: red;
+}
+
 

@@ -9,6 +9,7 @@ import Search from './components/Search';
 function App() {
   const [allFood, setAllFood] = useState(foods);
   const [showFood, setShowFood] = useState(foods);
+  const [showForm, setshowForm] = useState(false);
 
   const createFood = (food) => {
     const newFood = [food, ...allFood];
@@ -29,11 +30,12 @@ function App() {
     setShowFood(filteredFood);
   };
 
+  const toggleForm = () => setshowForm(!showForm);
+
   return (
     <div className="App">
-      <AddFoodForm createFood={createFood} />
-      
-      <Button className="hideAdd"> Hide Form / Add New Food </Button>
+      {showForm &&  <AddFoodForm createFood = {createFood}/>}
+      <Button onClick={toggleForm} className="addNewFood">{showForm? "Hide Form" : "Add New Food"}</Button>
 
       <Search filterFood={filterFood} />
 

@@ -6,6 +6,10 @@ form {
   margin: 0 10rem;
 }
 
+form .ant-input {
+  margin-bottom: 1rem;
+}
+
 .hideAdd {
   margin: 0 10rem;
 }
@@ -15,7 +19,7 @@ form {
 }
 
 .createFood {
-  margin: 1rem 0;
+  margin: 1rem 0 0;
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #cecece;
@@ -26,4 +30,8 @@ form {
 .createFood:hover {
   color: #4096ff;
   border-color: #4096ff;
+}
+
+.addNewFood {
+  margin: 2rem 10rem 0;
 }

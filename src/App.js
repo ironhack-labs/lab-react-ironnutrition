@@ -1,11 +1,12 @@
 // src/App.js
-import { Button } from 'antd';
+import { Button ,Divider,Row} from 'antd';
 import './App.css';
 import foods from './foods.json';
 import React, { useState } from 'react';
 import { FoodBox } from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
+import { ErrorMessage } from './components/ErrorMessage';
 
 function App() {
   const [food, setFood] = useState(foods);
@@ -33,19 +34,29 @@ function App() {
       <Button type="primary" ghost onClick={toggleFormVisiblity}>
         {isFormVisible ? 'Hide Form' : 'Show Form'}
       </Button>
+      
       <Search setQueryProp={setQuery} />
-      {filteredFood.map((elm) => {
-        return (
-          <div>
-            <FoodBox
-              food={elm}
-              deleteContact={deleteContact}
-              queryProp={query}
-            />
-          </div>
-        );
-      })}
+      <Divider>Food List</Divider>
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+      {filteredFood.length !== 0 ?
+        filteredFood.map((elm) => {
+          return (
+            <div>
+              <FoodBox
+                food={elm}
+                deleteContact={deleteContact}
+                queryProp={query}
+              />
+            </div>
+          );
+          
+        }) :
+        <ErrorMessage/>
+     
+        }
+        </Row>
     </div>
+  
   );
 }
 

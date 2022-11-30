@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import { Divider, Input } from 'antd';
 
 // Iteration 5
 function Search(props) {
@@ -9,10 +9,11 @@ function Search(props) {
 	}
 
 	return (
-       <div>
+       <>
+        <Divider>Search</Divider>
        <label>Search</label>
-		<input type="text" onChange={handleInputChange} />
-        </div>
+		<Input type="text" onChange={handleInputChange} />
+        </>
 	)
 }
 

@@ -1,5 +1,5 @@
 // src/App.js
-import { Button ,Divider,Row} from 'antd';
+import { Button, Divider, Row } from 'antd';
 import './App.css';
 import foods from './foods.json';
 import React, { useState } from 'react';
@@ -34,29 +34,23 @@ function App() {
       <Button type="primary" ghost onClick={toggleFormVisiblity}>
         {isFormVisible ? 'Hide Form' : 'Show Form'}
       </Button>
-      
+
       <Search setQueryProp={setQuery} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-      {filteredFood.length !== 0 ?
-        filteredFood.map((elm) => {
-          return (
-            <div>
-              <FoodBox
-                food={elm}
-                deleteFood={deleteFood}
-                queryProp={query}
-              />
-            </div>
-          );
-          
-        }) :
-        <ErrorMessage/>
-     
-        }
-        </Row>
+        {filteredFood.length !== 0 ? (
+          filteredFood.map((elm) => {
+            return (
+              <div>
+                <FoodBox food={elm} deleteFood={deleteFood} />
+              </div>
+            );
+          })
+        ) : (
+          <ErrorMessage />
+        )}
+      </Row>
     </div>
-  
   );
 }
 

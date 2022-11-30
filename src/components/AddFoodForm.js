@@ -11,8 +11,6 @@ function AddFoodForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(name, calories, image, servings);
-
     const newFood = {
       name,
       calories,

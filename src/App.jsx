@@ -30,11 +30,13 @@ function App() {
     <div className="App">
       <section className="container">
         <Search setQuery={setQuery}/>
+        {!filteredFoods.length && <p>No results match the search</p>}
         <button onClick={() => setIsShown(!isShown)}>Add foods</button>
         {isShown && <AddFoodForm setFoods={setFoods} addFood={addFood}/>}
         {filteredFoods.map((food) => (
           <FoodBox food={food} deleteFood={deleteFood}/>
         ))}
+
       </section>
     </div>
   );

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd';
+import foods from './foods.json';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

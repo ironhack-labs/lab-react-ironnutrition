@@ -9,8 +9,10 @@ function Search(props) {
 	}
 
 	return (
-        
+       <div>
+       <label>Search</label>
 		<input type="text" onChange={handleInputChange} />
+        </div>
 	)
 }
 

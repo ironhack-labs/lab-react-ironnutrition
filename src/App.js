@@ -9,7 +9,7 @@ import Search from './components/Search';
 function App() {
   const [meals, setMeals] = useState(foods);
   const [query, setQuery] = useState("");
-  const [showFood, setShowFood] = useState(true);
+  const [showForm, setShowForm] = useState(true);
 
   const deleteFood = (foodName) => {
     setMeals(meals => {
@@ -23,9 +23,11 @@ function App() {
       {/* Display Add Food component here */}
       <Row 
           style={{ width: '30%', justifyContent: 'center', marginLeft: '75vh'}}>
+      {showForm &&
       <AddFoodForm meals={meals} setMeals={setMeals}/>
-      <Button onClick={() => setShowFood(!showFood)} > Hide Form / Add New Food </Button>
-
+      }
+      <Button onClick={() => setShowForm(!showForm)} > Hide Form / Add New Food </Button>
+      
       {/*Search field*/}
       <Search setQueryProp={setQuery}/>
       </Row>
@@ -35,11 +37,14 @@ function App() {
       <Divider>Food List</Divider>
       <h1>Food List</h1>
        <div className="foodListShown">
-       {showFood &&
+       
         <Row style={{ width: '100%', justifyContent: 'center' }}>
           {/* Render the list of Food Box components here */}
           <FoodBox meals={meals} queryProp={query} deleteFoodProp={deleteFood}/>
-          </Row>}
+          {meals.length == 0 &&
+          <p>Oops! There is no more content!</p>
+          }
+          </Row>
       </div>
     </div>
 

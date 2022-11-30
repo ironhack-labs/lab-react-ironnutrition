@@ -47,11 +47,14 @@ function App() {
 
       <h1>Food List</h1>
       {/* ---------- food box ---------- */}
-        {filteredFood.map(food => (
-          <ul>
-            <FoodBox food={ food } deleteFood={ deleteFood } />
-          </ul>
-        ))}
+        <div className="food-box">
+          {filteredFood.map(food => (
+            <ul>
+              <FoodBox food={ food } deleteFood={ deleteFood } />
+            </ul>
+          ))}
+        </div>
+        
       { !filteredFood.length && <p>Oops! There is no more content to show!</p> }
     </div>
   );

@@ -48,7 +48,7 @@ function AddFoodForm(props) {
         setServings(0); 
     }
     return (
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ handleSubmit } className="form">
             <label htmlFor="name">Name </label>
             <input value={ name } type="text" onChange={ handleNameChange } required />
 

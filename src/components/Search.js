@@ -1,22 +1,24 @@
-import { useState } from 'react';
 import { Divider, Input } from 'antd';
+import { useState } from 'react'
 
-function Search (props) {
-    const { filterFood } = props;
-    const [query, setQuery] = useState('');
+// Iteration 5
+function Search(props) {
+    const { searchFoods } = props
+    const [search, setSearch] = useState('')
 
-    const handleQuery = (e) => {
-        setQuery(e.target.value);
-        filterFood(e.target.value);
+    const handleSeach = e => {
+        setSearch(e.target.value)
+        searchFoods(e.target.value)
     }
 
-    return (
-        <div className="search">
-            <Divider> Search </Divider>
-            <label> Search </label>
-            <Input type="text" value={query} onChange={handleQuery} />
-        </div>
-    )
+  return (
+    <>
+      <Divider>Search</Divider>
+
+      <label>Search</label>
+      <Input value={ search } type="text" onChange={ handleSeach } />
+    </>
+  );
 }
 
 export default Search;

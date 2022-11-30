@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Col, Button } from 'antd';
 
-export const FoodBox = ({ food, deleteContact }) => {
+export const FoodBox = ({ food, deleteFood }) => {
   return (
     <Col span={2}>
       <Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
@@ -14,7 +14,7 @@ export const FoodBox = ({ food, deleteContact }) => {
           </b>{' '}
           kcal
         </p>
-        <Button type="primary" onClick={() => deleteContact(food.name)}>
+        <Button type="primary" onClick={() => deleteFood(food.name)}>
           {' '}
           Delete{' '}
         </Button>

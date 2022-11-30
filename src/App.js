@@ -16,7 +16,7 @@ function App() {
     return food.name.toLowerCase().includes(query.toLowerCase());
   });
 
-  function deleteContact(name) {
+  function deleteFood(name) {
     const filteredFood = food.filter((elm) => {
       return elm.name !== name;
     });
@@ -44,7 +44,7 @@ function App() {
             <div>
               <FoodBox
                 food={elm}
-                deleteContact={deleteContact}
+                deleteFood={deleteFood}
                 queryProp={query}
               />
             </div>

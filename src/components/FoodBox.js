@@ -2,9 +2,13 @@ import React from 'react'
 import { Card, Col, Button } from 'antd';
 
 export const FoodBox = ({food}) => {
+    // const filteredFood = {food}.filter(food=> {
+    //     return food.name.toLowerCase().includes({food}.queryProp.toLowerCase())
+    // })
   return (
     <Col>
       <Card
+      
         title={food.name}
         style={{ width: 230, height: 300, margin: 10 }}
       >

@@ -8,22 +8,29 @@ import { Row, Divider, Button } from 'antd';
 
 function App() {
   const [foodList, setFoodList] = useState(foods);
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
+  const [isActive, setActive] = useState("false");
 
   const filteredFood = foodList.filter(meal => {
     return meal.name.toLowerCase().includes(query.toLowerCase())
   });
 
-  const deleteContact = (foodName) => {
+  const deleteFood = (foodName) => {
     setFoodList(meals => {
         return meals.filter(meal => meal.name !== foodName)
     })
   }
 
+  const handleToggle = () => {
+    setActive(!isActive);
+  };
+
   return (
     <div className="App">
-      <Button> Hide Form / Add New Food </Button>
-      <AddFoodForm foodList={foodList} setFoodList={setFoodList}/>
+      <Button onClick={handleToggle}> Hide Form / Add New Food </Button>
+      <div className={isActive ? "app" : "hidden"}>
+        <AddFoodForm foodList={foodList} setFoodList={setFoodList}/>
+      </div>
       
       <Search setQueryProp={setQuery}/>
 
@@ -31,7 +38,7 @@ function App() {
       
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {filteredFood.map(food => (
-         <FoodBox food={food} queryProp={query} deleteMealProp={deleteContact}/>
+         <FoodBox food={food} queryProp={query} deleteMealProp={deleteFood}/>
         ))}
       </Row>
     </div>

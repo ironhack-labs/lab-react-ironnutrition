@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .card {
   width: 15rem;
   padding: 20px;

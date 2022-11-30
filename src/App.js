@@ -1,4 +1,5 @@
 // src/App.js
+import { Button } from 'antd';
 import './App.css';
 import foods from './foods.json';
 import React, { useState } from 'react';
@@ -9,6 +10,7 @@ import Search from './components/Search';
 function App() {
   const [food, setFood] = useState(foods);
   const [query, setQuery] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const filteredFood = food.filter((food) => {
     return food.name.toLowerCase().includes(query.toLowerCase());
   });
@@ -21,9 +23,16 @@ function App() {
     setFood(filteredFood);
   }
 
+  function toggleFormVisiblity() {
+    setIsFormVisible(!isFormVisible);
+  }
+
   return (
     <div>
-      <AddFoodForm food={food} setFood={setFood} />
+      {isFormVisible && <AddFoodForm food={food} setFood={setFood} />}
+      <Button type="primary" ghost onClick={toggleFormVisiblity}>
+        {isFormVisible ? 'Hide Form' : 'Show Form'}
+      </Button>
       <Search setQueryProp={setQuery} />
       {filteredFood.map((elm) => {
         return (

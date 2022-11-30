@@ -2,11 +2,9 @@ import React from 'react';
 import { Card, Col, Button } from 'antd';
 
 export const FoodBox = ({ food, deleteContact }) => {
-  // const filteredFood = {food}.filter(food=> {
-  //     return food.name.toLowerCase().includes({food}.queryProp.toLowerCase())
-  // })
+  
   return (
-    <Col key={food.id}>
+    <Col>
       <Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
         <img src={food.image} height={60} alt="food" />
         <p>Calories: {food.calories}</p>

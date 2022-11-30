@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Divider, Input } from 'antd';
+import { Divider, Input} from 'antd';
 
 function AddFoodForm(props) {
 
@@ -15,6 +15,7 @@ function AddFoodForm(props) {
 
     const handleSubmit = (e) => {
 
+        console.log("x");
         e.preventDefault();
         const newFood = { name, image, calories, servings };
         console.log("Submitted: ", newFood);

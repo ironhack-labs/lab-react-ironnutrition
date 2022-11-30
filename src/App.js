@@ -10,6 +10,10 @@ function App() {
   const [foodList, setFoodList] = useState(foods);
   const [query, setQuery] = useState("");
   const [isActive, setActive] = useState("false");
+  
+  if (!foodList.length) {
+    console.log("food list: ",foodList.length);
+  }
 
   const filteredFood = foodList.filter(meal => {
     return meal.name.toLowerCase().includes(query.toLowerCase())
@@ -40,6 +44,7 @@ function App() {
         {filteredFood.map(food => (
          <FoodBox food={food} queryProp={query} deleteMealProp={deleteFood}/>
         ))}
+        {!foodList.length && <h3>Oops! There is no more content to show</h3>}
       </Row>
     </div>
   );

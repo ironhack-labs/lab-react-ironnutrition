@@ -43,15 +43,14 @@ function AddFoodForm(props) {
         servings,
       }
       props.setFoodList([newFood, ...props.foodList])
+     
+      //reset input files
       setName("")
       setImage("")
       setCalories(0)
       setServings(0)
     }
   
-
-
-
   return (
     <form onSubmit={handleSubmit} className="form">
       <Divider>Add Food Entry</Divider>

@@ -52,17 +52,52 @@ export function AddFoodForm(props) {
       <Input value={props.food.name} type="text" onChange={handleNameChange} required />
 
       <label>Image</label>
-      <Input value={props.image} type="text" onChange={handleImageChange} />
+      <Input value={props.food.image} type="text" onChange={handleImageChange} />
 
       <label>Calories</label>
-      <Input value={props.calories} type="number" onChange={handleCaloriesChange} />
+      <Input value={props.food.calories} type="number" onChange={handleCaloriesChange} />
 
       <label>Servings</label>
-      <Input value={props.servings} type="number" onChange={handleServingsChange} />
+      <Input value={props.food.servings} type="number" onChange={handleServingsChange} />
 
       <button type="submit">Create</button>
     </form>
   );
 }
 
+ /*
+        ANOTHER, SIMPLER WAY TO STRUCTURE IT SINCE ITS ONLY ONE THING
  
+  return (
+    <form className="form">
+
+     <Input
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+        value={name}
+      />
+      <Input
+        onChange={(e) => setImage(e.target.value)}
+        placeholder="Image"
+        value={image}
+      />
+      <Input
+        type="number"
+        onChange={(e) => setCalories(e.target.value)}
+        placeholder="Calories"
+        value={calories}
+      />
+      <Input
+        type="number"
+        onChange={(e) => setServings(e.target.value)}
+        placeholder="Servings"
+        value={servings}
+      />
+
+      <Button type="submit" onClick={handleSubmit}>
+        Submit{' '}
+      </Button>
+      
+    </form>
+  );
+*/

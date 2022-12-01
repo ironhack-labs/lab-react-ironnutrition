@@ -28,21 +28,23 @@ function App() {
 
   return (
     <div className="App">
-
-      <button onClick={() => setIsShown(!isShown)}>:D</button>
+    
+      <button onClick={() => setIsShown(!isShown)}>Add a food!</button>
 
       {isShown && <AddFoodForm food={food} setFood = {setFood}/>}
-    
+
+      <br />
+      <br />
 
       <Search setQueryProp={setQuery}/>
 
       {!filteredFood.length && <p>nope! empty</p>}
 
-      {filteredFood.map((food)=> {
+      {filteredFood.map((food, i)=> {
 
         return (
   
-            <FoodBox food={food} deleteFoodProp={deleteFood} />
+            <FoodBox food={food} deleteFoodProp={deleteFood} key = {i}/>
         )
         
       })}

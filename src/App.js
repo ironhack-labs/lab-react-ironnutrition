@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
 
 function App() {
-  return (
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+       {foods.map((e) =>{
+return (
+<div id='Food' key= {e.name} >   
+<p className="Name">{e.name}</p>
+<img className="Image" src={e.image} alt='food'/>
+</div> )
+})}
+
+<FoodBox food={ {
+  name: "Orange",
+  calories: 85,
+  image: "https://i.imgur.com/abKGOcv.jpg",
+  servings: 1
+}} />
+    </div>  
+   )
+}
 export default App;

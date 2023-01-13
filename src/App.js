@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Row>
+        <Col>
+          <Divider>Fancy Input</Divider>
+          <Input value={'sss'} onChange={() => {}} />
+        </Col>
+
+        <Col>
+          <Card title={'Fancy Card'}>
+            <Button onClick={() => {}}>Fancy Button</Button>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 }

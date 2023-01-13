@@ -5,8 +5,8 @@ function FoodBox(props) {
     const {name, calories, image, servings} = props.food;
    
   return (
-    <Col>
-      <Card
+    <Col id='table'>
+      <Card 
         title={name}
         style={{ width: 230, height: 300, margin: 10 }}
       >

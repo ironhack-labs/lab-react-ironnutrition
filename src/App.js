@@ -1,22 +1,21 @@
 import './App.css';
+import { useState } from 'react';
 import foods from './foods.json';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+//import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function App() {
+  const [allFoods, setAllFoods] = useState(foods);
+
   return (
     <div className="App">
-      <Row>
-        <Col>
-          <Divider>Fancy Input</Divider>
-          <Input value={'sss'} onChange={() => {}} />
-        </Col>
-
-        <Col>
-          <Card title={'Fancy Card'}>
-            <Button onClick={() => {}}>Fancy Button</Button>
-          </Card>
-        </Col>
-      </Row>
+      {allFoods.map((food) => {
+        return (
+          <div>
+            <p> {food.name} </p>
+            <img src={food.image} alt={food.name} width={100} />
+          </div>
+        );
+      })}
     </div>
   );
 }

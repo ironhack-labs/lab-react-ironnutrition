@@ -16,6 +16,13 @@ function App() {
     return food.name.includes(filtered.toLowerCase());
   });
 
+  const deleteItem = function (name) {
+    const components = allFoodsData.filter((item) => {
+      return item.name !== name;
+    });
+    setAllFoodsData(components);
+  };
+
   const handleSearchChange = function (search) {
     setFiltered(filteredFoods);
   };
@@ -42,7 +49,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {filteredFoods.map((food) => {
-          return <FoodBox food={food} />;
+          return <FoodBox food={food} deleteItem={deleteItem} />;
         })}
       </Row>
     </div>

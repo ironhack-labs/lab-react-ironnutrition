@@ -2,15 +2,24 @@ import './App.css';
 import { useState } from 'react';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
 import { Row, Divider, Button } from 'antd';
 function App() {
   const [allFoods, setAllFoods] = useState(foods);
+  const [allFoodsData, setAllFoodsData] = useState(foods);
+
+  const addNewFood = function (newFood) {
+    const updatedFoods = [...allFoods, newFood];
+    const updatedAllFoodsData = [...allFoodsData, newFood];
+    setAllFoods(updatedFoods);
+    setAllFoodsData(updatedAllFoodsData);
+  };
 
   return (
     <div className="App">
-      {/* Display Add Food component here */}
+      <AddFoodForm addNewFood={addNewFood} />
 
-      <Button> Hide Form / Add New Food </Button>
+      {/* <Button> Hide Form / Add New Food </Button> */}
 
       {/* Display Search component here */}
 

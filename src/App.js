@@ -3,15 +3,27 @@ import { useState } from 'react';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
-import { Row, Divider, Button } from 'antd';
+import Search from './components/Search';
+import { Row, Divider } from 'antd';
 function App() {
+  //State for original foods
   const [allFoods, setAllFoods] = useState(foods);
+  //State for updated foods
   const [allFoodsData, setAllFoodsData] = useState(foods);
+  const [filtered, setFiltered] = useState('');
+
+  const filteredFoods = allFoodsData.filter((food) => {
+    return food.name.includes(filtered.toLowerCase());
+  });
+
+  const handleSearchChange = function (search) {
+    setFiltered(filteredFoods);
+  };
 
   const addNewFood = function (newFood) {
     const updatedFoods = [...allFoods, newFood];
-    const updatedAllFoodsData = [...allFoodsData, newFood];
     setAllFoods(updatedFoods);
+    const updatedAllFoodsData = [...allFoodsData, newFood];
     setAllFoodsData(updatedAllFoodsData);
   };
 
@@ -21,12 +33,15 @@ function App() {
 
       {/* <Button> Hide Form / Add New Food </Button> */}
 
-      {/* Display Search component here */}
+      <Search
+        handleSearchChange={handleSearchChange}
+        setFiltered={setFiltered}
+      />
 
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {allFoods.map((food) => {
+        {filteredFoods.map((food) => {
           return <FoodBox food={food} />;
         })}
       </Row>

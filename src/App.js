@@ -10,6 +10,7 @@ function App() {
   const [foodData, setFoodData] = useState(foodsDataJSON);
   const [foods, setFood] = useState(foodsDataJSON);
   const [query, setQuery] = useState('');
+  const [displayForm, setDisplayForm] = useState(false)
 
   const addNewFood = (newFood) => {
     const updatedFoodData = [...foodData, newFood];
@@ -33,8 +34,8 @@ function App() {
 
   return(
     <div className="App">
-      
-    <AddFood addFood={addNewFood} />
+      <button onClick={()=> setDisplayForm(!displayForm)}>{displayForm ? 'Hide Add Food Form' : 'Click to Add Food'}</button>
+      {displayForm && <AddFood addFood={addNewFood} />}
     <SearchBar setQueryProp={setQuery} />
     <Row style={{ width: '100%', justifyContent: 'center' }}>
 {filteredFood.map((food) => {

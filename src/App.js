@@ -23,6 +23,14 @@ function App() {
     return food.name.toLowerCase().includes(query.toLowerCase());
   });
 
+  function handleDelete(name) {
+    const filteredFood = foods.filter((e) => {
+      return e.name !== name;
+    });
+
+    setFood(filteredFood);
+  }
+
   return(
     <div className="App">
       
@@ -33,7 +41,7 @@ function App() {
         return (
           
           <div>
-            <FoodBox className='FoodBox' key={food.name} food={food} />
+            <FoodBox className='FoodBox' key={food.name} food={food} handleDelete={handleDelete}/>
     </div>
 
         );

@@ -4,10 +4,12 @@ import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFoodForm';
 import { useState } from "react";
 import { Row } from 'antd';
+import SearchBar from './components/Search';
 
 function App() {
   const [foodData, setFoodData] = useState(foodsDataJSON);
   const [foods, setFood] = useState(foodsDataJSON);
+  const [query, setQuery] = useState('');
 
   const addNewFood = (newFood) => {
     const updatedFoodData = [...foodData, newFood];
@@ -16,12 +18,18 @@ function App() {
     setFoodData(updatedFoodData);
     setFood(updatedFood);
   };
+
+  const filteredFood = foods.filter((food) => {
+    return food.name.toLowerCase().includes(query.toLowerCase());
+  });
+
   return(
     <div className="App">
       
     <AddFood addFood={addNewFood} />
+    <SearchBar setQueryProp={setQuery} />
     <Row style={{ width: '100%', justifyContent: 'center' }}>
-{foods.map((food) => {
+{filteredFood.map((food) => {
         return (
           
           <div>

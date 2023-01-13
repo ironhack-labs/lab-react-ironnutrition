@@ -24,4 +24,3 @@ function FoodBox(props) {
   );
 }
 
-export default FoodBox;

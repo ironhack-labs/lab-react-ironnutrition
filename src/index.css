@@ -11,3 +11,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.flex{
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+
+.width-lim{
+  width: 250px;
+  border: 1px blue solid;
+}
+
+.form{
+  margin: 0 auto;
+  border: 1px black solid;
+  width: 55%;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  padding: 20px 5px 20px 5px;
+}
+
+input{
+  padding: 15px 0px 15px 0px;
+}
+
+.margin-b{
+  margin-bottom: 35px;
+}
+
+.highlighted{
+  font-weight: bold;
+  font-size: 35px;
+  padding-top: 55px;
+}
+
+
+.small{
+  width: 500px;
+}

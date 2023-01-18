@@ -3,8 +3,14 @@ import './App.css';
 import FoodBox from "./component/FoodBox"
 import { useState } from 'react';
 import AddFoodForm from './component/AddFoodForm';
+import Search from './component/Search';
 function App() {
-  const [foodsArr, setFoodsArr] = useState(foods)
+  const [foodsArr, setFoodsArr] = useState(foods)  
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const foodsToDisplay = foodsArr.filter((food) => {
+    return food.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   const createFood = (newfoodObj) =>{
    setFoodsArr((prevFoodArr) => {
@@ -22,7 +28,8 @@ function App() {
   return (
   <div className="App">
     <AddFoodForm createFood={createFood} />
-    {foodsArr.map((food) => {
+    <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+    {foodsToDisplay.map((food) => {
       return (      
       <FoodBox food={food} deleteFood={deleteFood} key={food.name}/>
       )

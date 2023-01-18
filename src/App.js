@@ -49,17 +49,20 @@ function App() {
         }
       </Button>
       {showForm && <AddFood callbackToAdd={addFood} />}
-      {/* {isLoggedIn && <AdminPanel />} */}
 
       <Divider>Food List</Divider>
 
       {foodsToDisplay.map((foodObj) => {
+        console.log(foodsToDisplay.length);
         return (
-          <>
-          <FoodBox key={foodObj.name} food={foodObj} callbackToDelete={deleteFood}/> 
-          </>
-        );
+            <>
+            <FoodBox key={foodObj.name} food={foodObj} callbackToDelete={deleteFood}/> 
+            </>
+          );        
       })}
+
+      {!foodsToDisplay.length && <Divider>Oops! There is no more content to display.</Divider>}
+
     </div>
   );
 }

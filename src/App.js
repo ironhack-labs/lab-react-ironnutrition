@@ -7,7 +7,8 @@ import Search from './component/Search';
 function App() {
   const [foodsArr, setFoodsArr] = useState(foods)  
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [showAddFoodForm, setShowAddFoodForm] = useState(false);
+  
   const foodsToDisplay = foodsArr.filter((food) => {
     return food.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
@@ -25,9 +26,16 @@ function App() {
      setFoodsArr(newListOfFood)
   }
 
+  
+
   return (
   <div className="App">
-    <AddFoodForm createFood={createFood} />
+      <div>  
+        {showAddFoodForm ? <AddFoodForm createFood={createFood}  /> : null}
+        {showAddFoodForm ? 
+           <button onClick={() => setShowAddFoodForm(false)}>Hide Form</button> :
+           <button onClick={() => setShowAddFoodForm(true)}>Add new Food</button>}            
+      </div>
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
     {foodsToDisplay.map((food) => {
       return (      

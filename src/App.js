@@ -25,7 +25,7 @@ function App() {
      })
      setFoodsArr(newListOfFood)
   }
-
+  
   
 
   return (
@@ -37,14 +37,14 @@ function App() {
            <button onClick={() => setShowAddFoodForm(true)}>Add new Food</button>}            
       </div>
     <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-    {foodsToDisplay.map((food) => {
-      return (      
-      <FoodBox food={food} deleteFood={deleteFood} key={food.name}/>
-      )
-    })}
-
-
-
+    {foodsToDisplay.length > 0 ? 
+        foodsToDisplay.map((food) => {
+          return (
+            <FoodBox food={food} deleteFood={deleteFood} key={food.name} />
+          )
+        }) :
+        <p>Oops!There is no more content to show</p>
+    }
   </div>
   )
 }

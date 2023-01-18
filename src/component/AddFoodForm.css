@@ -1,0 +1,21 @@
+.food-form{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width:300px;
+    align-items: center;
+    
+}
+.food-form label{
+    margin: 0.5rem;
+    
+}
+.food-form input{
+    margin-top: 0.3rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.create-button{
+    width: 5rem;
+}

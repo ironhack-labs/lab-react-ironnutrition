@@ -4,11 +4,12 @@ import foodsFromJson from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 
 function App() {
   const [foodArr, setFoodArr] = useState(foodsFromJson);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showForm, setShowForm] = useState(false);
   
   const addFood = (newFoodObj) => {
     //update list of foods
@@ -41,10 +42,17 @@ function App() {
         placeholder="Find food(s)"  
         value={searchQuery} 
         onChange={(e) => { setSearchQuery(e.target.value) }} />
-
-      <h1>Food List</h1>
       
-      <AddFood callbackToAdd={addFood} />
+      <Button onClick={() => {setShowForm(!showForm)}}>
+        {
+          showForm ? "Hide Form" : "Add New Food"
+        }
+      </Button>
+      {showForm && <AddFood callbackToAdd={addFood} />}
+      {/* {isLoggedIn && <AdminPanel />} */}
+
+      <Divider>Food List</Divider>
+
       {foodsToDisplay.map((foodObj) => {
         return (
           <>

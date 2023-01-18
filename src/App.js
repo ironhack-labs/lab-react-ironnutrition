@@ -9,21 +9,17 @@ import AddFoodFrom from './components/AddFoodFrom';
 function App() {
   const [snacks, setSnacks] = useState(foods);
 
-  ///////////////////////search bar///////////////////////
+  const [show, setShow] = useState(false);
 
+  ///////////////////////search bar///////////////////////
   const [searchQuery, setSearchQuery] = useState('');
   const filteredSnacks = snacks.filter((snack) =>
     snack.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())
   );
-  const snacksToDisplay = snacks.filter((snackolinos) => {
-    return snackolinos.name.toLowerCase().includes(searchQuery.toLowerCase());
-  });
-
   const handleChange = (e) => {
     e.preventDefault();
     setSearchQuery(e.target.value);
   };
-
   ///////////////////////search bar///////////////////////
 
   const addNewSnack = (newSnackObj) => {
@@ -39,11 +35,21 @@ function App() {
       <h1>Food List</h1>
 
       <input
+        className="searchBar"
         type="search"
         placeholder="Search snacks"
         onChange={handleChange}
         value={searchQuery}
       />
+
+      <button
+        className="btn"
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        {show ? 'hide' : 'show'} Create Form
+      </button>
 
       <AddFoodFrom addNewSnack={addNewSnack} />
       <div className="foodList">

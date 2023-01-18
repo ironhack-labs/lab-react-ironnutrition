@@ -1,6 +1,7 @@
 import foodsFromJson from './foods.json';
 import './App.css';
 import { useState } from 'react';
+import FoodBox from './components/Foodbox';
 //import FoodBox from './components/FoodBox';
 
 function App() {
@@ -8,6 +9,13 @@ function App() {
 
   return (
     <div className="App">
+    <FoodBox foodItem={ {
+  name: "Orange",
+  calories: 85,
+  image: "https://i.imgur.com/abKGOcv.jpg",
+  servings: 1
+}} />
+    {/** 
       {foodsArray.map((foodObj) => {
         return (
           <div>
@@ -16,7 +24,7 @@ function App() {
           </div>
         );
       })}
-      ;
+      */}
     </div>
   );
 }

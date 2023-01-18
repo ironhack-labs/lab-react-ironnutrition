@@ -14,10 +14,9 @@ function FoodBox({foodItem}) {
         <p>
           <b>Total Calories: {foodItem.calories} * {foodItem.servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
       </Card>
     </Col>
   );
 }
-
+// <Button type="primary"> Delete </Button>
 export default FoodBox;

@@ -9,22 +9,13 @@ function App() {
 
   return (
     <div className="App">
-    <FoodBox foodItem={ {
-  name: "Orange",
-  calories: 85,
-  image: "https://i.imgur.com/abKGOcv.jpg",
-  servings: 1
-}} />
-    {/** 
       {foodsArray.map((foodObj) => {
         return (
           <div>
-            <p> {foodObj.name}</p>
-            <img src={foodObj.image} alt="food" width="100px" />
+            <FoodBox foodItem={foodObj}></FoodBox>
           </div>
         );
       })}
-      */}
     </div>
   );
 }

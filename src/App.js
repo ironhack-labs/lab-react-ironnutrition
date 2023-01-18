@@ -12,13 +12,19 @@ function App() {
    return newArr;
    }) 
   }
+  const deleteFood = (foodName) => {
+     const newListOfFood = foodsArr.filter((food) => {
+       return food.name !== foodName;
+     })
+     setFoodsArr(newListOfFood)
+  }
 
   return (
   <div className="App">
     <AddFoodForm createFood={createFood} />
     {foodsArr.map((food) => {
       return (      
-      <FoodBox food={food} key={food.name}/>
+      <FoodBox food={food} deleteFood={deleteFood} key={food.name}/>
       )
     })}
 

@@ -3,10 +3,16 @@ import './App.css';
 import { useState } from 'react';
 import FoodBox from './components/Foodbox';
 import AddFoodForm from './components/AddFoodForm';
-//import FoodBox from './components/FoodBox';
+import Search from './components/Search';
 
 function App() {
   const [foodsArray, setFoodsArray] = useState(foodsFromJson);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const foodItemsToDisplay = foodsArray.filter( (foodItem) => {
+   return foodItem.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
 
   const createMeal = (newMealObj) => {
     setFoodsArray((prevListOfMeal) => {
@@ -24,7 +30,8 @@ function App() {
   return (
     <div className="App">
       <AddFoodForm callbackToCreate={createMeal} />
-      {foodsArray.map((foodObj) => {
+      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+      {foodItemsToDisplay.map((foodObj) => {
         return (
           <div>
           <FoodBox key={foodObj.name} foodItem={foodObj} callbackToDelete={deleteMeal}/>

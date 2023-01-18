@@ -1,7 +1,7 @@
 import { Card, Col, Button } from 'antd';
 
 // Iteration 2
-function FoodBox({foodItem}) {
+function FoodBox({foodItem, callbackToDelete}) {
   return (
     <Col>
       <Card
@@ -14,9 +14,9 @@ function FoodBox({foodItem}) {
         <p>
           <b>Total Calories: {foodItem.calories} * {foodItem.servings} </b> kcal
         </p>
+        <Button onClick={() => callbackToDelete(foodItem.name)} type="primary"> Delete </Button>
       </Card>
     </Col>
   );
 }
-// <Button type="primary"> Delete </Button>
 export default FoodBox;

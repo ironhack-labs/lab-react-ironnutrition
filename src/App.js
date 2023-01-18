@@ -14,14 +14,20 @@ function App() {
       return newList;
     });
   };
+  const deleteMeal = (foodName) => {
+    const newListOfMeals = foodsArray.filter((food) => {
+      return food.name !== foodName;
+    });
+    setFoodsArray(newListOfMeals);
+  };
 
   return (
     <div className="App">
-    <AddFoodForm callbackToCreate={createMeal} />
+      <AddFoodForm callbackToCreate={createMeal} />
       {foodsArray.map((foodObj) => {
         return (
           <div>
-            <FoodBox foodItem={foodObj}></FoodBox>
+          <FoodBox key={foodObj.name} foodItem={foodObj} callbackToDelete={deleteMeal}/>
           </div>
         );
       })}

@@ -4,7 +4,7 @@
 // Remember to import Ant Design components before using them.
 import { Card, Col, Button } from 'antd';
 
-// Iteration 2
+/*Iteration 2
 function FoodBox(props) {
   return (
     <Col>
@@ -24,4 +24,5 @@ function FoodBox(props) {
   );
 }
 
-export default FoodBox;
+// export default FoodBox;
+*/

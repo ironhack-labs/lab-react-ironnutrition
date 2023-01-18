@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import foods from './foods.json';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
+  const [foodsFromJson, setFoods] = useState(foods);
+  const foodsList = [...foodsFromJson];
+  
+  const createFood = (newFoodObj) => {
+    setFoods((prevListOfFoods) => {
+      const newList = [newFoodObj, ...prevListOfFoods];
+      return newList;
+    });
+  }
+
+  const deleteFood = (foodName) => {
+   
+    const newListOfFoods = foodsList.filter((food) => {
+      return food.name !== foodName;
+    })
+
+    //update state
+    setFoods(newListOfFoods);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddFoodForm callbackToCreate ={createFood}/>
+      {foodsList.map((food) => {
+        return (
+          
+            <FoodBox 
+              foodList={food} 
+              callbackToDelete={deleteFood}/>
+          
+        );
+      })}
     </div>
   );
 }

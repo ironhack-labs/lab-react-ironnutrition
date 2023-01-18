@@ -80,7 +80,6 @@ Before using any Ant Design component, you first have to import it from the `ant
 ```jsx
 // EXAMPLE
 // To start using the pre-made Ant Design components we must first import them:
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function Example() {
   // After importing the components we can render them directly:
@@ -97,7 +96,8 @@ function Example() {
             <Button onClick={() => {}}>Fancy Button</Button>
           </Card>
         </Col>
-      </Row>
+      </Row>import { Card, Row, Col, Divider, Input, Button } from 'antd';
+
     </div>
   );
 }

@@ -1,6 +1,5 @@
 // src/App.js
 import './App.css';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
 import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
@@ -42,6 +41,9 @@ function App() {
         value={searchQuery}
       />
 
+      <AddFoodFrom addNewSnack={addNewSnack} />
+
+      <br />
       <button
         className="btn"
         onClick={() => {
@@ -51,7 +53,6 @@ function App() {
         {show ? 'hide' : 'show'} Create Form
       </button>
 
-      <AddFoodFrom addNewSnack={addNewSnack} />
       <div className="foodList">
         {filteredSnacks.map((snackDetails) => {
           return (

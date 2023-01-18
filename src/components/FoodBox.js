@@ -2,7 +2,8 @@ import { Card, Col, Button } from 'antd';
 
 // Iteration 2
 function FoodBox(props) {
-    const totalCalories = props.foodList.calories * props.foodList.servings
+  const totalCalories = props.foodList.calories * props.foodList.servings
+  
   return (
       <Card className ="card"
         title={props.foodList.name}

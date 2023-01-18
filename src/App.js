@@ -9,6 +9,13 @@ function App() {
   const [foodsFromJson, setFoods] = useState(foods);
   const foodsList = [...foodsFromJson];
   
+  
+  const [searchQuery, setSearchQuery] = useState('');
+  // variable that filters array based on search
+  const foodsToDisplay = foodsList.filter( (food) => {
+    return food.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+  
   const createFood = (newFoodObj) => {
     setFoods((prevListOfFoods) => {
       const newList = [newFoodObj, ...prevListOfFoods];
@@ -27,18 +34,33 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <AddFoodForm callbackToCreate ={createFood}/>
-      {foodsList.map((food) => {
-        return (
+    <div>
+      <form>
+            <label>Search by Name:
+              <input 
+                type="text" 
+                name="searchQuery" 
+                placeholder="search by name"
+                value={searchQuery}
+                onChange={(e)=> {setSearchQuery(e.target.value)}}
+                />
+            </label>
+      </form>
           
-            <FoodBox 
-              foodList={food} 
-              callbackToDelete={deleteFood}/>
-          
-        );
-      })}
+      <div className="App">
+        <AddFoodForm callbackToCreate ={createFood}/>
+        {foodsToDisplay.map((foodList) => {
+          return (
+            
+              <FoodBox 
+                foodList={foodList} 
+                callbackToDelete={deleteFood}/>
+            
+          );
+        })}
+      </div>
     </div>
+    
   );
 }
 

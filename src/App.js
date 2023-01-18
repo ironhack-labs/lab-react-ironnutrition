@@ -1,25 +1,22 @@
 import { useState } from 'react';
 import './App.css';
 import foodsFromJson from './foods.json';
+import FoodBox from './components/FoodBox';
 
 function App() {
   const [foodArr, setFoodArr] = useState(foodsFromJson);
 
   return (
     <div className="App">
-    <h1>Food List</h1>
+      <h1>Food List</h1>
 
       {foodArr.map((foodObj) => {
-          return(
-            <>
-            <div key={foodObj.name}>
-              <p className="name">{foodObj.name}</p>
-              <img src={foodObj.image} width={50} />
-            </div>  
-            </>          
-          );
+        return (
+          <>
+          <FoodBox food={foodObj}/> 
+          </>
+        );
       })}
-
     </div>
   );
 }

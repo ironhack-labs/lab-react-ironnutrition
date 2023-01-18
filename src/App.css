@@ -1,0 +1,46 @@
+form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.foodList {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 5%;
+}
+
+.foodBox {
+    border: 1px solid #333;
+    flex-basis: 16rem;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.FBtitle {
+    border-bottom: 1px solid #999;
+}
+
+.btn {
+    margin: 5px;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: blue;
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+.formData {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+}
+
+input,
+label {
+    width: 400px;
+    margin: auto;
+}

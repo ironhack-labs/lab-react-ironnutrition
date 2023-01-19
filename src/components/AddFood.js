@@ -47,7 +47,7 @@ function AddFood(props) {
       <label>Servings</label>
       <Input name="servings" value={servings} type="number" onChange={(e) => {setServings(e.target.value)}} />
 
-      <button type="submit">Create</button>
+      <Button htmlType="submit">Create</Button>
     </form>
   );
 }

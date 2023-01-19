@@ -4,7 +4,7 @@ import foodsFromJson from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFood from './components/AddFood';
 
-import { Divider, Input, Button } from 'antd';
+import { Divider, Input, Button, Row } from 'antd';
 
 function App() {
   const [foodArr, setFoodArr] = useState(foodsFromJson);
@@ -51,17 +51,20 @@ function App() {
       {showForm && <AddFood callbackToAdd={addFood} />}
 
       <Divider>Food List</Divider>
-
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
       {foodsToDisplay.map((foodObj) => {
         console.log(foodsToDisplay.length);
         return (
             <>
+            
             <FoodBox key={foodObj.name} food={foodObj} callbackToDelete={deleteFood}/> 
+            
             </>
           );        
       })}
 
       {!foodsToDisplay.length && <Divider>Oops! There is no more content to display.</Divider>}
+      </Row>
 
     </div>
   );

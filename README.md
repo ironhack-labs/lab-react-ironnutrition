@@ -15,7 +15,7 @@ To take care of the food you eat, you decided to create a nutrition app that wil
 ## Setup
 
 - Fork this repo
-- Clone this repo
+- Clone the forked repo
 - Open the LAB and start:
 
   ```bash
@@ -44,7 +44,7 @@ Clean the `App.js` component so that it has the following structure:
 // src/App.js
 import './App.css';
 
-function App() {
+function App () {
   return <div className="App"></div>;
 }
 export default App;
@@ -58,18 +58,13 @@ export default App;
 
 #### Ant Design Installation
 
-We will use [Ant Design](https://ant.design/) component library for the design. :)
+We will use [Ant Design](https://ant.design/) component library for the design.:sunglasses:
 
 ```sh
 $ npm install antd
 ```
 
-To make the Ant Design styles available in the entire app, import Ant Design stylesheet in `index.js`:
-
-```javascript
-// src/index.js
-import 'antd/dist/antd.min.css';
-```
+<br>
 
 #### Ant Design Components
 
@@ -103,6 +98,8 @@ function Example() {
 }
 ```
 
+<br>
+
 #### Import a JSON
 
 For now, we will be working on the `App.js` file. In the later steps, you can refactor the app and split it into multiple components. Import the array of foods from the `foods.json` file to `App.js`.
@@ -111,11 +108,15 @@ For now, we will be working on the `App.js` file. In the later steps, you can re
 import foods from './foods.json';
 ```
 
+<br>
+
 #### About the design
 
 If you struggle with the design, you can find static examples of what is expected inside the `style-guide/` folder.
 
 So let's start!
+
+<br>
 
 ### Iteration 1 | Render a Simple List
 

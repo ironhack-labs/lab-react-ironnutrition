@@ -319,6 +319,8 @@ Happy coding! :heart:
 <details>
   <summary>I got the warning: "Each child in a list should have a unique 'key' prop". How can I resolve it?</summary>
 
+  <br>
+  
   The warning *"Each child in a list should have a unique “key” prop"*  means that you are trying to render a list of elements, but one or more elements is missing the `key` prop.
 
   To fix this, add a `key` prop to each element you return from the `map()` when rendering the list. The key should be a unique identifier for that element, such as an item ID or the id of the document from the database.
@@ -368,6 +370,7 @@ const projects = [
 <details>
   <summary>How to render a list of elements from an array in a React component?</summary>
 
+  <br>
 
   To render a list of elements from an array in a React component, you can use the method `map()` to loop over the `projects` array and return JSX elements to be rendered. 
 
@@ -548,6 +551,8 @@ const projects = [
 
 <details>
   <summary>How do I update a state variable in my React component? How do I use the useState hook in my React component?</summary>
+
+  <br>
 
   To update a state variable in a React component, you should use the `useState` hook. This hook returns an array with two elements: the **current value** of the state variable and a **function to update it**. Here is an example of how to use `useState` to update the `count` state variable:
 

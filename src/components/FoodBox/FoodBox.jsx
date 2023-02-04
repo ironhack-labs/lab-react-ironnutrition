@@ -7,7 +7,7 @@ const FoodBox = ({name,image,calories,servings, ...props}) => {
                 <Image src={image} width={100}/>
                 <p>Calories: {calories}</p>
                 <p>Servings:<strong> {servings}</strong></p>
-                <p><strong>Total Calories: {calories}</strong> Kcal</p>
+                <p><strong>Total Calories: {calories * servings}</strong> Kcal</p>
                 <Button type="primary">Delete</Button>
             </Card>
         </Space>

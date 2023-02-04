@@ -11,88 +11,79 @@ function App() {
   const [servings, setServings] = useState('');
   const [search, setSearch] = useState('');
 
-  const createName = (value)=>{
-    setName(value)
-  }
-  const createImage = (value)=>{
-    setImage(value)
-  }
-  const createCalories = (value)=>{
-    setCalories(value)
-  }
-  const createServings = (value)=>{
-    setServings(value)
-  }
+  const createName = (value) => {
+    setName(value);
+  };
+  const createImage = (value) => {
+    setImage(value);
+  };
+  const createCalories = (value) => {
+    setCalories(value);
+  };
+  const createServings = (value) => {
+    setServings(value);
+  };
 
   const setToEmpty = (e) => {
-    setName("");
-    setImage("");
-    setCalories("");
-    setServings("");
+    setName('');
+    setImage('');
+    setCalories('');
+    setServings('');
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("la data", { name, image, calories, servings });
+    console.log('la data', { name, image, calories, servings });
     setToEmpty();
-    foods.push({name, image, calories, servings})
+    foods.push({ name, image, calories, servings });
   };
 
-  const searchFood = (value)=>{
-    setSearch(value)
-    console.log("value to search", value);
-
-    }
-  
-
-
-
-
+  const searchFood = (e) => {
+    setSearch(e);
+    const newArray = foods.filter((elemento) =>
+      elemento.name.toLocaleLowerCase().includes(search.toLowerCase())
+    );
+    foods = newArray;
+  };
 
   return (
     <div className="App">
-      <form
-      onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <Divider>Add Food Entry</Divider>
 
         <label>Name</label>
-        <Input 
-        value={name}
-        name="name" 
-        type="text"
-        autoComplete="off"
-        onChange={(event) => createName(event.target.value)} 
-        
+        <Input
+          value={name}
+          name="name"
+          type="text"
+          autoComplete="off"
+          onChange={(event) => createName(event.target.value)}
         />
 
         <label>Image</label>
-        <Input 
-        value={image}
-        name="image" 
-        type="text"
-        autoComplete="off"
-        onChange={(event) => createImage(event.target.value)} 
-        
+        <Input
+          value={image}
+          name="image"
+          type="text"
+          autoComplete="off"
+          onChange={(event) => createImage(event.target.value)}
         />
 
         <label>Calories</label>
-        <Input 
-        value={calories}
-        name="calories" 
-        type="text"
-        autoComplete="off"
-        onChange={(event) => createCalories(event.target.value)} 
-        
+        <Input
+          value={calories}
+          name="calories"
+          type="text"
+          autoComplete="off"
+          onChange={(event) => createCalories(event.target.value)}
         />
 
         <label>Servings</label>
-        <Input 
-        value={servings}
-        name="servings" 
-        type="text"
-        autoComplete="off"
-        onChange={(event) => createServings(event.target.value)} 
-        
+        <Input
+          value={servings}
+          name="servings"
+          type="text"
+          autoComplete="off"
+          onChange={(event) => createServings(event.target.value)}
         />
 
         <button type="submit">Create</button>
@@ -100,15 +91,13 @@ function App() {
 
       {/* search bar */}
       <label>Search</label>
-        <Input 
+      <Input
         value={search}
-        name="name" 
+        name="name"
         type="text"
         autoComplete="off"
-        onChange={(event) => searchFood(event.target.value)} 
-        
-        />
-
+        onChange={(event) => searchFood(event.target.value)}
+      />
 
       <Row justify="center">
         {foods.map((food, food_index) => (

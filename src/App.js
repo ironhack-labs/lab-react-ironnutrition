@@ -1,117 +1,89 @@
-import { FoodBox, FoodForm } from './components';
-import foods from './foods.json';
 import './App.css';
-import { Col, Row, Divider, Input } from 'antd';
-import { useState } from 'react';
+import 'antd/dist/reset.css';
+import foodData from './foods.json';
+import { Button, Divider, Row } from 'antd';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [name, setName] = useState('');
-  const [image, setImage] = useState('');
-  const [calories, setCalories] = useState('');
-  const [servings, setServings] = useState('');
-  const [search, setSearch] = useState('');
+  const [foods, setFoods] = useState(foodData);
+  const [word, setWord] = useState('');
 
-  const createName = (value) => {
-    setName(value);
-  };
-  const createImage = (value) => {
-    setImage(value);
-  };
-  const createCalories = (value) => {
-    setCalories(value);
-  };
-  const createServings = (value) => {
-    setServings(value);
-  };
+  //Bonus
+  const [hidden, setHidden] = useState(false);
 
-  const setToEmpty = (e) => {
-    setName('');
-    setImage('');
-    setCalories('');
-    setServings('');
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('la data', { name, image, calories, servings });
-    setToEmpty();
-    foods.push({ name, image, calories, servings });
+  // una funcion que espere cuando se termine de llenar todos los datos del
+  //formulario para almacenar un nuevo objeto
+  const addFood = (newFood) => {
+    //[{...},{...}]=>[...]
+    setFoods((prevState) => [...prevState, newFood]);
+    /**
+     * const newArr = [...foods]
+     * newArr.push(newFood)
+     * setFoods(newArr)
+     */
   };
 
-  const searchFood = (e) => {
-    setSearch(e);
-    const newArray = foods.filter((elemento) =>
-      elemento.name.toLocaleLowerCase().includes(search.toLowerCase())
-    );
-    foods = newArray;
+  const onSearch = (word) => {
+    setWord(word);
   };
+
+  const deleteFood = (index)=>{
+    const newFoods = [...foods]
+    newFoods.splice(index, 1)
+    setFoods(newFoods)
+  }
+
+
+  //useEffect mounting
+  //el [] es muy importante para un useEffect, este indica que solo se active una vez
+  //si el [variable] este estara a la espra de un cambio ene sa variable para ejecutarse otra vez
+  // si no colocamos los [], el useEffect se va a estar activando n cantidad de veces
+
+  useEffect(() => {
+    console.log("Me ejecuto");
+  }, [])
+
+    //useEffect updating
+    useEffect(()=>{
+      console.log("Cantidad de comida", foods.length);
+    },[foods.length])
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <Divider>Add Food Entry</Divider>
+      {/* demo list */}
+      {/* Display Add Food component here */}
+      {!hidden && <AddFoodForm addFood={addFood} />}
 
-        <label>Name</label>
-        <Input
-          value={name}
-          name="name"
-          type="text"
-          autoComplete="off"
-          onChange={(event) => createName(event.target.value)}
-        />
+      <Button onClick={() => setHidden(!hidden)}>
+        {!hidden ? 'Hide Form ' : 'Add New Food'}{' '}
+      </Button>
 
-        <label>Image</label>
-        <Input
-          value={image}
-          name="image"
-          type="text"
-          autoComplete="off"
-          onChange={(event) => createImage(event.target.value)}
-        />
+      {/* Display Search component here */}
+      <SearchBar onSearch={onSearch} />
 
-        <label>Calories</label>
-        <Input
-          value={calories}
-          name="calories"
-          type="text"
-          autoComplete="off"
-          onChange={(event) => createCalories(event.target.value)}
-        />
+      <Divider>Food List</Divider>
 
-        <label>Servings</label>
-        <Input
-          value={servings}
-          name="servings"
-          type="text"
-          autoComplete="off"
-          onChange={(event) => createServings(event.target.value)}
-        />
-
-        <button type="submit">Create</button>
-      </form>
-
-      {/* search bar */}
-      <label>Search</label>
-      <Input
-        value={search}
-        name="name"
-        type="text"
-        autoComplete="off"
-        onChange={(event) => searchFood(event.target.value)}
-      />
-
-      <Row justify="center">
-        {foods.map((food, food_index) => (
-          <Col span={8} key={food_index}>
-            <FoodBox
-              food={{
-                name: food.name,
-                calories: food.calories,
-                image: food.image,
-                servings: food.servings,
-              }}
-            />
-          </Col>
-        ))}
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {/* Render the list of Food Box components here */}
+        {foods.filter((itemFood) =>
+          itemFood.name.toLowerCase().includes(word.toLowerCase())
+        ).length
+          ? foods
+              .filter((itemFood) =>
+                itemFood.name.toLowerCase().includes(word.toLowerCase())
+              )
+              .map((food, index_food) => (
+                //name.image, calories
+                //food = {name,image,calories}
+                //{...food}
+                //name={item.name}
+                //item={item}
+                <FoodBox {...food} key={index_food} deleteFood = {()=>deleteFood(index_food)} />
+              ))
+          : 'No hay nada'}
       </Row>
     </div>
   );

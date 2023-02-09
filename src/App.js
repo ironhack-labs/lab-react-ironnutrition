@@ -16,24 +16,25 @@ function App() {
   
   return (
     <div className="App">
-        <AddFoodForm/>
-       <Button> Hide Form / Add New Food </Button>
+       <div style={{ backgroundColor: 'red', width: '100%', height: '100px' }} >
+        <AddFoodForm addFood = {addFood}/>
+        <Button> Hide Form / Add New Food </Button>
 
-      {/* Display Search component here */}
+        {/* Display Search component here */}
 
-      <Divider>Food List</Divider>
+       <Divider>Food List</Divider>
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-      {/* Render the list of Food Box components here */}
-        {foodData.map((food, index_food)=>(
-          <FoodBox
-          key = {index_food}
-          food= {food}
-          />  
-          ))}
-        
-      </Row>
-       
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {/* Render the list of Food Box components here */}
+          {foods.map((food, index_food)=>(
+            <FoodBox
+            key = {index_food}
+            food= {food}
+            />  
+            ))}
+         
+        </Row>
+      </div> 
     </div>
   );
 }

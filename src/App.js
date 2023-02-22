@@ -1,4 +1,3 @@
-// src/App.js
 import './App.css';
 import foods from './foods.json';
 import { useState } from 'react';
@@ -27,7 +26,18 @@ function App() {
     setFood(filteredFood);
   };
 
-  
+  const deleteFood = (name) => {
+    const filteredFoodData = foodData.filter(item => {
+      return item.name !== name
+    })
+
+    const filteredFood = food.filter(item => {
+      return item.name !== name
+    })
+
+    setFoodData(filteredFoodData)
+    setFood(filteredFood)
+  }
 
   return (
     <div className="App">
@@ -36,7 +46,7 @@ function App() {
       <Search searchForFood={searchForFood} />
       <div className="container">
         {food.map((item) => {
-          return <FoodBox food={item} />;
+          return <FoodBox food={item} deleteFood={deleteFood}/>;
         })}
       </div>
     </div>

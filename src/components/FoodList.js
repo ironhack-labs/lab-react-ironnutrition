@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Fuse from 'fuse.js';
 import { Row, Input, Space } from 'antd';
 import foodsDataFromJSON from '../foods.json';
 import FoodBox from './FoodBox';
@@ -10,10 +11,15 @@ function FoodList() {
   const [foods, setFoods] = useState(foodsCopy);
 
   const filterFoods = (str) => {
+    const fuse = new Fuse(foodsCopy, {
+      keys: ['name'],
+      isCaseSensitive: false,
+      minMatchCharLength: 2,
+      threshold: 0.0,
+    });
+
     const filteredFoods = str
-      ? foodsCopy.filter(
-          (food) => food.name.toLowerCase() === str.toLowerCase()
-        )
+      ? fuse.search(str).map((fuseObj) => fuseObj.item)
       : foodsCopy;
 
     setFoods(filteredFoods);

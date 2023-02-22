@@ -8,6 +8,7 @@ import Search from './components/Search';
 function App() {
   const [food, setFood] = useState(foods);
   const [foodData, setFoodData] = useState(foods);
+  const [showForm, setShowForm] = useState(false);
 
   const addNewFood = (newFood) => {
     const updatedFood = [...food, newFood];
@@ -39,10 +40,16 @@ function App() {
     setFood(filteredFood)
   }
 
+  const showFormAdd = () => {
+    setShowForm(!showForm);
+  }
+
   return (
     <div className="App">
       <h1>Food List</h1>
-      <AddFoodForm addNewFood={addNewFood} />
+
+      <button onClick={showFormAdd}>{showForm ? "Hide" : "Add Food"}</button>
+      {showForm && (<AddFoodForm addNewFood={addNewFood} />)}
       <Search searchForFood={searchForFood} />
       <div className="container">
         {food.map((item) => {

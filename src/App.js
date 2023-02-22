@@ -28,33 +28,35 @@ function App() {
   };
 
   const deleteFood = (name) => {
-    const filteredFoodData = foodData.filter(item => {
-      return item.name !== name
-    })
+    const filteredFoodData = foodData.filter((item) => {
+      return item.name !== name;
+    });
 
-    const filteredFood = food.filter(item => {
-      return item.name !== name
-    })
+    const filteredFood = food.filter((item) => {
+      return item.name !== name;
+    });
 
-    setFoodData(filteredFoodData)
-    setFood(filteredFood)
-  }
+    setFoodData(filteredFoodData);
+    setFood(filteredFood);
+  };
 
   const showFormAdd = () => {
     setShowForm(!showForm);
-  }
+  };
 
   return (
     <div className="App">
       <h1>Food List</h1>
 
-      <button onClick={showFormAdd}>{showForm ? "Hide" : "Add Food"}</button>
-      {showForm && (<AddFoodForm addNewFood={addNewFood} />)}
+      <button onClick={showFormAdd}>{showForm ? 'Hide' : 'Add Food'}</button>
+      {showForm && <AddFoodForm addNewFood={addNewFood} />}
       <Search searchForFood={searchForFood} />
       <div className="container">
-        {food.map((item) => {
-          return <FoodBox food={item} deleteFood={deleteFood}/>;
-        })}
+        {food.length >= 1 ? (
+          food.map((item) => <FoodBox food={item} deleteFood={deleteFood} />)
+        ) : (
+          <p> Ai ai ai!</p>
+        )}
       </div>
     </div>
   );

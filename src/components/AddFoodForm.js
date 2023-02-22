@@ -32,7 +32,7 @@ function AddFoodForm(props) {
     }
 
     return (
-
+        
         <div className="AddFood">
             <h2>Add Food Entry</h2>
             <form onSubmit={handleSubmit} className="form">

@@ -10,6 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [foodsData, setFoodsData] = useState(foodsJSON)
   const [foods, setFoods] = useState(foodsJSON)
+  const [showForm, setShowForm] = useState(true)
+
+
+  const toggleShowForm = () => {
+     setShowForm(!showForm)
+  }
 
   const addNewFood = (newFood) => {
     const updatedFoodDataList = [...foods, newFood]
@@ -50,7 +56,10 @@ function App() {
   return (
     <div className="App">
      <h1>Foodlist</h1>
-     <AddFoodForm addFood={addNewFood} />
+     
+     {showForm && <AddFoodForm addFood={addNewFood} />}
+     <button onClick={toggleShowForm} >{showForm ? 'Hide Form' : 'Add New Food'}</button>
+
      <AddSearch filterFood={filterFood}/>
      <Row gutter={256}>
       {foods.map(food => {

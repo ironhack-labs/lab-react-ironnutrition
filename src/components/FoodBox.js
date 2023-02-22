@@ -2,7 +2,7 @@ import { Card, Button } from 'antd';
 
 function FoodBox(props) {
   return (
-    <Card className="FoodBox">
+    <Card className="FoodBox" style={{ margin: 20 }}>
       <h3>{props.name}</h3>
       <img src={props.image} alt={props.name} />
       <p>Calories: {props.calories} kcal</p>

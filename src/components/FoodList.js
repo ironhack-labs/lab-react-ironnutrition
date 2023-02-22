@@ -5,11 +5,10 @@ import foodsDataFromJSON from '../foods.json';
 import FoodBox from './FoodBox';
 const { Search } = Input;
 
-const foodsCopy = [...foodsDataFromJSON];
+let foodsCopy = [...foodsDataFromJSON];
 
 function FoodList() {
   const [foods, setFoods] = useState(foodsCopy);
-  // console.log(foods);
 
   const filterFoods = (str) => {
     const fuse = new Fuse(foodsCopy, {
@@ -26,7 +25,7 @@ function FoodList() {
   };
 
   const deleteFood = (foodName) => {
-    const foodsCopy = foods.filter((food) => food.name !== foodName);
+    foodsCopy = foods.filter((food) => food.name !== foodName);
     setFoods(foodsCopy);
   };
 
@@ -40,23 +39,21 @@ function FoodList() {
           onChange={(e) => filterFoods(e.target.value)}
           enterButton
         />
-
-        <Space direction="horizontal">
-          <Row gutter={[16, 16]}>
-            {foods.map((food) => (
-              <FoodBox
-                key={food.name}
-                name={food.name}
-                servings={food.servings}
-                calories={food.calories}
-                image={food.image}
-                quantity={food.quantity}
-                deleteFood={deleteFood}
-              />
-            ))}
-          </Row>
-        </Space>
       </Space>
+
+      <Row gutter={[16, 16]}>
+        {foods.map((food) => (
+          <FoodBox
+            key={food.name}
+            name={food.name}
+            servings={food.servings}
+            calories={food.calories}
+            image={food.image}
+            quantity={food.quantity}
+            deleteFood={deleteFood}
+          />
+        ))}
+      </Row>
     </div>
   );
 }

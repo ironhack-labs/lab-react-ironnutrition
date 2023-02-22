@@ -9,12 +9,12 @@ const foodsCopy = [...foodsDataFromJSON];
 
 function FoodList() {
   const [foods, setFoods] = useState(foodsCopy);
+  // console.log(foods);
 
   const filterFoods = (str) => {
     const fuse = new Fuse(foodsCopy, {
       keys: ['name'],
       isCaseSensitive: false,
-      minMatchCharLength: 2,
       threshold: 0.0,
     });
 
@@ -25,6 +25,11 @@ function FoodList() {
     setFoods(filteredFoods);
   };
 
+  const deleteFood = (foodName) => {
+    const foodsCopy = foods.filter((food) => food.name !== foodName);
+    setFoods(foodsCopy);
+  };
+
   return (
     <div className="FoodList">
       <Space direction="vertical">
@@ -32,7 +37,7 @@ function FoodList() {
 
         <Search
           placeholder="search food by name"
-          onSearch={(value) => filterFoods(value)}
+          onChange={(e) => filterFoods(e.target.value)}
           enterButton
         />
 
@@ -46,6 +51,7 @@ function FoodList() {
                 calories={food.calories}
                 image={food.image}
                 quantity={food.quantity}
+                deleteFood={deleteFood}
               />
             ))}
           </Row>

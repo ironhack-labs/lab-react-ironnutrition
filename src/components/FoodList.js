@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 import { Row, Input, Space } from 'antd';
 import foodsDataFromJSON from '../foods.json';
 import FoodBox from './FoodBox';
+import AddFoodForm from './AddFoodForm';
 const { Search } = Input;
 
 let foodsCopy = [...foodsDataFromJSON];
@@ -39,9 +40,11 @@ function FoodList() {
           onChange={(e) => filterFoods(e.target.value)}
           enterButton
         />
+
+        <AddFoodForm addFood={(food) => setFoods([...foods, food])} />
       </Space>
 
-      <Row gutter={[16, 16]}>
+      <Row>
         {foods.map((food) => (
           <FoodBox
             key={food.name}

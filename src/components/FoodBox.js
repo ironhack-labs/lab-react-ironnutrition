@@ -15,7 +15,7 @@ function FoodBox(props) {
         <div>
           <p style={{ fontSize: '25px' }}><strong>Calories: </strong>{props.food.calories}</p>
           <p style={{ fontSize: '25px' }}><strong>Servings:</strong> {props.food.servings}</p>
-          <p style={{ fontSize: '25px' }}><strong>Total Calories: </strong> {props.food.calories * props.food.servings} kcal</p>
+          <p style={{ fontSize: '25px' }}><strong>Total Calories:</strong> {props.food.calories * props.food.servings} kcal</p>
 
           <Button type="primary" onClick={handleDelete}>Delete</Button>
         </div>

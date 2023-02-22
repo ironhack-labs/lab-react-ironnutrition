@@ -1,13 +1,16 @@
-import { Card } from 'antd';
+import { Card, Button } from 'antd';
 
 function FoodBox(props) {
   return (
     <Card className="FoodBox">
-      <img src={props.image} alt={props.name} />
       <h3>{props.name}</h3>
-      <p>{props.calories}</p>
-      <input type="number" value={props.quantity} />
-      <button>Add to today's foods</button>
+      <img src={props.image} alt={props.name} />
+      <p>Calories: {props.calories} kcal</p>
+      <p>Servings: {props.servings}</p>
+      <p>
+        <strong>Total Calories: {props.servings * props.calories}</strong> kcal
+      </p>
+      <Button type="primary">Delete</Button>
     </Card>
   );
 }

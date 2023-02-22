@@ -1,23 +1,63 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from './foods.json';
+import { useState } from 'react';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
+  const [food, setFood] = useState(foods);
+  const [foodData, setFoodData] = useState(foods);
+  const [showForm, setShowForm] = useState(false);
+
+  const addNewFood = (newFood) => {
+    const updatedFood = [...food, newFood];
+
+    setFood(updatedFood);
+  };
+
+  const searchForFood = (input) => {
+    let filteredFood;
+    input === ''
+      ? (filteredFood = foodData)
+      : (filteredFood = foodData.filter((item) =>
+          item.name.toLocaleLowerCase().includes(input)
+        ));
+
+    setFood(filteredFood);
+  };
+
+  const deleteFood = (name) => {
+    const filteredFoodData = foodData.filter((item) => {
+      return item.name !== name;
+    });
+
+    const filteredFood = food.filter((item) => {
+      return item.name !== name;
+    });
+
+    setFoodData(filteredFoodData);
+    setFood(filteredFood);
+  };
+
+  const showFormAdd = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Food List</h1>
+
+      <button onClick={showFormAdd}>{showForm ? 'Hide' : 'Add Food'}</button>
+      {showForm && <AddFoodForm addNewFood={addNewFood} />}
+      <Search searchForFood={searchForFood} />
+      <div className="container">
+        {food.length >= 1 ? (
+          food.map((item) => <FoodBox food={item} deleteFood={deleteFood} />)
+        ) : (
+          <p> Ai ai ai!</p>
+        )}
+      </div>
     </div>
   );
 }

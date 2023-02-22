@@ -5,6 +5,7 @@ import foods from './foods.json';
 import { Button, Divider, Row, Input } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import Message from './components/Message';
 
 function App() {
   const [foodListData, setFoodListData] = useState(foods);
@@ -29,8 +30,8 @@ function App() {
       setFoodList(foodListData);
     }
 
-    const filteredFoodList = foodListData.filter(food => food.name.includes(e.target.value))
-    console.log(filteredFoodList);
+    const filteredFoodList = foodListData.filter(food => food.name.toLowerCase().includes(e.target.value.toLowerCase()))
+
     setFoodList(filteredFoodList);
   }
 
@@ -58,7 +59,10 @@ function App() {
       </Row>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {foodList.map(food => <FoodBox key={food.name} food={food} deleteFood={deleteFood}/>)}
+        {foodList.length >= 1 
+          ? foodList.map(food => <FoodBox key={food.name} food={food} deleteFood={deleteFood}/>)
+          : <Message />
+        }
       </Row>
     </div>
   );

@@ -26,7 +26,12 @@ function FoodList() {
   };
 
   const deleteFood = (foodName) => {
-    foodsCopy = foods.filter((food) => food.name !== foodName);
+    foodsCopy = foodsCopy.filter((food) => food.name !== foodName);
+    setFoods(foodsCopy);
+  };
+
+  const addFood = (food) => {
+    foodsCopy = [...foodsCopy, food];
     setFoods(foodsCopy);
   };
 
@@ -41,7 +46,7 @@ function FoodList() {
           enterButton
         />
 
-        <AddFoodForm addFood={(food) => setFoods([...foods, food])} />
+        <AddFoodForm addFood={addFood} />
       </Space>
 
       <Row>

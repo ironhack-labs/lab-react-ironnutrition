@@ -4,23 +4,25 @@ import { Button, Form, Input, InputNumber, Space } from 'antd';
 
 function AddFoodForm(props) {
   const [name, setName] = useState('');
-  const [calories, setCalories] = useState('');
+  const [calories, setCalories] = useState(0);
   const [image, setImage] = useState('');
-  const [servings, setServings] = useState('');
+  const [servings, setServings] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addFood({ name, calories, image, servings });
+    const newFood = { name, calories, image, servings };
+    props.addFood(newFood);
+
     setName('');
-    setCalories('');
+    setCalories(0);
     setImage('');
-    setServings('');
+    setServings(0);
   };
 
   return (
     <div className="AppFoodForm">
       <Space direction="vertical">
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Form.Item
             label="Name"
             type="text"
@@ -61,17 +63,7 @@ function AddFoodForm(props) {
             <InputNumber placeholder="servings" />
           </Form.Item>
 
-          <Button
-            type="primary"
-            onClick={() =>
-              props.addFood({
-                name,
-                calories,
-                image,
-                servings,
-              })
-            }
-          >
+          <Button type="primary" onClick={handleSubmit}>
             Create Food
           </Button>
         </Form>

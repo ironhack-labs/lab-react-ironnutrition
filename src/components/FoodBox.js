@@ -9,9 +9,9 @@ function FoodBox(props) {
         <img src={props.food.image} alt={props.food.name} width={225} />
 
         <div>
-          <p style={{ fontSize: '25px' }}>Calories: {props.calories}</p>
-          <p style={{ fontSize: '25px' }}>Servings: {props.servings}</p>
-          <p style={{ fontSize: '25px' }}>Total Calories: {props.calories * props.servings} kcal</p>
+          <p style={{ fontSize: '25px' }}>Calories: {props.food.calories}</p>
+          <p style={{ fontSize: '25px' }}>Servings: {props.food.servings}</p>
+          <p style={{ fontSize: '25px' }}>Total Calories: {props.food.calories * props.food.servings} kcal</p>
 
           <Button type="primary">Delete</Button>
         </div>

@@ -10,17 +10,17 @@ function AddFoodForm(props) {
     <form>
       <Divider>Add Food Entry</Divider>
 
-      <label>Name</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
+      <label>name</label>
+      <Input value={name} type="text" onChange={() => {}} />
 
       <label>Image</label>
-      {/* render antd <Input /> type="text" here */}
+      <Input value={image} type="text" onChange={() => {}} />
 
       <label>Calories</label>
-      {/* render antd <Input /> type="number" here */}
+      <Input value={Calories} type="Number" onChange={() => {}} />
 
       <label>Servings</label>
-      {/* render antd <Input /> type="number" here */}
+      <Input value={Servings} type="Number" onChange={() => {}} />
 
       <button type="submit">Create</button>
     </form>

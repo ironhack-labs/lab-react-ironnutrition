@@ -26,22 +26,21 @@ function App() {
       filteredFood = foodsData
     } else {
       filteredFood = foodsData.filter(food => {
-        return food.name[0].toLowerCase() === str.toLowerCase()
+        return food.name.toLowerCase().includes(str.toLowerCase())
       })
     }
 
     setFoods(filteredFood)
   }
 
-  const deleteFood = (id) => {
+  const deleteFood = (name) => {
     const filteredFoodData = foodsData.filter(food => {
-      console.log(food._id)
-      return food._id !== id
+      return food.name !== name
     })
     
     
     const filteredFood = foods.filter(food => {
-      return food._id !== id
+      return food.name !== name
     })
 
     setFoods(filteredFoodData)
@@ -56,8 +55,8 @@ function App() {
      <Row gutter={256}>
       {foods.map(food => {
         return (
-    <div className='foodlist'>
- <FoodBox food={food} key={uuidv4()} deleteFood={deleteFood}/>
+    <div className='foodlist' key={uuidv4()}>
+ <FoodBox food={food} deleteFood={deleteFood}/>
   </div>)
       })}
       </Row>

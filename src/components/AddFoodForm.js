@@ -15,7 +15,7 @@ function AddFoodForm(props) {
 
     const handleCaloriesInput = (e) => setCalories(e.target.value)
 
-    const handleServingsInput = (e) => setServings(e.target.checked)
+    const handleServingsInput = (e) => setServings(e.target.value)
 
     const handleSubmit = (e) => {
         e.preventDefault()

@@ -3,11 +3,10 @@ import { useState } from "react";
 
 function AddSearch(props) {
     
-    const [firstLetter, setFirstLetter] = useState("")
+    const [query, setQuery] = useState("")
 
     const handleSelect = (e) => {
-        setFirstLetter(e.target.value)
-    
+        setQuery(e.target.value)
         props.filterFood(e.target.value)
       }
     
@@ -16,7 +15,7 @@ function AddSearch(props) {
         <h2>Search</h2>
         <form>
             <label htmlFor="name"></label>
-            <Input type="text" name="name" onChange={handleSelect}/>
+            <Input type="text" name="name" value={query} onChange={(e) => handleSelect(e)}/>
 
         </form>
     </div> 

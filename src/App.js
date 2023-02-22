@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import foodsDataJSON from './foods.json';
+import { useState } from 'react';
+import FoodBox from './components/FoodBox';
+import { Row, Divider, Button } from 'antd';
+import AddFood from './components/AddFood'
+import Search from './components/Search'
+
+
+console.log(foodsDataJSON);
 
 function App() {
+const [foodsData, setFoodsData] = useState(foodsDataJSON);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <AddFood />
+    <Button>Create</Button>
+    <Search />
+    <Divider>Food List</Divider>
+    <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {/* Render the list of Food Box components here */}
+      {foodsData.map((food) => {
+        return (
+          <FoodBox food={food}/>
+        );
+      })}
+      </Row>
     </div>
-  );
-}
+  )
+    }
 
-export default App;
+export default App

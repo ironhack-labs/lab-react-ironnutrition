@@ -28,7 +28,7 @@ function App() {
   const filterFood = (str) => {
     let filteredFood
 
-    if (str === "All") {
+    if (str === "") {
       filteredFood = foodsData
     } else {
       filteredFood = foodsData.filter(food => {

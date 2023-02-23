@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Card, Row, Col, Divider, Input, Button } from "antd";
+import foods from "./foods.json";
 
 function App() {
   return (

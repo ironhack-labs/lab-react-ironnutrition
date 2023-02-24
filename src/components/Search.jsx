@@ -4,7 +4,7 @@ function Search(props) {
     return (
         <div>
         <Divider>Search</Divider>
-            <label>Search</label>
+            <label></label>
             <Input type='text' onChange={(event) => {props.Searched(event.target.value)}} />
             </div>
     )

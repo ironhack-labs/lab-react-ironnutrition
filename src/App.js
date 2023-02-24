@@ -4,11 +4,14 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import { Row, Divider, Button } from 'antd';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
+
 
 
 function App(props) {
   const [foods, setFoods] = useState(foodsData)
   const [eten, setEten] = useState(foodsData)
+  
   
   const addNewFood = (newFood) => {
     const updatedFoods = [...foods, newFood]
@@ -18,10 +21,23 @@ function App(props) {
     setEten(updatedEten)
   }
   
+  function Searched(zoek) {
+    if (!zoek) {
+    setFoods(foodsData)
+    } else {
+      const filteredFood = foodsData.filter((ele) => {
+        return ele.name.toLowerCase().includes(zoek.toLowerCase())
+      })
+      setFoods(filteredFood)
+  }
+}
+
   return (
     <div className="App">
       <h1>IronNutrition Lab!</h1>
       <AddFoodForm AddFoodForm={addNewFood} />
+
+      <Search Searched={Searched} />
       {/* {foods.map((food) => {
         return <div><p>{food.name}</p>
           

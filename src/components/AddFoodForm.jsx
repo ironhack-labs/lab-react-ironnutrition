@@ -27,11 +27,12 @@ function AddFoodForm(props) {
 
     return (
         <form onSubmit={handleSubmit}>
-      <Divider>Add Food Entry</Divider>
+            {/* style={{ width: '400px', textAlign: 'center', justifyContent:'center' }} */}
+      <p>Add Food </p>
 
       <label>Name</label>
             {/* <Input value={name} type="text" onChange={() => {}} /> */}
-            <Input value={name} type='text' onChange={handleNameInput} />
+            <Input type='text' value={name}  onChange={handleNameInput} />
 
       <label>Image</label>
             {/* render antd <Input /> type="text" here */}

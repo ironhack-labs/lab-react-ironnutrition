@@ -21,6 +21,13 @@ function App(props) {
     setEten(updatedEten)
   }
   
+  const deleteFood = foodName => {
+    const filteredEten = foods.filter(food => {
+    return food.name !== foodName
+    })
+    setFoods(filteredEten)
+}
+
   function Searched(zoek) {
     if (!zoek) {
     setFoods(foodsData)
@@ -53,7 +60,7 @@ function App(props) {
       }} /> */}
       <Row style={{width:'100%', justifyContent:'center'}}>
       {foods.map((food) => {
-        return <FoodBox food={food} />
+        return <FoodBox food={food} clickToDelete={deleteFood} />
       })}
       </Row>
     </div>

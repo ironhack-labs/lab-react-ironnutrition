@@ -28,7 +28,7 @@ function AddFoodForm(props) {
     return (
         <form onSubmit={handleSubmit}>
             {/* style={{ width: '400px', textAlign: 'center', justifyContent:'center' }} */}
-      <p><b>Add Food </b></p>
+     <Divider> <p><b>Add Food </b></p></Divider>
 
       <label>Name</label>
             {/* <Input value={name} type="text" onChange={() => {}} /> */}

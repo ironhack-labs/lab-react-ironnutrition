@@ -28,7 +28,7 @@ function AddFoodForm(props) {
     return (
         <form onSubmit={handleSubmit}>
             {/* style={{ width: '400px', textAlign: 'center', justifyContent:'center' }} */}
-      <p>Add Food </p>
+      <p><b>Add Food </b></p>
 
       <label>Name</label>
             {/* <Input value={name} type="text" onChange={() => {}} /> */}
@@ -46,7 +46,7 @@ function AddFoodForm(props) {
             {/* render antd <Input /> type="number" here */}
             <Input type="text" value={servings} onChange={handleServingsInput} />
 
-      <button type="submit">Create</button>
+      <button style={{backgroundColor:'#25be76', border:'none', color:'white', padding:'10px',borderRadius:'10px'}} type="submit">Add food</button>
     </form>
     )
 }

@@ -5,6 +5,7 @@ import FoodBox from './components/FoodBox';
 import { Row, Divider, Button } from 'antd';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
+import magic from './spongbobmagic.jpeg'
 
 function App(props) {
   const [foods, setFoods] = useState(foodsData);
@@ -44,11 +45,11 @@ function App(props) {
   return (
     <div className="App">
       <h1>IronNutrition Lab!</h1>
-      <button onClick={showing}> {show ? 'show' : 'hide'}</button>
+      <Button type='primary' onClick={showing}> {show ? 'show' : 'hide'}</Button>
       {show ? (
         <AddFoodForm AddFoodForm={addNewFood} />
       ) : (
-        <p>Nothing to see here!</p>
+        <p><b>Nothing to see here!</b><br/><img src={magic} alt='spongebob' /></p>
       )}
 
       <Search Searched={Searched} />
@@ -65,12 +66,13 @@ function App(props) {
         image: "https://i.imgur.com/abKGOcv.jpg",
         servings:1
       }} /> */}
+      <Divider><b>List of Food!</b></Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {foods.length >= 1 ? (foods.map((food) =>
         {
           return <FoodBox food={food} clickToDelete={deleteFood} />;
         }
-        )) : <p>Oh no! The list is empty!</p>
+        )) : <img style={{marginTop:'50px'}} src={magic} alt='Oh no! The list is empty!' />
         }
       </Row>
     </div>

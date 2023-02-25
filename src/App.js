@@ -6,10 +6,12 @@ import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 import foodsJsonData from './foods.json';
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
   const [allFood, setAllFood] = useState(foodsJsonData);
   const [currentFood, setCurrentFood] = useState(foodsJsonData);
+  const [isFoodFormVisible, setFoodFormVisibility] = useState(true);
 
   const handleAddNewFood = (newFood) => {
     const updatedFoodList = [...currentFood, newFood];
@@ -40,27 +42,35 @@ function App() {
     setAllFood(newFoodList);
   };
 
+  const toggleAddFoodFormVisibility = () => {
+    setFoodFormVisibility(!isFoodFormVisible);
+  };
+
   return (
     <div className="App">
-      <AddFoodForm onAddNewFood={handleAddNewFood} />
+      {isFoodFormVisible && <AddFoodForm onAddNewFood={handleAddNewFood} />}
 
-      <Button> Hide Form / Add New Food </Button>
+      <Button onClick={toggleAddFoodFormVisibility}>
+        {`${isFoodFormVisible ? 'Hide Form' : 'Add New Food'}`}
+      </Button>
 
       <Search onSearchFood={handleSearchFood} />
-
       <Divider>Food List</Divider>
-
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {currentFood.map((foodItem) => {
-          return (
-            <FoodBox
-              key={Date.now() * Math.random()}
-              food={foodItem}
-              onDeleteFoodItem={handleDeleteFoodItem}
-            />
-          );
-        })}
-      </Row>
+      {currentFood.length === 0 ? (
+        "Oops! There's no more food to show."
+      ) : (
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
+          {currentFood.map((foodItem) => {
+            return (
+              <FoodBox
+                key={Date.now() * Math.random()}
+                food={foodItem}
+                onDeleteFoodItem={handleDeleteFoodItem}
+              />
+            );
+          })}
+        </Row>
+      )}
     </div>
   );
 }

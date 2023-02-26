@@ -10,9 +10,11 @@ function FoodList() {
     <div>
       <h1>Food List</h1>
       <div className="FoodList">
-        {foods.map((food) => {
-          return <FoodCard key={food._id} food={food} />;
-        })}
+        {foods
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((food) => {
+            return <FoodCard key={food._id} food={food} />;
+          })}
       </div>
     </div>
   );

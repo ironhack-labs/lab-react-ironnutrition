@@ -6,8 +6,8 @@ function FoodCard(props) {
   return (
     <div className="FoodCard">
       <h2>{food.name}</h2>
-      <p>Calories: {food.calories}</p>
       <img src={food.image} width={'100px'} />
+      <p>Calories: {food.calories}</p>
       <p>Servings: {food.servings}</p>
       <p>
         {' '}

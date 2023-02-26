@@ -43,7 +43,8 @@
   flex-wrap: wrap;
 }
 
-.FoodCard {
+.FoodCard,
+.AddFoodForm {
   border: rgba(102, 0, 255, 0.5);
   border-style: groove;
   margin: 7px;

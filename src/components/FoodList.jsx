@@ -8,7 +8,7 @@ function FoodList() {
 
   return (
     <div>
-      <h2>Food List</h2>
+      <h1>Food List</h1>
 
       {foods.map((food) => {
         return <FoodCard key={food._id} food={food} />;

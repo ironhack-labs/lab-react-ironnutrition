@@ -9,10 +9,11 @@ function FoodList() {
   return (
     <div>
       <h1>Food List</h1>
-
-      {foods.map((food) => {
-        return <FoodCard key={food._id} food={food} />;
-      })}
+      <div className="FoodList">
+        {foods.map((food) => {
+          return <FoodCard key={food._id} food={food} />;
+        })}
+      </div>
     </div>
   );
 }

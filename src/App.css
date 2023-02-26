@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.FoodList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.FoodCard {
+  border: rgba(102, 0, 255, 0.5);
+  border-style: groove;
+  margin: 7px;
+  padding: 7px;
+}

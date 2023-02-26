@@ -9,6 +9,10 @@ function FoodCard(props) {
       <p>Calories: {food.calories}</p>
       <img src={food.image} width={'100px'} />
       <p>Servings: {food.servings}</p>
+      <p>
+        {' '}
+        <b>Total Calories: {food.servings * food.calories}</b> kcal
+      </p>
       <button> Delete</button>
     </div>
   );

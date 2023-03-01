@@ -14,6 +14,7 @@ function App() {
   const addFood = (food) => {
     const foodListCopy = [...foodList, food];
     setFoodList(foodListCopy);
+    setShowFoodList(foodListCopy);
   };
 
   const searchFood = (query) => {
@@ -23,13 +24,21 @@ function App() {
     setShowFoodList(filteredFoodList);
   };
 
+  const deleteFood = (foodName) => {
+    const filteredFoodList = foodList.filter((food) => {
+      return food.name !== foodName;
+    })
+    setFoodList(filteredFoodList)
+    setShowFoodList(filteredFoodList)
+  }
+
   // After importing the components we can render them directly:
   return (
     <div>
       <AddFoodForm addFood={addFood} />
       <Search searchFood={searchFood} />
       {showFoodList.map((food) => {
-        return <FoodBox food={food} key={food.name} />;
+        return <FoodBox food={food} deleteFood= {deleteFood}key={food.name} />;
       })}
     </div>
   );

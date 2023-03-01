@@ -7,10 +7,15 @@ import FoodBox from "./Components/FoodBox";
 import AddFoodForm from "./Components/AddFoodForm";
 import Search from "./Components/Searchbar";
 
+
 function App() {
 /*   const foodArr = [...foodsJSON]
  */  const [foodList, setFoodList] = useState(foodsJSON);
      const [foodListShown, setFoodListShown] = useState(foodsJSON)
+
+     
+
+
 
   const addFood = (food) => {
     const foodCopy = [...foodList, food];
@@ -19,12 +24,22 @@ function App() {
 }
 
 const searchFood = (query) => {
-  const filteredFood = foodList.filter((food) =>
+  const filteredFood = foodsJSON.filter((food) =>
    food.name.toLowerCase().includes(query.toLowerCase()));
 
    setFoodList(filteredFood);
   
 };
+
+const deleteFood = (food) => {
+  const filteredFood = foodsJSON.filter((food) => {
+      return food.name !== food
+
+  })
+
+  //we filtered out what we want to remove, now we need to remove it and update with the new way:
+  setFoodList(filteredFood);        
+}
 
   return (
     <div>
@@ -40,6 +55,8 @@ const searchFood = (query) => {
 
 <AddFoodForm addFood={addFood}/>
 
+
+
 {/* iteração 3 */}
 {foodList.map((food) => 
       <FoodBox food={ {
@@ -48,9 +65,14 @@ const searchFood = (query) => {
   image: food.image,
   servings: food.servings,
 
+
+  
+
 }} />
 
+
 )}
+
 
 
     </div>

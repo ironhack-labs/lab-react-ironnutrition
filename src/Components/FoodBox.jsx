@@ -1,8 +1,12 @@
 import React from 'react'
 import { Card, Col, Button} from 'antd';
+import foodsJSON from "../foodsJSON.json";
 
 // Iteration 2
 function FoodBox(props) {
+
+  const [foodList, setFoodList] = useState(foodsJSON);
+
 
     const {food} = props;
 
@@ -19,7 +23,13 @@ function FoodBox(props) {
     <p>
       <b>Total Calories: {food.calories * food.servings}  </b> kcal
     </p>
-    <Button type="primary"> Delete </Button>
+
+    {foodList.map((food) => {
+      return (
+        food={food} deleteFood={}
+      )
+    })}
+    <button type="primary" onClick={() => deleteFood(food.name)}> Delete </button>
   </Card>
 </Col>
 

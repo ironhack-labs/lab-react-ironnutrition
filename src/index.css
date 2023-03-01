@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.addFood {
+  width: 600px;
+  margin: 0 20px 0 50px;
+  text-align: left;
+  font-weight: bold;
+}

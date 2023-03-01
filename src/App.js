@@ -1,23 +1,65 @@
-import logo from './logo.svg';
+import { Row } from "antd";
+import React, {useState} from 'react'
 import './App.css';
+import foodsJSON from "./foods.json";
+import FoodBox from "./components/FoodBox";
+import AddFoodForm from "./components/AddFoodForm";
+import Search from "./components/Search";
 
 function App() {
+
+
+  const [ allFoods, updatedList ] = useState(foodsJSON)
+
+   const addNewFood = (food) => {
+   const newFood = [food, ...allFoods]
+   updatedList(newFood)
+  }
+
+  const searchFood = (str) => {
+    let filteredFood
+    if (str === "") {
+      filteredFood = allFoods
+    } else {
+      filteredFood = allFoods.filter(food => {
+        return food.name.toLowerCase().includes(str.toLowerCase())
+      })
+    }
+    updatedList(filteredFood)
+  }
+
+  const deleteFood = (name) => {
+    const foodInfo = allFoods.filter(food => {
+      return food.name !== name
+    })
+    updatedList(foodInfo)
+  }
+
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+
+        <AddFoodForm createFood={addNewFood}/>
+        <Search searchFood={searchFood}/>
+
+        {/* {foodsJSON.map((food, i) => (
+           <div key={i}>
+           <p>{food.name}</p>
+           <img src={food.image} width="100px"/>
+           </div>))} */}
+           <h2>Food List</h2>
+           <Row >
+            {allFoods.map((food, index )=> {
+                return (
+              <div className='foodlist' key={index}>
+               <FoodBox food={food} deleteFood={deleteFood}/>
+              </div>)})}
+           </Row>
+
+
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Card, Col, Button } from 'antd';
 function FoodBox({food, deleteFood}) {
     console.log(food)
     let totalCalories = food.calories * food.servings
-  return (
+    if (food) {return (
     <Col>
       <Card
         title={food.name}
@@ -19,7 +19,13 @@ function FoodBox({food, deleteFood}) {
         <Button type="primary" onClick={() => deleteFood(food.name)}> Delete </Button>
       </Card>
     </Col>
-  );
+  )} else {
+    return (
+        <div>
+            <h1>Oops! There is no more content to show.</h1>
+        </div>
+    )
+  }
 }
 
 export default FoodBox;

@@ -11,13 +11,9 @@ function App() {
   // After importing the components we can render them directly:
   return (
     <div>
-    {food.map((food) => {
-      return <FoodList food={food} key={food.name}/>
-    })}
-    <FoodBox food={{name:"Orange",
-    calories: 85,
-    image:"https://i.imgur.com/abKGOcv.jpg",
-    servings: 1}} />
+      {food.map((food) => {
+        return <FoodBox food={food} key={food.name} />;
+      })}
     </div>
   );
 }

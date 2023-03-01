@@ -1,5 +1,6 @@
 function FoodBox(props) {
-  const { food } = props;
+  const { food, deleteFood } = props;
+
   return (
     <div>
       <img src={food.image} height={60} alt={food.name} />
@@ -12,7 +13,7 @@ function FoodBox(props) {
         </b>{' '}
         kcal
       </p>
-      <button>Delete</button>
+      <button onClick={() => deleteFood(food.name)}>Delete</button>
     </div>
   );
 }

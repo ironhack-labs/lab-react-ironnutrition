@@ -15,6 +15,26 @@ function App() {
     setFoodsToDisplay([...foodsToDisplay, newFood]);
   };
 
+  const deleteFood = (name) => {
+    const filteredFoods = foodList.filter((eachFood) => {
+      if (eachFood.name !== name) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFoodList(filteredFoods);
+
+    const filteredDisplayFoods = foodsToDisplay.filter((eachFood) => {
+      if (eachFood.name !== name) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFoodsToDisplay(filteredDisplayFoods);
+  };
+
   const filterFoods = (searchInput) => {
     const filteredFoods = foodList.filter((eachFood) => {
       if (eachFood.name.toLowerCase().includes(searchInput.toLowerCase())) {
@@ -36,7 +56,11 @@ function App() {
         {foodsToDisplay.map((eachFood) => {
           return (
             <div className="card">
-              <FoodBox key={eachFood.name} food={eachFood} />
+              <FoodBox
+                key={eachFood.name}
+                food={eachFood}
+                deleteFood={deleteFood}
+              />
             </div>
           );
         })}

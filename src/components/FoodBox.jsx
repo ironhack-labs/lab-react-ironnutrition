@@ -2,7 +2,7 @@ function FoodBox(props) {
   const { food } = props;
   return (
     <div>
-      <img src={food.image} height={60} alt="food" />
+      <img src={food.image} height={60} alt={food.name} />
       <p>Calories: {food.calories}</p>
       <p>Servings: {food.servings}</p>
       <p>

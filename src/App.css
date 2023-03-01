@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+/*
+#button{
+  background-color: #61dafb;
+  border-style: none;
+  border-radius: 20px;
+  width: 80px;
+  height: 40px;
+}
+
+.imgCard{
+  flex-direction: row;
+  border: 3px solid whitesmoke; 
+  justify-content: space-around;
+}*/

@@ -11,6 +11,11 @@ function App() {
   const [foodList, setFoodList] = useState(foods);
   const [showFoodList, setShowFoodList] = useState(foods);
 
+  const [visible, setVisible] = useState(true);
+
+  const toggleVisibility = () =>{
+    setVisible(!visible);
+  }
   const addFood = (food) => {
     const foodListCopy = [...foodList, food];
     setFoodList(foodListCopy);
@@ -35,7 +40,8 @@ function App() {
   // After importing the components we can render them directly:
   return (
     <div>
-      <AddFoodForm addFood={addFood} />
+      {visible && <AddFoodForm addFood={addFood} />}
+      <button onClick={toggleVisibility}>{visible ? 'Hide Form' : 'Add New Food'}</button>
       <Search searchFood={searchFood} />
       {showFoodList.map((food) => {
         return <FoodBox food={food} deleteFood= {deleteFood}key={food.name} />;

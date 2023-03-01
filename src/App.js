@@ -4,6 +4,7 @@ import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import Searchbar from './components/Searchbar';
 
 function App() {
   const [foodList, setFoodList] = useState(foods);
@@ -14,12 +15,25 @@ function App() {
     setFoodsToDisplay([...foodsToDisplay, newFood]);
   };
 
+  const filterFoods = (searchInput) => {
+    const filteredFoods = foodList.filter((eachFood) => {
+      if (eachFood.name.toLowerCase().includes(searchInput.toLowerCase())) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFoodsToDisplay(filteredFoods);
+  };
+
   return (
     <div className="App">
       <h1>Food List</h1>
+
+      <Searchbar filterFoods={filterFoods} />
       <AddFoodForm addNewFood={addNewFood} />
       <div id="cards-container">
-        {foodList.map((eachFood) => {
+        {foodsToDisplay.map((eachFood) => {
           return (
             <div className="card">
               <FoodBox key={eachFood.name} food={eachFood} />

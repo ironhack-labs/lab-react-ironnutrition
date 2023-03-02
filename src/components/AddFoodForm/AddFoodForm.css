@@ -1,0 +1,9 @@
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+form button {
+  border: none;
+  padding: 1rem;
+  margin-top: 1rem;
+}

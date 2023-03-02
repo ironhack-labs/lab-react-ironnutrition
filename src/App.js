@@ -10,6 +10,7 @@ function App() {
 
 
   const [ allFoods, updatedList ] = useState(foodsJSON)
+const [allFilterFoods, setAllFilterFoods] = useState(foodsJSON)
 
    const addNewFood = (food) => {
    const newFood = [food, ...allFoods]
@@ -19,9 +20,9 @@ function App() {
   const searchFood = (str) => {
     let filteredFood
     if (str === "") {
-      filteredFood = allFoods
+      filteredFood = allFilterFoods
     } else {
-      filteredFood = allFoods.filter(food => {
+      filteredFood = allFilterFoods.filter(food => {
         return food.name.toLowerCase().includes(str.toLowerCase())
       })
     }

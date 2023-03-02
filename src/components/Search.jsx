@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 
-function Search(props) {
+function Search({searchFood}) {
     const [query, setQuery] = useState("")
 
     const handleSelect = (e) => {
         setQuery(e.target.value)
-        props.searchFood(e.target.value)
+        searchFood(e.target.value)
     }
   return (
     <div>

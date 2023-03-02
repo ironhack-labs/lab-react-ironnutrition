@@ -27,7 +27,8 @@ function App() {
     const filteredFood = food.filter((manyFood) => {
       return manyFood.name !== foodId;
     });
-    setShowFood(filteredFood)
+    setShowFood(filteredFood);
+    setFood(filteredFood);
   };
   return (
     <div className="App">

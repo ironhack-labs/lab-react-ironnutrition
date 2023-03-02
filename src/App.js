@@ -24,8 +24,8 @@ function App() {
   }
 
   const searchFoods = (query) => {
-    const filteredFoods = foods.filter((food) =>
-      food.title.toLowerCase().includes(query.toLowerCase())
+    const filteredFoods = showFoods.filter((food) =>
+      food.name.toLowerCase().includes(query.toLowerCase())
     );
     setShowFoods(filteredFoods);
   };

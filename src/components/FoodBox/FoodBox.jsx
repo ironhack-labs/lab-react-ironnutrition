@@ -8,9 +8,7 @@ import './FoodBox.css'
 
 
 // Iteration 2
-function FoodBox(props) {
-    const food = props.food;
-    console.log(props.food)
+function FoodBox({ food, handleDelete }) {
     return (
         <Col>
             <Card
@@ -24,7 +22,7 @@ function FoodBox(props) {
                 <p>
                     <b>Total Calories: {food.calories * food.servings} </b> kcal
                 </p>
-                <Button type="primary"> Delete </Button>
+                <Button type="primary" onClick={() => handleDelete(food.name)}> Delete </Button>
             </Card>
 
         </Col>

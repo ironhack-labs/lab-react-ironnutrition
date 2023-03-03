@@ -28,34 +28,37 @@ function App() {
     })
   }
 
+  const handleDelete = (foodToDelete) => {
+    const foodThatRemains = food.filter((item) => item.name !== foodToDelete)
+    console.log(foodThatRemains)
+    setFood(foodThatRemains)
+  }
+
   return (
     <div className="App">
 
-      {/* Display Add Food component here */}
       <div>
         <AddFoodForm handleAddFood={handleAddFood} />
       </div>
       {/* <Button> Hide Form / Add New Food </Button> */}
-      {/* Display Search component here */}
       <div>
         <form>
           <input type="search" value={searchString} onChange={handleSearch} />
         </form>
       </div>
-      <div>
+
+      <Divider>Food List</Divider>
+
+      <div className='container'>
         {foodToDisplay.map((element) => {
           return (
-            <FoodBox food={element} />
+            <FoodBox food={element}
+              handleDelete={handleDelete}
+            />
           )
         })
         }
       </div>
-      {/* <div>
-        <Divider>Food List</Divider>
-        {}
-        {/* {props.foodlist.map((food, index) => ( ))}*/}
-      {/* <FoodBox foodlist.map({foodToDisplay}) />
-      {/* </div> */}
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}

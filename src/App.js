@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Layout, Row, Col } from 'antd';
+import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
+import foodsData from './foods.json';
+
+const { Header, Content } = Layout;
 
 function App() {
+  const [foods, setFoods] = useState(foodsData);
+
+  const addFood = (newFood) => {
+    setFoods([...foods, newFood]);
+  };
+
+  const handleDelete = (foodToDelete) => {
+    setFoods(foods.filter((food) => food !== foodToDelete));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Header>
+        <h1>IronNutrition</h1>
+      </Header>
+      <Content style={{ padding: '0 50px' }}>
+        <SearchBar foods={foods} setFoods={setFoods} />
+        <Row>
+          <Col span={12}>
+            {foods.map((food, index) => (
+              <FoodBox
+                key={index}
+                food={food}
+                onDelete={handleDelete}
+              />
+            ))}
+          </Col>
+          <Col span={12}>
+            <AddFoodForm addFood={addFood} />
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
   );
 }
 

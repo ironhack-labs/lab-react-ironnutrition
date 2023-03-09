@@ -9,6 +9,7 @@ class Home extends Component {
     image: '',
     calories: '',
     servings: '',
+    searh: "",
   };
 
   onSubmitFood = (event) => {
@@ -27,13 +28,21 @@ class Home extends Component {
     this.setState({ [name]: value })
   }
 
+  getFilterFood =() => {
+    const {food, search} = this.state
 
+    if (search) {
+        return food.filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+    } else {
+        return food 
+    }
+  }
 
 
 
 
   render() {
-    const { food, name, image, calories, servings } = this.state;
+    const { name, image, calories, servings, search } = this.state;
     return (
       <div className="Home">
         <h3>Add Food Entry</h3>
@@ -102,7 +111,18 @@ class Home extends Component {
           </button>
         </form>
 
-        <FoodList food={food} />
+        <hr></hr>
+        
+        <input
+          name="search"
+          onChange={this.onChange}
+          value={search}
+          className="form-control mb-4" type="search"
+          placeholder="Search" aria-label="Search"
+        />
+
+
+        <FoodList food={this.getFilterFood()} />
       </div>
     );
   }

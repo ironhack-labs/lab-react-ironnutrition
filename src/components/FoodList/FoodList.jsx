@@ -5,7 +5,8 @@ const FoodList = ({food}) => {
     const hasFood = food && food.length > 0;
 
     return (
-
+        <div>
+        <h2 className='m-4'>Food List</h2>
         <div className={`PlacesList ${hasFood ? 'row row-cols-1 row-cols-md-3 g-3' : ''}`}>
 
         {food && food.length > 0 
@@ -24,6 +25,7 @@ const FoodList = ({food}) => {
             <p>There are no food to show</p>
           )}
       </div>
+        </div>
     )
 };
 

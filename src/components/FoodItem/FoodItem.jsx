@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FoodItem = ({ name, calories, image, servings }) => {
+const FoodItem = ({ name, calories, image, servings, onDelete, id }) => {
 
   return (
     <div>
@@ -22,7 +22,10 @@ const FoodItem = ({ name, calories, image, servings }) => {
           <strong>Total Calories:{calories}</strong> kcal
           </p>
 
-          <button className="btn btn-primary">Delete</button>
+          <button onClick={() => onDelete(name)} className="btn btn-primary">Delete</button>
+
+          {/* pongo onDelete(name) porque no hay un id. en el json por lo que uso el name como id*/}
+          
         </div>
       </div>
   );

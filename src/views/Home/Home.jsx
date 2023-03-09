@@ -38,6 +38,12 @@ class Home extends Component {
     }
   }
 
+  onDeleteFood = (FoodIdToDelete) => {
+    const {food} = this.state
+    this.setState({ food: food.filter(food => food.name !== FoodIdToDelete) })
+  }
+  //food.name sería el food.id si tuviese id.
+
 
 
 
@@ -122,7 +128,7 @@ class Home extends Component {
         />
 
 
-        <FoodList food={this.getFilterFood()} />
+        <FoodList food={this.getFilterFood()}  onDeleteFood={this.onDeleteFood}/>
       </div>
     );
   }

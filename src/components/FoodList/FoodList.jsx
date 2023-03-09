@@ -1,7 +1,7 @@
 import React from 'react';
 import FoodItem from '../FoodItem/FoodItem';
 
-const FoodList = ({food}) => {
+const FoodList = ({food, onDeleteFood}) => {
     const hasFood = food && food.length > 0;
 
     return (
@@ -17,6 +17,7 @@ const FoodList = ({food}) => {
                 calories={food.calories}
                 image={food.image}
                 servings={food.servings}
+                onDelete={onDeleteFood}
                 // {...food}
               />
             </div>

@@ -1,0 +1,17 @@
+.searchbar {
+    width: 800px;
+    display: flex;
+    margin: 16px;
+    border-radius: 10px;
+
+}
+
+.form {
+    width: 800px;
+
+}
+
+.formcontainer {
+    display: flex;
+    justify-content: center;
+}

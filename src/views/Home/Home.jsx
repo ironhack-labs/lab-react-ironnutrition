@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FoodList from '../../components/FoodList/FoodList';
 import FoodsJSON from './../../foods.json';
+import "./Home.css"
 
 class Home extends Component {
   state = {
@@ -10,6 +11,7 @@ class Home extends Component {
     calories: '',
     servings: '',
     searh: "",
+    showform: true,
   };
 
   onSubmitFood = (event) => {
@@ -44,16 +46,27 @@ class Home extends Component {
   }
   //food.name sería el food.id si tuviese id.
 
+  toggleForm = () => {
+    this.setState(prevState =>{
+      return {
+        showform: !prevState.showform
+      }
+    })
+  }
+
 
 
 
   render() {
-    const { name, image, calories, servings, search } = this.state;
+    const { name, image, calories, servings, search, showform } = this.state;
     return (
       <div className="Home">
         <h3>Add Food Entry</h3>
 
-        <form onSubmit={this.onSubmitFood}>
+      <button onClick={this.toggleForm} className="btn btn-primary mt-5">{showform ? 'Hide' : 'Add New Food'}</button>
+       {showform ?
+       <div className='formcontainer'>
+        <form className="m-4 form"onSubmit={this.onSubmitFood}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name
@@ -116,16 +129,24 @@ class Home extends Component {
             Submit
           </button>
         </form>
+       
+        </div>
+       : null
+
+       
+       }
 
         <hr></hr>
-        
-        <input
+        <div className='d-flex justify-content-center'>
+        <input 
           name="search"
           onChange={this.onChange}
           value={search}
-          className="form-control mb-4" type="search"
+          className="searchbar form-control mb-4 text-center" type="search"
           placeholder="Search" aria-label="Search"
         />
+        </div>
+        <hr></hr>
 
 
         <FoodList food={this.getFilterFood()}  onDeleteFood={this.onDeleteFood}/>

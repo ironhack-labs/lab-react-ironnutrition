@@ -23,7 +23,10 @@ const FoodList = ({food, onDeleteFood}) => {
             </div>
           )) 
           : (
-            <p>There are no food to show</p>
+            <>
+            <p><strong>There are no food to show</strong></p>
+            <img style={{width: 100}}src="https://elblogdeangela.com/wp-content/uploads/2013/10/warning_page.png" alt=""/>
+            </>
           )}
       </div>
         </div>

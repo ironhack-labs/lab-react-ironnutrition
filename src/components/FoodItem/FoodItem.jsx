@@ -4,10 +4,13 @@ const FoodItem = ({ name, calories, image, servings, onDelete, id }) => {
 
   return (
     <div>
-      <div className="card">
+      <div className="card d-flex">
       <h5 className="card-title">{name}</h5>
       <hr></hr>
+      <div className='d-flex justify-content-center'>
+
     <img src={image} style={{height: 100, width: 100}} className="card-img" alt="..." />
+      </div>
           <h5 className="card-title">{name}</h5>
           
           <p className="card-text">

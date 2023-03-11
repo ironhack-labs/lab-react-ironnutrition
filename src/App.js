@@ -1,5 +1,5 @@
 import './App.css';
-import foods from "./foods.json"
+import foods from "../data/foods.json"
 import { v4 as uuidv4 } from 'uuid'; // Universal Unique Identifier
 
 function App() {

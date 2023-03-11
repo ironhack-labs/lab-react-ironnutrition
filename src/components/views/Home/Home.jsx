@@ -9,7 +9,7 @@ export default class Home extends Component {
     state = {
         foods:  localStorage.getItem('foods') ? JSON.parse(localStorage.getItem('foods')) : foodsJSON,
         search: '',
-        showAddFood: true,
+        showAddFood: false,
     }
 
     onDeleteFood = (foodIdToDelete) => {
@@ -18,16 +18,18 @@ export default class Home extends Component {
     localStorage.setItem('foods', JSON.stringify(newFoods));
     }
 
-    onSubmitFood = (event) => {
-        event.preventDefault();
-        const {foods} = this.state;
-
+    onSubmitFood = (food) => {
+        const { foods } = this.state;
 
         const newFood = {
-            id: uuidv4(), ...foods
+            id: uuidv4(), 
+            ...food
         }
 
-        this.setState ({ foods: [newFood]})
+        const newFoods = [newFood, ...foods]
+        localStorage.setItem('foods', JSON.stringify(newFoods))
+
+        this.setState ({ foods: newFoods })
 
     }
 
@@ -61,11 +63,12 @@ export default class Home extends Component {
         return (
             <div className="Home">
             <button onClick={this.toggleShowAddFoodForm} className="btn btn-info mb-2">
-          {showAddFood ? !'Hide' : 'Show'} Add food form
+          {showAddFood } Add food form
         </button>
 
         {showAddFood 
-          ? ( <AddFoodForm onSubmitFood={this.onSubmitFood} />) : null
+          ? ( <AddFoodForm onSubmitFood={this.onSubmitFood} />) 
+          : null
         }
 
             <input

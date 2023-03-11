@@ -12,9 +12,7 @@ const INITIAL_VALUES = {
 export default class AddFoodForm extends Component {
     state = {
         values: {...INITIAL_VALUES},
-        errors: {
-    
-        }
+        errors: {},
     }
 
     onChange = (event) => {
@@ -31,20 +29,20 @@ export default class AddFoodForm extends Component {
     }
 
     onSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault() //para que no se recargue la página
     
         this.props.onSubmitFood(this.state.values)
-        this.setState({ values: {...INITIAL_VALUES} })
+        this.setState({ values: {...INITIAL_VALUES} }) //resetear el formulario
     }
 
 
     render() {
         const { values } = this.state;
+
         return (
             
-
-            <>
-                <h3>Add a new food</h3>
+            <div className="AddFoodForm">
+                <h3 className="newFood text-center" >Add Food Entry</h3>
                 <form onSubmit={this.onSubmitFood}>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Name</label>
@@ -55,8 +53,8 @@ export default class AddFoodForm extends Component {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="image" className="form-label">Image</label>
-                        <input requiredtype="url" value={values.image} onChange={this.onChange} name="image"
-                        className="form-control" id="image" placeholder="image "
+                        <input required type="url" value={values.image} onChange={this.onChange} name="image"
+                        className="form-control" id="image" placeholder="http://placeholder.com/image.png "
                         />
                     </div>
                     <div className="mb-3">
@@ -74,16 +72,16 @@ export default class AddFoodForm extends Component {
                 
                     <div className="mb-3">
                         <label htmlFor="totalCalories" className="form-label">Total Calories</label>
-                        <input required type="number" value={values.totalCalories} onChange={this.onChange} name="total Calories"
+                        <input required type="number" value={values.totalCalories} onChange={this.onChange} name="totalCalories"
                         className="form-control" id="totalCalories" placeholder="total"
                         />
                     </div>
 
                     <button type="submit" className="btn btn-info mb-5 mt-2">
-                        Submit
+                    Create
                     </button>
                 </form>
-            </>
+            </div>
 
         
         )

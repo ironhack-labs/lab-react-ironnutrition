@@ -2,37 +2,45 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+#foods-pic {
+  width: 200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.food-container {
+  margin: 2px 3px;
+
+  border: 1px solid black;
+  width: 32vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#food-name {
+  border-bottom: 1px solid black;
+  font-size: 1.3em;
+  margin-bottom: 3vh;
+}
+
+.food-container button {
+  margin-top: 2vh;
+  margin-bottom: 5vh;
+  width: 7vw;
+  height: 5vh;
+  border-radius: 10px;
+  font-size: 1em;
+  background-color: rgb(85, 174, 204);
   color: white;
+  font-weight:500;
 }
 
-.App-link {
-  color: #61dafb;
+.food-box {
+  display: flex;
+  flex-wrap: wrap;
+ 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#list{
+  flex-basis: 100%;
+  margin-bottom: 3vh;
+  border: 1px solid black;
+  margin-bottom: 2px;
 }

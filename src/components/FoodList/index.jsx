@@ -5,6 +5,7 @@ export const FoodList = ({ foods }) => {
   return (
     <div className="FoodList">
       <h1>Food List</h1>
+      <div className='CardList'>
       {foods.map((food) => {
         return (
           <div key={food.name}>
@@ -12,6 +13,7 @@ export const FoodList = ({ foods }) => {
           </div>
         );
       })}
+      </div>
     </div>
   );
 };

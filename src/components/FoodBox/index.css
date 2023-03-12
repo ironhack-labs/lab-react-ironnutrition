@@ -1,0 +1,23 @@
+.FoodBox {
+  border: 1.5px solid lightgrey;
+
+  width: 250px;
+  text-align: left;
+}
+
+.Title {
+  border-bottom: 1px solid lightgrey;
+  padding: 15px;
+}
+
+.Content {
+  padding: 15px;
+}
+
+.Btn {
+  color: white;
+  background: dodgerblue;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+}

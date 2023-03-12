@@ -1,4 +1,5 @@
 import './index.css';
+import { FoodBox } from '../FoodBox';
 
 export const FoodList = ({ foods }) => {
   return (
@@ -6,10 +7,9 @@ export const FoodList = ({ foods }) => {
       <h1>Food List</h1>
       {foods.map((food) => {
         return (
-          <>
-            <h4>{food.name}</h4>
-            <img src={food.image} alt="Img" />
-          </>
+          <div key={food.name}>
+            <FoodBox food={food} />
+          </div>
         );
       })}
     </div>

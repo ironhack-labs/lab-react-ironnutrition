@@ -1,0 +1,23 @@
+.FoodBox .card {
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: fit-content;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    margin: 16px;
+}
+
+.FoodBox p {
+    margin:3px;
+}
+
+.FoodBox h2 {
+    margin:3px;
+}
+
+.FoodBox img {
+    margin:20px;
+}

@@ -12,12 +12,38 @@ class AddFoodForm extends Component{
         }
     }
 
-/* handleFormSubmit = (e) => {
+handleFormSubmit = (e) => {
 e.preventDefault()
-this.props.
+console.log('entro')
+this.props.addNewFood(this.state)
 }
 
-addFood = newFood => this.setState({
+handleNameChange = (e) => {
+    this.setState({
+        name: e.target.value
+    })
+}
+
+handleCaloriesChange = (e) => {
+    this.setState({
+        calories: e.target.value
+    })
+}
+
+handleServingsChange = (e) => {
+    this.setState({
+        servings: e.target.value
+    })
+}
+
+handleImageChange = (e) => {
+    this.setState({
+        image: e.target.value
+    })
+}
+
+
+/* addFood = newFood => this.setState({
     ...this.state,
 }) */
 
@@ -26,23 +52,23 @@ addFood = newFood => this.setState({
             <div className='AddFoodForm'>
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
-                        <label for="name">Food name</label>
-                        <input type="text" class="form-control" value={this.state.name} placeholder="Food name" />
+                        <label htmlFor="name">Food name</label>
+                        <input type="text" className="form-control" value={this.state.name} onChange={this.handleNameChange} placeholder="Food name" />
                     </div>
                     <div className="form-group">
-                        <label for="calories">Total calories</label>
-                        <input type="text" class="form-control" value={this.state.calories} placeholder="Calories" />
+                        <label htmlFor="calories">Total calories</label>
+                        <input type="text" className="form-control" value={this.state.calories} onChange={this.handleCaloriesChange} placeholder="Calories" />
                     </div>
                     <div className="form-group">
-                        <label for="servings">Servings</label>
-                        <input type="text" class="form-control" value={this.state.servings} placeholder="Servings" />
+                        <label htmlFor="servings">Servings</label>
+                        <input type="text" className="form-control" value={this.state.servings} onChange={this.handleServingsChange} placeholder="Servings" />
                     </div>
                     <div className="form-group">
-                        <label for="image">Image</label>
-                        <input type="text" class="form-control" value={this.state.image} placeholder="image URL" />
+                        <label htmlFor="image">Image</label>
+                        <input type="text" className="form-control" value={this.state.image} onChange={this.handleImageChange} placeholder="image URL" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         )

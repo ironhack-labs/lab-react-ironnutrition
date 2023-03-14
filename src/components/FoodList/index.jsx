@@ -4,7 +4,7 @@ import FoodBox from '../FoodBox';
 
 
 
-const FoodList = ({foods}) => {
+const FoodList = ({foods, onDeleteFood}) => {
 
 
     return (
@@ -13,7 +13,7 @@ const FoodList = ({foods}) => {
             <div className='RenderFoods'>
             {foods.map((food) => (
                 <FoodBox key={food.name} name={food.name} calories={food.calories} 
-                image={food.image} servings={food.servings}/>)
+                image={food.image} servings={food.servings} onDelete={onDeleteFood}/>)
             )
             }
             </div>

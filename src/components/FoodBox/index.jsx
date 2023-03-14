@@ -1,6 +1,7 @@
 import { Card, Col, Button } from 'antd';
+import DeleteButton from '../DeleteButton';
 
-function FoodBox({name, image, calories, servings}) {
+function FoodBox({name, image, calories, servings, onDelete}) {
 const totalCalories = calories*servings
     
 return (
@@ -13,10 +14,9 @@ return (
         <p>Calories: {calories}</p>
         <p>Servings: {servings}</p>
         <p>
-          {/* <b>Total Calories: FOOD_CALORIES * FOOD_SERVINGS </b> kcal */}
           <b>Total Calories: {totalCalories} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <DeleteButton name={name} onClick={onDelete}/>
       </Card>
     </Col>
   );

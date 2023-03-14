@@ -42,7 +42,11 @@ class App extends React.Component {
       }
     }
   
-  
+    onDeleteFood = (foodToDelete) => {
+      const newFoods = this.state.foods.filter(food => food.name !== foodToDelete)
+      this.setState({ foods: newFoods })
+      console.log(foodToDelete)
+    }
 
 render() {
 
@@ -51,7 +55,7 @@ render() {
 
       <AddFoodForm onSubmitFood={this.onSubmitFood} />
       <Search  search={this.searchResults} onChange={this.onChange}/>
-      <FoodList foods={this.getFilterFood()}/>
+      <FoodList foods={this.getFilterFood()} onDeleteFood={this.onDeleteFood}/>
     </div>
   );
 }

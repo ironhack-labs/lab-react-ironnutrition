@@ -1,21 +1,22 @@
-import Food from "../../foods.json"
-import { FoodList } from "../../components/FoodList"
-import { AddFoodForm } from "../../components/AddFoodForm"
-import { useState } from "react"
+import Food from '../../foods.json';
+import { AddFoodForm } from '../../components/AddFoodForm';
+import { useState } from 'react';
+import './index.css';
+import { Search } from '../../components/Search';
 
 export const Home = () => {
-  const [foodJSON, setFoodJSON] = useState(Food)
+  const [foodJSON, setFoodJSON] = useState(Food);
   const createFood = (newFood) => {
-    setFoodJSON([newFood, ...Food])
-  }
+    setFoodJSON([newFood, ...Food]);
+  };
+
   return (
     <div>
-    <h1>Add Food Entry</h1>
+      <h1>Add Food Entry</h1>
 
-    <AddFoodForm createFood={createFood}/>
+      <AddFoodForm createFood={createFood} />
 
-      <FoodList foods={foodJSON}/>
-
+      <Search foodJSON={foodJSON} />
     </div>
-  )
-}
+  );
+};

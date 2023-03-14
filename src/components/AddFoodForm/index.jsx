@@ -16,7 +16,6 @@ export const AddFoodForm = ({createFood}) => {
     event.preventDefault();
 
     const newFood = { name, image, calories, servings };
-    console.log(newFood);
     createFood(newFood);
   };
 

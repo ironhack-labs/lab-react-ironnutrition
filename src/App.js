@@ -3,11 +3,13 @@ import AddFoodForm from './components/AddFoodForm';
 import FoodList from  './components/FoodList'
 import foodsJSON from './foods.json'
 import React from 'react';
-import Search from 'antd/es/transfer/search';
+import Search from './components/Search';
+
 
 class App extends React.Component {
   state={
-    foods: foodsJSON
+    foods: foodsJSON,
+    searchResults: ''
   }
 
   
@@ -16,11 +18,31 @@ class App extends React.Component {
     const newFood = {
       ...food
     }
-    console.log(newFood)
+
     const newFoods = [newFood, ...foods]
-    console.log(newFoods)
     this.setState({ foods: newFoods })
   }
+
+  onChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value }, () => {
+      this.setState({ searchResults: this.state.search });
+    });
+  }
+
+
+  
+    getFilterFood =() => {
+      const {foods, searchResults} = this.state
+  
+      if (searchResults) {
+          return foods.filter(food => food.name.toLowerCase().includes(searchResults.toLowerCase()))
+      } else {
+          return foods 
+      }
+    }
+  
+  
 
 render() {
 
@@ -28,8 +50,8 @@ render() {
     <div className="App">
 
       <AddFoodForm onSubmitFood={this.onSubmitFood} />
-      <Search />
-      <FoodList foods={this.state.foods}/>
+      <Search  search={this.searchResults} onChange={this.onChange}/>
+      <FoodList foods={this.getFilterFood()}/>
     </div>
   );
 }

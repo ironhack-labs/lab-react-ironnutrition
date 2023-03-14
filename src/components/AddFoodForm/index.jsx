@@ -1,5 +1,8 @@
+
+
 import React from "react";
 import './index.css'
+
 
 const INITIAL_VALUES = {
     name: '',
@@ -10,7 +13,9 @@ const INITIAL_VALUES = {
 
 class AddFoodForm extends React.Component {
     state= {
-        values: {...INITIAL_VALUES}
+        values: {...INITIAL_VALUES},
+
+     
     }
 
     handleOnChange = (event) => {
@@ -35,13 +40,15 @@ class AddFoodForm extends React.Component {
     }
 
 
+
     render() {
     
-    const {values} = this.state
+      const { values} = this.state;
 
     
         return (
             <div className="AddFoodForm">
+            
             <h3>Add a food entry</h3>
           
             <form onSubmit={this.handleOnSubmit}>
@@ -83,6 +90,7 @@ class AddFoodForm extends React.Component {
                 Create
               </button>
             </form>
+
           </div>
         )
     }

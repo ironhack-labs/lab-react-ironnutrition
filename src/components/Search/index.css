@@ -1,0 +1,9 @@
+.Search form {
+  margin: 20px;
+}
+
+.Search form input {
+  border: 1px solid grey;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

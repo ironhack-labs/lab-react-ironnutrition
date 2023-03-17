@@ -1,4 +1,5 @@
-.FoodsList{
-    display: inline-block;
-    position: relative;
+.col{
+    float: left;
+    margin: 6px;
+    
 }

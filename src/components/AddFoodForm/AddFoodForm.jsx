@@ -30,9 +30,10 @@ export default class AddFoodForm extends Component {
 
     onSubmit = (event) => {
         event.preventDefault() //para que no se recargue la página
+        
     
         this.props.onSubmitFood(this.state.values)
-        this.setState({ values: {...INITIAL_VALUES} }) //resetear el formulario
+        this.setState({ values: {...INITIAL_VALUES}, errors: {} }) //resetear el formulario
     }
 
 
@@ -43,7 +44,7 @@ export default class AddFoodForm extends Component {
             
             <div className="AddFoodForm">
                 <h3 className="newFood text-center" >Add Food Entry</h3>
-                <form onSubmit={this.onSubmitFood}>
+                <form onSubmit={this.onSubmit}>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Name</label>
                         <input
@@ -89,3 +90,4 @@ export default class AddFoodForm extends Component {
 
 
 }
+

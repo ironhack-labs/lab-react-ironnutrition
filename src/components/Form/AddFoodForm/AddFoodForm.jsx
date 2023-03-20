@@ -107,7 +107,7 @@ export default class AddFoodForm extends Component {
               name="image"
               id="image"
               type="url"
-              placeholder="http://placeholder.com/foodimage.jpg"
+              placeholder="http://food.com/image.jpg"
               value={values.image}
               error={errors.image}
               onChange={this.onChange}

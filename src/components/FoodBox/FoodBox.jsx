@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import './FoodBox.css';
 
-const FoodBox = ({ name, calories, image, servings }) => {
+const FoodBox = ({ name, calories, image, servings, btnAction }) => {
   return (
     <div className="FoodBox h-100">
       <div className="card" style={{ width: '18rem' }}>
@@ -17,7 +17,11 @@ const FoodBox = ({ name, calories, image, servings }) => {
           <p className="card-text">
             <strong>Total Calories: {calories * servings}</strong> kcal
           </p>
-          <Button color="primary" text="Delete" />
+          <Button
+            onClick={() => btnAction(name)}
+            color="primary"
+            text="Delete"
+          />
         </div>
       </div>
     </div>

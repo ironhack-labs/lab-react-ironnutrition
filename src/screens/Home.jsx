@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import FoodList from '../components/FoodList/FoodList';
 import AddFoodForm from '../components/Form/AddFoodForm/AddFoodForm';
 import FormControl from '../components/Form/FormComponents/FormControl';
@@ -21,10 +20,7 @@ class Home extends Component {
 
   onSubmitFood = (food) => {
     const { foods } = this.state;
-    const newFood = {
-      id: uuidv4(),
-      ...food,
-    };
+    const newFood = { ...food };
 
     const newFoods = [newFood, ...foods];
     this.setState({ foods: newFoods });
@@ -40,6 +36,12 @@ class Home extends Component {
     }
 
     return foods;
+  };
+
+  deleteFood = (name) => {
+    this.setState((prevState) => ({
+      foods: prevState.foods.filter((food) => food.name !== name),
+    }));
   };
 
   render() {
@@ -72,7 +74,10 @@ class Home extends Component {
           <h2>
             <strong>Food List</strong>
           </h2>
-          <FoodList foods={this.handleFoodToRender()} />
+          <FoodList
+            foods={this.handleFoodToRender()}
+            deleteBtn={this.deleteFood}
+          />
         </div>
       </div>
     );

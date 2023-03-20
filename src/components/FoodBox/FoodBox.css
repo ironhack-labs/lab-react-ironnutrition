@@ -1,0 +1,9 @@
+.FoodBox {
+    margin: 20px;
+}
+
+.FoodBox img {
+    height: 100px;
+    width: fit-content;
+    padding-bottom: 10px;
+}

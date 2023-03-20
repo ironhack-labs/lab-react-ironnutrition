@@ -90,7 +90,7 @@ export default class AddFoodForm extends Component {
     const { values, errors } = this.state;
 
     return (
-      <div className="AddPlaceForm">
+      <div className="AddPlaceForm mb-3">
         <form onSubmit={this.onSubmit}>
           <FormControl text="Name" htmlFor="name" error={errors.name}>
             <Input

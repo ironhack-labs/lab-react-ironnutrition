@@ -5,7 +5,9 @@ import foods from './foods.json';
 function App() {
   return (
     <div className="App">
-      <h1>Food List</h1>
+      <h2>
+        <strong>Food List</strong>
+      </h2>
       <FoodList foods={foods} />
     </div>
   );

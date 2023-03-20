@@ -1,14 +1,10 @@
 import './App.css';
-import FoodList from './components/FoodList/FoodList';
-import foods from './foods.json';
+import Home from './screens/Home';
 
 function App() {
   return (
     <div className="App">
-      <h2>
-        <strong>Food List</strong>
-      </h2>
-      <FoodList foods={foods} />
+      <Home />
     </div>
   );
 }

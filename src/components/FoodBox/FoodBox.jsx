@@ -17,7 +17,7 @@ const FoodBox = ({ name, calories, image, servings }) => {
           <p className="card-text">
             <strong>Total Calories: {calories * servings}</strong> kcal
           </p>
-          <Button type="primary" text="Delete" />
+          <Button color="primary" text="Delete" />
         </div>
       </div>
     </div>

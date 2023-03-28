@@ -33,15 +33,19 @@ function App() {
 
       <SearchBar search={search} searchFood={handleSearch} />
 
-      {foodList
-        ?.filter(
-          (food) =>
-            search === undefined ||
-            food.name.toLowerCase().includes(search.toLowerCase())
-        )
-        .map((food, i) => (
-          <FoodBox key={i} food={food} removeFood={handleDelete} />
-        ))}
+      {foodList.length ? (
+        foodList
+          ?.filter(
+            (food) =>
+              search === undefined ||
+              food.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((food, i) => (
+            <FoodBox key={i} food={{ ...food }} removeFood={handleDelete} />
+          ))
+      ) : (
+        <h1>Oops! There is no more content to show</h1>
+      )}
     </div>
   );
 }

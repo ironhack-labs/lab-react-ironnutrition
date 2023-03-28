@@ -25,26 +25,30 @@ function App() {
 
   return (
     <div className="App">
-      {viewForm && <AddFoodForm addFood={handleSubmit} />}
+      <div className="search">
+        {viewForm && <AddFoodForm addFood={handleSubmit} />}
 
-      <Button type="primary" onClick={() => setViewForm(!viewForm)}>
-        {viewForm ? 'Hide Form' : 'Add New Food'}
-      </Button>
+        <Button type="primary" onClick={() => setViewForm(!viewForm)}>
+          {viewForm ? 'Hide Form' : 'Add New Food'}
+        </Button>
 
-      <SearchBar search={search} searchFood={handleSearch} />
+        <SearchBar search={search} searchFood={handleSearch} />
+      </div>
 
       {foodList.length ? (
-        foodList
-          ?.filter(
-            (food) =>
-              search === undefined ||
-              food.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((food, i) => (
-            <FoodBox key={i} food={{ ...food }} removeFood={handleDelete} />
-          ))
+        <div className="cards-container">
+          {foodList
+            ?.filter(
+              (food) =>
+                search === undefined ||
+                food.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((food, i) => (
+              <FoodBox key={i} food={{ ...food }} removeFood={handleDelete} />
+            ))}
+        </div>
       ) : (
-        <h1>Oops! There is no more content to show</h1>
+        <h1 className="oops">Oops! There is no more content to show</h1>
       )}
     </div>
   );

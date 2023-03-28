@@ -7,7 +7,9 @@ const SearchBar = ({ searchFood, search }) => {
 
   return (
     <>
-      <Divider>Search</Divider>
+      <Divider>
+        <h1>Search</h1>
+      </Divider>
 
       <label>Search</label>
       <Input value={search} type="text" onChange={handleSearchFood} />

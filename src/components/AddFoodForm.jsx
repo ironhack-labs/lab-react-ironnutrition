@@ -30,7 +30,9 @@ const AddFoodForm = ({ addFood }) => {
 
   return (
     <form onSubmit={handleAddFood}>
-      <Divider>Add Food Entry</Divider>
+      <Divider>
+        <h1>Add Food Entry</h1>
+      </Divider>
 
       <label>Name</label>
       <Input value={food.name} type="text" id="name" onChange={handleChange} />

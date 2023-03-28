@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Button, Input } from 'antd';
+import { Input } from 'antd';
 
 const emptyForm = {
   name: '',
@@ -59,16 +59,16 @@ export default function AddFoodForm({ addFood }) {
       <label>Name</label>
       <Input value={newFood.name} id="name" type="text" onChange={handleNameChange} />
 
-      <label>Image</label>
+      <label className='mt-3'>Image</label>
       <Input value={newFood.image} id="image" type="text" onChange={handleImageChange} />
 
-      <label>Calories</label>
+      <label className='mt-3'>Calories</label>
       <Input value={newFood.calories} id="calories" type="number" onChange={handleCaloriesChange} />
 
-      <label>Servings</label>
+      <label className='mt-3'>Servings</label>
       <Input value={newFood.servings} id="servings" type="number" onChange={handleServingsChange} />
 
-      <button type="submit" className='btn btn-primary my-4 w-100'>Create</button>
+      <button type="submit" className='btn btn-primary my-3 w-100'>Create</button>
     </form>
   )
 }

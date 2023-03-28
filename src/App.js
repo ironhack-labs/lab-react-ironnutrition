@@ -19,6 +19,10 @@ function App() {
 
   const filteredFood = foodList.filter(elem => elem.name.toLowerCase().includes(search.toLowerCase()));
 
+  const handleDelete = (food) => {
+    setFoodList(prev => [...prev.filter(elem => elem !== food)])
+  }
+
   return (
     <div className="App">
       <Divider>Add Food Entry</Divider>
@@ -29,7 +33,7 @@ function App() {
 
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFood.map((food) => <FoodBox key={food.name} food={food} />)}
+        {filteredFood.map((food) => <FoodBox key={food.name} food={food} onDelete={() => handleDelete(food)} />)}
       </Row>
     </div>
   );

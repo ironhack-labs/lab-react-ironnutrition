@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { Input } from 'antd';
 
 export default function Search({ search, onSearch }) {

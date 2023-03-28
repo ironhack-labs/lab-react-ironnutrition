@@ -17,6 +17,10 @@ function App() {
     setSearch(value);
   };
 
+  const handleDelete = (value) => {
+    setFoodList((prev) => prev.filter((food) => food.name !== value));
+  };
+
   return (
     <div className="App">
       <AddFoodForm addFood={handleSubmit} />
@@ -30,7 +34,7 @@ function App() {
             food.name.toLowerCase().includes(search.toLowerCase())
         )
         .map((food, i) => (
-          <FoodBox key={i} food={food} />
+          <FoodBox key={i} food={food} removeFood={handleDelete} />
         ))}
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from 'antd';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -8,6 +9,7 @@ import './App.css';
 function App() {
   const [foodList, setFoodList] = useState(foods);
   const [search, setSearch] = useState();
+  const [viewForm, setViewForm] = useState(false);
 
   const handleSubmit = (value) => {
     setFoodList((prev) => [value, ...prev]);
@@ -23,7 +25,11 @@ function App() {
 
   return (
     <div className="App">
-      <AddFoodForm addFood={handleSubmit} />
+      {viewForm && <AddFoodForm addFood={handleSubmit} />}
+
+      <Button type="primary" onClick={() => setViewForm(!viewForm)}>
+        {viewForm ? 'Hide Form' : 'Add New Food'}
+      </Button>
 
       <SearchBar search={search} searchFood={handleSearch} />
 

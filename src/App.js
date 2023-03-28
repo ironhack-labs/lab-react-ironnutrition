@@ -10,19 +10,9 @@ function App() {
   return (
     <div className="App">
       <Divider>Food List</Divider>
-      {/* {foodList.map((food) => (
-        <div>
-          <p>{food.name}</p>
-          <img src={food.image} alt={food.name} height={60} />
-        </div>
-      ))} */}
-      <FoodBox food={{
-        name: "Orange",
-        calories: 85,
-        image: "https://i.imgur.com/abKGOcv.jpg",
-        servings: 1
-      }} />
-
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {foodList.map((food) => <FoodBox key={food.name} food={food} />)}
+      </Row>
     </div>
   );
 }

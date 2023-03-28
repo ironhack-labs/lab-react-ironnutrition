@@ -33,7 +33,8 @@ function App() {
 
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFood.map((food) => <FoodBox key={food.name} food={food} onDelete={() => handleDelete(food)} />)}
+        {filteredFood.length === 0 ? <p>Oops! No content to show...</p>
+        : filteredFood.map(food => <FoodBox key={food.name} food={food} onDelete={() => handleDelete(food)} />)}
       </Row>
     </div>
   );

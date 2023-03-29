@@ -21,3 +21,12 @@
 .card {
   padding: 30px;
 }
+
+.cards-plates {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.div-title {
+  width: 100%;
+}

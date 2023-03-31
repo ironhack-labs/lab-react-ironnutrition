@@ -55,7 +55,7 @@ function App() {
     setFoods((prev) => prev.filter(f => f.name.toLowerCase().includes(value.toLowerCase())))
   }
 
-  const handleClick = () => { 
+  const handleClick = () => {
     setViewForm((prev) => !prev)
   }
 
@@ -71,9 +71,15 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        <FoodList foods={foods} onDelete={onDelete} />
-      </Row>
+      {
+        foods.length ? (
+          <Row style={{ width: '100%', justifyContent: 'center' }}>
+            <FoodList foods={foods} onDelete={onDelete} />
+          </Row>
+        ) : (
+          <h1>Ooops</h1>
+        )
+      }
 
     </div>
   );

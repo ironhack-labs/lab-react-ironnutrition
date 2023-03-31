@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Col, Button } from "antd"
 
-export default function FoodCard({ food }) {
+export default function FoodCard({ food, onDelete }) {
   return (
     <Col span={8}>
       <Card
@@ -14,7 +14,7 @@ export default function FoodCard({ food }) {
         <p>
           <b>Total Calories: {food.calories * food.servings}</b> kcal
         </p>
-        <Button type="primary">Delete</Button>
+        <Button onClick={() => onDelete(food.name)} type="primary">Delete</Button>
       </Card>
     </Col>
   )

@@ -4,6 +4,7 @@ import FoodList from './components/Food/FoodList';
 import foodsJson from './foods.json'
 import { Row, Divider, Button } from 'antd'
 import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
 
 const initialFormState = {
   "name": "",
@@ -16,6 +17,8 @@ function App() {
 
   const [foods, setFoods] = useState([]);
   const [form, setForm] = useState(initialFormState)
+  const [search, setSearch] = useState("")
+  const [viewForm, setViewForm] = useState(false)
 
   useEffect(() => {
     setFoods(foodsJson)
@@ -46,9 +49,25 @@ function App() {
     setForm(initialFormState)
   }
 
+  const onSearch = (ev) => {
+    const value = ev.target.value
+    setSearch(value)
+    setFoods((prev) => prev.filter(f => f.name.toLowerCase().includes(value.toLowerCase())))
+  }
+
+  const handleClick = () => { 
+    setViewForm((prev) => !prev)
+  }
+
   return (
     <div className="App">
-      <AddFoodForm form={form} onFormInputChange={onFormInputChange} onSubmit={onSubmit} />
+
+      {
+        viewForm && (<AddFoodForm form={form} onFormInputChange={onFormInputChange} onSubmit={onSubmit} />)
+      }
+      <Button onClick={handleClick}> {viewForm ? "Hide Form" : "Add New Food"} </Button>
+
+      <SearchBar onSearch={onSearch} search={search} />
 
       <Divider>Food List</Divider>
 

@@ -21,9 +21,10 @@ function Foodlist({ foodsData, search }) {
       <h1>Food List</h1>
       <AddFoodForm addFood={addFood} />
       <Row>
-        {foods
+        {!foods.length ? <h1 className='m-3'>Oops! There is no more content to show.</h1> : foods
          .filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
-          .map(food => <FoodBox food={food} onDelete={() => handleOnDelete(food.name)} key={food.name} />)}
+          .map(food => <FoodBox food={food} onDelete={() => handleOnDelete(food.name)} key={food.name} />)
+        }
       </Row>
     </div>
   )

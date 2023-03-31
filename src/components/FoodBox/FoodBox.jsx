@@ -6,7 +6,7 @@ function FoodBox({ food }) {
   const totalCalories = (food.calories) * (food.servings)
 
   return (
-    <Col>
+    <Col span={8}>
       <Card
         title={food.name}
         style={{ width: 230, height: 300, margin: 10 }}

@@ -1,10 +1,10 @@
 import './App.css';
 import Foodlist from './components/Foodlist/Foodlist';
-import foods from "./foods.json";
+import foodsData from "./foods.json";
 
 function App () {
   return <div className="App">
-    <Foodlist foods={foods} />
+    <Foodlist foodsData={foodsData} />
   </div>;
 }
 export default App;

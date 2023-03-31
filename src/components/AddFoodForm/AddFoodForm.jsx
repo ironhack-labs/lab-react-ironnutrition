@@ -12,17 +12,17 @@ function AddFoodForm({ addFood }) {
 
   const [food, setFood] = useState(emptyFood);
 
-  
+
   const handleChange = (event) => {
     const key = event.target.id;
     const value = event.target.value;
-    
+
     setFood({
       ...food,
       [key]: value
     });
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addFood(food);

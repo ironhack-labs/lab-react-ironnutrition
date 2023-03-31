@@ -3,7 +3,7 @@ import { Card, Col, Button } from 'antd'
 
 function FoodBox({ food }) {
 
-  const totalCalories = (food.calories) * (food.servings)
+  const totalCalories = food.calories * food.servings
 
   return (
     <Col span={8}>

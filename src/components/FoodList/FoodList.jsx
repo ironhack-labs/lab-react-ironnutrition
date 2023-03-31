@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FoodBox from '../FoodBox/FoodBox'
 import { Row } from 'antd'
+import AddFoodForm from '../AddFoodForm/AddFoodForm'
 
-function FoodList({ foods }) {
+function FoodList({ allFoods }) {
+
+
+  const [foods, setFoods] = useState(allFoods)
+
+
+  const handleFoodCreated = (name, image, calories, servings) => {
+    setFoods(prev => [...prev, { name, image, calories, servings }]);
+  }
+
   return (
     <div className='mt-3'>
       <h1 className='fw-bold' >Food List</h1>
+      <AddFoodForm onFoodCreated={handleFoodCreated} />
       <Row>{foods.map(food => (<FoodBox food={food} key={food.name} />))}</Row>
     </div>
   )

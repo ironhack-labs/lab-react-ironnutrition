@@ -40,4 +40,9 @@ function AddFoodForm({ onFoodCreated }) {
   );
 }
 
+AddFoodForm.defaultValue = {
+  onFoodCreated: () => {}
+}
+
+
 export default AddFoodForm;

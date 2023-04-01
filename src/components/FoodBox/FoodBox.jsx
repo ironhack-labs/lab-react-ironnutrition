@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card, Col, Button } from 'antd'
 
-function FoodBox({ food }) {
+function FoodBox({ food, onDeleteFood }) {
 
   const totalCalories = food.calories * food.servings
+
+
 
   return (
     <Col span={8}>
@@ -17,10 +19,14 @@ function FoodBox({ food }) {
         <p>
           <b>Total Calories: {totalCalories}</b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={onDeleteFood}> Delete </Button>
       </Card>
     </Col>
   )
+}
+
+FoodBox.defaultValue = {
+  onDeleteFood: () => {}
 }
 
 export default FoodBox

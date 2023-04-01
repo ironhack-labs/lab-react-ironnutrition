@@ -3,7 +3,7 @@ import FoodBox from '../FoodBox/FoodBox'
 import { Row } from 'antd'
 import AddFoodForm from '../AddFoodForm/AddFoodForm'
 
-function FoodList({ allFoods }) {
+function FoodList({ allFoods, search }) {
 
 
   const [foods, setFoods] = useState(allFoods)
@@ -17,7 +17,9 @@ function FoodList({ allFoods }) {
     <div className='mt-3'>
       <h1 className='fw-bold' >Food List</h1>
       <AddFoodForm onFoodCreated={handleFoodCreated} />
-      <Row>{foods.map(food => (<FoodBox food={food} key={food.name} />))}</Row>
+      <Row>{foods
+        .filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
+        .map(food => (<FoodBox food={food} key={food.name} />))}</Row>
     </div>
   )
 }

@@ -27,7 +27,12 @@ function FoodList({ allFoods, search }) {
       <AddFoodForm onFoodCreated={handleFoodCreated} />
       <Row>{foods
         .filter(food => food.name.toLowerCase().includes(search.toLowerCase()))
-        .map(food => (<FoodBox food={food} key={food.name} onDeleteFood={() => handleDeleteFood(food)} />))}</Row>
+        .map(food => (<FoodBox food={food} key={food.name} onDeleteFood={() => handleDeleteFood(food)} />))}
+      </Row>
+      {foods.length === 0 && (<>
+        <p className='App fw-bold'>{foods.length === 0 ? "Opps! There is no more content to show" : ""}</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/43/43533.png" alt="emptySet" style={{ width: 250}} />
+      </>)}
     </div>
   )
 }

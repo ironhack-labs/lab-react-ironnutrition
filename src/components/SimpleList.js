@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import foods from "../foods.json";
 import FoodBox from './FoodBox';
 
 
-function SimpleList() {
-    const [allFoods, setAllFoods] = useState(foods)
-
+function SimpleList({allFoods}) {
 
     return (
         <div className='cards-plates'>

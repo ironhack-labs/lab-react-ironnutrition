@@ -3,6 +3,7 @@ import './App.css';
 import foods from "./foods.json";
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
+import { Row } from 'antd';
 
 
 function App() {
@@ -10,19 +11,11 @@ function App() {
   const [foodList, setFoodList] = useState(foods);
 
   return <div className="App">
-
-    {foodList.map(food => (
-      <div>
-        <p>{food.name}</p>
-        <img src={food.image} alt={food.name} width={80} />
-      </div>
-    ))}
-    <FoodBox food={{
-      name: "Orange",
-      calories: 85,
-      image: "https://i.imgur.com/abKGOcv.jpg",
-      servings: 1
-    }} />
+  <h1>Food List</h1>
+    <Row style={{ justifyContent: 'center', width: '100%' }}>
+      {foodList.map((food) => <FoodBox key={food.name} food={food} />)}
+    </Row>
   </div>
 }
+
 export default App;

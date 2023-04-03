@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Col, Button } from 'antd';
 
-function FoodBox({ food }) {
+function FoodBox({ food, onDeleteClick }) {
+
+  const deleteFood = () => { debugger
+    onDeleteClick(food.name)
+  }
 
   return (
     <Col>
@@ -15,7 +19,7 @@ function FoodBox({ food }) {
         <p>
           <b>Total Calories: {(food.calories*food.servings)} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={deleteFood}> Delete </Button>
       </Card>
     </Col>
   );

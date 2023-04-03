@@ -7,10 +7,16 @@ import AddFoodForm from './AddFoodForm';
 
 function App() {
   const [allFoods, setAllFoods] = useState(foods)
+  const onDeleteClick = (name) => {
+
+    const foodsAfterRemovedOne = allFoods.filter((plate) => plate.name !== name);
+    
+    setAllFoods(foodsAfterRemovedOne)
+  }
 
   return (
     <div>
-      <SimpleList allFoods={allFoods}/>
+      <SimpleList allFoods={allFoods} onDeleteClick={onDeleteClick}/>
       
       <AddFoodForm allFoods={allFoods} setAllFoods={setAllFoods} />
     </div>

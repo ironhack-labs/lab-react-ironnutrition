@@ -6,7 +6,7 @@ function Searchbar({ search, onSearch }) {
     <>
       <Divider>Search</Divider>
 
-      <label>Search</label>
+      <label></label>
       <Input
         placeholder="Your search here"
         value={search}

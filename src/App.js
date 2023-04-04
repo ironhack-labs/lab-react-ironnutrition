@@ -29,6 +29,14 @@ function App() {
     setFoods(filterFood);
   };
 
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const show = showForm ? 'Hide Form' : 'Show Form';
+
   const foodBox = searchList.map((foodItem) => {
     // console.log('FoodBox Food Item', foodItem);
     return (
@@ -40,12 +48,23 @@ function App() {
     <div className="App">
       <Searchbar search={searchTerm} onSearch={handleSearch} />
 
-      <div className="add-form">
-        <AddFoodForm addFood={addFood} />
-      </div>
-      <h1>Food List</h1>
+      <button onClick={toggleForm}>{show}</button>
 
-      <div className="boxes-container ">{foodBox}</div>
+      {showForm && (
+        <div className="add-form">
+          <AddFoodForm addFood={addFood} />
+        </div>
+      )}
+      {food.length === 0 ? (
+        <div>
+          <p>Oops, there is no more content to show!</p>
+        </div>
+      ) : (
+        <div>
+          <h1>Food List</h1>
+          <div className="boxes-container ">{foodBox}</div>
+        </div>
+      )}
     </div>
   );
 }

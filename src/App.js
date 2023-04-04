@@ -24,9 +24,16 @@ function App() {
     foodItem.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const deleteFood = (foodItem) => {
+    const filterFood = food.filter((dish) => dish.name !== foodItem.name);
+    setFoods(filterFood);
+  };
+
   const foodBox = searchList.map((foodItem) => {
     // console.log('FoodBox Food Item', foodItem);
-    return <FoodBox key={foodItem.name} food={foodItem} />;
+    return (
+      <FoodBox key={foodItem.name} food={foodItem} deleteFood={deleteFood} />
+    );
   });
 
   return (
@@ -42,4 +49,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

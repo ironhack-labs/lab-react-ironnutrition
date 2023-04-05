@@ -18,24 +18,21 @@ function App () {
 return(
   <div className="App">
 
-{/* {foodListCopy.map((foodListObj) =>{
+{foodListCopy.map((foodListObj) =>{
   return (
-  <div>
-  <p> {foodListObj.name} </p>
-  <img src={foodListObj.image} width={120} />
-</div>)
-})} */}
+    <FoodBox foodDetails ={foodListObj}/>
+)
+})} 
 
-{/* <FoodBox foodDetails ={foodListCopy}/> */}
+ 
 
-<FoodBox food={ {
+
+{/* <FoodBox food={ {
   name: "Orange",
   calories: 85,
   image: "https://i.imgur.com/abKGOcv.jpg",
   servings: 1
-}} />
-
-
+}} /> */}
 
   </div>
 )

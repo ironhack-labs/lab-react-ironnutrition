@@ -38,7 +38,7 @@ function App() {
     <div className="App">
       {isCreateFoodHidden ? 
         <Button onClick={() => setIsCreateFoodHidden(false)}>Add New Food</Button> 
-      :
+        :
         <div> 
           <h1>Add Food Entry</h1>
           <AddFoodForm addNewFood={addNewFood}/>
@@ -53,16 +53,19 @@ function App() {
       <hr />
 
       <h1>Food List</h1>
-      <div className="food-container">
-        {filteredFoodsArr.map(food => {
+      {foodsArr.length === 0 ? 
+        <h1>Oops! There is no more content to show!</h1> 
+        :
+        <div className="food-container">
+          {filteredFoodsArr.map(food => {
 
-          return(
-            <FoodBox food={ food } key={ food.name } callbackToDeleteFood={deleteFood}/>
-          );
+            return(
+              <FoodBox food={ food } key={ food.name } callbackToDeleteFood={deleteFood}/>
+            );
 
-        })}
-      </div>
-
+          })}
+        </div>
+      }
     </div>
   );
 }

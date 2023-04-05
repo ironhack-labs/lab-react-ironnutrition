@@ -5,10 +5,13 @@ import FoodBox from './components/FoodBox'
 
 function App () {
   const [foodList, setFoodList] = useState(foods);
-    return foodList.map((foods) => (
+  const addFood = (newFood) => {
+    setFoodsArr((prevFoodsArr))
+  }
+    return foodList.map((foodsDetails) => (
       <div>
-<p> {foods.name} </p>
-<img className="foods-image" src={foods.image}/>
+<p> {foodsDetails.name} </p>
+<img className="foods-image" src={foodsDetails.image}/>
 </div>
     ))}
 <FoodBox foods={{

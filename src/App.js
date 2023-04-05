@@ -25,6 +25,11 @@ function App() {
 
   };
 
+  const deleteFood = (foodName) => {
+    const newFoodsArr = foodsArr.filter((food) => foodName !== food.name);
+    setFoodsArr(newFoodsArr);
+  };
+
 
   return (
     <div className="App">
@@ -42,7 +47,7 @@ function App() {
         {filteredFoodsArr.map(food => {
 
           return(
-            <FoodBox food={ food } />
+            <FoodBox food={ food } key={ food.name } callbackToDeleteFood={deleteFood}/>
           );
 
         })}

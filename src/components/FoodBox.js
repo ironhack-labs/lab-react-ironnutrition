@@ -4,6 +4,10 @@ function FoodBox(props) {
   const defaultImage =
     'https://images.unsplash.com/photo-1517765808589-729a992ea0ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
 
+  const handleDelete = () => {
+    props.onDeleteFood(props.food.name);
+  };
+
   return (
     <Col>
       <Card
@@ -17,7 +21,9 @@ function FoodBox(props) {
           <b>Total Calories: {props.food.calories * props.food.servings} </b>{' '}
           kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={handleDelete}>
+          Delete
+        </Button>
       </Card>
     </Col>
   );

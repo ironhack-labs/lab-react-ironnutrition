@@ -13,6 +13,11 @@ function App() {
     setFoodItems([newFood, ...foodItems]);
   };
 
+  const handleDeleteFood = (name) => {
+    const filteredFoods = foodItems.filter((food) => food.name !== name);
+    setFoodItems(filteredFoods);
+  };
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -35,6 +40,7 @@ function App() {
               image: food.image,
               servings: food.servings,
             }}
+            onDeleteFood={handleDeleteFood}
           />
         ))}
       </div>

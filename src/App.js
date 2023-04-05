@@ -8,6 +8,7 @@ import Search from './components/Search';
 
 function App() {
   const [foodList, setFoodList] = useState(foods);
+  const [formOpened, setFormOpened] = useState(true)
   const foodListCopy = [...foodList];
 
   const addFood = (newFood) => {
@@ -25,17 +26,31 @@ function App() {
   };
 
   const deleteFood = (foodName) => {
-    console.log("deleting",foodName)
     const newList = foodList.filter( foodDetails => foodDetails.name !== foodName );
     setFoodList(newList);
+  }
+
+  const changeFormOpen = ()=>{
+    if (formOpened === true){
+      setFormOpened(false)
+    } else {
+      setFormOpened(true)
+    }
+    console.log(formOpened)
   }
 
   return (
     <div className="App">
       <div>
-      <AddFoodForm callbackToAdd={addFood} />
+      <div className='formContainer'>
+
+      {formOpened === true ? <AddFoodForm callbackToAdd={addFood} /> : <></> }
+
+      <Button className='hide' type="primary" onClick={changeFormOpen}> Hide </Button>
       <Search searchFilter={searchFilter} />
       </div>
+      </div>
+      <div>
       {foodListCopy.map((foodListObj) => {
         return (
           <>
@@ -43,6 +58,7 @@ function App() {
           </>
         );
       })}
+      </div>
     </div>
   );
 }

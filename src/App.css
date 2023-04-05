@@ -3,3 +3,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.formContainer{
+  width: 30%;
+}

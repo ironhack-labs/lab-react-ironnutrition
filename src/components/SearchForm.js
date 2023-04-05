@@ -6,7 +6,7 @@ function SearchForm(props) {
   
     return (
       <div>
-        Search :
+        Search a Food : 
         <input onChange={handleChange} type="search" />
       </div>
     );

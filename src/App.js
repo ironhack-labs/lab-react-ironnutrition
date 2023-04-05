@@ -25,6 +25,7 @@ const deleteFood = (foodName) => {
   setFoodsArr(newList);
 }
 
+
 const filteredFoods = foodsArr.filter((food) =>
   food.name.toLowerCase().includes(query.toLowerCase())
 ); 
@@ -33,18 +34,18 @@ const filteredFoods = foodsArr.filter((food) =>
     <div className="App">
    
   <AddFoodForm callbackToAdd={addFood}/>
-
+  <br />
   <SearchForm setQuery={setQuery}/>
 
   <Divider>Food List</Divider>
 
   <Row style={{ width: '100%', justifyContent: 'center' }}>
-
-  {filteredFoods.map((foodObj)=> {
+  {filteredFoods.length === 0 ? <img src="https://cdn.dribbble.com/users/683081/screenshots/2728654/media/7bb2b47d0574d39b20354620e4fa50c8.png?compress=1&resize=400x300&vertical=top" alt="" />
+       :
+  filteredFoods.map((foodObj)=> {
     return(
-      <FoodBox food={foodObj} callbackToDelete={deleteFood} />
-    )
-  })}
+      <FoodBox food={foodObj} callbackToDelete={deleteFood} />)})}
+
       </Row>
   
     

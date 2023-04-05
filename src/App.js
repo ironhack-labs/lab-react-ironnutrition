@@ -1,23 +1,71 @@
-import logo from './logo.svg';
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox";
+import AddFoodForm from "./components/AddFoodForm";
+import Search from "./components/Search";
 import './App.css';
+import { useState, useMemo } from "react";
+import { Button } from "antd";
 
 function App() {
+
+  const [foodsArr, setFoodsArr] = useState([...foods]);
+
+  const [query, setQuery] = useState("");
+
+  const [isCreateFoodHidden, setIsCreateFoodHidden] = useState(true);
+  
+  const filteredFoodsArr = useMemo(() => { 
+    return foodsArr.filter((food) => {
+      return food.name.toLowerCase().includes(query.toLowerCase());
+    })
+  }, [query, foodsArr]);
+
+  const addNewFood = (newFoodObj) => {
+
+    setFoodsArr((prevFoodsArr) =>
+      [newFoodObj, ...prevFoodsArr]
+    );
+
+  };
+
+  const deleteFood = (foodName) => {
+    const newFoodsArr = foodsArr.filter((food) => foodName !== food.name);
+    setFoodsArr(newFoodsArr);
+  };
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isCreateFoodHidden ? 
+        <Button onClick={() => setIsCreateFoodHidden(false)}>Add New Food</Button> 
+        :
+        <div> 
+          <h1>Add Food Entry</h1>
+          <AddFoodForm addNewFood={addNewFood}/>
+          <Button onClick={() => setIsCreateFoodHidden(true)}>Hide Form</Button>
+        </div>}
+      
+      <hr />
+
+      <label>Search:
+        <Search query={query} setQuery={setQuery} />
+      </label>
+      <hr />
+
+      <h1>Food List</h1>
+      {foodsArr.length === 0 ? 
+        <h1>Oops! There is no more content to show!</h1> 
+        :
+        <div className="food-container">
+          {filteredFoodsArr.map(food => {
+
+            return(
+              <FoodBox food={ food } key={ food.name } callbackToDeleteFood={deleteFood}/>
+            );
+
+          })}
+        </div>
+      }
     </div>
   );
 }

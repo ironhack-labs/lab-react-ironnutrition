@@ -5,11 +5,12 @@ import './App.css';
 import { useState } from 'react';
 
 // ANTD IMPORTS
-import { Row, Divider, Button } from 'antd';
+import { Row, Divider } from 'antd';
 
 // COMPONENTS IMPORTS
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
 
@@ -24,17 +25,25 @@ function App() {
     })
   }
 
+  const handleDelete = (foodObjDeleted) => {
+    setFoods((prevFoodsArr) => 
+      prevFoodsArr.filter((foodObj) => foodObj !== foodObjDeleted)
+    );
+  };
+
   return (
     <div className="App">
 
       <AddFoodForm addFood={addFood} />
+
+      <Search foods={foods} setFoods={setFoods} />
 
       <Divider>{"Food List"}</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {foods.map((foodObj) => {
           return (
-            <FoodBox foodObj={foodObj} />
+            <FoodBox key={foodObj.name} foodObj={foodObj} handleDelete={handleDelete} />
           )
         })}
       </Row>

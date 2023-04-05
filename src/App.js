@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+// src/App.js
+import { useState } from 'react';
+import FoodBox from './components/FoodBox';
 import './App.css';
+import foods from './foods.json';
+import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
+// import { Card, Col, Button } from 'antd';
 
 function App() {
+  const [foodsArr, setFoodsArr] = useState(foods);
+  console.log(foods);
+  const addFood = (newFood) => {
+    setFoodsArr((prevFoodsArr) => {
+      const newList = [newFood, ...prevFoodsArr];
+      return newList;
+    });
+  };
+
+  const searchFilter= (searchFood) => {
+    const newList= foodsArr.filter((food) => {
+      return food.name.includes(searchFood) 
+    })
+    setFoodsArr(newList);
+  }
+
+  const deleteFood= (foodName) => {
+    const newList = foodsArr.filter(foodDetails => foodDetails.name !== foodName
+    );
+    setFoodsArr(newList)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search searchFilter={searchFilter}></Search>
+      <AddFoodForm callbackToAdd={addFood} />
+
+      {foodsArr.map((food) => {
+        return <FoodBox key={food.name} food={food} callbackToDelete={deleteFood} />;
+      })}
     </div>
   );
 }
-
 export default App;

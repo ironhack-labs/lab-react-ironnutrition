@@ -9,7 +9,7 @@ import Foodbox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 
-import { Row, Divider } from 'antd';
+import { Row, Divider, Button } from 'antd';
 
 function App() {
   const [foodsArray, setFoodsArray] = useState(foods);
@@ -27,16 +27,18 @@ function App() {
   const searchFood = (searchValue) => {
     setFilterFoodsArray(
       foodsArray.filter((element) =>
-        element.name.toLowerCase().includes(searchValue.target.value.toLowerCase())
+        element.name
+          .toLowerCase()
+          .includes(searchValue.target.value.toLowerCase())
       )
     );
   };
 
   const deleteFood = (value) => {
-    const foodlist = [...foodsArray]
-    foodlist.splice(value, 1)
-    setFoodsArray (foodlist)
-    setFilterFoodsArray (foodlist);
+    const foodlist = [...foodsArray];
+    foodlist.splice(value, 1);
+    setFoodsArray(foodlist);
+    setFilterFoodsArray(foodlist);
   };
 
   return (
@@ -52,9 +54,23 @@ function App() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filterFoodsArray.map((foodObj, index) => {
-          return <Foodbox key={index} keyItem= {index} foodItem={foodObj} callbackToDelete={deleteFood} />;
-        })}
+        {filterFoodsArray.length > 0 ? (
+          filterFoodsArray.map((foodObj, index) => {
+            return (
+              <Foodbox
+                key={index}
+                keyItem={index}
+                foodItem={foodObj}
+                callbackToDelete={deleteFood}
+              />
+            );
+          })
+        ) : (
+          <div>
+            <p>no more content</p>
+            <img src="https://jooinn.com/images/no-more-1.jpg" height={200} />
+          </div>
+        )}
       </Row>
     </div>
   );

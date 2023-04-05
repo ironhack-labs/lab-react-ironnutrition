@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 
 // Iteration 4
 function AddFoodForm(props) {
@@ -45,7 +45,7 @@ function AddFoodForm(props) {
       <label>Servings</label>
       <Input value={servings} type="number" onChange={(e) => {setServings(e.target.value)}} />
 
-      <button type="submit">Create</button>
+      <Button type="submit">Create</Button>
     </form>
   );
 }

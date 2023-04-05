@@ -13,7 +13,7 @@ const FoodBox = (props) => {
                 <p>
                     <b>Total Calories: {props.foodObj.calories * props.foodObj.servings} kcal </b>
                 </p>
-                <Button type="primary"> Delete </Button>
+                <Button type="primary" danger style={{ marginTop: '10px' }}> Delete </Button>
             </Card>
         </Col>
     )

@@ -8,5 +8,13 @@ margin-left: 45vw;
 .form-size {
   width: 400px;
   height: 30px;
-  margin-left: 35vw;
+  margin-left: 36vw;
+}
+
+label {
+  font-weight: bold;
+}
+
+.page-container {
+  background-color: rgb(192, 213, 255);
 }

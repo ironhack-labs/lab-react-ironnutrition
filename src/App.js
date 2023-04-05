@@ -3,7 +3,7 @@ import './App.css';
 import { useState, useMemo } from "react";
 import FoodBox from "./component/FoodBox"
 import AddFoodForm from "./component/AddFoodForm"
-import { Row, Divider, Button } from 'antd';
+import { Row, Divider, Button, Space, Typography  } from 'antd';
 
 function App() {
   const [food, setFood] = useState(foods);
@@ -28,8 +28,8 @@ function App() {
   }
 
   return (
-    <div>
-      <Button onClick={() => setShowForm(!showForm)} className="App form-size" >
+    <div className="page-container">
+      <Button onClick={() => setShowForm(!showForm)} type="primary" className="App form-size" >
         {showForm ? "Hide Form" : "Add New Food"}
       </Button>
       {showForm && <AddFoodForm callbackAdd={addNewFood} className="form-size" />}

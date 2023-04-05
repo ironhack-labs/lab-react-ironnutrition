@@ -14,7 +14,7 @@ function FoodBox(props) {
         <p>
           <b>Total Calories: {props.food.calories * props.food.servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button onClick={() => {props.callbackDelete(props.food.name)}} type="primary"> Delete </Button>
       </Card>
     </Col>
   );

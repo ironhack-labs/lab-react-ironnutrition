@@ -30,12 +30,10 @@ function AddFoodForm(props) {
       } 
 
 
-    
-
-
   return (
+    
     <section>
-    <form>
+    <form className='App'>
       <Divider>Add Food Entry</Divider>
 
       <label>Name</label>
@@ -53,6 +51,7 @@ function AddFoodForm(props) {
       <button onClick={handleSubmit} type="submit">Create</button>
     </form>
     </section>
+    
   );
 }
 

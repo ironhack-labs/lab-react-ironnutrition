@@ -6,7 +6,12 @@ function FoodBox(props) {
      
         <Col>
           <Card title= {props.food.name} style={{ width: 230, height: 300, margin: 10 }} >
+          {props.food.image ? (
             <img src={props.food.image} height={60} alt="food" />
+          ) : (
+            <img src="https://dummyimage.com/60x60/aaaaaa/000000" alt="food" />
+          )}
+
             <p>Calories:{props.food.calories}</p>
             <p>Servings: {props.food.servings}</p>
             <p>

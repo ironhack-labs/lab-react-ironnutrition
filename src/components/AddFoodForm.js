@@ -20,6 +20,8 @@ function AddFoodForm(props) {
             servings: servings,
         }
 
+        props.addFood(newFood);
+
         //clear form
         setName("");
         setImage("");

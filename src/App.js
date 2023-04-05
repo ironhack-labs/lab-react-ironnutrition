@@ -27,11 +27,16 @@ function App() {
   const searchFood = (searchValue) => {
     setFilterFoodsArray(
       foodsArray.filter((element) =>
-        element.name
-          .toLowerCase()
-          .includes(searchValue.target.value.toLowerCase())
+        element.name.toLowerCase().includes(searchValue.target.value.toLowerCase())
       )
     );
+  };
+
+  const deleteFood = (value) => {
+    const foodlist = [...foodsArray]
+    foodlist.splice(value, 1)
+    setFoodsArray (foodlist)
+    setFilterFoodsArray (foodlist);
   };
 
   return (
@@ -48,7 +53,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {filterFoodsArray.map((foodObj, index) => {
-          return <Foodbox key={index} foodItem={foodObj} />;
+          return <Foodbox key={index} keyItem= {index} foodItem={foodObj} callbackToDelete={deleteFood} />;
         })}
       </Row>
     </div>

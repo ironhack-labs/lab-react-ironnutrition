@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import FoodBox from './components/FoodBox';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import foodsFromJson from './foods.json';
 import './App.css';
-import foods from './foods.json';
 
 function App() {
+  const [foodItems, setFoodItems] = useState(foodsFromJson);
+
   return (
     <div>
-      <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      />
+      {foodItems.map((food) => (
+        <FoodBox
+          key={food.name}
+          food={{
+            name: food.name,
+            calories: food.calories,
+            image: food.image,
+            servings: food.servings,
+          }}
+        />
+      ))}
     </div>
   );
 }

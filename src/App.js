@@ -4,12 +4,15 @@ import AddFoodForm from "./components/AddFoodForm";
 import Search from "./components/Search";
 import './App.css';
 import { useState, useMemo } from "react";
+import { Button } from "antd";
 
 function App() {
 
   const [foodsArr, setFoodsArr] = useState([...foods]);
 
   const [query, setQuery] = useState("");
+
+  const [isCreateFoodHidden, setIsCreateFoodHidden] = useState(true);
   
   const filteredFoodsArr = useMemo(() => { 
     return foodsArr.filter((food) => {
@@ -33,8 +36,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Add Food Entry</h1>
-      <AddFoodForm addNewFood={addNewFood}/>
+      {isCreateFoodHidden ? 
+        <Button onClick={() => setIsCreateFoodHidden(false)}>Add New Food</Button> 
+      :
+        <div> 
+          <h1>Add Food Entry</h1>
+          <AddFoodForm addNewFood={addNewFood}/>
+          <Button onClick={() => setIsCreateFoodHidden(true)}>Hide Form</Button>
+        </div>}
+      
       <hr />
 
       <label>Search:

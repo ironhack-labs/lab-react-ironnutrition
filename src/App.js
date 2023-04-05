@@ -2,6 +2,8 @@ import './App.css';
 import { useState } from "react";
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";
+import { Row, Divider, Button } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
 
 
 
@@ -9,23 +11,26 @@ import FoodBox from "./components/FoodBox";
 function App() {
  const [foodsArr, setFoodsArr]= useState(foods);
 
+ const addFood = (newFood) => {
+  setFoodsArr( (prevFoodsArr) => {
+    const newList = [newFood, ...prevFoodsArr];
+    return newList;
+  });
+}
+
+
 
   return (
     <div className="App">
-    {foodsArr.map((foodObj)=> {
- return (
-  <div>
+   
+  <AddFoodForm callbackToAdd={addFood}/>
 
-  <FoodBox food={foodObj} />
+  <Divider>Food List</Divider>
 
-  </div>
- 
+  <Row style={{ width: '100%', justifyContent: 'center' }}>
 
-
- );
-
-
-    })}
+  <FoodBox foodsArr={foodsArr} />
+      </Row>
   
     
     </div> 

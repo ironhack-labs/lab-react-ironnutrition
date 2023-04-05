@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './App.css';
 import foods from "./foods.json";
+import Foodbox from "./component/FoodBox";
 
 function App() {
 
@@ -9,13 +10,8 @@ function App() {
 
   return (
     <div className="App">
-      {foodsArr.map((foodsDetails) => {
-        return (
-          <div>
-            <p> {foodsDetails.name} </p>
-            <img src={foodsDetails.image} />
-          </div>
-        )
+      {foodsArr.map((foodsDetails, index) => {
+        return <Foodbox foodsDetails={foodsDetails} key={index} />
       })
       }
     </div>

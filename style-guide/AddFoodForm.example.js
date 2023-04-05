@@ -13,13 +13,22 @@ function AddFoodForm(props) {
       <label>Name</label>
       <Input value={undefined} type="text" onChange={() => {}} />
 
-      <label>Image</label>
+      <label>
+        Image
+        <Input value={undefined} type="text" onChange={() => {}} />
+      </label>
       {/* render antd <Input /> type="text" here */}
 
-      <label>Calories</label>
+      <label>
+        Calories
+        <Input value={undefined} type="text" onChange={() => {}} />
+      </label>
       {/* render antd <Input /> type="number" here */}
 
-      <label>Servings</label>
+      <label>
+        Servings
+        <Input value={undefined} type="text" onChange={() => {}} />
+      </label>
       {/* render antd <Input /> type="number" here */}
 
       <button type="submit">Create</button>

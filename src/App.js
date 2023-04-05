@@ -1,20 +1,37 @@
 import { useState } from 'react';
 import './App.css';
 import foods from './foods.json';
+import FoodBox from './components/FoodBox'
+import AddFood from './components/AddFoodForm'
+import Search from './components/Search'
 
 import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
+
 function App() {
-let foodsFromJson= foods;
-const [foodArr, setFoodArr] = useState(foodsFromJson);
+const [foodArr, setFoodArr] = useState(foods);
+
+
+  const addFood = (newFood) => {
+    setFoodArr((prevFoodArr) => {
+      const newList = [newFood, ...prevFoodArr];
+      return newList;
+    });
+  };
+  
+    const deleteFood = (foodName) => {
+      const newList = foodArr.filter(
+        (foodDetails) => foodDetails.name !== foodName
+      );
+      setFoodArr(newList);
+    };
 
 return (
-  <div>
+  <div className="App">
+
+    <AddFood callbackToAdd={addFood} />
     {foodArr.map((food) => (
-      <div key={food.id}>
-        <p>{food.name}</p>
-        <img src={food.image} width={200} alt={food.name} />
-      </div>
+      <FoodBox food={food} callbackToDelete={deleteFood} />
     ))}
   </div>
 );

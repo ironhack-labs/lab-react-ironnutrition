@@ -11,7 +11,7 @@ const FoodBox = ({ food }) => {
             <p>
                <b>Total Calories: {food.calories * food.servings} </b> kcal
            </p>
-           <Button > <button onClick={() => {food.callbackToDelete(food.food.name)}}> Delete</button> </Button>
+           <button onClick={() => food.deleteFood(food.name)}>Delete</button>
       </Card>
     </Col>
     );

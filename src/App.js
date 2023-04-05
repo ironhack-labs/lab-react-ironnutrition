@@ -35,11 +35,11 @@ function App() {
   <div className="App">
     <h1>Food List</h1>
     <br />
-   
+    <SearchForm setQuery={setQuery} />
 
     <AddFoodForm addFood={addFood} />
 
-    <SearchForm setQuery={setQuery} />
+    
 
     <Row>
       {filteredFoods.map((foodObj) => {

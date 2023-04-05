@@ -4,45 +4,63 @@ import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import { useState } from 'react';
 import AddFoodForm from './components/AddFoodForm';
+import SearchForm from './components/SearchForm';
 
 
 
 function App() {
   const [listFoods, setListFoods] = useState(foods);
-  console.log(foods)
+  const [query, setQuery] =useState("")
 
+  const deleteFood = (foodName) =>{
+  const newFoodList = listFoods.filter((
+    food)=> food.name !== foodName);
+    setListFoods(newFoodList);
+}
 
   const addFood = (newFood) => {
     setListFoods(prevFood => [newFood, ...prevFood])
-    console.log(newFood);
-  };
+ };
+  
+
+ const filteredFoods = listFoods.filter((food) =>
+ food.name.toLowerCase().includes(query.toLowerCase()
+ )
+ );
   
  
-  return (
-    <div className="App">
-      <h1>Food List</h1>
 
-      <AddFoodForm addFood={addFood} />
-      <Row>  
 
-      {listFoods.map((food) => {
+ return (
+  <div className="App">
+    <h1>Food List</h1>
+    <br />
+   
+
+    <AddFoodForm addFood={addFood} />
+
+    <SearchForm setQuery={setQuery} />
+
+    <Row>
+      {filteredFoods.map((foodObj) => {
         return (
-          
           <FoodBox
+            key={foodObj.name}
             food={{
-          name: food.name,
-          calories: food.calories,
-
-          image: food.image,
-          servings: food.servings,
-        }}   
-      />
-      
+              name: foodObj.name,
+              calories: foodObj.calories,
+              image: foodObj.image,
+              servings: foodObj.servings,
+              deleteFood: (foodName) => {
+      deleteFood(foodName);
+    },
+  }}
+/>
         );
       })}
-      </Row> 
-     </div>
-  );
-}
+    </Row>
+  </div>
+);
+};
 
 export default App;

@@ -15,14 +15,8 @@ function App() {
     {foodsArr.map((foodObj)=> {
  return (
   <div>
-  <p>{foodObj.name}</p> 
-  <img src={foodObj.image}  alt={foodObj.name}/>
-  <FoodBox food={ {
-  name: "Orange",
-  calories: 85,
-  image: "https://i.imgur.com/abKGOcv.jpg",
-  servings: 1
-}} />
+
+  <FoodBox food={foodObj} />
 
   </div>
  

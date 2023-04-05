@@ -7,7 +7,8 @@ import { Row, Divider, Button } from 'antd';
 
 function App() {
   const [food, setFood] = useState(foods);
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('');
+  const [showForm, setShowForm] = useState(true);
 
   const filteredFood = useMemo (()=>{
     return food.filter((element) =>{
@@ -28,7 +29,10 @@ function App() {
 
   return (
     <div>
-      <AddFoodForm callbackAdd={addNewFood} />
+      <Button onClick={() => setShowForm(!showForm)} className="App form-size" >
+        {showForm ? "Hide Form" : "Add New Food"}
+      </Button>
+      {showForm && <AddFoodForm callbackAdd={addNewFood} className="form-size" />}
       <Divider>Search</Divider>
       <input type= "search" value={query} onChange={e => setQuery(e.target.value)} className="App form-size" />
       <Divider>Food List</Divider>
@@ -38,8 +42,8 @@ function App() {
         <Row style={{ width: '100%', justifyContent: 'center' }}>
       {filteredFood.map((element, index) => {
         return (
-          <div className="App">
-            <FoodBox key={index} food={element} callbackDelete={deleteFood} />
+          <div  key={index} className="App">
+            <FoodBox food={element} callbackDelete={deleteFood} />
           </div>
         );
       })}

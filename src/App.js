@@ -4,16 +4,16 @@ import './App.css';
 // ANTD IMPORTS
 import { Row, Divider, Button } from 'antd';
 
+// COMPONENTS IMPORTS
+import FoodBox from './components/FoodBox';
+
 function App() {
   return (
     <div className="App">
       <Divider>Food List</Divider>
       {foods.map((foodObj) => {
         return (
-          <div>
-            <p>{foodObj.name}</p>
-            <img src={foodObj.image} alt={foodObj.name} width={100} />
-          </div>
+          <FoodBox foodObj={foodObj} />
         )
       })}
     </div>

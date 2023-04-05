@@ -10,7 +10,8 @@ import { Card, Row, Col, Divider, Input, Button } from 'antd';
 
 function App() {
 const [foodArr, setFoodArr] = useState(foods);
-
+const [query, setQuery] = useState('');
+const [showForm, setShowForm] = useState(true);
 
   const addFood = (newFood) => {
     setFoodArr((prevFoodArr) => {
@@ -26,13 +27,25 @@ const [foodArr, setFoodArr] = useState(foods);
       setFoodArr(newList);
     };
 
+    const filteredFoods = foodArr.filter((food) =>
+      food.name.toLowerCase().includes(query.toLowerCase())
+    ); 
+
+      
+      const toggleForm = () => {setShowForm(!showForm)};
+
 return (
   <div className="App">
+    <Search setQuery={setQuery} />
 
-    <AddFood callbackToAdd={addFood} />
-    {foodArr.map((food) => (
-      <FoodBox food={food} callbackToDelete={deleteFood} />
-    ))}
+    <button onClick={toggleForm}>
+      {showForm ? 'Hide Form' : 'Add new form'}
+    </button>
+    {showForm && ( 
+    <AddFood callbackToAdd={addFood} />)}
+    {filteredFoods.map((foodObj) => {
+      return <FoodBox food={foodObj} callbackToDelete={deleteFood} />;
+    })}
   </div>
 );
     }

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Searchbar from './components/Searchbar';
+import { Button } from 'antd';
 
 function App() {
   const [food, setFoods] = useState([...foods]);
@@ -48,7 +49,10 @@ function App() {
     <div className="App">
       <Searchbar search={searchTerm} onSearch={handleSearch} />
 
-      <button onClick={toggleForm}>{show}</button>
+      <Button type="primary" className="btn-show" onClick={toggleForm}>
+        {' '}
+        {show}{' '}
+      </Button>
 
       {showForm && (
         <div className="add-form">

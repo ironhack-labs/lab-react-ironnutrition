@@ -1,4 +1,4 @@
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 import { useState } from 'react';
 
 // Iteration 4
@@ -57,7 +57,10 @@ const AddFoodForm = ({ addFood }) => {
         type="number"
         onChange={(e) => setServings(e.target.value)}
       />
-      <button type="submit">Create</button>
+      <Button className="btn-show" type="primary" htmlType="submit">
+        {' '}
+        Create{' '}
+      </Button>
     </form>
   );
 };

@@ -42,6 +42,15 @@
   width: 50%;
 }
 
+.add-form label {
+  display: block;
+  margin: 10px 0;
+}
+
+.btn-show {
+  margin: 20px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

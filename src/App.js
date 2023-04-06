@@ -11,6 +11,8 @@ function App() {
 
   const [foodArr, setFoodArr] = useState(foods);
   const [searchFood, setSearchFood] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  
 
   const addFood = (newFood) => {
     setFoodArr( (prevFoodArr) => {
@@ -31,14 +33,29 @@ function App() {
     const newFoodList = foodArr.filter( food => food.name !== name);
     setFoodArr(newFoodList);
   };
+
+  const toggleShowForm = () => {
+    setShowForm((prevShowForm) => !prevShowForm);
+  };
  
   return (
     <div className="App">
-      <Divider>Food List</Divider>
-      <AddFoodForm addFood={addFood}/>
+      {showForm && <AddFoodForm addFood={addFood} />}
+      <Button onClick={toggleShowForm}>
+        {showForm ? 'Hide Form' : 'Add New Food'}
+      </Button>
+
       <SearchBar searchFood={searchFood} foodSearch={foodSearch} />
+
+      <Divider>Food List</Divider>
+
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFoodItems.map((food) => <FoodBox key={food.name} food={food} callBackToDelete={deleteFood} />)}
+        {filteredFoodItems.length > 0 ? (filteredFoodItems.map((food) => (
+          <FoodBox key={food.name} food={food} callBackToDelete={deleteFood} />
+        ))
+        ) : (
+          <p>Oops! There is no more Content to show!</p>
+        )}
       </Row>
       
     </div>

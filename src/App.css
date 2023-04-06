@@ -1,3 +1,57 @@
+body {
+  background-color: #f0f2f5;
+  font-family: 'Roboto', sans-serif;
+}
+
 .App {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
   text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.ant-btn {
+  margin-top: 10px;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  color: #fff;
+}
+
+.ant-btn-primary {
+  margin-bottom: 20px;
+}
+
+.ant-input {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ant-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ant-card-title {
+  font-weight: bold;
 }

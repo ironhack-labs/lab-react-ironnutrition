@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import foodsDB from './foods.json';
+import FoodBox from './components/FoodBox';
 
 function App() {
-
-  const [foods, setFoods] = useState(foodsDB);
+  //const [foods, setFoods] = useState(foodsDB);
 
   return (
     <div className="App">
-      {foods.map((food) => (
-        <div>
-          <p>{food.name}</p>
-          <img src={food.image} alt={`${food.name} img`} width={100} />
-        </div>
-      ))}
+      {/* {foods.map((food) => ( />
+      ))} */}
+      <FoodBox
+        food={{
+          name: 'Orange',
+          calories: 85,
+          image: 'https://i.imgur.com/abKGOcv.jpg',
+          servings: 1,
+        }}
+      />
     </div>
   );
 }

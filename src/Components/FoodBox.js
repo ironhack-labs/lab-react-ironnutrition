@@ -8,6 +8,8 @@ function FoodBox(food) {
     console.log(foodArray); // Food Array is the filtered foods coming through during Search
     console.log(modifiedFoodArr); //modified Food Arr is the entire collection post addition / deletion
 
+    //Currently used food name as key with the assumption that the names will be unique. Ideally, a unique id generator would be better to use.
+
     if (modifiedFoodArr.length === foodArray.length && modifiedFoodArr.length > 0 && foodArray.length>0) {
         return (
             <div className="gridDiv">

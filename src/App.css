@@ -32,7 +32,30 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+form {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.card-container {
+  display: flex;
+}
+
+.search-bar {
+  width: 400px;
+  margin: 0 auto 50px auto;
+}
+
+div .foods-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

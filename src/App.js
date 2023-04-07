@@ -22,8 +22,13 @@ function App() {
     food.name.toLowerCase().includes(searchTerm.toLowerCase())
   ))
 
+  const handleDelete = (foodDelete) => {
+    const newFoods = foods.filter((food) => food !== foodDelete);
+    setFoods(newFoods)
+  }
+
   return (
-    <div className="App font-[Montserrat] bg-gray-800 text-white p-8">
+    <div className="App font-[Montserrat] bg-gray-800 text-white p-8 min-h-screen">
 
       <h1 className="text-5xl font-black text-center">Food List</h1>
 
@@ -42,7 +47,7 @@ function App() {
           {filteredFood.map((food) => (
             <div key={food.name}>
               <div className="hover:scale-110 transition-all duration-300 ease-in-out hover:bg-white hover:bg-opacity-10 hover:shadow-lg hover:shadow-gray-600 my-10">
-                <FoodBox food={food} />
+                <FoodBox food={food} handleDelete={handleDelete} />
               </div>
             </div>
           ))}

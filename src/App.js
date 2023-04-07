@@ -1,4 +1,4 @@
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Row, Divider, Input } from 'antd';
 import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
@@ -12,22 +12,18 @@ function App() {
       <Divider>
         <h2>Food List</h2>
       </Divider>
-      {food.map(({ name, image }) => {
+      {food.map(({ name, image, calories, servings }) => {
         return (
-          <div key={name}>
-            <p> {name} </p>
-            <img src={image} alt={name} width="100px" />
-          </div>
+          <Row style={{ width: '100%', justifyContent: 'center' }}>
+            <FoodBox
+              name={name}
+              calories={calories}
+              image={image}
+              servings={servings}
+            />
+          </Row>
         );
       })}
-      <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      />
     </div>
   );
 }

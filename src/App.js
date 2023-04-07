@@ -16,13 +16,17 @@ function App() {
     setSearch(inputText);
   }
 
+  const handleOnDeleteClicked = (name) => {
+    setFoods(foods.filter((food) => food.name !== name))
+  }
+
   return (
     <div>
       <Search onSearchTextAdded={handleTextRecived}/>
       <AddFoodForm onFoodAdded={handleOnFoodAdded}/>
       <div className="App d-flex flex-wrap">
         {foods.filter((food) => food.name.toLowerCase().includes(search.toLowerCase())).map((food) => (
-          <FoodBox key={food.name} food={food} />
+          <FoodBox key={food.name} food={food} onDeleteClicked={handleOnDeleteClicked}  />
         ))}
       </div>
     </div>

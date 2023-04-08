@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import './App.css';
-import food from "./foods.json";
+import food from './foods.json';
+import FoodBox from './FoodBox';
 
-function App () {
-  const [foods, setFoods] = useState(food)
+import { Row, Divider, Button } from 'antd';
+
+function App() {
+  const [foods, setFoods] = useState(food);
 
   return (
-      <div className="App">
+    <div className="App">
+    <h2>Food List</h2>
+      <Row style={{width: '100%', justifyContent: "center" }}>
         {foods.map(food => {
           return (
-            <div>
-              <p> {food.name} </p>
-              <img src={food.image} alt="" width={100} />
-            </div>  
+            <FoodBox food={food}/>
           )
         })}
-      </div>
-    )
+      </Row>
+    </div>
+  );
 }
 export default App;

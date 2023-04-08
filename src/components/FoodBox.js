@@ -10,6 +10,7 @@ function FoodBox(props) {
   }
 
   return (
+    
     <Col>
       <Card
         title={food.name}

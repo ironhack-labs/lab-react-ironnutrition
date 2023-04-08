@@ -1,11 +1,12 @@
 import './App.css';
 import { useState } from 'react';
 import food from './foods.json';
-import FoodBox from './components/FoodBox';
+import FoodSection from './components/FoodSection';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
+import NoContent from './components/NoContent';
 
-import { Row, Divider, Button } from 'antd';
+import { Divider, Button } from 'antd';
 
 function App() {
   const [foods, setFoods] = useState(food);
@@ -29,19 +30,16 @@ function App() {
       {!formHidden && <AddFoodForm foods={foods} setFoods={setFoods} />}
 
       <Button id="formButton" onClick={toggleForm}>{formHidden ? "Add New Food" : "Hide Form" } </Button>
-
+      
       <Search
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-
+      
       <Divider>Food List</Divider>
 
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFood.map((food) => {
-          return <FoodBox food={food} foods={foods} setFoods={setFoods}/>;
-        })}
-      </Row>
+      {foods.length === 0 ? <NoContent /> : <FoodSection filteredFood={filteredFood} food={food} foods={foods} setFoods={setFoods}/>}
+      
     </div>
   );
 }

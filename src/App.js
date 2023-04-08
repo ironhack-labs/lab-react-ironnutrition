@@ -34,7 +34,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {filteredFood.map((food) => {
-          return <FoodBox food={food} />;
+          return <FoodBox food={food} foods={foods} setFoods={setFoods}/>;
         })}
       </Row>
     </div>

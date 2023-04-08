@@ -8,9 +8,13 @@ import './App.css';
 function App() {
   const [food, setFood] = useState(foods);
 
+  const addFood = (newFood) => {
+    setFood([newFood, ...food]);
+  };
+
   return (
     <div className="App">
-      <AddFoodForm />
+      <AddFoodForm addFood={addFood} />
       <Divider>
         <h2>Food List</h2>
       </Divider>

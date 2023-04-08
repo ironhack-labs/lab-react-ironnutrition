@@ -51,3 +51,8 @@ input[type="number"], input::-webkit-outer-spin-button, input::-webkit-inner-spi
 form > button {
   padding: 5px;
 }
+
+#search {
+  margin: 20px;
+  text-align: start;
+}

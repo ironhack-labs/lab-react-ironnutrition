@@ -40,6 +40,7 @@
 form {
   text-align: start;
   margin: 20px;
+  margin-bottom: 0;
 }
 
 input[type="number"], input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -55,4 +56,9 @@ form > button {
 #search {
   margin: 20px;
   text-align: start;
+}
+
+#formButton {
+  text-align: start;
+  margin: 20px;
 }

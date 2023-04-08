@@ -10,6 +10,7 @@ import { Row, Divider, Button } from 'antd';
 function App() {
   const [foods, setFoods] = useState(food);
   const [searchQuery, setSearchQuery] = useState('');
+  const [formHidden, setFormHidden] = useState(false)
 
   const filteredFood = foods.filter((element) => {
     if (searchQuery === "") {
@@ -19,11 +20,15 @@ function App() {
     return element.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
+  function toggleForm() {
+    setFormHidden(!formHidden)
+  }
+
   return (
     <div className="App">
-      <AddFoodForm foods={foods} setFoods={setFoods} />
+      {!formHidden && <AddFoodForm foods={foods} setFoods={setFoods} />}
 
-      <Button> Hide Form / Add New Food </Button>
+      <Button id="formButton" onClick={toggleForm}>{formHidden ? "Add New Food" : "Hide Form" } </Button>
 
       <Search
         searchQuery={searchQuery}

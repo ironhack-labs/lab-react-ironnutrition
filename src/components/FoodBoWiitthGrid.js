@@ -3,12 +3,19 @@
 // and content that the component should render.
 // Remember to import Ant Design components before using them.
 import { Card, Col, Button } from 'antd';
+import styled from 'styled-components';
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+`;
 
 // Iteration 2
 function FoodBox({foodNames}) {
     console.log('FoodBox ', foodNames)
   return (
-    <Col>
+    <Grid>
     
     {foodNames.map((food)=> (
       <Card
@@ -25,7 +32,7 @@ function FoodBox({foodNames}) {
       </Card>
       ))}
    
-    </Col>
+    </Grid>
   );
 }
 

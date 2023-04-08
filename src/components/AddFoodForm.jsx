@@ -24,42 +24,52 @@ function AddFoodForm({ addFood }) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    console.log('hola');
     addFood(food);
     setFood(empty);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Divider>Add Foos Entry</Divider>
+      <Divider>Add Foods Entry</Divider>
 
-      <label>Name</label>
-      <Input value={food.name} type="text" onChange={handleChange} id="name" />
-
-      <label>Image</label>
-      <Input
-        value={food.image}
-        type="text"
-        onChange={handleChange}
-        id="image"
-      />
-
-      <label>Calories</label>
-      <Input
-        value={food.calories}
-        type="number"
-        onChange={handleChange}
-        id="calories"
-      />
-
-      <label>Servings</label>
-      <Input
-        value={food.servings}
-        type="number"
-        onChange={handleChange}
-        id="servings"
-      />
-
-      <button type="submit">Create</button>
+      <div className="ms-5 w-25 d-flex flex-column justify-content-center">
+        <label className="form-label">Name</label>
+        <Input
+          className="form-control"
+          value={food.name}
+          type="text"
+          onChange={handleChange}
+          id="name"
+        />
+        <label className="form-label">Image</label>
+        <Input
+          className="form-control"
+          value={food.image}
+          type="text"
+          onChange={handleChange}
+          id="image"
+        />
+        <label className="form-label">Calories</label>
+        <Input
+          className="form-control"
+          value={food.calories}
+          type="number"
+          onChange={handleChange}
+          id="calories"
+        />
+        <label className="form-label">Servings</label>
+        <Input
+          className="form-control"
+          value={food.servings}
+          type="number"
+          onChange={handleChange}
+          id="servings"
+        />
+        <button className="btn btn-success mt-3 mb-5 w-25" type="submit">
+          Create
+        </button>
+      </div>
     </form>
   );
 }

@@ -1,12 +1,12 @@
 // src/App.js
 import './App.css';
-import foods from './foods.json';
-import FoodList from './components/FoodList'
+import dataFoods from './foods.json';
+import FoodList from './components/FoodList';
 
 function App() {
   return (
     <div className="App">
-      <FoodList foods={foods} />
+      <FoodList allFoods={dataFoods} />
     </div>
   );
 }

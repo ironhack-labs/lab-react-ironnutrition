@@ -33,16 +33,11 @@ const AddFoodForm = ({ name, image, calories, servings, addFood }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const FoodName = newFoodName;
-    const Calories = newCalories;
-    const FoodImage = newFoodImage;
-    const Servings = newServings;
-
     addFood({
-      name: FoodName,
-      calories: Calories,
-      image: FoodImage,
-      servings: Servings,
+      name: newFoodName,
+      calories: newCalories,
+      image: newFoodImage,
+      servings: newServings,
     });
   };
 

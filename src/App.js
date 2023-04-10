@@ -1,4 +1,4 @@
-import { Row, Divider } from 'antd';
+import { Row, Divider, Col } from 'antd';
 import foods from './foods.json';
 import { useState } from 'react';
 import Search from './components/Search';
@@ -26,6 +26,14 @@ function App() {
     }
   };
 
+  const deleteFood = (name) => {
+    const deleteFood = [...filteredFood].filter((food) => {
+      return food.name !== name;
+    });
+
+    setFilteredFood(deleteFood);
+  };
+
   return (
     <div className="App">
       <AddFoodForm addFood={addFood} />
@@ -35,14 +43,21 @@ function App() {
       </Divider>
       {filteredFood.map(({ name, image, calories, servings }) => {
         return (
-          <Row style={{ width: '100%', justifyContent: 'center' }}>
+          <Row
+            key={name}
+            gutter={[16, 16]}
+            style={{
+              width: '100%',
+              justifyContent: 'center',
+            }}
+          >
             <FoodBox
-              key={name}
               refreshFoodList={refreshFoodList}
               name={name}
               calories={calories}
               image={image}
               servings={servings}
+              deleteFood={deleteFood}
             />
           </Row>
         );

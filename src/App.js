@@ -10,6 +10,7 @@ function App() {
 
   const [foods, setFoods] = useState(foodsJson)
   const [filteredFoods, setFilteredFoods] = useState(foodsJson)
+  const [displayForm, setDisplayForm] = useState(true)
 
   const AddFood = newFood => {
     setFoods([...foods, newFood])
@@ -32,12 +33,17 @@ function App() {
     setFilteredFoods(newFoods)
   }
 
+
   return (
     <div className="App">
       
-      <AddFoodForm AddFood={AddFood} />
-
-      <Button> Hide Form / Add New Food </Button>
+      { displayForm ?
+        <AddFoodForm AddFood={AddFood} />
+        : <></>
+      }
+      <Button onClick={(() => setDisplayForm(!displayForm))}> 
+        {displayForm? <>Hide Form</> : <>Add New Food</> }
+      </Button>
 
       <Search resultsSearch={resultsSearch} />
 
@@ -56,9 +62,16 @@ function App() {
         } */}
         
         <Row style={{ width: '100%', justifyContent: 'center' }}>
-          {filteredFoods.map(food => {
-            return <FoodBox key={food.name} food={food} deleteFood={deleteFood}/>
-          })}
+          {
+            filteredFoods.length === 0?
+            <h3>Oops! There is no more content to show</h3>
+            : 
+            <>
+              {filteredFoods.map(food => {
+                return <FoodBox key={food.name} food={food} deleteFood={deleteFood}/>
+              })}
+            </>
+          }
         </Row>
 
       </div>

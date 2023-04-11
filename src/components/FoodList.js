@@ -3,12 +3,16 @@ import FoodBox from './FoodBox';
 import { Row } from 'antd';
 import AddFoodForm from './AddFoodForm';
 
-function FoodList({ allFoods }) {
+function FoodList({ allFoods, search }) {
   const [foods, setFoods] = useState(allFoods);
 
   const handleAddFood = (newFood) => {
     setFoods([newFood, ...foods]);
   };
+
+   const handleOnDelete = (name) => { 
+    setFoods((prev) => prev.filter(food => food.name !== name))
+  }
 
   return (
     <div className="container">
@@ -16,7 +20,7 @@ function FoodList({ allFoods }) {
       <AddFoodForm addFood={handleAddFood} />
       <Row>
         {foods.map((food) => (
-          <FoodBox key={food.name} food={food} />
+          <FoodBox key={food.name} food={food} onDelete={()=> handleOnDelete(food.name)} />
         ))}
       </Row>
     </div>

@@ -9,9 +9,27 @@ import Search from './components/Search'
 function App() {
 
   const [foods, setFoods] = useState(foodsJson)
+  const [filteredFoods, setFilteredFoods] = useState(foodsJson)
 
   const AddFood = newFood => {
     setFoods([...foods, newFood])
+  }
+
+  const resultsSearch = wordToSearch => {
+    if(wordToSearch === "") setFilteredFoods(foods)
+    else {
+      const filteredFoods = foods.filter(food => {
+        return food.name.toLowerCase().includes(wordToSearch.toLowerCase())
+      })
+      setFilteredFoods(filteredFoods)
+    }
+  }
+
+  const deleteFood = name => {
+    const newFoods = filteredFoods.filter(food => {
+      return food.name !== name
+    })
+    setFilteredFoods(newFoods)
   }
 
   return (
@@ -21,7 +39,7 @@ function App() {
 
       <Button> Hide Form / Add New Food </Button>
 
-      <Search />
+      <Search resultsSearch={resultsSearch} />
 
       <Divider>Food List</Divider>
 
@@ -38,8 +56,8 @@ function App() {
         } */}
         
         <Row style={{ width: '100%', justifyContent: 'center' }}>
-          {foods.map(food => {
-            return <FoodBox key={food.name} food={food} />
+          {filteredFoods.map(food => {
+            return <FoodBox key={food.name} food={food} deleteFood={deleteFood}/>
           })}
         </Row>
 

@@ -12,6 +12,7 @@ function FoodBox({foodNames}) {
     
     {foodNames.map((food)=> (
       <Card
+        key={food.name}
         title={food.name}
         style={{ width: 230, height: 300, margin: 10 }}
       >

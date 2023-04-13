@@ -8,7 +8,7 @@ const AddFoodForm = ({foodNames, addFood}) => {
   const [calories, setCalories] = useState(0);
   const [servings, setServings] = useState(0);
 
-  console.log('addFood: ', foodNames)
+ /* console.log('addFood: ', foodNames) */
 
   const handleSubmit = e => {
     e.preventDefault()

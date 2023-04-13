@@ -15,6 +15,17 @@ function App() {
     setFoodNames([...foodNames, newFood])
   }
 
+  const deleteFood = name => {
+    console.log('name ', name)
+    const newFoodArr = foodNames.filter(food => {
+      console.log('food.name ', food.name)
+      return food.name !== name
+    })
+    setFilteredFoodNames(newFoodArr)
+    console.log('newFoodArr ', newFoodArr)
+    console.log('hola 2')
+  }
+
   const refreshFilteredFoodNames = searchText => {
 
     if (searchText === "")
@@ -36,8 +47,8 @@ function App() {
   return (
     <div className="App">
       <SearchBar refreshFilteredFoodNames={refreshFilteredFoodNames}/>
-      <AddFoodForm foodNames={foodNames} addFood={addFood}/>
-      <FoodBox foodNames={filteredFoodNames} />
+      <AddFoodForm foodNames={foodNames} addFood={addFood} />
+      <FoodBox foodNames={filteredFoodNames} deleteFood={deleteFood} />
     </div>
   );
 }

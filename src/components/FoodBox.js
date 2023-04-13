@@ -2,13 +2,20 @@
 // In this file you can find a reference example of the structure
 // and content that the component should render.
 // Remember to import Ant Design components before using them.
-import { Card, Col, Button } from 'antd';
+import { Card, Button } from 'antd';
+import styled from 'styled-components';
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+`;
 
 // Iteration 2
-function FoodBox({foodNames}) {
-    console.log('FoodBox ', foodNames)
+function FoodBox({foodNames, deleteFood}) {
+   /* console.log('FoodBox ', foodNames) */
   return (
-    <Col>
+    <Grid>
     
     {foodNames.map((food)=> (
       <Card
@@ -22,11 +29,11 @@ function FoodBox({foodNames}) {
         <p>
           <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={() => deleteFood(food.name)}> Delete </Button>
       </Card>
       ))}
    
-    </Col>
+      </Grid>
   );
 }
 

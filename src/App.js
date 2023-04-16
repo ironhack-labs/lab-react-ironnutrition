@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import foods from "./foods.json";
+import FoodList from './components/FoodList/FoodList';
+import Search from './components/Search/Search';
+import { useState } from 'react';
 
 function App() {
+  const [search, setSearch] = useState('')
+
+  const handleOnSearch = (textInput) => {
+    setSearch(textInput)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search search={search} onSearch={handleOnSearch} />
+      <FoodList allFoods={foods} search={search} />
     </div>
   );
 }

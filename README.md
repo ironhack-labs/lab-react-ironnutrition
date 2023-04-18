@@ -2,6 +2,31 @@
 
 # LAB | React IronNutrition
 
+<details>
+  <summary>
+   <h2>Learning Goals</h2>
+  </summary>
+
+  This exercise allows you to practice and apply the concepts and techniques taught in class. 
+
+  Upon completion of this exercise, you will be able to:
+
+  - Use a component library for styling a React app.
+  - Use the `useState` hook to create state variables and add state to React components.
+  - Use state variable setter functions to update state and trigger component re-render.
+  - Use methods `map()` and `filter()` to render array data as a list of elements.
+  - Remove items from a list.
+  - Extract and organize parts of the existing UI into separate new components.
+  - Create controlled components to manage the form inputs.
+  - Create event handler functions to handle user interactions and browser events.
+  - Apply the "Lifting State Up" approach to share the state between components.
+  - Create a search bar component that allows users to filter items in a list based on a search query.
+
+  <br>
+  <hr> 
+
+</details>
+
 ## Introduction
 
 You just realized that since the beginning of the bootcamp, your diet is not healthy and it may have an impact on your health (and productivity), now and in the long term.

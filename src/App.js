@@ -13,12 +13,16 @@ const ProductsPage = () => {
     return food.name.toLowerCase().includes(search.toLowerCase());
   });
 
+  const handleDelete = (name) => {
+    setFoods(foods.filter((food) => food.name !== name));
+  };
+
   return (
     <div>
       <h1>IronStore</h1>
       <SearchBar setSearch={setSearch} />
       <AddFoodForm foods={foods} setFoods={setFoods} />
-      <FoodBox foods={filteredFoods} />
+      <FoodBox foods={filteredFoods} handleDelete={handleDelete} />
     </div>
   );
 };

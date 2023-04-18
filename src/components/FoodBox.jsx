@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Card, Row, Col, Button } from 'antd';
 
-const FoodBox = ({ foods }) => {
+const FoodBox = ({ foods, handleDelete }) => {
   return (
     <div>
       {foods.map((food) => (
@@ -12,7 +12,7 @@ const FoodBox = ({ foods }) => {
               <p>Calories: {food.calories}</p>
               <p>Servings: {food.servings}</p>
               <p>Total Calories: {food.calories * food.servings}</p>
-              <Button onClick={() => {}}>Delete</Button>
+              <Button onClick={() => handleDelete(food.name)}>Delete</Button>
             </Card>
           </Col>
         </Row>

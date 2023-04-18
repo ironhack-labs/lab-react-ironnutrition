@@ -23,14 +23,13 @@ const AddFoodForm = ({ foods, setFoods }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-    const newFood = {};
-    formData.forEach((value, key) => {
-      newFood[key] = value;
-    });
-    setFoods([...foods, newFood]);
-    form.reset();
+    const newFood = {
+      name: event.target.name.value,
+      calories: event.target.calories.value,
+      image: event.target.image.value,
+      servings: event.target.servings.value,
+    };
+    setFoods([newFood, ...foods]);
   };
 
   return (

@@ -1,18 +1,19 @@
-import './App.css';
-import foods from './foods.json';
+import React, { useState } from 'react';
+import jsonData from './foods.json';
 
-function App() {
+import AddFoodForm from './components/AddFoodForm';
+import FoodBox from './components/FoodBox';
+
+const ProductsPage = () => {
+  const [foods, setFoods] = useState(jsonData);
+
   return (
     <div>
-      <h1>Food list</h1>
-      {foods.map((food) => (
-        <div>
-          <p>{food.name}</p>
-          <img src={food.image} width={100} />
-        </div>
-      ))}
-      )
+      <h1>IronStore</h1>
+      <AddFoodForm foods={foods} setFoods={setFoods} />
+      <FoodBox foods={foods} />
     </div>
   );
-}
-export default App;
+};
+
+export default ProductsPage;

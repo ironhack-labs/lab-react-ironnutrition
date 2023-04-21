@@ -165,7 +165,7 @@ Once you have successfully created and tested the `FoodBox` component, it is tim
 
 ### Iteration 4 | Delete List Items
 
-Your `FoodBox` component has a delete button, and it is time to put it to use. In this iteration, your task is to implement the delete functionality to remove the item from the food list when a user clicks the delete button.
+Your `FoodBox` component has a delete button, and it is time to put it to use. In this iteration, your task is to implement the delete functionality to remove the item from the food list when the delete button is clicked.
 
 **Hint:** To update the food array that is in the state of the `App` component, you will need to pass a function through the props. This function should take the id of the food item to be removed, remove it from the foods array, and then update the state variable holding the foods array.
 
@@ -205,7 +205,7 @@ Create a new *controlled component* named `AddFoodForm` that lets you add new fo
 
 
 
-Once you've created the `AddFoodForm` component, render it in `App.js`. When the user clicks the submit button, the new food item should be added to the list.
+Once you've created the `AddFoodForm` component, render it in `App.js`. When the submit button is clicked, the new food item should be added to the list.
 
 
 
@@ -331,7 +331,7 @@ npm install antd
 
 #### 7.2 | Style the `FoodBox` component
 
-Use `antd` to style the `FoodBox` component you crated earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/AddFoodForm.example.js` file.
+Use `antd` to style the `FoodBox` component you created earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/AddFoodForm.example.js` file.
 
 
 
@@ -469,9 +469,9 @@ When the form is showing, the button should display the message <kbd>Hide Form</
 
 ### Bonus: Iteration 10 | Display a Feedback Message
 
-As a final touch, let's make the app even more user-friendly by adding a feedback message.
+As a final touch, let's make the app even more user-friendly by adding a feedback message. When the food array is empty, display a message to let the user know.
 
-When the food array is empty, display a message to let the user know. Once the user deletes all of the items from the list, a message saying "Oops! There is no more content to show." should be displayed.
+Once the all of the items are deleted from the list, a message saying "Oops! There is no more content to show." should be displayed.
 
 
 

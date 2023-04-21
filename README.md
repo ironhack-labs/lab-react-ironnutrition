@@ -11,16 +11,13 @@
 
   Upon completion of this exercise, you will be able to:
 
-  - Use a component library for styling a React app.
   - Use the `useState` hook to create state variables and add state to React components.
   - Use state variable setter functions to update state and trigger component re-render.
-  - Use methods `map()` and `filter()` to render array data as a list of elements.
-  - Remove items from a list.
-  - Extract and organize parts of the existing UI into separate new components.
+  - Use array method `map()` to render array data as a list of elements.
+  - Use array methods `filter()`, `splice()`, `push()`, and array copying techniques to delete or add items to React lists.
   - Create controlled components to manage the form inputs.
   - Create event handler functions to handle user interactions and browser events.
   - Apply the "Lifting State Up" approach to share the state between components.
-  - Create a search bar component that allows users to filter items in a list based on a search query.
 
   <br>
   <hr> 

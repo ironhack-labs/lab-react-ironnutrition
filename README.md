@@ -7,6 +7,7 @@
    <h2>Learning Goals</h2>
   </summary>
 
+
   This exercise allows you to practice and apply the concepts and techniques taught in class. 
 
   Upon completion of this exercise, you will be able to:
@@ -20,24 +21,29 @@
   - Apply the "Lifting State Up" approach to share the state between components.
 
   <br>
+
   <hr> 
+
 
 </details>
 
 ## Introduction
 
-You just realized that since the beginning of the bootcamp, your diet is not healthy and it may have an impact on your health (and productivity), now and in the long term.
+You just realized that since the beginning of the bootcamp, your diet is not healthy, and it may have an impact on your health (and productivity), now and in the long term.
 
-To take care of the food you eat, you decided to create a nutrition app that will track everything you eat!
+To take care of your diet, you created a nutrition app that will track everything you eat!
 
 <p align="center">
   <img src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-3.gif" alt="Example - render FoodBox component in a list" />
 </p>
 
+
 ## Setup
 
 - Fork this repo
+
 - Clone the forked repo
+
 - Open the LAB and start:
 
   ```bash
@@ -58,41 +64,222 @@ To take care of the food you eat, you decided to create a nutrition app that wil
 
 - Create a Pull Request so that your TAs can check your work.
 
-## Getting Started
 
-Clean the `App.js` component so that it has the following structure:
-
-```jsx
-// src/App.js
-import './App.css';
-
-function App () {
-  return <div className="App"></div>;
-}
-export default App;
-```
-
-<br>
 
 ## Instructions
 
-### Iteration 0 | Setup
+### Iteration 1 | Store Data in the State
 
-#### Ant Design Installation
+First, import the foods array from the `foods.json` file into `App.js`:
 
-We will use [Ant Design](https://ant.design/) component library for the design.:sunglasses:
-
-```sh
-npm install antd
+```js
+import foodsJson from "./foods.json";
 ```
 
 <br>
 
+Now that you have the `foods.json` imported in `App.js`, create a state variable within the `App` component and store the `foods` array in it. In the following iterations, you will use this foods array you just stored in the state variable to render a list of food items.
+
+<br>
+
+### Iteration 2 | `FoodBox` component
+
+Create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop. 
+
+The component should display the food's *name*, its *calories*, an *image*, and the number of *servings*.
+
+
+
+After creating the `FoodBox` component, test it by rendering a single `<FoodBox />` component instance in `App.js`. 
+
+To test it you can use a mock object with food info, like this:
+
+```jsx
+<FoodBox food={ {
+  name: "Orange",
+  calories: 85,
+  image: "https://i.imgur.com/abKGOcv.jpg",
+  servings: 1
+} } 
+/>
+```
+
+<br>
+
+
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
+
+![single FoodBox component screenshot](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-ironnutrition-foodbox-component.png)
+
+
+
+
+
+  <br>
+
+</details>
+
+
+
+<br>
+
+### Iteration 3 | Render a List of `FoodBox` Components
+
+Once you have successfully created and tested the `FoodBox` component, it is time to use it to render the entire food list and display each food item. To do this, follow these steps:
+
+1. Iterate over the foods array and render a `<FoodBox />` component for each individual food item.
+2. As you render the `FoodBox` components, remember to pass the food object as a prop.
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
+
+![list of FoodBox components example](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-ironnutrition-food-list.gif)
+
+
+
+  <br>
+
+</details>
+
+
+
+<br>
+
+
+
+### Iteration 4 | Delete List Items
+
+Your `FoodBox` component has a delete button, and it is time to put it to use. In this iteration, your task is to implement the delete functionality to remove the item from the food list when a user clicks the delete button.
+
+**Hint:** To update the food array that is in the state of the `App` component, you will need to pass a function through the props. This function should take the id of the food item to be removed, remove it from the foods array, and then update the state variable holding the foods array.
+
+
+
+
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
+
+![delete food list item example](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-ironnutrition-delete-food-item.gif)
+
+
+
+  <br>
+
+</details>
+
+
+
+<br>
+
+
+
+### Iteration 5 | Add New Food
+
+Let's add some more ingredients to the mix! :wink:
+
+Create a new *controlled component* named `AddFoodForm` that lets you add new food items to your list. The component should contain a form with four (4) input elements for `name` , `image` , `calories` and `servings`.
+
+
+
+Once you've created the `AddFoodForm` component, render it in `App.js`. When the user clicks the submit button, the new food item should be added to the list.
+
+
+
+**Hint:** To add new food item to the foods array, which is in the state of the `App` component, you will need to pass a function to the `AddFoodForm` through the props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
+
+![add food component example](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-ironnutrition-add-food-item.gif)
+
+<br>
+
+
+
+</details>
+
+
+
+<br>
+
+
+
+
+
+### Iteration 6 | Create the `FoodList` component
+
+It's time to refactor and clean up the `App` component by moving all the code relating to the food list into a separate component.
+
+Create a new component named `FoodList`. The component should contain all the data, logic and nested components used to render and manage the food list from the `App` component.
+
+
+
+When you are done, your `App.js` file should look like this:
+
+```jsx
+// ...
+
+function App() {
+  return (
+    <div className="App">
+      <FoodList />
+    </div>
+  );
+}
+
+// ...
+```
+
+
+
+<br>
+
+
+
+
+
+### Bonus: Iteration 7 | Use Ant Design
+
+Now that you have a working app, let's take it to the next level! 
+
+
+
 #### Ant Design Components
 
-During the LAB, we will be using a set of simple Ant Design components that provide basic styling.
+In this iteration you will use [Ant Design](https://ant.design/) component library to enhance the look of your application. Ant Design provides pre-styled components that will make your app look great right out of the box.
 
-Before using any Ant Design component, you first have to import it from the `antd` package. You must import a component in each file where you intend to use it. Example:
+Before using any Ant Design components, you have to import them from the `antd` package. You must import a component in each file where you intend to use it. **Example:**
 
 ```jsx
 // EXAMPLE
@@ -122,133 +309,193 @@ function Example() {
 
 <br>
 
-#### Import a JSON
-
-For now, we will be working on the `App.js` file. In the later steps, you can refactor the app and split it into multiple components. Import the array of foods from the `foods.json` file to `App.js`.
-
-```js
-import foods from "./foods.json";
-```
-
-<br>
-
 #### About the design
 
-If you struggle with the design, you can find static examples of what is expected inside the `style-guide/` folder.
+You can find examples of each component and how to style them using `antd` inside the `style-guide/` folder.
 
-So let's start!
+
 
 <br>
 
-### Iteration 1 | Render a Simple List
+#### 7.1 | Ant Design Installation
 
-Now that you have the `foods.json` imported in `App.js` it is time to save it in a state variable. Once you have done that, map over the state variable and render a simple list that displays food names. Use the following snippet for the list items:
+To start, you have to install the `antd` package in your project:
 
-```jsx
-<div>
-  <p> FOOD_NAME_HERE </p>
-  <img src="FOOD_IMAGE_HERE" width={0} />
-</div>
+```sh
+npm install antd
 ```
 
-![Example - Simple Food List](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-1.png)
-
 <br>
 
-### Iteration 2 | Create the `FoodBox` component
-
-Create a new component named `FoodBox` that takes the prop `food`, which is an object. It should display the card with food information coming from the `food` prop. To render the content, use the structure provided in the file `style-guide/FoodBox.example.js`.
 
 
+#### 7.2 | Style the `FoodBox` component
 
-Once done, test it by rendering a single instance of the component in `App.js`. You can pass it the object with food info like this:
+Use `antd` to style the `FoodBox` component you crated earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/AddFoodForm.example.js` file.
 
-```jsx
-<FoodBox food={ {
-  name: "Orange",
-  calories: 85,
-  image: "https://i.imgur.com/abKGOcv.jpg",
-  servings: 1
-}} />
-```
 
-**Expected result:**
 
-![Example - Single "FoodBox" Component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-2.png)
+<details>
 
-<br>
 
-### Iteration 3 | Render a List of `FoodBox` Components
 
-After creating the `FoodBox` component, use it in `App.js` to render the food *list*. Instead of mapping over the foods array and rendering only the food names, render the `<FoodBox />` component. When rendering the `FoodBox`  component, remember to pass the food object as a prop.
+  <summary>See Expected Result</summary>
 
-Once you are done rendering the `FoodBox` in the list, your app should display the following content:
+  
+
+![](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-2.png)
+
+
+
+<hr>
+
+
+
 
 ![Example - render FoodBox component in a list](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-3.gif)
 
+
+
 <br>
 
-### Iteration 4 | Add new food
 
-Create a new controlled component named `AddFoodForm`, used to add new foods. The component should contain a form with four input elements for `name` , `image` , `calories` and `servings`.
 
-The component should render use the AntDesign component `Input` instead of the the `input` tag. The AntDesign `Input` component uses the same syntax as the regular `input` tag. Example:
+</details>
 
-```jsx
-// HTML <input /> tag
-<input value={} type="text" onChange={} />
-```
 
-```jsx
-// Ant Design <Input /> component
-<Input value={} type="text" onChange={} />
-```
 
-The component should be rendered in the `App.js`.
+<br>
 
-The food should be added to the list when the user clicks submit.
 
-**Hint:** To add new food to the food array that is in the state of the App component, you must pass a function through the props.
+
+
+
+#### 7.3 | Style the `AddFoodForm` component
+
+Repeat the process for the `AddFoodForm` component, styling it using `antd`. Again, refer to the example in the `style-guide/AddFoodForm.example.js` file for more details on which components to use.
+
+
+
+<details>
+
+
+  <summary>See Expected Result</summary>
+
+  
 
 ![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-4.gif)
 
-<br>
 
-### Iteration 5 | Implement search bar
+
+
+
+  <br>
+
+</details>
+
+
+
+  <br>
+
+
+
+### Bonus: Iteration 8 | Implement search bar
+
+Having a search feature is essential for any app that displays a long list of items.
 
 Create a `Search` component to search through and filter the list of food items displayed.
 
+When a search term is entered, the food list should be filtered to display only the items that match the search term.
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
+
 ![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-5.gif)
 
-<br>
 
-### Iteration 6 | Create a delete button
-
-Your `FoodBox` component has a delete button. Implement the delete functionality so that the item gets removed from the food list when a user clicks on the delete button.
-
-**Hint:** To update the food array that is in the state of the `App` component, you will need to pass a function through the props.
-
-![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-6.gif)
-
-If you are not sure how to create responsive columns with Ant Design, you can check the example provided in the Ant Design [documentation](https://ant.design/components/grid/#components-grid-demo-playground).
 
 <br>
 
-### Iteration 7 | Bonus | Hide the Add Food Form
 
-There are quite a few components displaying in the app. Implement a hide/show button that, when clicked, hides/shows the `AddFoodForm`. 
 
-When the form is showing, the button should display the message <kbd>Hide Form</kbd>`. When the form is hidden it shoud display <kbd>Add New Food</kbd>.
+</details>
+
+
+
+<br>
+
+
+
+
+
+### Bonus: Iteration 9 | Hide the Add Food Form
+
+Now that you have several components displaying in the app, it's a good idea to make the interface more user-friendly. 
+
+Add a hide/show button that, when clicked, hides/shows the `AddFoodForm`. 
+
+When the form is showing, the button should display the message <kbd>Hide Form</kbd>. When the form is hidden it shoud display <kbd>Add New Food</kbd>.
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
 
 ![Example - Hide Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-7.gif)
 
+
+
 <br>
 
-### Iteration 8 | Bonus | Display a Feedback Message
 
-Display a Feedback message to the user when the food array is empty. Once the user deletes all of the items from the list, the following message should be displayed:
+
+</details>
+
+
+
+<br>
+
+
+
+### Bonus: Iteration 10 | Display a Feedback Message
+
+As a final touch, let's make the app even more user-friendly by adding a feedback message.
+
+When the food array is empty, display a message to let the user know. Once the user deletes all of the items from the list, a message saying "Oops! There is no more content to show." should be displayed.
+
+
+
+<details>
+
+
+
+  <summary>See Expected Result</summary>
+
+  
 
 ![Example - Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-8.gif)
+
+
+
+<br>
+
+
+
+</details>
+
+
+
+<br>
 
 
 
@@ -260,6 +507,7 @@ Happy coding! :heart:
 
 <details>
   <summary>I am stuck and don't know how to solve the problem or where to start. What should I do?</summary>
+
 
   <br>
 
@@ -278,29 +526,30 @@ Happy coding! :heart:
 <details>
   <summary>I got the error: "Cannot find module 'Node.js'". How can I resolve it?</summary>
 
+
   <br>
 
   The error "Cannot find module" in a Node.js application means that the module you are trying to import or use does not exist in your project or cannot be found by Node.js.
 
   There are a few things you can try to resolve the issue:
 
-  1. **Dependencies are not installed**: Make sure that all dependencies are installed.
-   
+    1. **Dependencies are not installed**: Make sure that all dependencies are installed.
+
    To do this, run the command `npm install` in the root folder of your project.
 
    This will install all of the dependencies listed in the project's `package.json` file, and ensure that all of the modules that your Node'js application requires are available.
 
-  2. **Module is not installed**: Make sure that the *package* you are trying to use is listed in the project's `package.json` and that it is installed.
+    2. **Module is not installed**: Make sure that the *package* you are trying to use is listed in the project's `package.json` and that it is installed.
 
    To do this, run the command `npm install <package_name>`, replacing the `<package_name>` with the name of the package.
 
    This will add the package to the list of dependencies in the `package.json` file, and install it in the project.
 
-  3. **Module is not imported:** Make sure that you've imported the module/package correctly and that the `import` statement is spelled correctly and available in the correct place in your code.
+    3. **Module is not imported:** Make sure that you've imported the module/package correctly and that the `import` statement is spelled correctly and available in the correct place in your code.
 
-  4. **Wrong file path:** If you are importing another file as a module, make sure that the file you are trying to *import* is located in the correct folder and that you are using the correct file path.
+    4. **Wrong file path:** If you are importing another file as a module, make sure that the file you are trying to *import* is located in the correct folder and that you are using the correct file path.
 
-  5. **Wrong module/package name:** Check the spelling of the package name you are trying to import.
+    5. **Wrong module/package name:** Check the spelling of the package name you are trying to import.
 
   <br>
 
@@ -310,6 +559,7 @@ Happy coding! :heart:
 
 <details>
   <summary>I got the message: "Something is already running at ... Would you like to run the app at another port instead? [Y/n]". What should I do?</summary>
+
 
   <br>
 
@@ -326,8 +576,9 @@ Happy coding! :heart:
 <details>
   <summary>I got the warning in my React app:" 'variable' is assigned a value but never used: no-unused-vars". What should I do?</summary>
 
+
   <br>
-  
+
   This warning is a linting error thrown by a linting tool in your React project, and it is warning you that the variable is created, but that it is never being used in your code.
 
   To resolve this issue, you can either use the variable in your code, or you can simply remove the variable if you don't need it.
@@ -341,8 +592,9 @@ Happy coding! :heart:
 <details>
   <summary>I got the warning: "Each child in a list should have a unique 'key' prop". How can I resolve it?</summary>
 
+
   <br>
-  
+
   The warning *"Each child in a list should have a unique “key” prop"*  means that you are trying to render a list of elements, but one or more elements is missing the `key` prop.
 
   To fix this, add a `key` prop to each element you return from the `map()` when rendering the list. The key should be a unique identifier for that element, such as an item ID or the id of the document from the database.
@@ -362,15 +614,15 @@ const projects = [
   Inside your component, you would render the list in the following way:
 
   ```jsx
-  {
-    projects.map((el) => {
-      return (
-        <div key={el.id}>
-          <h3>{project.name}</h3>
-          <p> Tech Stack: {project.stack} </p>
-        </div>
-    })
-  }
+{
+  projects.map((el) => {
+    return (
+      <div key={el.id}>
+        <h3>{project.name}</h3>
+        <p> Tech Stack: {project.stack} </p>
+      </div>
+  })
+}
   ```
 
   In the above example, the objects in the `projects` array all have a common property `id`,  which is a unique id string, and therefore we can use it to set the `key` prop.
@@ -391,6 +643,7 @@ const projects = [
 
 <details>
   <summary>How to render a list of elements from an array in a React component?</summary>
+
 
   <br>
 
@@ -448,18 +701,19 @@ const projects = [
 <details>
   <summary>How to create a search bar in React?</summary>
 
+
   <br>
 
   To create a search bar, you need to create a controlled component following these steps:
 
-  1. Import the `useState()` hook.
-  2. Create a *state variable* for storing the search string.
-  3. Add a `form` with the `input` field and the *submit* `button` used for typing in the query.
-  4. Link the input `value` with the state variable.
-  5. Create an *input handler* function to handle the input change.
-  6. Link the *input handler* function with the input by adding the `onChange` listener.
-  7. Create a *submit handler* function to handle what happens when the form is submitted.
-  8. Link the *submit handler* function with the form by adding the `onSubmit` listener.
+    1. Import the `useState()` hook.
+    2. Create a *state variable* for storing the search string.
+    3. Add a `form` with the `input` field and the *submit* `button` used for typing in the query.
+    4. Link the input `value` with the state variable.
+    5. Create an *input handler* function to handle the input change.
+    6. Link the *input handler* function with the input by adding the `onChange` listener.
+    7. Create a *submit handler* function to handle what happens when the form is submitted.
+    8. Link the *submit handler* function with the form by adding the `onSubmit` listener.
 
   <br>
 
@@ -512,57 +766,58 @@ const projects = [
 <details>
   <summary>How to setup the React Router in my React app?</summary>
 
+
   <br>
 
   To set up the React Router in your React application, follow these steps:
 
-  1. Install React Router package by running the following command from the root folder:
+    1. Install React Router package by running the following command from the root folder:
 
    ```bash
-   npm install react-router-dom
+npm install react-router-dom
    ```
 
-  2. Import the `BrowserRouter` component in your app's entry point (usually `index.js`) and wrap your `<App />` component with it:
+    2. Import the `BrowserRouter` component in your app's entry point (usually `index.js`) and wrap your `<App />` component with it:
 
    ```jsx
-   import { BrowserRouter as Router } from "react-router-dom";
-   
-   ReactDOM.render(
-     <Router>
-       <App />
-     </Router>,
-     document.getElementById('root')
-   );
+import { BrowserRouter as Router } from "react-router-dom";
+
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
    ```
 
-  3. Import the components `Routes` and `Route` in `App.js`:
+    3. Import the components `Routes` and `Route` in `App.js`:
 
    ```jsx
-   import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
    ```
 
-  4. Define the routes (pages) in your app using the components  `Routes` and `Route` component:
+    4. Define the routes (pages) in your app using the components  `Routes` and `Route` component:
 
    ```jsx
-   import { Routes, Route } from "react-router-dom";
-   import HomePage from "./pages/HomePage";
-   import AboutPage from "./pages/AboutPage";
-    
-   function App() {
-     return (
-       <div className="App">
-         
-         {/* Add <Route /> components between <Routes> </Routes>   */} 
-         <Routes>
-          <Route path="/" element={<HomePage />} /> 
-          <Route path="/about" element={<AboutPage />} />
-         </Routes>
-         
-       </div>
-     )
-   }
-    
-   export default App;
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+ 
+function App() {
+  return (
+    <div className="App">
+      
+      {/* Add <Route /> components between <Routes> </Routes>   */} 
+      <Routes>
+       <Route path="/" element={<HomePage />} /> 
+       <Route path="/about" element={<AboutPage />} />
+      </Routes>
+      
+    </div>
+  )
+}
+ 
+export default App;
    ```
 
    <br>
@@ -573,6 +828,7 @@ const projects = [
 
 <details>
   <summary>How do I update a state variable in my React component? How do I use the useState hook in my React component?</summary>
+
 
   <br>
 
@@ -609,6 +865,7 @@ const projects = [
 <details>
   <summary>I am getting an error: "not defined". How do I fix it?</summary>
 
+
   <br>
 
   The "ReferenceError: variable is not defined" error in JavaScript occurs when you try to access a variable or a function that has not been defined yet or is out of scope. 
@@ -626,23 +883,24 @@ const projects = [
 <details>
   <summary>I am unable to push changes to the repository. What should I do?</summary>
 
+
   <br>
 
   There are a couple of possible reasons why you may be unable to *push* changes to a Git repository:
 
-  1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
+    1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
 
    ```bash
-   git add .
-   git commit -m "Your commit message"
-   git push
+git add .
+git commit -m "Your commit message"
+git push
    ```
 
-   2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
-   To check which remote repository you have cloned, run the following terminal command from the project folder:
+      2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
+         To check which remote repository you have cloned, run the following terminal command from the project folder:
 
    ```bash
-   git remote -v
+git remote -v
    ```
 
   If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your GitHub account first, and then clone your fork to your local machine to be able to push the changes.

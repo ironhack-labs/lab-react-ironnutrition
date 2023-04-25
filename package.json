@@ -1,6 +1,6 @@
 {
-  "name": "react-ironnutrition",
-  "version": "2.1.0",
+  "name": "lab-react-ironnutrition",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "dependencies": {

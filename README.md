@@ -197,17 +197,24 @@ Your `FoodBox` component has a delete button, and it is time to put it to use. I
 
 
 
-### Iteration 5 | Add New Food
+### Iteration 5 | Add New Food - `AddFoodForm` component
 
 Let's add some more ingredients to the mix! :wink:
 
-Create a new *controlled component* named `AddFoodForm` that lets you add new food items to your list. The component should contain a form with four (4) input elements for `name` , `image` , `calories` and `servings`.
+Create a new _controlled component_ named `AddFoodForm` that lets you add new food items to your list. The component should contain a form with four (4) input elements:
 
+- `name` with a label "Food".
+- `image` with a label "Image".
+- `calories` with a label "Calories".
+- `servings` with a label "Serving".
 
+<br>
+
+The form should have a submit button displaying the text <kbd>Create</kbd>.
+
+<br>
 
 Once you've created the `AddFoodForm` component, render it in `App.js`. When the submit button is clicked, the new food item should be added to the list.
-
-
 
 **Hint:** To add new food item to the foods array, which is in the state of the `App` component, you will need to pass a function to the `AddFoodForm` through the props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
 
@@ -546,9 +553,9 @@ Happy coding! :heart:
    This will add the package to the list of dependencies in the `package.json` file, and install it in the project.
 
     3. **Module is not imported:** Make sure that you've imported the module/package correctly and that the `import` statement is spelled correctly and available in the correct place in your code.
-
+    
     4. **Wrong file path:** If you are importing another file as a module, make sure that the file you are trying to *import* is located in the correct folder and that you are using the correct file path.
-
+    
     5. **Wrong module/package name:** Check the spelling of the package name you are trying to import.
 
   <br>

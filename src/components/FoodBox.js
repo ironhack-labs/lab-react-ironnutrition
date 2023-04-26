@@ -1,16 +1,23 @@
 import React from "react";
-import foodJson from "../foods.json";
+import { Card, Row, Col, Divider, Input, Button } from "antd";
 
-const foodArray = [...foodJson]
- 
-function FoodBox({ foodJson }) {
+function FoodBox({food}) {
   return (
-    <div className="MovieCard">
-        {foodArray.map(food => {
+    <div className="FoodCard">
+        {food.map(food => {
         return (
             <div>
-                <p> {food.name} </p>
-                <img src={food.image} width="100px" />
+              <Row>
+                <Col>
+                  <Card title={food.name}>
+                  <img src={food.image} width="100px" />
+                  <p>Calories: {food.calories}</p>
+                  <p>Servings: {food.servings}</p>
+                  <p>Total Calories: {food.calories}</p>
+                  <Button onClick={() => {}}>Delete</Button>
+                  </Card>
+                </Col>
+              </Row>
             </div>
         );
       })}

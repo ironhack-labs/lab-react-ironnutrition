@@ -9,9 +9,7 @@ function FoodList() {
   return (
     <div>
       <h2>Food List</h2>
-      {food.map(food => {
-        return <FoodBox />;
-      })}
+      <FoodBox food={food}/>;
     </div>
   );
 }

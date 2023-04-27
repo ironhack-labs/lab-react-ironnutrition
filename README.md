@@ -84,9 +84,7 @@ Now that you have the `foods.json` imported in `App.js`, create a state variable
 
 ### Iteration 2 | `FoodBox` component
 
-In a `src/components/` folder create a new file named `FoodBoox.jsx`.
-
-Inside of the file create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop.
+In the `src/components/FoodBoox.jsx` file, create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop.
 
 The component should display the food's *name*, *calories*, *image*, number of *servings*, *total calories* and a <kbd>Delete</kbd> button, using the following layout and elements:
 
@@ -220,7 +218,9 @@ Your `FoodBox` component has a **<kbd>Delete</kbd>** button, and it is time to p
 
 Let's add some more ingredients to the mix! :wink:
 
-Create a new _controlled component_ named `AddFoodForm` that lets you add new food items to your list. The component should contain a form with four (4) input elements:
+In the `src/components/AddFoodForm.jsx` file, create a new _controlled component_ named `AddFoodForm` that lets you add new food items to your list. 
+
+The component should contain a `form` with four (4) `input` elements:
 
 - Input with the label ***Name*** with attributes: `name="name"` and `type="text"`
 - Input with the label ***Image*** with attributes: `name="image"` and `type="text"`

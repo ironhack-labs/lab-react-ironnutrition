@@ -84,15 +84,34 @@ Now that you have the `foods.json` imported in `App.js`, create a state variable
 
 ### Iteration 2 | `FoodBox` component
 
-Create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop. 
+In a `src/components/` folder create a new file named `FoodBoox.jsx`.
 
-The component should display the food's *name*, its *calories*, an *image*, and the number of *servings*.
+Inside of the file create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop.
+
+The component should display the food's *name*, *calories*, *image*, number of *servings*, *total calories* and a <kbd>Delete</kbd> button, using the following layout and elements:
+
+```html
+<div>
+  <p>NAME</p>
+
+  <img src="IMAGE" />
+
+  <p>Calories: CALORIES</p>
+  <p>Servings SERVINGS</p>
+
+  <p>
+    <b>Total Calories: SERVINGS * CALORIES </b> kcal
+  </p>
+
+  <button>Delete</button>
+</div>
+```
+
+<br>
 
 
 
-After creating the `FoodBox` component, test it by rendering a single `<FoodBox />` component instance in `App.js`. 
-
-To test it you can use a mock object with food info, like this:
+After creating the `FoodBox` component, test it by rendering a single `<FoodBox />` component instance in `App.js`. To test it you can use a mock object with food info, like this:
 
 ```jsx
 <FoodBox food={ {
@@ -165,11 +184,11 @@ Once you have successfully created and tested the `FoodBox` component, it is tim
 
 ### Iteration 4 | Delete List Items
 
-Your `FoodBox` component has a delete button, and it is time to put it to use. In this iteration, your task is to implement the delete functionality to remove the item from the food list when the delete button is clicked.
-
-**Hint:** To update the food array that is in the state of the `App` component, you will need to pass a function through the props. This function should take the id of the food item to be removed, remove it from the foods array, and then update the state variable holding the foods array.
+Your `FoodBox` component has a **<kbd>Delete</kbd>** button, and it is time to put it to use. In this iteration, your task is to implement the delete functionality to remove the item from the food list when the delete button is clicked.
 
 
+
+**Hint:** To remove a food item from the list and the foods array which is in the state of the `App` component, you have to pass a function from `App` to `FoodBox` component through props. This function should take the `id` of the food item to be removed, remove it from the foods array, and then update the state variable holding the foods array.
 
 
 
@@ -203,20 +222,22 @@ Let's add some more ingredients to the mix! :wink:
 
 Create a new _controlled component_ named `AddFoodForm` that lets you add new food items to your list. The component should contain a form with four (4) input elements:
 
-- `name` with a label "Food".
-- `image` with a label "Image".
-- `calories` with a label "Calories".
-- `servings` with a label "Serving".
+- Input with the label ***Name*** with attributes: `name="name"` and `type="text"`
+- Input with the label ***Image*** with attributes: `name="image"` and `type="text"`
+- Input with the label ***Calories*** with attributes: `name="calories"` and `type="number"`
+- Input with the label ***Servings*** with attributes: `name="servings" `and `type="number"`
 
 <br>
 
-The form should have a submit button displaying the text <kbd>Create</kbd>.
+The form should have a submit button displaying the text **<kbd>Create</kbd>**.
 
 <br>
 
 Once you've created the `AddFoodForm` component, render it in `App.js`. When the submit button is clicked, the new food item should be added to the list.
 
-**Hint:** To add new food item to the foods array, which is in the state of the `App` component, you will need to pass a function to the `AddFoodForm` through the props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
+
+
+**Hint:** To add new food item to the foods array which is in the state of the `App` component, you have to pass a function from `App` to `AddFoodForm` component through props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
 
 
 
@@ -244,7 +265,7 @@ Once you've created the `AddFoodForm` component, render it in `App.js`. When the
 
 
 
-### Iteration 6 | Create the `FoodList` component
+### Bonus: Iteration 6 | Create the `FoodList` component
 
 It's time to refactor and clean up the `App` component by moving all the code relating to the food list into a separate component.
 
@@ -338,7 +359,7 @@ npm install antd
 
 #### 7.2 | Style the `FoodBox` component
 
-Use `antd` to style the `FoodBox` component you created earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/AddFoodForm.example.js` file.
+Use `antd` to style the `FoodBox` component you created earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/FoodBox.example.jsx` file.
 
 
 
@@ -379,7 +400,7 @@ Use `antd` to style the `FoodBox` component you created earlier. For guidance on
 
 #### 7.3 | Style the `AddFoodForm` component
 
-Repeat the process for the `AddFoodForm` component, styling it using `antd`. Again, refer to the example in the `style-guide/AddFoodForm.example.js` file for more details on which components to use.
+Repeat the process for the `AddFoodForm` component, styling it using `antd`. Again, refer to the example in the `style-guide/AddFoodForm.example.jsx` file for more details on which components to use.
 
 
 
@@ -438,43 +459,7 @@ When a search term is entered, the food list should be filtered to display only 
 
 
 
-
-
-### Bonus: Iteration 9 | Hide the Add Food Form
-
-Now that you have several components displaying in the app, it's a good idea to make the interface more user-friendly. 
-
-Add a hide/show button that, when clicked, hides/shows the `AddFoodForm`. 
-
-When the form is showing, the button should display the message <kbd>Hide Form</kbd>. When the form is hidden it shoud display <kbd>Add New Food</kbd>.
-
-
-
-<details>
-
-
-
-  <summary>See Expected Result</summary>
-
-  
-
-![Example - Hide Add food component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/lab-react-ironnutrition-7.gif)
-
-
-
-<br>
-
-
-
-</details>
-
-
-
-<br>
-
-
-
-### Bonus: Iteration 10 | Display a Feedback Message
+### Bonus: Iteration 9 | Display a Feedback Message
 
 As a final touch, let's make the app even more user-friendly by adding a feedback message. When the food array is empty, display a message to let the user know.
 
@@ -895,20 +880,26 @@ export default App;
 
   There are a couple of possible reasons why you may be unable to *push* changes to a Git repository:
 
-    1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
+1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
 
-   ```bash
-git add .
-git commit -m "Your commit message"
-git push
+   ```shell
+   git add .
+   git commit -m "Your commit message"
+   git push
    ```
 
-      2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
-         To check which remote repository you have cloned, run the following terminal command from the project folder:
+   
 
-   ```bash
-git remote -v
-   ```
+<br>
+
+  2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
+     To check which remote repository you have cloned, run the following terminal command from the project folder:
+     
+     ```shell
+     git remote -v
+     ```
+
+
 
   If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your GitHub account first, and then clone your fork to your local machine to be able to push the changes.
 

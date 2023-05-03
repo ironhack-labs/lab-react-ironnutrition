@@ -1,12 +1,22 @@
 import './App.css';
-import { Card, Row, Col, Divider, Input, Button } from "antd";
-import foods from "./foods.json";
+import { Row, Divider, Button } from 'antd';
+import { useState } from "react"
+import foodsDataJSON from "./foods.json";
 import FoodBox from './components/Foodbox';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
+  const [ foods, setFoods ] = useState(foodsDataJSON)
+
+  const addNewFood = newFood => {
+    const updatedFoods = [newFood, ...foods]
+
+    setFoods(updatedFoods)
+  }
+
   return (
       <div className="App">
-      {/* Display Add Food component here */}
+      { <AddFoodForm addFood={addNewFood} /> }
 
       <Button> Hide Form / Add New Food </Button>
 

@@ -49,7 +49,7 @@ To take care of your diet, you created a nutrition app that will track everythin
   ```bash
   cd lab-react-ironnutrition
   npm install
-  npm start
+  npm run dev
   ```
 
 ## Submission
@@ -62,8 +62,34 @@ To take care of your diet, you created a nutrition app that will track everythin
   git push origin master
   ```
 
-- Create a Pull Request so that your TAs can check your work.
+- Create a Pull Request and submit your assignment.
 
+<br>
+
+##  Test Your Code
+
+This lab is equipped with unit tests to provide automated feedback on your progress and help you understand whether your code is working as expected. If you want to check the tests, they are located in the `src/test` folder.
+
+
+### Iterations and Test Results
+
+During an iteration, if your code seems to work as expected but some tests don't pass, feel free to move on to the next iteration. Once you've completed all the mandatory iterations, you can go back and resolve any remaining failed test
+
+<br>
+
+### Run the Tests
+
+1. To execute the tests, run the following command in the terminal:
+
+   ```shell
+   npm run test
+   ```
+
+2. The above command will execute the tests and open the `@vitest/ui` Test Reporter in the browser. 
+
+3. To see the test results, **open** [http://127.0.0.1:51204/\_\_vitest\_\_](http://127.0.0.1:51204/__vitest__) in your browser.
+
+<br>
 
 
 ## Instructions
@@ -131,7 +157,7 @@ After creating the `FoodBox` component, test it by rendering a single `<FoodBox 
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -157,12 +183,14 @@ Once you have successfully created and tested the `FoodBox` component, it is tim
 2. As you render the `FoodBox` components, remember to pass the food object as a prop.
 
 
+<br>
+
 
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -189,14 +217,14 @@ Your `FoodBox` component has a **<kbd>Delete</kbd>** button, and it is time to p
 **Hint:** To remove a food item from the list and the foods array which is in the state of the `App` component, you have to pass a function from `App` to `FoodBox` component through props. This function should take the `id` of the food item to be removed, remove it from the foods array, and then update the state variable holding the foods array.
 
 
-
+<br>
 
 
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -239,13 +267,13 @@ Once you've created the `AddFoodForm` component, render it in `App.js`. When the
 
 **Hint:** To add new food item to the foods array which is in the state of the `App` component, you have to pass a function from `App` to `AddFoodForm` component through props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
 
-
+<br>
 
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -362,12 +390,14 @@ npm install antd
 Use `antd` to style the `FoodBox` component you created earlier. For guidance on which `antd` components to use, see the provided example in the `style-guide/FoodBox.example.jsx` file.
 
 
+<br>
+
 
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -403,11 +433,13 @@ Use `antd` to style the `FoodBox` component you created earlier. For guidance on
 Repeat the process for the `AddFoodForm` component, styling it using `antd`. Again, refer to the example in the `style-guide/AddFoodForm.example.jsx` file for more details on which components to use.
 
 
+<br>
+
 
 <details>
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -435,11 +467,13 @@ Create a `Search` component to search through and filter the list of food items 
 
 When a search term is entered, the food list should be filtered to display only the items that match the search term.
 
+<br>
+
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 
@@ -465,13 +499,13 @@ As a final touch, let's make the app even more user-friendly by adding a feedbac
 
 Once the all of the items are deleted from the list, a message saying "Oops! There is no more content to show." should be displayed.
 
-
+<br>
 
 <details>
 
 
 
-  <summary>See Expected Result</summary>
+  <summary><b>See Expected Result</b></summary>
 
   
 

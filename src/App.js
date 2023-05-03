@@ -9,6 +9,8 @@ import Search from './components/Search';
 function App() {
   const [ foods, setFoods ] = useState(foodsDataJSON)
   const [ foodsData, setFoodsData ] = useState(foodsDataJSON)
+  const [ showForm, setshowForm ] = useState(true)
+  const [ showMessage, setShowMessage ] = useState(false)
 
   const addNewFood = newFood => {
     const updatedFoods = [newFood, ...foods]
@@ -33,6 +35,8 @@ function App() {
   }
 
   const deleteFood = (name) => {
+    if (foods.length < 2 ) setShowMessage(true)
+
     const filteredFoods = foods.filter(food => {
       return food.name !== name
     })
@@ -45,12 +49,16 @@ function App() {
     setFoodsData(filteredfoodsData)
   }
 
+  const toggleForm = () => {
+    setshowForm(!showForm)
+  }
+
   return (
       <div className="App">
-      { <AddFoodForm addFood={addNewFood} /> }
-
-      {/* <Button> Hide Form / Add New Food </Button> */}
-
+      { showForm && <AddFoodForm addFood={addNewFood} /> }
+      <br />
+      <Button onClick={toggleForm}>{showForm ? "Hide Form" : "Add New Food"} </Button>
+      <br /><br />
       { <Search filterFoods={filterFoods} /> }
 
       <Divider>Food List</Divider>
@@ -59,6 +67,8 @@ function App() {
       {foods.map(food =>
       <FoodBox key={food._id} food={food} deleteFood={deleteFood} />
         )}
+      
+      {showMessage ? <b>Oops! There is no more content to show...</b> : <p></p>}
       </Row>
     </div>
   );

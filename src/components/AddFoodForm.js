@@ -42,7 +42,7 @@ function AddFoodForm({addFood}) {
 
       <label>Servings</label>
       <Input value={servings} type="number" onChange={handleServingsInput} />
-
+      <br /><br />
       <button type="submit">Create</button>
     </form>
   );

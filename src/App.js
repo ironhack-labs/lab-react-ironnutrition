@@ -1,6 +1,7 @@
 // src/App.js
 import './App.css';
 import foods from './foods.json';
+import { Row, Divider, Button } from 'antd';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
@@ -42,15 +43,21 @@ function App() {
 
   return (
     <div className="App">
-      <FilterFood filterFood={filterFoodList} />
       <AddFoodForm addFood={addNewFood} />
-      {foodsArr.map((item) => {
-        return (
-          <div>
-            <FoodBox food={item} deleteFood={deleteFood} />
-          </div>
-        );
-      })}
+      <Divider>
+        <b>Food List</b>
+        <FilterFood filterFood={filterFoodList} />
+      </Divider>
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {/* Render the list of Food Box components here */}
+        {foodsArr.map((item) => {
+          return (
+            <div>
+              <FoodBox food={item} deleteFood={deleteFood} />
+            </div>
+          );
+        })}
+      </Row>
     </div>
   );
 }

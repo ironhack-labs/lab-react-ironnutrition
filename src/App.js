@@ -32,6 +32,19 @@ function App() {
     setFoods(filteredFoods)
   }
 
+  const deleteFood = (name) => {
+    const filteredFoods = foods.filter(food => {
+      return food.name !== name
+    })
+
+    const filteredfoodsData = foodsData.filter(food => {
+      return food.name !== name
+    })
+
+    setFoods(filteredFoods)
+    setFoodsData(filteredfoodsData)
+  }
+
   return (
       <div className="App">
       { <AddFoodForm addFood={addNewFood} /> }
@@ -44,7 +57,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
       {foods.map(food =>
-      <FoodBox key={food._id} food={food} />
+      <FoodBox key={food._id} food={food} deleteFood={deleteFood} />
         )}
       </Row>
     </div>

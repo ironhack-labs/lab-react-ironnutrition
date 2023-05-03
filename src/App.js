@@ -4,9 +4,11 @@ import { useState } from "react"
 import foodsDataJSON from "./foods.json";
 import FoodBox from './components/Foodbox';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
   const [ foods, setFoods ] = useState(foodsDataJSON)
+  const [ foodsData, setFoodsData ] = useState(foodsDataJSON)
 
   const addNewFood = newFood => {
     const updatedFoods = [newFood, ...foods]
@@ -14,13 +16,29 @@ function App() {
     setFoods(updatedFoods)
   }
 
+  const filterFoods = str => {
+    let filteredFoods
+
+    if (str === "") {
+      filteredFoods = foodsData
+    } else {
+      filteredFoods = foodsData.filter(food => {
+        return (
+          food.name.toLowerCase().includes(str.toLowerCase())
+        )
+      })
+    }
+
+    setFoods(filteredFoods)
+  }
+
   return (
       <div className="App">
       { <AddFoodForm addFood={addNewFood} /> }
 
-      <Button> Hide Form / Add New Food </Button>
+      {/* <Button> Hide Form / Add New Food </Button> */}
 
-      {/* Display Search component here */}
+      { <Search filterFoods={filterFoods} /> }
 
       <Divider>Food List</Divider>
 

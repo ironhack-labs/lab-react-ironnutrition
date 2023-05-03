@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Divider, Input, Card, Col } from 'antd';
+import { Divider, Input, Card, Row } from 'antd';
 
 function AddFoodForm(props) {
   const [name, setName] = useState('');
@@ -37,8 +37,8 @@ function AddFoodForm(props) {
   };
 
   return (
-    <Col>
-      <Card style={{ width: 600, margin: 10 }}>
+    <Row style={{ justifyContent: 'center' }}>
+      <Card style={{ width: 600, margin: 10, backgroundColor: '#efefef' }}>
         <form onSubmit={handleSubmit}>
           <Divider>Add Food Entry</Divider>
 
@@ -57,7 +57,7 @@ function AddFoodForm(props) {
           <button type="submit">Create</button>
         </form>
       </Card>
-    </Col>
+    </Row>
   );
 }
 

@@ -5,17 +5,22 @@ function Search(props) {
   const [inputText, setInputText] = useState('');
 
   let handleSearch = (e) => {
-    setInputText(e.target.value.toLowerCase());
+    setInputText(e.target.value);
     props.search(e.target.value);
   };
 
   return (
     <Row style={{ justifyContent: 'center' }}>
       <Card style={{ width: '80%', margin: 10, backgroundColor: '#efefef' }}>
-        <Divider>Search a food</Divider>
+        <Divider>Search</Divider>
 
         <label>Search</label>
-        <Input value={inputText} type="search" onChange={handleSearch} />
+        <Input
+          value={inputText}
+          type="text"
+          placeholder="Search for foods"
+          onChange={handleSearch}
+        />
       </Card>
     </Row>
   );

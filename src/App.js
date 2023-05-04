@@ -11,11 +11,10 @@ function App() {
   const [foods, setFoods] = useState(foodsJson);
   const [foodsArr, setFoodsArr] = useState(foods);
   const [showForm, setShowAddFoodForm] = useState(true);
-  // const [displayFeedback, setDisplayFeedback] = useState(false);
 
   // Add New Food
   const addNewFood = (newFood) => {
-    const updatedFoods = [...foodsArr, newFood];
+    const updatedFoods = [...foods, newFood];
     setFoods(updatedFoods);
     setFoodsArr(updatedFoods);
   };
@@ -23,11 +22,13 @@ function App() {
   // Search Food 2
   const search = (str) => {
     let searchResult;
-
+    // console.log('search', { str });
     if (str === '') {
       searchResult = foods;
     } else {
-      searchResult = foodsArr.filter((food) => {
+      searchResult = foods.filter((food) => {
+        // console.log('filter', { foodName: food.name, str });
+        // we have to filter over the whole list, so we need the second list, so we don´t filter over filter and there are missing foods.
         return food.name.toLowerCase().includes(str.toLowerCase());
       });
     }
@@ -36,11 +37,16 @@ function App() {
 
   // Delete Food
   const deleteFood = (name) => {
-    const filteredFoods = foodsArr.filter((food) => {
+    const filteredFoods = foods.filter((food) => {
       return food.name !== name;
     });
 
-    setFoodsArr(filteredFoods);
+    const filteredFoodsArr = foodsArr.filter((food) => {
+      return food.name !== name;
+    });
+
+    setFoodsArr(filteredFoodsArr);
+    setFoods(filteredFoods);
   };
 
   // Toogle button
@@ -55,8 +61,7 @@ function App() {
       <Divider>Food List</Divider>
 
       <Button onClick={toggleShowAddFood}>
-        {' '}
-        {showForm ? 'Hide Add Food Form' : 'Show Add Food Form'}{' '}
+        {showForm ? 'Hide Add Food Form' : 'Show Add Food Form'}
       </Button>
 
       {showForm ? <AddFoodForm addFood={addNewFood} /> : <></>}

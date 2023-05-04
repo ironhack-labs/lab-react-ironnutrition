@@ -24,10 +24,11 @@ function AddFoodForm(props) {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevent view to reload
 
     const newFood = { name, image, calories, servings };
 
+    // Add food to the list
     props.addFood(newFood);
 
     setName('');

@@ -76,6 +76,7 @@ function App() {
         })}
       </Row>
 
+      {/* short variation for if statment, if the part before of the && is true, then execute the part behind the && */}
       {!foodsArr.length && <p>Opps! No more content to show</p>}
     </div>
   );

@@ -8,39 +8,39 @@ import AddFoodForm from './components/AddFoodForm';
 import OnSearch from './components/OnSearch';
 
 function App() {
-	// eslint-disable-next-line no-unused-vars
-	const [foodsList, setFoodsList] = useState( foodsJSON );
-	const [foodsListReset, setFoodsListReset] = useState( foodsJSON );
-	const [isVisible, setVisibility] = useState( true );
+	const [renderedFoodsList, updateRenderedFoodsList] = useState( foodsJSON ); // list to show/render
+	const [defaultFoodsList, resetFoodsList] = useState( foodsJSON ); // backup/fallback/reset list
+	const [formIsVisible, setFormVisibility] = useState( true );
 
 	const addFood = ( newFood ) => {
-		setFoodsList( [...foodsList, newFood] );
-		setFoodsListReset( [...foodsList, newFood] );
+		updateRenderedFoodsList( [...renderedFoodsList, newFood] );
+		resetFoodsList( [...defaultFoodsList, newFood] );
 	};
 
 	const showSearchResult = ( query ) => {
 		if ( query ) {
-			const searchResult = foodsListReset.filter( ( food ) => food.name.toLowerCase().includes( query.toLowerCase() ) );
-			setFoodsList( searchResult );
+			const searchResult = defaultFoodsList.filter( ( food ) => food.name.toLowerCase().includes( query.toLowerCase() ) );
+			updateRenderedFoodsList( searchResult );
 		} else {
-			setFoodsList( foodsListReset );
+			updateRenderedFoodsList( defaultFoodsList );
 		}
 	};
 
 	const deleteFood = ( deleteThisFoodName ) => {
-		setFoodsList( foodsList.filter( ( food ) => food.name !== deleteThisFoodName ) );
+		updateRenderedFoodsList( renderedFoodsList.filter( ( food ) => food.name !== deleteThisFoodName ) );
+		resetFoodsList( renderedFoodsList.filter( ( food ) => food.name !== deleteThisFoodName ) );
 	};
 
-	const toggleVisibility = () => setVisibility( !isVisible );
+	const toggleVisibility = () => setFormVisibility( !formIsVisible );
 
 	return (
 		<div className="App">
 			<Title level={1}>IronFood</Title>
 
-			<Button onClick={toggleVisibility}>{isVisible ? 'Hide Form' : 'Add New Food' }</Button>
+			<Button onClick={toggleVisibility}>{formIsVisible ? 'Hide Form' : 'Add New Food' }</Button>
 			<Row>
 				<Col span={8} offset={8}>
-					{isVisible && <AddFoodForm addFood={addFood}/>}
+					{formIsVisible && <AddFoodForm addFood={addFood}/>}
 
 					<OnSearch showSearchResult={showSearchResult} />
 				</Col>
@@ -49,7 +49,7 @@ function App() {
 			<Divider>Food List</Divider>
 
 			<Row style={{ width: '100%', justifyContent: 'center' }}>
-				{ foodsList.length > 0 ? foodsList.map( ( food, i ) => {
+				{ renderedFoodsList.length > 0 ? renderedFoodsList.map( ( food, i ) => {
 					return (
 						<FoodBox
 							food={ {
@@ -58,7 +58,7 @@ function App() {
 								image: food.image,
 								servings: food.servings,
 							}}
-							key={`${food.name}+${i}`}
+							key={`${food.name}+${i}`} // COMMENT: could also genereate a random ID with uuid package
 							deleteFood={deleteFood}
 						/>
 					);

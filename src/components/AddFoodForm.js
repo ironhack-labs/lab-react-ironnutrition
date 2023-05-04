@@ -14,9 +14,8 @@ function AddFoodForm( { addFood } ) {
 	const handleCalories = ( e ) => setCalories( e.target.value );
 	const handleServings = ( e ) => setServings( e.target.value );
 
-	const handleSubmit = ( e ) => {
-		e.preventDefault();
-
+	const handleSubmit = () => {
+		if ( !name ) return;
 		addFood( { name, image, calories, servings } );
 
 		setName( '' );
@@ -26,7 +25,7 @@ function AddFoodForm( { addFood } ) {
 	};
 
 	return (
-		<Form onSubmit={handleSubmit}>
+		<Form onFinish={handleSubmit}>
 			<Divider>Add Food Entry</Divider>
 
 			<Space direction="vertical" block>
@@ -34,28 +33,28 @@ function AddFoodForm( { addFood } ) {
 					placeholder='Name'
 					value={name}
 					type="text"
-					onChange={handleName }
+					onChange={handleName}
 
 				/>
 				<Input
 					placeholder='Image'
 					value={image}
 					type="text"
-					onChange={handleImage }
+					onChange={handleImage}
 
 				/>
 				<Input
 					placeholder='Calories'
 					value={calories}
 					type="number"
-					onChange={handleCalories }
+					onChange={handleCalories}
 
 				/>
 				<Input
 					placeholder='Servings'
 					value={servings}
 					type="number"
-					onChange={handleServings }
+					onChange={handleServings}
 
 				/>
 

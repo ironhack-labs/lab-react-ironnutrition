@@ -47,7 +47,7 @@ To take care of your diet, you created a nutrition app that will track everythin
 - Open the LAB and start:
 
   ```bash
-  cd lab-react-ironnutrition
+  cd lab-react-ironnutrition-vite
   npm install
   npm run dev
   ```

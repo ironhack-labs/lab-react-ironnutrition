@@ -143,21 +143,41 @@ describe("Iteration 4 | Delete List Items", () => {
 
 describe("Iteration 5 | Add New Food - AddFoodForm component", () => {
   describe("AddFoodForm component", () => {
-    test("renders input fields and 'Create' submit button", () => {
+    test("renders a form input with attribute 'name=\"name\"'", () => {
       const { container } = render(<AddFoodForm />);
       const nameInput = container.querySelector('input[name="name"]');
-      const imageInput = container.querySelector('input[name="image"]');
-      const caloriesInput = container.querySelector('input[name="calories"]');
-      const servingsInput = container.querySelector('input[name="servings"]');
 
       expect(nameInput).not.toBeNull();
+    });
+
+    test("renders a form input with attribute 'name=\"image\"'", () => {
+      const { container } = render(<AddFoodForm />);
+      const imageInput = container.querySelector('input[name="image"]');
+
       expect(imageInput).not.toBeNull();
+    });
+
+    test("renders a form input with attribute 'name=\"calories\"'", () => {
+      const { container } = render(<AddFoodForm />);
+      const caloriesInput = container.querySelector('input[name="calories"]');
+
       expect(caloriesInput).not.toBeNull();
+    });
+
+    test("renders a form input with attribute 'name=\"servings\"'", () => {
+      const { container } = render(<AddFoodForm />);
+      const servingsInput = container.querySelector('input[name="servings"]');
+
       expect(servingsInput).not.toBeNull();
+    });
+
+    test("renders a form with a 'Create' submit button", () => {
+      render(<AddFoodForm />);
+
       expect(screen.getByText("Create")).toBeInTheDocument();
     });
 
-    test("calls onSubmit function with form data when submitted", async () => {
+    test("adds new food item to the list on form submission", async () => {
       const testFood = {
         name: "Test Food",
         calories: 2500,

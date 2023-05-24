@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import foodsData from './foods.json';
+import FoodBox from './Components/FoodBox';
+import AddFoodForm from './Components/AddFoodForm';
+import Search from './Components/Search';
 
 function App() {
+  const [foods, setFoods] = useState(foodsData);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleAddFood = (newFood) => {
+    setFoods([...foods, newFood]);
+  };
+
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+  };
+
+  const handleDeleteFood = (id) => {
+    setFoods(foods.filter((food) => food._id !== id));
+  };
+
+  const filteredFoods = foods.filter((food) =>
+    food.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Search onSearch={handleSearch} />
+
+      <AddFoodForm onAddFood={handleAddFood} onSearch={handleSearch} />
+
+      <FoodBox
+        food={{
+          name: 'Orange',
+          calories: 85,
+          image: 'https://i.imgur.com/abKGOcv.jpg',
+          servings: 1
+        }}
+      />
+
+      {filteredFoods.map((food) => (
+        <div key={food._id}>
+          <FoodBox key={food._id} food={food} onDelete={handleDeleteFood} />
+        </div>
+      ))}
     </div>
   );
 }

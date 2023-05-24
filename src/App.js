@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import foods from "./foods.json";
 import './App.css';
+import FoodBox from './Components/Foodbox';
+import AddFoodForm from './Components/AddForm';
+import Search from './Components/Search';
 
 function App() {
+  const [foodList, setFoodList] = useState(foods);
+  const [filteredFoodList, setFilteredFoodList] = useState(foods);
+
+  const handleDelete = (index) => {
+    const updatedFoodList = [...foodList];
+    updatedFoodList.splice(index, 1);
+    setFoodList(updatedFoodList);
+    setFilteredFoodList(updatedFoodList);
+  };
+
+  const handleAddFood = (newFood) => {
+    setFoodList([...foodList, newFood]);
+    setFilteredFoodList([...foodList, newFood]);
+  };
+
+  const handleSearch = (searchTerm) => {
+    const filteredFoods = foodList.filter((food) =>
+      food.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredFoodList(filteredFoods);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <AddFoodForm onAddFood={handleAddFood} />
+
+      <Search onSearch={handleSearch} />
+
+      {filteredFoodList.map((food, index) => (
+        <FoodBox key={index} food={food} onDelete={() => handleDelete(index)} />
+      ))}
     </div>
   );
 }

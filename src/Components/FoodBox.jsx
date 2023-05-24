@@ -1,11 +1,8 @@
-// Style Guide:
-// In this file you can find a reference example of the structure
-// and content that the component should render.
-// Remember to import Ant Design components before using them.
 import { Card, Col, Button } from 'antd';
-
+import React, {useState} from 'react';
 // Iteration 2
 function FoodBox(props) {
+    const {food} = props
   return (
     <Col>
       <Card
@@ -16,7 +13,7 @@ function FoodBox(props) {
         <p>Calories: {food.calories}</p>
         <p>Servings: {food.servings}</p>
         <p>
-          <b>Total Calories: {food.calories} * {food.servings} </b> kcal
+          <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
         <Button type="primary"> Delete </Button>
       </Card>

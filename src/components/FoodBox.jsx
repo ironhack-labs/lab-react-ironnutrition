@@ -1,6 +1,5 @@
 import { Card, Col, Button } from 'antd';
 
-// Iteration 2
 function FoodBox({ food }) {
   const getKcal = (a, b) => {
     const sumValue = a + b;

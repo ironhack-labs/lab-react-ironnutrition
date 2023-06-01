@@ -36,11 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
 .food-box-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .input {

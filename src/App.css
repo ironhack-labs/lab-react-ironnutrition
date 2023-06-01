@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -35,4 +37,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+.foodGroup{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.form{
+  display: flex;
+  justify-content: center;
+  width: 500px;
 }

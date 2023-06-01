@@ -1,4 +1,4 @@
-function FoodBox({ food }) {
+function FoodBox({ food, index }) {
   return (
     <div>
       <h2>{food.name}</h2>

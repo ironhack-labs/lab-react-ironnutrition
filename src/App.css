@@ -11,7 +11,8 @@
 
 .food-box h3 {
   padding: 10px;
-  background-color: rgba(128, 128, 128, 0.345);
+  background-color: #F3C44D;
+  color: black;
 }
 
 .food-box img,
@@ -19,9 +20,19 @@
   padding-left: 10px;
 }
 
+.food-box button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+
+}
+
 .food-box-map {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
 }

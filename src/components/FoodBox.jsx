@@ -10,6 +10,7 @@ function FoodBox({ singleFood }) {
           <p>Calories: {singleFood.calories}</p>
           <p>Servings: {singleFood.servings}</p>
           <p style={{ fontWeight: "bold"}}>Total calories: {singleFood.servings * singleFood.calories} kcal</p>
+          <button>DELETE</button>
     </div>
   );
 }

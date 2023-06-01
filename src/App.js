@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import foodsJson from './foods.json';
 import './App.css';
+import { useState } from 'react';
+import FoodBox from './component/FoodBox';
 
 function App() {
+  const [foods, setFoods] = useState(foodsJson);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {foods.map((food, index) => (
+        <div key={index}>
+          <p>{food.name}</p>
+          <img src={food.image} width={50} alt={food.name} />
+        </div>
+      ))}
+
+      <FoodBox
+        food={{
+          name: 'Orange',
+          calories: 85,
+          image: 'https://i.imgur.com/abKGOcv.jpg',
+          servings: 1,
+        }}
+      />
     </div>
   );
 }

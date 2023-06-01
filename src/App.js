@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import FoodBox from './components/FoodBox';
 import foodsJson from "./foods.json";
 
 function App() {
@@ -8,14 +9,12 @@ function App() {
   return (
     <div className="App">
       <h1>Food List</h1>
-      {foods.map((foodItem) => 
-        // return(
-          <div className='single-food-card'>
-            <p>{foodItem.name.toUpperCase()}</p>
-            <img src={foodItem.image} width={300}/>
-          </div>
-        // );
-      )}
+      <div className='food-box-map'>
+        {foods.map((foodItem) => 
+          <FoodBox singleFood={foodItem} />
+        )}
+      </div>
+     
     </div>
   );
 }

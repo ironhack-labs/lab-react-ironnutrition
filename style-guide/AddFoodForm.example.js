@@ -2,11 +2,12 @@
 // In this file you can find a reference example of the structure
 // and content that the component should render.
 // Remember to import Ant Design components before using them.
-import { Divider, Input } from 'antd';
+import { Divider, Input, Col } from 'antd';
 
 // Iteration 4
 function AddFoodForm(props) {
   return (
+    <Col>
     <form>
       <Divider>Add Food Entry</Divider>
 
@@ -24,6 +25,7 @@ function AddFoodForm(props) {
 
       <button type="submit">Create</button>
     </form>
+    </Col>
   );
 }
 

@@ -8,16 +8,40 @@ import Search from './component/Search';
 function App() {
   const [foods, setFoods] = useState(foodsJson);
   const [search, setSearch] = useState('');
+  const [showForm, setShowForm] = useState(false);
+
+  const handleShowForm = () => {
+    console.log('show form');
+    setShowForm(!showForm);
+  };
+
+  const handleDelete = (foodName) => {
+    const filteredFoods = foods.filter((food) => {
+      if (food.name !== foodName) {
+        return true;
+      }
+    });
+
+    setFoods(filteredFoods);
+  };
 
   return (
     <div className="App">
-      <AddFoodForm foods={foods} setFoods={setFoods} />
+      <button onClick={handleShowForm}>Show form</button>
+
+      {showForm ? <AddFoodForm foods={foods} setFoods={setFoods} /> : null}
 
       <Search search={search} setSearch={setSearch} />
 
-      {foods.map((oneFood, index) => (
-        <FoodBox key={index} food={oneFood} />
-      ))}
+      {foods
+        .filter((oneFilterFood) => {
+          if (oneFilterFood.name.toLowerCase().includes(search.toLowerCase())) {
+            return true;
+          }
+        })
+        .map((oneFood, index) => (
+          <FoodBox key={index} food={oneFood} handleDelete={handleDelete} />
+        ))}
     </div>
   );
 }

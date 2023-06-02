@@ -26,7 +26,9 @@ function App() {
             }
           })
           .map((foodItem) => {
-            return <FoodBox singleFood={foodItem} />;
+            return (
+            <FoodBox singleFood={foodItem} />
+            );
           })}
       </div>
     </div>

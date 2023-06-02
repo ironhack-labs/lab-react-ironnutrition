@@ -28,7 +28,7 @@ function AddFoodForm({ foods, setFoods }) {
       <form onSubmit={handleSubmit}>
         <Divider>Add Food Entry</Divider>
         <label>
-          <h4>Name</h4>
+          <h4>Name:</h4>
           <Input
             type="text"
             value={name}
@@ -39,7 +39,7 @@ function AddFoodForm({ foods, setFoods }) {
           />
         </label>
         <label>
-          <h4>Image URL</h4>
+          <h4>Image URL:</h4>
           <Input
             type="text"
             name="image"
@@ -50,7 +50,7 @@ function AddFoodForm({ foods, setFoods }) {
           />
         </label>
         <label>
-          <h4>Calories</h4>
+          <h4>Calories:</h4>
           <Input
             type="text"
             name="calories"
@@ -61,7 +61,7 @@ function AddFoodForm({ foods, setFoods }) {
           />
         </label>
         <label>
-          <h4>Servings</h4>
+          <h4>Servings:</h4>
           <Input
             type="text"
             name="servings"

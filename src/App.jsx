@@ -17,6 +17,15 @@ function App() {
   });
   //  setFoods(filteredFoods);
 
+  const handelDelete = (foodToDelete) => {
+    foods.filter((food) => {
+      if (food.name !== foodToDelete) {
+        return true;
+      }
+    });
+    setFoods(filteredFoods);
+  };
+
   return (
     <div>
       <SearchBar search={search} setSearch={setSearch} />
@@ -27,6 +36,7 @@ function App() {
         {filteredFoods.map((food) => {
           return (
             <FoodBox
+              handelDelete={handelDelete}
               food={{
                 name: food.name,
                 calories: food.calories,

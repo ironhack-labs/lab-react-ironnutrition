@@ -1,6 +1,6 @@
 import { Card, Col, Button } from 'antd';
 
-function FoodBox({ food }) {
+function FoodBox({ food, handelDelete }) {
   const getKcal = (a, b) => {
     const sumValue = a + b;
     return sumValue;
@@ -16,7 +16,14 @@ function FoodBox({ food }) {
             Total Calories: {getKcal(food.calories, food.servings)} kcal
           </strong>
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            handelDelete(food.name);
+          }}
+        >
+          Delete
+        </Button>
       </Card>
     </Col>
   );

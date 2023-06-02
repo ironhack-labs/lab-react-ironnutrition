@@ -9,6 +9,7 @@ import AddFoodForm from './components/AddFoodForm';
 function App() {
   const [foods, setFoods] = useState(foodsJSON);
   const [search, setSearch] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const filteredFoods = foods.filter((food) => {
     const searchCheck = food.name.toLowerCase().includes(search.toLowerCase());
@@ -22,10 +23,18 @@ function App() {
     setFoods(filteredFoods);
   };
 
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div>
       <SearchBar search={search} setSearch={setSearch} />
-      <AddFoodForm foods={foods} setFoods={setFoods} />
+
+      <button onClick={handleShowForm}>
+        {showForm ? 'Hide Form' : 'Add new Food'}
+      </button>
+      {showForm ? <AddFoodForm foods={foods} setFoods={setFoods} /> : null}
       <Divider>Food List</Divider>
       <h1>Food List</h1>
       <Row style={{ width: '100%', justifyContent: 'center' }}>

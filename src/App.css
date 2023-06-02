@@ -2,37 +2,79 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.food-box {
+  border: solid 1px rgba(128, 128, 128, 0.345);
+  width: 200px;
+  text-align: left;
+  padding: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.food-box h3 {
+  padding: 10px;
+  background-color: #F3C44D;
+  color: black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.food-box img,
+.food-box p {
+  padding-left: 10px;
+}
+
+.food-box button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  background-color: black;
   color: white;
+  font-weight: bold;
+
 }
 
-.App-link {
-  color: #61dafb;
+.food-box-map {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.food-form {
+  background-color: #F3C44D;
+  padding:20px;
+  margin-bottom: 30px;
+}
+
+.food-form h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.food-form form input {
+  padding: 5px;
+  margin: 10px;
+}
+
+.food-form form button {
+  padding: 5px 10px;
+  margin: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.search-bar {
+  background-color: black;
+  padding: 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.search-bar label input {
+  padding: 5px;
+  margin-left: 10px;
+  background-color: black;
+  border: none;
+  border-bottom: #F3C44D 1px solid;
+  color: white;
 }

@@ -12,6 +12,14 @@ function App() {
   const filteredFoods = foodList.filter((food) => {
     return food.name.toLowerCase().includes(input.toLowerCase());
   });
+  const deleteFoodCard = (foodName) => {
+    const updatedFoodList = foodList.filter((food) => {
+      if (food.name !== foodName) {
+        return true;
+      }
+    });
+    setFoodList(updatedFoodList);
+  };
 
   return (
     <div>
@@ -20,7 +28,13 @@ function App() {
       <Divider>Food List </Divider>
       <div className="foodList">
         {filteredFoods.map((food) => {
-          return <FoodBox key={food.name} food={food} />;
+          return (
+            <FoodBox
+              key={food.name}
+              food={food}
+              deleteFoodCard={deleteFoodCard}
+            />
+          );
         })}
       </div>
     </div>

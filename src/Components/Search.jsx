@@ -6,7 +6,9 @@ function Search({ setFood, setInput, input }) {
   };
 
   return (
-    <div>
+    <div className='searchdiv'>
+      <h2>Search</h2>
+      <label>Search: </label>
       <input type="text" value={input} onChange={searchFunction} />
     </div>
   );

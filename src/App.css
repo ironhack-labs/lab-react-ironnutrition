@@ -1,5 +1,10 @@
-.App {
+.App{
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .App-logo {
@@ -36,3 +41,52 @@
     transform: rotate(360deg);
   }
 }
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-items:flex-end;
+  justify-content: center;
+
+}
+
+.fooddiv{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20%;
+  margin-right: 20%;
+
+}
+
+button{
+  background-color: blue;
+  color: white;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+input{
+  margin: 7px;
+}
+
+.inputdiv{
+  display: flex;
+  flex-direction: row;
+}
+
+h2{
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.foodtitle{
+  display: flex;
+  justify-content: center;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+

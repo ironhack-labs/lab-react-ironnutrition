@@ -62,3 +62,19 @@
   color: white;
   font-weight: bold;
 }
+
+.search-bar {
+  background-color: black;
+  padding: 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.search-bar label input {
+  padding: 5px;
+  margin-left: 10px;
+  background-color: black;
+  border: none;
+  border-bottom: #F3C44D 1px solid;
+  color: white;
+}

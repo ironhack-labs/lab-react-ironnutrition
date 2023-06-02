@@ -6,7 +6,7 @@ function SearchBar({ search, setSearch}) {
       <div className="search-bar">
         <label>
             What are you looking for?
-            <input type="text" value={search} onChange={handleSearch}/>
+            <input type="text" value={search} placeholder="name of a food item" onChange={handleSearch}/>
         </label>
         
      

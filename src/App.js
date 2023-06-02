@@ -9,6 +9,15 @@ function App() {
   const [foods, setFoods] = useState(foodsJson);
   const [search, setSearch] = useState('');
 
+  const handleDelete = (foodName) => {
+    const foodsAfterDelete = foods.filter((oneFood) => {
+      if (oneFood.name !== foodName) {
+        return true;
+      }
+    })
+    setFoods(foodsAfterDelete);
+  }
+
   return (
     <div className="App">
       <h1>Food List</h1>
@@ -27,7 +36,7 @@ function App() {
           })
           .map((foodItem) => {
             return (
-            <FoodBox singleFood={foodItem} />
+            <FoodBox singleFood={foodItem} handleDelete={handleDelete}/>
             );
           })}
       </div>

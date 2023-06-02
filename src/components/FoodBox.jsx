@@ -1,4 +1,4 @@
-function FoodBox({ singleFood }) {
+function FoodBox({ singleFood, handleDelete }) {
   return (
     <div className="food-box">
           <h3>{singleFood.name}</h3>
@@ -10,7 +10,7 @@ function FoodBox({ singleFood }) {
           <p>Calories: {singleFood.calories}</p>
           <p>Servings: {singleFood.servings}</p>
           <p style={{ fontWeight: "bold"}}>Total calories: {singleFood.servings * singleFood.calories} kcal</p>
-          <button>DELETE</button>
+          <button onClick={() => handleDelete(singleFood.name)}>DELETE</button>
     </div>
   );
 }

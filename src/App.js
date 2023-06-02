@@ -27,21 +27,28 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={handleShowForm}>Show form</button>
+      <h1>Food List</h1>
+      <div className="show-button">
+        <button onClick={handleShowForm}>Show form</button>
+      </div>
 
       {showForm ? <AddFoodForm foods={foods} setFoods={setFoods} /> : null}
 
       <Search search={search} setSearch={setSearch} />
 
-      {foods
-        .filter((oneFilterFood) => {
-          if (oneFilterFood.name.toLowerCase().includes(search.toLowerCase())) {
-            return true;
-          }
-        })
-        .map((oneFood, index) => (
-          <FoodBox key={index} food={oneFood} handleDelete={handleDelete} />
-        ))}
+      <div className="all-food-card">
+        {foods
+          .filter((oneFilterFood) => {
+            if (
+              oneFilterFood.name.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return true;
+            }
+          })
+          .map((oneFood, index) => (
+            <FoodBox key={index} food={oneFood} handleDelete={handleDelete} />
+          ))}
+      </div>
     </div>
   );
 }

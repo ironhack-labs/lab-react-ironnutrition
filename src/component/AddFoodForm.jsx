@@ -30,33 +30,45 @@ function AddFoodForm({ foods, setFoods }) {
   }
 
   return (
-    <div>
+    <div className="form-search">
       <form onSubmit={handleNewFood}>
+        <label>Name</label>
         <input type="text" value={name} onChange={handleName} />
 
         {/*  onChange const/function  model 2, in one line!*/}
-        <input
-          type="text"
-          value={image}
-          onChange={(event) => {
-            setImage(event.target.value);
-          }}
-        />
+        <label>
+          Image URL
+          <input
+            type="text"
+            value={image}
+            onChange={(event) => {
+              setImage(event.target.value);
+            }}
+          />
+        </label>
 
-        <input
-          type="text"
-          value={calories}
-          onChange={(event) => {
-            setCalories(event.target.value);
-          }}
-        />
-        <input
-          type="text"
-          value={servings}
-          onChange={(event) => {
-            setServings(event.target.value);
-          }}
-        />
+        <label>
+          Calories
+          <input
+            type="text"
+            value={calories}
+            onChange={(event) => {
+              setCalories(event.target.value);
+            }}
+          />
+        </label>
+
+        <label>
+          Servings
+          <input
+            type="text"
+            value={servings}
+            onChange={(event) => {
+              setServings(event.target.value);
+            }}
+          />
+        </label>
+
         <button type="submit">Submit</button>
       </form>
     </div>

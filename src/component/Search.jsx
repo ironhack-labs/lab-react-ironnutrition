@@ -3,9 +3,8 @@ function Search({ search, setSearch }) {
     setSearch(event.target.value);
   };
   return (
-    <div>
+    <div className="form-search">
       <label>
-        {' '}
         Search Foods
         <input type="text" value={search} onChange={handleSearch} />
       </label>

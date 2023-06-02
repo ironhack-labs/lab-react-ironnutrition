@@ -27,15 +27,13 @@ function AddFoodForm({ newFood, setNewFood, setFood, food }) {
     setNewFoodImage('');
     setNewFoodServings('');
 
-   
-
   }
   return (
     <>
     <button onClick={toggleVisibility}> {formVisible ? "Hide form" : "Show form"} </button>
 
     {formVisible && (
-      <div className='addnewdiv' >
+      <div>
       <form onSubmit={createButton}>
       <h2>Add food item </h2>
 

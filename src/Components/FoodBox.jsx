@@ -7,7 +7,7 @@ function FoodBox({ food, deleteButton }) {
           <img src={food.image} alt="" width={100} />
           <p>Calories: {food.calories}</p>
           <p>Servings: {food.servings}</p>
-          <button onClick={() => {deleteButton(food.name)}}> DELETE</button>
+          <button onClick={() => {deleteButton(food.name)} }> DELETE</button>
       </Card>
     </div>
   );

@@ -62,7 +62,7 @@ function App() {
         />
       </div>
       <Button onClick={handleShowForm}>
-        {showForm === 'none' ? 'Show Form' : 'Hide Form'}
+        {showForm === 'none' ? 'Add new food' : 'Hide Form'}
       </Button>
       <Search search={search} onChange={handleSearch} />
       <Divider>Food List</Divider>

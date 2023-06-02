@@ -12,16 +12,12 @@ function App() {
 
   const filteredFoods = foods.filter((food) => {
     const searchCheck = food.name.toLowerCase().includes(search.toLowerCase());
-
     return searchCheck;
   });
-  //  setFoods(filteredFoods);
 
-  const handelDelete = (foodToDelete) => {
-    foods.filter((food) => {
-      if (food.name !== foodToDelete) {
-        return true;
-      }
+  const handleDelete = (foodToDelete) => {
+    const filteredFoods = foods.filter((food) => {
+      return food.name !== foodToDelete;
     });
     setFoods(filteredFoods);
   };
@@ -36,7 +32,7 @@ function App() {
         {filteredFoods.map((food) => {
           return (
             <FoodBox
-              handelDelete={handelDelete}
+              handleDelete={handleDelete}
               food={{
                 name: food.name,
                 calories: food.calories,

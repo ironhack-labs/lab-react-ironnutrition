@@ -4,8 +4,8 @@ import { Input, Divider } from 'antd';
 function AddFoodForm({ foods, setFoods }) {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const [calories, setCalories] = useState('');
-  const [servings, setServings] = useState(true);
+  const [calories, setCalories] = useState(0);
+  const [servings, setServings] = useState(0);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -18,8 +18,8 @@ function AddFoodForm({ foods, setFoods }) {
     setFoods([newFood, ...foods]);
     setName('');
     setImage('');
-    setCalories('');
-    setServings('');
+    setCalories(0);
+    setServings(0);
   }
 
   return (
@@ -52,22 +52,24 @@ function AddFoodForm({ foods, setFoods }) {
         <label>
           <h4>Calories:</h4>
           <Input
-            type="text"
+            type="number"
             name="calories"
+            min={0}
             value={calories}
             onChange={(event) => {
-              setCalories(event.target.value);
+              setCalories(Number(event.target.value));
             }}
           />
         </label>
         <label>
           <h4>Servings:</h4>
           <Input
-            type="text"
+            type="number"
             name="servings"
+            min={0}
             checked={servings}
             onChange={(event) => {
-              setServings(event.target.value);
+              setServings(Number(event.target.value));
             }}
           />
         </label>

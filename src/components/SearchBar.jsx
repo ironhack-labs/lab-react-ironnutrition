@@ -1,4 +1,5 @@
 import { Divider } from 'antd';
+
 function SearchBar({ search, setSearch }) {
   const handleSearch = (event) => {
     setSearch(event.target.value);

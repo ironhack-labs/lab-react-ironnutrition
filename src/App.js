@@ -3,7 +3,7 @@ import './App.css';
 import foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
-import { Divider } from 'antd';
+import { Divider, Button } from 'antd';
 import Search from './components/Search';
 
 function App() {
@@ -21,9 +21,25 @@ function App() {
     setFoodList(updatedFoodList);
   };
 
+  const [showForm, setShowForm] = useState(false);
+  const handleShowForm = () => {
+    console.log('show form');
+    setShowForm(!showForm);
+  };
+
   return (
     <div>
-      <AddFoodForm foodList={foodList} setFoodList={setFoodList} />
+      {' '}
+      {showForm ? (
+        <AddFoodForm foodList={foodList} setFoodList={setFoodList} />
+      ) : null}{' '}
+      <Button
+        style={{ margin: '50px ' }}
+        onClick={handleShowForm}
+        type="primary"
+      >
+        {showForm ? 'Hide Form' : 'Add New Food'}
+      </Button>
       <Search setFoodList={setFoodList} input={input} setInput={setInput} />
       <Divider>Food List </Divider>
       <div className="foodList">

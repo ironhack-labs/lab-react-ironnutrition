@@ -24,7 +24,7 @@ function AddFoodForm({ foodList, setFoodList }) {
   }
 
   return (
-    <form onSubmit={handleNewFood}>
+    <form className="form" onSubmit={handleNewFood}>
       <Divider>Add Food</Divider>
       <label>Name</label>
       <Input
@@ -58,7 +58,9 @@ function AddFoodForm({ foodList, setFoodList }) {
           setServings(event.target.value);
         }}
       />
-      <button type="submit">Create</button>
+      <button className="create-btn" type="submit">
+        Create
+      </button>
     </form>
   );
 }

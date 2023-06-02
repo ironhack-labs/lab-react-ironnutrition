@@ -9,8 +9,14 @@ function Search({ input, setInput }) {
     <>
       <Divider>Search</Divider>
 
-      <label>Search</label>
-      <Input value={input} type="text" onChange={handleSearch} />
+      <label className="search">Search</label>
+      <Input
+        className="search"
+        placeholder="Search..."
+        value={input}
+        type="text"
+        onChange={handleSearch}
+      />
     </>
   );
 }

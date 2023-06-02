@@ -38,19 +38,23 @@ function App() {
       <Divider>Food List</Divider>
       <h1>Food List</h1>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFoods.map((food) => {
-          return (
-            <FoodBox
-              handleDelete={handleDelete}
-              food={{
-                name: food.name,
-                calories: food.calories,
-                image: food.image,
-                servings: food.servings,
-              }}
-            />
-          );
-        })}
+        {filteredFoods.length === 0 ? (
+          <>Oops. There is no more content to show. ⛔️</>
+        ) : (
+          filteredFoods.map((food) => {
+            return (
+              <FoodBox
+                handleDelete={handleDelete}
+                food={{
+                  name: food.name,
+                  calories: food.calories,
+                  image: food.image,
+                  servings: food.servings,
+                }}
+              />
+            );
+          })
+        )}
       </Row>
     </div>
   );

@@ -10,12 +10,12 @@ function App() {
   const  [food, setFood]  = useState(foods);
   
 
-
+const 
 
   return (
     <div className="App">
-      <h1>Add a food to the list</h1>
-      <AddFoodForm />
+      <h2>Add a food to the list</h2>
+      <AddFoodForm addFood={addNewFood} setFood={setFood} />
       <h2>Food List</h2>
       <div className="foodGroup">
       {food.map((food) =>

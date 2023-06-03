@@ -41,11 +41,8 @@ function App() {
   };
 
   const handleShowForm = () => {
-    if (showForm === 'none') {
-      setShowForm('block');
-    } else {
-      setShowForm('none');
-    }
+    const newShowForm = showForm === 'none' ? 'block' : 'none';
+    setShowForm(newShowForm);
   };
 
   return (

@@ -16,20 +16,8 @@ function App() {
   
 
   const addNewFood = newFood =>{
-    const newFoodBox = <MyFoodBox
-      name={newFood.name}
-      image={newFood.image}
-      calories={newFood.calories}
-      servings={newFood.servings}
-    />
-    console.log(<MyFoodBox
-      name={newFood.name}
-      image={newFood.image}
-      calories={newFood.calories}
-      servings={newFood.servings}
-    />)
-    setFood(prevFood => [newFoodBox, ...prevFood])
-    setFoodOriginal(prevFood => [newFoodBox, ...prevFood])
+    setFood(prevFood => [newFood, ...prevFood])
+    setFoodOriginal(prevFood => [newFood, ...prevFood])
   }
 
   const deleteFood = (foodName) => {

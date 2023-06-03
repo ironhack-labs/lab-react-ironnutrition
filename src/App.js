@@ -17,34 +17,20 @@ function App() {
   };
 
   const deleteFood = (foodId) => {
-    const filteredFoods = allFoods.filter((food) => {
-      return food.key !== foodId;
+    const filteredFood = allFoods.filter((food) => {
+      return food.name !== foodId;
     });
-    setFoods(filteredFoods);
+
+    setFoods(filteredFood);
   };
 
   const filterFood = (str) => {
-    // const searchTerm = event.target.value;
-    // console.log(event.target.value);
-
-    // let nextFoods = [...allFoods];
-    // console.log('2', searchTerm);
-    // console.log('1', nextFoods);
-
-    // if (searchTerm !== '') {
-    //   nextFoods = allFoods.filter((food) => {
-    //     food.name.startsWith(searchTerm);
-    //   });
-    // }
     let filteredFood;
     if (str === '') {
       filteredFood = [...allFoodsData];
     } else {
       filteredFood = allFoodsData.filter((food) => {
-        console.log('foodname!', food.toLowerCase());
-        console.log('str!', str.toLowerCase());
-
-        return food.name.toLowerCase() === str.toLowerCase();
+        return food.name.toLowerCase().includes(str);
       });
     }
 

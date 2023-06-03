@@ -1,6 +1,7 @@
 import { Divider, Input } from 'antd';
 
 function Search(props) {
+  const { search, onChange } = props;
   return (
     <div>
       <Divider>Search</Divider>
@@ -9,8 +10,8 @@ function Search(props) {
       <Input
         type="text"
         name="search"
-        value={props.search}
-        onChange={props.onChange}
+        value={search}
+        onChange={onChange}
         placeholder="Enter search query"
       />
     </div>

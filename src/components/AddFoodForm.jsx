@@ -1,7 +1,7 @@
 import { Divider, Input } from 'antd';
 
 function AddFoodForm(props) {
-  const { name, image, calories, servings } = props;
+  const { name, image, calories, servings, onChange, onAddFood } = props;
   return (
     <form>
       <Divider>Add Food Entry</Divider>
@@ -11,7 +11,7 @@ function AddFoodForm(props) {
         type="text"
         name="name"
         value={name}
-        onChange={props.onChange}
+        onChange={onChange}
         placeholder="Enter name"
       />
 
@@ -20,7 +20,7 @@ function AddFoodForm(props) {
         type="text"
         name="image"
         value={image}
-        onChange={props.onChange}
+        onChange={onChange}
         placeholder="Enter image URL"
       />
 
@@ -29,7 +29,7 @@ function AddFoodForm(props) {
         type="number"
         name="calories"
         value={calories}
-        onChange={props.onChange}
+        onChange={onChange}
         placeholder="Enter calories"
       />
 
@@ -38,11 +38,11 @@ function AddFoodForm(props) {
         type="number"
         name="servings"
         value={servings}
-        onChange={props.onChange}
+        onChange={onChange}
         placeholder="Enter servings"
       />
 
-      <button onClick={props.onAddFood}>Create</button>
+      <button onClick={onAddFood}>Create</button>
     </form>
   );
 }

@@ -34,3 +34,8 @@
   color: blue;
   border-radius: 10px;
 }
+
+.zero-symbol {
+  font-size: 200px;
+  margin: 0px
+}

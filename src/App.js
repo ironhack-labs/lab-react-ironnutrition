@@ -3,6 +3,7 @@ import AddFoodForm from './components/AddFoodForm';
 import './App.css';
 import { useState } from 'react';
 import foodsData from './foods.json';
+import { Button } from 'antd';
 import SearchBar from './components/SearchBar';
 
 function App() {
@@ -20,24 +21,29 @@ function App() {
 
   const addNewFood = (food) => {
     food._id = food.name + Math.random();
-    setFoods((state) => [food, ...state]);
-    setAllFoods((state) => [food, ...state]);
+    setFoods((state) => [...state, food]);
+    setAllFoods((state) => [...state, food]);
   };
 
   const toggleFormVisibility = () => {
     setShowForm((prevState) => !prevState);
   };
 
+  const deleteFood = (foodId) => {
+    const updatedFoods = foods.filter(food => food.name !== foodId);
+    setFoods(updatedFoods);
+};
+
   return (
     <div className="App">
-      <button className="form-button" onClick={toggleFormVisibility}>
+      <Button className="form-button" onClick={toggleFormVisibility}>
         {showForm ? 'Hide Form' : 'Add New Food'}
-      </button>
+      </Button>
       {showForm && <AddFoodForm addNewFood={addNewFood} />}
       <br />
       <SearchBar searchFoods={searchFoods} />
       <br />
-      <FoodBox foods={foods} />
+      <FoodBox foods={foods} deleteFood={deleteFood} />
     </div>
   );
 }

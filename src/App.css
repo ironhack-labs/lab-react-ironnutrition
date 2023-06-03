@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+.food-box-container {
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.food-card {
+  border: 1px solid black;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.food-image {
+  width: 100%;
+  height: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.food-name {
+  border-bottom: 1px solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.AddFood {
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 20px
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.new-food-input {
+  margin-bottom:10px
+}
+
+.form-button {
+  margin:20px;
+  border: 1px solid blue;
+  padding:10px;
+  background-color: transparent;
+  color: blue;
+  border-radius: 10px;
+}
+
+.zero-symbol {
+  font-size: 200px;
+  margin: 0px
 }

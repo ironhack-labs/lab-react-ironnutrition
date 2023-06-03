@@ -2,7 +2,7 @@ import { useState } from 'react';
 import foods from './foods.json';
 import './App.css';
 import FoodBox from './Components/FoodBox';
-import AddFoodFrom from './Components/AddFoodForm';
+import AddFoodForm from './Components/AddFoodForm';
 import Search from './Components/Search';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Search food={food} />
-      <AddFoodFrom addNewFood={addNewFood} />
+      <AddFoodForm addNewFood={addNewFood} />
       {food.map((food) => {
         return <FoodBox food={food} />;
       })}

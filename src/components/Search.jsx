@@ -3,28 +3,21 @@ import { useState } from 'react';
 import { Input } from 'antd';
 
 function Search(props) {
-  const { food } = props;
+  const { food, filterFoods } = props;
   const [searchInput, setSearchInput] = useState('');
-
-  const handleChange = (event) => {
-    event.preventDefault();
+  const handleSearchInput = (event) => {
     setSearchInput(event.target.value);
+    filterFoods(searchInput);
   };
-  if (searchInput.length > 0) {
-    food.filter((food) => {
-      return food.name.match(searchInput);
-    });
-  }
-
   return (
     <div>
       <h3>Search</h3>
       <Input
         style={{ width: 400 }}
         type="text"
-        value={searchInput}
         placeholder="Enter search..."
-        onChange={handleChange}
+        value={searchInput}
+        onChange={handleSearchInput}
       ></Input>
     </div>
   );

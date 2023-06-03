@@ -14,19 +14,27 @@ function App() {
     setFood([newFood, ...food]);
   };
 
+  const deleteFood = (foodName) => {
+    if (foodName) {
+      setAllFoods(allFoods.filter((food) => food.name !== foodName));
+    }
+  };
+
   const filterFoods = (search) => {
-    const filterFoods = allFoods.filter((food) => food.name.includes(search));
+    const filterFoods = allFoods.filter((food) =>
+      food.name.toUpperCase().includes(search.toUpperCase())
+    );
     setAllFoods(filterFoods);
   };
 
   return (
     <div className="App">
-      <Search food={food} />
+      <Search food={food} filterFoods={filterFoods} />
       <AddFoodForm addNewFood={addNewFood} />
 
       <Row>
-        {food.map((food) => (
-          <FoodBox food={food} />
+        {allFoods.map((food) => (
+          <FoodBox food={food} deleteFood={deleteFood} />
         ))}
       </Row>
     </div>

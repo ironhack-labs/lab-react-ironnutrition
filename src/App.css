@@ -6,3 +6,11 @@ form {
   width: 50%;
   margin: 0 auto;
 }
+
+.SearchInput  {
+  display: flex;
+  justify-content: center;
+  
+}
+
+

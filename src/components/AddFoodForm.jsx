@@ -1,7 +1,9 @@
 import { Divider, Input } from 'antd';
 
 function AddFoodForm(props) {
-  const { name, image, calories, servings, onChange, onAddFood } = props;
+  const { newFood, onChange, onAddFood } = props;
+  const { name, image, calories, servings } = newFood;
+  
   return (
     <form>
       <Divider>Add Food Entry</Divider>

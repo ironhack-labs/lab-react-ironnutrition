@@ -50,10 +50,7 @@ function App() {
       <h1>IronNutrition</h1>
       <div style={{ display: showForm }}>
         <AddFoodForm
-          name={newFood.name}
-          image={newFood.image}
-          calories={newFood.calories}
-          servings={newFood.servings}
+          newFood={newFood}
           onChange={handleFormChange}
           onAddFood={handleAddFood}
         />
@@ -71,10 +68,7 @@ function App() {
           .map((food, index) => (
             <FoodBox
               key={index}
-              name={food.name}
-              image={food.image}
-              calories={food.calories}
-              servings={food.servings}
+              food={food}
               onDelete={() => handleDelete(index)}
             />
           ))}

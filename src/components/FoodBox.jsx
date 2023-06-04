@@ -1,7 +1,9 @@
 import { Card, Col, Button } from 'antd';
 
 function FoodBox(props) {
-  const { name, image, calories, servings, onDelete } = props;
+  const { food, onDelete } = props;
+  const { name, image, calories, servings } = food;
+  
   return (
     <Col>
       <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>

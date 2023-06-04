@@ -1,8 +1,8 @@
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Card, Col, Button } from 'antd';
 
 
 function FoodBox (props) {
-    const {food} = props;
+    const {food, deleteFood} = props;
     const {name, calories, image, servings} = food
 
     const multiplyNumbers = (num1, num2) => {
@@ -19,7 +19,7 @@ function FoodBox (props) {
             <p>
                 <b>Total calories: {multiplyNumbers(calories, servings)}</b>
             </p>
-            <Button type="primary"> Delete</Button>
+            <Button type="primary" onClick= {(event) => {deleteFood(name)}}> Delete</Button>
         </Card>
         </Col>
     )

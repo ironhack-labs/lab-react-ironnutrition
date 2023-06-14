@@ -1,33 +1,28 @@
-import React from "react";
-import foodsJson from "../foods.json";
+// import React from "react";
+// import foodsJson from "../foods.json";
 
 function FoodBox(props) {
-  const [foods, setFoods] = React.useState(foodsJson);
+  // const [foods, setFoods] = React.useState(foodsJson);
 
   return (
     <>
-      {foods.map((el) => {
-        return (
-          <div key={el.id}>
-            <h2>{el.name}</h2>
+      <div key={props.id}>
+        <h2>{props.name}</h2>
 
-            <img src={el.image} />
+        <img src={props.image} />
 
-            <p>Calories: {el.calories}</p>
-            <p>Servings {el.servings}</p>
+        <p>Calories: {props.calories}</p>
+        <p>Servings {props.servings}</p>
 
-            <p>
-              <b>
-                Total Calories: {el.servings} * {el.calories}{" "}
-              </b>{" "}
-              kcal
-            </p>
+        <p>
+          <b>
+            Total Calories: {props.servings} * {props.calories}{" "}
+          </b>{" "}
+          kcal
+        </p>
 
-            <button>Delete</button>
-          </div>
-        );
-      })}
-      ;
+        <button>Delete</button>
+      </div>
     </>
   );
 }

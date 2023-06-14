@@ -1,27 +1,35 @@
-import React from 'react';
+import React from "react";
+import foodsJson from "../foods.json";
 
+function FoodBox(props) {
+  const [foods, setFoods] = React.useState(foodsJson);
 
-function FoodBox (props){
+  return (
+    <>
+      {foods.map((el) => {
+        return (
+          <div key={el.id}>
+            <h2>{el.name}</h2>
 
+            <img src={el.image} />
 
-return (
-<div>
-  <p>{props.food.name}</p>
+            <p>Calories: {el.calories}</p>
+            <p>Servings {el.servings}</p>
 
-  <img src={props.food.image} />
+            <p>
+              <b>
+                Total Calories: {el.servings} * {el.calories}{" "}
+              </b>{" "}
+              kcal
+            </p>
 
-  <p>Calories: {props.food.calories}</p>
-  <p>Servings {props.food.servings}</p>
-
-  <p>
-    <b>Total Calories: {props.food.servings} * {props.food.calories} </b> kcal
-  </p>
-
-  <button>Delete</button>
-</div>
-)
-
-
+            <button>Delete</button>
+          </div>
+        );
+      })}
+      ;
+    </>
+  );
 }
 
 export default FoodBox;

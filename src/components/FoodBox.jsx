@@ -21,7 +21,13 @@ function FoodBox(props) {
           kcal
         </p>
 
-        <button>Delete</button>
+        <button
+          onClick={() => {
+            props.deleteTheFood(props.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </>
   );

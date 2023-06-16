@@ -1,6 +1,10 @@
 import React from "react";
+
 import foodsJson from "./foods.json";
+
 import FoodBox from "./components/FoodBox";
+import AddFoodForm from "./components/AddFoodForm";
+
 import "./App.css";
 import "./index.css";
 
@@ -25,8 +29,22 @@ function App() {
     setFoods(foodsCopy);
   }
 
+  function addFood(obj) {
+    const foodsCopy = foods.slice();
+    foodsCopy.push({
+      id: Math.random() * 1000000000000,
+      name: obj.name,
+      calories: obj.calories,
+      image: obj.image,
+      servings: obj.servings,
+    });
+    setFoods(foodsCopy);
+  }
+
   return (
     <>
+      <AddFoodForm addTheFood={addFood} />
+
       {foods.map((food) => {
         return (
           <FoodBox

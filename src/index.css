@@ -67,3 +67,27 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#search {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  
+}
+
+
+
+form div {
+  display: flex;
+  align-items: center;
+}
+
+form div label {
+  margin: 3px;
+}
+
+#foodBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

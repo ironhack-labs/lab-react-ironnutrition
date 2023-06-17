@@ -1,6 +1,8 @@
 import React from "react";
 import { Divider, Input } from "antd";
 
+//function Searc(props) {
+//  const {value, handleSearch} = props
 function Search({ value, handleSearch }) {
   return (
     <>

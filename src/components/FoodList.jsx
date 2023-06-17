@@ -7,7 +7,7 @@ import Search from "./Search";
 import "../App.css";
 
 function FoodList() {
-  const [foods, setFood] = useState(foodList);
+  const [foods, setFoods] = useState(foodList);
   const [searchWord, setSearchWord] = useState("");
 
   function deleteFood(id) {
@@ -16,7 +16,7 @@ function FoodList() {
       return el.id === id;
     });
     foodsCopy.splice(foodIndex, 1);
-    setFood(foodsCopy);
+    setFoods(foodsCopy);
   }
 
   function addFood(obj) {
@@ -28,7 +28,7 @@ function FoodList() {
       calories: obj.calories,
       servings: obj.servings,
     });
-    setFood(foodsCopy);
+    setFoods(foodsCopy);
   }
 
   function handleSearch(event) {
@@ -40,14 +40,21 @@ function FoodList() {
   );
 
   return (
-    <div className="App">
-      <h1>LAB | React IronNutrition</h1>
+    <div >
       <Search value={searchWord} handleSearch={handleSearch} />
       <AddFoodForm addTheFood={addFood} />
       <div id="foodBoxes">
         {filteredFoods.map((el) => {
           return <FoodBox key={el.id} food={el} deleteTheFood={deleteFood} />;
         })}
+      </div>
+      <div style={{ marginTop: 40, fontSize:26 }}>
+        {!foods[0] && (
+          <>
+            <b>Oops! There is no more content to show. </b>
+            <p>❌</p>
+          </>
+        )}
       </div>
     </div>
   );

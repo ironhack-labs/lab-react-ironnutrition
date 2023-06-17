@@ -17,6 +17,9 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+button {
+  margin-bottom: 1rem;
+}
 
 @keyframes logo-spin {
   from {
@@ -39,4 +42,19 @@
 
 .read-the-docs {
   color: #888;
+}
+.foodbox {
+  border: 2px solid grey;
+  margin: 1rem;
+}
+
+.foodbox__img {
+  width: 20rem;
+  height: auto;
+}
+.addform {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }

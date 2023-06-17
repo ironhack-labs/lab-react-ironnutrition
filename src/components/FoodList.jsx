@@ -1,6 +1,7 @@
 import { useState } from "react";
 import foodsJson from "../foods.json";
 import FoodBox from "./FoodBox";
+import AddFoodForm from "./AddFoodForm";
 
 function FoodList() {
   const [foods, setFoods] = useState(foodsJson);
@@ -19,9 +20,25 @@ function FoodList() {
     setFoods(foodscopy);
   }
 
+  function addElement(objet) {
+    console.log("coucou addelment f");
+    const foodListCopy = foods.slice();
+
+    foodListCopy.push({
+      id: objet.id,
+      name: objet.name,
+      calories: objet.calories,
+      image: objet.image,
+      servings: objet.servings,
+    });
+
+    setFoods(foodListCopy);
+  }
   return (
     <div>
       <h2>Nutrition</h2>
+
+      <AddFoodForm addFood={addElement} />
 
       {foods.map(function (food) {
         return <FoodBox food={food} key={food.id} delete={deleteFood} />;

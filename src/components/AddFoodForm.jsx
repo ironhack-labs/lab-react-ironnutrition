@@ -1,8 +1,9 @@
 import React from "react";
 
-props.addFood();
+//props.addFood();
 
 function AddFoodForm(props) {
+  const [id, setId] = React.useState("");
   const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
   const [calories, setCalories] = React.useState("");
@@ -13,8 +14,16 @@ function AddFoodForm(props) {
       onSubmit={function (event) {
         event.preventDefault(); //empeche le refresh de la page
 
-        const x = {};
-        props.addFood();
+        const obj = {
+          id: id,
+          name: name,
+          image: image,
+          calories: calories,
+          servings: servings,
+        };
+
+        console.log("obj addfood", obj);
+        props.addFood(obj);
       }}
     >
       <label>

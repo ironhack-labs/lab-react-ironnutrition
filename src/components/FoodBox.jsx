@@ -1,27 +1,35 @@
+import { Card, Col, Button } from "antd";
+
 function FoodBox(props) {
   let total = props.food.servings * props.food.calories;
   return (
-    <div key={props.food.id}>
-      <h3>{props.food.name}</h3>
-
-      <img src={props.food.image} className="logo" />
-
-      <p>Calories: {props.food.calories}</p>
-      <p>Servings {props.food.servings}</p>
-
-      <p>
-        <b>Total Calories: {total}</b>
-        kcal
-      </p>
-
-      <button
-        onClick={function (event) {
-          props.delete(props.food.id);
-        }}
+    <Col>
+      <Card
+        className="card"
+        key={props.food.id}
+        title={props.food.name}
+        style={{ width: 230, height: 400, margin: 10 }}
       >
-        Delete
-      </button>
-    </div>
+        <img src={props.food.image} height={60} alt="food" />
+
+        <p>Calories: {props.food.calories}</p>
+        <p>Servings {props.food.servings}</p>
+
+        <p>
+          <b>Total Calories: {total}</b>
+          kcal
+        </p>
+
+        <Button
+          type="primary"
+          onClick={function (event) {
+            props.delete(props.food.id);
+          }}
+        >
+          Delete
+        </Button>
+      </Card>
+    </Col>
   );
 }
 

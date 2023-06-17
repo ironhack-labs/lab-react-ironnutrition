@@ -1,33 +1,26 @@
-import { useState } from "react";
-import foodsJson from "../foods.json";
-
-function FoodBox() {
-  const [FoodBox] = useState(foodsJson);
-  let total = FoodBox.servings * FoodBox.calories;
+function FoodBox(props) {
+  let total = props.food.servings * props.food.calories;
   return (
-    <div>
-      <h1>Nutrition</h1>
+    <div key={props.food.id}>
+      <h3>{props.food.name}</h3>
 
-      {FoodBox.map(function (food) {
-        console.log("fooooood", food);
-        return (
-          <div key={food.id}>
-            <p>{food.name}</p>
+      <img src={props.food.image} className="logo" />
 
-            <img src={food.image} />
+      <p>Calories: {props.food.calories}</p>
+      <p>Servings {props.food.servings}</p>
 
-            <p>Calories: {food.calories}</p>
-            <p>Servings {food.servings}</p>
+      <p>
+        <b>Total Calories: {total}</b>
+        kcal
+      </p>
 
-            <p>
-              <b>Total Calories: {total}</b>
-              kcal
-            </p>
-
-            <button>Delete</button>
-          </div>
-        );
-      })}
+      <button
+        onClick={function (event) {
+          props.delete(props.food.id);
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 }

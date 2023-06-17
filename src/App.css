@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+form{
+  border: 1px solid #61dafbaa;
+  display: flex;
+  flex-direction:column;
+}
+
+form input{
+  margin-top: 15px;
+}

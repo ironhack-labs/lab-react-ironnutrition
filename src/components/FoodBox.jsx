@@ -1,15 +1,17 @@
 import { useState } from "react";
 import foodsJson from "../foods.json";
 
-function FoodBox(props) {
-  const [FoodBox, setFoodBox] = useState(foodsJson);
-  //let total = food.servings * food.calories;
+function FoodBox() {
+  const [FoodBox] = useState(foodsJson);
+  let total = FoodBox.servings * FoodBox.calories;
   return (
     <div>
+      <h1>Nutrition</h1>
+
       {FoodBox.map(function (food) {
         console.log("fooooood", food);
         return (
-          <div>
+          <div key={food.id}>
             <p>{food.name}</p>
 
             <img src={food.image} />

@@ -17,13 +17,13 @@ export default function Foodlist() {
     setFoods([...foods, { ...food }]);
   };
 
-  const handleFilterDatas = (searchQuery) => {
+  const handleFilterDatas = (e) => {
     setFoods(
       foodsData.filter((food) =>
-        String(food.name.toLowerCase()).startsWith(searchQuery.toLowerCase())
+        String(food.name.toLowerCase()).startsWith(e.target.value.toLowerCase())
       )
     );
-    setQuery(searchQuery);
+    setQuery(e.target.value);
   };
   return (
     <>

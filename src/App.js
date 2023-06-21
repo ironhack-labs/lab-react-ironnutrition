@@ -31,6 +31,7 @@ import Search from './components/Search';
 import NoContent from './components/NoContent'
 import foods from "./foods.json";
 import { useState } from 'react';
+import { Row } from 'antd';
 
 function App () {
   console.log("rendering App component");
@@ -67,11 +68,13 @@ function App () {
     <Search callbackSearchFood={searchFood}/>
     <h1>Food List</h1>
     <div className="FoodBox-container">
-      {/* operator precedence reminder: logical NOT (!) > lt/gt > logical AND (&&) */}
-      {!!foodsArr.length && foodsArr.map((food, index) => {
-        return <FoodBox className="FoodBox" key={index} food={food} callbackDeleteFood={() => deleteFood(index)}/>
-      })}
-      {!(foodsArr.length) && <NoContent />}
+      <Row gutter={[50, 16]}>
+        {/* operator precedence reminder: logical NOT (!) > lt/gt > logical AND (&&) */}
+        {!!foodsArr.length && foodsArr.map((food, index) => {
+          return <FoodBox className="FoodBox" key={index} food={food} callbackDeleteFood={() => deleteFood(index)}/>
+        })}
+        {!(foodsArr.length) && <NoContent />}
+      </Row>
     </div>
   </div>
 }

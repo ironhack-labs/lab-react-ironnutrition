@@ -3,10 +3,10 @@ import { Card, Col, Button } from 'antd';
 
 function FoodBox(props) {    
     return (
-      <Col>
-        <Card
+      <Col span={8}>
+        <Card 
           title={props.food.name}
-          style={{ width: 230, height: 300, margin: 10 }}
+          style={{ width: "100%", height: 300, margin: 10 }}
         >
           <img src={props.food.image} height={60} alt="food" />
           <p>Calories: {props.food.calories}</p>
@@ -23,7 +23,8 @@ function FoodBox(props) {
          
           <Button type="primary" danger htmlType="submit" onClick={props.callbackDeleteFood}> Delete </Button>
         </Card>
-      </Col>);
+      </Col>
+    );
   }
   
   export default FoodBox;

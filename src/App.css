@@ -2,10 +2,20 @@
   text-align: center;
 }
 
+/*
 .FoodBox-container {
   display: flex;
   flex-direction: line;
   flex-wrap: wrap;
+}
+*/
+/* now using And Design */
+/*
+https://ant.design/components/grid#components-grid-demo-playground
+*/
+
+.FoodBox-container {
+  margin-right: 20px; /* otherwise it spreads under the scrool bar on the right of the screen */
 }
 
 .App-logo {

@@ -2,7 +2,7 @@ import foods from "./foods.json";
 import './App.css';
 
 import { useState } from "react";
-import { Row, Divider, Button } from 'antd';
+import { Card, Col, Row, Divider, Button } from 'antd';
 import FoodBox from "./components/FoodBox";
 import AddFoodForm from "./components/AddFoodForm";
 

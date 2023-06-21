@@ -9,9 +9,10 @@ import { Divider, Input } from 'antd';
 function AddFoodForm(props) {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const [calories, setcalories] = useState('');
+  const [calories, setCalories] = useState('');
   const [servings, setServings] = useState('');
 
+  // console.log(props);
 
   // handle the Form submission
   const handleSubmit = (e) => {
@@ -23,13 +24,15 @@ function AddFoodForm(props) {
       calories: calories,
       servings: servings, ///idem> we take keys from the Json pattern  and  values from the useState above
     };
+    // console.log(newFood);
+
 
     props.callBackToCreate(newFood);
 
     // clear the form after submitting it
     setName('');
     setImage('');
-    setcalories('');
+    setCalories('');
     setServings('');
 
   };
@@ -45,13 +48,13 @@ function AddFoodForm(props) {
       <Input value={name} type="text" onChange={(e) => {setName(e.target.value)}} />
 
       <label>Image</label>
-      <Input value={image} type="text" onChange={(e) => {setName(e.target.value)}} />
+      <Input value={image} type="text" onChange={(e) => {setImage(e.target.value)}} />
 
       <label>Calories</label>
-      <Input value={calories} type="text" onChange={(e) => {setName(e.target.value)}} />
+      <Input value={calories} type="number" onChange={(e) => {setCalories(e.target.value)}} />
 
       <label>Servings</label>
-      <Input value={servings} type="text" onChange={(e) => {setName(e.target.value)}} />
+      <Input value={servings} type="number" onChange={(e) => {setServings(e.target.value)}} />
 
       <button type="submit">Create</button>
     </form>

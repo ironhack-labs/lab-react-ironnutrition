@@ -20,6 +20,16 @@ function App() {
     setFoodsToDisplay(newList);
   };
 
+  const deleteFood = (foodName) => {
+    console.log("deleting movie with id....", foodName)
+
+    const newList = foodsToDisplay.filter((element) => {
+      return element.name !== foodName;
+    });
+
+    setFoodsToDisplay(newList);
+
+  }
 
 
   return (
@@ -32,12 +42,16 @@ function App() {
       {/* Display Search component here */}
 
       <Divider>Food List</Divider>
-      {foodsToDisplay.map((foodObj) => (
-        <FoodBox foodDetails={foodObj} />
-      ))}
+
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
+        {foodsToDisplay.map((foodObj) => (
+        <FoodBox 
+          foodDetails={foodObj}
+          callBackToDelete={deleteFood}
+        />
+      ))}
       </Row>
     </div>
   );

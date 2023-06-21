@@ -25,13 +25,18 @@
 // export default App;
 
 import './App.css';
+import AddFoodForm from './components/AddFoodForm';
 import FoodBox from './components/FoodBox';
 import foods from "./foods.json";
 import { useState } from 'react';
 
 function App () {
-  const [foodsArr, setFoddsArr] = useState(foods);
+  const [foodsArr, setFoodsArr] = useState(foods);
+  const addFood = (newFood) => {
+    setFoodsArr([newFood, ...foodsArr])
+  }
   return <div className="App">
+    <AddFoodForm callbackAddFood={addFood}/>
     <h1>Food List</h1>
     <div className="FoodBox-container">
       {foodsArr.map((food, index) => {

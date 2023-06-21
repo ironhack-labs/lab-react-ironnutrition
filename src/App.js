@@ -11,10 +11,18 @@ function App() {
     return setFoodsList([newFood, ...foodsList]);
   };
 
+  const getData = (data) => {
+    const filteredList = foodsList.filter((food) => {
+      return food.name.toLowerCase().includes(data.toLowerCase());
+    });
+    
+    return setFoodsList(filteredList);
+  };
+
   return (
     <div className="App">
       <AddFoodForm callback={createFood} />
-      <Search />
+      <Search onSubmit={getData} />
       <Divider>Food List</Divider>
 
       <FoodBox food={foodsList} />

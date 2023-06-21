@@ -1,21 +1,21 @@
 import { Input, Button } from 'antd';
 import { useState } from 'react';
+
 export const Search = (props) => {
   const [search, setSearch] = useState('');
-const onChange = (event) => {
-    const value = event.target.value
-    setSearch(prev=>{
-        return prev.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
-    })
-   
-}
-
-
-
-  <form>
-    <Input onChange={onChange} type="search"></Input>
-    <Button htmlType="submit" type="primary">
-      Search
-    </Button>
-  </form>;
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.onSubmit(search)
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <Input value={search} onChange={handleChange} type="search"></Input>
+      <Button htmlType="submit" type="primary">
+        Search
+      </Button>
+    </form>
+  );
 };

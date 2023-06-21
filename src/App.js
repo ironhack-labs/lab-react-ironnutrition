@@ -8,6 +8,7 @@ import Search from './component/Search';
 
 function App() {
   const [foodToDisplay, setFoodToDisplay] = useState(foods);
+  const [searchInput, setSearchInput] = useState('');
 
   const createFood = (newFood) => {
     const newList = [newFood, ...foodToDisplay];
@@ -23,25 +24,21 @@ function App() {
   };
 
   //Search
-  // let searchResult = foodToDisplay
-  const searchFood = (searchInput) => {
-    const searchResult = foodToDisplay.filter((food) => {
-      if (food.name.toLowerCase().includes(searchInput.toLowerCase()))
-      {return true}
-    })
-    setFoodToDisplay(searchResult);
-  }
+  const searchFood = (search) => {
+    setSearchInput(search);
+  };
+
+  const searchResult = foodToDisplay.filter((food) => {
+    return food.name.toLowerCase().includes(searchInput.toLowerCase());
+  });
 
   return (
     <div className="App">
-      <Search callbackToSearch={searchFood}/>
-      <AddFoodForm callbackToCreate={createFood}/>
+      <Search callbackToSearch={searchFood} />
+      <AddFoodForm callbackToCreate={createFood} />
 
-      {foodToDisplay.map((food) => {
-        return (
-        <FoodBox oneFood={food}
-        callbackToDelete={deleteFood}/>
-        );
+      {searchResult.map((food) => {
+        return <FoodBox oneFood={food} callbackToDelete={deleteFood} />;
       })}
     </div>
   );

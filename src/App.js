@@ -2,7 +2,7 @@ import { useState } from 'react';
 import foods from './foods.json';
 import './App.css';
 //import { Card, Row, Col, Divider, Input, Button } from "antd"
-import { Divider, Row } from 'antd';
+import { Divider, Row, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
@@ -10,6 +10,7 @@ import Search from './components/Search';
 function App() {
   const [foodsToDisplay, setFoodsToDisplay] = useState(foods);
   const [search, setSearch] = useState('');
+  const [displayForm, setDisplayForm] = useState();
 
   const addFoodie = (newFoodie) => {
     const newList = [newFoodie, ...foodsToDisplay];
@@ -29,7 +30,15 @@ function App() {
 
   return (
     <div className="App">
-      <AddFoodForm callbackAdd={addFoodie} />
+      {displayForm && <AddFoodForm callbackAdd={addFoodie} />}
+      <Button
+        type="default"
+        onClick={() => {
+          setDisplayForm(!displayForm);
+        }}
+      >
+        {displayForm ? 'Hide form' : 'Add New Food'}{' '}
+      </Button>
 
       <Search search={search} setSearch={setSearch} />
 

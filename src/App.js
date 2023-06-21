@@ -26,9 +26,19 @@
 
 import './App.css';
 import foods from "./foods.json";
+import { useState } from 'react';
 
 function App () {
-  return <div className="App"></div>;
+  const [foodsArr, setFoodsArr] = useState(foods);
+  return <div className="App">
+    <h1>Food List</h1>
+    {foodsArr.map((food, i) => {
+      return <div key={i}>
+        <p>{food.name}</p>
+        <img src={food.image} alt={food.name} width={150} />
+      </div>
+    })}
+  </div>;
 }
 
 export default App;

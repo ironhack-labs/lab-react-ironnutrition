@@ -12,7 +12,16 @@ function App() {
     const newList = [newFood, ...foodToDisplay];
     setFoodToDisplay(newList);
   };
+  const deleteFood = (foodName) => {
+    console.log('DELETE: ' + foodName);
+    //moviesToDisplay.push(); // NEVER MODIFY STATE DIRECTLY !
 
+    const newList = foodToDisplay.filter((element) => {
+      return element.name !== foodName;
+    });
+
+    setFoodToDisplay(newList);
+  };
   return (
     <div className="App">
       <AddFoodForm callbackToCreate={addFood} />
@@ -25,7 +34,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
-        <FoodBox listOfFood={foodToDisplay} />
+        <FoodBox listOfFood={foodToDisplay} callbackToDelete={deleteFood} />
       </Row>
     </div>
   );

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Card, Row, Col, Divider, Input, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import { findByLabelText } from '@testing-library/react';
 
 function App() {
   const [foodsToDisplay, setFoodsToDisplay] = useState(foods);
@@ -14,6 +15,16 @@ function App() {
     const newList = [newFood, ...foodsToDisplay];
 
     // update state
+    setFoodsToDisplay(newList);
+  };
+
+  const deleteFood = (foodName) => {
+    console.log('deleting food with name....', foodName);
+
+    const newList = foodsToDisplay.filter((element) => {
+      return element.name !== foodName;
+    });
+
     setFoodsToDisplay(newList);
   };
 
@@ -27,7 +38,7 @@ function App() {
           <header className="App-header">
             <div>
               {/* key = {index}; */}
-              <FoodBox foodDetails={foodObj} />
+              <FoodBox foodDetails={foodObj} callbackToDelete={deleteFood} />
             </div>
           </header>
         );

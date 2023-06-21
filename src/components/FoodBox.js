@@ -5,6 +5,7 @@ function FoodBox(props) {
   return (
     <Col>
       <Card
+        className="FoodBox"
         title={props.foodDetails.name}
         style={{ width: 230, height: 300, margin: 10 }}
       >
@@ -18,7 +19,24 @@ function FoodBox(props) {
           </b>{' '}
           kcal
         </p>
-        <Button type="primary"> Delete </Button>
+
+        {/*         <Button type="primary">
+          {' '}
+          onClick=
+          {() => {
+            props.callbackToDelete(props.movieDetails.title);
+          }}{' '}
+          Delete{' '}
+        </Button> */}
+
+        <button
+          type="primary"
+          onClick={() => {
+            props.callbackToDelete(props.foodDetails.name);
+          }}
+        >
+          Delete
+        </button>
       </Card>
     </Col>
   );

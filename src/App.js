@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from 'antd';
 import './App.css';
 
 
@@ -10,6 +11,7 @@ import allFoods from "./foods.json";
 function App() {
 
   const [foods, setFoods] = useState(allFoods);
+  const [isAddFormDisplayed, setAddFormDisplayed] = useState(false);
 
   const searchForFood = text => {
     // console.log(text);
@@ -33,7 +35,10 @@ function App() {
     <div className="App">
     <h1>Food List</h1>
 
-    <AddFoodForm addFood={addSomeFood} />
+    { isAddFormDisplayed && <AddFoodForm addFood={addSomeFood} /> }
+
+    <Button type="default" onClick={() => setAddFormDisplayed(!isAddFormDisplayed)}> {isAddFormDisplayed ? "Hide Form" : "Add New Food"} </Button>
+
 
     <Search search={searchForFood}/>
 

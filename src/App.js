@@ -6,30 +6,24 @@ import FoodBox from './component/FoodBox';
 import AddFoodForm from './component/AddFoodForm';
 import Search from './component/Search';
 
-
-
-
 function App() {
-
   const [foodToDisplay, setFoodToDisplay] = useState(foods);
 
   const createFood = (newFood) => {
     const newList = [newFood, ...foodToDisplay];
-
-    // update state
     setFoodToDisplay(newList);
-  }
+  };
 
+  //Delete
   const deleteFood = (foodTitle) => {
-
     const listAfterDelete = foodToDisplay.filter((element) => {
       return element.name !== foodTitle;
     });
+    setFoodToDisplay(listAfterDelete);
+  };
 
-setFoodToDisplay(listAfterDelete);
-
-  }
-
+  //Search
+  // let searchResult = foodToDisplay
   const searchFood = (searchInput) => {
     const searchResult = foodToDisplay.filter((food) => {
       if (food.name.toLowerCase().includes(searchInput.toLowerCase()))

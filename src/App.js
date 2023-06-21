@@ -1,28 +1,32 @@
 // src/App.js
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import foodsDetails from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 
 function App() {
-  const [foods, setFoods] = useState([]);
-
-  useEffect(() => {
-    setFoods(foodsDetails);
-  }, []);
+  const [foods, setFoods] = useState(foodsDetails);
 
   const handleAddFood = (newFood) => {
-    setFoods([...foods, newFood]);
+    setFoods([newFood, ...foods]);
+  };
+
+  const deleteFood = (foodName) => {
+    const newList = foods.filter((element) => {
+      return element.name !== foodName;
+    });
+
+    setFoods(newList);
   };
 
   return (
     <div className="App">
       <h1>Foodlist</h1>
       <AddFoodForm onAddFood={handleAddFood} />
-      <div className="FoodBoxCard">
+      <div className="card">
         {foods.map((food, index) => (
-          <FoodBox key={index} {...food} />
+          <FoodBox key={index} {...food} callbackToDelete={deleteFood} />
         ))}
       </div>
     </div>

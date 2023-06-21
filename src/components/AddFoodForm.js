@@ -17,6 +17,7 @@ function AddFoodForm(props) {
             "image": foodInputs.image,
             "servings": foodInputs.servings
         });
+        setfoodInputs({}) // clear the form
     }
 
     const handleChange = (e) => {

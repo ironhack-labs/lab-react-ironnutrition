@@ -25,7 +25,7 @@
 // export default App;
 
 import './App.css';
-import AddFoodForm from './components/AddFoodForm';
+import AddFoodButton from './components/AddFoodButton';
 import FoodBox from './components/FoodBox';
 import Search from './components/Search';
 import foods from "./foods.json";
@@ -62,7 +62,7 @@ function App () {
     setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch)));
   }
   return <div className="App">
-    <AddFoodForm callbackAddFood={addFood}/>
+    <AddFoodButton callbackAddFood={addFood}/>
     <Search callbackSearchFood={searchFood}/>
     <h1>Food List</h1>
     <div className="FoodBox-container">

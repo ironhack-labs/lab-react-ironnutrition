@@ -1,4 +1,4 @@
-import { Card, Col, Button } from 'antd';
+import { Card, Col, Button, Form } from 'antd';
 
 function FoodBox(props) {
   return (
@@ -15,7 +15,16 @@ function FoodBox(props) {
           <b>Total Calories: {props.foodie.calories * props.foodie.servings}</b>
           kcal
         </p>
-        <Button type="primary"> Delete </Button>
+
+        <Button
+          type="primary"
+          htmlType="submit"
+          onClick={() => {
+            props.callbackDelete(props.foodie.name);
+          }}
+        >
+          Delete
+        </Button>
       </Card>
     </Col>
   );

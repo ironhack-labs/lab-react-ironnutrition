@@ -20,6 +20,13 @@ function App() {
     return food.name.toLowerCase().includes(search.toLowerCase());
   });
 
+  const deleteFood = (foodTitle) => {
+    const newList = foodsToDisplay.filter((element) => {
+      return element.name !== foodTitle;
+    });
+    setFoodsToDisplay(newList);
+  };
+
   return (
     <div className="App">
       <AddFoodForm callbackAdd={addFoodie} />
@@ -29,7 +36,9 @@ function App() {
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {filteredFoods.map((foodie, index) => {
-          return <FoodBox key={index} foodie={foodie} />;
+          return (
+            <FoodBox key={index} foodie={foodie} callbackDelete={deleteFood} />
+          );
         })}
       </Row>
     </div>

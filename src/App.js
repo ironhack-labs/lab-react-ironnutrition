@@ -32,17 +32,34 @@ import foods from "./foods.json";
 import { useState } from 'react';
 
 function App () {
+  console.log("rendering App component");
   const [foodsArr, setFoodsArr] = useState(foods);
+  console.log(foods === foodsArr); // returns true when the component is rendered the first time
   const addFood = (newFood) => {
-    // setFoodsArr([newFood, ...foodsArr])
-    foods.unshift(newFood)
-    setFoodsArr(foods)
+    // setFoodsArr([newFood, ...foodsArr]); // ok
+    
+    // foods.unshift(newFood); // this is actually mutating the stateful variable!
+    // setFoodsArr(foods); 
+    // not working (it does not render the new food (nor the App component), but yet the stateful variable is modified
+    // update is rendered if compilation is triggered by adding a new line when react-scripts is running
+
+    // foods.unshift(newFood);
+    // setFoodsArr([...foods]); // ok this re-render the App component
+    
+    // using an updater (queued for rendering) for the state update
+    // https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
+    setFoodsArr(prevFood => {
+      // console.log(prevFood === foodsArr) // true
+      const newFoods = [...prevFood];
+      newFoods.unshift(newFood);
+      return newFoods;
+    }); // ok
   };
   const deleteFood = (foodIndex) => {
-    setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex))
+    setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex));
   };
   const searchFood = (foodSearch) => {
-    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch)))
+    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch)));
   }
   return <div className="App">
     <AddFoodForm callbackAddFood={addFood}/>

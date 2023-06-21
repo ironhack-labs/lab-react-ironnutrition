@@ -1,8 +1,6 @@
 // import { Card, Col, Button, Form } from 'antd';
 import { Card, Col, Button } from 'antd';
 
-import './FoodBox.css';
-
 function FoodBox(props) {    
     return (
       <Col>
@@ -16,11 +14,13 @@ function FoodBox(props) {
           <p>
             <b>Total Calories: {props.food.calories * props.food.servings} </b> kcal
           </p>
+          
           {/*
           <Form onFinish={props.callbackDeleteFood}>
             <Button type="primary" htmlType="submit"> Delete </Button>
           </Form>
           */}
+         
           <Button type="primary" danger htmlType="submit" onClick={props.callbackDeleteFood}> Delete </Button>
         </Card>
       </Col>);

@@ -2,9 +2,9 @@ import { Card, Col,  Button } from "antd";
 
 function FoodBox(props) {
   
-  function handleDelete() {
-    props.delete()
-  }
+  // function handleDelete() {
+  //   props.delete()
+  // }
 
   return(
     <Col>
@@ -18,7 +18,7 @@ function FoodBox(props) {
         <p>
           <b>Servings: {props.foods.servings}</b>
         </p>
-        <Button type="primary" onClick={handleDelete}> Delete </Button>
+        <Button type="primary" onClick={props.delete}> Delete </Button>
       </Card>
     </Col>
   )

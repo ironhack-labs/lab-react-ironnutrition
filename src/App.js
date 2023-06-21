@@ -38,7 +38,6 @@ function App() {
 
   return (
     <div className="App">
-
       <Button onClick={toggleAddForm}>Add Food</Button> {/* Button to toggle the form */}
       {showAddForm && <AddFoodForm addFood={addFood} />} {/* Display the form based on showAddForm state */}
       
@@ -47,14 +46,31 @@ function App() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {arrayOfFood.map((element, index) => {
-        return (
-          <div>
-            {element ? (<FoodBox foods={element} key={index} delete={() => {deleteFood(index)}}/>) : (<h3>Oops, there is no content to show</h3>)}
-          </div>
-        )
-      }
-      )}
+          {/* {arrayOfFood.map((element, index) => {
+          return (
+            <div>
+              {element 
+                ? (<FoodBox foods={element} key={index} delete={() => {deleteFood(index)}}/>) 
+                : (<h3>Oops, there is no content to show</h3>)
+              }
+            </div>
+          )
+        }
+        )} */}
+
+      {arrayOfFood.length === 0 ? (
+          <h3>Oops, there is no content to show</h3>
+        ) : (
+          arrayOfFood.map((element, index) => (
+            <div key={index}>
+              {element ? (
+                <FoodBox foods={element} delete={() => {deleteFood(index)}} />
+              ) : (
+                <h3>Oops, there is no content to show</h3>
+              )}
+            </div>
+          ))
+        )}
       </Row>
     </div>
   );

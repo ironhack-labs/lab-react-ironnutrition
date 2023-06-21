@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.FoodBox-container {
+  display: flex;
+  flex-direction: line;
+  flex-wrap: wrap;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}

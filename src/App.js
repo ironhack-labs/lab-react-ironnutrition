@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
+import AddFoodForm from './components/AddFoodForm';
 import logo from './logo.svg';
 import foods from './foods.json';
 import './App.css';
@@ -8,24 +9,10 @@ import { Row, Divider, Button } from 'antd';
 function App() {
   const [foodsToDisplay, setFoodsToDisplay] = useState(foods);
 
-//   return (
-//     <div className="App">
-//             <Divider>Food List</Divider>
-//       {foodsToDisplay.map((foodObj, index) => {
-//         return (
-//           <div>
-      
-//             <Row style={{ width: '100%', justifyContent: 'center' }}>
-//               <FoodBox key={index} foodDetails={foodObj} />
-//             </Row>
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
-
-// export default App;
+  const createFood = (newFood) => {
+    const newList = [newFood, ...foodsToDisplay];
+    setFoodsToDisplay(newList);
+  }
 
 return (
   <div className="App">
@@ -35,6 +22,8 @@ return (
         <FoodBox key={index} foodDetails={foodObj} />
       ))}
     </Row>
+
+    <AddFoodForm callBackToCreate = {createFood} />
   </div>
 );
 }

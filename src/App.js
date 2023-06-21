@@ -44,11 +44,25 @@ function App() {
 
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {filteredFoods.map((foodie, index) => {
-          return (
-            <FoodBox key={index} foodie={foodie} callbackDelete={deleteFood} />
-          );
-        })}
+        {filteredFoods.length !== 0 ? (
+          filteredFoods.map((foodie, index) => {
+            return (
+              <FoodBox
+                key={index}
+                foodie={foodie}
+                callbackDelete={deleteFood}
+              />
+            );
+          })
+        ) : (
+          <div>
+            <p>there is nothing to eat bruh</p>
+            <img
+              src="https://assets3.thrillist.com/v1/image/1683360/1584x1056/crop;jpeg_quality=60;progressive.jpg"
+              alt="unhappy person"
+            ></img>
+          </div>
+        )}
       </Row>
     </div>
   );

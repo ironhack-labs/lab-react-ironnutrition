@@ -24,6 +24,11 @@ function App() {
     setFoods(allFoods);
   }
 
+  const deleteFood = (name) => {
+    allFoods = allFoods.filter(food => food.name !== name);
+    setFoods(allFoods);
+  }
+
   return (
     <div className="App">
     <h1>Food List</h1>
@@ -33,7 +38,7 @@ function App() {
     <Search search={searchForFood}/>
 
     <div className='food-list'>
-      {foods.map(f => <FoodBox key={f.name} food={f}/>)}
+      {foods.map(f => <FoodBox key={f.name} food={f} deleteFood={deleteFood}/>)}
 
     </div>
     </div>

@@ -28,7 +28,16 @@ export function FoodBox(props) {
           {props.food.servings * props.food.calories + ' '}
           kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button
+          danger
+          type="primary danger"
+          onClick={() => {
+            props.deleteFood(props.food.name);
+          }}
+        >
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

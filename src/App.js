@@ -13,6 +13,14 @@ export function App() {
     setFoodList([newFood, ...foodList]);
   };
 
+  const deleteFood = (foodName) => {
+    setFoodList((foodList) => {
+      return foodList.filter((food) => {
+        return food.name !== foodName;
+      });
+    });
+  };
+
   return (
     <div className="App">
       <AddFoodForm addFood={addFood} />
@@ -31,7 +39,13 @@ export function App() {
         }}
       >
         {foodList.map((food, index) => {
-          return <FoodBox key={'FoodBox: ' + index} food={food} />;
+          return (
+            <FoodBox
+              key={'FoodBox: ' + index}
+              food={food}
+              deleteFood={deleteFood}
+            />
+          );
         })}
       </Row>
     </div>

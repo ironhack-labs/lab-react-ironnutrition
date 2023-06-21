@@ -25,7 +25,6 @@ function AddFoodForm(props){
         setCalories("");
         setServings("");
 
-        console.log("handle submission")
     }
     return(
         <form onSubmit={handleSubmit}>

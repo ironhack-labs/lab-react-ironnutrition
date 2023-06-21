@@ -5,9 +5,11 @@ import { Row, Divider, Button } from 'antd';
 import { useState } from 'react';
 import { FoodBox } from './components/FoodBox';
 import { AddFoodForm } from './components/AddFoodForm';
+import { SearchBar } from './components/SearchBar';
 
 export function App() {
   const [foodList, setFoodList] = useState(foods);
+  const [filteredFoodList, setFilteredFoodList] = useState(foodList);
 
   const addFood = (newFood) => {
     setFoodList([newFood, ...foodList]);
@@ -21,13 +23,23 @@ export function App() {
     });
   };
 
+  const searchByName = (query) => {
+    setFilteredFoodList(
+      foods.filter((food) =>
+        food.name.toLowerCase().includes(query.toLowerCase())
+      )
+    );
+
+    setFoodList(filteredFoodList);
+  };
+
   return (
     <div className="App">
       <AddFoodForm addFood={addFood} />
 
       <Button> Hide Form / Add New Food </Button>
 
-      {/* Display Search component here */}
+      <SearchBar searchByName={searchByName} />
 
       <Divider>Food List</Divider>
 
@@ -38,7 +50,8 @@ export function App() {
           gap: '1rem',
         }}
       >
-        {foodList.map((food, index) => {
+        {/* tried rendering the filteredFoodList (like the video) but this is bugged. if I render foodList, the list does not go back to the original after filtering. */}
+        {filteredFoodList.map((food, index) => {
           return (
             <FoodBox
               key={'FoodBox: ' + index}

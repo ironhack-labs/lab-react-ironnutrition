@@ -1,4 +1,4 @@
-import { Card, Col, Button } from 'antd';
+import { Row, Card, Col, Button } from 'antd';
 
 export function FoodBox(props) {
   return (
@@ -8,7 +8,7 @@ export function FoodBox(props) {
         style={{
           justifyContent: 'center',
           width: 230,
-          height: 300,
+          height: 320,
           margin: 10,
         }}
       >
@@ -28,16 +28,20 @@ export function FoodBox(props) {
           {props.food.servings * props.food.calories + ' '}
           kcal
         </p>
-        <Button
-          danger
-          type="primary danger"
-          onClick={() => {
-            props.deleteFood(props.food.name);
-          }}
-        >
-          {' '}
-          Delete{' '}
-        </Button>
+
+        <Row justify={'center'}>
+          <Button
+            danger
+            type="primary danger"
+            onClick={() => {
+              props.deleteFood(props.food.name);
+            }}
+            style={{ marginBottom: '1rem' }}
+          >
+            {' '}
+            Delete{' '}
+          </Button>
+        </Row>
       </Card>
     </Col>
   );

@@ -47,7 +47,7 @@ export function AddFoodForm(props) {
             }}
           />
 
-          <label>Image</label>
+          <label>Image Link</label>
           <Input
             value={image}
             type="text"
@@ -75,10 +75,11 @@ export function AddFoodForm(props) {
               setServings(e.target.value);
             }}
           />
-
-          <Button type="primary" htmlType="submit">
-            Create
-          </Button>
+          <Row justify={'center'}>
+            <Button type="primary" htmlType="submit" style={{ margin: '1rem' }}>
+              Create
+            </Button>
+          </Row>
         </form>
       </Col>
     </Row>

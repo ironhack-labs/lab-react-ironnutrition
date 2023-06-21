@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Row, Col, Divider, Input, Button } from "antd"; 
+import { Row, Divider, Button } from "antd"; 
 import './App.css';
 import foods from "./foods.json";
 import FoodBox from "./components/FoodBox";

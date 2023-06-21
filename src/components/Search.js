@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Input, Divider } from 'antd';
 
-const Search = ({ onSearch }) => {
+const Search = (props) => {
+  console.log("give me something" + props);
+
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchInputChange = (e) => {
@@ -9,7 +11,7 @@ const Search = ({ onSearch }) => {
   };
 
   const handleSearch = () => {
-    onSearch(searchQuery);
+    props.onSearch(searchQuery);
   };
 
   return (

@@ -18,7 +18,9 @@ function FoodBox(props) {
           </strong>{' '}
           kcal{' '}
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={()=>{
+            props.callBackToDelete()
+        }}> Delete </Button>
       </Card>
     </Col>
   );

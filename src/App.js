@@ -9,6 +9,14 @@ import { Row, Divider, Button } from 'antd';
 function App() {
   const [foodsToDisplay, setFoodsToDisplay] = useState(foods);
 
+
+  const deleteFood = (foodName) => {
+    const newList = foodsToDisplay.filter((element)=>{
+      return element.name !== foodName;
+    });
+    setFoodsToDisplay(newList);
+  }
+
   const createFood = (newFood) => {
     const newList = [newFood, ...foodsToDisplay];
     setFoodsToDisplay(newList);
@@ -18,8 +26,12 @@ return (
   <div className="App">
     <Divider>Food List</Divider>
     <Row gutter={[16, 16]} justify="center">
-      {foodsToDisplay.map((foodObj, index) => (
-        <FoodBox key={index} foodDetails={foodObj} />
+    {foodsToDisplay.map((foodObj, index) => (
+  <FoodBox
+    key={index}
+    foodDetails={foodObj}
+    callBackToDelete={() => deleteFood(foodObj.name)} //need to pass the arguement!
+  />
       ))}
     </Row>
 

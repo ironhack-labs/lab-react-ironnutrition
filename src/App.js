@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Divider, Button } from "antd"; 
 import './App.css';
 import foods from "./foods.json";
@@ -10,6 +10,26 @@ function App() {
 
   const [arrayOfFood, setArrayOfFood] = useState(foods);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [search, setSearchQuery] = useState('');
+  const [originalFood, setOriginalFood] = useState(foods);
+
+  useEffect(() => {
+    const filteredFoods = originalFood.filter((food) => {
+      return food.name.toLowerCase().includes(search.toLowerCase());
+    });
+    setArrayOfFood(filteredFoods);
+  }, [search, originalFood]);
+
+  function searchFood(search) {
+    setSearchQuery(search);
+  }
+
+  
+  function resetSearch() {
+    setSearchQuery('');
+    setArrayOfFood(originalFood);
+  }
+
 
   const addFood = (newFood) => {
     setArrayOfFood([newFood, ...arrayOfFood ]);
@@ -22,14 +42,6 @@ function App() {
     setArrayOfFood(updateFood);
   }
 
-  const handleSearch = (searchQuery) => {
-    // Filter the foods based on the search query
-    const filteredFoods = arrayOfFood.filter((food) =>
-      food.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    // Update the foods state with the filtered foods
-    setArrayOfFood(filteredFoods);
-  };
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
@@ -41,22 +53,11 @@ function App() {
       <Button onClick={toggleAddForm}>Add Food</Button> {/* Button to toggle the form */}
       {showAddForm && <AddFoodForm addFood={addFood} />} {/* Display the form based on showAddForm state */}
       
-      <Search onSearch={handleSearch} />
+      <Search onSearch={searchFood} reset={resetSearch}/>
       
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-          {/* {arrayOfFood.map((element, index) => {
-          return (
-            <div>
-              {element 
-                ? (<FoodBox foods={element} key={index} delete={() => {deleteFood(index)}}/>) 
-                : (<h3>Oops, there is no content to show</h3>)
-              }
-            </div>
-          )
-        }
-        )} */}
 
       {arrayOfFood.length === 0 ? (
           <h3>Oops, there is no content to show</h3>

@@ -31,21 +31,24 @@ function App() {
     setFoods(allFoods);
   }
 
+  const emptyContent = <div><p><b>Oops! There is no more content to show</b></p>
+  <img src="https://media2.giphy.com/media/gfO3FcnL8ZK9wVgr6t/giphy.gif?cid=ecf05e47vbsgos6adhnxpg1n6j92p3ne55ts4442imll7g2z&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Nothing" />
+      </div>;
   return (
     <div className="App">
-    <h1>Food List</h1>
+      <h1>Food List</h1>
 
-    { isAddFormDisplayed && <AddFoodForm addFood={addSomeFood} /> }
+      { isAddFormDisplayed && <AddFoodForm addFood={addSomeFood} /> }
 
-    <Button type="default" onClick={() => setAddFormDisplayed(!isAddFormDisplayed)}> {isAddFormDisplayed ? "Hide Form" : "Add New Food"} </Button>
+      <Button type="default" onClick={() => setAddFormDisplayed(!isAddFormDisplayed)}> {isAddFormDisplayed ? "Hide Form" : "Add New Food"} </Button>
 
 
-    <Search search={searchForFood}/>
+      <Search search={searchForFood}/>
 
-    <div className='food-list'>
-      {foods.map(f => <FoodBox key={f.name} food={f} deleteFood={deleteFood}/>)}
-
-    </div>
+      <div className='food-list'>
+        {foods.length !== 0 && foods.map(f => <FoodBox key={f.name} food={f} deleteFood={deleteFood}/>)}
+        {foods.length === 0 && emptyContent}
+      </div>
     </div>
   );
 }

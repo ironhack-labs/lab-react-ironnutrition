@@ -34,7 +34,9 @@ import { useState } from 'react';
 function App () {
   const [foodsArr, setFoodsArr] = useState(foods);
   const addFood = (newFood) => {
-    setFoodsArr([newFood, ...foodsArr])
+    // setFoodsArr([newFood, ...foodsArr])
+    foods.unshift(newFood)
+    setFoodsArr(foods)
   };
   const deleteFood = (foodIndex) => {
     setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex))

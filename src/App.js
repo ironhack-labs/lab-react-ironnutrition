@@ -35,12 +35,15 @@ function App () {
   const addFood = (newFood) => {
     setFoodsArr([newFood, ...foodsArr])
   }
+  const deleteFood = (foodIndex) => {
+    setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex))
+  }
   return <div className="App">
     <AddFoodForm callbackAddFood={addFood}/>
     <h1>Food List</h1>
     <div className="FoodBox-container">
       {foodsArr.map((food, index) => {
-        return <FoodBox className="FoodBox" key={index} food={food} />
+        return <FoodBox className="FoodBox" key={index} food={food} callbackDeleteFood={() => deleteFood(index)}/>
       })}
     </div>
   </div>

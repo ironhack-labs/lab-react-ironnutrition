@@ -1,10 +1,22 @@
 import foods from "./foods.json";
 import './App.css';
 
+import { useState } from "react";
 import { Row, Divider, Button } from 'antd';
+import FoodBox from "./components/FoodBox";
 
 
 function App() {
+
+const [foodsToDisplay, setFoodsToDisplay] = useState (foods)
+console.log(foodsToDisplay)
+
+
+
+
+
+
+
   return (
     <div className="App" key = "App" >
       {/* Display Add Food component here */}
@@ -14,15 +26,13 @@ function App() {
       {/* Display Search component here */}
 
       <Divider>Food List</Divider>
-      {foods.map(food => 
+      {foodsToDisplay.map(foodObj => 
         <div >
-              <p> {food.name}</p>
-             <img src={food.image} alt="image here" width={200} />
-       
+           
+             <FoodBox foodDetails={foodObj} />
          </div>
       
         )}
-
 
      
 

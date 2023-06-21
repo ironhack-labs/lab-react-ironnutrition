@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import foods from "./foods.json";
 import './App.css';
+
+import { Row, Divider, Button } from 'antd';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" key = "App" >
+      {/* Display Add Food component here */}
+
+      <Button> Hide Form / Add New Food </Button>
+
+      {/* Display Search component here */}
+
+      <Divider>Food List</Divider>
+      {foods.map(food => 
+        <div >
+              <p> {food.name}</p>
+             <img src={food.image} alt="image here" width={200} />
+       
+         </div>
+      
+        )}
+
+
+     
+
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        {/* Render the list of Food Box components here */}
+      </Row>
     </div>
   );
 }

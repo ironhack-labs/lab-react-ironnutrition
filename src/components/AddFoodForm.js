@@ -16,11 +16,11 @@ function AddFoodForm(props) {
             "calories": foodInputs.calories,
             "image": foodInputs.image,
             "servings": foodInputs.servings
-        })
+        });
     }
 
     const handleChange = (e) => {
-        setfoodInputs({...foodInputs, [e.target.name]: e.target.value})
+        setfoodInputs({...foodInputs, [e.target.name]: e.target.value});
     }
 
     return (

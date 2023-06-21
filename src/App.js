@@ -27,6 +27,7 @@
 import './App.css';
 import AddFoodForm from './components/AddFoodForm';
 import FoodBox from './components/FoodBox';
+import Search from './components/Search';
 import foods from "./foods.json";
 import { useState } from 'react';
 
@@ -34,12 +35,16 @@ function App () {
   const [foodsArr, setFoodsArr] = useState(foods);
   const addFood = (newFood) => {
     setFoodsArr([newFood, ...foodsArr])
-  }
+  };
   const deleteFood = (foodIndex) => {
     setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex))
+  };
+  const searchFood = (foodSearch) => {
+    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch)))
   }
   return <div className="App">
     <AddFoodForm callbackAddFood={addFood}/>
+    <Search callbackSearchFood={searchFood}/>
     <h1>Food List</h1>
     <div className="FoodBox-container">
       {foodsArr.map((food, index) => {

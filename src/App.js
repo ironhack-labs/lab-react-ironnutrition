@@ -13,6 +13,7 @@ export function App() {
 
   const addFood = (newFood) => {
     setFoodList([newFood, ...foodList]);
+    setFilteredFoodList([newFood, ...filteredFoodList]);
   };
 
   const deleteFood = (foodName) => {
@@ -21,16 +22,20 @@ export function App() {
         return food.name !== foodName;
       });
     });
+
+    setFilteredFoodList((filteredFoodList) => {
+      return filteredFoodList.filter((food) => {
+        return food.name !== foodName;
+      });
+    });
   };
 
   const searchByName = (query) => {
     setFilteredFoodList(
-      foods.filter((food) =>
+      foodList.filter((food) =>
         food.name.toLowerCase().includes(query.toLowerCase())
       )
     );
-
-    setFoodList(filteredFoodList);
   };
 
   return (

@@ -5,9 +5,10 @@ const { Search } = Input;
 // Iteration 5
 export function SearchBar(props) {
   const [query, setQuery] = useState('');
+
   const handleSearch = (event) => {
     setQuery(event.target.value);
-    props.searchByName(query);
+    props.searchByName(event.target.value);
   };
 
   return (

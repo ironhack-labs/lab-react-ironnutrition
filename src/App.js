@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Divider } from 'antd';
+import foods from './foods.json';
+import { useState } from 'react';
+import { FoodBox } from './components/FoodBox';
+import { AddFoodForm } from './components/AddFoodForm';
+import { Search } from './components/Search';
 function App() {
+  const [foodsList, setFoodsList] = useState(foods);
+
+  const createFood = (newFood) => {
+    return setFoodsList([newFood, ...foodsList]);
+  };
+
+  const getData = (data) => {
+    const filteredList = foodsList.filter((food) => {
+      return food.name.toLowerCase().includes(data.toLowerCase());
+    });
+    
+    return setFoodsList(filteredList);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddFoodForm callback={createFood} />
+      <Search onSubmit={getData} />
+      <Divider>Food List</Divider>
+
+      <FoodBox food={foodsList} />
     </div>
   );
 }

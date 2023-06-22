@@ -15,7 +15,7 @@ function App() {
 
   const searchForFood = text => {
     // console.log(text);
-    const filteredFood = allFoods.filter(f => f.name.includes(text));
+    const filteredFood = allFoods.filter(f => f.name.toLowerCase().includes(text.toLowerCase()));
     // console.log(filteredFood);
     setFoods(filteredFood);
   }

@@ -30,13 +30,16 @@ import FoodBox from './components/FoodBox';
 import Search from './components/Search';
 import NoContent from './components/NoContent'
 import foods from "./foods.json";
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { Row } from 'antd';
 
 function App () {
   console.log("rendering App component");
   const [foodsArr, setFoodsArr] = useState(foods);
   //console.log(foods === foodsArr); // returns true when the component is rendered the first time
+  
+  const [isPending, startTransition] = useTransition()
+
   const addFood = (newFood) => {
     // setFoodsArr([newFood, ...foodsArr]); // ok
     
@@ -74,12 +77,17 @@ function App () {
     setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex));
   };
   const searchFood = (foodSearch) => {
-    setFoodsArr(foods.filter(food => food.name.toLowerCase().includes(foodSearch.toLowerCase())));
+    startTransition(() => {
+      // check that the update has been properly marked as non urgent by the useTransition hook by introducing a CPU-trottle in Chrome Dev Tools > Performance insights > 6x slowdown
+      setFoodsArr(foods.filter(food => food.name.toLowerCase().includes(foodSearch.toLowerCase())));
+    })
   }
   return <div className="App">
     <AddFoodButton callbackAddFood={addFood}/>
     <Search callbackSearchFood={searchFood}/>
     <h1>Food List</h1>
+    {!isPending && <p>&nbsp;</p>}
+    {isPending && <p>Updating list...</p>}
     <div className="FoodBox-container">
       <Row gutter={[50, 16]}>
         {/* operator precedence reminder: logical NOT (!) > lt/gt > logical AND (&&) */}

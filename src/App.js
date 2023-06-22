@@ -4,6 +4,7 @@ import foods from "./foods.json";
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import { useState } from 'react';
+import Search from './components/Search';
 
 
 function App () {
@@ -24,12 +25,12 @@ function App () {
     })
     setFoodList(newList);
 }
-// const filteredFood = (foodToDisplay.filter((foodObj) => {
-//   return(
-//     foodObj.toLowerCase().includes(query.toLowerCase())
-//   )
-// }))
-
+ const searchFood = (query) => {
+    const filteredFood = foods.filter((foodObj) => {
+      return foodObj.name.toLowerCase().includes(query.toLowerCase())
+  })
+  setFoodList(filteredFood)
+}
 
 return (
   <div className="App">
@@ -38,7 +39,7 @@ return (
 
     <Button> Hide Form / Add New Food </Button>
 
-    {/* <Search /> */}
+    <Search filter={searchFood} food={foods}/>
 
     <Divider>Food List</Divider>
 

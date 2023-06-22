@@ -1,4 +1,4 @@
-import { Button, Divider, Input } from 'antd';
+import { Row,Button, Divider, Input } from 'antd';
 import { useState } from 'react';
 
 // Iteration 5
@@ -19,15 +19,21 @@ function Search(props) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="search" onSubmit={handleSubmit}>
         <Divider>Search</Divider>
+        <Row justify={'center'}>
+          <label style={{ width: '7vw' }}>Search</label>
+          <Input
+            style={{ maxWidth: '50vw' }}
+            value={search}
+            type="search"
+            onChange={handleInput}
+          />
 
-        <label>Search</label>
-        <Input value={search} type="search" onChange={handleInput} />
-
-        <Button type="primary" htmlType="submit">
-          Search
-        </Button>
+          <Button type="primary" htmlType="submit">
+            Search
+          </Button>
+        </Row>
       </form>
     </>
   );

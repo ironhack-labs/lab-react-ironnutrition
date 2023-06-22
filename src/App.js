@@ -36,10 +36,24 @@ function App() {
     <div className="App">
       <Search callbackToSearch={searchFood} />
       <AddFoodForm callbackToCreate={createFood} />
-
-      {searchResult.map((food) => {
-        return <FoodBox oneFood={food} callbackToDelete={deleteFood} />;
-      })}
+      <Row
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          gap: '1rem',
+        }}
+      >
+        <Divider>Food List</Divider>
+        {searchResult.map((food) => {
+          return (
+            <FoodBox
+              className="foodbox"
+              oneFood={food}
+              callbackToDelete={deleteFood}
+            />
+          );
+        })}
+      </Row>
     </div>
   );
 }

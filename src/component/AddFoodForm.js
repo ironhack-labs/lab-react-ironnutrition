@@ -1,50 +1,81 @@
-import {Button, Divider, Input } from 'antd';
+import { Row, Button, Divider, Input } from 'antd';
 import { useState } from 'react';
 
+function AddFoodForm(props) {
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [calories, setCalories] = useState('');
+  const [servings, setServings] = useState('');
 
-function AddFoodForm(props){
+  const handleSubmit = (e) => {
+    e.preventDefault(); // avoid page refresh
 
-    const [name, setName] =  useState("");
-    const [image, setImage] = useState("");
-    const [calories, setCalories] = useState("");
-    const [servings, setServings] = useState("");
+    const newFood = {
+      name: name,
+      image: image,
+      calories: calories,
+      servings: servings,
+    };
+    props.callbackToCreate(newFood);
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); // avoid page refresh
+    setName('');
+    setImage('');
+    setCalories('');
+    setServings('');
+  };
+  return (
+    <form className="addfood" onSubmit={handleSubmit}>
+      <Divider>Add Food Entry</Divider>
+      <Row justify={'center'}>
+        <label style={{ width: '7vw' }}>Name</label>
+        <Input
+          style={{ maxWidth: '50vw' }}
+          value={name}
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </Row>
+      <Row justify={'center'}>
+        <label style={{ width: '7vw' }}>Image</label>
+        <Input
+          style={{ maxWidth: '50vw' }}
+          value={image}
+          type="text"
+          onChange={(e) => {
+            setImage(e.target.value);
+          }}
+        />
+      </Row>
+      <Row justify={'center'}>
+        <label style={{ width: '7vw' }}>Calories</label>
+        <Input
+          style={{ maxWidth: '50vw' }}
+          value={calories}
+          type="number"
+          onChange={(e) => {
+            setCalories(e.target.value);
+          }}
+        />
+      </Row>
+      <Row justify={'center'}>
+        <label style={{ width: '7vw' }}>Servings</label>
+        <Input
+          style={{ maxWidth: '50vw' }}
+          value={servings}
+          type="number"
+          onChange={(e) => {
+            setServings(e.target.value);
+          }}
+        />
+      </Row>
 
-        const newFood = {
-            name: name,
-            image: image,
-            calories: calories,
-            servings: servings,
-        }
-        props.callbackToCreate(newFood);
-
-        setName("");
-        setImage("");
-        setCalories("");
-        setServings("");
-
-    }
-    return(
-        <form onSubmit={handleSubmit}>
-        <Divider>Add Food Entry</Divider>
-  
-        <label>Name</label>
-        <Input value={name} type="text" onChange={(e) => {setName(e.target.value)}} />
-  
-        <label>Image</label>
-        <Input value={image} type="text" onChange={(e) => {setImage(e.target.value)}} />
-  
-        <label>Calories</label>
-        <Input value={calories} type="number" onChange={(e) => {setCalories(e.target.value)}} />
-  
-        <label>Servings</label>
-        <Input value={servings} type="number" onChange={(e) => {setServings(e.target.value)}} />
-  
-        <Button type='primary' htmlType='submit'>Create</Button>
-      </form>
-    )
+      <Button type="primary" htmlType="submit">
+        Create
+      </Button>
+    </form>
+  );
 }
 
 export default AddFoodForm;

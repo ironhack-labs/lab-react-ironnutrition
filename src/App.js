@@ -36,7 +36,7 @@ import { Row } from 'antd';
 function App () {
   console.log("rendering App component");
   const [foodsArr, setFoodsArr] = useState(foods);
-  console.log(foods === foodsArr); // returns true when the component is rendered the first time
+  //console.log(foods === foodsArr); // returns true when the component is rendered the first time
   const addFood = (newFood) => {
     // setFoodsArr([newFood, ...foodsArr]); // ok
     
@@ -74,7 +74,7 @@ function App () {
     setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex));
   };
   const searchFood = (foodSearch) => {
-    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch.toLowerCase)));
+    setFoodsArr(foods.filter(food => food.name.toLowerCase().includes(foodSearch.toLowerCase())));
   }
   return <div className="App">
     <AddFoodButton callbackAddFood={addFood}/>

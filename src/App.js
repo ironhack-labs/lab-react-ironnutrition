@@ -40,28 +40,41 @@ function App () {
   const addFood = (newFood) => {
     // setFoodsArr([newFood, ...foodsArr]); // ok
     
+    // console.log("before unshift: ", foods === foodsArr) // true
     // foods.unshift(newFood); // this is actually mutating the stateful variable!
+    // console.log("after unshift: ", foods === foodsArr) // true
     // setFoodsArr(foods); 
-    // not working (it does not render the new food (nor the App component), but yet the stateful variable is modified
-    // update is rendered if compilation is triggered by adding a new line when react-scripts is running
+    // // not working (it does not render the new food (nor the App component), but yet the stateful variable is modified
+    // // update is rendered if compilation is triggered by adding a new line when react-scripts is running
+    // // it is working for pmiossec, I saw it..., but I don't see anything else in his code that would also trigger an update at the exact same moment
+    // // https://github.com/pmiossec/ih_lab-react-ironnutrition/commit/26868bbc5ad9204db9950ea1eda13da876665466
+    // console.log("after set: ", foods === foodsArr) // true
+    // // https://stackoverflow.com/questions/25937369/react-component-not-re-rendering-on-state-change
+    // // its not working properly because the ref to the stateful Array is not changing, so React does not detect the state update and does not re-render
+    // // just making a shallow copy with .slice() solves it
+    // // if instead initializing with const [foodsArr, setFoodsArr] = useState([...foods]);
+    // // it works only the first time, then refs are identical again and react does not detect state update
+    
+    foods.unshift(newFood);
+    setFoodsArr(foods.slice()); // ok this re-render the App component
 
     // foods.unshift(newFood);
     // setFoodsArr([...foods]); // ok this re-render the App component
     
     // using an updater (queued for rendering) for the state update
     // https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
-    setFoodsArr(prevFood => {
-      // console.log(prevFood === foodsArr) // true
-      const newFoods = [...prevFood];
-      newFoods.unshift(newFood);
-      return newFoods;
-    }); // ok
+    // setFoodsArr(prevFood => {
+    //   // console.log(prevFood === foodsArr) // true
+    //   const newFoods = [...prevFood];
+    //   newFoods.unshift(newFood);
+    //   return newFoods;
+    // }); // ok
   };
   const deleteFood = (foodIndex) => {
     setFoodsArr(foodsArr.filter((_, index) => index !== foodIndex));
   };
   const searchFood = (foodSearch) => {
-    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch)));
+    setFoodsArr(foodsArr.filter(food => food.name.includes(foodSearch.toLowerCase)));
   }
   return <div className="App">
     <AddFoodButton callbackAddFood={addFood}/>

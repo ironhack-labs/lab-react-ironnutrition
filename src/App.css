@@ -12,7 +12,7 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #3cc5ab);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -39,4 +39,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.food-image{
+  width: 300px;
+  height: relative;
+}
+
+.recipes{
+  border: rgb(59, 203, 176) solid 2px;
+  background-color: white !important;
+  color: black !important;
+  border-radius: 40px;
+  margin-bottom: 10px;
 }

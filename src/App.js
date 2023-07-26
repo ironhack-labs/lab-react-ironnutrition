@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import foods from './foods.json'
 import { useState } from 'react'
-import { Row, Divider, Button } from 'antd'
+import { Row, Divider, Button, Col } from 'antd'
+import FoodBox from './components/FoodBox';
 
 function App() {
   const [foodsData, setFoodsData] = useState(foods)
-
 
   return (
     <div className="App">
@@ -12,16 +13,13 @@ function App() {
         <h1>Food List</h1>
       </Divider>
 
-      {
-        foodsData.map((food) => {
-          return (
-            <Row style={{ width: '100%', justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
-                <p>{food.name}</p>
-                <img src={food.image} alt="foodImage" width={'200px'} />
-            </Row>
-          );
-        })
-      }
+      <Row style={{ width: '100%', justifyContent: 'center', alignItems: 'center'}} gutter={[16, 16]}>
+        {
+          foodsData.map((food, i) => {
+            return <FoodBox food={food} key={food.name + i} id={i} />;
+          })
+        }
+      </Row>
     </div>
   );
 }

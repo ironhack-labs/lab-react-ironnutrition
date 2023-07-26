@@ -1,4 +1,4 @@
-
+import foods from './foods.json'
 
 function App() {
   return (

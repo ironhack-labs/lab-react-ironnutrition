@@ -1,33 +1,43 @@
-/* eslint-disable no-unused-vars */
-import foods from './foods.json'
+import foodsDataJSON from './foods.json'
 import { useState } from 'react'
-import { Row, Divider, Button, Col } from 'antd'
+import { Row, Divider } from 'antd'
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import SearchBar from './components/SearchBar';
 
 function App() {
-  const [foodsData, setFoodsData] = useState(foods)
-  const [foodsFilteredData, setFoodsFilteredData] = useState(foods)
+  const [foods, setFoods] = useState(foodsDataJSON)
+  const [foodsData, setFoodsData] = useState(foodsDataJSON)
 
+  // Function used in AddFoodForm component
   const addNewFood = (newFood) => {
-    const updatedFoods = [...foodsData, newFood]
-    const updatedFoodsFilteredData = [...foodsFilteredData, newFood]
+    const updatedFoods = [...foods, newFood]
+    setFoods(updatedFoods)
 
-    setFoodsData(updatedFoods)
-    setFoodsFilteredData(updatedFoodsFilteredData)
+    const updatedFoodsData = [...foodsData, newFood];
+    setFoodsData(updatedFoodsData)
   }
 
+  // Filter used in SearchBar component
   const filterFoods = (str) => { 
-    let filteredFoods = foods
+    let filteredFoods
+    
     if (str !== '') {
-      filteredFoods = foods.filter((food) => {
+      filteredFoods = foodsData.filter((food) => {
         return String(food.name).toLowerCase().startsWith(str.toLowerCase())
       })
-      setFoodsData(filteredFoods)
     } else {
-      setFoodsData(foods)
+      filteredFoods = foodsData
     }
+
+    setFoods(filteredFoods)
+  }
+
+  // Function to delete food used in FoodBox
+  const deleteFood = (foodName) => {
+    const foodWithDeletion = foodsData.filter(food => food.name !== foodName)
+    setFoods(foodWithDeletion)
+    setFoodsData(foodWithDeletion)
   }
 
   return (
@@ -41,8 +51,8 @@ function App() {
       <SearchBar searchFilter={filterFoods} />
       
       <Row style={{ width: '100%' }} gutter={[16, 16]}>
-        {foodsData.map((food, i) => {
-          return <FoodBox food={food} key={food.name + i} />
+        {foods.map((food, i) => {
+          return <FoodBox food={food} key={food.name + i} deleteFood={deleteFood} />
         })}
       </Row>
     </div>

@@ -1,9 +1,10 @@
 import foodsDataJSON from './foods.json'
 import { useState } from 'react'
-import { Row, Divider, Col } from 'antd'
+import { Row, Divider } from 'antd'
 import FoodBox from './components/FoodBox'
 import SearchBar from './components/SearchBar'
 import AddFoodButton from './components/AddFoodButton'
+import WarningMessage from './components/WarningMessage'
 
 function App() {
   const [foods, setFoods] = useState(foodsDataJSON)
@@ -49,7 +50,7 @@ function App() {
       className="App"
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <div style={{marginTop: 30, marginBottom: 20}}>
+      <div style={{ marginTop: 30, marginBottom: 20 }}>
         <AddFoodButton
           addFood={addNewFood}
           toggleForm={toggleShowForm}
@@ -63,24 +64,23 @@ function App() {
         <h2>Food List</h2>
       </Divider>
 
-      <Row style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center'}} gutter={[16, 16]}>
-        {foods.map((food, i) => {
-          return (
-            <FoodBox food={food} key={food.name + i} deleteFood={deleteFood} />
-          );
-        })}
-      </Row>
-
       {foods.length === 0 ? (
-        <div style={{textAlign: 'center'}}>
-          <b>Opps! There is no more content to show.</b>
-          <h1>⌀</h1>
-        </div>
+        <WarningMessage />
       ) : (
-        <></>
+        <Row style={{ width: '100%' }} gutter={[16, 16]}>
+          {foods.map((food, i) => {
+            return (
+              <FoodBox
+                food={food}
+                key={food.name + i}
+                deleteFood={deleteFood}
+              />
+            )
+          })}
+        </Row>
       )}
     </div>
-  );
+  )
 }
 
 export default App

@@ -98,6 +98,7 @@ const AddFoodForm = (props) => {
           Create
         </Button>
       </Form.Item>
+      <Divider></Divider>
     </Form>
   );
 }

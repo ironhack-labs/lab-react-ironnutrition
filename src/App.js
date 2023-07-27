@@ -1,20 +1,21 @@
 import foodsDataJSON from './foods.json'
 import { useState } from 'react'
 import { Row, Divider } from 'antd'
-import FoodBox from './components/FoodBox';
-import AddFoodForm from './components/AddFoodForm';
-import SearchBar from './components/SearchBar';
+import FoodBox from './components/FoodBox'
+import SearchBar from './components/SearchBar'
+import AddFoodButton from './components/AddFoodButton'
 
 function App() {
   const [foods, setFoods] = useState(foodsDataJSON)
   const [foodsData, setFoodsData] = useState(foodsDataJSON)
+  const [showForm, setShowForm] = useState(false)
 
   // Function used in AddFoodForm component
   const addNewFood = (newFood) => {
     const updatedFoods = [...foods, newFood]
     setFoods(updatedFoods)
 
-    const updatedFoodsData = [...foodsData, newFood];
+    const updatedFoodsData = [...foodsData, newFood]
     setFoodsData(updatedFoodsData)
   }
 
@@ -40,23 +41,35 @@ function App() {
     setFoodsData(foodWithDeletion)
   }
 
+  // Function to toggle the showForm state
+  const toggleShowForm = () => setShowForm(!showForm)
+
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <div
+      className="App"
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <Divider>
         <h1>Food List</h1>
       </Divider>
 
-      <AddFoodForm addFood={addNewFood} />
+      <AddFoodButton
+        addFood={addNewFood}
+        toggleForm={toggleShowForm}
+        showForm={showForm}
+      />
 
       <SearchBar searchFilter={filterFoods} />
-      
+
       <Row style={{ width: '100%' }} gutter={[16, 16]}>
         {foods.map((food, i) => {
-          return <FoodBox food={food} key={food.name + i} deleteFood={deleteFood} />
+          return (
+            <FoodBox food={food} key={food.name + i} deleteFood={deleteFood} />
+          )
         })}
       </Row>
     </div>
   )
 }
 
-export default App;
+export default App

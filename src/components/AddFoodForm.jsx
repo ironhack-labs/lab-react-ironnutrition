@@ -38,18 +38,19 @@ const AddFoodForm = (props) => {
     required: '${label} is required!',
     types: {
       number: '${label} is not a valid number!',
+      text: '${label} is required!',
     },
     number: {
       range: '${label} must be between ${min} and ${max}',
     },
-  }
+  };
   /* eslint-disable no-template-curly-in-string */
 
   return (
     <Form
       {...layout}
       name="nest-messages"
-      style={{ maxWidth: 600 }}
+      style={{ maxWidth: 600, minWidth: 400 }}
       onFinish={handleSubmit}
       validateMessages={validateMessages}
     >
@@ -98,7 +99,7 @@ const AddFoodForm = (props) => {
         </Button>
       </Form.Item>
     </Form>
-  )
+  );
 }
 
 export default AddFoodForm

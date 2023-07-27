@@ -1,6 +1,6 @@
 import foodsDataJSON from './foods.json'
 import { useState } from 'react'
-import { Row, Divider } from 'antd'
+import { Row, Divider, Col } from 'antd'
 import FoodBox from './components/FoodBox'
 import SearchBar from './components/SearchBar'
 import AddFoodButton from './components/AddFoodButton'
@@ -49,27 +49,38 @@ function App() {
       className="App"
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <Divider>
-        <h1>Food List</h1>
-      </Divider>
-
-      <AddFoodButton
-        addFood={addNewFood}
-        toggleForm={toggleShowForm}
-        showForm={showForm}
-      />
+      <div style={{marginTop: 30, marginBottom: 20}}>
+        <AddFoodButton
+          addFood={addNewFood}
+          toggleForm={toggleShowForm}
+          showForm={showForm}
+        />
+      </div>
 
       <SearchBar searchFilter={filterFoods} />
 
-      <Row style={{ width: '100%' }} gutter={[16, 16]}>
+      <Divider>
+        <h2>Food List</h2>
+      </Divider>
+
+      <Row style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center'}} gutter={[16, 16]}>
         {foods.map((food, i) => {
           return (
             <FoodBox food={food} key={food.name + i} deleteFood={deleteFood} />
-          )
+          );
         })}
       </Row>
+
+      {foods.length === 0 ? (
+        <div style={{textAlign: 'center'}}>
+          <b>Opps! There is no more content to show.</b>
+          <h1>⌀</h1>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
-  )
+  );
 }
 
 export default App

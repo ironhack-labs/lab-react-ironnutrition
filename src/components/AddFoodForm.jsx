@@ -100,7 +100,7 @@ const AddFoodForm = (props) => {
       </Form.Item>
       <Divider></Divider>
     </Form>
-  );
+  )
 }
 
 export default AddFoodForm

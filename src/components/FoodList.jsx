@@ -14,26 +14,22 @@ function FoodList() {
         setFoods(filteredFoods)
     }
 
-    let searchedFoods
-    const searchFood = food => {
-        const foodsCopy = [...foods]
-        if (food === "") {
-            searchedFoods = foodsCopy
-        } else {
-            searchedFoods = foodsCopy.filter(food => {
-                return food.name.toLowerCase().includes(food.toLowerCase())
-            })
-        }
-        setFoods(searchedFoods)
+    const [searchString, setSearchString] = useState("")
+
+    let foodToDisplay
+    if (!searchString) {
+        foodToDisplay = foods
+    } else {
+        foodToDisplay = foods.filter(food => food.name.toLowerCase().includes(searchString.toLowerCase()))
     }
 
     return (
         <div>
             <h1>LAB | React IronNutrition</h1>
             <AddFoodForm foods={foods} setFoods={setFoods} />
-            <Search searchFood={searchFood} />
+            <Search searchString={searchString} handleSearch={setSearchString} />
             <h2>Food List</h2>
-            {foods.map(food => {
+            {foodToDisplay.map(food => {
                 return <FoodBox key={food.id} food={food} deleteFood={deleteFood} />
             })}
         </div>

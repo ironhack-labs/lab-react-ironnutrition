@@ -2,15 +2,17 @@ import { useState } from 'react';
 import './App.css';
 import dishes from './foods.json'
 import { Row, Divider, Button } from 'antd'
+import FoodBox from './components/FoodBox';
 
 function App() {
-  const [ dishesData, setDichesData ] = useState(dishes);
+  const [ dishesData, setDishesData ] = useState(dishes);
 
   return (
     <div className="App">
       <Divider>
         <h2>Food List</h2>
       </Divider>
+      <FoodBox/>
       {dishesData.map((food) => {
         return(
           <Row>

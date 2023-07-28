@@ -1,26 +1,22 @@
 import { useState } from 'react';
 import './App.css';
-import dishes from './foods.json'
+import foods from './foods.json'
 import { Row, Divider, Button } from 'antd'
 import FoodBox from './components/FoodBox';
 
 function App() {
-  const [ dishesData, setDishesData ] = useState(dishes);
+  const [ foodsData, setFoodsData ] = useState(foods);
 
   return (
     <div className="App">
       <Divider>
         <h2>Food List</h2>
       </Divider>
-      <FoodBox/>
-      {dishesData.map((food) => {
-        return(
           <Row>
-            <p>{food.name}</p>
-            <img src={food.image} width={200}/>
+            {foodsData.map((food, i) => {
+              return <FoodBox key={food.name + 1} food={food} id={i}/>
+            })}
           </Row>
-        )
-      })}
     </div>
   );
 }

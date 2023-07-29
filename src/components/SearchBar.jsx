@@ -1,8 +1,11 @@
+import { Input, Divider } from 'antd'
+
 function SearchBar(props) {
     const {searchTerm, onSearchChange} = props
-    return (
+    return (        
       <form>
-        <input 
+        <Divider>Search</Divider>
+        <Input 
           type="text" 
           placeholder="Search..." 
           value={searchTerm}

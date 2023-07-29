@@ -1,5 +1,5 @@
 function SearchBar(props) {
-    const {searchTerm, onSearchChange, onlyInStock, onCheckboxChange} = props
+    const {searchTerm, onSearchChange} = props
     return (
       <form>
         <input 

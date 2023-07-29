@@ -36,6 +36,11 @@
   justify-content: center;
 }
 
+.food-box{
+  margin:20px;
+  padding:5px;
+}
+
 .App-link {
   color: #61dafb;
 }

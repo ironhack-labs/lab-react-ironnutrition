@@ -15,14 +15,18 @@ function App() {
     setFoods([newFood, ...foods]);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleDelete = (foodToDelete) => {
+    setFoods(foods.filter(food => food.name !== foodToDelete))
+  }
+
   const filteredFoods = foods.filter(
     (food) =>
       food.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
 
   return (
     <div className="App">
@@ -35,7 +39,7 @@ function App() {
 
       <div className='foods-container'>
       {filteredFoods.map((food) => (
-        <FoodBox key={food.name} food={food} className="food-box" />
+        <FoodBox className="food-box" key={food.name} food={food} onDelete={handleDelete} />
       ))}
       </div>
     </div>

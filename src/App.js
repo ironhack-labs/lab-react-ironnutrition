@@ -19,6 +19,13 @@ function App() {
 
   const onSearch = (searchCriteria) => setWord(searchCriteria)
 
+  const onDelete = (foodName) => {
+    const filteredFoods = foods.filter(food => { 
+      return food.name !== foodName
+    })
+    setFoods(filteredFoods)
+  }
+
   return (
     <div className="App">
       {/* Display Add Food component here */}
@@ -40,7 +47,7 @@ function App() {
         {/* Render the list of Food Box components here */}
         {foods
         .filter(foodItem => foodItem.name.toLowerCase().includes(word.toLowerCase()))
-        .map((food, i) => <FoodBox key={i} {...food}/>)
+        .map((food, i) => <FoodBox onDelete={onDelete} key={i} {...food}/>)
       }
 
       </Row>

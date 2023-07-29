@@ -26,14 +26,20 @@ function App() {
     setItems(filterBySearch)
 
   }
-  
+  function deleteFood(foodName) {
+
+
+    const filteredFoods = items.filter(food => food.name !== foodName); 
+
+    setItems(filteredFoods); 
+  }
   
   return (
      <div className="App">
       <Search handleSearch={handleSearch}/>
       <AddFoodForm addFood={addFood} />
       {items.map(item => {
-        return <FoodBox food={ item } />
+        return <FoodBox food={ item } deleteFood={deleteFood} />
       })}
     </div>
   );

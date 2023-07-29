@@ -46,9 +46,15 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
         {/* Render the list of Food Box components here */}
-        {foods
+        {
+        foods
+        .filter(foodItem => foodItem.name.toLowerCase().includes(word.toLowerCase())).length
+        ?
+        foods
         .filter(foodItem => foodItem.name.toLowerCase().includes(word.toLowerCase()))
         .map((food, i) => <FoodBox onDelete={onDelete} key={i} {...food}/>)
+        :
+        'Opps! There is no more content to show'
       }
 
       </Row>

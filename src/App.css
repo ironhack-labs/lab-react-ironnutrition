@@ -30,10 +30,6 @@
   align-items: center;
 }
 
-.add-food-form{
-
-}
-
 .foods-container{
   display: flex;
   flex-wrap: wrap;

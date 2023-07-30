@@ -3,17 +3,18 @@ import { Card, Col, Button } from 'antd';
 
 // Iteration 2
 function FoodBox(props) {
+    const {name, calories, image, servings } = props;
   return (
     <Col>
       <Card
-        title={props.food.name}
+        title={name}
         style={{ width: 230, height: 300, margin: 10 }}
       >
-        <img src={props.food.image} height={60} alt="food" />
-        <p>Calories: {props.food.calories}</p>
-        <p>Servings: {props.food.servings}</p>
+        <img src={image} height={60} alt="food" />
+        <p>Calories: {calories}</p>
+        <p>Servings: {servings}</p>
         <p>
-          <b>Total Calories: {props.food.calories * props.food.servings} </b> kcal
+          <b>Total Calories: {calories * servings} </b> kcal
         </p>
         <Button type="primary"> Delete </Button>
       </Card>

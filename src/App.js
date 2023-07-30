@@ -16,6 +16,14 @@ function App() {
 
   const onSearch = (wordSearch) => setWord(wordSearch);
 
+  const onDelete = (foodName) => {
+    const filteredFoods = foods.filter(food => {
+      return food.name !== foodName;
+    })
+    setFoods(filteredFoods);
+
+  }
+
   return (
     <div className="App">
       {/* Display Add Food component here */}
@@ -38,7 +46,7 @@ function App() {
           .filter((foodSearch) =>
             foodSearch.name.toLowerCase().includes(word.toLowerCase()))
           .map((food, i) => (
-            <FoodBox key={i} {...food} />
+            <FoodBox key={i} {...food} onDelete={onDelete}/>
           ))}
       </Row>
     </div>

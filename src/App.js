@@ -7,8 +7,9 @@ import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 
 function App() {
-  const [foods, setFoods] = useState(foodsData);
-  const [word, setWord] = useState('');
+  const [ foods, setFoods ] = useState(foodsData);
+  const [ word, setWord ] = useState('');
+  const [ show, setShow ] = useState(false);
 
   const addFood = (newFood) => {
     setFoods((prevFoods) => [newFood, ...prevFoods]);
@@ -29,9 +30,12 @@ function App() {
       {/* Display Add Food component here */}
       <Row justify={'center'}>
         <Col span={6}>
-          <AddFoodForm addFood={addFood} />
+        {
+          show && <AddFoodForm addFood={addFood} />
+        }
+          
 
-          <Button> Hide Form / Add New Food </Button>
+          <Button onClick={() => setShow(!show)}> {show ? "Hide Form" : "Add New Food"}</Button>
 
           {/* Display Search component here */}
           <Search onSearch={onSearch} />

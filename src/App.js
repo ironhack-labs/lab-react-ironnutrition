@@ -13,10 +13,10 @@ function App() {
 
   // Function used in AddFoodForm component
   const addNewFood = (newFood) => {
-    const updatedFoods = [...foods, newFood]
+    const updatedFoods = [newFood, ...foods]
     setFoods(updatedFoods)
 
-    const updatedFoodsData = [...foodsData, newFood]
+    const updatedFoodsData = [newFood, ...foodsData]
     setFoodsData(updatedFoodsData)
   }
 
@@ -31,6 +31,11 @@ function App() {
     } else {
       filteredFoods = foodsData
     }
+
+    // str !== ''
+    //   ? filteredFoods = foodsData.filter((food) => String(food.name).toLowerCase()
+    //     .startsWith(str.toLowerCase()))
+    //   : filteredFoods = foodsData
 
     setFoods(filteredFoods)
   }

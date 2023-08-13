@@ -1,0 +1,32 @@
+.food-box-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .food-box-image {
+    width: 100px;
+    height: auto;
+  }
+  
+  .delete-button {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: #fff;
+  }
+  
+  .delete-button:hover {
+    background-color: #096dd9;
+    border-color: #096dd9;
+  }
+
+  
+  
+  
+  
+  
+  

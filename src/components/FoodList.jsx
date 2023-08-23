@@ -27,9 +27,7 @@ function FoodList (){
 
     return(
         <div>
-        <AddFoodForm 
-                addNewFood = {addNewFood}
-            />
+      
             <Row>
             <Divider>Food List</Divider>
             {foods.length >0 ? foods.map((food)=>{
@@ -44,6 +42,9 @@ function FoodList (){
             }): <p> 😔 Oops! There is no more content to show. 😔 </p>   
             }
             </Row>
+            <AddFoodForm 
+            addNewFood = {addNewFood}
+            />
         </div>
     )
 }

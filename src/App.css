@@ -40,3 +40,49 @@
 .read-the-docs {
   color: #888;
 }
+
+.box-image{
+  width: 150px;
+}
+
+.food-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  margin-right: 30px;
+  padding-top: 10px;
+  border: 1px solid rgb(71, 71, 71);
+  height: 425px;
+  width: 350px;
+}
+
+.food-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  place-content: center;
+}
+
+.add-food{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  align-items: center;
+}
+
+.add-food button{
+  width: 100px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: 1px solid #888;
+}
+
+.food-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

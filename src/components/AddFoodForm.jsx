@@ -1,6 +1,8 @@
 // Your code here
 
 import { useState } from "react"
+import { Divider, Input, Button } from "antd";
+
 
 function AddFoodForm (props){
 
@@ -41,49 +43,47 @@ function AddFoodForm (props){
         setServings("");
     }
 
-    return(
+return (
+    <form onSubmit={handleSubmit}>
+      <Divider>Add Food Entry</Divider>
 
-        <div>
-            <h4>Add Food</h4>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="">Name: 
-                    <input 
+      <label htmlFor="">Name: 
+                    <Input 
                     type="text" 
                     name="name" 
                     value = {name}
                     onChange={handleNameInput}
-                    ></input>
+                    ></Input>
                 </label>
 
                 <label htmlFor="">image Url: 
-                    <input 
+                    <Input 
                     type="text" 
                     name="image" 
                     value = {image}
                     onChange={handleImageInput}
-                    ></input>
+                    ></Input>
                 </label>
                 <label htmlFor="">Calories: 
-                    <input 
+                    <Input 
                     type="text" 
                     name="calories" 
                     value = {calories}
                     onChange={handleCaloriesInput}
-                    ></input>
+                    ></Input>
                 </label>
                 <label htmlFor="">Servings: 
-                    <input 
+                    <Input 
                     type="text" 
                     name="servings" 
                     value = {servings}
                     onChange={handleServingsInput}
-                    ></input>
+                    ></Input>
                 </label>
-               
-                <button type="submit">Create</button>
-            </form>
-        </div>
-    )
+
+      <Button type="submit">Create</Button>
+    </form>
+  );
 }
 
-export default AddFoodForm
+export default AddFoodForm;

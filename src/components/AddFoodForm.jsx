@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Form, Input, InputNumber } from "antd";
 
 class AddFoodForm extends Component {
   constructor(props) {
@@ -21,13 +20,13 @@ class AddFoodForm extends Component {
     event.preventDefault();
     const { name, image, calories, servings } = this.state;
     const newFood = {
-      id: Date.now(),
+      id: Date.now(), // Generating a unique id for the new food item
       name,
       image,
       calories: parseInt(calories),
       servings: parseInt(servings),
     };
-    this.props.onAddFood(newFood);
+    this.props.onAddFood(newFood); // Call the function from App component
     this.setState({
       name: "",
       image: "",
@@ -38,45 +37,41 @@ class AddFoodForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Item label="Name">
-          <Input
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </Form.Item>
+      <form onSubmit={this.handleSubmit}>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
 
-        <Form.Item label="Image">
-          <Input
-            name="image"
-            value={this.state.image}
-            onChange={this.handleChange}
-          />
-        </Form.Item>
+        <label>Image:</label>
+        <input
+          type="text"
+          name="image"
+          value={this.state.image}
+          onChange={this.handleChange}
+        />
 
-        <Form.Item label="Calories">
-          <InputNumber
-            name="calories"
-            value={this.state.calories}
-            onChange={(value) => this.setState({ calories: value })}
-          />
-        </Form.Item>
+        <label>Calories:</label>
+        <input
+          type="number"
+          name="calories"
+          value={this.state.calories}
+          onChange={this.handleChange}
+        />
 
-        <Form.Item label="Servings">
-          <InputNumber
-            name="servings"
-            value={this.state.servings}
-            onChange={(value) => this.setState({ servings: value })}
-          />
-        </Form.Item>
+        <label>Servings:</label>
+        <input
+          type="number"
+          name="servings"
+          value={this.state.servings}
+          onChange={this.handleChange}
+        />
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Create
-          </Button>
-        </Form.Item>
-      </Form>
+        <button type="submit">Create</button>
+      </form>
     );
   }
 }

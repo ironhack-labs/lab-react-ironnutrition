@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import FoodBox from "./FoodBox";
 import AddFoodForm from "./AddFoodForm";
-import Search from "./Search"; // Import the Search component
-import foodsJson from "../foods.json"; // Make sure to adjust the path accordingly
+import Search from "./Search";
+import { Button, Empty } from "antd"; // Import the Empty component
+import foodsJson from "../foods.json";
 
 class FoodList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       foods: foodsJson,
-      filteredFoods: foodsJson, // Initialize filteredFoods with all foods initially
+      filteredFoods: foodsJson,
+      isFormVisible: false,
     };
   }
 
-  // Add a method to handle food item deletion
   deleteFood = (foodId) => {
     const updatedFoods = this.state.foods.filter((food) => food.id !== foodId);
     this.setState({
       foods: updatedFoods,
-      filteredFoods: updatedFoods, // Also update filteredFoods
+      filteredFoods: updatedFoods,
     });
   };
 
-  // Add a method to handle search
   handleSearch = (searchTerm) => {
     const filteredFoods = this.state.foods.filter((food) =>
       food.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -30,11 +30,16 @@ class FoodList extends Component {
     this.setState({ filteredFoods });
   };
 
-  // Add a method to add new food item to the list
   addFood = (newFood) => {
     this.setState((prevState) => ({
       foods: [...prevState.foods, newFood],
-      filteredFoods: [...prevState.foods, newFood], // Also update filteredFoods
+      filteredFoods: [...prevState.foods, newFood],
+    }));
+  };
+
+  toggleFormVisibility = () => {
+    this.setState((prevState) => ({
+      isFormVisible: !prevState.isFormVisible,
     }));
   };
 
@@ -44,8 +49,20 @@ class FoodList extends Component {
         {/* Render the Search component */}
         <Search onSearch={this.handleSearch} />
 
-        {/* Render the AddFoodForm component */}
-        <AddFoodForm onAddFood={this.addFood} />
+        {/* Toggle button to show/hide the form */}
+        <Button onClick={this.toggleFormVisibility}>
+          {this.state.isFormVisible ? "Hide Form" : "Add New Food"}
+        </Button>
+
+        {/* Render the AddFoodForm component conditionally */}
+        {this.state.isFormVisible && (
+          <AddFoodForm onAddFood={this.addFood} />
+        )}
+
+        {/* Display feedback message when the list is empty */}
+        {this.state.filteredFoods.length === 0 && (
+          <Empty description="Oops! There is no more content to show." />
+        )}
 
         {/* Map over the filteredFoods instead of foods */}
         {this.state.filteredFoods.map((food, index) => (

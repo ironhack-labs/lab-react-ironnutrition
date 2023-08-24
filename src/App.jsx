@@ -23,12 +23,13 @@ function App() {
   return (
     <div className="App">
       <h1> Food List</h1>
+      <AddFood addNewFood={newFood} />
       {foods.map((food) => {
         return (
           <FoodBox key={food.id} food={food} clickToDelete={deleteFoods} />
         );
       })}
-      <AddFood addNewFood={newFood} />
+    
     </div>
   );
 }

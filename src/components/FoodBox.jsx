@@ -3,7 +3,7 @@ const FoodBox = ({ food }) => {
         <div>
             <p>{food.name}</p>
 
-            <img src={food.image} />
+            <img width='250px' src={food.image} />
 
             <p>Calories: {food.calories}</p>
             <p>Servings {food.servings}</p>
@@ -13,6 +13,7 @@ const FoodBox = ({ food }) => {
             </p>
 
             <button>Delete</button>
+            <hr />
         </div>
     )
 }

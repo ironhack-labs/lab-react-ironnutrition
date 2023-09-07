@@ -40,19 +40,25 @@ function App() {
 
   return (
     <div className="App">
-      <Button onClick={() => setShowForm(!showForm)}>
-        {showForm ? 'Hide form' : 'Show form'}
-      </Button>
-      {showForm ? <AddFoodForm addFood={addFood} /> : null}
-      <Search searchFood={searchFood} />
-      {foods.length ? (
-        foods.map((food) => {
-          food.id = uuidv4();
-          return <FoodBox key={food.id} food={food} deleteFood={deleteFood} />;
-        })
-      ) : (
-        <p>No food founded</p>
-      )}
+      <div className="header">
+        <Button onClick={() => setShowForm(!showForm)}>
+          {showForm ? 'Close form' : 'Open form'}
+        </Button>
+        {showForm ? <AddFoodForm addFood={addFood} /> : null}
+        <Search searchFood={searchFood} />
+      </div>
+      <div className="list">
+        {foods.length ? (
+          foods.map((food) => {
+            food.id = uuidv4();
+            return (
+              <FoodBox key={food.id} food={food} deleteFood={deleteFood} />
+            );
+          })
+        ) : (
+          <p>No food founded</p>
+        )}
+      </div>
     </div>
   );
 }

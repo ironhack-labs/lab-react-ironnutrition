@@ -1,5 +1,41 @@
 .App {
   display: flex;
-  gap: 1rem;
+}
+
+.header {
+  background-color: #d5bdaf;
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  min-width: 400px;
+  max-width: 400px;
+  height: calc(100vh - 4rem);
+  box-sizing: border-box;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
   flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+button {
+  width: 100%;
+}
+
+form button {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.search {
+  margin-top: auto;
 }

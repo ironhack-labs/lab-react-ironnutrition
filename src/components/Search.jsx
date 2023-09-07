@@ -5,7 +5,7 @@ function Search({ searchFood }) {
   const [search, setSearch] = useState('');
 
   return (
-    <div>
+    <div className="search">
       <label>Search</label>
       <Input
         value={search}

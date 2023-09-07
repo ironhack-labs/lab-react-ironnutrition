@@ -1,9 +1,14 @@
+//import { useState } from "react";
 import "./App.css";
+import FoodBox from "./components/FoodBox";
 
 function App() {
+  
+
   return (
     <div className="App">
-      <h1>LAB | React IronNutrition</h1>
+    <h1>Food List</h1>
+     <FoodBox />
     </div>
   );
 }

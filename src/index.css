@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FoodTable {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.button {
+  background-color: #007fff;
+  color: white;
+}
+
+.FoodEntry {
+  text-align: start;
+}
+
+.Search {
+  width: 50%;
+}
+
+.buttonForm {
+  background-color: white;
+  border: solid #007fff 1px;
+  color: #007fff;
+  padding: 5px 20px;
+  margin: 20px 0px;
+}

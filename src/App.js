@@ -23,15 +23,22 @@ function App() {
 
         <Divider>Food List</Divider>
       </div>
-      {foodData.map((food) => {
-        return (
-          <div>
-            <Row style={{ width: '100%', justifyContent: 'center' }}>
-              <FoodBox food={food} />
-            </Row>
-          </div>
-        );
-      })}
+      <div className="grid">
+        {foodData.map((food) => {
+          return (
+            <div>
+              <Row
+                style={{
+                  width: '100%',
+                  justifyContent: 'center',
+                }}
+              >
+                <FoodBox food={food} />
+              </Row>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -6,3 +6,8 @@
   width: 500px;
   margin: 0 auto;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

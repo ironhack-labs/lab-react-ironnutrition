@@ -5,9 +5,16 @@
 .food-form {
   width: 500px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.search-container {
+  width: 500px;
+  margin: 0 auto;
+  text-align: left;
 }

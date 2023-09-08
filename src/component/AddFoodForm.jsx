@@ -5,7 +5,7 @@ function AddFoodForm(props) {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [calories, setCalories] = useState(0);
-  const [servings, setServings] = useState(0);
+  const [servings, setServings] = useState(1);
 
   function handleSubmit(e) {
     e.preventDefault();

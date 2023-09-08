@@ -22,8 +22,8 @@ function AddFoodForm(props) {
   return (
     <div>
       <h1>Add Food Entry</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className='labels-left mt-4'>
+        <div className='mt-4'>
           <label htmlFor="">Name</label>
           <Input
             value={name}
@@ -34,7 +34,7 @@ function AddFoodForm(props) {
           />
         </div>
 
-        <div>
+        <div className='mt-4'>
           <label htmlFor="">Image</label>
           <Input
             value={image}
@@ -45,7 +45,7 @@ function AddFoodForm(props) {
           />
         </div>
 
-        <div>
+        <div className='mt-4'>
           <label htmlFor="">Calories</label>
           <Input
             value={calories}
@@ -56,7 +56,7 @@ function AddFoodForm(props) {
           />
         </div>
 
-        <div>
+        <div className='mt-4'>
           <label htmlFor="">Servings</label>
           <Input
             value={servings}
@@ -67,7 +67,7 @@ function AddFoodForm(props) {
           />
         </div>
 
-        <button>Create</button>
+        <button className='mt-4'>Create</button>
       </form>
     </div>
   );

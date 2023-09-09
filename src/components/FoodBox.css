@@ -1,0 +1,11 @@
+.food-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .food-box{
+        grid-template-columns: 1fr;
+    }
+}

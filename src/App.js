@@ -61,13 +61,14 @@ function App() {
         return (
           <div> 
           <FoodBox foods={oneFood} deleteFood={deleteFood}/>
-        
+         
           </div>
         );
       })}
-      <div className='massege'><p>Oops! There is no more content to show.</p>
-      <div className='msg'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Empty_set_symbol.svg/640px-Empty_set_symbol.svg.png' width={150}/></div>
-      </div>
+    
+    <p className='massege'>Oops! There is no more content to show.</p>
+  
+
       </div>
 
     </div>

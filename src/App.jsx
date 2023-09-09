@@ -1,9 +1,17 @@
 import "./App.css";
+import FoodBox from "./components/FoodBox";
+import NavBar from "./components/navbar";
+
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <h1>LAB | React IronNutrition</h1>
+      <NavBar/>
+      <FoodBox />
     </div>
   );
 }

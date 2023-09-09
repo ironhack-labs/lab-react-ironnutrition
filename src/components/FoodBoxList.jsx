@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const FoodBoxList = ({ food }) => {
+const FoodBoxList = ({ food, onDeleteFood }) => {
     return (
         
         <Card className="food-card" sx={{ maxWidth: 345 }}>
@@ -29,7 +29,7 @@ const FoodBoxList = ({ food }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-        <Button variant="outlined" color="error">
+        <Button variant="outlined" color="error" onClick={onDeleteFood}>
             Delete
             </Button>
         </CardActions>

@@ -12,14 +12,22 @@ function FoodBox () {
         //servings: 1,
       //};
 
+      const onDeleteFoodBox = (id) => {
+        const newFoods = foods.filter((food) => food.id !== id);
+
+        setFoods (newFoods)
+    }
+
     return (
         
         
     <div className="cardContainer">
       {foods.map((food, id) => (
-        <FoodBoxList key={id} food={food} />
+        <FoodBoxList key={id} food={food} onDeleteFood={() => onDeleteFoodBox (food.id)} />
       ))}
     </div>
+
+    
         
     )
 }

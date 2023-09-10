@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Box, TextField, Button, Stack,Accordion,AccordionSummary,Typography,AccordionDetails  } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import './FoodBox.css'
 
 
 function AddFoodForm ({onCreate}) {
@@ -72,6 +73,7 @@ function AddFoodForm ({onCreate}) {
           type="text"
           variant="outlined"
           helperText="* Require"
+          className="form-input"
         />
         <TextField
           id="standard-search"

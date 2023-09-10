@@ -36,6 +36,21 @@
     align-items: center;
 }
 
+#standard-search  {
+    color: white !important; /* Cambia el color del texto a blanco */
+  }
+
+#standard-search-label  {
+    color: white !important;
+}
+#standard-number-label{
+    color: white !important;
+}
+
+
+
+
+
 @media (max-width: 600px) {
     .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
       /* Estilos específicos para dispositivos móviles */
@@ -44,5 +59,12 @@
     width: 70% !important;
     margin: 53px !important;
     }
+
+
+    .NavSearch {
+        display: grid;
+        justify-items: center;
+    }
+
   }
 

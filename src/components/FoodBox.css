@@ -1,0 +1,70 @@
+.cardContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    
+}
+
+.food-card {
+    width: 400px; 
+}
+
+.btn-send{
+    margin-bottom: 15px !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
+    border-radius: 20px !important;
+    margin: 19px !important;
+    width: 21% !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+    background-color: #d11818 !important;
+    color: white !important;
+}
+
+.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+ color: white !important;
+}
+
+.NavSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#standard-search  {
+    color: white !important; /* Cambia el color del texto a blanco */
+  }
+
+#standard-search-label  {
+    color: white !important;
+}
+#standard-number-label{
+    color: white !important;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+    .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
+      /* Estilos específicos para dispositivos móviles */
+    border-radius: 20px !important;
+    margin: 19px !important;
+    width: 70% !important;
+    margin: 53px !important;
+    }
+
+
+    .NavSearch {
+        display: grid;
+        justify-items: center;
+    }
+
+  }
+

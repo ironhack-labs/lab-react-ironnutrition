@@ -3,12 +3,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 
 const FoodBoxList = ({ food, onDeleteFood }) => {
     return (
         
-        <Card className="food-card" sx={{ maxWidth: 345 }}>
+        <Box sx={{ justifyContent: 'center' }} > 
+
+        <Card   className="food-card" >
         <CardActionArea>
           <CardMedia
             component="img"
@@ -21,10 +23,14 @@ const FoodBoxList = ({ food, onDeleteFood }) => {
             {food.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            <p>Calories: {food.calories} <br />
-            Servings: {food.servings} <br />
-            Total Calories: {food.servings * food.calories} kcal
-            </p>
+            <span>Calories: {food.calories}</span>
+            <br />
+            <span>Servings: {food.servings}</span>
+            <br />
+            <span>
+              <b>Total Calories: {food.servings * food.calories} kcal</b>
+            </span>
+            
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -34,23 +40,8 @@ const FoodBoxList = ({ food, onDeleteFood }) => {
             </Button>
         </CardActions>
       </Card>
+      </Box>
     );
   };
   
   export default FoodBoxList;
-
-
-
-
-
-
-  //<div>
-  //<p>{food.name}</p>
-  //<img src={food.image} alt={food.name} />
-  //<p>Calories: {food.calories}</p>
-  //<p>Servings: {food.servings}</p>
-  //<p>
-    //<b>Total Calories: {food.servings * food.calories} kcal</b>
-  //</p>
-  //<button>Delete</button>
-//</div>

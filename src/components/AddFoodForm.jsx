@@ -1,59 +1,135 @@
 // Your code here
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-//import Visibility from '@mui/icons-material/Visibility';
-//import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useState } from 'react';
+import { Box, TextField, Button, Stack,Accordion,AccordionSummary,Typography,AccordionDetails  } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function AddFoodForm () {
+
+function AddFoodForm ({onCreate}) {
+    const [values, setValues] = useState ({
+        name: '',
+        image: '',
+        calories: 10,
+        servings: 0,
+    })
+
+    // para que no se cargue la pagina cuando se le de click a submit y guarde el nuevo contenido
+    const onSubmit = (event) => {
+        event.preventDefault();
+        console.log('Form values:', values);
+
+        // Llamar a la función onCreate para guardar el nuevo elemento de comida
+    onCreate(values);
+
+    // Limpiar los campos del formulario después de guardar
+    setValues({
+      name: '',
+      image: '',
+      calories: 10,
+      servings: 0,
+    });
+    }
+
+    // function para que se pueda guardar el cambio de los inputs
+    const onChange =(event) => {
+        const {name, value, type } = event.target;
+
+        setValues({
+            ...values,
+            [name]: type === 'number' ? Number(value) : value,
+          });
+
+    }
 
     return (
         <>
-        <h1>hola</h1>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <div>
-        <TextField
-          label="With normal TextField"
-          id="outlined-start-adornment"
-          sx={{ m: 1, width: '25ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
-          }}
-        />
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <OutlinedInput
-            id="outlined-adornment-weight"
-            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-            aria-describedby="outlined-weight-helper-text"
-            inputProps={{
-              'aria-label': 'weight',
+
+        <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Creat new food</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <Box 
+            
+            component="form"
+            onSubmit={onSubmit}
+            sx={{ 
+            '& .MuiTextField-root': { m: 1, width: '30ch'  },
+            flexWrap: 'wrap' 
             }}
-          />
-          <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
-        </FormControl>
+            noValidate
+            autoComplete="off"
+        >
+        <TextField
+          id="standard-search"
+          label="Name"
+          name="name"
+          value={values.name}
+          onChange={onChange}
+          type="text"
+          variant="outlined"
+          helperText="* Require"
+        />
+        <TextField
+          id="standard-search"
+          label="Image"
+          name="image"
+          value={values.image}
+          onChange={onChange}
+          type="text"
+          variant="outlined"
+          helperText="* Require"
+        />
+        <TextField
+          id="standard-number"
+          label="Calories"
+          name="calories"
+          value={values.calories}
+          onChange={onChange}
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+          helperText="* Require"
+        />
+        <TextField
+          id="standard-number"
+          label="Servings"
+          name="servings"
+          value={values.servings}
+          onChange={onChange}
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+          helperText="* Require"
+        />
+        
+    <Stack direction="row" spacing={2}>
+      <Button 
+      className='btn-send'
+      variant="contained" 
+      color="success" 
+      type="submit">
+        Submit
+      </Button>
+    </Stack>
 
-        <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            label="Amount"
-          />
-        </FormControl>
-      </div>
+    </Box>
 
 
-        </Box>
+        </AccordionDetails>
+      </Accordion>
+        
+    </>
 
 
-        </>
+    
     )
 }
 

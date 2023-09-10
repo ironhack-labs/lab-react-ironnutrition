@@ -23,13 +23,13 @@ function AddFoodForm(props) {
     <div className="AddFoodForm">
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" autoComplete="off" />
+        <input type="text" name="name" id="name" autoComplete="off" required />
         <label htmlFor="image">Image</label>
-        <input type="text" name="image" id="image" autoComplete="off" />
+        <input type="text" name="image" id="image" autoComplete="off" required/>
         <label htmlFor="calories">Calories</label>
-        <input type="number" name="calories" id="calories" autoComplete="off" />
+        <input type="number" name="calories" id="calories" autoComplete="off" required/>
         <label htmlFor="servings">Servings</label>
-        <input type="number" name="servings" id="servings" autoComplete="off" />
+        <input type="number" name="servings" id="servings" autoComplete="off" required/>
         <button type="submit">Create</button>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import foods from "./foods.json";
 import {useState} from "react";
-import FoodBox from "./components/FoodBox";
 import AddNewFood from "./components/AddFoodForm";
+import FoodList from "./components/FoodList";
 
 
 import "./App.css";
@@ -29,16 +29,8 @@ function App() {
       <h1>LAB | React IronNutrition</h1>
       
       <AddNewFood callbackToAddFood={addNewFood} />
-      <section>
-        
-        {foodsToDisplay.map((foods, index) =>{
-          return (
-          <>
-          <FoodBox key={index} food={foods} callbackToDeleteFood={deleteFood}/>
-          </>
-        )
-        })}
-      </section>
+
+      <FoodList foods={foodsToDisplay} callbackToDelete={deleteFood}/>
     </div>
   );
 }

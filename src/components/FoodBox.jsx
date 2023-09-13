@@ -1,4 +1,5 @@
 import React from "react";
+import "./FoodBox.css"
 
 function FoodBox(props){
 
@@ -10,7 +11,7 @@ function FoodBox(props){
     <div>
         <p>{props.food.name}</p>
 
-        <img src={props.food.image} />
+        <img className="image" src={props.food.image} />
 
         <p>Calories: {props.food.calories}</p>
         <p>Servings {props.food.servings}</p>

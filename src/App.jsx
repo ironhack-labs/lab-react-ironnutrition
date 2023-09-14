@@ -7,11 +7,11 @@ import FoodBox from "./components/FoodBox";
 function App() {
   const [foods, setFoods] = useState(foodsJson);
 
-  const deleteFood = () => {
-    const newList = foods.filter((elm) => {
-      return elm.name !== food.name;
+  const deleteFood = (foodName) => {
+    const newList = foods.filter((element) => {
+      return element.name !== foodName;
     })
-    setFoods([...newList]);
+    setFoods(newList);
   }
 
   return (
@@ -25,9 +25,9 @@ function App() {
         calories: element.calories,
         image: element.image,
         servings: element.servings
-      }} callBackFunction={() => {deleteFood(element.name)}}/>
+      }} callbackToDelete={deleteFood}/>
       ) 
-      })}
+      })};
 
     </div>
   );

@@ -33,10 +33,31 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
+}
+
+/* CARD & IMAGE STYLING */
+.card {
+  padding: 2em;
+  height: 395px;
+  width: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+
+img {
+  height: auto;
+  width: 100%;
 }

@@ -1,5 +1,3 @@
-import "./style.css"
-
 function FoodBox(props){
 
     return (

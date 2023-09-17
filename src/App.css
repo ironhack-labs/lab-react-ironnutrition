@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.picture-food{
+  width: 25vw;
+  height: 25vh;
+}

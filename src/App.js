@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+import foodData from './foods.json';
+
 import './App.css';
+import { useState } from 'react';
+import FoodBox from './FoodBox';
+import AddFoodForm from './AddFoodForm';
+import FilteredFood from './FilteredFood';
+
+
 
 function App() {
+  const [foodState, setFoodState] = useState(foodData)
+  const [filteredFoods, setFilteredProducts] = useState([])
+  function addNewFood(newFood) {
+    const updatedFood = [...foodState, newFood]
+    setFoodState(updatedFood)
+  }
+  const workSearch = (filteredFoods) => {
+   
+    setFilteredProducts(filteredFoods);
+  };
+  function deleteFoodItem(name) {
+    const updatedFood = foodState.filter((food) => food.name !== name);
+    setFoodState(updatedFood);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <FilteredFood foodState={foodState} onSearch={workSearch} filteredProducts={filteredFoods}></FilteredFood>
+      <AddFoodForm addNewFood={addNewFood}></AddFoodForm>
+      {foodState.map((oneFood)=>{
+        return(
+            <div key={oneFood.name}>
+              
+            
+              
+                <FoodBox food={oneFood} onDelete={deleteFoodItem}></FoodBox>
+                
+            </div>
+            
+        )
+      })}
     </div>
   );
 }

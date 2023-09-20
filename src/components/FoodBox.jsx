@@ -1,38 +1,29 @@
+import { Card, Col, Button } from 'antd';
+
 function FoodBox(props) {
   console.log("FoodBox Props:", props);
   const { food, deleteFood } = props;
 
   return (
-    <div className="AddFood">
+    <Col> 
+    <Card title={food.name} style={{ width: 230, height: 340, margin: 10 }}>
       <h4>Add Food</h4>
-      {/* <form onSubmit={handleSubmit}> */}
-      <label>{food.name}</label>
-      {/* <input type="text" name="name" value={props.name} onChange={handleTitleInput} /> */}
-      <img src={food.image}/>
+      <p>{food.name} </p>
+      <img src={food.image} height={60} alt="food" />
 
-      <label>Calories:{food.calories} </label>
-      {/* <input
-        type="number"
-        name="calories"
-        value={props.calories}
-        onChange={handleDirectorInput}
-      /> */}
+      <p>Calories:{food.calories} </p>
 
-      <label>Servings:{food.servings}</label>
-      {/* <input
-        type="number"
-        name="servings"
-        value={props.calories}
-        onChange={handleOscarsInput}
-      /> */}
+      <p>Servings:{food.servings}</p>
 
       <p>
         <b>Total Calories: {food.calories * food.servings} </b> kcal
       </p>
 
-      <button type="primary" onClick={()=> deleteFood(food.id)}>Delete 🗑️</button>
-      {/* </form> */}
-    </div>
+      <Button type="primary" onClick={() => deleteFood(food.id)}>
+        Delete 🗑️
+      </Button>
+    </Card>
+    </Col>
   );
 }
 

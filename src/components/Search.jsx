@@ -11,10 +11,8 @@ function Search(props) {
 
   return (
     <Row style={{ justifyContent: "center" }}>
-      <Card style={{ width: "80%", margin: 10, backgroundColor: "#efefef" }}>
+      <Card style={{ width: "80%", margin: 10, backgroundColor: "#ffb6c1" }}>
         <Divider>Search</Divider>
-
-        <label>Search</label>
 
         <Input
           value={searchText}
@@ -22,9 +20,14 @@ function Search(props) {
           placeholder="Search here"
           onChange={handleSearch}
         />
-        <Button type="primary" onClick={()=>{handleSearch}}>
-                    Search Food
-                  </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleSearch;
+          }}
+        >
+          Search Food
+        </Button>
       </Card>
     </Row>
   );

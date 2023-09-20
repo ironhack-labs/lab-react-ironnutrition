@@ -30,7 +30,6 @@ function App() {
 
   const addNewFood = (newFood) => {
     const updatedFoods = [...foods, newFood];
-    const updatedFoodsArr = [...foodsArr, newFood];
 
     setFoods(updatedFoods);
     setFoodsArr(updatedFoodsArr);
@@ -41,24 +40,35 @@ function App() {
   };
 
   const searchFood = (str) => {
-
     let searchResult;
-    console.log('search', { str });
-    if (str === '') {
-      searchResult= foods;
-      } else {
-      searchResult = foods.filter((food)=> {
+    console.log("search", { str });
+    if (str === "") {
+      searchResult = foods;
+    } else {
+      searchResult = foods.filter((food) => {
         return food.name.toLowerCase().includes(str.toLowerCase());
-    })}
-    
+      });
+    }
+
     setFoodsArr(searchResult);
-    
-  }
+  };
 
   return (
     <div className="App">
       <Divider>Food List</Divider>
-      <Search key="search-food" searchFood ={searchFood}/>
+      <Search key="search-food" searchFood={searchFood} />
+      <div className="Add Food">
+        {showForm ? (
+          <Button type="primary" onClick={toggleForm}>
+          Add New Food
+        </Button>
+         
+        ) : (
+          <Card>
+          <AddFoodForm key="Add-Food" addNewFood={addNewFood} />
+        </Card>
+        )}
+      </div>
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {foodsArr.map((food) => {
           return (
@@ -67,7 +77,6 @@ function App() {
                 key={food.id}
                 food={food} // const{food}=props (in FoodBox jsx)
                 deleteFood={deleteFood}
-
                 //IF you WANT...
                 // name={food.name}
                 // calories={food.calories}
@@ -75,18 +84,6 @@ function App() {
                 //then, you need destructure the props in FoodBox jsx like this:
                 // const { name, calories, servings } = props;
               />
-
-              <div className="Add Food">
-                {showForm ? (
-                  <Card>
-                    <AddFoodForm key="Add-Food" addNewFood={addNewFood} />
-                  </Card>
-                ) : (
-                  <Button type="primary" onClick={toggleForm}>
-                    Add New Food
-                  </Button>
-                )}
-              </div>
             </>
           );
         })}

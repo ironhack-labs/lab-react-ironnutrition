@@ -6,7 +6,7 @@ function Search(props) {
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    props.searchFood(e.target.value); //from Parent (App.jsx)
+    props.searchFood(e.target.value); //from Parent (App.jsx): Actions-up
   };
 
   return (
@@ -18,12 +18,16 @@ function Search(props) {
           value={searchText}
           type="text"
           placeholder="Search here"
-          onChange={handleSearch}
+          onChange={handleSearch} 
+          // This allows users to input their search query 
+          // and updates the search text in real-time as they type.
+          //Without Button, enter -> search possible but Button is better for UX/UI
+          
         />
         <Button
           type="primary"
           onClick={() => {
-            handleSearch;
+            handleSearch
           }}
         >
           Search Food

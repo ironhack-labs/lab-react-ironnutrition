@@ -8,8 +8,11 @@ import Search from "./components/Search";
 
 function App() {
   const [foods, setFoods] = useState(foodsJson); //original
-  const [foodsArr, setFoodsArr] = useState(foods); // filtered ARRAY
-  const [showForm, setShowAddFoodForm] = useState(true); // show FORM or not
+  const [foodsArr, setFoodsArr] = useState(foods); // filtered ARRAY (For immutation)
+  console.log("Foods", foods);
+  console.log("FoodsArr", foodsArr);
+
+  const [showForm, setShowAddFoodForm] = useState(false); // show FORM or not
 
   // If you were to use only foodsArr and modify it directly for filtering or deleting,
   // you would lose the reference to the original data,
@@ -26,13 +29,14 @@ function App() {
 
     setFoodsArr(filteredFoodArr);
     setFoods(filteredFoods);
+    //both are updated (matched)
   };
 
   const addNewFood = (newFood) => {
     const updatedFoods = [...foods, newFood];
 
     setFoods(updatedFoods);
-    setFoodsArr(updatedFoodsArr);
+    setFoodsArr(updatedFoods);
   };
 
   const toggleForm = () => {
@@ -58,7 +62,7 @@ function App() {
       <Divider>Food List</Divider>
       <Search key="search-food" searchFood={searchFood} />
       <div className="Add Food">
-        {showForm ? (
+        {/* {showForm ? (
           <Button type="primary" onClick={toggleForm}>
           Add New Food
         </Button>
@@ -67,6 +71,16 @@ function App() {
           <Card>
           <AddFoodForm key="Add-Food" addNewFood={addNewFood} />
         </Card>
+        )} */}
+
+        {/* with Toggle, Added the hide the form button */}
+        <Button type="link" onClick={toggleForm}>
+          {showForm ? "Hide the Form" : "Add New Food"}
+        </Button>
+        {showForm && (
+          <Card>
+            <AddFoodForm key="Add-Food" addNewFood={addNewFood} />
+          </Card>
         )}
       </div>
       <Row style={{ width: "100%", justifyContent: "center" }}>
@@ -88,7 +102,7 @@ function App() {
           );
         })}
       </Row>
-      {!foodsArr.length && <p>Opps! No more content to show</p>}
+      {!foodsArr.length && <p> 🤪 Opps! No more content to show</p>}
     </div>
   );
 }

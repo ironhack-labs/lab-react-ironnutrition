@@ -1,9 +1,11 @@
 import { Card, Col, Button } from "antd";
 
 function FoodBox(props) {
-  console.log("FoodBox Props:", props);
+  // console.log("FoodBox Props:", props);
   const { food, deleteFood } = props;
+//body has nothing -> so deleteFood (props below) comes from parent
 
+  //here where we return JSX
   return (
     <Col>
       <Card title={food.name} style={{ width: 230, height: 370, margin: 15 }}>
@@ -18,7 +20,7 @@ function FoodBox(props) {
           <b>Total Calories: {food.calories * food.servings} </b> kcal
         </p>
 
-        <Button type="primary" onClick={() => deleteFood(food.id)}> 
+        <Button type="primary" onClick={() => deleteFood(food.name)}> 
         {/* ACTIONS-UP:  trigger an action in the parent component  */}
           Delete 🗑️
         </Button>

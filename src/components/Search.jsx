@@ -1,7 +1,7 @@
 import { Divider, Input, Row, Card, Button } from "antd";
 import { useState } from "react";
 
-function Search(props) {
+function Search(props) { // Search ({searchFood}) instead of props
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {

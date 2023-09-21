@@ -1,6 +1,6 @@
 import "../App.css";
-import foodsJson from "../foods.json"
-import FoodBox from "../components/FoodBox"
+import foodsJson from "../foods.json";
+import FoodBox from "../components/FoodBox";
 import { useState } from "react";
 import AddFoodForm from "../components/AddFoodForm";
 import { Row, Divider, Card, Button } from "antd";
@@ -9,7 +9,7 @@ import Search from "../components/Search";
 function FoodList() {
   const [foods, setFoods] = useState(foodsJson); //original
   const [foodsArr, setFoodsArr] = useState(foods); // filtered ARRAY (For immutation)
-  console.log("Foods", foods);
+  // console.log("Foods", foods);
   console.log("FoodsArr", foodsArr);
 
   const [showForm, setShowAddFoodForm] = useState(false); // show FORM or not
@@ -18,9 +18,9 @@ function FoodList() {
   // you would lose the reference to the original data,
   // making it more challenging to reset or manage the data effectively.
 
-  const deleteFood = (id) => {
+  const deleteFood = (foodName) => { //id is wrong, since when adding a food, id value is NOT there!
     const filteredFoods = foods.filter((food) => {
-      return food.id !== id;
+      return food.id !== foodName;
     });
 
     const filteredFoodArr = foodsArr.filter((food) => {
@@ -39,9 +39,9 @@ function FoodList() {
     setFoodsArr(updatedFoods);
   };
 
-  const toggleForm = () => {
-    setShowAddFoodForm(!showForm);
-  };
+  // const toggleForm = () => {
+  //   setShowAddFoodForm(!showForm);
+  // };
 
   const searchFood = (str) => {
     let searchResult;
@@ -74,9 +74,11 @@ function FoodList() {
         )} */}
 
         {/* with Toggle, Added the hide the form button */}
-        <Button type="link" onClick={toggleForm}>
+        {/* <Button type="link" onClick={toggleForm}>
           {showForm ? "Hide the Form" : "Add New Food"}
-        </Button>
+        </Button> */}
+
+        <Button onClick={() => setShowAddFoodForm(!showForm)}> {showForm ? "Hide the Form" : "Add the Food"} </Button>
         {showForm && (
           <Card>
             <AddFoodForm key="Add-Food" addNewFood={addNewFood} />

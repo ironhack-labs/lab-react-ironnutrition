@@ -6,6 +6,15 @@ function AddFoodForm({ onAddFood }) {
   const onFinish = (values) => {
     onAddFood(values);
   };
+  
+  const [foodData, setData] = useState({
+    name: "",
+      image: "",
+      calories: "",
+      servings: "",
+  });
+
+  const [userData, setUserData] = useState([""]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

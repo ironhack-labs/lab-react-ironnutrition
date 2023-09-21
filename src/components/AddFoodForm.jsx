@@ -29,7 +29,7 @@ function AddFoodForm({ onAddFood }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="name">Name</label>
+        <label>"name"</label>
         <input
           type="text"
           id="name"
@@ -41,7 +41,7 @@ function AddFoodForm({ onAddFood }) {
         />
       </div>
       <div>
-        <label htmlFor="image">Image</label>
+        <label>"image"</label>
         <input
           type="text"
           id="image"
@@ -53,7 +53,7 @@ function AddFoodForm({ onAddFood }) {
         />
       </div>
       <div>
-        <label htmlFor="calories">Calories</label>
+        <label>"calories"</label>
         <input
           type="number"
           id="calories"
@@ -65,7 +65,7 @@ function AddFoodForm({ onAddFood }) {
         />
       </div>
       <div>
-        <label htmlFor="calories">Calories</label>
+        <label>"calories"</label>
         <input
           type="number"
           id="calories"
@@ -76,7 +76,7 @@ function AddFoodForm({ onAddFood }) {
         <InputNumber min={1} />
       </div>
       <div>
-        <label htmlFor="servings">Servings</label>
+        <label>"servings"</label>
         <input
           type="number"
           id="servings"

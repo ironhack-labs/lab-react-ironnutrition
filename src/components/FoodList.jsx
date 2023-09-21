@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FoodBox from "./FoodBox";
 import Search from "./Search";
+import foodsJson from "./foods.json";
 
 function FoodList() {
   const [foodItems, setFoodItems] = useState([]);
@@ -11,6 +12,12 @@ function FoodList() {
     const newFoodItem = { name, calories };
     setFoodItems([...foodItems, newFoodItem]);
   };
+  //const deleteFood = (foodNameStr) => {
+  //  const filteredItems = updated.food((item) =>
+   // return onbeforeunload.name !== foodNameStr;
+  //});
+  setUpdatedFoods(filteredFoods);
+
   const handleSearch = (searchTerm) => {
     const filteredItems = foodItems.filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,10 +27,11 @@ function FoodList() {
 
     if (filteredItems.length === 0) {
       setMessage("No matching items found.");
-    } else {
+    } else { 
       setMessage("");
     }
   };
+
 
   return (
     <div>

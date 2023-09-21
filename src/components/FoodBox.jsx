@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, InputNumber } from 'antd';
 
-function FoodBox({ food, onAdd }) {
+function FoodBox({ food, onDelete ,onAdd }) {
   //const { name, calories, image, servings } = food;
   //const totalCalories = calories * servings;
   return (

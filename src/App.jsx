@@ -6,9 +6,14 @@ import FoodBox from "./components/FoodBox"
 function App() {
   const [foods, setFoods] = useState(foodsJson);
 
-  const foodBoxes = foods.map((foodItem) => {
-    return <FoodBox key={foodItem.name} food={foodItem} /> 
-  })
+  const handleDelete = (foodName) => {
+    const updatedFoods = foods.filter(food => food.name !== foodName);
+    setFoods(updatedFoods);
+  };
+
+  const foodBoxes = foods.map((foodItem) => (
+    <FoodBox key={foodItem.name} food={foodItem} onDelete={handleDelete} />
+  ));
 
   return (
      <div className="App">

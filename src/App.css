@@ -40,3 +40,19 @@
 .read-the-docs {
   color: #888;
 }
+
+.food-img{
+  width:200px;
+}
+
+.form-div{
+  width:min-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-div button{
+  margin:25px 0px;
+}

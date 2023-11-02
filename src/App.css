@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
 }
 
 .logo {
@@ -32,7 +33,12 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
+}
 .card {
   padding: 2em;
 }
@@ -43,5 +49,28 @@
 
 
 .food-img{
-  width: 300px;
+  width:150px;
+  border-radius: 10px;
+}
+
+#searchbar-container{
+  padding-bottom: 50px;
+  background-color: rgba(219, 212, 212, 0.109);
+  border-radius: 20px;
+}
+
+#food-container{
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+
+}
+
+#food-container > div{
+  border: 1px solid rgba(255, 255, 255, 0.528);
+  border-radius: 10px;
+
+
 }

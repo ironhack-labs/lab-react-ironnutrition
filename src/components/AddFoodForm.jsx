@@ -1,4 +1,5 @@
 // Your code here
+import { Divider, Input, Button } from "antd";
 import { useState } from "react"
 export default function AddFoodForm(props){
     const [foodForm, setFoodForm] = useState(
@@ -23,18 +24,18 @@ export default function AddFoodForm(props){
             <h1>Add Food Entry</h1>
             <form>
                 <label htmlFor="name-input">Name</label>
-                <input type="text" id="name-input" name="name" onChange={inputFunc} value={foodForm.name}/>
-
+                <Input type="text" id="name-input" name="name" onChange={inputFunc} value={foodForm.name}/>
+                <Divider />
                 <label htmlFor="image-input">Image</label>
-                <input type="text" id="image-input" name="image" onChange={inputFunc} value={foodForm.image}/>
-
+                <Input type="text" id="image-input" name="image" onChange={inputFunc} value={foodForm.image}/>
+                <Divider />
                 <label htmlFor="calories-input">Calories</label>
-                <input type="number" id="calories-input" name="calories" onChange={inputFunc} value={foodForm.calories}/>
-
+                <Input type="number" id="calories-input" name="calories" onChange={inputFunc} value={foodForm.calories}/>
+                <Divider />
                 <label htmlFor="servings-input">Servings</label>
-                <input type="number" id="servings-input" name="servings" onChange={inputFunc} value={foodForm.servings}/>
-
-                <button onClick={handleClick}>Create</button>
+                <Input type="number" id="servings-input" name="servings" onChange={inputFunc} value={foodForm.servings}/>
+                <Divider />
+                <Button onClick={handleClick}>Create</Button>
             </form>
         </div>
     )

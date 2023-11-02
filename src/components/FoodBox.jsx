@@ -1,12 +1,24 @@
 // Your code here
+
 export default function FoodBox(prop){
     const food = prop.food;
+    let disp = "block";
+    if(prop.searchVal===""){
+        disp = "block"
+    }
+    
+    else if(food.name.toLowerCase().includes(prop.searchVal.toLowerCase())){
+        disp = "block";
+    }
+    else{
+        disp = "none"
+    }
 
     function removeEntry(){
         prop.remove(food.id)
     }
     return(
-        <div>
+        <div style={{display:disp}}>
             <p>{food.name}</p>
 
             <img src={food.image} className = "food-img"/>
@@ -19,6 +31,6 @@ export default function FoodBox(prop){
             </p>
 
             <button onClick={removeEntry}>Delete</button>
-</div>
+        </div>
     )
 }

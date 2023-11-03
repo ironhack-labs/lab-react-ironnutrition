@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+/* To make the food-grid 3 colum per row */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+  gap: 20px;
+}

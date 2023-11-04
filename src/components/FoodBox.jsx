@@ -1,6 +1,11 @@
 import React from "react";
 
 function FoodBox({ food, handleDelete }){
+
+    if(food.length === 0){
+        return <p>Oops! There is no more content to show</p>
+    }
+    
     return(
         <>
             {food.map(dish => (

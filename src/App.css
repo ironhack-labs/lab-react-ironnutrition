@@ -3,6 +3,17 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .logo {
@@ -39,4 +50,76 @@
 
 .read-the-docs {
   color: #888;
+}
+
+#food-img{
+  width: 200px;
+  height: 130px;
+}
+
+#form-add{
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+#food-card{
+  box-shadow: 2px 2px 20px rgba(165, 165, 165, 0.493);
+  transition: 2s;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#food-card:hover{
+  box-shadow: 2px 2px 20px rgba(165, 165, 165, 0.493);
+  transform: scale(1.2);
+  transition: 2s;
+}
+
+
+#button-add{
+  margin-top: 30px;
+  background-color: rgb(221, 221, 221);
+  font-size: 15px;
+  height: 50px;
+  width: 150px;
+  transition: 2s;
+}
+
+#button-add:hover{
+  margin-top: 30px;
+  background-color: rgb(180, 180, 180);
+  font-size: 15px;
+  height: 50px;
+  width: 150px;
+  transition: 2s;
+}
+
+#heading{
+  font-size: 30px;
+  background-color: rgb(48, 104, 48);
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+#main-search{
+  width: 95%;
+  margin-bottom: 40px;
+  color: black;
+}
+
+#search{
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+}
+
+#search::placeholder{
+  width: 100%;
+  border-radius: 20px;
+  color: rgb(95, 95, 95);
+  text-align: center;
 }

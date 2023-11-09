@@ -96,7 +96,7 @@ During an iteration, if your code seems to work as expected but some tests don't
 
 ### Iteration 1 | Store Data in the State
 
-First, import the foods array from the `foods.json` file into `App.js`:
+First, import the foods array from the `foods.json` file into `App.jsx`:
 
 ```js
 import foodsJson from "./foods.json";
@@ -104,13 +104,13 @@ import foodsJson from "./foods.json";
 
 <br>
 
-Now that you have the `foods.json` imported in `App.js`, create a state variable within the `App` component and store the `foods` array in it. In the following iterations, you will use this foods array you just stored in the state variable to render a list of food items.
+Now that you have the `foods.json` imported in `App.jsx`, create a state variable within the `App` component and store the `foods` array in it. In the following iterations, you will use this foods array you just stored in the state variable to render a list of food items.
 
 <br>
 
 ### Iteration 2 | `FoodBox` component
 
-In the `src/components/FoodBoox.jsx` file, create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop.
+In the `src/components/FoodBox.jsx` file, create a new component named `FoodBox` that takes a `food` prop, which is an object. The component should display a card with food information coming from the `food` prop.
 
 The component should display the food's *name*, *calories*, *image*, number of *servings*, *total calories* and a <kbd>Delete</kbd> button, using the following layout and elements:
 
@@ -135,7 +135,7 @@ The component should display the food's *name*, *calories*, *image*, number of *
 
 
 
-After creating the `FoodBox` component, test it by rendering a single `<FoodBox />` component instance in `App.js`. To test it you can use a mock object with food info, like this:
+After creating the `FoodBox` component, test it by rendering a single `<FoodBox />` component instance in `App.jsx`. To test it you can use a mock object with food info, like this:
 
 ```jsx
 <FoodBox food={ {
@@ -222,7 +222,7 @@ The form should have a submit button displaying the text **<kbd>Create</kbd>**.
 
 <br>
 
-Once you've created the `AddFoodForm` component, render it in `App.js`. When the submit button is clicked, the new food item should be added to the list.
+Once you've created the `AddFoodForm` component, render it in `App.jsx`. When the submit button is clicked, the new food item should be added to the list.
 
 **Hint:** To add a new food item to the foods array, which is in the state of the `App` component, you have to pass a function from the `App` to the `AddFoodForm` component through props. This function should take the values entered in the input fields and add them as a new object to the `foods` array.
 
@@ -247,7 +247,7 @@ It's time to refactor and clean up the `App` component by moving all the code re
 
 Create a new component named `FoodList`. The component should contain all the data, logic and nested components used to render and manage the food list from the `App` component.
 
-When you are done, your `App.js` file should look like this:
+When you are done, your `App.jsx` file should look like this:
 
 ```jsx
 // ...

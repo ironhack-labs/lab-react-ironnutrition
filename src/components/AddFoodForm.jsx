@@ -1,14 +1,37 @@
 import { useState } from "react";
 
-function AddFoodForm() {
+function AddFoodForm(props) {
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
     const [calories, setCalories] = useState("")
     const [servings, setServings] = useState("")
 
+
+    // Iteration 5:
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const newFood = {
+        name,
+        image,
+        calories,
+        servings
+    }
+
+    props.addFood(newFood)
+    
+    setName("")
+    setImage("")
+    setCalories("")
+    setServings("")
+
+  }
+
     return (
         <section>
 
+        <form onSubmit={handleSubmit}>
+            <div>
             <label>
                 Name:
                 <input
@@ -20,7 +43,9 @@ function AddFoodForm() {
                     onChange={(e) => {setName(e.target.value)}}
                 />
             </label>
+            </div>
 
+            <div>
             <label>
                 Image:
                 <input
@@ -32,7 +57,9 @@ function AddFoodForm() {
                     onChange={(e) => {setImage(e.target.value)}}
                 />
             </label>
+            </div>
 
+            <div>
             <label>
                 Calories:
                 <input
@@ -44,7 +71,9 @@ function AddFoodForm() {
                     onChange={(e) => {setCalories(e.target.value)}}
                 />
             </label>
+            </div>
 
+            <div>
             <label>
                 Servings:
                 <input
@@ -56,8 +85,10 @@ function AddFoodForm() {
                     onChange={(e) => {setServings(e.target.value)}}
                 />
             </label>
+            </div>
 
             <button>Create</button>
+            </form>
 
         </section>
 

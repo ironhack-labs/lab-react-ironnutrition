@@ -1,21 +1,25 @@
 // Iteration 2 and 3:
 function FoodBox(props) {
     return (
-        <div>
-            <p>{props.foodDetails.name}</p>
+        props.foodDetails.map(function (foodItem, index) {
+            return (
+                <div key={index}>
+                    <p>{foodItem.name}</p>
 
-            <img src={props.foodDetails.image} width = "100px"/>
+                    <img src={foodItem.image} width="200px" />
 
-            <p>Calories: {props.foodDetails.calories}</p>
-            <p>Servings {props.foodDetails.servings}</p>
+                    <p>Calories: {foodItem.calories}</p>
+                    <p>Servings {foodItem.servings}</p>
 
-            <p>
-                <b>Total Calories: {props.foodDetails.servings * props.foodDetails.calories} </b> kcal
-            </p>
+                    <p>
+                        <b>Total Calories: {foodItem.servings * foodItem.calories} </b> kcal
+                    </p>
 
-            <button onClick={function(){props.delete(props.foodDetails.id)}}>Delete</button>
-        </div>
-    )
+                    <button onClick={function () { props.delete(foodItem.id) }}>Delete</button>
+                </div>
+            )
+        }))
+
 }
 
 export default FoodBox;

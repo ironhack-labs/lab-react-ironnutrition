@@ -40,3 +40,23 @@
 .read-the-docs {
   color: #888;
 }
+
+img {
+  width: 250px;
+  height: auto;
+}
+
+.food-card {
+  border: 1px solid white;
+}
+
+label {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+input {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: auto;
+}

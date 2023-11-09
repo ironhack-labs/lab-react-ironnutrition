@@ -31,6 +31,37 @@ body {
   min-height: 100vh;
 }
 
+.App {
+  display: flex;
+  flex-direction: column
+}
+
+.FoodBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%
+}
+
+.Food {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 620px;
+  height: auto;
+  padding: 0 10px;
+}
+
+.Food-top { 
+  height: 400px;
+  max-width: 100%;
+}
+
+.Food-top > img { 
+  height: 300px;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

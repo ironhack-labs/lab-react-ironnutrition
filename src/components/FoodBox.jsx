@@ -1,16 +1,18 @@
 function foodBox(props) {
     return (
-        <div>
-            <p>{props.food.name}</p>
+        <div className="Food">
+            <div className="Food-top">
+                <p>{props.food.name}</p>
+                <img src={props.food.image} />
+            </div>
 
-            <img src={props.food.image} />
-
-            <p>Calories: {props.food.calories}</p>
-            <p>Servings {props.food.servings}</p>
-
-            <p>
-                <b>Total Calories: {props.food.servings * props.food.calories} </b> kcal
-            </p>
+            <div className="Food-bottom">
+                <p>Calories: {props.food.calories}</p>
+                <p>Servings {props.food.servings}</p>
+                <p>
+                    <b>Total Calories: {props.food.servings * props.food.calories} </b> kcal
+                </p>
+            </div>
 
             <button onClick={() => props.callbackToDelete(props.food.id)}>Delete</button>
         </div>

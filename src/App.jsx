@@ -20,10 +20,14 @@ function App() {
     return (
         <div className="App">
             <h1>LAB | React IronNutrition</h1>
-            <AddFoodForm callbackToSubmit={addFood} />
-            {foods.map((foodObj, index) => {
-                return <FoodBox key={index} food={foodObj} callbackToDelete={deleteFood} />;
-            })}
+            <div className="Form">
+                <AddFoodForm callbackToSubmit={addFood} />
+            </div>
+            <div className="FoodBox">
+                {foods.map((foodObj, index) => {
+                    return <FoodBox key={index} food={foodObj} callbackToDelete={deleteFood} />;
+                })}
+            </div>
         </div>
     );
 }

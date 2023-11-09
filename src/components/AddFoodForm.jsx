@@ -5,8 +5,8 @@ function addFoodForm(props) {
 
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
-    const [calories, setCalories] = useState("");
-    const [servings, setServings] = useState("");
+    const [calories, setCalories] = useState(0);
+    const [servings, setServings] = useState(1);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +34,7 @@ function addFoodForm(props) {
                 <input
                     name="name"
                     type="text"
+                    placeholder="Food name"
                     required={true}
                     value={name}
                     onChange={(e) => {
@@ -41,41 +42,48 @@ function addFoodForm(props) {
                     }}
                 ></input>
             </label>
+            <br/>
             <label>
                 Image
                 <input
                     name="image"
                     type="text"
+                    placeholder="Link to image"
                     value={image}
                     onChange={(e) => {
                         {setImage(e.target.value)};
                     }}
                 ></input>
             </label>
+            <br/>
             <label>
                 Calories
                 <input
                     name="calories"
                     type="number"
                     required={true}
+                    min={0}
                     value={calories}
                     onChange={(e) => {
                         {setCalories(e.target.value)};
                     }}
                 ></input>
             </label>
+            <br/>
             <label>
                 Servings
                 <input
                     name="servings"
                     type="number"
                     required={true}
+                    min={1}
                     value={servings}
                     onChange={(e) => {
                         {setServings(e.target.value)};
                     }}
                 ></input>
             </label>
+            <br/>
             <button>Create</button>
         </form>
     );

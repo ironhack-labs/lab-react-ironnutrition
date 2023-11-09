@@ -14,12 +14,10 @@ function addFoodForm(props) {
         const newFood = {
             id: uuidv4(), //added id generator to prevent deleting all the new added foods when hitting the delete button
             name: name,
-            image: image,
+            image: "https://perspectives.agf.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png",
             calories: calories,
             servings: servings
         };
-
-        console.log(newFood)
 
         props.callbackToSubmit(newFood);
 
@@ -72,9 +70,9 @@ function addFoodForm(props) {
                     name="servings"
                     type="number"
                     required={true}
-                    value={props.servings}
+                    value={servings}
                     onChange={(e) => {
-                        {setImage(e.target.value)};
+                        {setServings(e.target.value)};
                     }}
                 ></input>
             </label>

@@ -1,25 +1,33 @@
 function FoodBox(props){
+   
+    // console.log(props.food.name)
+    // console.log(props.index)
     return (
         <div>
-           { console.log(props.food[0].name)}
-        <p>{props.food[0].name} </p>
+           
+        <p>{props.food.name} </p>
 
         <img 
-            src={props.food[0].image} 
+            src={props.food.image} 
             alt="food image"
             width="200px"
             height="200px"
             
         />
 
-        <p>Calories: {props.food[0].calories} </p>
-        <p>Servings: {props.food[0].servings} </p>
+        <p>Calories: {props.food.calories} </p>
+        <p>Servings: {props.food.servings} </p>
 
         <p>
-            <b>Total calories: {props.food[0].servings * props.food[0].calories} </b>
+            <b>Total calories: {props.food.servings * props.food.calories} </b>
         </p>
 
-        <button>Delete</button>
+        <button
+             onClick={()=>{
+                props.deleteFood(props.food.id);
+                }}>
+                Delete
+        </button>
     </div>
     );
 }

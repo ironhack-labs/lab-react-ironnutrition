@@ -27,14 +27,29 @@ function App() {
       calories: calories,
       servings: servings,
     }
-
+    console.log(newFoodItem)
     const newFoodArray = [newFoodItem, ...foods]
+    setFoods(newFoodArray)
   }
 
 
   return (
     <>
-      <AddFoodForm callbackToAdd={addItem}/>
+      <AddFoodForm 
+      callbackToAdd={addItem}
+
+      nameValue={name}
+      setNameValue={setName}
+
+      imageValue={image}
+      setImageValue={setImage}
+
+      caloriesValue={calories}
+      setCaloriesValue={setCalories}
+
+      servingsValue={servings}
+      setServingsValue={setServings}
+      />
       <FoodBox foodArray={foods} callbackToDelete={deleteItem} />
 
     </>

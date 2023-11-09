@@ -1,11 +1,17 @@
 import "./App.css";
+import AddFoodForm from "./components/AddFoodForm";
 import FoodBox from "./components/FoodBox";
 import foodsJson from "./foods.json"
 import { useState } from "react";
 
 
 function App() {
-const [foodList, setFoodList]= useState(foodsJson)
+const [foodList, setFoodList]= useState(foodsJson);
+
+const [name, setName] = useState("")
+const [image, setImage] = useState("")
+const [calories, setCalories] = useState("")
+const [servings, setServings] = useState("")
 
 
 function deleteFoodObj(foodId){
@@ -15,16 +21,42 @@ function deleteFoodObj(foodId){
   setFoodList(newList);
 }
 
-// const copyFoodList = [...foodList]
-// console.log(copyFoodList)
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  const newFood = {
+    name,
+    image,
+    calories,
+    servings
+  }
+
+  const newFoodList = [newFood, ...foodList];
+  setFoodList(newFoodList)
+
+  setName("");
+  setImage("");
+  setCalories("");
+  setServings("");
+
+};
+
+
+
+
+
 
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
       
+      <AddFoodForm
+         addFood={handleSubmit}
+         foodList={foodList}
+         setListFood={setFoodList}
+      />
+
       {foodList.map((foodElm, index) =>{
-        // console.log(foodElm.id)
-        // console.log(index)
         return (
           <FoodBox 
             key={foodElm.id}
@@ -34,6 +66,7 @@ function deleteFoodObj(foodId){
             />
             ) 
       })}
+
      
 
     </div>

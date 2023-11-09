@@ -10,7 +10,7 @@ function FoodBox(props){
         <img 
             src={props.food.image} 
             alt="food image"
-            width="200px"
+            width="auto"
             height="200px"
             
         />

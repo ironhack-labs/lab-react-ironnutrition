@@ -20,6 +20,10 @@ function SearchBar(props) {
     const newList = props.foodsArray.filter((elm) => {
       return elm.name.toLowerCase().includes(searchQuery);
     });
+    if(newList.length === 0) {
+      props.callbackToSetNoResultsDiv(
+      <div>Pas de résultats</div>)
+    }
     props.callbackToSetFoods(newList);
     
     

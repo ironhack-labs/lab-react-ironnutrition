@@ -9,6 +9,7 @@ function FoodList(props) {
         foodsArray={props.foodsArray}
         callbackToSetFoods={props.callbackToSetFoods}
       />
+      {props.noResultsDiv}
       {props.foodsArray.map((elm) => {
         return (
           <FoodBox

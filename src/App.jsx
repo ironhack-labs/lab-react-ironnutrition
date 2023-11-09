@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [foods, setFoods] = useState(foodsJson);
+  const [noResultsDiv, setNoResultsDiv] = useState(<div></div>)
  
 
   const deleteItem = (itemID) => {
@@ -24,11 +25,12 @@ function App() {
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
-      <SearchBar foodsArray={foods} callbackToSetFoods = {setFoods}/>
+      <SearchBar foodsArray={foods} callbackToSetFoods = {setFoods} noResultsDiv = {noResultsDiv} callbackToSetNoResultsDiv = {setNoResultsDiv}/>
       <FoodList
         foodsArray={foods}
         callbackToSetFoods={setFoods}
         callbackToDeleteItem={deleteItem}
+        noResultsDiv = {noResultsDiv}
       />
     </div>
   );

@@ -17,22 +17,24 @@ function App() {
     setFood(newList);
   }
 
+  // Iteration 5:
+  const addNewFood = (newFood) => {
+    const newListFood = [newFood, ...food]
+    setFood(newListFood)
+  }
+
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
 
       {/* Iteration 5: */}
-      <AddFoodForm />
+      <AddFoodForm addFood={addNewFood} />
 
       {/* Iteration 2 and 3: */}
-      {food.map(function(foodItem, index){
-        return <FoodBox
-                  key={index}
-                  foodDetails={foodItem}
-                  delete={deleteFoodItem}
-                  
-        />
-      })}
+      <FoodBox
+        foodDetails={food}
+        delete={deleteFoodItem}
+      />
     </div>
   );
 }

@@ -7,7 +7,9 @@ function SearchBar(props) {
 
   // Function to handle the form input change
   const handleInput = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value); // PLEASE, WHEN U CAN, UPDATE STATE
+    console.log("What the user has entered: ", e.target.value);
+    console.log("Search query: ", searchQuery);
     handleSubmit(e);
   };
 
@@ -16,9 +18,9 @@ function SearchBar(props) {
     // Prevent page reload on form submit
     e.preventDefault();
     // Do something with the search query string ...
-    console.log("Search query: ", searchQuery);
+    
     const newList = props.foodsArray.filter((elm) => {
-      return elm.name.toLowerCase().includes(searchQuery);
+      return elm.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     if(newList.length === 0) {
       props.callbackToSetNoResultsDiv(

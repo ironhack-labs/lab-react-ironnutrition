@@ -1,10 +1,33 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.Search {
+  width: 50%;
+}
+.button {
+  background-color: #007fff;
+  color: white;
+}
+
+.buttonForm {
+  background-color: white;
+  border: solid #007fff 1px;
+  color: #007fff;
+  padding: 5px 20px;
+  margin: 20px 0px;
+}
+.container{
+  display: flex;
+  gap: 5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,8 +47,18 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
+}
+.massege{
+  margin-left: 15%;
+  margin-top: 9rem;
+  
+}
+.msg{
+  margin-left: 23%;
+  margin-top: 1rem;
 }
 
 @keyframes App-logo-spin {

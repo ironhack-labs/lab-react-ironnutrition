@@ -26,7 +26,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -53,6 +52,61 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.foodCard {
+  border: 1px solid black;
+  margin: 30px;
+  padding: 15px;
+}
+
+.foodFormContainer {
+  border: 1px solid black;
+  margin: 30px;
+  padding: 15px;
+  background: rgb(234, 238, 220);
+}
+
+.foodFormContainer h3 {
+  font-Size: 24px;
+  font-Weight: 600;
+  margin-bottom: 15px
+}
+
+.foodFormWrapper{
+   display: flex;
+  flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.foodFormWrapper .label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.foodFormWrapper .input {
+  width: 80%;
+  padding: 8px;
+}
+
+.input::placeholder {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.foodFormWrapper button {
+  margin-bottom: 15px
+}
+
+.classicForm {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 20px 30px;
 }
 
 @media (prefers-color-scheme: light) {

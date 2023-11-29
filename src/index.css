@@ -67,3 +67,37 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+img {
+  width: 300px;
+}
+.form-box {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.form-box div {
+  margin: 5px 0 5px 0;
+  font-size: 0.8em;
+}
+.form-box label {
+  font-weight: bold;
+}
+.form-button {
+  width: 100px;
+  margin: 5px 0 5px 0;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.form-title {
+  margin-bottom: 5px;
+  font-size: 1.3em;
+  color: black;
+}
+.food-name {
+  font-weight: bold;
+}
+.form label {
+  font-weight: bold;
+}

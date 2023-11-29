@@ -14,6 +14,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.food-image {
+  width: 500px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

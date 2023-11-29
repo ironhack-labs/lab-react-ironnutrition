@@ -35,8 +35,13 @@
 
 .card {
   padding: 2em;
+  border-color:black;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.img{
+  width:20%;
 }

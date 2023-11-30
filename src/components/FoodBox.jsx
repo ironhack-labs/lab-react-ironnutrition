@@ -10,10 +10,7 @@ export default function FoodBox(props) {
         <p>Servings {element.servings}</p>
 
         <p>
-          <b>
-            Total Calories: {element.servings} * {element.calories}{' '}
-          </b>{' '}
-          kcal
+          <b>Total Calories: {element.servings * element.calories} </b> kcal
         </p>
 
         <button

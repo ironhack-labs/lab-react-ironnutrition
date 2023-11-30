@@ -29,7 +29,6 @@ export default function AddFoodForm(props) {
       <h3>Add New Food</h3>
       <form onSubmit={handleSubmit}>
         <label>
-          {' '}
           Name:
           <input
             type="text"
@@ -43,7 +42,6 @@ export default function AddFoodForm(props) {
           />
         </label>
         <label>
-          {' '}
           Image:
           <input
             type="text"
@@ -57,7 +55,6 @@ export default function AddFoodForm(props) {
           />
         </label>
         <label>
-          {' '}
           Calories:
           <input
             type="number"
@@ -71,7 +68,6 @@ export default function AddFoodForm(props) {
           />
         </label>
         <label>
-          {' '}
           Servings:
           <input
             type="number"

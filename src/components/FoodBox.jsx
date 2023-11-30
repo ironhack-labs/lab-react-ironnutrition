@@ -1,18 +1,28 @@
 export default function FoodBox(props) {
-  return (
-    <div>
-      <p>{props.food.name}</p>
+  return props.food.map((element) => {
+    return (
+      <div key={element.id}>
+        <p>{element.name}</p>
 
-      <img src={props.food.image} />
+        <img className="food-img" src={element.image} />
 
-      <p>Calories: {props.food.calories}</p>
-      <p>Servings {props.food.servings}</p>
+        <p>Calories: {element.calories}</p>
+        <p>Servings {element.servings}</p>
 
-      <p>
-        <b>Total Calories: {props.food.servings * props.food.calories} </b> kcal
-      </p>
+        <p>
+          <b>
+            Total Calories: {element.servings} * {element.calories}{' '}
+          </b>{' '}
+          kcal
+        </p>
 
-      <button>Delete</button>
-    </div>
-  );
+        <button
+          onClick={() => {
+            props.delete(element.id);
+          }}>
+          Delete
+        </button>
+      </div>
+    );
+  });
 }

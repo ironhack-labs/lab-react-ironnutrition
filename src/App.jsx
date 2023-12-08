@@ -1,9 +1,12 @@
+import foodsJson from "./foods.json"
+import FoodList from "./components/FoodList";
 import "./App.css";
 
+// item 1
 function App() {
   return (
-    <div className="App">
-      <h1>LAB | React IronNutrition</h1>
+    <div>
+      <FoodList foodsJson={foodsJson} />
     </div>
   );
 }

@@ -38,7 +38,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -66,4 +66,15 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+.food-container {
+  border: 0.5px solid black;
+  margin: 1rem;
+  padding: 1rem;
 }

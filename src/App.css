@@ -18,6 +18,15 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.box{
+  border: solid 2px rgba(128, 128, 128, 0.2);
+  /* border-radius: 25px; */
+}
+
+.deleteButton{
+  margin-bottom: 15px;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.foodForm{
+  display: flex;
+  flex-direction: column;
+}
+
+input{
+  margin: 10px
+}

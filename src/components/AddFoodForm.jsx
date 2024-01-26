@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Button, Flex, Input } from "antd";
+
 function AddFoodForm(props) {
   const { foods, setFoods } = props;
 
@@ -27,57 +29,78 @@ function AddFoodForm(props) {
     setServings(0);
   };
 
+  const buttonStyle = {
+    marginTop: "40px",
+  };
+
   return (
     <form onSubmit={handleSubmission}>
-      <label>
-        Name
-        <input
-          type="text"
-          name="name"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          value={name}
-          required
-        ></input>
-      </label>
-      <label>
-        Image
-        <input
-          type="text"
-          name="image"
-          onChange={(e) => {
-            setImage(e.target.value);
-          }}
-          value={image}
-          required
-        ></input>
-      </label>
-      <label>
-        Calories
-        <input
-          type="number"
-          name="calories"
-          onChange={(e) => {
-            setCalories(e.target.value);
-          }}
-          value={calories}
-          required
-        ></input>
-      </label>
-      <label>
-        Servings
-        <input
-          type="number"
-          name="servings"
-          onChange={(e) => {
-            setServings(e.target.value);
-          }}
-          value={servings}
-          required
-        ></input>
-      </label>
-      <button type="submit">Create</button>
+      <Flex vertical="true" align="center" justify="center" gap="5px">
+        <label>
+          <Flex vertical>
+            Name
+            <Input
+              type="text"
+              name="name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              value={name}
+              required
+            ></Input>
+          </Flex>
+        </label>
+        <label>
+          <Flex vertical>
+            Image
+            <Input
+              type="text"
+              name="image"
+              onChange={(e) => {
+                setImage(e.target.value);
+              }}
+              value={image}
+              required
+            ></Input>
+          </Flex>
+        </label>
+        <label>
+          <Flex vertical>
+            Calories
+            <Input
+              type="number"
+              name="calories"
+              onChange={(e) => {
+                setCalories(e.target.value);
+              }}
+              value={calories}
+              required
+            ></Input>
+          </Flex>
+        </label>
+        <label>
+          <Flex vertical>
+            Servings
+            <Input
+              type="number"
+              name="servings"
+              onChange={(e) => {
+                setServings(e.target.value);
+              }}
+              value={servings}
+              required
+            ></Input>
+          </Flex>
+        </label>
+        <Button
+          size="large"
+          type="primary"
+          htmlType="submit"
+          style={buttonStyle}
+        >
+          Create
+        </Button>
+      </Flex>
     </form>
   );
 }

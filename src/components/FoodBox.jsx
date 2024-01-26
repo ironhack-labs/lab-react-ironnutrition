@@ -1,4 +1,7 @@
+import "../FoodBox.css"
 // Your code here
+
+
 
 function FoodBox(props) {
   return (
@@ -6,17 +9,17 @@ function FoodBox(props) {
       <div>
         <p>{props.food.name}</p>
 
-        <img src={props.food.image} />
+        <img id="foodImg" src= {props.food.image}/>
 
         <p>Calories: {props.food.calories}</p>
         <p>Servings {props.food.servings}</p>
 
         <p>
-          <b>Total Calories: {props.food.servings * props.food.calories} </b>{" "}
-          kcal
+          <b>Total Calories: {props.food.servings * props.food.calories} </b> kcal
         </p>
 
-        <button>Delete</button>
+        <button onClick={()=> { console.log(props); props.deleteFood(props.food.id) }}>Delete</button>
+      
       </div>
     </div>
   );

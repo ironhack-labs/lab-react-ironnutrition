@@ -1,20 +1,28 @@
 import "./App.css";
 import foodsJson from "./foods.json";
 import FoodBox from "./components/FoodBox";
+import { useState } from 'react'
+
 
 function App() {
-  // const [food, setFood] = useState(foodsJson)
+
+  function deleteFood(idParam){
+    const filteredFoods = foodList.filter((oneFood) => {
+      return oneFood.id !== idParam
+    })
+
+    setFoodList(filteredFoods)
+  }
+
+
+
+  const [foodList, setFoodList] = useState(foodsJson)
 
   return (
     <div className="App">
-      <FoodBox
-        food={{
-          name: "Orange",
-          calories: 85,
-          image: "https://i.imgur.com/abKGOcv.jpg",
-          servings: 1,
-        }}
-      />{" "}
+      {foodList.map(food => {
+        return <FoodBox food={food} deleteFood={deleteFood} key={food.id}/>;
+      })}
     </div>
   );
 }

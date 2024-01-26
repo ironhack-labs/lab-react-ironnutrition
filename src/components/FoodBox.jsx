@@ -11,7 +11,7 @@ function FoodBox(props) {
     backgroundColor: "white",
     color: "black",
     borderRadius: 5,
-    border: "1px solid grey",
+    border: "1px solid lightgray",
     padding: "10px",
     boxSizing: "border-box",
     width: "24%",

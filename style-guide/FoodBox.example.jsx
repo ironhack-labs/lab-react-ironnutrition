@@ -6,7 +6,7 @@ import { Card, Col, Button } from "antd";
 
 function FoodBox() {
   return (
-    <Col>
+    <Col >
       <Card title={"FOOD_NAME"} style={{ width: 230, height: 300, margin: 10 }}>
         <img src={"FOOD_IMAGE"} height={60} alt="food" />
         <p>Calories: FOOD_CALORIES</p>

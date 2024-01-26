@@ -18,10 +18,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>LAB | React IronNutrition</h1>
+      <h1 id="title">LAB | React IronNutrition</h1>
       <AddFoodForm food={food} setFood={setFood}></AddFoodForm>
       {food.map((oneFood)=>{
-       return (<FoodBox food={oneFood} deleteItem={deleteItem}/>)
+       return <FoodBox key={oneFood.id} food={oneFood} deleteItem={deleteItem}/>
 
       })}
     </div>

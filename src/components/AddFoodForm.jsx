@@ -22,7 +22,7 @@ function AddFoodForm(props) {
   return (
     <div className="AddFood">
     <h3>Add Food Entry</h3>
-        <form onSubmit={handleSubmit}>
+        <form id="add-food-form" onSubmit={handleSubmit}>
             <label>
             Name:
             <input name="name" type="text" onChange={(e)=>{setName(e.target.value)}} value={name}/>
@@ -36,7 +36,7 @@ function AddFoodForm(props) {
             </label>
             <label>
             Servings:
-            <input name="servings" type="number" onChange={(e)=>{setServings(e.target.checked)}} checked={servings}/>
+            <input name="servings" type="number" onChange={(e)=>{setServings(e.target.value)}} value={servings}/>
             </label>
             <button>Create</button>
         </form>

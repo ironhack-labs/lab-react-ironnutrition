@@ -1,4 +1,5 @@
 import "../FoodBox.css"
+import { Button } from 'antd';
 // Your code here
 
 
@@ -18,7 +19,7 @@ function FoodBox(props) {
           <b>Total Calories: {props.food.servings * props.food.calories} </b> kcal
         </p>
 
-        <button onClick={()=> { console.log(props); props.deleteFood(props.food.id) }}>Delete</button>
+        <Button type="primary" ghost onClick={()=> { console.log(props); props.deleteFood(props.food.id) }}> Delete</Button>
       
       </div>
     </div>
@@ -26,3 +27,5 @@ function FoodBox(props) {
 }
 
 export default FoodBox;
+
+

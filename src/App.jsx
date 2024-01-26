@@ -1,27 +1,33 @@
 import "./App.css";
 import foodsJson from "./foods.json";
 import FoodBox from "./components/FoodBox";
-import { useState } from 'react'
-
+import { useState } from "react";
+import AddFoodForm from "./components/AddFoodForm";
 
 function App() {
 
-  function deleteFood(idParam){
-    const filteredFoods = foodList.filter((oneFood) => {
-      return oneFood.id !== idParam
-    })
+  const [foodList, setFoodList] = useState(foodsJson);
 
-    setFoodList(filteredFoods)
+  function deleteFood(idParam) {
+    const filteredFoods = foodList.filter((oneFood) => {
+      return oneFood.id !== idParam;
+    });
+
+    setFoodList(filteredFoods);
   }
 
+  function addFood(food){
+    setFoodList([food, ...foodList])
+ }
 
-
-  const [foodList, setFoodList] = useState(foodsJson)
 
   return (
     <div className="App">
-      {foodList.map(food => {
-        return <FoodBox food={food} deleteFood={deleteFood} key={food.id}/>;
+
+      <AddFoodForm addFood={addFood}></AddFoodForm>
+
+      {foodList.map((food) => {
+        return <FoodBox food={food} deleteFood={deleteFood} key={food.id} />;
       })}
     </div>
   );

@@ -17,19 +17,26 @@ const boxStyle = {
 
 function FoodList() {
   const [foods, setFoods] = useState(foodsJson);
+  const [allFoods, setAllFoods] = useState(foodsJson);
 
   const handleDeleteItem = (id) => {
     const filteredFoods = foods.filter((food) => {
       return food.id !== id;
     });
     setFoods(filteredFoods);
+    setAllFoods(filteredFoods);
   };
 
   return (
     <div>
       <h1>LAB | React IronNutrition</h1>
-      <AddFoodForm foods={foods} setFoods={setFoods}></AddFoodForm>
-      <Search foods={foods} setFoods={setFoods}></Search>
+      <AddFoodForm
+        foods={foods}
+        setFoods={setFoods}
+        allFoods={allFoods}
+        setAllFoods={setAllFoods}
+      ></AddFoodForm>
+      <Search foods={foods} setFoods={setFoods} allFoods={allFoods}></Search>
       <Flex style={boxStyle} wrap="wrap">
         {foods.map((food) => {
           return (

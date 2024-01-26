@@ -4,9 +4,17 @@ import { Flex, Input } from "antd";
 function Search(props) {
   const [userInput, setUserInput] = useState("");
 
-  const { foods, setFoods } = props;
+  const { foods, setFoods, allFoods } = props;
 
   // stopped here.
+  const filterFoods = (value) => {
+    setUserInput(value);
+    const filteredFoods = allFoods.filter((food) => {
+      return food.name.startsWith(value);
+    });
+    // console.log(filteredFoods);
+    setFoods(filteredFoods);
+  };
 
   const boxStyle = {
     marginTop: "40px",
@@ -19,7 +27,7 @@ function Search(props) {
         <Input
           type="text"
           onChange={(e) => {
-            setUserInput(e.target.value);
+            filterFoods(e.target.value);
           }}
           value={userInput}
         ></Input>

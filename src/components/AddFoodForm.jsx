@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Flex, Input } from "antd";
 
 function AddFoodForm(props) {
-  const { foods, setFoods } = props;
+  const { foods, setFoods, allFoods, setAllFoods } = props;
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -22,6 +22,7 @@ function AddFoodForm(props) {
     };
 
     setFoods([newFood, ...foods]);
+    setAllFoods([newFood, ...allFoods]);
 
     setName("");
     setImage("");

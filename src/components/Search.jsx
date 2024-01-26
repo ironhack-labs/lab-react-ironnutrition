@@ -10,7 +10,7 @@ function Search(props) {
   const filterFoods = (value) => {
     setUserInput(value);
     const filteredFoods = allFoods.filter((food) => {
-      return food.name.startsWith(value);
+      return food.name.toLowerCase().startsWith(value);
     });
     // console.log(filteredFoods);
     setFoods(filteredFoods);

@@ -10,11 +10,11 @@ function FoodBox(props) {
   const cardStyle = {
     backgroundColor: "white",
     color: "black",
-    borderRadius: 10,
-    border: "1px solid black",
+    borderRadius: 5,
+    border: "1px solid grey",
     padding: "10px",
     boxSizing: "border-box",
-    width: "25%",
+    width: "24%",
   };
 
   const imgBoxStyle = {

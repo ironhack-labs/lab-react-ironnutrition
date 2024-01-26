@@ -12,7 +12,8 @@ const boxStyle = {
   width: "100%",
   borderRadius: 10,
   marginTop: "60px",
-  //border: "1px solid grey",
+  justifyContent: "center",
+  // border: "1px solid grey",
 };
 
 function FoodList() {
@@ -37,7 +38,7 @@ function FoodList() {
         setAllFoods={setAllFoods}
       ></AddFoodForm>
       <Search foods={foods} setFoods={setFoods} allFoods={allFoods}></Search>
-      <Flex style={boxStyle} wrap="wrap">
+      <Flex style={boxStyle} wrap="wrap" gap={"10px"}>
         {foods.map((food) => {
           return (
             <FoodBox

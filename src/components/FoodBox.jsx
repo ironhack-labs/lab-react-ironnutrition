@@ -1,4 +1,11 @@
 function FoodBox(props) {
+  
+  function handleDelete() {
+    const updatedFoods = props.foods.filter((eachFood) => eachFood.id !== props.food.id);
+   props.setFoods(updatedFoods);
+  }
+
+    
   return (
     <div>
       <p>{props.food.name}</p>
@@ -15,7 +22,7 @@ function FoodBox(props) {
         kcal
       </p>
 
-      <button>Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }

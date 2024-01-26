@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
       {foods.map((eachFood)=>{
-        return ( <FoodBox key={eachFood.id} food={eachFood}></FoodBox>)
+        return ( <FoodBox key={eachFood.id} food={eachFood} foods={foods} setFoods={setFoods}></FoodBox>)
       })}
     </div>
   );

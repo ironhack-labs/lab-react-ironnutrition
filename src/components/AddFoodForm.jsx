@@ -2,12 +2,14 @@
 // Your code here
 import React from "react";
 import { useState } from "react";
+import { v4 as randomUUID } from "uuid";
 
 function AddFoodForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
     const newFood = {
+      id: randomUUID(),
       name: name,
       image: image,
       calories: calories,
@@ -46,7 +48,7 @@ function AddFoodForm(props) {
         <label>
           Image
           <input
-            type="text"
+            type="url"
             name="image"
             placeholder="Image Url"
             onChange={(e) => {
@@ -82,7 +84,7 @@ function AddFoodForm(props) {
           />
         </label>
 
-        <button>Create</button>
+        <button>Create Food</button>
       </form>
     </div>
   );

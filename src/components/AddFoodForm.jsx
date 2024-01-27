@@ -14,7 +14,7 @@ function AddFoodForm(props) {
         e.preventDefault()
         const newFood= {name:foodName,calories:calories,image:image,servings:servings}
         console.log(newFood)
-        props.setFood([...props.food,newFood])
+        props.setFood([newFood,...props.food])
         setFoodName('')
         setImage('')
         setCalories(0)
@@ -22,7 +22,7 @@ function AddFoodForm(props) {
     }
 
   return (
-    <div className='AddMovie' >
+    <div className='AddFood' >
     <form onSubmit={handleSubmit} style={{display:'flex',flexWrap:'wrap', flexDirection:'column'}}>
     <h1 style={{fontSize:'22px'}}>Add Food Entry</h1>
         <label style={{textAlign:'left', fontSize:'18px', fontWeight:'bold'}}>Name</label><input style={{padding:'4px', borderColor:'lightgrey', margin:'10px 0px'}}name='name' type='text' onChange={(e)=>{setFoodName(e.target.value)}} value={foodName}/>    

@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.card-img-top {
+  max-width: 200px;
+}
+
+.food-list {
+  margin-top: 100px;
+  margin-bottom: 25px;
+}
+
+.card-body {
+  padding: 2em;
+  width: 18rem;
+}

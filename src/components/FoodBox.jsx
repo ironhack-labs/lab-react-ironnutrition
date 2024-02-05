@@ -1,8 +1,17 @@
 // Your code here
 
 const FoodBox = ({food}) => {
-    const {name, image, calories, servings} = food;
-    
+    const {name, image, calories, servings, onClick} = food;
+    const onDelete = () => {
+        if (confirm(`Estas a punto de borrar la receta: ${food.name}`)) {
+          food(id)
+            .then(() => {
+              navigate('/src/foods.json');
+            })
+            .catch((e) => console.error(e));
+        }
+      };
+
     return (
         <div className="card-body">
             <h4 className="card-title">{name}</h4>
@@ -12,7 +21,7 @@ const FoodBox = ({food}) => {
             <p>
               <b>Total Calories: {calories * servings}</b> kcal {/*faltaria hacer la multiplicacion de porciones*calorias*/}
             </p>
-            <button>Delete</button>
+            <button onClick={onDelete} className="btn btn-danger">Delete</button>
         </div>
     )
 }

@@ -1,13 +1,73 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: black;
+  background-color: whitesmoke;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.food-section{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+.food-item{
+border: 2px orangered solid;
+width: 300px;
+padding: 20px;
+}
+.food-item img{
+  width: 250px;
+  height: 200px;
+}
+
+.delete-btn{
+  margin: 10px;
+  width: 80px;
+  height: 40px;
+}
+
+.add-new-item{
+  
+  border: 1px solid orange;
+  width: 500px;
+  height: 500px;
+   margin: auto;
+   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items:center;
+  gap: 30px;
+}
+label{
+  width: 300px;
+  height: 20px;
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input{
+  width: 10rem;
+  height: 2.5rem;
+  margin: 10px;
+}
+
+button{
+  width: 5rem;
+  height: 2.5rem;
+ margin: auto;
+ background-color: blanchedalmond;
+ border: 1px solid salmon
 }

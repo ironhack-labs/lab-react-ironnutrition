@@ -1,5 +1,5 @@
 
-
+import { Divider, Input, Button } from "antd";
 import { useState } from "react";
 
 function AddFoodForm(props) {
@@ -26,11 +26,11 @@ function AddFoodForm(props) {
 
 return (
     <div className="AddFood">
-      <h4>Add a Food</h4>
+     <Divider> <h4>Add a Food</h4></Divider>
   
       <form onSubmit={handleSubmit}>  
         <label>Name: </label>
-        <input 
+        <Input 
             type="text" 
             name="name" 
             value={name} 
@@ -40,7 +40,7 @@ return (
         
   
         <label>Image: </label>
-        <input 
+        <Input 
             type="text" 
             name="image" 
             value={image} 
@@ -48,7 +48,7 @@ return (
         />
   
         <label>Calories: </label>
-        <input 
+        <Input 
             type="number" 
             name="calories" 
             value={calories}
@@ -56,14 +56,14 @@ return (
         />
   
         <label>Servings: </label>
-        <input 
+        <Input 
             type="number" 
             name="servings" 
             value={servings} 
             onChange={handleServingsInput}
         />
         
-        <button type="submit">create</button>
+        <Button type="primary" htmlType="submit">Add New Food</Button>
       </form>
     </div>
   );

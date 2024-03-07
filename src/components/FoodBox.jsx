@@ -1,6 +1,6 @@
 function FoodBox({food}) {
   return (
-    <div>
+    <div className="food-item">
   <p>{food.name}</p>
 
   <img src={food.image} />

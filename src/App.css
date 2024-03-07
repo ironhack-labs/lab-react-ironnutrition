@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+img {
+  width: 200px;
+  height: 150px;
+}
+
+.food-item {
+  border: solid 1px black;
+  width: 100vw;
+}

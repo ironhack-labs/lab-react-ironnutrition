@@ -10,11 +10,16 @@ function App() {
 
   console.log(orangeIndex);
 
+  function DeleteItem(id) {
+    const newFoods = foods.filter((element) => element.id !== id);
+    setFoods(newFoods);
+  }
+
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
       {foods.map((element) => (
-        <FoodBox key={element.id} food={element} />
+        <FoodBox key={element.id} food={element} DeleteItem={DeleteItem} />
       ))}
     </div>
   );

@@ -1,6 +1,7 @@
 function FoodBox(props) {
 
-const {name, image, calories, servings} = props.food;
+const {id, name, image, calories, servings} = props.food;
+const DeleteItem = props.DeleteItem;
 
   return (
     <div className="FoodBox">
@@ -15,7 +16,7 @@ const {name, image, calories, servings} = props.food;
         <b>Total Calories: {servings * calories} </b> kcal
       </p>
 
-      <button>Delete</button>
+      <button onClick={()=>DeleteItem(id)}>Delete</button>
     </div>
   );
 }

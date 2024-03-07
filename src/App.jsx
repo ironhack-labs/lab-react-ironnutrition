@@ -8,12 +8,14 @@ function App() {
 
   let orangeIndex = foods.findIndex((element) => element.name === "Orange");
 
-  console.log(orangeIndex)
+  console.log(orangeIndex);
 
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
-      <FoodBox food={foods[14]} />
+      {foods.map((element) => (
+        <FoodBox key={element.id} food={element} />
+      ))}
     </div>
   );
 }

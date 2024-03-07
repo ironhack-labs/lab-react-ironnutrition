@@ -1,4 +1,8 @@
 import "./App.css";
+import foodsJson from "./foods.json";
+import { useState } from "react";
+
+const [foods, setFoods] = useState(JSON.parse(foodsJson));
 
 function App() {
   return (

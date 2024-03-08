@@ -2,7 +2,7 @@ import { Card, Col, Button } from "antd";
 
 function FoodBox({ food, deleteFoodItem }) {
   return (
-    <Col>
+    <Col span={8}>
       <Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
         <img src={food.image} />
 

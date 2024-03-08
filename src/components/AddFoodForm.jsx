@@ -13,12 +13,24 @@ function AddFoodForm(props) {
 
   const inputChange = (event) => {
     const { name, value } = event.target;
+    console.log(`Listening to the user typing - ${value} - in the ${name} box`);
     setNewFood({ ...newFood, [name]: value });
+    console.log(`Now the state is ${Object.values(newFood)}`);
   };
 
   const submitFood = (event) => {
+    console.log(
+      "Prevent the page from reloading, calling AddFood() in App.jsx and clearing the form"
+    );
+    console.log(`The newFood element has the following values: ${Object.values(newFood)}`);
     event.preventDefault();
     AddFood(newFood);
+    setNewFood({
+      name: "",
+      image: "",
+      calories: "",
+      servings: "",
+    });
   };
 
   return (

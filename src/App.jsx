@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "./App.css";
 import FoodBox from "./components/FoodBox";
+import AddFoodForm from "./components/AddFoodForm";
 import foodsJson from "./foods.json";
 
 function App() {
+
+  const addNewFood = (foodItem) => {
+    setFoodList([...foodList, foodItem])
+  }
 
   const deleteFoodItem = (id) => {
     const newArray = [...foodList] 
@@ -18,8 +23,9 @@ function App() {
 
   const [foodList, setFoodList] = useState(foodsJson)
   return (
-
+    
     <div className="App">
+    <AddFoodForm addNewFood={addNewFood}/>
     {foodList.map((food) => (<FoodBox deleteFoodItem={deleteFoodItem} key={food.id} food={food}/>)
     )}
     </div>

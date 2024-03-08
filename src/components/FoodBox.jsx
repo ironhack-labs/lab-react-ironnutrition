@@ -1,4 +1,4 @@
-function FoodBox({food}) {
+function FoodBox({food, deleteFoodItem}) {
   return (
     <div className="food-item">
   <p>{food.name}</p>
@@ -12,7 +12,7 @@ function FoodBox({food}) {
     <b>Total Calories: {food.servings * food.calories} </b> kcal
   </p>
 
-  <button>Delete</button>
+  <button className="cta-delete" onClick={()=> deleteFoodItem(food.id)}>Delete</button>
 </div>
   )
 }

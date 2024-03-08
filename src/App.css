@@ -48,5 +48,10 @@ img {
 
 .food-item {
   border: solid 1px black;
-  width: 100vw;
+  width: 70vw;
+  margin: 20px;
+}
+
+.cta-delete {
+  margin-bottom: 10px;
 }

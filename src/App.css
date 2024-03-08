@@ -42,8 +42,8 @@
 }
 
 img {
-  width: 200px;
-  height: 150px;
+  width: 120px;
+  height: 70px;
 }
 
 .food-item {
@@ -55,3 +55,11 @@ img {
 .cta-delete {
   margin-bottom: 10px;
 }
+
+.item-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 20%;
+}
+

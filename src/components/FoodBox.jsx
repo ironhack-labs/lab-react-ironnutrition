@@ -1,20 +1,28 @@
-function FoodBox({food, deleteFoodItem}) {
+import { Card, Col, Button } from "antd";
+
+function FoodBox({ food, deleteFoodItem }) {
   return (
-    <div className="food-item">
-  <p>{food.name}</p>
+    <Col>
+      <Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
+        <img src={food.image} />
 
-  <img src={food.image} />
+        <p>Calories: {food.calories}</p>
+        <p>Servings {food.servings}</p>
 
-  <p>Calories: {food.calories}</p>
-  <p>Servings {food.servings}</p>
+        <p>
+          <b>Total Calories: {food.servings * food.calories} </b> kcal
+        </p>
 
-  <p>
-    <b>Total Calories: {food.servings * food.calories} </b> kcal
-  </p>
-
-  <button className="cta-delete" onClick={()=> deleteFoodItem(food.id)}>Delete</button>
-</div>
-  )
+        <Button
+          type="primary"
+          className="cta-delete"
+          onClick={() => deleteFoodItem(food.id)}
+        >
+          Delete
+        </Button>
+      </Card>
+    </Col>
+  );
 }
 
-export default FoodBox
+export default FoodBox;

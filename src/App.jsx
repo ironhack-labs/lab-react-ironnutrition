@@ -2,7 +2,7 @@ import "./App.css";
 import foodsJson from "./foods.json";
 import FoodBox from './components/FoodBox';
 import AddFoodForm from "./components/AddFoodForm";
-import FoodList from "./components/FoodList";
+//import FoodList from "./components/FoodList";
 import { useState } from "react";
 
 function App() {
@@ -32,9 +32,9 @@ function App() {
 
   return (
     <div className="App">
-    <FoodList food={foods} 
-   callbackToDelete={deleteFood}
-   handleAddFood={handleAddFood} />
+    {/* <FoodList food={foods}  */}
+   {/* callbackToDelete={deleteFood} */}
+   {/* handleAddFood={handleAddFood} /> */}
     <AddFoodForm onAddFood={handleAddFood} />
     {foods.map((food) => (
         

@@ -40,3 +40,28 @@
 .read-the-docs {
   color: #888;
 }
+
+.conteiner{
+width: 500px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+
+
+}
+.search-style{
+  width: 500px;
+
+}
+.list-style{
+display: grid;
+grid-template-columns: repeat(3,1fr);
+
+
+}
+.food-style{
+  width: 300px;
+
+
+
+}

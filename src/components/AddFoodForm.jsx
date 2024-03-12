@@ -1,102 +1,78 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { Divider, Input, Button } from "antd";
+
+
 function AddFoodForm({ onAddFood }) {
-    const [newFood, setNewFood] = useState({
-      name: "",
-      image: "",
-      calories: "",
-      servings: "",
+  const [formState, setFormState] = useState({
+    name: '',
+    image: '',
+    calories: 0,
+    servings: 0,
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
     });
-  
-    /*const handleChange = (e) => {
-      const { name, value } = e.target;
-      setNewFood((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    };*/
-    const handleChange = e => { 
-        setNewFood({
-          ...newFood,
-          [e.target.name]: e.target.value,
-        });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      onAddFood({
-        id: Date.now(),
-        name: newFood.name,
-        image: newFood.image,
-        calories: newFood.calories,
-        servings: newFood.servings,
-      });
-      setNewFood({
-        name: "",
-        image: "",
-        calories: "",
-        servings: "",
-      });
-    };
-  
-    return (
-      <div>
-        <h2>Add Food Entry</h2>
-        <form onSubmit={handleSubmit} className="Form">
-          <label>
-            Name</label>
-            <input
-              name="name"
-              type="text"
-              
-              value={newFood.name}
-              onChange={handleChange}
-            />
-          
-          <br></br>
-          <br></br>
-  
-          <label>
-            Image</label>
-            <input
-              name="image"
-              type="url"
-              
-              value={newFood.image}
-              onChange={handleChange}
-            />
-          
-          <br></br>
-          <br></br>
-  
-          <label>
-            Calories</label>
-            <input
-              name="calories"
-              type="number"
-              
-              value={newFood.calories}
-              onChange={handleChange}
-            />
-          
-          <br></br>
-          <br></br>
-  
-          <label>
-            Servings</label>
-            <input
-              name="servings"
-              type="number"
-              
-              value={newFood.servings}
-              onChange={handleChange}
-            />
-          
-          <br></br>
-          <br></br>
-  
-          <button type="submit">Create</button>
-        </form>
-      </div>
-    );
   }
-  export default AddFoodForm;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onAddFood(formState);
+    setFormState({ name: '', image: '', calories: 0, servings: 0 }); // Reset the form
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+
+    <Divider>Add Food Entry</Divider>
+
+    <label>Name</label>
+    <Input name="name" value={formState.name} type="text" onChange={() => {handleChange}} />
+      {/* <input
+        type="text"
+        name="name"
+        value={formState.name}
+        onChange={handleChange}
+        placeholder="Name"
+      /> */}
+      
+    <label>Image</label>
+    <Input name="image" value={formState.name} type="text" onChange={() => {handleChange}} />
+      {/* <input
+        type="text"
+        name="image"
+        value={formState.image}
+        onChange={handleChange}
+        placeholder="Image URL"
+      /> */}
+
+      <label>Calories</label>
+      <Input name="calories" value={formState.calories} type="number" onChange={() => {handleChange}} />
+      {/* <input
+        type="number"
+        name="calories"
+        value={formState.calories}
+        onChange={handleChange}
+        placeholder="Calories"
+      /> */}
+      
+      <label>Servings</label>
+      <Input name="servings" value={formState.servings} type="number" onChange={() => {handleChange}} />
+      {/* <input
+        type="number"
+        name="servings"
+        value={formState.servings}
+        onChange={handleChange}
+        placeholder="Servings"
+      /> */}
+
+      <Button type="primary">Create</Button>
+      {/* <button type="submit">Create</button> */}
+    </form>
+  );
+}
+
+export default AddFoodForm;

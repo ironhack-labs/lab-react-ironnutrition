@@ -1,9 +1,8 @@
 import FoodBox from "./FoodBox";
 import AddFoodForm from "./AddFoodForm";
-function FoodList({ foods, handleDelete, addFood }) {
+function FoodList({ foods, handleDelete }) {
   return (
     <div>
-      <AddFoodForm addFood={addFood} />
       {foods.map((oneFood) => {
         return (
           <FoodBox

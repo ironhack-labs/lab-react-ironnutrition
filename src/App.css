@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+.imac {
+  width: 100px;
+}
+.foodBox {
+  border: solid 1px blue;
+}
+button {
+  margin-bottom: 2px;
+}

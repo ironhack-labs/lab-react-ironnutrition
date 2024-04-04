@@ -1,0 +1,25 @@
+.food-box {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .food-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+  
+  .food-box button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

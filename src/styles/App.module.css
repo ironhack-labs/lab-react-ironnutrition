@@ -1,0 +1,42 @@
+/* App.module.css */
+.ulStyle {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
+    gap: 20px; /* Space between items */
+}
+
+.liStyle {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #fff;
+    flex-basis: calc(33.333% - 40px); /* Default size before distributing remaining space */
+    box-sizing: border-box; /* Include padding and border in width/height */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.imgStyle {
+    width: 100px; /* Fixed width for images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10%; /* Circular images */
+    object-fit: cover; /* Cover the area without stretching */
+    margin-bottom: 10px;
+}
+
+/* Style for text content and buttons */
+.textStyle {
+    text-align: center;
+    /* Additional text styling here */
+}
+
+.buttonStyle {
+    /* Style for buttons */
+}

@@ -1,0 +1,9 @@
+.card-list {
+    display: grid;
+    grid-template-areas: "a a";
+    grid-auto-rows: auto;
+}
+
+.image {
+    object-fit: cover !important;
+}

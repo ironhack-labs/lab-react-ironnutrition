@@ -1,0 +1,9 @@
+label {
+    color: white !important;
+}
+
+.form {
+    justify-content: flex-start !important;
+    display: flex;
+    flex-direction: column;
+}

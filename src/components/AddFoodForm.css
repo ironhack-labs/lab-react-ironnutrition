@@ -1,0 +1,20 @@
+.food-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.food-form input{
+    margin: 10px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.food-form button{
+    width: 100%;
+    height: 35px;
+    margin: 10px;
+}

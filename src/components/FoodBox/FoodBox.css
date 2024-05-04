@@ -1,0 +1,29 @@
+/* .food-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(180, 180, 180);
+    margin: 10px;
+}
+
+.food-box .food-name {
+    font-size: x-large;
+    font-weight: bold;
+} */
+
+/* .food-box img {
+    width: 300px;
+} */
+
+/* .food-box button {
+    padding: 5px;
+    margin: 10px;
+    width: 90px;
+} */
+
+.food-box {
+    display: inline-block;
+    /* Ensure the cards display side by side */
+    margin: 10px;
+    /* Add some margin between cards */
+}

@@ -1,0 +1,25 @@
+form {
+    width: 70%;
+    display: flex;
+    margin-left: 35px;
+    gap: 5px;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
+fieldset {
+    background-color: hsl(188, 21%, 86%);
+}
+
+button {
+    background-color:hsl(188, 21%, 86%);
+    border: 1px solid black;
+}
+
+button:hover {
+    background-color:hsl(188, 21%, 67%);
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}

@@ -1,0 +1,18 @@
+.food-list-box {
+    background-color: hsl(192, 45%, 78%);
+    padding: 5px 15px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    border: 3px solid black;
+    list-style-type: none;
+    transition: background-color 0.5s ease;
+}
+
+.food-list-box:hover {
+    background-color: hsl(192, 45%, 67%);
+}
+
+.food-image {
+    height: 60px;
+}

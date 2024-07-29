@@ -18,6 +18,26 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.food-box img {
+  width: 100px; 
+  height: auto;
+}
+
+.food-box {
+  border: 3px solid #ccc;
+  padding: 40px;
+  margin: 10px;
+  border-radius: 10px;
+  justify-self: unset;
+}
+
+.food-list {
+  display:inline;
+  gap: 20px;
+  justify-items: center;
+}
+ 
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

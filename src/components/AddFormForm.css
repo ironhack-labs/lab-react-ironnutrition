@@ -1,0 +1,47 @@
+.AddFoodForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.AddFoodForm h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.AddFoodForm form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.AddFoodForm form label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.AddFoodForm form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.AddFoodForm form input[type='submit'] {
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.AddFoodForm form input[type='submit']:hover {
+    background-color: #45a049;
+}

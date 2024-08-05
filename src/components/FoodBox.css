@@ -1,0 +1,51 @@
+.FoodBox {
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 30%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.FoodBox:nth-child(3n) {
+    margin-right: 0;
+}
+
+.FoodBox:hover {
+    transform: scale(1.02);
+}
+
+.FoodBox p {
+    margin: 10px;
+    font-size: 16px;
+}
+
+.FoodBox .food-images {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+}
+
+.FoodBox button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.FoodBox button:hover {
+    background-color: #c0392b;
+}

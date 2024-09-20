@@ -1,0 +1,22 @@
+.form-container{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.082);
+    padding: 15px;
+    gap: 16px;
+    font-weight: 500;
+}
+
+.center-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+.add-food-ficha{
+    display: flex;
+    gap: 10px;
+}

@@ -1,0 +1,14 @@
+.food-box {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  
+    img {
+        width:250px;
+    }
+    button{
+        background-color: red;
+        color: white;
+    }
+}

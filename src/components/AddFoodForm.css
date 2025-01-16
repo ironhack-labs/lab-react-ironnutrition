@@ -1,0 +1,16 @@
+.add-food-form{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    form{
+        div{
+         margin-bottom: 10px;
+        }
+ 
+     }
+    button{
+        margin-top: 10px;
+        background-color: rgb(90, 234, 62);
+    }
+}

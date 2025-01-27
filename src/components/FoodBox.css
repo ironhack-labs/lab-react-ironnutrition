@@ -1,0 +1,18 @@
+.food-card {
+    width: 300px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 0 rgba(55, 55, 55, 0.411);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    img {
+      width: 100%;
+    }
+  
+    button {
+      color: white;
+    }
+  }

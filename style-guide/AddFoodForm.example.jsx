@@ -2,19 +2,18 @@
 // In this file you can find a reference example of the structure
 // and content that the component should render.
 // Remember to import Ant Design components before using them.
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from "antd";
 
-// Iteration 4
-function AddFoodForm(props) {
+function AddFoodForm() {
   return (
     <form>
       <Divider>Add Food Entry</Divider>
 
       <label>Name</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
+      <Input name="name" value={undefined} type="text" onChange={() => {}} />
 
       <label>Image</label>
-      {/* render antd <Input /> type="text" here */}
+      <Input name="image" value={undefined} type="text" onChange={() => {}} />
 
       <label>Calories</label>
       {/* render antd <Input /> type="number" here */}
@@ -22,7 +21,7 @@ function AddFoodForm(props) {
       <label>Servings</label>
       {/* render antd <Input /> type="number" here */}
 
-      <button type="submit">Create</button>
+      <Button type="submit">Create</Button>
     </form>
   );
 }

@@ -1,0 +1,1 @@
+export { default as StorePage } from 'store-page.jsx';

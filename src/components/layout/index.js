@@ -1,0 +1,1 @@
+export { default as StoreLayout } from './store-layout/store-layout';
